@@ -19,7 +19,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
 
 ## Limits, in the vendor's words
 
@@ -63,6 +63,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-12` — Free models changed: dropped ling-3.0-flash-sante, step-3.7-flash
 - `2026-10-05` — Free models changed: dropped qwen3.8-27b
 - `2026-10-02` — Free models changed: added qwen3.8-27b
 - `2026-09-29` — Free models changed: dropped ling-3.0-flash-fin

@@ -809,9 +809,6 @@ entries:
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: step-3.7-flash
-    tier: notable
-    aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
@@ -820,7 +817,6 @@ entries:
     tier: notable
     aa_model: inkling-small
   - family: dots-3-note
-  - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
@@ -1637,7 +1633,6 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
-  - family: qwen3-coder
   api:
     base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
     auth: none
@@ -1767,6 +1762,10 @@ entries:
   - family: qwen3.8-max
     tier: strong
     aa_model: qwen3-8-max
+  - family: qwen3.7-max
+    tier: notable
+    aa_model: qwen3-7-max
+  - family: qwen-max
   - family: qwen3.8-flash
     tier: strong
     aa_model: qwen3-8-flash-next
@@ -1791,19 +1790,10 @@ entries:
   - family: glm-5.2
     tier: strong
     aa_model: glm-5-2
-  - family: qwen3-coder-plus
-  - family: qwen3-coder-next
-    aa_model: qwen3-coder-next
-  - family: qwen3.7-max
-    tier: notable
-    aa_model: qwen3-7-max
   - family: qwen3.7-plus
     tier: notable
     aa_model: qwen3-7-plus
   - family: qwen3.7-flash
-  - family: qwen3.6-max
-    tier: notable
-    aa_model: qwen3-6-max
   - family: qwen3.6-plus
     tier: notable
     aa_model: qwen3-6-plus
@@ -1832,42 +1822,11 @@ entries:
     tier: notable
     aa_model: qwen3-max
   - family: qwen3-coder-flash
-  - family: qwen3-coder-480b-a35b
-  - family: qwen3-coder-30b-a3b
-  - family: qwen3-next-80b-a3b-thinking
-    aa_model: qwen3-next-80b-a3b-reasoning
-  - family: qwen3-next-80b-a3b-instruct
-    aa_model: qwen3-next-80b-a3b-instruct
-  - family: qwen3-235b-a22b-thinking-2507
-  - family: qwen3-235b-a22b-instruct-2507
-  - family: qwen3-235b-a22b
-  - family: qwen3-30b-a3b-thinking-2507
-  - family: qwen3-30b-a3b-instruct-2507
-  - family: qwen3-30b-a3b
-  - family: qwen3-32b
-  - family: qwen3-14b
-  - family: qwen3-8b
-  - family: qwen-max
   - family: qwen-plus
   - family: qwen-flash
   - family: qwen-turbo
-  - family: qwq-plus
-  - family: qvq-max
   - family: qwen3-vl-plus
-  - family: qwen3-vl-flash
-  - family: qwen3-vl-235b-a22b-thinking
-  - family: qwen3-vl-235b-a22b-instruct
-  - family: qwen3-vl-32b-thinking
-  - family: qwen3-vl-32b-instruct
-  - family: qwen3-vl-30b-a3b-thinking
-  - family: qwen3-vl-30b-a3b-instruct
-  - family: qwen3-vl-8b-thinking
-  - family: qwen3-vl-8b-instruct
-  - family: qwen-vl-max
   - family: qwen-vl-plus
-  - family: deepseek-v3.2
-    tier: notable
-    aa_model: deepseek-v3-2
   - family: glm-5.1
     tier: notable
     aa_model: glm-5-1

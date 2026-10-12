@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-05 or later'
-description: 162 model families the list's 86 live rows serve free, and every row that serves each one; 90 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 135 model families the list's 86 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-10-12
 ---
@@ -10,7 +10,7 @@ last_modified_at: 2026-10-12
 
 # Every free model on the list
 
-162 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+135 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -37,13 +37,11 @@ last_modified_at: 2026-10-12
 | [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/), [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) (requires $1 top-up) |
 | [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · strong | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
-| [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) · notable | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) |
 | [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/), [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/), [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) |
 | [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/), [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) |
 | [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/), [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) |
-| [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · notable | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) · notable | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) · strong | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/), [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
@@ -54,6 +52,7 @@ last_modified_at: 2026-10-12
 | [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) · notable | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
 | [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/) · strong | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) · notable | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
+| [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) · notable | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
@@ -61,13 +60,10 @@ last_modified_at: 2026-10-12
 | [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) · strong | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) |
 | [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
-| [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
-| [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.5-122b-a10b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · notable | [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/), [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 | [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/) | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) |
 | [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · strong | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) |
-| [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · notable | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `agents-a1` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `apertus-70b` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | `big-pickle` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
@@ -85,6 +81,7 @@ last_modified_at: 2026-10-12
 | `command-r7b` | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | `composer` | [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) |
 | `deepseek-r1-0528-qwen3-8b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
+| [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) · strong | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `fantail` | [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) |
 | `gemini-2.5` | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
@@ -123,39 +120,16 @@ last_modified_at: 2026-10-12
 | `mistral-small-4` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | `nemotron-nano-12b-v2-vl` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `nemotron-nano-9b-v2` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
-| `qvq-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen-turbo` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen-vl-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen-vl-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen2.5-7b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
-| `qwen3-14b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-235b-a22b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-235b-a22b-instruct-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-235b-a22b-thinking-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-30b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-30b-a3b-instruct-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-30b-a3b-thinking-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-32b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-coder` | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) |
-| `qwen3-coder-30b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-coder-480b-a35b` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
+| [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 | `qwen3-coder-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-coder-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
+| [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | [`qwen3-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-next-80b-a3b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-next-80b-a3b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-235b-a22b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-235b-a22b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-30b-a3b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-30b-a3b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-32b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-32b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-8b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-8b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwen3-vl-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen3-vl-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen3.5-0.8b` | [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
 | [`qwen3.5-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
@@ -167,15 +141,14 @@ last_modified_at: 2026-10-12
 | [`qwen3.6-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-27b/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `qwen3.6-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| [`qwen3.6-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.6-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.7-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.7-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/) · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) · strong | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) · strong | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| `qwq-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `solar-mini-4` | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | `solar-pro-4` | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
+| [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · notable | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
 | `xing4.0-29b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 
@@ -183,6 +156,7 @@ last_modified_at: 2026-10-12
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
+| [`qwen3.6-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/) | 2026-10-12 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`kolibri-1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/) | 2026-10-10 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | [`apodex-1.1-mini`](https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/) | 2026-10-10 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) | 2026-10-07 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) |

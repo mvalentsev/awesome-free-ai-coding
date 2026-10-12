@@ -39,8 +39,8 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ## Related models
 
-- [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) — free at Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China)
-- [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) — free at Kiro and Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) — free at SiliconFlow (China)
+- [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) — free at Kiro
 
 ---
 

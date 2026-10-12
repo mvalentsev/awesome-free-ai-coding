@@ -1233,11 +1233,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "step-3.7-flash",
-          "tier": "notable",
-          "aa_model": "step-3-7-flash"
-        },
-        {
           "family": "laguna-s-2.1"
         },
         {
@@ -1254,9 +1249,6 @@
         },
         {
           "family": "dots-3-note"
-        },
-        {
-          "family": "ling-3.0-flash-sante"
         },
         {
           "family": "nemotron-3-nano-omni",
@@ -2721,9 +2713,6 @@
           "family": "qwen3.8-27b",
           "tier": "strong",
           "aa_model": "qwen3-8-27b"
-        },
-        {
-          "family": "qwen3-coder"
         }
       ],
       "api": {
@@ -2873,6 +2862,14 @@
           "aa_model": "qwen3-8-max"
         },
         {
+          "family": "qwen3.7-max",
+          "tier": "notable",
+          "aa_model": "qwen3-7-max"
+        },
+        {
+          "family": "qwen-max"
+        },
+        {
           "family": "qwen3.8-flash",
           "tier": "strong",
           "aa_model": "qwen3-8-flash-next"
@@ -2913,29 +2910,12 @@
           "aa_model": "glm-5-2"
         },
         {
-          "family": "qwen3-coder-plus"
-        },
-        {
-          "family": "qwen3-coder-next",
-          "aa_model": "qwen3-coder-next"
-        },
-        {
-          "family": "qwen3.7-max",
-          "tier": "notable",
-          "aa_model": "qwen3-7-max"
-        },
-        {
           "family": "qwen3.7-plus",
           "tier": "notable",
           "aa_model": "qwen3-7-plus"
         },
         {
           "family": "qwen3.7-flash"
-        },
-        {
-          "family": "qwen3.6-max",
-          "tier": "notable",
-          "aa_model": "qwen3-6-max"
         },
         {
           "family": "qwen3.6-plus",
@@ -2990,50 +2970,6 @@
           "family": "qwen3-coder-flash"
         },
         {
-          "family": "qwen3-coder-480b-a35b"
-        },
-        {
-          "family": "qwen3-coder-30b-a3b"
-        },
-        {
-          "family": "qwen3-next-80b-a3b-thinking",
-          "aa_model": "qwen3-next-80b-a3b-reasoning"
-        },
-        {
-          "family": "qwen3-next-80b-a3b-instruct",
-          "aa_model": "qwen3-next-80b-a3b-instruct"
-        },
-        {
-          "family": "qwen3-235b-a22b-thinking-2507"
-        },
-        {
-          "family": "qwen3-235b-a22b-instruct-2507"
-        },
-        {
-          "family": "qwen3-235b-a22b"
-        },
-        {
-          "family": "qwen3-30b-a3b-thinking-2507"
-        },
-        {
-          "family": "qwen3-30b-a3b-instruct-2507"
-        },
-        {
-          "family": "qwen3-30b-a3b"
-        },
-        {
-          "family": "qwen3-32b"
-        },
-        {
-          "family": "qwen3-14b"
-        },
-        {
-          "family": "qwen3-8b"
-        },
-        {
-          "family": "qwen-max"
-        },
-        {
           "family": "qwen-plus"
         },
         {
@@ -3043,51 +2979,10 @@
           "family": "qwen-turbo"
         },
         {
-          "family": "qwq-plus"
-        },
-        {
-          "family": "qvq-max"
-        },
-        {
           "family": "qwen3-vl-plus"
         },
         {
-          "family": "qwen3-vl-flash"
-        },
-        {
-          "family": "qwen3-vl-235b-a22b-thinking"
-        },
-        {
-          "family": "qwen3-vl-235b-a22b-instruct"
-        },
-        {
-          "family": "qwen3-vl-32b-thinking"
-        },
-        {
-          "family": "qwen3-vl-32b-instruct"
-        },
-        {
-          "family": "qwen3-vl-30b-a3b-thinking"
-        },
-        {
-          "family": "qwen3-vl-30b-a3b-instruct"
-        },
-        {
-          "family": "qwen3-vl-8b-thinking"
-        },
-        {
-          "family": "qwen3-vl-8b-instruct"
-        },
-        {
-          "family": "qwen-vl-max"
-        },
-        {
           "family": "qwen-vl-plus"
-        },
-        {
-          "family": "deepseek-v3.2",
-          "tier": "notable",
-          "aa_model": "deepseek-v3-2"
         },
         {
           "family": "glm-5.1",
@@ -13742,15 +13637,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
-      "family": "ling-3.0-flash-sante",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
-    },
-    {
       "family": "minimax-m2.5",
       "rows": [
         "kiro",
@@ -13794,15 +13680,6 @@
         "agnes-ai"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/"
-    },
-    {
-      "family": "deepseek-v3.2",
-      "rows": [
-        "kiro",
-        "alibaba-model-studio"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
     },
     {
       "family": "gemini-3-flash",
@@ -13895,6 +13772,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
     },
     {
+      "family": "ling-3.0-flash-sante",
+      "rows": [
+        "openrouter-free",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
       "family": "ling-3.0-tiny",
       "rows": [
         "requesty",
@@ -13956,22 +13841,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/"
     },
     {
-      "family": "qwen3-8b",
-      "rows": [
-        "alibaba-model-studio",
-        "siliconflow-cn"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/"
-    },
-    {
-      "family": "qwen3-coder-next",
-      "rows": [
-        "kiro",
-        "alibaba-model-studio"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/"
-    },
-    {
       "family": "qwen3.5-122b-a10b",
       "rows": [
         "alibaba-model-studio",
@@ -14005,15 +13874,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
-    },
-    {
-      "family": "step-3.7-flash",
-      "rows": [
-        "kilo-code",
-        "nous-portal"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
     },
     {
       "family": "agents-a1",
@@ -14128,6 +13988,14 @@
       "rows": [
         "siliconflow-cn"
       ]
+    },
+    {
+      "family": "deepseek-v3.2",
+      "rows": [
+        "kiro"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
     },
     {
       "family": "deepseek-v4-pro",
@@ -14396,12 +14264,6 @@
       ]
     },
     {
-      "family": "qvq-max",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
       "family": "qwen-flash",
       "rows": [
         "alibaba-model-studio"
@@ -14426,12 +14288,6 @@
       ]
     },
     {
-      "family": "qwen-vl-max",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
       "family": "qwen-vl-plus",
       "rows": [
         "alibaba-model-studio"
@@ -14444,70 +14300,11 @@
       ]
     },
     {
-      "family": "qwen3-14b",
+      "family": "qwen3-8b",
       "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-235b-a22b",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-235b-a22b-instruct-2507",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-235b-a22b-thinking-2507",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-30b-a3b",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-30b-a3b-instruct-2507",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-30b-a3b-thinking-2507",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-32b",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-coder",
-      "rows": [
-        "ovh-ai-endpoints"
-      ]
-    },
-    {
-      "family": "qwen3-coder-30b-a3b",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-coder-480b-a35b",
-      "rows": [
-        "alibaba-model-studio"
-      ]
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/"
     },
     {
       "family": "qwen3-coder-flash",
@@ -14516,10 +14313,11 @@
       ]
     },
     {
-      "family": "qwen3-coder-plus",
+      "family": "qwen3-coder-next",
       "rows": [
-        "alibaba-model-studio"
-      ]
+        "kiro"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/"
     },
     {
       "family": "qwen3-max",
@@ -14528,72 +14326,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/"
-    },
-    {
-      "family": "qwen3-next-80b-a3b-instruct",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-next-80b-a3b-thinking",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-235b-a22b-instruct",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-235b-a22b-thinking",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-30b-a3b-instruct",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-30b-a3b-thinking",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-32b-instruct",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-32b-thinking",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-8b-instruct",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-8b-thinking",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen3-vl-flash",
-      "rows": [
-        "alibaba-model-studio"
-      ]
     },
     {
       "family": "qwen3-vl-plus",
@@ -14673,14 +14405,6 @@
       ]
     },
     {
-      "family": "qwen3.6-max",
-      "rows": [
-        "alibaba-model-studio"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/"
-    },
-    {
       "family": "qwen3.6-plus",
       "rows": [
         "alibaba-model-studio"
@@ -14721,12 +14445,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
     },
     {
-      "family": "qwq-plus",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
       "family": "solar-mini-4",
       "rows": [
         "freebuff"
@@ -14737,6 +14455,14 @@
       "rows": [
         "freebuff"
       ]
+    },
+    {
+      "family": "step-3.7-flash",
+      "rows": [
+        "nous-portal"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
     },
     {
       "family": "swe-1.6",
@@ -14784,6 +14510,11 @@
       "family": "muse-spark-1.2",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/"
+    },
+    {
+      "family": "qwen3.6-max",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/"
     }
   ],
   "watchlist": [

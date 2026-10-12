@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'step-3.7-flash free: 2 providers, limits and ids, provider probes 2026-10-12'
-description: step-3.7-flash is served free by Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'step-3.7-flash free: 1 provider, limits and ids, provider probes 2026-10-12'
+description: step-3.7-flash is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/step-3.7-flash/
 last_modified_at: 2026-10-12
 crumb: step-3.7-flash
@@ -11,32 +11,11 @@ crumb: step-3.7-flash
 
 # Where step-3.7-flash is free
 
-**2 rows on the list serve `step-3.7-flash` free:** Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
+**One row on the list serves `step-3.7-flash` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
-
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-12 · listed since 2026-08-11
-
-Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: 200 requests/hour per IP
-
-$0 a month; no account for the free lane.  The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
-
-</details>
-
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `stepfun/step-3.7-flash:free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
@@ -60,6 +39,7 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ## Rows that listed it before
 
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-08-11 to 2026-10-12
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
 - [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-08-05 to 2026-08-30
 

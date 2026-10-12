@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, provider probes 2026-10-12'
-description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'ling-3.0-flash-sante free: 2 providers, limits and ids, provider probes 2026-10-12'
+description: ling-3.0-flash-sante is served free by OpenRouter (free models) and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-flash-sante/
 last_modified_at: 2026-10-12
 crumb: ling-3.0-flash-sante
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-sante
 
 # Where ling-3.0-flash-sante is free
 
-**3 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week.
+**2 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models) and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -41,27 +41,6 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 - Callable ids: `inclusionai/ling-3.0-flash-sante:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://openrouter.ai/docs/guides/privacy/provider-logging)).
 
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
-
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-12 · listed since 2026-09-24
-
-Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: 200 requests/hour per IP
-
-$0 a month; no account for the free lane.  The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
-
-</details>
-
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `inclusionai/ling-3.0-flash-sante:free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
-
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
 🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-12 · listed since 2026-09-30
@@ -84,6 +63,7 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ## Rows that listed it before
 
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-09-24 to 2026-10-12
 - [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) — listed 2026-09-19 to 2026-10-05
 
 ## Related models

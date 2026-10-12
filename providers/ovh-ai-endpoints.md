@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-10-12'
-description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder. The documentation attributes the anonymous cap to IP…'
+description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b. The documentation attributes the anonymous cap to IP and model…'
 permalink: /providers/ovh-ai-endpoints/
 last_modified_at: 2026-10-12
 crumb: OVHcloud AI Endpoints
@@ -19,7 +19,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Free models
 
-[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `qwen3-coder`
+[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 
 ## Limits, in the vendor's words
 
@@ -62,6 +62,7 @@ curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-12` — Free models changed: dropped qwen3-coder
 - `2026-09-25` — Free models changed: added gpt-oss-120b; dropped gpt-oss
 - `2026-09-17` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-07` — Free models changed: added qwen3.8
