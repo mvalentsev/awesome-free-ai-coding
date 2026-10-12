@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'qwen3-max free: 1 provider, limits and ids, provider probes 2026-10-12'
-description: qwen3-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3-max free: no current listing, last listed 2026-10-12'
+description: No row currently lists qwen3-max under Free models. The list carried it at Alibaba Cloud Model Studio (DashScope, international) until 2026-10-12. Each row's page gives its current offer.
 permalink: /models/qwen3-max/
 last_modified_at: 2026-10-12
 crumb: qwen3-max
@@ -9,38 +9,20 @@ crumb: qwen3-max
 
 {% raw %}
 
-# Where qwen3-max is free
+# Where qwen3-max was free
 
-**One row on the list serves `qwen3-max` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-max), below its strong bar.
+**No row currently lists `qwen3-max` under Free models.** The list carried it at Alibaba Cloud Model Studio (DashScope, international) until 2026-10-12. Each row's page says what it offers now.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## Who serves it free
+## Rows that listed it
 
-### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
-
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-12 · listed since 2026-07-19
-
-A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Typical signup grant: 1,000,000 tokens once per account per model (Valid for 90 days from activation, model release or approval, whichever is later)
-
-Free grants apply in Singapore (international) only, independently per model and dated snapshot. The model pricing tables decide eligibility: Kimi has no free-quota column and glm-5.2-fast-preview has none. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default.
-
-</details>
-
-- Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
-- Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
-- Callable ids: `qwen3-max`
-- What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
+- [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) — listed 2026-07-19 to 2026-10-12
 
 ## Related models
 
-- [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) — free at Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China)
-- [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) — free at Kiro and Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) — free at SiliconFlow (China)
+- [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) — free at Kiro
 
 ---
 

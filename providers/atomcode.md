@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AtomCode free tier: limits, free models, verified 2026-10-12'
-description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash. Claimed Lite lasts 30 days…'
+description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash, qwen3-vl-8b-instruct, glm-5.2…'
 permalink: /providers/atomcode/
 last_modified_at: 2026-10-12
 crumb: AtomCode
@@ -19,13 +19,13 @@ Open-source terminal coding agent from AtomGit, the code host run by CSDN and th
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)
+[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), `qwen3-vl-8b-instruct`, [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/)
 
 ## Limits, in the vendor's words
 
 Claimed Lite plan: Rolling 5-hour usage allowance: amount not published per account (Valid for 30 days)
 
-Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per day, not a per-user inference cap. A seven-day Pro trial has 100 claim slots at 10:00; a merged activity-repository PR can grant 30 days of Pro and access to GLM-5.2. All plan usage is measured in rolling five-hour windows without published numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other providers use your own key.
+Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per day, not a per-user inference cap. GLM-5.2 needs a separate Pro claim: "Pro Trial 7 days Free claim, 100 slots/day at 10:00" or "Pro 30 days Free claim, requires a merged PR in the activity repository". All plan usage is measured in rolling five-hour windows without published numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other providers use your own key.
 
 ## Where it is offered
 
@@ -44,6 +44,7 @@ The vendor names no country it keeps the offer from ([source](https://atomcode.a
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-12` — Free models changed: added glm-5.2, qwen3-vl-8b-instruct
 - `2026-09-27` — Added: Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
 
 ---

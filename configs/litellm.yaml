@@ -150,12 +150,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/inclusionai/ling-3.0-flash-sante:free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-sante:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/liquid/lfm-2.5-2.6b:free
   litellm_params:
     model: openai/liquid/lfm-2.5-2.6b:free
@@ -661,12 +655,6 @@ model_list:
     api_base: https://api.llm7.io/v1
     api_key: os.environ/LLM7_API_KEY
     use_chat_completions_api: true
-- model_name: llm7/minimax-m2.7
-  litellm_params:
-    model: openai/minimax-m2.7
-    api_base: https://api.llm7.io/v1
-    api_key: os.environ/LLM7_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtr/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b
@@ -795,9 +783,9 @@ model_list:
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
-- model_name: alibaba-model-studio/deepseek-v4-flash
+- model_name: alibaba-model-studio/deepseek-v4-flash-0731
   litellm_params:
-    model: openai/deepseek-v4-flash
+    model: openai/deepseek-v4-flash-0731
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -819,18 +807,6 @@ model_list:
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-coder-plus
-  litellm_params:
-    model: openai/qwen3-coder-plus
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-coder-next
-  litellm_params:
-    model: openai/qwen3-coder-next
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
 - model_name: alibaba-model-studio/qwen3.7-max
   litellm_params:
     model: openai/qwen3.7-max
@@ -846,12 +822,6 @@ model_list:
 - model_name: alibaba-model-studio/qwen3.7-flash
   litellm_params:
     model: openai/qwen3.7-flash
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3.6-max-preview
-  litellm_params:
-    model: openai/qwen3.6-max-preview
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -915,93 +885,9 @@ model_list:
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-max
-  litellm_params:
-    model: openai/qwen3-max
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
 - model_name: alibaba-model-studio/qwen3-coder-flash
   litellm_params:
     model: openai/qwen3-coder-flash
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-coder-480b-a35b-instruct
-  litellm_params:
-    model: openai/qwen3-coder-480b-a35b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-coder-30b-a3b-instruct
-  litellm_params:
-    model: openai/qwen3-coder-30b-a3b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-next-80b-a3b-thinking
-  litellm_params:
-    model: openai/qwen3-next-80b-a3b-thinking
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-next-80b-a3b-instruct
-  litellm_params:
-    model: openai/qwen3-next-80b-a3b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-235b-a22b-thinking-2507
-  litellm_params:
-    model: openai/qwen3-235b-a22b-thinking-2507
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-235b-a22b-instruct-2507
-  litellm_params:
-    model: openai/qwen3-235b-a22b-instruct-2507
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-235b-a22b
-  litellm_params:
-    model: openai/qwen3-235b-a22b
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-30b-a3b-thinking-2507
-  litellm_params:
-    model: openai/qwen3-30b-a3b-thinking-2507
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-30b-a3b-instruct-2507
-  litellm_params:
-    model: openai/qwen3-30b-a3b-instruct-2507
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-30b-a3b
-  litellm_params:
-    model: openai/qwen3-30b-a3b
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-32b
-  litellm_params:
-    model: openai/qwen3-32b
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-14b
-  litellm_params:
-    model: openai/qwen3-14b
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-8b
-  litellm_params:
-    model: openai/qwen3-8b
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -1023,99 +909,9 @@ model_list:
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen-turbo
-  litellm_params:
-    model: openai/qwen-turbo
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwq-plus
-  litellm_params:
-    model: openai/qwq-plus
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qvq-max
-  litellm_params:
-    model: openai/qvq-max
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
 - model_name: alibaba-model-studio/qwen3-vl-plus
   litellm_params:
     model: openai/qwen3-vl-plus
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-flash
-  litellm_params:
-    model: openai/qwen3-vl-flash
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-235b-a22b-thinking
-  litellm_params:
-    model: openai/qwen3-vl-235b-a22b-thinking
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-235b-a22b-instruct
-  litellm_params:
-    model: openai/qwen3-vl-235b-a22b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-32b-thinking
-  litellm_params:
-    model: openai/qwen3-vl-32b-thinking
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-32b-instruct
-  litellm_params:
-    model: openai/qwen3-vl-32b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-30b-a3b-thinking
-  litellm_params:
-    model: openai/qwen3-vl-30b-a3b-thinking
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-30b-a3b-instruct
-  litellm_params:
-    model: openai/qwen3-vl-30b-a3b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-8b-thinking
-  litellm_params:
-    model: openai/qwen3-vl-8b-thinking
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen3-vl-8b-instruct
-  litellm_params:
-    model: openai/qwen3-vl-8b-instruct
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen-vl-max
-  litellm_params:
-    model: openai/qwen-vl-max
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/qwen-vl-plus
-  litellm_params:
-    model: openai/qwen-vl-plus
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: alibaba-model-studio/deepseek-v3.2
-  litellm_params:
-    model: openai/deepseek-v3.2
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -1191,6 +987,13 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
+- model_name: nous-portal/stepfun/step-5-preview:free
+  litellm_params:
+    model: openai/stepfun/step-5-preview:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 64000
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2
@@ -2178,7 +1981,7 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
-    model: openai/deepseek-v4-flash
+    model: openai/deepseek-v4-flash-0731
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
     use_chat_completions_api: true

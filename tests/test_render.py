@@ -88,8 +88,8 @@ def test_a_provider_page_description_names_the_free_models_from_the_column():
 
 def test_a_provider_page_says_why_its_row_names_no_model():
     """Why a row's Models column is empty depends on its free part — a sum to
-    spend, models the vendor does not name, a page that names none — and the
-    page gives the reason that fits, not one sentence for all three."""
+    spend, models the vendor does not name, or an unlisted family — and the
+    page preserves that scope without inferring vendor availability."""
     from freetier_radar.render import build_provider_page
 
     credit = build_provider_page(make(id="credit", free_part="sum"), [], TODAY)
@@ -99,7 +99,21 @@ def test_a_provider_page_says_why_its_row_names_no_model():
     assert "The vendor does not say which models" in auto
     assert "names no free model" not in auto
     page = build_provider_page(make(id="page", free_part="models"), [], TODAY)
-    assert "The page this row is verified against names no free model" in page
+    assert "No free model family is currently listed" in page
+
+
+def test_a_page_verified_callable_offer_does_not_infer_that_the_vendor_names_no_model():
+    from freetier_radar.render import build_provider_page
+
+    entry = make(free_part="models", api={
+        "base_url": "https://x.ai/v1", "key_url": "https://x.ai/keys",
+        "auth": "api-key", "openai_compatible": True, "model_ids": ["x-mini-2"],
+    })
+    page = build_provider_page(entry, [], TODAY)
+    free_models = page.split("## Free models\n", 1)[1].split("\n## ", 1)[0]
+    assert "names no free model" not in free_models
+    assert "No free model family is currently listed" in free_models
+    assert "`x-mini-2`" in page.split("## Connect\n", 1)[1]
 
 
 def test_a_provider_page_says_the_families_are_checked_not_that_one_fails_the_row():

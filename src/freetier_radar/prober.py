@@ -1915,18 +1915,19 @@ def _named_in_parts(family: str, text: str) -> bool:
     & Opus 4.6" is two models sharing one version, neither a substring of the
     page.
 
-    Each part must start where a name starts, or the version half of a family
-    matches inside a different version and vouches for a model nobody offers:
-    "Opus 4.5" would name opus-5. Only the left edge is anchored, since a name
-    can end a sentence ("MiniMax 2.1."). A dotted version part is matched
+    Each part must be a complete word: "Qwen3-VL-Plus" is not qwen-vl-plus.
+    Gaps cannot swallow an extra hyphenated component: qwen-doc-turbo does not
+    name qwen-turbo. A name can still end a sentence ("MiniMax 2.1.").
+    A dotted version part is matched
     through _version_pattern, because the letter in front of a version number
     is the vendor's and moves: "MiniMax 2.1" and "MiniMax M2.1" are one model.
     """
     parts = [p for p in re.split(r"[\s_-]+", family.lower()) if p]
     if len(parts) < 2:
         return False
-    spread = r"[^\n]{0,%d}?" % NAME_SPREAD
-    anchored = (r"(?<![\w.])" + (_version_pattern(p) or re.escape(p)) for p in parts)
+    spread = r"(?:(?![-_]\s*[a-z0-9]+\s*[-_])[^\n]){0,%d}?" % NAME_SPREAD
+    anchored = (r"(?<![\w.])" + (_version_pattern(p) or re.escape(p)) + r"(?!\w)"
+                for p in parts)
     return re.search(spread.join(anchored), text) is not None
 
 

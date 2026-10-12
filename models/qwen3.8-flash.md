@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'qwen3.8-flash free: 2 providers, limits and ids, provider probes 2026-10-12'
-description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and Yolo-Auto. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-10-12'
+description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder CN (formerly Lingma) and Yolo-Auto. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
 last_modified_at: 2026-10-12
 crumb: qwen3.8-flash
@@ -11,7 +11,7 @@ crumb: qwen3.8-flash
 
 # Where qwen3.8-flash is free
 
-**2 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and Yolo-Auto. None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-flash-next).
+**3 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international), Qoder CN (formerly Lingma) and Yolo-Auto. None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-flash-next).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -36,6 +36,23 @@ Free grants apply in Singapore (international) only, independently per model and
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
 - Callable ids: `qwen3.8-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
+
+### [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/)
+
+🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-10-12
+
+Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app
+
+- Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
+
+Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+
+Basic-model fallback: Completions allowance: amount not published (period not published) per account
+
+Qwen3.8 Flash promotion: Requests allowance: amount not published (period not published) per account per model
+
+The model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. International Qoder has a separate account and price list.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ### [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/)
 

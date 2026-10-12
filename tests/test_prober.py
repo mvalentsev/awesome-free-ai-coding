@@ -1214,6 +1214,34 @@ async def test_a_family_folded_into_a_shared_suffix_is_evidenced():
     assert result.status is ProbeStatus.PASS
 
 
+@pytest.mark.parametrize(("family", "published"), [
+    ("qwen-vl-plus", "Qwen3-VL-Plus"),
+    ("qwen-turbo", "qwen-doc-turbo"),
+])
+@respx.mock
+async def test_a_different_compound_model_name_does_not_evidence_a_family(family, published):
+    entry = listing_entry()
+    entry.models = [ModelFamily(family=family)]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text=f"qwen3-coder, free tier, no credit card. Model ID: {published}."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert family in result.detail
+
+
+@pytest.mark.parametrize("published", ["Qwen-VL-Plus", "Qwen-<b>VL</b>-Plus"])
+@respx.mock
+async def test_an_exact_compound_model_name_keeps_its_word_and_markup_separators(published):
+    entry = listing_entry()
+    entry.models = [ModelFamily(family="qwen-vl-plus")]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text=f"qwen3-coder, free tier, no credit card. Model ID: {published}."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 @respx.mock
 async def test_family_parts_scattered_over_the_page_are_not_evidence():
     entry = listing_entry()
@@ -1243,8 +1271,7 @@ async def test_an_older_version_on_the_page_does_not_name_a_newer_family():
 
 @respx.mock
 async def test_a_version_ending_a_sentence_still_names_its_family():
-    """Only the left edge of each part is anchored, so a family followed by a
-    period ("MiniMax 2.1.") is still named."""
+    """The word boundary allows a family followed by punctuation."""
     entry = listing_entry()
     entry.models = [entry.models[0].model_copy(update={"family": "minimax-2.1"})]
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(

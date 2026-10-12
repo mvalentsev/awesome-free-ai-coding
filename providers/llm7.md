@@ -19,7 +19,7 @@ OpenAI-compatible API with a free dashboard token and a recurring allowance of 1
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+No free model family is currently listed here; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -35,8 +35,8 @@ The vendor names no country it keeps the offer from ([source](https://github.com
 
 - Base URL: `https://api.llm7.io/v1`
 - Key: `LLM7_API_KEY` — get one at <https://dash.llm7.io>
-- Callable ids: `codestral-latest`, `mistral-Nemo-Instruct-2407`, `minimax-m2.7`
-- Note: Requires a free dashboard token. The listed IDs are marked turbo with usage_based_only false in the catalog; their authenticated availability has not been independently confirmed.
+- Callable ids: `codestral-latest`, `mistral-Nemo-Instruct-2407`
+- Note: Use a free dashboard token for the documented allowance. The listed IDs are marked turbo with usage_based_only false in the catalog; their authenticated availability has not been independently confirmed.
 
 Try it from your terminal with your key in `LLM7_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

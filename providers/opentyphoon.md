@@ -19,7 +19,7 @@ Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, be
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+No free model family is currently listed here; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 

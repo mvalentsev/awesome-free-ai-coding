@@ -74,7 +74,6 @@ entries:
     tier: notable
     aa_model: inkling-small
   - family: dots-3-note
-  - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
@@ -95,7 +94,6 @@ entries:
     - thinkingmachines/inkling:free
     - thinkingmachines/inkling-small:free
     - dots-studio/dots-3-note-preview:free
-    - inclusionai/ling-3.0-flash-sante:free
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
     - apodex/apodex-1.1-mini:free
@@ -809,9 +807,6 @@ entries:
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: step-3.7-flash
-    tier: notable
-    aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
@@ -820,7 +815,6 @@ entries:
     tier: notable
     aa_model: inkling-small
   - family: dots-3-note
-  - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
@@ -836,19 +830,26 @@ entries:
     - nvidia/nemotron-3.5-lightning:free
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     - cohere/north-mini-code:free
-    - stepfun/step-3.7-flash:free
     - poolside/laguna-s-2.1:free
     - poolside/laguna-xs-2.1:free
     - liquid/lfm-2.5-2.6b:free
-    - inclusionai/ling-3.0-flash-sante:free
     - dots-studio/dots-3-note-preview:free
     - thinkingmachines/inkling-small:free
+    - stepfun/step-5-preview-free
+    - inclusionai/ling-3.1-flash
+    - stealth/glyph-cluster
+    model_limits:
+      stepfun/step-5-preview-free:
+        context_tokens: 1000000
+        output_tokens: 64000
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
     - kilo-auto/free
     - openrouter/free
     - liquid/lfm-2.5-2.6b:free
+    - stealth/glyph-cluster
     refuses_bearer: true
     codex:
       base_url: https://api.kilo.ai/api/gateway
@@ -1637,7 +1638,6 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
-  - family: qwen3-coder
   api:
     base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
     auth: none
@@ -1646,7 +1646,6 @@ entries:
     - Qwen3.6-27B
     - Qwen3.8-27B
     - gpt-oss-120b
-    - Qwen3-Coder-30B-A3B-Instruct
     refuses_bearer: true
     note: no key at all on the anonymous lane, where 2 requests per minute per model
       are shared by every anonymous caller (measured 2026-09-24) — a 429 means the
@@ -1791,9 +1790,6 @@ entries:
   - family: glm-5.2
     tier: strong
     aa_model: glm-5-2
-  - family: qwen3-coder-plus
-  - family: qwen3-coder-next
-    aa_model: qwen3-coder-next
   - family: qwen3.7-max
     tier: notable
     aa_model: qwen3-7-max
@@ -1801,9 +1797,6 @@ entries:
     tier: notable
     aa_model: qwen3-7-plus
   - family: qwen3.7-flash
-  - family: qwen3.6-max
-    tier: notable
-    aa_model: qwen3-6-max
   - family: qwen3.6-plus
     tier: notable
     aa_model: qwen3-6-plus
@@ -1828,46 +1821,11 @@ entries:
   - family: qwen3.5-27b
     tier: notable
     aa_model: qwen3-5-27b
-  - family: qwen3-max
-    tier: notable
-    aa_model: qwen3-max
   - family: qwen3-coder-flash
-  - family: qwen3-coder-480b-a35b
-  - family: qwen3-coder-30b-a3b
-  - family: qwen3-next-80b-a3b-thinking
-    aa_model: qwen3-next-80b-a3b-reasoning
-  - family: qwen3-next-80b-a3b-instruct
-    aa_model: qwen3-next-80b-a3b-instruct
-  - family: qwen3-235b-a22b-thinking-2507
-  - family: qwen3-235b-a22b-instruct-2507
-  - family: qwen3-235b-a22b
-  - family: qwen3-30b-a3b-thinking-2507
-  - family: qwen3-30b-a3b-instruct-2507
-  - family: qwen3-30b-a3b
-  - family: qwen3-32b
-  - family: qwen3-14b
-  - family: qwen3-8b
   - family: qwen-max
   - family: qwen-plus
   - family: qwen-flash
-  - family: qwen-turbo
-  - family: qwq-plus
-  - family: qvq-max
   - family: qwen3-vl-plus
-  - family: qwen3-vl-flash
-  - family: qwen3-vl-235b-a22b-thinking
-  - family: qwen3-vl-235b-a22b-instruct
-  - family: qwen3-vl-32b-thinking
-  - family: qwen3-vl-32b-instruct
-  - family: qwen3-vl-30b-a3b-thinking
-  - family: qwen3-vl-30b-a3b-instruct
-  - family: qwen3-vl-8b-thinking
-  - family: qwen3-vl-8b-instruct
-  - family: qwen-vl-max
-  - family: qwen-vl-plus
-  - family: deepseek-v3.2
-    tier: notable
-    aa_model: deepseek-v3-2
   - family: glm-5.1
     tier: notable
     aa_model: glm-5-1
@@ -1882,16 +1840,13 @@ entries:
     - qwen3.8-2.4t-a95b
     - qwen3.8-27b
     - deepseek-v4-pro
-    - deepseek-v4-flash
+    - deepseek-v4-flash-0731
     - deepseek-v4.1-flash
     - glm-5.3
     - glm-5.2
-    - qwen3-coder-plus
-    - qwen3-coder-next
     - qwen3.7-max
     - qwen3.7-plus
     - qwen3.7-flash
-    - qwen3.6-max-preview
     - qwen3.6-plus
     - qwen3.6-flash
     - qwen3.6-35b-a3b
@@ -1902,40 +1857,11 @@ entries:
     - qwen3.5-122b-a10b
     - qwen3.5-35b-a3b
     - qwen3.5-27b
-    - qwen3-max
     - qwen3-coder-flash
-    - qwen3-coder-480b-a35b-instruct
-    - qwen3-coder-30b-a3b-instruct
-    - qwen3-next-80b-a3b-thinking
-    - qwen3-next-80b-a3b-instruct
-    - qwen3-235b-a22b-thinking-2507
-    - qwen3-235b-a22b-instruct-2507
-    - qwen3-235b-a22b
-    - qwen3-30b-a3b-thinking-2507
-    - qwen3-30b-a3b-instruct-2507
-    - qwen3-30b-a3b
-    - qwen3-32b
-    - qwen3-14b
-    - qwen3-8b
     - qwen-max
     - qwen-plus
     - qwen-flash
-    - qwen-turbo
-    - qwq-plus
-    - qvq-max
     - qwen3-vl-plus
-    - qwen3-vl-flash
-    - qwen3-vl-235b-a22b-thinking
-    - qwen3-vl-235b-a22b-instruct
-    - qwen3-vl-32b-thinking
-    - qwen3-vl-32b-instruct
-    - qwen3-vl-30b-a3b-thinking
-    - qwen3-vl-30b-a3b-instruct
-    - qwen3-vl-8b-thinking
-    - qwen3-vl-8b-instruct
-    - qwen-vl-max
-    - qwen-vl-plus
-    - deepseek-v3.2
     - glm-5.1
     note: 'international (Singapore) endpoint; keys are region-specific. Free Quota
       Only is off by default, so a call past a model''s million is billed: switch
@@ -4101,9 +4027,10 @@ entries:
     for everyone while the token plan is in public beta
   limits: Free during the public beta; paid tiers are planned. The Free card covers
     SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions.
-    The page states a five-hour allowance without specifying a rolling reset. Up to
-    20 API keys are supported. Signup requires a phone number; acceptance of non-mainland
-    numbers is unverified.
+    The API guide calls the available model an "early preview release" and requires
+    "registration plus identity verification". The page states a five-hour allowance
+    without specifying a rolling reset. Up to 20 API keys are supported. Signup requires
+    a phone number; acceptance of non-mainland numbers is unverified.
   quotas:
   - amount: 60000.0
     unit: credits
@@ -4116,7 +4043,8 @@ entries:
     value_phrase: 60,000积分/ 5小时
     reviewed_on: '2026-10-06'
   free_part: models
-  models: []
+  models:
+  - family: sensenova-6.8-flash-lite
   api:
     base_url: https://token.sensenova.cn/v1
     key_url: https://platform.sensenova.cn
@@ -4609,7 +4537,7 @@ entries:
     limited_allowance: 6 one-hour sessions per day
     notes:
     - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
-    - Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks
+    - Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks
       do not carry over.
     reviewed_on: '2026-10-10'
   data_use:
@@ -5788,6 +5716,7 @@ entries:
     aa_model: mimo-v2-6-flash
   client_lane:
     model_ids:
+    - cline-free/step-5-preview
     - cline-free/mimo-v2.6-flash
     - cline-free/muse-spark-1.3-contributor
     - cline-free/solar-mini4
@@ -6320,6 +6249,12 @@ entries:
     - meituan/longcat-2.0:free
     - meituan/longcat-2.5-preview:free
     - upstage/solar-mini4:free
+    - stepfun/step-5-preview:free
+    model_limits:
+      stepfun/step-5-preview:free:
+        context_tokens: 1000000
+        output_tokens: 64000
+        source: https://inference-api.nousresearch.com/v1/models
     note: Select a :free model and use your Nous Portal key; paid variants are outside
       the free plan.
   data_use:
@@ -6493,14 +6428,12 @@ entries:
     model_ids:
     - codestral-latest
     - mistral-Nemo-Instruct-2407
-    - minimax-m2.7
     no_family_ids:
     - codestral-latest
     - mistral-Nemo-Instruct-2407
-    - minimax-m2.7
-    note: Requires a free dashboard token. The listed IDs are marked turbo with usage_based_only
-      false in the catalog; their authenticated availability has not been independently
-      confirmed.
+    note: Use a free dashboard token for the documented allowance. The listed IDs
+      are marked turbo with usage_based_only false in the catalog; their authenticated
+      availability has not been independently confirmed.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -8528,10 +8461,11 @@ entries:
   card_required: false
   offering: Z.ai's desktop coding agent, free as an app, with five days of its GLM
     models for a new user and no card
-  limits: Global per-model daily grants and the mainland BigModel pool are different
-    trial modes. Both end after the first five days and do not create ongoing daily
-    access. Afterwards the app needs a GLM Coding Plan or your own API key; the application
-    itself remains free.
+  limits: Global and mainland BigModel accounts have different per-model daily trial
+    grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3
+    and GLM-5.3-Flash in separate buckets. Both end after the first five days and
+    do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan
+    or your own API key; the application itself remains free.
   quotas:
   - amount: 3000000.0
     unit: tokens
@@ -8555,17 +8489,28 @@ entries:
     quote: GLM-5-turbo 2M tokens / day
     value_phrase: GLM-5-turbo 2M tokens / day
     reviewed_on: '2026-10-06'
-  - amount: 8000000.0
+  - amount: 3000000.0
     unit: tokens
     period: day
-    scope: account
-    label: BigModel account trial
+    scope: account-model
+    label: 'BigModel trial: GLM-5.3'
     condition: First 5 days only
-    condition_quote: 8 million tokens per day for the first 5 days
+    condition_quote: the trial lasts 5 days only
     source: https://zcode.z.ai/en/docs/configuration
-    quote: 8 million tokens per day for the first 5 days
-    value_phrase: 8 million tokens per day for the first 5 days
-    reviewed_on: '2026-10-06'
+    quote: GLM-5.3 3 million tokens / day
+    value_phrase: GLM-5.3 3 million tokens / day
+    reviewed_on: '2026-10-12'
+  - amount: 5000000.0
+    unit: tokens
+    period: day
+    scope: account-model
+    label: 'BigModel trial: GLM-5.3-Flash'
+    condition: First 5 days only
+    condition_quote: the trial lasts 5 days only
+    source: https://zcode.z.ai/en/docs/configuration
+    quote: GLM-5.3-Flash 5 million tokens / day
+    value_phrase: GLM-5.3-Flash 5 million tokens / day
+    reviewed_on: '2026-10-12'
   free_part: models
   models:
   - family: glm-5.3
@@ -8574,6 +8519,9 @@ entries:
   - family: glm-5-turbo
     tier: notable
     aa_model: glm-5-turbo
+  - family: glm-5.3-flash
+    tier: strong
+    aa_model: glm-5-3-flash
   data_use:
     trains: 'no'
     quote: The Optimization Program is turned off by default. Before you actively
@@ -8752,17 +8700,20 @@ entries:
   - https://docs.qoder.cn/product-overview/credits
   - https://docs.qoder.cn/events/100credits
   - https://docs.qoder.cn/product-overview/account-and-subscription
+  - https://docs.qoder.cn/events/flashoffer
   card_required: false
-  offering: Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains
-    plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits,
-    then 100 credits a day to claim while that promotion runs, and limited completions
-    on a basic model after
-  limits: After trial credit runs out, a basic model still provides limited completion.
-    The daily promotion must be claimed in the CN desktop app; its end is "结束时间：另行公告"
+  offering: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a
+    free personal-model promotion alongside a two-week 300-credit trial and 100 credits
+    a day to claim in the desktop app
+  limits: The model promotion is open to personal users, including free accounts with
+    zero credits; it needs no paid subscription or claim and works across the CN apps,
+    including CLI. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate
+    daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告"
     (to be announced). Each claim window runs from 10:00 to the next day at 10:00
-    Beijing time (UTC+8); unclaimed credit does not accumulate. Signup requires an
+    Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit
+    runs out, a basic model still provides limited completion. Signup requires an
     Alibaba Cloud account bound to a phone number; real-name verification is needed
-    for purchases. International Qoder has a separate company, account and price list.
+    for purchases. International Qoder has a separate account and price list.
   quotas:
   - amount: 300.0
     unit: credits
@@ -8792,18 +8743,29 @@ entries:
     source: https://docs.qoder.cn/product-overview/billing-description
     quote: 有限次数的补全
     reviewed_on: '2026-10-06'
-  free_part: sum
-  models: []
+  - unit: requests
+    scope: account-model
+    label: Qwen3.8 Flash promotion
+    source: https://docs.qoder.cn/events/flashoffer
+    quote: 调用该模型不消耗 Credits
+    reviewed_on: '2026-10-12'
+  free_part: models
+  models:
+  - family: qwen3.8-flash
+    tier: strong
+    aa_model: qwen3-8-flash-next
   border:
     left_out: []
     'on': '2026-09-27'
     source: https://docs.qoder.cn/product-overview/account-and-subscription
   probe:
     type: page-keywords
-    endpoint: https://docs.qoder.cn/product-overview/billing-description
+    endpoint: https://docs.qoder.cn/events/flashoffer
     keywords:
-    - 为期 2 周的试用及 300 Credits
-    - 有限次数的补全
+    - Qwen3.8-Flash
+    - 调用该模型不消耗 Credits
+    - 无需领取
+    - 免费个人用户也可参与
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -8872,12 +8834,12 @@ entries:
   offering: Open-source terminal coding agent from AtomGit, the code host run by CSDN
     and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan,
     its quota counted in five-hour windows and its claims capped at a thousand a day
-  limits: Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots
-    per day, not a per-user inference cap. A seven-day Pro trial has 100 claim slots
-    at 10:00; a merged activity-repository PR can grant 30 days of Pro and access
-    to GLM-5.2. All plan usage is measured in rolling five-hour windows without published
-    numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other
-    providers use your own key.
+  limits: 'Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots
+    per day, not a per-user inference cap. GLM-5.2 needs a separate Pro claim: "Pro
+    Trial 7 days Free claim, 100 slots/day at 10:00" or "Pro 30 days Free claim, requires
+    a merged PR in the activity repository". All plan usage is measured in rolling
+    five-hour windows without published numerical budgets. CodingPlan works inside
+    AtomCode via AtomGit sign-in; other providers use your own key.'
   quotas:
   - unit: usage
     period: hour
@@ -8895,6 +8857,10 @@ entries:
   - family: deepseek-v4-flash
     tier: strong
     aa_model: deepseek-v4-flash
+  - family: qwen3-vl-8b-instruct
+  - family: glm-5.2
+    tier: strong
+    aa_model: glm-5-2
   border:
     left_out: []
     'on': '2026-09-27'

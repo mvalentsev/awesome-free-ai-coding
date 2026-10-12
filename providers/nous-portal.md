@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`
+- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`, `stepfun/step-5-preview:free`
 - Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan.
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:

@@ -292,14 +292,6 @@ dismissed:
       so a newer generation here is never a replacement. Qwen3.8-27B answered
       keyless with HTTP 200 on 2026-09-08 and joined this row's Models column in
       the same read; Qwen3.6-27B is still in the catalog and still on that lane.
-  - entry: ovh-ai-endpoints
-    family: qwen3-coder
-    superseded_by: qwen3.8
-    dismissed_on: 2026-09-08
-    reason: >-
-      Same lane, same read: Qwen3-Coder-30B-A3B-Instruct is in the catalog and
-      answers anonymously, and a coder-tuned checkpoint is not superseded by a
-      general one in any case.
 
   # The fourteen bumps of the 2026-09-07 run that needed a vendor page rather
   # than a catalog, all read on 2026-09-08. Three of them are the file's oldest
@@ -396,20 +388,3 @@ dismissed:
   # Free Plan Limits table two rows apart, until 2026-09-27: Groq shut
   # qwen/qwen3.6-27b down on 09-14 "in favor of qwen/qwen3.8-27b", the table
   # dropped it, and the family left the row.
-  - entry: alibaba-model-studio
-    family: qwen3-max
-    superseded_by: qwen3.8
-    dismissed_on: 2026-09-08
-    reason: >-
-      alibabacloud.com/help/en/model-studio/model-pricing gives qwen3-max,
-      qwen3-coder-plus, qwen3-coder-flash, qwen3.8-max and qwen3.8-27b the same
-      free quota of 1 million tokens, valid 90 days from activation or model
-      release. The newer generation arrives with the same grant rather than
-      taking the older one's.
-  - entry: alibaba-model-studio
-    family: qwen3-coder-plus
-    superseded_by: qwen3.8
-    dismissed_on: 2026-09-08
-    reason: >-
-      The same table and the same grant, and a coder-tuned line is not superseded
-      by a general one in any case.

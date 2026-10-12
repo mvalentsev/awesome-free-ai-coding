@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-10-12'
-description: SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The page states a…
+description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with…'
 permalink: /providers/sensenova/
 last_modified_at: 2026-10-12
 crumb: SenseNova (SenseTime 商汤)
@@ -19,13 +19,13 @@ SenseTime's own SenseNova models behind an OpenAI-compatible url, free for every
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+`sensenova-6.8-flash-lite`
 
 ## Limits, in the vendor's words
 
 Public beta: 60,000 credits/5 hours per account
 
-Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The page states a five-hour allowance without specifying a rolling reset. Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
+Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The API guide calls the available model an "early preview release" and requires "registration plus identity verification". The page states a five-hour allowance without specifying a rolling reset. Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
 
 ## Where it is offered
 
@@ -57,6 +57,7 @@ curl -s https://token.sensenova.cn/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-12` — Free models changed: added sensenova-6.8-flash-lite
 - `2026-08-14` — Added: SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta
 
 ---

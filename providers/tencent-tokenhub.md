@@ -19,7 +19,7 @@ Tencent Cloud's model platform, with a one-time grant of a million tokens on eac
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+No free model family is currently listed here; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 

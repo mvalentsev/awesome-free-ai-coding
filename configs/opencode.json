@@ -82,9 +82,6 @@
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
-        "inclusionai/ling-3.0-flash-sante:free": {
-          "name": "inclusionai/ling-3.0-flash-sante:free"
-        },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
@@ -147,9 +144,6 @@
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
-        "stepfun/step-3.7-flash:free": {
-          "name": "stepfun/step-3.7-flash:free"
-        },
         "poolside/laguna-s-2.1:free": {
           "name": "poolside/laguna-s-2.1:free"
         },
@@ -159,14 +153,24 @@
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
-        "inclusionai/ling-3.0-flash-sante:free": {
-          "name": "inclusionai/ling-3.0-flash-sante:free"
-        },
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
+        },
+        "stepfun/step-5-preview-free": {
+          "name": "stepfun/step-5-preview-free",
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          }
+        },
+        "inclusionai/ling-3.1-flash": {
+          "name": "inclusionai/ling-3.1-flash"
+        },
+        "stealth/glyph-cluster": {
+          "name": "stealth/glyph-cluster"
         }
       }
     },
@@ -471,9 +475,6 @@
         },
         "mistral-Nemo-Instruct-2407": {
           "name": "mistral-Nemo-Instruct-2407"
-        },
-        "minimax-m2.7": {
-          "name": "minimax-m2.7"
         }
       }
     },
@@ -593,8 +594,8 @@
         "deepseek-v4-pro": {
           "name": "deepseek-v4-pro"
         },
-        "deepseek-v4-flash": {
-          "name": "deepseek-v4-flash"
+        "deepseek-v4-flash-0731": {
+          "name": "deepseek-v4-flash-0731"
         },
         "deepseek-v4.1-flash": {
           "name": "deepseek-v4.1-flash"
@@ -605,12 +606,6 @@
         "glm-5.2": {
           "name": "glm-5.2"
         },
-        "qwen3-coder-plus": {
-          "name": "qwen3-coder-plus"
-        },
-        "qwen3-coder-next": {
-          "name": "qwen3-coder-next"
-        },
         "qwen3.7-max": {
           "name": "qwen3.7-max"
         },
@@ -619,9 +614,6 @@
         },
         "qwen3.7-flash": {
           "name": "qwen3.7-flash"
-        },
-        "qwen3.6-max-preview": {
-          "name": "qwen3.6-max-preview"
         },
         "qwen3.6-plus": {
           "name": "qwen3.6-plus"
@@ -653,50 +645,8 @@
         "qwen3.5-27b": {
           "name": "qwen3.5-27b"
         },
-        "qwen3-max": {
-          "name": "qwen3-max"
-        },
         "qwen3-coder-flash": {
           "name": "qwen3-coder-flash"
-        },
-        "qwen3-coder-480b-a35b-instruct": {
-          "name": "qwen3-coder-480b-a35b-instruct"
-        },
-        "qwen3-coder-30b-a3b-instruct": {
-          "name": "qwen3-coder-30b-a3b-instruct"
-        },
-        "qwen3-next-80b-a3b-thinking": {
-          "name": "qwen3-next-80b-a3b-thinking"
-        },
-        "qwen3-next-80b-a3b-instruct": {
-          "name": "qwen3-next-80b-a3b-instruct"
-        },
-        "qwen3-235b-a22b-thinking-2507": {
-          "name": "qwen3-235b-a22b-thinking-2507"
-        },
-        "qwen3-235b-a22b-instruct-2507": {
-          "name": "qwen3-235b-a22b-instruct-2507"
-        },
-        "qwen3-235b-a22b": {
-          "name": "qwen3-235b-a22b"
-        },
-        "qwen3-30b-a3b-thinking-2507": {
-          "name": "qwen3-30b-a3b-thinking-2507"
-        },
-        "qwen3-30b-a3b-instruct-2507": {
-          "name": "qwen3-30b-a3b-instruct-2507"
-        },
-        "qwen3-30b-a3b": {
-          "name": "qwen3-30b-a3b"
-        },
-        "qwen3-32b": {
-          "name": "qwen3-32b"
-        },
-        "qwen3-14b": {
-          "name": "qwen3-14b"
-        },
-        "qwen3-8b": {
-          "name": "qwen3-8b"
         },
         "qwen-max": {
           "name": "qwen-max"
@@ -707,53 +657,8 @@
         "qwen-flash": {
           "name": "qwen-flash"
         },
-        "qwen-turbo": {
-          "name": "qwen-turbo"
-        },
-        "qwq-plus": {
-          "name": "qwq-plus"
-        },
-        "qvq-max": {
-          "name": "qvq-max"
-        },
         "qwen3-vl-plus": {
           "name": "qwen3-vl-plus"
-        },
-        "qwen3-vl-flash": {
-          "name": "qwen3-vl-flash"
-        },
-        "qwen3-vl-235b-a22b-thinking": {
-          "name": "qwen3-vl-235b-a22b-thinking"
-        },
-        "qwen3-vl-235b-a22b-instruct": {
-          "name": "qwen3-vl-235b-a22b-instruct"
-        },
-        "qwen3-vl-32b-thinking": {
-          "name": "qwen3-vl-32b-thinking"
-        },
-        "qwen3-vl-32b-instruct": {
-          "name": "qwen3-vl-32b-instruct"
-        },
-        "qwen3-vl-30b-a3b-thinking": {
-          "name": "qwen3-vl-30b-a3b-thinking"
-        },
-        "qwen3-vl-30b-a3b-instruct": {
-          "name": "qwen3-vl-30b-a3b-instruct"
-        },
-        "qwen3-vl-8b-thinking": {
-          "name": "qwen3-vl-8b-thinking"
-        },
-        "qwen3-vl-8b-instruct": {
-          "name": "qwen3-vl-8b-instruct"
-        },
-        "qwen-vl-max": {
-          "name": "qwen-vl-max"
-        },
-        "qwen-vl-plus": {
-          "name": "qwen-vl-plus"
-        },
-        "deepseek-v3.2": {
-          "name": "deepseek-v3.2"
         },
         "glm-5.1": {
           "name": "glm-5.1"
@@ -810,6 +715,13 @@
         },
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
+        },
+        "stepfun/step-5-preview:free": {
+          "name": "stepfun/step-5-preview:free",
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          }
         }
       }
     },
@@ -1318,9 +1230,6 @@
         },
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
-        },
-        "Qwen3-Coder-30B-A3B-Instruct": {
-          "name": "Qwen3-Coder-30B-A3B-Instruct"
         }
       }
     },

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'glm-5.2 free: 3 providers, limits and ids, provider probes 2026-10-12'
-description: glm-5.2 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-5.2 free: 4 providers, limits and ids, provider probes 2026-10-12'
+description: glm-5.2 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.2/
 last_modified_at: 2026-10-12
 crumb: glm-5.2
@@ -11,7 +11,7 @@ crumb: glm-5.2
 
 # Where glm-5.2 is free
 
-**3 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-2).
+**4 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-2).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -82,14 +82,31 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 - Callable ids: `glm5.2`
 - What you send is not used to train models ([the vendor's words](https://regolo.ai/faq/)).
 
+### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
+
+🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-10-12
+
+Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Claimed Lite plan: Rolling 5-hour usage allowance: amount not published per account (Valid for 30 days)
+
+Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per day, not a per-user inference cap. GLM-5.2 needs a separate Pro claim: "Pro Trial 7 days Free claim, 100 slots/day at 10:00" or "Pro 30 days Free claim, requires a merged PR in the activity repository". All plan usage is measured in rolling five-hour windows without published numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other providers use your own key.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+
 ## Rows that listed it before
 
 - [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) — listed 2026-07-19 to 2026-08-14; the row itself is archived
 
 ## Related models
 
+- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — free at NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS)
 - [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — free at NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai)
-- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — free at NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) — free at AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova (requires $1 top-up)
 - [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)
 - [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/) — free at Kiro and AIHubMix (free models)

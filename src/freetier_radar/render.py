@@ -2460,12 +2460,9 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     elif e.newcomers:
         named = ("No free model family is listed yet; new offers must clear the two-week bar "
                  "before entering this section.")
-    elif e.probe.type is ProbeType.PAGE_KEYWORDS:
-        named = ("The page this row is verified against names no free model, so the column stays "
-                 "empty; callable ids, where the row has them, are under Connect.")
     else:
-        named = ("The row names no free model family; the ids its lane serves, where the row has "
-                 "them, are under Connect.")
+        named = ("No free model family is currently listed here; callable ids, where the row "
+                 "has them, are under Connect.")
     out += ["## Free models it listed" if archived else "## Free models", "",
             _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
                                 else pages) if fams else named,
