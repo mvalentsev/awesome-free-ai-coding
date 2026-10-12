@@ -79,7 +79,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-10-12
 - [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) — verified 2026-10-12 · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)
 - [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-10-12 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)
-- [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-10-08
+- [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-10-12
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-10-12
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-10-12
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-10-12
