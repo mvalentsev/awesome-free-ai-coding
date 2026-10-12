@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 86 live offers, 82 need no card, 134 free models, 19 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 133 free models, 19 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -89,7 +89,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 86, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, 4 of 85, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**10** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -142,7 +142,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[SiliconFlow (China)](https://siliconflow.cn)** — China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) · [🔑 key](https://cloud.siliconflow.cn/account/ak) · `xing4.0-29b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414` · `qwen2.5-7b` · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · `glm-z1-9b-0414` · `deepseek-r1-0528-qwen3-8b`</sub>
 
 ### 🎁 Trials (no card when possible)
-<sub>**30** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**29** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 - **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 — Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/)</sub>
 - **[Kiro](https://kiro.dev/)** 👁 — Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) · [`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/) · [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) · [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/) · [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) · [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) · [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) · [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/)</sub>
@@ -151,7 +151,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview)** — Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) · [🔑 key](https://console.cloud.google.com/expressmode) · [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) · [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) · `gemini-2.5-flash`</sub>
 - **[Devin Desktop (formerly Windsurf)](https://devin.ai/desktop)** 👁 — Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) · `swe-1.6`</sub>
 - **[Qoder](https://qoder.com)** — Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/)</sub>
-- **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** 👁 — AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) · `mellum`</sub>
 - **[Regolo AI](https://regolo.ai/pricing/)** — EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) · [🔑 key](https://dashboard.regolo.ai) · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · `apertus-70b` · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · `mistral-small-4` · [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/) · [+1 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)</sub>
 - **[Baidu Comate (文心快码)](https://comate.baidu.com)** — Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/)</sub>
 - **[TRAE (TraeCode)](https://www.trae.ai)** 👁 — TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/)</sub>
@@ -193,7 +192,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Moark (Gitee AI)](https://moark.com)** — Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) · [🔑 key](https://moark.com/dashboard/tokens)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification<br><sub>[verified 2026-10-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 134 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 133 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -201,6 +200,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-12` | 📦 Archived **[JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/)** | <sub>vendor-announced shutdown on 2026-07-13</sub> |
 | `2026-10-12` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added deepseek-v4.1-flash</sub> |
 | `2026-10-12` | 🔄 Free models changed **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | <sub>dropped deepseek-v3.2, qvq-max, qwen-turbo, qwen-vl-max, qwen-vl-plus, qwen3-14b, qwen3-235b-a22b, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b-thinking-2507, qwen3-30b-a3b, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b-thinking-2507, qwen3-32b, qwen3-8b, qwen3-coder-30b-a3b, qwen3-coder-480b-a35b, qwen3-coder-next, qwen3-coder-plus, qwen3-max, qwen3-next-80b-a3b-instruct, qwen3-next-80b-a3b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-235b-a22b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-32b-instruct, qwen3-vl-32b-thinking, qwen3-vl-8b-instruct, qwen3-vl-8b-thinking, qwen3-vl-flash, qwen3.6-max, qwq-plus</sub> |
 | `2026-10-12` | 🔄 Free models changed **[AtomCode](https://atomcode.atomgit.com/)** | <sub>added glm-5.2, qwen3-vl-8b-instruct</sub> |
@@ -210,7 +210,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-12` | 🔄 Free models changed **[Qoder CN (formerly Lingma)](https://qoder.cn)** | <sub>added qwen3.8-flash</sub> |
 | `2026-10-12` | 🔄 Free models changed **[SenseNova (SenseTime 商汤)](https://www.sensenova.cn)** | <sub>added sensenova-6.8-flash-lite</sub> |
 | `2026-10-12` | 🔄 Free models changed **[ZCode (Z.ai)](https://zcode.z.ai/en)** | <sub>added glm-5.3-flash</sub> |
-| `2026-10-11` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added claude-haiku-5.5</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
@@ -219,7 +218,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 ## 📦 Archive
 
 <details>
-<summary>17 offers and why they left</summary>
+<summary>18 offers and why they left</summary>
 <br>
 
 | Tool | Why it left |
@@ -239,6 +238,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | [Puter.js (free LLM API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/) | <sub>delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan</sub> |
 | [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | <sub>delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)</sub> |
 | [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | <sub>delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly</sub> |
+| [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) | <sub>vendor-announced shutdown on 2026-07-13</sub> |
 | [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | <sub>vendor-announced shutdown on 2026-06-16</sub> |
 | [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | <sub>vendor-announced shutdown on 2026-05-15</sub> |
 
