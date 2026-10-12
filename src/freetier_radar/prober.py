@@ -14,6 +14,8 @@ from pathlib import Path
 
 import httpx
 
+from .page_reader import browser_challenge, page_evidence, recover_page, recover_page_sync
+
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
     _id_squash, _squash, id_family, names_family, is_archived_for_good, lane_ids, load_registry,
@@ -52,7 +54,8 @@ class ProbeResult:
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                       attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS,
                       today: date | None = None) -> ProbeResult:
-    resp, stop = await _read(client, entry.probe.endpoint, attempts, backoff)
+    resp, stop = await _read(client, entry.probe.endpoint, attempts, backoff,
+        page=entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.follow is None)
     if stop is not None:
         return stop
     if entry.probe.follow is not None:
@@ -222,11 +225,12 @@ def page_response_ok(response: httpx.Response) -> bool:
     Callers keep their own retries, deadlines and failure verdicts. Error and
     unfinished redirect bodies must never confirm a quote, model or retirement.
     """
-    return response.is_success
+    return response.is_success and not browser_challenge(response)
 
 
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
-                named: bool = False) -> tuple[httpx.Response | None, ProbeResult | None]:
+                named: bool = False, *, page: bool = False
+                ) -> tuple[httpx.Response | None, ProbeResult | None]:
     """The page at `url`, or the verdict that reading it already is: a 401, 403
     or 429 is a wall rather than an answer, a 5xx or a network error is asked
     again, and any other 4xx is the page gone. `named` puts the url in the
@@ -237,6 +241,8 @@ async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: flo
         where = f"{url} " if named else ""
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
                                  f"{where}unreachable after {attempts} attempts: {last}")
+    if page:
+        resp = await recover_page(client, resp)
     if page_response_ok(resp):
         return resp, None
     said = f"{url} answered " if named else ""
@@ -279,7 +285,7 @@ async def _read_followed(client: httpx.AsyncClient, entry: Entry, index: httpx.R
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
                                  f"the index at {entry.probe.endpoint} names no page in "
                                  f"{entry.probe.follow.field}")
-    return await _read(client, url, attempts, backoff, named=True)
+    return await _read(client, url, attempts, backoff, named=True, page=True)
 
 
 async def _read_free_list(client: httpx.AsyncClient, entry: Entry, catalog: httpx.Response,
@@ -307,6 +313,7 @@ def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Respo
         listed = client.get(url, follow_redirects=True)
     except httpx.HTTPError as exc:
         return None, f"free list {url} unreachable: {exc}"
+    listed = recover_page_sync(client, listed)
     if not page_response_ok(listed):
         return None, f"free list {url} answered HTTP {listed.status_code}"
     joined, failure = join_free_list(catalog, listed, entry.probe.lane)
@@ -493,14 +500,14 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
 
 
 def _codex_ended(text: str) -> bool:
-    """Whether a stream holds an event that ends it, its line arrived whole.
-    The type comes first in the line and the line runs on for the whole
-    response — Kilo's response.completed is about 8 KB — so a read that stops
-    at the type's chunk keeps half a line no JSON parser reads, and a finished
-    turn reads as one that stopped at its last whole event (one read in four
-    on 2026-09-29)."""
-    return any(at != -1 and "\n" in text[at:]
-               for at in (text.find(end) for end in CODEX_STREAM_ENDS))
+    """Stop only after a complete terminal JSON data line has arrived.
+
+    SSE event headers and assistant text can name a terminal type before its
+    payload arrives. The whole data line is needed to distinguish completion
+    from a header, a partial response or words inside another event.
+    """
+    whole = text[:text.rfind("\n") + 1]
+    return any(event in CODEX_STREAM_ENDS for event in _codex_events(whole))
 
 
 async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
@@ -1050,7 +1057,7 @@ def _keyless_said(answer: httpx.Response | str) -> str:
 
 
 async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
-                      backoff: float) -> tuple[httpx.Response | None, str]:
+                      backoff: float, *, page: bool = True) -> tuple[httpx.Response | None, str]:
     """A second page a row's checks read, or why it could not be read, with the
     patience the probe gives its own endpoint: a 5xx or a network error is
     retried, and any answer outside 2xx is reported."""
@@ -1058,6 +1065,8 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
                             attempts, backoff)
     if resp is None:
         return None, f"unreachable after {attempts} attempts: {last}"
+    if page:
+        resp = await recover_page(client, resp)
     if not page_response_ok(resp):
         return None, f"answered HTTP {resp.status_code}"
     return resp, ""
@@ -1065,13 +1074,13 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
 
 async def _page_beside(client: httpx.AsyncClient, url: str, entry: Entry,
                        probed: httpx.Response, attempts: int,
-                       backoff: float) -> tuple[httpx.Response | None, str]:
+                       backoff: float, *, page: bool = True) -> tuple[httpx.Response | None, str]:
     """The page a check beside the probe reads at `url`: the page the probe
     has just read where `url` is that page — one read, not two — else
     `_fetch_page`'s, or why it could not be read."""
     if url == entry.probe.endpoint and entry.probe.follow is None:
         return probed, ""
-    return await _fetch_page(client, url, attempts, backoff)
+    return await _fetch_page(client, url, attempts, backoff, page=page)
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
@@ -1080,7 +1089,7 @@ async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
     same patience as the page itself, and anything that is not a JSON list of
     models — a 401, a bot wall, an HTML shell — is reported rather than read as
     an empty catalog, which would call every id dead."""
-    resp, failure = await _fetch_page(client, url, attempts, backoff)
+    resp, failure = await _fetch_page(client, url, attempts, backoff, page=False)
     if resp is None:
         return None, failure
     items = _catalog_items(resp)
@@ -2022,8 +2031,9 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     # a retired endpoint is meant to be dead, and a delisted row can point at a
     # service the blocklist says never to fetch.
     probed = [e for e in entries if not is_archived_for_good(e, today)]
-    async with httpx.AsyncClient(headers=UA) as client:
-        outcomes = await asyncio.gather(*(bounded(e) for e in probed))
+    with page_evidence(failures_dir / "page-reads"):
+        async with httpx.AsyncClient(headers=UA) as client:
+            outcomes = await asyncio.gather(*(bounded(e) for e in probed))
     results = {e.id: r for e, r in zip(probed, outcomes)}
     flagged = apply_results(entries, results, today)
     if dry_run:

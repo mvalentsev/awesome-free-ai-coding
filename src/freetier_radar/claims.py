@@ -96,6 +96,11 @@ def _cron_day(workflow: str) -> Callable[[Path], tuple[str, ...]]:
     return truth
 
 
+def _page_recovery_limits() -> tuple[str, ...]:
+    from .page_reader import RECOVERY_SECONDS, RECOVERY_REDIRECTS, RECOVERY_BYTES
+    return tuple(str(v) for v in (RECOVERY_SECONDS, RECOVERY_REDIRECTS, RECOVERY_BYTES // (1024 * 1024)))
+
+
 def _site_url() -> tuple[str, str]:
     """PAGES_URL as Jekyll's `url` and `baseurl`."""
     host, base = PAGES_URL.rsplit("/", 1)
@@ -196,6 +201,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS"),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",
           lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED"),
+    Claim("CONTRIBUTING.md", r"recovery, with a (\d+)-second budget,\s+up to (\d+) redirects and an (\d+) MiB body limit",
+          lambda root: _page_recovery_limits(), "page_reader recovery limits"),
     Claim("CONTRIBUTING.md", r"always calls under this\s+project's own `([^`]+)`",
           lambda root: (UA["User-Agent"],), "prober.UA"),
     Claim("CONTRIBUTING.md", r"sends `User-Agent: ([^`]+)`",

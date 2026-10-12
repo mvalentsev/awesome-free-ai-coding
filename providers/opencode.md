@@ -33,7 +33,7 @@ The vendor names no country it keeps the offer from ([source](https://opencode.a
 
 ## What happens to what you send
 
-What you send may be used to train or improve models. In the vendor's words: “During its free period, collected data may be used to improve the model.” ([source](https://opencode.ai/docs/zen/)).
+What you send may be used to train or improve models. In the vendor's words: “During its free period, collected data may be used to improve the model.” ([source](https://opencode.ai/v2/docs/console/models/)).
 
 ## Connect
 
@@ -41,8 +41,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Evidence
 
-- Probe: the page at <https://opencode.ai/docs/zen/>, anchored on `big pickle`, `mimo-v2.5-free`
-- Source: <https://opencode.ai/docs/zen/>
+- Probe: the page at <https://opencode.ai/v2/docs/console/models/>, anchored on `big pickle`, `mimo-v2.5-free`
+- Source: <https://opencode.ai/v2/docs/console/models/>
 - Source: <https://opencode.ai/docs/>
 - Source: <https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001>
 - Source: <https://dev.meta.ai/docs/reasoning.md>

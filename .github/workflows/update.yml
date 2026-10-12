@@ -269,3 +269,11 @@ jobs:
                     + ", ".join(outages) + " — those phases did not run")
           sys.exit(1 if aborted or outages else 0)
           PY
+
+      - name: Preserve public page recovery evidence
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: public-page-reads
+          path: failures/page-reads/
+          if-no-files-found: ignore

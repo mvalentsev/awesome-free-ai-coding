@@ -22,8 +22,8 @@ from . import git
 from .indexnow import index_at
 from .layout import node_for
 from .models import Entry
-from .prober import TIMEOUT, UA, _ask, probe_page_url
-from .quotes import page_texts, quote_found, row_quote_source, row_quotes, row_urls
+from .prober import TIMEOUT, UA, _ask, page_response_ok, probe_page_url
+from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
 
 PUSH_BASE_FLAG = '--push-base'
@@ -216,7 +216,8 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
 
 
 async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
-                expected: bytes | None = None, expected_status: int = 200, backoff: float = 2) -> dict:
+                expected: bytes | None = None, expected_status: int = 200, backoff: float = 2,
+                page: bool = False) -> dict:
     attempts = []
     prefix = 'http/' + digest(url.encode())[:20] + '-' + uuid.uuid4().hex[:8]
     async def send():
@@ -232,10 +233,22 @@ async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
                          'final_url': str(response.url)})
         return response
     response, error = await _ask(send, 3, backoff)
+    if page and expected is None and response is not None:
+        from .page_reader import recover_page
+        response = await recover_page(client, response)
+        for i, attempt in enumerate(response.extensions.get('page_read_attempts', [])[1:]):
+            record = {k: v for k, v in attempt.items() if k != 'body'}
+            if 'body' in attempt:
+                record['file'] = bundle.write(prefix + '-recovery-' + str(i) + '.raw', attempt['body'])
+            attempts.append(record)
     passed = response is not None and response.status_code == expected_status
+    if page and response is not None:
+        passed = passed and page_response_ok(response)
     if expected is not None:
         passed = passed and response.content == expected
     return {'url': url, 'passed': passed, 'attempts': attempts, 'error': error,
+            'file': next((a['file'] for a in reversed(attempts) if response is not None
+                          and a.get('sha256') == digest(response.content)), None),
             'expected_status': expected_status,
             'expected_sha256': digest(expected) if expected is not None else None}
 
@@ -254,6 +267,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     entries = [Entry.model_validate(e) for e in yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
                if e['id'] in scope['rows']]
     urls, by_row, followed = set(extra), {}, []
+    catalogs_read = set().union(*(catalog_urls(e) for e in entries))
     async def capture(response):
         await response.aread()
         file = bundle.write('http/follow-' + uuid.uuid4().hex + '.raw', response.content)
@@ -276,9 +290,9 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         sem = asyncio.Semaphore(8)
         async def one(url):
             async with sem:
-                return await fetch(client, url, bundle)
+                return await fetch(client, url, bundle, page=url not in catalogs_read)
         checks = await asyncio.gather(*(one(u) for u in sorted(urls)))
-    raw_bodies = {r['url']: (bundle.out / r['attempts'][-1]['file']).read_text(errors='replace')
+    raw_bodies = {r['url']: (bundle.out / r['file']).read_text(errors='replace')
                   for r in checks if r['passed']}
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
     quotes, catalogs, quotas = [], [], []

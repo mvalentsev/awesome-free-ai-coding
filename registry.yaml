@@ -696,7 +696,7 @@ entries:
   category: agent-cli
   url: https://opencode.ai
   source_urls:
-  - https://opencode.ai/docs/zen/
+  - https://opencode.ai/v2/docs/console/models/
   - https://opencode.ai/docs/
   - https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001
   - https://dev.meta.ai/docs/reasoning.md
@@ -714,7 +714,7 @@ entries:
   - unit: usage
     scope: unspecified
     label: Free model usage
-    source: https://opencode.ai/docs/zen/
+    source: https://opencode.ai/v2/docs/console/models/
     quote: Big Pickle
     reviewed_on: '2026-10-06'
   free_part: models
@@ -741,24 +741,24 @@ entries:
   newcomers:
   - family: ling-3.1-flash
     'on': '2026-10-06'
-    source: https://opencode.ai/docs/zen/
+    source: https://opencode.ai/v2/docs/console/models/
   - family: step-5-preview
     'on': '2026-10-11'
-    source: https://opencode.ai/docs/zen/
+    source: https://opencode.ai/v2/docs/console/models/
   - family: jev-1.13
     'on': '2026-10-11'
-    source: https://opencode.ai/docs/zen/
+    source: https://opencode.ai/v2/docs/console/models/
   data_use:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
-    url: https://opencode.ai/docs/zen/
+    url: https://opencode.ai/v2/docs/console/models/
   border:
     left_out: []
     'on': '2026-09-26'
     source: https://opencode.ai/legal/terms-of-service
   probe:
     type: page-keywords
-    endpoint: https://opencode.ai/docs/zen/
+    endpoint: https://opencode.ai/v2/docs/console/models/
     keywords:
     - big pickle
     - mimo-v2.5-free
@@ -4786,6 +4786,7 @@ entries:
   - https://llmtr.com/docs/en/gateway/system-one/
   - https://llmtr.com/models/nace/drex-v1.0-free
   - https://llmtr.com/models/nace/drex-v1.5-free
+  - https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4825,6 +4826,15 @@ entries:
     model_ids:
     - anthropic/claude-haiku-5.5-free
     reviewed_on: '2026-10-11'
+  - unit: usage
+    period: day
+    scope: account-model
+    label: DeepSeek V4.1 Flash
+    source: https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
+    quote: Hesap başına günlük ücretsiz kullanım sınırlıdır
+    model_ids:
+    - deepseek/deepseek-v4.1-flash-free
+    reviewed_on: '2026-10-12'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4844,6 +4854,9 @@ entries:
   - family: claude-haiku-5.5
     tier: strong
     aa_model: claude-haiku-5-5
+  - family: deepseek-v4.1-flash
+    tier: strong
+    aa_model: deepseek-v4-1-flash
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -4858,6 +4871,7 @@ entries:
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - anthropic/claude-haiku-5.5-free
+    - deepseek/deepseek-v4.1-flash-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -4876,6 +4890,9 @@ entries:
       anthropic/claude-haiku-5.5-free:
         source: https://llmtr.com/models/anthropic/claude-haiku-5.5-free
         until: '2026-10-14T23:59:00+03:00'
+      deepseek/deepseek-v4.1-flash-free:
+        source: https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
+        until: '2026-10-16T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -4892,6 +4909,10 @@ entries:
       anthropic/claude-haiku-5.5-free:
         context_tokens: 100000
         output_tokens: 32768
+        source: https://llmtr.com/v1/models
+      deepseek/deepseek-v4.1-flash-free:
+        context_tokens: 1048576
+        output_tokens: 393216
         source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free

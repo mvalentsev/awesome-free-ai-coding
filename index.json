@@ -1081,7 +1081,7 @@
       "category": "agent-cli",
       "url": "https://opencode.ai",
       "source_urls": [
-        "https://opencode.ai/docs/zen/",
+        "https://opencode.ai/v2/docs/console/models/",
         "https://opencode.ai/docs/",
         "https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001",
         "https://dev.meta.ai/docs/reasoning.md"
@@ -1094,7 +1094,7 @@
           "unit": "usage",
           "scope": "unspecified",
           "label": "Free model usage",
-          "source": "https://opencode.ai/docs/zen/",
+          "source": "https://opencode.ai/v2/docs/console/models/",
           "quote": "Big Pickle",
           "reviewed_on": "2026-10-06",
           "amount": null,
@@ -1143,23 +1143,23 @@
         {
           "family": "ling-3.1-flash",
           "on": "2026-10-06",
-          "source": "https://opencode.ai/docs/zen/"
+          "source": "https://opencode.ai/v2/docs/console/models/"
         },
         {
           "family": "step-5-preview",
           "on": "2026-10-11",
-          "source": "https://opencode.ai/docs/zen/"
+          "source": "https://opencode.ai/v2/docs/console/models/"
         },
         {
           "family": "jev-1.13",
           "on": "2026-10-11",
-          "source": "https://opencode.ai/docs/zen/"
+          "source": "https://opencode.ai/v2/docs/console/models/"
         }
       ],
       "data_use": {
         "trains": "yes",
         "quote": "During its free period, collected data may be used to improve the model.",
-        "url": "https://opencode.ai/docs/zen/"
+        "url": "https://opencode.ai/v2/docs/console/models/"
       },
       "border": {
         "left_out": [],
@@ -1171,7 +1171,7 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://opencode.ai/docs/zen/",
+        "endpoint": "https://opencode.ai/v2/docs/console/models/",
         "keywords": [
           "big pickle",
           "mimo-v2.5-free"
@@ -7039,11 +7039,12 @@
         "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
         "https://llmtr.com/docs/en/gateway/system-one/",
         "https://llmtr.com/models/nace/drex-v1.0-free",
-        "https://llmtr.com/models/nace/drex-v1.5-free"
+        "https://llmtr.com/models/nace/drex-v1.5-free",
+        "https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nClaude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nClaude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`\n\nDeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.",
       "quotas": [
         {
           "unit": "usage",
@@ -7072,6 +7073,19 @@
             "anthropic/claude-haiku-5.5-free"
           ],
           "reviewed_on": "2026-10-11",
+          "amount": null
+        },
+        {
+          "unit": "usage",
+          "period": "day",
+          "scope": "account-model",
+          "label": "DeepSeek V4.1 Flash",
+          "source": "https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free",
+          "quote": "Hesap başına günlük ücretsiz kullanım sınırlıdır",
+          "model_ids": [
+            "deepseek/deepseek-v4.1-flash-free"
+          ],
+          "reviewed_on": "2026-10-12",
           "amount": null
         }
       ],
@@ -7109,6 +7123,11 @@
           "family": "claude-haiku-5.5",
           "tier": "strong",
           "aa_model": "claude-haiku-5-5"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "tier": "strong",
+          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "api": {
@@ -7124,7 +7143,8 @@
           "inclusionai/ling-3.1-flash",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "anthropic/claude-haiku-5.5-free"
+          "anthropic/claude-haiku-5.5-free",
+          "deepseek/deepseek-v4.1-flash-free"
         ],
         "model_access": {
           "minimax/minimax-m3.1-flash-preview": {
@@ -7148,6 +7168,10 @@
           "anthropic/claude-haiku-5.5-free": {
             "source": "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
             "until": "2026-10-14T23:59:00+03:00"
+          },
+          "deepseek/deepseek-v4.1-flash-free": {
+            "source": "https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free",
+            "until": "2026-10-16T23:59:00+03:00"
           }
         },
         "model_limits": {
@@ -7169,6 +7193,11 @@
           "anthropic/claude-haiku-5.5-free": {
             "context_tokens": 100000,
             "output_tokens": 32768,
+            "source": "https://llmtr.com/v1/models"
+          },
+          "deepseek/deepseek-v4.1-flash-free": {
+            "context_tokens": 1048576,
+            "output_tokens": 393216,
             "source": "https://llmtr.com/v1/models"
           }
         },
@@ -7228,7 +7257,8 @@
           "agnes-2.5-flash": "",
           "ling-3.1-flash": "until 2026-10-13",
           "qwen3.8-27b": "",
-          "claude-haiku-5.5": "until 2026-10-14"
+          "claude-haiku-5.5": "until 2026-10-14",
+          "deepseek-v4.1-flash": "until 2026-10-16"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -13508,6 +13538,18 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "llmtr",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
+    },
+    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -13553,17 +13595,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "glm-5.2",

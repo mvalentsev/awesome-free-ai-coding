@@ -386,7 +386,7 @@ async def resolved_quota_entry(client, entry: Entry, attempts: int = 3, backoff:
             continue
         if q.follow:
             if q.source not in indices:
-                response,_ = await _fetch_page(client,q.source,attempts,backoff)
+                response,_ = await _fetch_page(client,q.source,attempts,backoff,page=False)
                 try:indices[q.source] = response.json() if response is not None else None
                 except ValueError:indices[q.source] = None
             url = followed_url(indices[q.source],Follow.model_validate(q.follow))
@@ -406,7 +406,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
         q = active_quota(entry,q)
         if q is None:continue
         if q.source not in pages:
-            pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff)
+            pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff, page=q.read != "catalog")
         page, failure = pages[q.source]
         if page is None:
             notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')

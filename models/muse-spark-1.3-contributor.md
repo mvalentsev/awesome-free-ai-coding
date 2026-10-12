@@ -33,7 +33,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 </details>
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/docs/zen/)).
+- What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 

@@ -23,7 +23,8 @@ from pathlib import Path
 
 import httpx
 
-from .models import Entry, is_archived, load_registry
+from .page_reader import page_evidence, recover_page
+from .models import ProbeType, Entry, is_archived, load_registry
 from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
@@ -166,8 +167,18 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     return list(dict.fromkeys(urls))
 
 
+def catalog_urls(entry: Entry) -> set[str]:
+    """Known JSON/API reads remain on their original HTTP transport."""
+    urls = {entry.probe.catalog} if entry.probe.catalog else set()
+    if entry.probe.type is ProbeType.API_MODELS or entry.probe.follow is not None:
+        urls.add(entry.probe.endpoint)
+    urls.update(q.source for q in entry.quotas if q.read == "catalog")
+    return urls
+
+
 async def fetch_pages(client: httpx.AsyncClient, urls: list[str],
-                      by_url: dict[str, list[str]] | None = None) -> tuple[list[str], list[str]]:
+                      by_url: dict[str, list[str]] | None = None, *,
+                      catalogs: set[str] | None = None) -> tuple[list[str], list[str]]:
     """The flattened rendered text and raw body of every url that answered, and
     a line for each that did not — a quote is only as checked as its sources."""
     sem = asyncio.Semaphore(CONCURRENCY)
@@ -176,6 +187,8 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str],
         async with sem:
             try:
                 resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
+                if url not in (catalogs or set()):
+                    resp = await recover_page(client, resp)
             except httpx.HTTPError as exc:
                 return url, f"{url}: {type(exc).__name__}"
         if not page_response_ok(resp):
@@ -214,7 +227,7 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
             continue
         page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
         by_url = {}
-        pages, failed = await fetch_pages(client, row_urls(entry, page), by_url)
+        pages, failed = await fetch_pages(client, row_urls(entry, page), by_url, catalogs=catalog_urls(entry))
         if failed:
             unread[entry.id] = failed
         for field, quote in quotes:
@@ -271,8 +284,9 @@ async def _amain(registry: Path, ids: list[str], report: bool = False) -> int:
     if ids:
         entries = [e for e in entries if e.id in ids]
     today = date.today()
-    async with httpx.AsyncClient(headers=UA) as client:
-        missing, unread = await check_entries(entries, client, today)
+    with page_evidence(Path("failures/page-reads")):
+        async with httpx.AsyncClient(headers=UA) as client:
+            missing, unread = await check_entries(entries, client, today)
     read = live_rows(entries, today)
     quotes = sum(len(row_quotes(e)) for e in read)
     if report:

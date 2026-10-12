@@ -21,6 +21,7 @@ from urllib.parse import urlparse
 
 import httpx
 
+from .page_reader import recover_page_sync
 from .models import domain_of, is_covered, under
 from .prober import UA, page_response_ok
 
@@ -370,6 +371,8 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                 break
             try:
                 r = client.get(u, timeout=_timeout_within(left), follow_redirects=True)
+                r = recover_page_sync(client, r,
+                    time_left=time_left() if time_left is not None else None)
                 if not page_response_ok(r):
                     out[u] = ""
                     if on_unread is not None:

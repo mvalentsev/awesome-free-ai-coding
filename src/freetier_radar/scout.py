@@ -15,7 +15,7 @@ import httpx
 import yaml
 
 from .discovery import Evidence, fetch_page_texts, format_evidence, gather_evidence
-from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
+from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
                      domain_of, is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
@@ -23,6 +23,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
 from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
                      unevidenced_families)
+from .page_reader import recover_page_sync
 from .words import clip
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
@@ -711,11 +712,15 @@ def format_watchlist(watchlist: list[Watched], today: date) -> str:
     )
 
 
-def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
+def probe_check_sync(entry: Entry, client: httpx.Client,
+                     time_left: Callable[[], float] | None = None) -> str | None:
     """The run's probe, synchronous and single-shot, for vetting a proposal or a
     corrected row: None when the entry passes, else why it fails."""
     try:
         resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
+        if entry.probe.type is ProbeType.PAGE_KEYWORDS:
+            resp = recover_page_sync(client, resp,
+                time_left=time_left() if time_left is not None else None)
     except httpx.HTTPError as exc:
         return f"unreachable: {exc}"
     if not page_response_ok(resp):
@@ -956,6 +961,9 @@ def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = N
                 return None
             try:
                 resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
+                if entry.probe.type is ProbeType.PAGE_KEYWORDS:
+                    resp = recover_page_sync(client, resp,
+                        time_left=time_left() if time_left is not None else None)
             except httpx.HTTPError:
                 resp = None
             if resp is not None and page_response_ok(resp) and entry.probe.free_list is not None:
@@ -1235,7 +1243,7 @@ def main() -> None:
                                                                        flush=True)),
                                date.today(),
                                evidence=evidence,
-                               verifier=lambda e: probe_check_sync(e, probe_client),
+                               verifier=lambda e: probe_check_sync(e, probe_client, deadline.remaining),
                                blocklist=blocklist,
                                dismissed=dismissed,
                                watchlist=watchlist,

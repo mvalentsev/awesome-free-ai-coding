@@ -289,6 +289,16 @@ caps include their exact API IDs. Indexed documentation uses `follow` to resolve
 the current release before checking its allowance. Ended model promotions retain
 their quota evidence without advertising a current allowance.
 
+Public HTML reads try ordinary HTTP first. A confirmed browser challenge can
+start one anonymous `curl_cffi` browser-profile recovery, with a 20-second budget,
+up to 5 redirects and an 8 MiB body limit. API catalogs and completion requests,
+authenticated clients, private destinations, query strings, rate limits and gone
+pages cannot use it. Recovery supplies the vendor's original HTML and status to
+the same content checks. It never earns a verification by itself. The probe's
+`failures/page-reads/` receipts preserve both responses; the update workflow
+uploads them as `public-page-reads`. The review collector retains those attempts
+for source reads and uses ordinary HTTP for publication byte checks.
+
 Every `page-keywords` probe needs at least one keyword that disappears when the
 free tier does. Three shapes qualify:
 
