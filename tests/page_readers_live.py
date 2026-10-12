@@ -45,8 +45,8 @@ for backend in args.backends:
                 (out/(backend+'-'+ident+'-service.raw')).write_bytes(r.content)
                 try:data=r.json()
                 except ValueError:data={}
-                page=data.get('data',{}) if isinstance(data,dict) else {};body=page.get('content',r.text)
-                status=page.get('responseCode',page.get('statusCode'));source=page.get('url')
+                page=data.get('data',{}) if isinstance(data,dict) else {};body=page.get('html','')
+                status=page.get('httpStatus');source=page.get('url')
                 record(backend,ident,start,status,body,source,{'service_http':r.status_code,'headers':dict(r.headers),'data_fields':list(page),'fresh_requested':True})
             elif backend=='firecrawl':
                 body={'url':url,'formats':['rawHtml'],'onlyMainContent':False,'maxAge':0,'timeout':20000}
