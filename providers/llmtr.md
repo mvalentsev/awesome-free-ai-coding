@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-10-08'
+title: 'LLMTR free tier: limits, free models, verified 2026-10-12'
 description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, qwen3.8-27b, claude-haiku-5.5. Free chat rows can be…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-10-11
+last_modified_at: 2026-10-12
 crumb: LLMTR
 ---
 
@@ -11,7 +11,7 @@ crumb: LLMTR
 
 # LLMTR free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-08 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-12 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -97,6 +97,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-11 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-12 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
