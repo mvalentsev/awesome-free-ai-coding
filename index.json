@@ -3018,7 +3018,7 @@
           "qwen3-vl-plus",
           "glm-5.1"
         ],
-        "note": "international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own"
+        "note": "Singapore (international) endpoint; keys are region-specific. Call the exact IDs listed here. Enable Free Quota Only per model in the console to stop calls when its grant ends."
       },
       "data_use": {
         "trains": "no",

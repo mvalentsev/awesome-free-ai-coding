@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Alibaba Clo
 - Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
 - Callable ids: `qwen3.8-max`, `qwen3.8-flash`, `qwen3.8-2.4t-a95b`, `qwen3.8-27b`, `deepseek-v4-pro`, `deepseek-v4-flash-0731`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.2`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.7-flash`, `qwen3.6-plus`, `qwen3.6-flash`, `qwen3.6-35b-a3b`, `qwen3.6-27b`, `qwen3.5-plus`, `qwen3.5-flash`, `qwen3.5-397b-a17b`, `qwen3.5-122b-a10b`, `qwen3.5-35b-a3b`, `qwen3.5-27b`, `qwen3-coder-flash`, `qwen-max`, `qwen-plus`, `qwen-flash`, `qwen3-vl-plus`, `glm-5.1`
-- Note: international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own
+- Note: Singapore (international) endpoint; keys are region-specific. Call the exact IDs listed here. Enable Free Quota Only per model in the console to stop calls when its grant ends.
 
 Try it from your terminal with your key in `ALIBABA_MODEL_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
