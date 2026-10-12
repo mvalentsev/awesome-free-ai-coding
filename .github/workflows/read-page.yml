@@ -3,7 +3,7 @@ name: read-page
 # A page the maintainer's machine cannot reach is not a verdict: a runner
 # reaches the open internet from a different address, so the read moves here.
 #
-# It reads with the prober's own client, User-Agent and stripping, which is the
+# It first reads with the prober's own client, User-Agent and stripping, which is the
 # point: a body `curl -o` saves without --compressed can be gzip, in which a
 # text search finds no word of the page.
 # What this prints is what a probe would match against — the rendered text and
