@@ -11,7 +11,7 @@ crumb: qwen3.5-4b
 
 # Where qwen3.5-4b is free
 
-**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
+**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

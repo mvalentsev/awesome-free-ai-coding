@@ -6,7 +6,7 @@
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "index": 57.6
   },
-  "median": 13.0,
+  "median": 13.1,
   "families": {
     "apertus-70b": {
       "slug": "apertus-70b-instruct",

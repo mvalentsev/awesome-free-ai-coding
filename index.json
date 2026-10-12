@@ -1182,7 +1182,7 @@
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-10-12",
-      "probe_failures": 1,
+      "probe_failures": 0,
       "provisional": false,
       "rank": 10,
       "no_account": false,
@@ -4635,7 +4635,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-10-05",
+      "last_verified": "2026-10-12",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
@@ -9959,7 +9959,6 @@
       "models": [
         {
           "family": "qwen3.5-4b",
-          "tier": "notable",
           "aa_model": "qwen3-5-4b"
         }
       ],
@@ -11264,7 +11263,6 @@
         },
         {
           "family": "qwen3.5-4b",
-          "tier": "notable",
           "aa_model": "qwen3-5-4b"
         },
         {
@@ -13907,7 +13905,6 @@
         "mixlayer",
         "siliconflow-cn"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
     },
     {

@@ -151,7 +151,7 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [muse-spark-1.3-contributor](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/): strong; opencode, Cline
 - [nemotron-3-nano-30b](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/): Requesty, AIHubMix (free models)
 - [qwen3.5-122b-a10b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/): notable; Alibaba Cloud Model Studio (DashScope, international), Regolo AI
-- [qwen3.5-4b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/): notable; Mixlayer, SiliconFlow (China)
+- [qwen3.5-4b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/): Mixlayer, SiliconFlow (China)
 - [qwen3.7-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/): Alibaba Cloud Model Studio (DashScope, international), BazaarLink
 - [claude-haiku-5.5](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/): strong; LLMTR (free until 2026-10-14 23:59+03:00)
 - [claude-opus-4.6](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/): notable; Google Antigravity

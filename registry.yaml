@@ -767,7 +767,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-10-12'
-  probe_failures: 1
+  probe_failures: 0
   provisional: false
   rank: 10
 - id: kilo-code
@@ -2984,7 +2984,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-11'
-  last_verified: '2026-10-05'
+  last_verified: '2026-10-12'
   probe_failures: 0
   provisional: false
   rank: 85
@@ -7077,7 +7077,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.5-4b
-    tier: notable
     aa_model: qwen3-5-4b
   api:
     base_url: https://models.mixlayer.ai/v1
@@ -8195,7 +8194,6 @@ entries:
   - family: glm-4-9b-0414
   - family: qwen2.5-7b
   - family: qwen3.5-4b
-    tier: notable
     aa_model: qwen3-5-4b
   - family: glm-z1-9b-0414
   - family: deepseek-r1-0528-qwen3-8b

@@ -11,7 +11,7 @@ crumb: opencode
 
 # opencode free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-12; the probe since has not found that evidence, and 3 misses in a row archive the row · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-12 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
