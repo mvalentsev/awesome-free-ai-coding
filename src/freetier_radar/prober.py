@@ -231,8 +231,8 @@ def page_response_ok(response: httpx.Response) -> bool:
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
                 named: bool = False, *, page: bool = False
                 ) -> tuple[httpx.Response | None, ProbeResult | None]:
-    """The page at `url`, or the verdict that reading it already is: a 401, 403
-    or 429 is a wall rather than an answer, a 5xx or a network error is asked
+    """The page at `url`, or the verdict that reading it already is: a 401, 403,
+    429 or 451 is a wall rather than an answer, a 5xx or a network error is asked
     again, and any other 4xx is the page gone. `named` puts the url in the
     verdict, for a page the probe reached through another one."""
     resp, last = await _ask(lambda: client.get(url, timeout=TIMEOUT, follow_redirects=True),
@@ -246,7 +246,9 @@ async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: flo
     if page_response_ok(resp):
         return resp, None
     said = f"{url} answered " if named else ""
-    if resp.status_code in (401, 403, 429):
+    # RFC7725 section3: 451 establishes neither existence nor nonexistence.
+    # https://www.rfc-editor.org/rfc/rfc7725 — checked 2026-10-12.
+    if resp.status_code in (401, 403, 429, 451):
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
     if resp.status_code >= 400:
         return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
