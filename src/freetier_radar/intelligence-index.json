@@ -333,21 +333,6 @@
       "index": 9.2,
       "estimated": false
     },
-    "qwen3-max": {
-      "slug": "qwen3-max",
-      "index": 15.6,
-      "estimated": true
-    },
-    "qwen3-next-80b-a3b-instruct": {
-      "slug": "qwen3-next-80b-a3b-instruct",
-      "index": 9.6,
-      "estimated": true
-    },
-    "qwen3-next-80b-a3b-thinking": {
-      "slug": "qwen3-next-80b-a3b-reasoning",
-      "index": 11.2,
-      "estimated": true
-    },
     "qwen3.5-122b-a10b": {
       "slug": "qwen3-5-122b-a10b",
       "index": 15.6,
@@ -387,11 +372,6 @@
       "slug": "qwen3-6-35b-a3b",
       "index": 18.2,
       "estimated": false
-    },
-    "qwen3.6-max": {
-      "slug": "qwen3-6-max",
-      "index": 28.4,
-      "estimated": true
     },
     "qwen3.6-plus": {
       "slug": "qwen3-6-plus",

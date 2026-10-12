@@ -1182,7 +1182,7 @@
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-10-12",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 10,
       "no_account": false,
@@ -7294,7 +7294,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-10-08",
+      "last_verified": "2026-10-12",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
