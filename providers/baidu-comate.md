@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Baidu Comate (文心快码) free tier: limits, free models, verified 2026-10-12'
+title: 'Baidu Comate (文心快码) free tier: limits, free models, verified 2026-10-13'
 description: Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days. Personal Standard completion is free, with no published amount or model name. The…
 permalink: /providers/baidu-comate/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Baidu Comate (文心快码)
 ---
 
@@ -11,7 +11,7 @@ crumb: Baidu Comate (文心快码)
 
 # Baidu Comate (文心快码) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-12 · [comate.baidu.com](https://comate.baidu.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-13 · [comate.baidu.com](https://comate.baidu.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

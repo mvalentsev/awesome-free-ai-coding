@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.5-122b-a10b free: 2 providers, limits and ids, provider probes 2026-10-12'
+title: 'qwen3.5-122b-a10b free: 2 providers, limits and ids, provider probes 2026-10-13'
 description: qwen3.5-122b-a10b is served free by Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.5-122b-a10b/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: qwen3.5-122b-a10b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.5-122b-a10b
 
 # Where qwen3.5-122b-a10b is free
 
-**2 rows on the list serve `qwen3.5-122b-a10b` free:** Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-122b-a10b), below its strong bar.
+**2 rows on the list serve `qwen3.5-122b-a10b` free:** Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-122b-a10b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.5-122b-a10b
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-12 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-13 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -39,7 +39,7 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · last probe 2026-10-13 · listed since 2026-09-27
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 

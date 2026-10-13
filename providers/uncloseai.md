@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-12'
+title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-13'
 description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. Hermes is the public text lane. qwen.ai.unturf.com requires a key and rejects anonymous traffic with 403. A down model's hostname returns 502; that temporary failure does not establish shutdown. Query Model Discovery for…
 permalink: /providers/uncloseai/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: uncloseai (unturf)
 ---
 
@@ -11,7 +11,7 @@ crumb: uncloseai (unturf)
 
 # uncloseai (unturf) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-12 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

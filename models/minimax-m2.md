@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m2 free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'minimax-m2 free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: minimax-m2 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: minimax-m2
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m2
 
 # Where minimax-m2 is free
 
-**One row on the list serves `minimax-m2` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2), below its strong bar.
+**One row on the list serves `minimax-m2` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m2
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-12 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

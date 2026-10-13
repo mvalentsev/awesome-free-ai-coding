@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-12'
+title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-13'
 description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says "Your allowance refreshes weekly"; the help docs describe "two separate usage pools, each…
 permalink: /providers/cursor-hobby/
 last_modified_at: 2026-10-13
@@ -11,7 +11,7 @@ crumb: Cursor (Free)
 
 # Cursor (Free) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-12 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-13 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

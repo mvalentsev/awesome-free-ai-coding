@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-10-12'
+title: 'Freebuff free tier: limits, free models, verified 2026-10-13'
 description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash, gpt-6.1-sol. “Freebuff is supported by text ads.” “Model…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-10-13
@@ -11,7 +11,7 @@ crumb: Freebuff
 
 # Freebuff free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-12 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-13 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -19,7 +19,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 
 ## Free models
 
-`solar-pro-4`, `solar-mini-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), `gpt-6.1-sol` (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.)
+`solar-pro-4`, `solar-mini-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), [`gpt-6.1-sol`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/) (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.)
 
 ## Limits, in the vendor's words
 

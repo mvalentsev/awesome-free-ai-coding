@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Autohand Code free tier: limits, free models, verified 2026-10-12'
+title: 'Autohand Code free tier: limits, free models, verified 2026-10-13'
 description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, using recurring hosted-response credits. Free models: fantail. Ongoing Free access is intended for evaluation and light use. It requires a…'
 permalink: /providers/autohand-code/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Autohand Code
 ---
 
@@ -11,7 +11,7 @@ crumb: Autohand Code
 
 # Autohand Code free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-12 · [autohand.ai](https://www.autohand.ai/code/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-13 · [autohand.ai](https://www.autohand.ai/code/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

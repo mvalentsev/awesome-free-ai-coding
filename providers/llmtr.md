@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-10-12'
+title: 'LLMTR free tier: limits, free models, verified 2026-10-13'
 description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, qwen3.8-27b, claude-haiku-5.5 and 1 more. Free chat…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: LLMTR
 ---
 
@@ -11,7 +11,7 @@ crumb: LLMTR
 
 # LLMTR free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-12 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-13 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

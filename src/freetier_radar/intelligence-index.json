@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-10-12",
+  "read_on": "2026-10-13",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
@@ -172,6 +172,11 @@
       "slug": "gpt-4-1",
       "index": 12.7,
       "estimated": true
+    },
+    "gpt-6.1-sol": {
+      "slug": "gpt-6-1-sol",
+      "index": 51.8,
+      "estimated": false
     },
     "gpt-oss-120b": {
       "slug": "gpt-oss-120b",

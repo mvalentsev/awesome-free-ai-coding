@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLM Tech free tier: limits, free models, verified 2026-10-12'
+title: 'LLM Tech free tier: limits, free models, verified 2026-10-13'
 description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The public trial key shares its concurrency among all callers; the daily token budget is per IP and…'
 permalink: /providers/llmtech/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: LLM Tech
 ---
 
@@ -11,7 +11,7 @@ crumb: LLM Tech
 
 # LLM Tech free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-12 · [llmtech.eu](https://llmtech.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13 · [llmtech.eu](https://llmtech.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

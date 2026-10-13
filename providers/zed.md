@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Zed free tier: limits, free models, verified 2026-10-12'
+title: 'Zed free tier: limits, free models, verified 2026-10-13'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. No card for the trial. GPT-6 Luna is its only hosted model, and the shared Zed/Delta trial ends when the…'
 permalink: /providers/zed/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Zed
 ---
 
@@ -11,7 +11,7 @@ crumb: Zed
 
 # Zed free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-12 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-13 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

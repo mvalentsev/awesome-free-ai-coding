@@ -23,6 +23,7 @@ crumb: gpt-6-luna
 
 - [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints
 - [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
+- [`gpt-6.1-sol`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/) — free at Freebuff (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.)
 
 ---
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3.1-flash-lite free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'gemini-3.1-flash-lite free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: gemini-3.1-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.1-flash-lite/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: gemini-3.1-flash-lite
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3.1-flash-lite
 
 # Where gemini-3.1-flash-lite is free
 
-**One row on the list serves `gemini-3.1-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-flash-lite-preview), below its strong bar.
+**One row on the list serves `gemini-3.1-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-flash-lite-preview), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3.1-flash-lite
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · last probe 2026-10-12 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · last probe 2026-10-13 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 

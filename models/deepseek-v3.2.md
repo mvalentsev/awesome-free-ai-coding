@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v3.2 free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'deepseek-v3.2 free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: deepseek-v3.2 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v3.2/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: deepseek-v3.2
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v3.2
 
 # Where deepseek-v3.2 is free
 
-**One row on the list serves `deepseek-v3.2` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v3-2), below its strong bar.
+**One row on the list serves `deepseek-v3.2` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v3-2), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v3.2
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-08-20
+🎁 Trials (no card when possible) · no card · last probe 2026-10-13 · listed since 2026-08-20
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3-coder-next free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'qwen3-coder-next free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: qwen3-coder-next is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3-coder-next/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: qwen3-coder-next
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3-coder-next
 
 # Where qwen3-coder-next is free
 
-**One row on the list serves `qwen3-coder-next` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week.
+**One row on the list serves `qwen3-coder-next` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3-coder-next
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · last probe 2026-10-13 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 

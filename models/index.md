@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-12'
-description: 134 model families the list's 86 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
+title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-13'
+description: 134 model families the list's 86 live rows serve free, and every row that serves each one; 90 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-10-13
 ---
@@ -98,7 +98,7 @@ last_modified_at: 2026-10-13
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
 | [`glm-4.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `glm-z1-9b-0414` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
-| `gpt-6.1-sol` | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.) |
+| [`gpt-6.1-sol`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/) · frontier | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.) |
 | [`hy3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) · notable | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) |
 | `intern-s2` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |

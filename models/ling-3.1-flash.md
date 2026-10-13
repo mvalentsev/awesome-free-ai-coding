@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'ling-3.1-flash free: 2 providers, limits and ids, provider probes 2026-10-12'
+title: 'ling-3.1-flash free: 2 providers, limits and ids, provider probes 2026-10-13'
 description: ling-3.1-flash is served free by LLMTR and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.1-flash/
 last_modified_at: 2026-10-13
@@ -11,7 +11,7 @@ crumb: ling-3.1-flash
 
 # Where ling-3.1-flash is free
 
-**2 rows on the list serve `ling-3.1-flash` free:** LLMTR and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-1-flash).
+**2 rows on the list serve `ling-3.1-flash` free:** LLMTR and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.1-flash
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-12 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-10-01
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -44,7 +44,7 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-12 · listed since 2026-10-13
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-13 · listed since 2026-10-13
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit
 

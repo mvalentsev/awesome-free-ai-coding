@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'claude-haiku-5.5 free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'claude-haiku-5.5 free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: claude-haiku-5.5 is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-haiku-5.5/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: claude-haiku-5.5
 ---
 
@@ -11,7 +11,7 @@ crumb: claude-haiku-5.5
 
 # Where claude-haiku-5.5 is free
 
-**One row on the list serves `claude-haiku-5.5` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-haiku-5-5).
+**One row on the list serves `claude-haiku-5.5` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-haiku-5-5).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: claude-haiku-5.5
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-12 · listed since 2026-10-11
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-10-11
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

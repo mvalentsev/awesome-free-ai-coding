@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cline free tier: limits, free models, verified 2026-10-12'
+title: 'Cline free tier: limits, free models, verified 2026-10-13'
 description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor, mimo-v2.6-flash. Free…'
 permalink: /providers/cline/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Cline
 ---
 
@@ -11,7 +11,7 @@ crumb: Cline
 
 # Cline free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-12 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-13 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

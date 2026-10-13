@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Dahl Inference free tier: limits, free models, verified 2026-10-12'
+title: 'Dahl Inference free tier: limits, free models, verified 2026-10-13'
 description: An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account. Signup tokens enter the account pool; a new key starts…
 permalink: /providers/dahl-inference/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Dahl Inference
 ---
 
@@ -11,7 +11,7 @@ crumb: Dahl Inference
 
 # Dahl Inference free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-12 · [inference.dahl.global](https://inference.dahl.global) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-13 · [inference.dahl.global](https://inference.dahl.global) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

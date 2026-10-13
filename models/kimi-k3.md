@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'kimi-k3 free: 2 providers, limits and ids, provider probes 2026-10-12'
+title: 'kimi-k3 free: 2 providers, limits and ids, provider probes 2026-10-13'
 description: kimi-k3 is served free by NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/kimi-k3/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: kimi-k3
 ---
 
@@ -11,7 +11,7 @@ crumb: kimi-k3
 
 # Where kimi-k3 is free
 
-**2 rows on the list serve `kimi-k3` free:** NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-10-12; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/kimi-k3).
+**2 rows on the list serve `kimi-k3` free:** NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/kimi-k3).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: kimi-k3
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-10-12 · listed since 2026-09-22
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-10-13 · listed since 2026-09-22
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -39,7 +39,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-12 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-16
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

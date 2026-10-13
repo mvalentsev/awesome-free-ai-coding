@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Google Antigravity free tier: limits, free models, verified 2026-10-12'
+title: 'Google Antigravity free tier: limits, free models, verified 2026-10-13'
 description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. The model table includes older third-party models under Free…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Google Antigravity
 ---
 
@@ -11,7 +11,7 @@ crumb: Google Antigravity
 
 # Google Antigravity free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-10-12 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-10-13 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

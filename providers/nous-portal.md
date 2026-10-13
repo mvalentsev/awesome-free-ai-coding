@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-12'
+title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-13'
 description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, longcat-2.0, longcat-2.5-preview. Choose the Free plan and use…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-10-13
@@ -11,7 +11,7 @@ crumb: Nous Portal (Hermes Agent)
 
 # Nous Portal (Hermes Agent) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-12 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-13 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

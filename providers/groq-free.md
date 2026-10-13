@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Groq free tier: limits, free models, verified 2026-10-12'
+title: 'Groq free tier: limits, free models, verified 2026-10-13'
 description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: gpt-oss-120b, gpt-oss-20b, qwen3.8-27b. These are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits…'
 permalink: /providers/groq-free/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Groq
 ---
 
@@ -11,7 +11,7 @@ crumb: Groq
 
 # Groq free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-12 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

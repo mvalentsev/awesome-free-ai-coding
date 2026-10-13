@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.5-9b free: 1 provider, limits and ids, provider probes 2026-10-12'
+title: 'qwen3.5-9b free: 1 provider, limits and ids, provider probes 2026-10-13'
 description: qwen3.5-9b is served free by Regolo AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.5-9b/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: qwen3.5-9b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.5-9b
 
 # Where qwen3.5-9b is free
 
-**One row on the list serves `qwen3.5-9b` free:** Regolo AI. It asks for no card. The provider's last scheduled probe was on 2026-10-12; its offer is rechecked twice a week.
+**One row on the list serves `qwen3.5-9b` free:** Regolo AI. It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.5-9b
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-12 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · last probe 2026-10-13 · listed since 2026-09-27
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
