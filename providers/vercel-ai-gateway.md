@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-12'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1, ling-3.1-flash. A team must add a valid payment method before using free…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: Vercel AI Gateway
 ---
 
@@ -19,7 +19,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Free models
 
-[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
+[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/)
 
 ## Limits, in the vendor's words
 
@@ -67,6 +67,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-13` — Free models changed: added ling-3.1-flash
 - `2026-10-05` — Free models changed: dropped ling-3.0-flash-sante
 - `2026-09-26` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-09-19` — Free models changed: added ling-3.0-flash-sante
@@ -79,6 +80,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-12 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-13 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

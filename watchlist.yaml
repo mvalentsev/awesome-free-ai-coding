@@ -1832,22 +1832,26 @@ watched:
 
   - domains: [naga.ac]
     name: NagaAI
-    checked_on: '2026-09-14'
+    checked_on: '2026-10-13'
     reason: >-
-      The free tier is published — "Start free on zero-cost models", 15+
-      models at 10 RPM and 100 RPD — and what it serves is other gateways'
-      free lanes: the :free ids in its keyless catalog are
-      ling-3.0-flash-vl:free, ling-3.0-flash-sante:free,
-      ling-3.0-flash-fin:free, nex-n2.5-pro:free, nex-n2.5-mini:free,
-      dots-3-note-preview:free, lfm-2.5-2.6b:free and
-      nemotron-3.5-lightning:free, the lane OpenRouter and Kilo already carry
-      here. The paid catalog prices frontier models well under their makers'
-      rates — gpt-5.6-sol at $1/$5 per 1M against OpenAI's $4/$20,
-      claude-sonnet-5 at $1/$5 — with no statement of where they are served
-      from.
+      The site and public catalog are live. The documented :free models
+      cost nothing and share 10 RPM and 100 RPD per account
+      (https://docs.naga.ac/build/rate-limits). Routing documentation says
+      requests go to changing third-party providers, whose identity is
+      never disclosed in responses and cannot be selected or excluded
+      (https://docs.naga.ac/build/routing). It does not establish self-hosted
+      inference or named authorized upstream capacity. Matching model IDs
+      or lower prices alone do not establish unauthorized proxying. The
+      terms require purchasing credits while the pricing and billing docs
+      advertise zero-cost models; fresh missing-key and invalid-key
+      requests both return 401, so no zero-balance completion is established.
+      Free-model data collection for training by NagaAI and its partners is
+      always enabled (https://naga.ac/legal/privacy).
     reopen_if: >-
-      NagaAI's free lane carries a model it serves itself, or it states where
-      its below-list frontier capacity comes from.
+      NagaAI discloses self-hosted inference or named authorized upstream
+      providers and resolves free access without purchased credits. A
+      traceable legitimate aggregator can qualify; model-ID overlap alone
+      is not a rejection reason.
 
   - domains: [commandcode.ai]
     name: Command Code

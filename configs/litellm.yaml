@@ -1937,6 +1937,28 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/inclusionai/ling-3.1-flash
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/inclusionai/ling-3.1-flash-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/Qwen3.8-27B
     api_base: https://inference.hetzner.com/api/v1
     api_key: os.environ/HETZNER_INFERENCE_API_KEY

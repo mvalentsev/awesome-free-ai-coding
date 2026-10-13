@@ -1,31 +1,31 @@
 ---
 layout: default
-title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-10-12'
-description: 'Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor''s own model and Tab completions, no credit card. Free models: composer. No credit card is required. Hobby includes limited Agent, Chat and Tab usage with Auto and access to Composer; neither a numerical allowance nor a…'
+title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-12'
+description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says "Your allowance refreshes weekly"; the help docs describe "two separate usage pools, each…
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-10-12
-crumb: Cursor (Hobby)
+last_modified_at: 2026-10-13
+crumb: Cursor (Free)
 ---
 
 {% raw %}
 
-# Cursor (Hobby) free tier
+# Cursor (Free) free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-12 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own model and Tab completions, no credit card
+Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage
 
 ## Free models
 
-`composer`
+The vendor does not say which models the free part reaches, so the column names none.
 
 ## Limits, in the vendor's words
 
-Agent usage: Monthly usage allowance: amount not published per account
+Agent usage: Usage allowance: amount not published (period not published) per account
 
-No credit card is required. Hobby includes limited Agent, Chat and Tab usage with Auto and access to Composer; neither a numerical allowance nor a separate Tab cap is published. Usage resets with the monthly billing cycle and does not roll over. The cap leads to a notification and an offer to upgrade or use on-demand billing. Cursor Router is not offered on individual plans.
+Free includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says "Your allowance refreshes weekly"; the help docs describe "two separate usage pools, each resetting with your monthly billing cycle". The help center describes Tab through Auto on Hobby; check your account for the applicable allowance and reset.
 
 ## Where it is offered
 
@@ -41,7 +41,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## Evidence
 
-- Probe: the page at <https://cursor.com/pricing>, anchored on `"name":"hobby","price":"0"`, `limited agent requests`
+- Probe: the page at <https://cursor.com/pricing>, anchored on `$0`, `Limited Agent requests`, `Limited Chat requests`
 - Source: <https://cursor.com/pricing>
 - Source: <https://cursor.com/help/models-and-usage/usage-limits>
 - Source: <https://cursor.com/help/account-and-billing/pricing>
@@ -51,11 +51,12 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-13` — Free models changed: dropped composer
 - `2026-09-25` — Free models changed: added composer
 - `2026-07-19` — Added: Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card
 
 ---
 
-Generated from `registry.yaml` on 2026-10-12 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-13 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

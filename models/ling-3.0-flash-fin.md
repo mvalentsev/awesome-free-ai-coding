@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-fin free: 2 providers, limits and ids, provider probes 2026-10-12'
 description: ling-3.0-flash-fin is served free by opencode and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: ling-3.0-flash-fin
 ---
 
@@ -65,12 +65,12 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 ## Related models
 
 - [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) — free at Requesty and AIHubMix (free models)
+- [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/) — free at LLMTR (until 2026-10-13) and Vercel AI Gateway
 - [`ling-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/) — free at AIHubMix (free models)
 - [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) — free at Nous Portal (Hermes Agent)
-- [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/) — free at LLMTR (until 2026-10-13)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-12 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-13 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
