@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.12", "3.13", "3.14"]
+        python: ["3.12", "3.13", "3.14", "3.15"]
     name: test (Python ${{ matrix.python }})
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     steps:
@@ -24,6 +24,15 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+
+      # setup-python's stable 3.15 Linux builds and the locked dependencies
+      # were checked on 2026-10-14. Source: github.com/actions/python-versions.
+      # Install the interpreter before uv selects it, without depending on
+      # uv's built-in download list having caught up with this release.
+      - uses: actions/setup-python@v7
+        if: matrix.python == '3.15'
+        with:
+          python-version: ${{ matrix.python }}
 
       # An exact version where checkout above it floats a major tag:
       # setup-uv stopped publishing major and minor tags at v8, on purpose, so

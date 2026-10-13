@@ -524,6 +524,38 @@ def opencode_run_flags(help_text: str) -> list[str]:
     return flags
 
 
+def opencode_session_result(bundle: Bundle, prefix: str, binary: str, project: Path,
+                            env: dict, events: list[dict], marker: str,
+                            provider: str, model: str) -> dict:
+    """Read the completed session without sending another provider request."""
+    from .conformance import check_opencode_session_export
+    sessions = {event.get('sessionID') for event in events}
+    answers = [event.get('part', {}) for event in events if event.get('type') == 'text']
+    if len(sessions) != 1 or not answers:
+        return {'passed': False, 'error': 'No unique session and final answer to export'}
+    session = next(iter(sessions))
+    answer = answers[-1].get('messageID')
+    if not isinstance(session, str) or not re.fullmatch(r'ses_[A-Za-z0-9_-]+', session):
+        return {'passed': False, 'error': 'No supported session ID to export'}
+    for name, args, seconds in (
+            ('export-help', [binary, 'session', 'export', '--help'], 15),
+            ('session-export', [binary, 'session', 'export', '--standalone', session], 30)):
+        try:
+            done = subprocess.run(args, cwd=project, env=env, stdin=subprocess.DEVNULL,
+                                  capture_output=True, timeout=seconds)
+        except subprocess.TimeoutExpired as exc:
+            done = subprocess.CompletedProcess(args, -1, exc.stdout or b'', exc.stderr or b'')
+        bundle.write(prefix + name + ('.json' if name == 'session-export' else '.stdout'), done.stdout)
+        bundle.write(prefix + name + '.stderr', done.stderr)
+        if done.returncode or (name == 'export-help' and '--standalone' not in done.stdout.decode(errors='replace')):
+            return {'passed': False, 'error': name + ' unavailable', 'exit': done.returncode}
+    try:
+        exported = json.loads(done.stdout)
+    except (ValueError, UnicodeDecodeError):
+        return {'passed': False, 'error': 'Session export is not readable JSON'}
+    return check_opencode_session_export(exported, session, provider, model, project, marker, answer)
+
+
 def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: str) -> dict:
     scope = scoped(bundle)
     rows = yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
@@ -585,6 +617,13 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
         except ValueError:
             continue
     result = client_result(client, code, events, marker)
+    result.update(stdout_completed_turn=result['completed_turn'], completion_source='stdout')
+    if (client == 'opencode' and code == 0 and not result['completed_turn'] and not result['error_event']
+            and result['fresh_marker_in_tool_output'] and result['fresh_marker_in_answer']):
+        exported = opencode_session_result(bundle, prefix, binary, project, env, events, marker, provider, model)
+        result['session_export'] = exported
+        if exported.get('passed'):
+            result.update(passed=True, completed_turn=True, completion_source='session-export')
     phase = 'client-' + work.name
     return bundle.save(phase, {**result, 'sha': scope['sha'], 'provider': provider, 'phase': phase,
                                           'command': argv, 'launch_error': launch_error,

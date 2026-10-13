@@ -1275,7 +1275,7 @@ writes nothing (the scout's report lands in the run summary instead of a PR),
 and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 
-Python 3.12 to 3.14, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI
+Python 3.12 to 3.15, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI
 runs it on every push to `main` and every pull request, together with
 `freetier-check` and `freetier-render --check`: on each of those Pythons with the
 versions `uv.lock` pins, and on the oldest once more with the lowest versions

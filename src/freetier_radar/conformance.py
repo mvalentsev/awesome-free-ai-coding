@@ -50,7 +50,8 @@ from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
-           "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main"]
+           "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main",
+           "check_opencode_session_export"]
 
 LITELLM_YAML = "configs/litellm.yaml"
 LITELLM_PROFILE = "configs/codex/litellm.config.toml"
@@ -137,6 +138,65 @@ class Finding:
     verdict: str          # "ok" or one of VERDICTS
     versions: str
     detail: str
+
+
+def check_opencode_session_export(data: object, session_id: str, provider: str,
+                                 model: str, directory: Path, marker: str,
+                                 answer_id: str) -> dict:
+    """Require terminal native evidence from the exact isolated session."""
+    # OpenCode 2.0.28 can reconcile final text without its step_finish event.
+    # Checked 2026-10-14 against actual runs and the tagged implementation:
+    # https://github.com/anomalyco/opencode/blob/v2.0.28/packages/cli/src/run/noninteractive.ts
+    # Its session export is read anew by review.live_client on every such run.
+    failure = {'passed': False, 'completed_turn': False}
+    if not isinstance(data, dict):
+        return failure
+    info, messages = data.get('info'), data.get('messages')
+    if not isinstance(info, dict) or not isinstance(messages, list) or not messages:
+        return failure
+    if any(not isinstance(message, dict) for message in messages):
+        return failure
+    expected_model = {'providerID': provider, 'id': model}
+
+    def same_model(value):
+        return isinstance(value, dict) and all(value.get(k) == v for k, v in expected_model.items())
+
+    location = info.get('location')
+    if (not session_id or info.get('id') != session_id or not same_model(info.get('model'))
+            or not isinstance(location, dict) or location.get('directory') != str(directory.resolve())
+            or info.get('outcome') != 'succeeded'):
+        return failure
+    assistants = [message for message in messages if message.get('type') == 'assistant']
+    if not assistants or any(message.get('error') or not same_model(message.get('model'))
+                             for message in assistants):
+        return failure
+    last, idle = assistants[-1], messages[-1]
+    completed = last.get('time', {}).get('completed') if isinstance(last.get('time'), dict) else None
+    ended = idle.get('time', {}).get('created') if isinstance(idle.get('time'), dict) else None
+    if (not answer_id or last.get('id') != answer_id or last.get('finish') != 'stop'
+            or type(completed) not in (int, float) or type(ended) not in (int, float)
+            or not 0 < completed <= ended or idle.get('type') != 'idle'
+            or idle.get('outcome') != 'succeeded'):
+        return failure
+    if any(not isinstance(message.get('content'), list) or
+           any(not isinstance(part, dict) for part in message['content']) for message in assistants):
+        return failure
+    answer = ''.join(part.get('text', '') for part in last['content']
+                     if part.get('type') == 'text' and isinstance(part.get('text'), str))
+    read = False
+    for message in assistants:
+        for part in message['content']:
+            state = part.get('state')
+            if part.get('type') != 'tool' or not isinstance(state, dict) or state.get('status') != 'completed':
+                continue
+            content = state.get('content')
+            if isinstance(content, list):
+                read |= any(isinstance(item, dict) and item.get('type') == 'text'
+                            and isinstance(item.get('text'), str) and marker in item['text'] for item in content)
+    passed = bool(marker) and read and answer.strip() == marker
+    return {'passed': passed, 'completed_turn': passed,
+            'fresh_marker_in_tool_output': read, 'fresh_marker_in_answer': answer.strip() == marker,
+            'session_id': session_id, 'answer_id': answer_id, 'terminal_outcome': idle['outcome']}
 
 
 @dataclass(frozen=True)
