@@ -154,7 +154,7 @@ async (page) => {
                 if(['wallet','unmetered'].includes(kind)) offer+=model.limited?'; available in limited mode':'; full access only';
                 if(!text.includes(plain(offer))) throw Error('Provider model access: '+row.id+' '+model.name);
               }
-              for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(plain(quote))) throw Error('Provider condition: '+row.id);
+              for(const condition of [...Object.values(catalog.conditions).map(c=>c.quote??c.note),...(catalog.notes||[])]) if(!text.includes(plain(condition))) throw Error('Provider condition: '+row.id);
               if(catalog.limited_allowance&&!text.includes(plain(catalog.limited_allowance))) throw Error('Provider limited allowance: '+row.id);
             }
             for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
