@@ -1849,9 +1849,10 @@ watched:
       always enabled (https://naga.ac/legal/privacy).
     reopen_if: >-
       NagaAI discloses self-hosted inference or named authorized upstream
-      providers and resolves free access without purchased credits. A
-      traceable legitimate aggregator can qualify; model-ID overlap alone
-      is not a rejection reason.
+      providers and documents the free lane's payment and eligibility
+      conditions, including any minimum initial payment. A documented
+      one-time deposit is a condition, not an automatic rejection; model-ID
+      overlap alone is not a rejection reason.
 
   - domains: [commandcode.ai]
     name: Command Code
