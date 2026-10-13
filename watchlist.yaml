@@ -18,6 +18,37 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [beatapi.io]
+    name: BeatAPI
+    checked_on: '2026-10-13'
+    reason: >-
+      The current free price table (https://beatapi.io/pricing) advertises
+      GPT-6.1 Sol, DeepSeek V4 and V4.1 Flash, GLM 5.3 and 5.3 Flash, and
+      Gemini 3.8 Flash at zero input and output cost under separate free IDs.
+      The product page says no card or top-up is required
+      (https://beatapi.io/gpt-6-1-sol-api); the free-route docs support
+      Responses and Chat Completions
+      (https://docs.beatapi.io/text-api/gpt-6-1-sol-free).
+      Free calls share one successful request per minute per account before
+      the first top-up and at most ten afterward
+      (https://docs.beatapi.io/faq/account-billing). Daily allowance and
+      continued availability are not guaranteed. The seventh free item,
+      JEV, returns typed decisions rather than generated text
+      (https://docs.beatapi.io/decisions). Public terms and routing information
+      (https://beatapi.io/terms-of-service and https://beatapi.io/llms.txt)
+      do not establish self-hosted inference or named authorized upstream
+      capacity for the free text routes. That does not establish unauthorized
+      proxying. The model catalog and fresh Chat Completions and Responses
+      requests without a key return 401; authenticated zero-balance
+      completion and a tool round trip remain unverified.
+    reopen_if: >-
+      BeatAPI establishes self-hosted inference or named authorized upstream
+      capacity for its free text routes, and a no-card account demonstrates
+      free completion and a valid tool-result round trip with the advertised
+      ID and payment conditions. Re-read current free prices, daily allowance
+      and promotion terms before inclusion; any documented initial payment
+      is an access condition, not an automatic rejection.
+
   - domains: [blockrun.ai]
     name: BlockRun
     checked_on: '2026-10-05'
