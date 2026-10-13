@@ -1,4 +1,6 @@
 import subprocess
+import json
+from datetime import datetime, timedelta, timezone
 
 import pytest
 
@@ -58,6 +60,54 @@ def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
     # Importing freezes the evidence used; changing the original does not rewrite history.
     (tmp_path / '.remember/finding.txt').write_text('later notes')
     assert push(tmp_path, base, head) == []
+
+
+@pytest.mark.parametrize('defect', ['missing', 'partial-families', 'missing-conflicts',
+                                  'stale', 'unread-source', 'stale-source', 'future', None])
+def test_eligibility_signoff_requires_current_conditions_for_every_changed_family(tmp_path, defect):
+    base, head = proposal(tmp_path)
+    (tmp_path / 'index.json').write_text(json.dumps({'entries': [{
+        'id': 'vendor', 'models': [{'family': 'alpha'}, {'family': 'beta'}]}]}))
+    git(tmp_path, 'add', 'index.json')
+    git(tmp_path, 'commit', '-qm', 'fix: fixture model claims')
+    head = git(tmp_path, 'rev-parse', 'HEAD')
+    bundle, value = signoff(tmp_path, base, head)
+    scope = bundle.load('scope')
+    scope['paths'] = value['paths'] = ['README.md', 'index.json']
+    scope['eligibility'] = {'vendor': ['alpha', 'beta']}
+    bundle.save('scope', scope)
+    source = 'https://vendor.example/plans'
+    bundle.save('sources', {'checks': [{'url': source, 'passed': True,
+                            'attempts': [{'at': datetime.now(timezone.utc).isoformat()}]}]})
+    evidence = str(tmp_path / '.remember/finding.txt')
+    record = {'row': 'vendor', 'families': ['alpha', 'beta'],
+              'plan': 'Free', 'payment': 'No payment', 'regions': 'US only',
+              'limits': 'One hour per day', 'deadline': 'No published end date',
+              'conflicts': 'Compared live Free and Starter tables; no conflict',
+              'checked_at': datetime.now(timezone.utc).isoformat(),
+              'sources': [source], 'evidence': [evidence]}
+    value['model_eligibility'] = [record]
+    if defect == 'missing':
+        value.pop('model_eligibility')
+    elif defect == 'partial-families':
+        record['families'] = ['alpha']
+    elif defect == 'missing-conflicts':
+        record.pop('conflicts')
+    elif defect == 'unread-source':
+        bundle.save('sources', {'checks': [{'url': source, 'passed': False}]})
+    elif defect == 'stale-source':
+        bundle.save('sources', {'checks': [{'url': source, 'passed': True,
+            'attempts': [{'at': (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()}]}]})
+    elif defect:
+        offset = timedelta(days=-2) if defect == 'stale' else timedelta(days=1)
+        record['checked_at'] = (datetime.now(timezone.utc) + offset).isoformat()
+    if defect:
+        with pytest.raises(ValueError):
+            accept_judgment(bundle, value)
+        assert push(tmp_path, base, head)
+    else:
+        accept_judgment(bundle, value)
+        assert push(tmp_path, base, head) == []
 
 
 @pytest.mark.parametrize('defect', ['checkboxes', 'partial-diff', 'wrong-head', 'empty-finding',

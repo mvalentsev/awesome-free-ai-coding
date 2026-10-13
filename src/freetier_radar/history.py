@@ -264,8 +264,9 @@ def record_changes(registry_path: Path, history_path: Path, today: date, now: da
     git — the lines are the difference from that: whatever an earlier render of
     the same uncommitted work wrote after it is replaced, since a row added and
     taken back out before the commit never reached the list, and lines that
-    already say the same thing are kept as they are, clock and all, so a second
-    render changes no byte. Without it, or where the file does not start with
+    already say the same thing with one valid clock are kept as they are, so a
+    second render changes no byte. Invalid unpublished clocks are rebuilt.
+    Without it, or where the file does not start with
     it, the difference from the file as it stands is appended. A deleted row
     raises before anything is written (see deleted_rows).
     """
@@ -280,7 +281,10 @@ def record_changes(registry_path: Path, history_path: Path, today: date, now: da
                          first_line=committed.count("\n") + 1)
     refuse_deleted_rows(entries, base)
     block = diff_state(replay(base), registry_state(entries, today), now)
-    if _unstamped(block) == _unstamped(tail):
+    stamps = {event.ts for event in tail}
+    valid_clock = (len(stamps) <= 1 and all(stamp <= now for stamp in stamps)
+                   and (not base or all(stamp >= base[-1].ts for stamp in stamps)))
+    if _unstamped(block) == _unstamped(tail) and valid_clock:
         return tail
     history_path.write_text(committed + "".join(_line(ev) for ev in block), encoding="utf-8")
     return block

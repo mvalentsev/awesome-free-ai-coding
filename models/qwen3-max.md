@@ -9,7 +9,7 @@ crumb: qwen3-max
 
 {% raw %}
 
-# Where qwen3-max was free
+# qwen3-max: no current free listing
 
 **No row currently lists `qwen3-max` under Free models.** The list carried it at Alibaba Cloud Model Studio (DashScope, international) until 2026-10-12. Each row's page says what it offers now.
 

@@ -520,7 +520,7 @@ def test_a_model_no_row_serves_any_more_keeps_a_page_that_says_where_it_went(tmp
     meta = front(page)
     assert meta["title"] == "kimi-k3 free: no current listing, last listed 2026-07-22"
     assert meta["last_modified_at"] == date(2026, 7, 22)
-    assert "# Where kimi-k3 was free" in page
+    assert "# kimi-k3: no current free listing" in page
     assert ("**No row currently lists `kimi-k3` under Free models.** The list carried it at A "
             "and B until 2026-07-22.") in page
     assert f"- [A]({PAGES_URL}/providers/a/) — listed 2026-07-19 to 2026-07-22" in page
@@ -565,6 +565,15 @@ def test_a_same_day_correction_is_not_a_stretch_the_model_was_listed(tmp_path):
     page = build_model_page("kimi-k3", [serving("a", "kimi-k3"), serving("b", "glm-5")],
                             events, TODAY)
     assert "## Rows that listed it before" not in page
+
+
+def test_a_same_day_correction_keeps_the_published_model_page():
+    events = [at("2026-07-10", event="added", id="b", name="B", models=["kimi-k3"]),
+              at("2026-07-10", id="b", name="B", models=["glm-5"])]
+    page = build_model_page("kimi-k3", [serving("b", "glm-5")], events, TODAY)
+    assert "No row currently lists `kimi-k3` under Free models" in page
+    assert "# kimi-k3: no current free listing" in page
+    assert "## Rows that listed it" not in page
 
 
 def test_every_chip_on_the_site_that_names_a_model_with_a_page_links_it(tmp_path):

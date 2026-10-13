@@ -2662,7 +2662,8 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     rows = by_family.get(family, [])
     by_id = {e.id: e for e in entries}
     before = _served_before(events, family, {e.id for e in rows}, _promotion_rows(entries, family))
-    if not rows and not before and family not in {m.family for e in entries for m in e.models}:
+    ever_named = any(family in event.models for event in events)
+    if not rows and not before and not ever_named and family not in {m.family for e in entries for m in e.models}:
         raise ValueError(f"the list never named {family!r}, so it has no page")
     departed = [spans[-1][1] for _, spans in before]
     changed = [*(_last_modified(e, events) for e in rows), *departed]
@@ -2726,7 +2727,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         description = clip(f"No row currently lists {family} under Free models.{until} "
                            "Each row's page gives its current offer.",
                            DESCRIPTION_ROOM)
-        body = [f"# Where {family} was free", "",
+        body = [f"# {family}: no current free listing", "",
                 f"**No row currently lists `{family}` under Free models.**{until} Each row's page "
                 "says what it offers now.", "", nav, ""]
         gone_heading = "## Rows that listed it"

@@ -680,15 +680,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/inclusionai/ling-3.1-flash
-  litellm_params:
-    model: openai/inclusionai/ling-3.1-flash
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-10-13 19:00+03:00
-    source: https://llmtr.com/models/inclusionai/ling-3.1-flash
 - model_name: llmtr/agnes/agnes-3.0-flash
   litellm_params:
     model: openai/agnes/agnes-3.0-flash
@@ -1884,17 +1875,6 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 16384
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/inclusionai/ling-3.1-flash
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

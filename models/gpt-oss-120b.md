@@ -104,7 +104,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 ## Related models
 
 - [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
-- [`gpt-6.1-sol`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/) — free at Freebuff (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.)
 
 ---
 

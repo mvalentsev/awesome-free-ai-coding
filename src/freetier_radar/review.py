@@ -173,6 +173,8 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
                   changed_pages('providers', 'entries', 'id'))
     families = sorted(set(changed(before.get('models', []), after.get('models', []), 'family')) |
                       changed_pages('models', 'models', 'family'))
+    from .quality import eligibility_scope
+    eligibility = eligibility_scope(repo, base, sha)
     required = {'pages build and deployment'}
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)
@@ -207,6 +209,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
             required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/' + path))['name'])
         required.add(workflow['name'])
     scope = {'base': base, 'sha': sha, 'paths': paths, 'deleted_paths': deleted_paths, 'rows': rows,
+             'eligibility': eligibility,
              'push_base': push_base, 'push_paths': push_paths,
              'families': families,
              'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}
@@ -266,7 +269,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     scope = scoped(bundle)
     entries = [Entry.model_validate(e) for e in yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
                if e['id'] in scope['rows']]
-    urls, by_row, followed = set(extra), {}, []
+    urls, by_row, followed, probe_urls = set(extra), {}, [], {}
     catalogs_read = set().union(*(catalog_urls(e) for e in entries))
     async def capture(response):
         await response.aread()
@@ -279,6 +282,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         entries = [await resolved_quota_entry(client,e) for e in entries]
         for entry in entries:
             page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
+            probe_urls[entry.id] = page or entry.probe.endpoint
             selected = row_urls(entry, page)
             if entry.probe.free_list:
                 selected.append(entry.probe.free_list)
@@ -295,8 +299,41 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     raw_bodies = {r['url']: (bundle.out / r['file']).read_text(errors='replace')
                   for r in checks if r['passed']}
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
-    quotes, catalogs, quotas = [], [], []
+    quotes, catalogs, quotas, model_checks = [], [], [], []
     for entry in entries:
+        from .prober import check_content, join_free_list, stale_ids, unevidenced_families
+        from .models import ProbeType
+        def response(url):
+            body = raw_bodies.get(url)
+            return (httpx.Response(200, text=body, request=httpx.Request('GET', url))
+                    if body is not None else None)
+        current = response(probe_urls[entry.id])
+        findings = []
+        if current is None:
+            findings.append('current probe source unreadable; eligibility not established')
+        else:
+            if entry.probe.free_list:
+                listed = response(entry.probe.free_list)
+                if listed is None:
+                    findings.append('current free list unreadable; eligibility not established')
+                    current = None
+                else:
+                    current, failure = join_free_list(current, listed, entry.probe.lane)
+                    if failure:
+                        findings.append(failure)
+            if current is not None:
+                if content := check_content(current, entry):
+                    findings.append(content)
+                if missing := unevidenced_families(current, entry):
+                    findings.append('listed families not evidenced: ' + ', '.join(missing))
+                catalog = current if entry.probe.type is ProbeType.API_MODELS else response(entry.probe.catalog) if entry.probe.catalog else None
+                if entry.probe.catalog and catalog is None:
+                    findings.append('current model catalog unreadable')
+                if catalog is not None and (ids := stale_ids(catalog, entry)):
+                    findings.append(ids)
+        model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
+                             'passed': not findings,
+                             'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})
         pages = [p for u in by_row[entry.id] for p in bodies.get(u, [])]
         unread = any(u not in bodies for u in by_row[entry.id])
         for field, quote in row_quotes(entry):
@@ -320,9 +357,11 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
                                   'page_catalogs': catalogs,
                                   'quotas': quotas,
+                                  'model_checks': model_checks,
                                   'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes)
                                             and all(c['passed'] for c in catalogs)
-                                            and all(q['passed'] for q in quotas),
+                                            and all(q['passed'] for q in quotas)
+                                            and all(m['passed'] for m in model_checks),
                                   'judgment': 'Source reads, quote matching and configured page catalogs; vendor eligibility still needs review.'})
 
 

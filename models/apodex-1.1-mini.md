@@ -9,7 +9,7 @@ crumb: apodex-1.1-mini
 
 {% raw %}
 
-# Where apodex-1.1-mini was free
+# apodex-1.1-mini: no current free listing
 
 **No row currently lists `apodex-1.1-mini` under Free models.** The list carried it at LLMTR until 2026-10-10. Each row's page says what it offers now.
 

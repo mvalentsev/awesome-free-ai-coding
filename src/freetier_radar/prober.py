@@ -157,12 +157,16 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
                                           today or date.today()))
         if entry.page_catalog is not None:
-            from .page_catalog import check_page_catalog
+            from .page_catalog import check_page_catalog, check_model_eligibility
             condition_bodies={}
             for source in {c.source for c in entry.page_catalog.conditions.values() if c.source}:
                 response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
                 if response is not None:condition_bodies[source]=response.text
             changes = check_page_catalog(page.text, entry.page_catalog, condition_bodies, today=today)
+            eligibility = check_model_eligibility(entry.page_catalog,
+                                                  {entry.page_catalog.source: page.text, **condition_bodies})
+            if eligibility:
+                column = "free-model eligibility: " + "; ".join(eligibility)
             if changes:
                 moved.append("page_catalog: " + "; ".join(changes))
         if entry.data_use is not None:
@@ -1659,7 +1663,8 @@ def _rendered(text: str) -> str:
 
 
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
-    rendered = _as_read(_rendered(resp.text))
+    from .quotes import flatten
+    rendered = flatten(TAG.sub(" ", _rendered(resp.text)))
     # An explicit withdrawal outranks the keywords: vendors leave the free tier
     # described on the page and add the bad news next to it. Read against the
     # rendered page for the same reason the keywords are: the sentence that
@@ -1667,18 +1672,18 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     dead = dead_marker_hit(rendered)
     if dead is not None:
         return f'offer withdrawn: page says "{dead}"'
-    absent = [k for k in entry.probe.keywords if _as_read(k) not in rendered]
-    whole = (_as_read(resp.text)
+    absent = [k for k in entry.probe.keywords if flatten(k) not in rendered]
+    whole = (flatten(resp.text)
              if absent or entry.probe.machinery_keywords else "")
     # Which half of the response lacked a keyword is what a runner-only failure
     # turns on, and no copy of the page survives the run: a keyword the bytes
     # still carry means the stripping ate it and the row wants
     # machinery_keywords; one absent from the bytes means the origin served
     # something else.
-    missing = [k if _as_read(k) not in whole else f"{k} (in the page's machinery only)"
+    missing = [k if flatten(k) not in whole else f"{k} (in the page's machinery only)"
                for k in absent]
     if entry.probe.machinery_keywords:
-        missing += [k for k in entry.probe.machinery_keywords if _as_read(k) not in whole]
+        missing += [k for k in entry.probe.machinery_keywords if flatten(k) not in whole]
     if not missing:
         return None
     # And the size: a page that answers 200 with a shell or a variant is a

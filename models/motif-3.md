@@ -9,7 +9,7 @@ crumb: motif-3
 
 {% raw %}
 
-# Where motif-3 was free
+# motif-3: no current free listing
 
 **No row currently lists `motif-3` under Free models.** The list carried it at LLMTR until 2026-10-04. Each row's page says what it offers now.
 

@@ -530,6 +530,12 @@ def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path):
     proof = bundle.write('judgment/test.txt', b'Independent fixture findings')
     bundle.save('judgment', {'sha': scope['sha'], 'base': scope['base'], 'passed': True,
                             'paths': sorted(scope['paths']), 'decision': 'approve',
+                            'model_eligibility': [{'row': row, 'families': families,
+                                'plan': 'Free', 'payment': 'No payment', 'regions': 'All countries',
+                                'limits': 'Unpublished', 'deadline': 'None', 'conflicts': 'None in fixture',
+                                'checked_at': '2026-10-13T00:00:00+00:00',
+                                'sources': ['https://vendor.example'], 'evidence': [proof]}
+                                for row, families in scope['eligibility'].items()],
                             'criteria': {name: {'verdict': 'pass', 'finding': 'Reviewed ' + name,
                                                 'evidence': [proof]} for name in CRITERIA}})
     bundle.save('browser-execution', {'sha': scope['sha'], 'records': [

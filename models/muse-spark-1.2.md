@@ -9,7 +9,7 @@ crumb: muse-spark-1.2
 
 {% raw %}
 
-# Where muse-spark-1.2 was free
+# muse-spark-1.2: no current free listing
 
 **No row currently lists `muse-spark-1.2` under Free models.** The list carried it at Freebuff and opencode until 2026-09-29. Each row's page says what it offers now.
 

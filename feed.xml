@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-13T07:52:32Z</updated>
+  <updated>2026-10-13T16:21:34Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20261013T162134Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-10-13T16:21:34Z</updated>
+    <summary type="text">dropped gpt-6.1-sol · free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261013T162134Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-13T16:21:34Z</updated>
+    <summary type="text">dropped ling-3.1-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, claude-haiku-5.5, deepseek-v4.1-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cursor-hobby/20261013T075232Z</id>
     <title>Free models changed: Cursor (Free)</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-09-30T00:01:35Z</updated>
     <summary type="text">added motif-3 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash, motif-3</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20260930T000135Z</id>
-    <title>Free models changed: Nous Portal (Hermes Agent)</title>
-    <link rel="alternate" href="https://portal.nousresearch.com"/>
-    <updated>2026-09-30T00:01:35Z</updated>
-    <summary type="text">added laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, longcat-2.0, solar-pro-4 · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, solar-pro-4, longcat-2.0</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260929T205917Z</id>
-    <title>Free models changed: Freebuff</title>
-    <link rel="alternate" href="https://freebuff.com"/>
-    <updated>2026-09-29T20:59:17Z</updated>
-    <summary type="text">dropped muse-spark-1.2 · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
   </entry>
 </feed>

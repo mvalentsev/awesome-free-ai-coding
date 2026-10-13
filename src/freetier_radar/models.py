@@ -14,7 +14,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .words import number
-from .quotas import UsageQuota
+from .quotas import UsageQuota, QuotaTable
 from .source_urls import valid_source_url
 from .countries import quoted_codes
 
@@ -637,16 +637,54 @@ class CreditBudget(BaseModel):
         return self
 
 
+class SessionEligibility(BaseModel):
+    """Bind an active free offer to a model cell and its named plan."""
+    model_config = ConfigDict(extra="forbid")
+    plan: str = Field(min_length=1)
+    table: QuotaTable
+    value: str = Field(min_length=1)
+    plan_price: QuotaTable | None = Field(default=None, exclude_if=lambda v: v is None)
+
+    @model_validator(mode="after")
+    def _names_the_plan(self) -> SessionEligibility:
+        binding = self.table
+        if self.plan not in (binding.column, binding.active_tab, *binding.where.values()):
+            raise ValueError("session eligibility must bind its exact plan")
+        if binding.cell_part:
+            raise ValueError("session eligibility checks the whole cell")
+        if self.plan_price:
+            price = self.plan_price
+            if (self.plan not in (price.column, price.active_tab, *price.where.values())
+                    or len(price.rows) != 1 or price.cell_part):
+                raise ValueError("session eligibility needs one whole price cell for its exact plan")
+        if any(word in self.value.casefold() for word in ("paid", "locked", "unavailable")):
+            raise ValueError("session eligibility cannot accept a paid or unavailable cell")
+        return self
+
+
 class CatalogCondition(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["free-session", "paid", "specialist", "wallet"]
-    quote: str = Field(min_length=3, max_length=1200)
+    quote: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
+    note: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
+    reviewed_on: date | None = Field(default=None, exclude_if=lambda v: v is None)
     source: str | None = None
+    eligibility: SessionEligibility | None = Field(default=None, exclude_if=lambda v: v is None)
 
     @field_validator('source')
     @classmethod
     def _condition_source(cls,value):
         return FreeAccess._source_is_https(value) if value else value
+
+    @model_validator(mode="after")
+    def _eligibility_belongs_to_a_free_offer(self) -> CatalogCondition:
+        if bool(self.quote) == bool(self.note):
+            raise ValueError("a catalog condition needs a checked quote or a dated manual note")
+        if self.note and (not self.source or not self.reviewed_on or self.kind == "free-session"):
+            raise ValueError("a manual condition needs its source and review date; it cannot establish a free session")
+        if self.eligibility and (self.kind != "free-session" or not self.source):
+            raise ValueError("session eligibility needs a free-session condition and its source")
+        return self
 
 
 class DatedSource(BaseModel):

@@ -1137,10 +1137,24 @@ needs independent review. The hooks below remain mandatory.
 Before pushing, record that independent review with `judgment --result <file>`.
 The JSON names `base`, `sha`, every changed file in sorted `paths`,
 `decision: "approve"`, and these `criteria`: `existing_behavior`, `reuse`,
-`copy`, `user_path`, `regression`, `diff`. Each criterion needs a `verdict`
+`copy`, `user_path`, `regression`, `diff`, `eligibility`. Each criterion needs a `verdict`
 (`pass` or `not-applicable`), a concrete `finding` and an `evidence` list of
 private file paths. The command imports and hashes those files; pre-push refuses
 a missing review, a different push, incomplete coverage or changed evidence.
+
+For every affected row with named free models, `model_eligibility` covers the
+previous and resulting families. Each record names the current `plan`, `payment`,
+`regions`, `limits`, `deadline`, and `conflicts`, with `checked_at`, current
+`sources`, and private `evidence`. Source reads must succeed; records older than
+one day cannot authorize a new push. Resolve contradictory live plan and catalog
+evidence explicitly. A matching quote, a source-code default, a model's existence,
+or a historical promotion does not establish current free eligibility.
+
+A page catalog's `free-session` condition needs `eligibility`: a named `plan`,
+an exact model/plan `table` binding, the free cell's `value`, and a `plan_price`
+binding proving that plan's recurring price is zero. The probe checks both
+cells on the condition's source. A missing, paid, duplicate or unreadable
+cell flags the free-model claim; a matching promotion sentence cannot replace it.
 
 Review the existing output and peer rows before proposing UI changes; search
 for an existing implementation before adding one; remove repeated or unhelpful

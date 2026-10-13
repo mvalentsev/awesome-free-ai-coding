@@ -198,6 +198,10 @@ def check(root: Path, today: date | None = None) -> list[str]:
         if e.page_catalog:
             from .bars import BAR_DAYS
             from datetime import timedelta
+            from .page_catalog import check_model_eligibility
+            for finding in check_model_eligibility(e.page_catalog, {}):
+                if "has no model/plan binding" in finding:
+                    problems.append(f"registry: {e.id} {finding}")
             for m in e.page_catalog.models:
                 if (e.page_catalog.limited_allowance and m.limited and m.hours is not None
                         and m.model and not m.first_free and not m.expired):

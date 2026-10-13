@@ -6286,7 +6286,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n“Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCurrent model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nFreebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: “Muse Spark 1.3 is free to open for full-access accounts. A paid plan unlocks it where access is limited.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n“Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCurrent model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nFreebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: “Muse Spark 1.3 is free to open for full-access accounts. A paid plan unlocks it where access is limited.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
@@ -6309,11 +6309,6 @@
           "family": "deepseek-v4.1-flash",
           "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
-        },
-        {
-          "family": "gpt-6.1-sol",
-          "tier": "frontier",
-          "aa_model": "gpt-6-1-sol"
         }
       ],
       "page_catalog": {
@@ -6384,10 +6379,11 @@
             "quote": "PAID-ONLY row",
             "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           },
-          "us-session": {
-            "kind": "free-session",
-            "quote": "Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts"
+          "paid-sol": {
+            "kind": "paid",
+            "note": "The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day.",
+            "reviewed_on": "2026-10-13",
+            "source": "https://freebuff.com/plans"
           },
           "specialist": {
             "kind": "specialist",
@@ -6495,16 +6491,9 @@
           {
             "name": "GPT-6.1 Sol",
             "model": {
-              "family": "gpt-6.1-sol",
-              "tier": "frontier",
-              "aa_model": "gpt-6-1-sol"
+              "family": "gpt-6.1-sol"
             },
-            "condition": "us-session",
-            "first_free": {
-              "on": "2026-09-29",
-              "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-sol-promo.ts"
-            },
-            "listed": true
+            "condition": "paid-sol"
           },
           {
             "name": "Gemini 3.8 Flash",
@@ -6584,8 +6573,7 @@
           "solar-mini-4": "",
           "mimo-v2.6-flash": "",
           "glm-5.3-flash": "",
-          "deepseek-v4.1-flash": "",
-          "gpt-6.1-sol": "Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan."
+          "deepseek-v4.1-flash": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"
@@ -7114,11 +7102,6 @@
           "family": "agnes-2.5-flash"
         },
         {
-          "family": "ling-3.1-flash",
-          "tier": "strong",
-          "aa_model": "ling-3-1-flash"
-        },
-        {
           "family": "qwen3.8-27b",
           "tier": "strong",
           "aa_model": "qwen3-8-27b"
@@ -7144,7 +7127,6 @@
           "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.8-27b-free",
           "poolside/laguna-xs-2.1",
-          "inclusionai/ling-3.1-flash",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
           "anthropic/claude-haiku-5.5-free",
@@ -7219,7 +7201,8 @@
           "tesseracted/kolibri-1",
           "apodex/apodex-1.1-mini-free",
           "nace/drex-v1.0-free",
-          "nace/drex-v1.5-free"
+          "nace/drex-v1.5-free",
+          "inclusionai/ling-3.1-flash"
         ],
         "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra's -262k variant is metered. Checked 2026-10-05: Qwen ordinary, streaming and small tool cycles completed, but full Codex and OpenCode requests returned provider_error. Ling completed an OpenCode tool turn; Codex via LiteLLM did not complete with either model."
       },
@@ -7259,7 +7242,6 @@
           "laguna-xs-2.1": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
-          "ling-3.1-flash": "until 2026-10-13",
           "qwen3.8-27b": "",
           "claude-haiku-5.5": "until 2026-10-14",
           "deepseek-v4.1-flash": "until 2026-10-16"
@@ -13835,15 +13817,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"
     },
     {
-      "family": "ling-3.1-flash",
-      "rows": [
-        "llmtr",
-        "vercel-ai-gateway"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
-    },
-    {
       "family": "longcat-2.5-preview",
       "rows": [
         "opencode",
@@ -14158,14 +14131,6 @@
       ]
     },
     {
-      "family": "gpt-6.1-sol",
-      "rows": [
-        "freebuff"
-      ],
-      "tier": "frontier",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/"
-    },
-    {
       "family": "hy3",
       "rows": [
         "aihubmix"
@@ -14213,6 +14178,14 @@
         "nous-portal"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "ling-3.1-flash",
+      "rows": [
+        "vercel-ai-gateway"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "llama-3.2-11b-vision",
@@ -14531,6 +14504,11 @@
       "family": "gpt-6-luna",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
+    },
+    {
+      "family": "gpt-6.1-sol",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/"
     },
     {
       "family": "kolibri-1",

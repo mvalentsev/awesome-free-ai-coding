@@ -9,7 +9,7 @@ crumb: kolibri-1
 
 {% raw %}
 
-# Where kolibri-1 was free
+# kolibri-1: no current free listing
 
 **No row currently lists `kolibri-1` under Free models.** The list carried it at LLMTR until 2026-10-10. Each row's page says what it offers now.
 

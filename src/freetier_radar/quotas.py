@@ -118,11 +118,11 @@ class _Tables(HTMLParser):
             self.current, self.row, self.cell, self.button = None, None, None, None
 
 
-def _table_changes(body: str, quota: UsageQuota) -> list[str]:
+def table_values(body: str, binding: QuotaTable) -> list[tuple[str, str]]:
+    """Resolve exact model/plan cells; missing or duplicate cells stay visible."""
     parser = _Tables()
     try:parser.feed(body)
-    except (ValueError,TypeError):return ['quota table markup is unreadable']
-    binding = quota.table
+    except (ValueError,TypeError):return []
     header, tabs, matches = [], [], []
     tables = parser.tables
     if not tables:
@@ -150,6 +150,12 @@ def _table_changes(body: str, quota: UsageQuota) -> list[str]:
                 continue
             if len(row) > binding.row_column and row[binding.row_column] in binding.rows:
                 matches.append((row[binding.row_column], row[column] if column < len(row) else ''))
+    return matches
+
+
+def _table_changes(body: str, quota: UsageQuota) -> list[str]:
+    binding = quota.table
+    matches = table_values(body, binding)
     notes = []
     for row in binding.rows:
         values = [value for name, value in matches if name == row]

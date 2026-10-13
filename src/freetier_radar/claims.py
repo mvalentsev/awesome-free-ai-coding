@@ -23,6 +23,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
+from .models import SessionEligibility
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
@@ -39,7 +40,7 @@ from .words import number as _word, ordinal as _ordinal, series as _series, week
 from .borders import SHARED
 from .countries import country_name
 from .quotas import UNKNOWN_RECHECK_DAYS, UsageQuota
-from .quality import CRITERIA
+from .quality import CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -128,9 +129,17 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
-    Claim("CONTRIBUTING.md", r'these `criteria`: `(existing_behavior)`, `(reuse)`,\s+`(copy)`, `(user_path)`, `(regression)`, `(diff)`',
+    Claim("CONTRIBUTING.md", r'these `criteria`: `(existing_behavior)`, `(reuse)`,\s+`(copy)`, `(user_path)`, `(regression)`, `(diff)`, `(eligibility)`',
           lambda root: CRITERIA,
           "quality.CRITERIA; judgment and normal pre-push regressions in tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'current `(plan)`, `(payment)`,\s+`(regions)`, `(limits)`, `(deadline)`, and `(conflicts)`',
+          lambda root: ELIGIBILITY_FIELDS, "quality.validate_judgment; tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'records older than\s+(one) day cannot authorize a new push',
+          lambda root: (_word(ELIGIBILITY_MAX_AGE_DAYS),), "quality.fresh_eligibility; tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'an exact model/plan `(table)` binding, the free cell.s `(value)`, and a `(plan_price)`',
+          lambda root: tuple(field for field in ('table', 'value', 'plan_price')
+                             if field in SessionEligibility.model_fields),
+          "models.SessionEligibility and scoped HTTP/paid-plan regressions in tests/test_eligibility.py"),
     Claim("browse.html", r'function noAccount\(e\) \{ return e\.(no_account) === true; \}',
           lambda root: ('no_account',),
           "render.build_index publishes render.needs_no_account; actual browser parity in tests/test_evidence_contracts.py"),

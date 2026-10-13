@@ -4437,11 +4437,12 @@ entries:
         kind: paid
         quote: PAID-ONLY row
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
-      us-session:
-        kind: free-session
-        quote: Free in the US, a paid plan elsewhere, until the promotion ends. One
-          session a day on every plan.
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
+      paid-sol:
+        kind: paid
+        note: The public Free-plan comparison requires a paid plan; paid plans allow
+          one one-hour session per day.
+        reviewed_on: '2026-10-13'
+        source: https://freebuff.com/plans
       specialist:
         kind: specialist
         quote: Gemini 3.1 Flash Lite handles specialist tasks such as file finding
@@ -4518,13 +4519,7 @@ entries:
     - name: GPT-6.1 Sol
       model:
         family: gpt-6.1-sol
-        tier: frontier
-        aa_model: gpt-6-1-sol
-      condition: us-session
-      first_free:
-        'on': '2026-09-29'
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-sol-promo.ts
-      listed: true
+      condition: paid-sol
     - name: Gemini 3.8 Flash
       model:
         family: gemini-3.8-flash
@@ -4849,9 +4844,6 @@ entries:
   - family: laguna-xs-2.1
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
-  - family: ling-3.1-flash
-    tier: strong
-    aa_model: ling-3-1-flash
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
@@ -4871,7 +4863,6 @@ entries:
     - nvidia/nemotron-3-super-120b-a12b
     - qwen/qwen3.8-27b-free
     - poolside/laguna-xs-2.1
-    - inclusionai/ling-3.1-flash
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - anthropic/claude-haiku-5.5-free
@@ -4933,6 +4924,7 @@ entries:
     - apodex/apodex-1.1-mini-free
     - nace/drex-v1.0-free
     - nace/drex-v1.5-free
+    - inclusionai/ling-3.1-flash
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
       ordinary, streaming and small tool cycles completed, but full Codex and OpenCode

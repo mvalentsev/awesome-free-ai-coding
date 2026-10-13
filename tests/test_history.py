@@ -368,6 +368,28 @@ def test_the_lines_a_commit_appends_are_the_changes_its_registry_makes():
 
 # ---- record_changes, end to end --------------------------------------------
 
+@pytest.mark.parametrize('defect', ['mixed', 'future', 'before-base'])
+def test_writer_repairs_unpublished_clocks_without_rewriting_the_committed_prefix(tmp_path, defect):
+    registry, history = tmp_path / 'registry.yaml', tmp_path / 'history.jsonl'
+    save_registry(registry, [make()])
+    record_changes(registry, history, TODAY, NOW)
+    committed = history.read_text()
+    save_registry(registry, [make(), make('second'), make('third')])
+    block = diff_state(replay(load_history(history)), registry_state([make(), make('second'), make('third')], TODAY), LATER)
+    if defect == 'mixed':
+        block[0].ts = NOW + timedelta(minutes=1)
+    elif defect == 'future':
+        for event in block:
+            event.ts = LATER + timedelta(hours=1)
+    else:
+        for event in block:
+            event.ts = NOW - timedelta(hours=1)
+    append_history(history, block)
+    written = record_changes(registry, history, TODAY, LATER, committed=committed)
+    assert {event.ts for event in written} == {LATER}
+    assert history.read_text().startswith(committed)
+    assert [event.id for event in load_history(history)] == ['example', 'second', 'third']
+
 def test_recording_reads_the_registry_and_writes_only_what_changed(tmp_path: Path):
     registry = tmp_path / "registry.yaml"
     history = tmp_path / "history.jsonl"

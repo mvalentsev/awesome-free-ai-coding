@@ -9,7 +9,7 @@ crumb: gpt-6-luna
 
 {% raw %}
 
-# Where gpt-6-luna was free
+# gpt-6-luna: no current free listing
 
 **No row currently lists `gpt-6-luna` under Free models.** The list carried it at Zed until 2026-10-07. Each row's page says what it offers now.
 
@@ -23,7 +23,6 @@ crumb: gpt-6-luna
 
 - [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints
 - [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
-- [`gpt-6.1-sol`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/) — free at Freebuff (Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.)
 
 ---
 

@@ -9,7 +9,7 @@ crumb: minimax-m3.1-flash-preview
 
 {% raw %}
 
-# Where minimax-m3.1-flash-preview was free
+# minimax-m3.1-flash-preview: no current free listing
 
 **No row currently lists `minimax-m3.1-flash-preview` under Free models.** The list carried it at LLMTR until 2026-10-06. Each row's page says what it offers now.
 
