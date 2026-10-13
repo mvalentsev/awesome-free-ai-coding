@@ -31,7 +31,7 @@
 {% if starters %}
 **Free is not the same as weak.** Coding agents on a $0 plan, no card required:
 
-{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }}&nbsp;more]({{ s.page }}){% endif %}{{ '' }}
+{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if s.access_labels[f] %} ({{ s.access_labels[f] }}){% endif %}{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }}&nbsp;more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
 
 {% endif %}
@@ -67,7 +67,7 @@
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
 **Or pick by what you need:**
 
-{% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if p.access_labels[f] %} ({{ p.access_labels[f] }}){% endif %}{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.apis %}- **Free API access** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.aggregators %}- **One key, many free models** — {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.keyless %}- **No account at all** — {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}

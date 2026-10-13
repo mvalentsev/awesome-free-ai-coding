@@ -106,6 +106,38 @@ def test_a_model_specific_session_condition_keeps_its_access_label():
     assert row["access_labels"]["models"]["beta"] == quote
 
 
+@pytest.mark.parametrize("surface", ["site", "readme"])
+@pytest.mark.parametrize("slot", ["starter", "frontier"])
+def test_short_recommendations_keep_model_conditions_without_shared_limits(tmp_path, surface, slot):
+    from pathlib import Path
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_readme, render_site
+    data = session_catalog_data()
+    quote = "Beta is free in the US, one session a day for every account."
+    data["conditions"]["us-session"] = {"kind": "free-session", "quote": quote}
+    data["models"][1].update(hours=None, limited=False, condition="us-session")
+    for model in data["models"][:2]:
+        model["listed"] = True
+        model["model"].update(tier="frontier", aa_model=model["model"]["family"])
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [entry(data)])
+    today = date(2026, 10, 6)
+    if surface == "readme":
+        text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=today)
+        prefix = "- **[Vendor]" if slot == "starter" else "- **Frontier-tier models"
+        recommendation = next(line for line in text.splitlines() if line.startswith(prefix))
+        assert "`alpha` (" not in recommendation
+    else:
+        text = render_site(reg, Path("templates"), tmp_path / "index.html", today=today)
+        heading = "Agent · no card" if slot == "starter" else "Frontier models, $0"
+        card = text.split(f"<h3>{heading}</h3>", 1)[1]
+        recommendation = re.search(r'<div class="chips">(.*?)</div>', card, re.S).group(1)
+        assert re.search(r'<(?:a|span) class="chip(?: top)?"[^>]*>alpha</(?:a|span)>', recommendation)
+    assert "alpha" in recommendation and "beta" in recommendation
+    assert quote in recommendation
+    assert data["limited_allowance"] not in recommendation
+
+
 def test_older_session_catalog_remains_readable_but_current_missing_dates_are_flagged(tmp_path):
     from freetier_radar.models import load_registry, save_registry
     from freetier_radar.validate import check

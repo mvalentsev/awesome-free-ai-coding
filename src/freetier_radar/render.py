@@ -784,6 +784,7 @@ def _starter(e: Entry) -> dict:
     families = sorted((f for f in live_families(e) if not requires_payment(e, f)),
                       key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
     return {"name": e.name, "url": e.url, "families": families[:README_STARTER_MODELS],
+            "access_labels": {f: _access_description(e, f) for f in families[:README_STARTER_MODELS]},
             "more": max(0, len(families) - README_STARTER_MODELS),
             "page": provider_page_url(e.id)}
 
@@ -794,7 +795,8 @@ def _codex_command(e: Entry) -> str:
 
 
 def _pick(e: Entry, families: list[str] | None = None) -> dict:
-    return {"name": e.name, "url": e.url, "families": families or []}
+    return {"name": e.name, "url": e.url, "families": families or [],
+            "access_labels": {f: _access_description(e, f) for f in families or []}}
 
 
 def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict]]:

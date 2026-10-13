@@ -10,6 +10,9 @@
 {% macro chip(family, top=False) -%}
 {% if family in model_pages %}<a class="chip{{ ' top' if top }}" href="{{ model_pages[family] }}">{{ family }}</a>{% else %}<span class="chip{{ ' top' if top }}">{{ family }}</span>{% endif %}
 {%- endmacro %}
+{% macro recommendation_chip(family, access, top=False) -%}
+{% if access %}<span class="model-access">{{ chip(family, top) }}<small>{{ access }}</small></span>{% else %}{{ chip(family, top) }}{% endif %}
+{%- endmacro %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -414,7 +417,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         <h3>Agent · no card</h3>
         <div class="who"><a href="{{ s.url }}">{{ s.name }}</a></div>
         <div class="chips">
-          {% for f in s.families %}{{ chip(f) }}{% endfor %}{% if s.more %}<a class="chip" href="{{ s.page }}">+{{ s.more }} more</a>{% endif %}
+          {% for f in s.families %}{{ recommendation_chip(f, s.access_labels[f]) }}{% endfor %}{% if s.more %}<a class="chip" href="{{ s.page }}">+{{ s.more }} more</a>{% endif %}
         </div>
       </div>
       {% endfor %}
@@ -451,7 +454,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         <ul>
           {% for p in picks.frontier %}
           <li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span>
-            <div class="chips">{% for f in p.families %}{{ chip(f, True) }}{% endfor %}</div>
+            <div class="chips">{% for f in p.families %}{{ recommendation_chip(f, p.access_labels[f], True) }}{% endfor %}</div>
           </li>
           {% endfor %}
         </ul>

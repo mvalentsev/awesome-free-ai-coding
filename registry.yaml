@@ -6028,13 +6028,14 @@ entries:
   - https://github.com/zed-industries/zed/commit/bd692a8021
   card_required: false
   offering: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with
-    $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted
-    edit predictions on the $0 Personal plan'
-  limits: No card for the trial. GPT-6 Luna is its only hosted model, and the shared
-    Zed/Delta trial ends when the credit or time runs out, whichever comes first.
-    It then converts to Free. Personal accepted edit predictions have no published
-    period. Verified university students receive a separate year of free Student access.
-    Token credit is a spending wallet at hosted-model prices, not a list of individually
+    $5 of model usage and unlimited edit predictions, no card, plus a separate year
+    of free Student access for verified university students'
+  limits: No card for the trial. GPT-6 Luna is the only hosted model during the trial,
+    and the shared Zed/Delta trial ends when the credit or time runs out, whichever
+    comes first. It then converts to Free, which uses your own API keys or external
+    agents. The docs say "Zed's hosted models and edit predictions require a Pro subscription."
+    Verified university students receive a separate year of free Student access. Token
+    credit is a spending wallet at hosted-model prices, not a list of individually
     zero-priced models.
   quotas:
   - amount: 5.0
@@ -6048,14 +6049,6 @@ entries:
     quote: Trials include $5 of GPT-6 Luna usage
     value_phrase: Trials include $5 of GPT-6 Luna usage
     reviewed_on: '2026-10-06'
-  - amount: 2000.0
-    unit: edit predictions
-    scope: account
-    label: Personal plan
-    source: https://zed.dev/pricing
-    quote: 2,000 accepted edit predictions
-    value_phrase: 2,000 accepted edit predictions
-    reviewed_on: '2026-10-13'
   - unit: edit predictions
     period: one-time
     scope: account
@@ -6104,6 +6097,7 @@ entries:
     keywords:
     - Trials include $5 of
     - Trials automatically convert to Zed Free
+    - Zed's hosted models and edit predictions require a Pro subscription.
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
