@@ -11,7 +11,10 @@ async (page) => {
     records.push({id,metrics,url:page.url(),...extra});
   };
   const go = async url => {
-    const response = await page.goto(url,{waitUntil:'domcontentloaded'});
+    // Fragment navigation may return null; reload to retain the HTTP check.
+    // https://playwright.dev/docs/api/class-page#page-goto, checked 2026-10-14.
+    const response = await page.goto(url,{waitUntil:'domcontentloaded'}) ||
+      await page.reload({waitUntil:'domcontentloaded'});
     if(!response || response.status()!==200) throw Error('Page HTTP '+response?.status()+': '+url);
   };
   const folds = async body => {
