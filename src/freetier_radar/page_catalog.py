@@ -326,7 +326,7 @@ def catalog_words(catalog: PageCatalog, *, include_session: bool = True) -> str:
         offers.append(text)
     intro=(f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
            if any(m.hours is not None for m in catalog.models)
-           else "Current model hour prices are not published; check your account's picker. ")
+           else "Check your account's picker for current model hour prices. ")
     out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n" + intro
            + "; ".join(offers) + ".")
     if catalog.limited_allowance and include_session:

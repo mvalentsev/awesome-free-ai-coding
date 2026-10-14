@@ -4379,6 +4379,20 @@ entries:
     apply.” Available models depend on the app and access level. “Freebuff collects
     prompts, messages, code, files, repository data, and agent traces when you use
     features that need them”. Check the balance and picker in your app.
+  quotas:
+  - amount: 1.5
+    unit: USD
+    period: day
+    scope: account
+    label: Published allowance
+    condition: Full-access Free plan
+    condition_quote: Displayed allowances are for full access.
+    reset: Your daily allowance resets at midnight in your local timezone.
+    source: https://freebuff.com/plans
+    quote: Free $0 / month No card required Up to $46.50 of usage a month $1.50 refilled
+      daily
+    value_phrase: $1.50 refilled daily
+    reviewed_on: '2026-10-14'
   free_part: models
   page_catalog:
     source: https://freebuff.com/llms.txt
@@ -4441,7 +4455,7 @@ entries:
         kind: paid
         note: The public Free-plan comparison requires a paid plan; paid plans allow
           one one-hour session per day.
-        reviewed_on: '2026-10-13'
+        reviewed_on: '2026-10-14'
         source: https://freebuff.com/plans
       specialist:
         kind: specialist
@@ -4449,8 +4463,8 @@ entries:
           and research.
       muse-full:
         kind: wallet
-        quote: Muse Spark 1.3 is free to open for full-access accounts. A paid plan
-          unlocks it where access is limited.
+        note: Credit-funded at full access; a paid plan is required at limited access.
+        reviewed_on: '2026-10-14'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
     models:
     - name: Solar Pro 4
@@ -4520,6 +4534,8 @@ entries:
       model:
         family: gpt-6.1-sol
       condition: paid-sol
+    - name: Gemini 4 Argon
+      condition: paid-sol
     - name: Gemini 3.8 Flash
       model:
         family: gemini-3.8-flash
@@ -4537,7 +4553,7 @@ entries:
     - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
     - Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks
       do not carry over.
-    reviewed_on: '2026-10-13'
+    reviewed_on: '2026-10-14'
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'

@@ -207,7 +207,8 @@ Gamma needs a paid plan.
     assert expired.status is ProbeStatus.STALE_IDS and 'fresh dated review' in expired.detail
     row=build_index([entry(data)],date.today())['entries'][0]
     assert [m['family'] for m in row['models']]==['alpha','beta']
-    assert 'hour prices are not published' in row['limits']
+    assert 'hour prices are not published' not in row['limits']
+    assert "Check your account's picker for current model hour prices" in row['limits']
     assert 'Credits buy' not in json.dumps(row['access_labels']['models'])
     assert row['limits'].count('6 one-hour sessions per day')==1
     save_registry(tmp_path/'registry.yaml',[entry(data)])
