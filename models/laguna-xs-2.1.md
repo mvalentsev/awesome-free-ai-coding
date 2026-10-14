@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-xs-2.1 free: 6 providers, limits and ids, provider probes 2026-10-13'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the…
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-14
 crumb: laguna-xs-2.1
 ---
 
@@ -117,8 +117,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 <summary>Provider-wide limits</summary>
 
 - Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`
-
-Claude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`
 
 DeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`
 

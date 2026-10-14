@@ -43,7 +43,6 @@ The model table includes older third-party models under Free & Google AI Plus, w
 
 ## Related models
 
-- [`claude-haiku-5.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/) — free at LLMTR (until 2026-10-14)
 - [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) — free at Google Antigravity
 - [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) — free at Kiro
 - [`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/) — free at Kiro

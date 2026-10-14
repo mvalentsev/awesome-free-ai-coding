@@ -7055,7 +7055,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nClaude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`\n\nDeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nDeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.",
       "quotas": [
         {
           "unit": "usage",
@@ -7071,19 +7071,6 @@
             "qwen/qwen3.8-27b-free"
           ],
           "reviewed_on": "2026-10-13",
-          "amount": null
-        },
-        {
-          "unit": "usage",
-          "period": "day",
-          "scope": "account-model",
-          "label": "Claude Haiku 5.5",
-          "source": "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
-          "quote": "Kullanım hesap başına günlük olarak sınırlıdır",
-          "model_ids": [
-            "anthropic/claude-haiku-5.5-free"
-          ],
-          "reviewed_on": "2026-10-11",
           "amount": null
         },
         {
@@ -7126,11 +7113,6 @@
           "aa_model": "qwen3-8-27b"
         },
         {
-          "family": "claude-haiku-5.5",
-          "tier": "strong",
-          "aa_model": "claude-haiku-5-5"
-        },
-        {
           "family": "deepseek-v4.1-flash",
           "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
@@ -7148,7 +7130,6 @@
           "poolside/laguna-xs-2.1",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "anthropic/claude-haiku-5.5-free",
           "deepseek/deepseek-v4.1-flash-free"
         ],
         "model_access": {
@@ -7221,7 +7202,8 @@
           "apodex/apodex-1.1-mini-free",
           "nace/drex-v1.0-free",
           "nace/drex-v1.5-free",
-          "inclusionai/ling-3.1-flash"
+          "inclusionai/ling-3.1-flash",
+          "anthropic/claude-haiku-5.5-free"
         ],
         "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra's -262k variant is metered. Checked 2026-10-05: Qwen ordinary, streaming and small tool cycles completed, but full Codex and OpenCode requests returned provider_error. Ling completed an OpenCode tool turn; Codex via LiteLLM did not complete with either model."
       },
@@ -7262,7 +7244,6 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "claude-haiku-5.5": "until 2026-10-14",
           "deepseek-v4.1-flash": "until 2026-10-16"
         }
       },
@@ -14161,14 +14142,6 @@
       ]
     },
     {
-      "family": "claude-haiku-5.5",
-      "rows": [
-        "llmtr"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/"
-    },
-    {
       "family": "claude-opus-4.6",
       "rows": [
         "antigravity"
@@ -14734,6 +14707,11 @@
       "family": "apodex-1.1-mini",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
+    },
+    {
+      "family": "claude-haiku-5.5",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/"
     },
     {
       "family": "gpt-5.6-luna",

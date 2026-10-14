@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-14T13:04:10Z</updated>
+  <updated>2026-10-14T23:53:12Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261014T235312Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-14T23:53:12Z</updated>
+    <summary type="text">dropped claude-haiku-5.5 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, deepseek-v4.1-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/inferbase/20261014T130410Z</id>
     <title>Added: Inferbase</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-10-01T14:18:41Z</updated>
     <summary type="text">dropped ling-3.0-flash-fin · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, motif-3</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261001T141841Z</id>
-    <title>Free models changed: Nous Portal (Hermes Agent)</title>
-    <link rel="alternate" href="https://portal.nousresearch.com"/>
-    <updated>2026-10-01T14:18:41Z</updated>
-    <summary type="text">dropped solar-pro-4 · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, longcat-2.0</summary>
   </entry>
 </feed>
