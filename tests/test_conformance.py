@@ -29,7 +29,7 @@ def test_a_sentence_wrapped_across_comment_lines_reads_as_one():
 
 def _copied(tmp_path: Path) -> Path:
     """The files the sentences are read from, as committed."""
-    for rel in ("configs/litellm.yaml", ENV_EXAMPLE, "CONTRIBUTING.md",
+    for rel in ("configs/litellm.yaml", ENV_EXAMPLE, "CONTRIBUTING.md", "index.html",
                 *(p.relative_to(ROOT).as_posix()
                   for p in (ROOT / "configs/codex").glob("*.config.toml"))):
         target = tmp_path / rel

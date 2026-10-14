@@ -1181,6 +1181,12 @@ def _price_of(model: dict) -> list[float] | None:
     the new-api family publishes multipliers instead (see _multiplier_price_of).
     Of a pricing object only the token rows are read; a per-call charge is
     _charges_elsewhere's question."""
+    # SC is a currency, not a free-tier flag. Both ordinary token sides must
+    # be published; cached-input pricing is optional. Public contract:
+    # https://simplellm.eu/docs/models.md, checked 2026-10-14.
+    if any(key in model for key in _FLAT_TOKEN_PRICES):
+        prices = [_number(model.get(key)) for key in _FLAT_TOKEN_PRICES]
+        return prices if all(p is not None for p in prices) else None
     pricing = model.get("pricing")
     if isinstance(pricing, list):
         return _tiered_price_of(pricing)
@@ -1233,14 +1239,18 @@ def _is_withdrawn(model: dict) -> bool:
     """
     if _retired_on(model) is not None:
         return True
-    value = model.get("available", True)
-    if isinstance(value, bool):
-        return not value
-    if isinstance(value, (int, float)):
-        return value == 0
-    if isinstance(value, str):
-        return value.strip().lower() in ("false", "no", "off", "0")
-    return False
+    # SimpleLLM publishes enabled/status alongside prices and explicitly asks
+    # clients to exclude disabled/planned entries: /docs/models.md, 2026-10-14.
+    for key in ("available", "enabled"):
+        value = model.get(key)
+        if isinstance(value, bool) and not value:
+            return True
+        if isinstance(value, (int, float)) and value == 0:
+            return True
+        if isinstance(value, str) and value.strip().lower() in ("false", "no", "off", "0"):
+            return True
+    status = model.get("status")
+    return isinstance(status, str) and status.strip().lower() in ("planned", "disabled", "unavailable")
 
 
 # Where a catalog dates the end of a row itself: Requesty's `retires`, a Unix
@@ -1535,6 +1545,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
 
 
 _FREE_FLAGS = ("isFree", "is_free", "free")
+_FLAT_TOKEN_PRICES = ("price_sc_input", "price_sc_output")
 
 
 def _free_flag(model: dict) -> bool | None:
@@ -1584,6 +1595,12 @@ def _is_free(model: dict) -> bool:
     """Free by the catalog's own account: its flag where it has one, else every
     price it publishes for the row at zero."""
     flag = _free_flag(model)
+    # The SC catalog's tier label is not its billing contract: its two prices
+    # are. Do not let a stale free label hide a newly metered input or output.
+    if any(key in model for key in _FLAT_TOKEN_PRICES):
+        prices = _price_of(model)
+        return (flag is not False and prices is not None and all(p == 0 for p in prices)
+                and not _charges_elsewhere(model))
     if flag is not None:
         return flag
     prices = _price_of(model)

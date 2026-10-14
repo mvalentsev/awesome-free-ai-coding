@@ -688,6 +688,19 @@
         }
       }
     },
+    "inferbase": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Inferbase",
+      "options": {
+        "baseURL": "https://api.inferbase.ai/v1",
+        "apiKey": "{env:INFERBASE_API_KEY}"
+      },
+      "models": {
+        "auto": {
+          "name": "auto"
+        }
+      }
+    },
     "nous-portal": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Nous Portal (Hermes Agent)",
@@ -895,6 +908,22 @@
       "models": {
         "gemini/gemma-4-31b": {
           "name": "gemini/gemma-4-31b"
+        }
+      }
+    },
+    "simplellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SimpleLLM",
+      "options": {
+        "baseURL": "https://api.simplellm.eu/v1",
+        "apiKey": "{env:SIMPLELLM_API_KEY}"
+      },
+      "models": {
+        "free-gemma-4-E4B": {
+          "name": "free-gemma-4-E4B"
+        },
+        "free-Llama-3.1-8B-Instruct": {
+          "name": "free-Llama-3.1-8B-Instruct"
         }
       }
     },

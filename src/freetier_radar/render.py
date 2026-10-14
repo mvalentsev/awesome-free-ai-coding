@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shlex
 import unicodedata
 import tempfile
 import textwrap
@@ -1410,6 +1411,52 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
     return rows
 
 
+def _site_client_configs(entries: list[Entry], today: date) -> dict[str, list[dict]]:
+    """Choose only routes represented in the generated client files."""
+    from .quotas import quota_summary
+    opencode = build_opencode_config(entries, today)["provider"]
+    deployments = {m["model_name"] for m in build_litellm_config(entries, today)["model_list"]}
+    direct = {e.id for e in _codex_direct(entries, today)}
+    anthropic = {e.id for e in _anthropic_ready(entries, today)}
+    clients = {name: [] for name in ("opencode", "codex", "claude", "litellm")}
+    for e in _connectable(entries, today):
+        if not e.api.model_ids:
+            continue
+        mid = preferred_ids(e)[0]
+        deployment = f"{e.id}/{mid}"
+        common = {
+            "id": e.id, "name": e.name, "page": provider_page_url(e.id),
+            "key_url": e.api.key_url or "", "env_var": env_var(e.id),
+            "keyless": e.api.key_kind == "none", "public_key": e.api.public_key or "",
+            "card": _card_words(e), "access": access_words(id_access(e, mid)),
+            "limits": " ".join(filter(None, (quota_summary(e), e.limits))), "note": e.api.note,
+            "notice": e.api.notice.text if e.api.notice else "",
+        }
+        if e.id in opencode and mid in opencode[e.id]["models"]:
+            clients["opencode"].append({**common, "files": ["configs/opencode.json"],
+                "model": deployment, "command": "opencode",
+                "setup": "Save opencode.json in your project, then choose this model in OpenCode.",
+                "route": "Direct"})
+        if e.id in direct:
+            clients["codex"].append({**common, "files": [codex_profile_path(e)],
+                "model": mid, "command": _codex_command(e), "route": "Direct",
+                "setup": f"Copy the profile to ~/.codex/. Requires Codex CLI {CODEX_SINCE} or later."})
+        elif deployment in deployments:
+            clients["codex"].append({**common, "files": ["configs/litellm.yaml", CODEX_LITELLM_PATH],
+                "model": deployment, "command": f"codex -p {CODEX_LITELLM_PROFILE} -m {shlex.quote(deployment)}",
+                "proxy_command": litellm_command(), "route": "Via LiteLLM",
+                "setup": f"Save litellm.yaml under configs/, copy the profile to ~/.codex/, then start the proxy. Requires Codex CLI {CODEX_SINCE} and LiteLLM {LITELLM_BRIDGE_SINCE} or later."})
+        if e.id in anthropic:
+            clients["claude"].append({**common, "files": ["configs/claude-code.sh"],
+                "model": mid, "command": f"claude-{e.id}", "route": "Direct",
+                "setup": "Save the file under configs/ and run source configs/claude-code.sh in bash or zsh."})
+        if deployment in deployments:
+            clients["litellm"].append({**common, "files": ["configs/litellm.yaml"],
+                "model": deployment, "command": litellm_command(), "route": "Local proxy",
+                "setup": f"Save the file under configs/. Point your client at {LITELLM_LOCAL_URL} and choose this model."})
+    return clients
+
+
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
     gone = _archive(entries, today)
     return [{"id": e.id, "name": e.name, "page": provider_page_url(e.id),
@@ -1498,6 +1545,7 @@ def build_site_context(entries: list[Entry], today: date,
         "sections": _site_sections(active),
         "jsonld": _site_jsonld(facts["active_count"], facts["family_count"], today),
         "connections": _site_connections(_connectable(entries, today)),
+        "client_configs": _script_json(_site_client_configs(entries, today)),
         "archived": _site_archived_rows(entries, today),
         "changes": _site_changes(history or [], entries, today),
         "providers_url": providers_index_url(),

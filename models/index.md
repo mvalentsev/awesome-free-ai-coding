@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-13'
-description: 133 model families the list's 86 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
+title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-13 or later'
+description: 133 model families the list's 88 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-14
 ---
 
 {% raw %}

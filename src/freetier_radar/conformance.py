@@ -109,6 +109,7 @@ SENTENCES: dict[str, Sentence] = {
                                        + re.escape(LITELLM_BRIDGE_SINCE)
                                        + r" or later; the file goes where Codex keeps its "
                                          r"config, ~/\.codex unless CODEX_HOME says otherwise"),
+    "selector-model": Sentence("index.html", r'id="client-configs"'),
     "no-keys": Sentence(LITELLM_PROFILE, r"A lane whose key is not set is skipped, and "
                                          r"free/nokey needs none, so the profile answers before "
                                          r"you set any\."),
@@ -880,6 +881,7 @@ def _check_no_keys(run: _Run, version: str, binary: str, config: Path, lanes_: l
                      f"{named or 'no lane'}")
             for c in codex_versions:
                 _check_codex_turn(run, version, c, served, newest=c == codex_versions[-1])
+                _check_selector_model(run, version, c, served, lanes_)
     except _Unstarted as exc:
         run.note("codex", "violation", v, f"the profile's proxy command did not start: {exc}")
         return
@@ -970,6 +972,38 @@ def _check_codex_setting(run: _Run, v: str, codex_version: str, litellm_version:
         run.note(sentence, "ok" if ok else "drift", v,
                  f"with {override}, the lane got tools of kind {kinds}, the sub-agents' among them "
                  + ("as functions" if ok else "not as functions"))
+
+
+def _check_selector_model(run: _Run, litellm_version: str, codex_version: str,
+                          served: _Lanes, lanes_: list[Lane]) -> None:
+    """Run the rendered command and prove it reaches the selected deployment.
+
+    Capture proves the CLI override, not vendor availability. The floor/current
+    releases measure this CLI contract each time conformance runs.
+    """
+    page = (run.root / "index.html").read_text(encoding="utf-8")
+    match = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', page, re.S)
+    choices = json.loads(match.group(1))["codex"] if match else []
+    row = next((r for r in choices if r["route"] == "Via LiteLLM" and r["keyless"]), None)
+    v = f"Codex {codex_version} + LiteLLM {litellm_version}"
+    lane = next((l for l in lanes_ if row and l.name == row["model"]), None)
+    if not row or not lane:
+        run.note("selector-model", "infra", v, "no generated keyless proxy choice to exercise")
+        return
+    home, project = _codex_home(run, f"selector-{codex_version}-{litellm_version}", LITELLM_PROFILE)
+    mark = served.mark()
+    argv = shlex.split(row["command"])
+    done = _codex(run.codex[codex_version], home, project,
+        [*argv[1:], "--skip-git-repo-check", "--dangerously-bypass-approvals-and-sandbox",
+         "Run `cat note.txt` and tell me what the file says."])
+    records = [r for r in served.since(mark) if r.lane.isdigit()]
+    ok = (done.returncode == 0 and NOTE in done.stdout and records
+          and all(r.lane == str(lane.index) for r in records)
+          and any(NOTE in json.dumps(r.body) for r in records[1:]))
+    run.note("selector-model", "ok" if ok else "violation", v,
+        f"{row['command']}: exit {done.returncode}; {len(records)} requests; selected lane "
+        f"{lane.index}, reached {sorted({r.lane for r in records})}; file result "
+        + ("returned" if NOTE in done.stdout else "missing"))
 
 
 def _check_bare(run: _Run, version: str, binary: str, config: Path, lanes_: list[Lane],

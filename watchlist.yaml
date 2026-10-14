@@ -531,20 +531,20 @@ watched:
       AI Horde's OpenAI route accepts tool definitions, or it publishes a
       set of models it keeps available.
 
-  - domains: [together.ai, together.xyz]
+  - domains:
+    - together.ai
+    - together.xyz
     name: Together AI
-    checked_on: '2026-08-14'
-    reason: >-
-      Serverless inference priced per token with no free lane on its own pages.
-      together.ai/pricing is a per-1M-token table whose cheapest row is still
-      paid, and the word "free" does not occur once in the served text of that
-      page, of docs.together.ai/docs/serverless/rate-limits, or of the
-      quickstart; no model id ending in -Free is served on any of the three.
-      The rate-limit page talks about bursts and real-time capacity and never
-      about a tier.
-    reopen_if: >-
-      Together publishes a free tier or a zero-priced model row, or a model id
-      ending in -Free returns to its catalog.
+    checked_on: '2026-10-14'
+    reason: Primary pricing now lists Ternary Bonsai 27B at zero input and output price,
+      replacing the old all-paid verdict. Official billing requires an initial $15 credit
+      purchase and offers no free trial. The competitor claim of 98 free Together models
+      is unsupported by primary pricing. Exact independent free access after activation has
+      not been established; no purchase was made. An initial payment is an access condition,
+      not automatic disqualification.
+    reopen_if: Primary sources establish the exact zero-priced API ID and activation conditions,
+      and an authorized funded account confirms the independent free lane; or the activation
+      payment is removed.
 
   - domains: [perplexity.ai]
     name: Perplexity (Sonar API)
@@ -746,20 +746,21 @@ watched:
       Blackbox publishes a free tier with a token or request allowance, on the
       pricing page rather than in an extension listing.
 
-  - domains: [orcarouter.ai]
+  - domains:
+    - orcarouter.ai
     name: OrcaRouter
-    checked_on: '2026-08-14'
-    reason: >-
-      A router whose free plan is free routing, not free tokens: "Hacker Free
-      Forever. Zero markup on all tokens ... 3 API keys · 0% token markup", and
-      in its own words "You pay each provider's published rate; OrcaRouter adds
-      $0 per token". Its structured pricing data agrees — an Offer named "Free"
-      at price 0 with the description "Pay provider cost only". That is the
-      standing rule here that a zero in a price column is not a lane you can
-      reach: nothing is granted, the $0 is the fee for the routing.
-    reopen_if: >-
-      OrcaRouter grants credits or a free model lane of its own, rather than
-      charging nothing to pass a paid one through.
+    checked_on: '2026-10-14'
+    reason: The free-routing-only verdict is outdated. The active public free-package and
+      pricing APIs name four generative zero-price aliases beside the OrcaVerify classifier.
+      Baseline access is 10 requests/minute and 50/day without a top-up; HY4 Preview has
+      a separate 50/minute and 250/day baseline. Established GitHub linkage gates free access.
+      Docs describe an unpublished prompt cap and separate access-denied, quota and capacity
+      failures; free IDs do not fall back to paid IDs. Terms name Continuum AI Pte. Ltd.
+      and commercial upstream providers, but actual free-lane supply and eligible-account
+      generation remain unproved. Classifier access does not add a coding model.
+    reopen_if: An authorized established-GitHub account confirms the generative free lane,
+      its serving route and current prompt/plan limits, while primary free-package and pricing
+      APIs still agree.
 
   - domains: [aibadgr.com]
     name: Badgr
@@ -3783,3 +3784,42 @@ watched:
     reopen_if: >-
       Hugging Face publishes bundled free inference usage or a no-card trial
       available to free accounts, without buying credits or a subscription.
+
+  - domains:
+    - moondream.ai
+    name: Moondream Cloud
+    checked_on: '2026-10-14'
+    reason: The primary Free plan is $0/month with $5/workspace/month in shared usage credits.
+      The official OpenAI guide names moondream3.1-9b-a2b and moondream3-preview, multi-turn
+      text/image chat and SSE. Stop sequences and tool/function calling are explicitly unsupported,
+      so an OpenAI-compatible label does not establish a coding-agent tool loop. Remote image
+      URLs are rejected; only base64 data URLs work. Local Photon usage is separate. Keyed
+      activation and the initial credit balance have not been established.
+    reopen_if: The official cloud API supports the coding-agent tool loop, with current Free
+      activation/payment conditions and an authorized representative completion.
+
+  - domains:
+    - gizmoplatforms.com
+    name: Gizmo API
+    checked_on: '2026-10-14'
+    reason: The developer page advertises a no-card Free API allowance of 1,000 zero-cost-model
+      requests per calendar month, shared across keys and models, with 20 requests/minute.
+      Terms instead require paid membership for service access. Developer pricing does not
+      resolve that conflict or establish an independently usable tool-calling lane. No signed-in
+      eligibility or completion was established.
+    reopen_if: Terms and developer pricing agree that API Free needs no recurring paid membership,
+      and exact free model/tool and supply conditions can be verified.
+
+  - domains:
+    - plugsky.com
+    name: Plugsky
+    checked_on: '2026-10-14'
+    reason: Docs distinguish permanent $0 Micro/Lite aliases from a seven-day trial. The
+      catalog describes changeable upstreams and fallback chains conditional on health, plan
+      and budget; aliases cannot be copied as independently free upstream families. The shared
+      ceiling is 30 requests/minute and five concurrent requests; token allowance is unpublished.
+      The Terms link returned the home page. Activation/payment, free supply and model-specific
+      tool behavior remain unresolved.
+    reopen_if: Readable Terms and plan documents establish the permanent free API and its
+      supply/activation conditions; an authorized tool-loop request verifies the free alias
+      and fallback constraints.

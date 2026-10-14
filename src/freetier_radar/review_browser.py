@@ -1,9 +1,11 @@
 """One parameterized browser suite; its result is bound to a commit and coverage plan."""
 import json
+import re
 from pathlib import Path
 
 from jinja2 import Environment
 
+from . import git
 from .indexnow import index_at
 from .render import PAGES_URL, REPO_URL
 from .review import Bundle, blob, scoped
@@ -27,12 +29,16 @@ def browser_plan(bundle: Bundle) -> dict:
     links = [[e['id'], m['family']] for e in rows for m in e.get('models', [])
              if m['family'] not in old.get(e['id'], set())]
     widths, schemes = [1440, 375, 320], ['light', 'dark']
+    html = git.show(bundle.repo, scope['sha'], 'index.html') or ''
+    config_block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
+    clients = list(json.loads(config_block.group(1))) if config_block else []
     cases = []
     for width in widths:
         for scheme in schemes:
             prefix = f'{width}/{scheme}/'
             cases += [prefix + kind + '/' + m['family'] for kind in ('search', 'browse', 'model') for m in models]
             cases += [prefix + 'provider/' + e['id'] for e in rows]
+            cases += [prefix + 'config/' + client for client in clients]
             if width != 320:
                 cases.append(prefix + 'readme')
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
@@ -40,6 +46,7 @@ def browser_plan(bundle: Bundle) -> dict:
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
             'models': models, 'rows': rows, 'folded_targets': folded_targets,
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
+            'clients': clients,
             'output': str(bundle.out / 'browser-execution.json')}
 
 

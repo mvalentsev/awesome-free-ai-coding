@@ -62,7 +62,7 @@ body {
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
 }
 code, kbd { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -72,6 +72,13 @@ h3 { font-size: 1.05rem; margin: 0 0 8px; }
 p { margin: 0 0 12px; }
 .skip { position: absolute; left: -9999px; top: 0; background: var(--bg); padding: 10px 14px; }
 .skip:focus { left: 8px; top: 8px; z-index: 50; box-shadow: var(--shadow); }
+.config-choices { display:flex; flex-wrap:wrap; gap:16px; margin:18px 0; }
+.config-choices label { display:grid; gap:4px; flex:1 1 240px; min-width:0; }
+.config-choices select { width:100%; padding:9px; font:inherit; color:var(--fg);
+  background:var(--raised); border:1px solid var(--line); border-radius:6px; }
+.config-result { margin-bottom:20px; padding:16px; border-left:3px solid var(--accent);
+  background:var(--surface); overflow-wrap:anywhere; }
+.config-result p:last-child { margin-bottom:0; }
 
 /* ── hero ─────────────────────────────────────────────────────────────── */
 .hero { padding: 40px 0 24px; background:
@@ -644,6 +651,22 @@ tr.flash { animation: flash 1.6s ease-out; }
         Anthropic-format URLs use the same key with Claude Code's <code>ANTHROPIC_BASE_URL</code>.
         For Codex CLI, use a listed direct profile or the LiteLLM profile below.</p>
     </header>
+    <div id="config-picker" hidden>
+      <div class="config-choices">
+        <label for="config-client">Client
+          <select id="config-client">
+            <option value="opencode">OpenCode</option>
+            <option value="codex">Codex CLI</option>
+            <option value="claude">Claude Code</option>
+            <option value="litellm">LiteLLM proxy</option>
+          </select>
+        </label>
+        <label for="config-provider">Provider
+          <select id="config-provider"></select>
+        </label>
+      </div>
+      <div id="config-result" class="config-result" aria-live="polite" aria-atomic="true"></div>
+    </div>
     <details id="connections" class="fold">
     <summary>Show the connection table for all {{ connections | length }} APIs</summary>
     <div class="scroll">
@@ -857,12 +880,79 @@ tr.flash { animation: flash 1.6s ease-out; }
   </div>
 </div>
 <script type="application/json" id="search-config">{{ search_config | safe }}</script>
+<script type="application/json" id="client-configs">{{ client_configs | safe }}</script>
 
 <script src="assets/model-name.js"></script>
 <script>
 // Progressive enhancement only: the page is complete without a line of this.
 (function () {
   "use strict";
+  // Client choices reuse the files' generated routes; keys stay in the local client.
+  var picker = document.getElementById("config-picker");
+  var client = document.getElementById("config-client");
+  var provider = document.getElementById("config-provider");
+  var configResult = document.getElementById("config-result");
+  var configs = JSON.parse(document.getElementById("client-configs").textContent);
+  function configLine(label, value, code) {
+    var p = document.createElement("p");
+    p.appendChild(document.createTextNode(label));
+    var content = document.createElement(code ? "code" : "span");
+    content.textContent = value;
+    p.appendChild(content); configResult.appendChild(p);
+  }
+  function configLink(label, href, parent) {
+    var a = document.createElement("a"); a.textContent = label; a.href = href;
+    parent.appendChild(a);
+  }
+  function showConfig() {
+    configResult.replaceChildren();
+    var row = configs[client.value].find(function (r) { return r.id === provider.value; });
+    if (!row) {
+      configLine("", configs[client.value].length ? "Choose a provider to see its configuration." :
+        "No generated configuration is available for this client. Use the connection table below.");
+      return;
+    }
+    var files = document.createElement("p");
+    files.appendChild(document.createTextNode(row.route + ": "));
+    row.files.forEach(function (path, i) {
+      if (i) { files.appendChild(document.createTextNode(" + ")); }
+      configLink(path, {{ repo_url | tojson }} + "/blob/main/" + path, files);
+    });
+    configResult.appendChild(files);
+    configLine("", row.setup);
+    if (row.proxy_command) { configLine("Start proxy: ", row.proxy_command, true); }
+    configLine("Launch: ", row.command, true);
+    configLine("Model: ", row.model, true);
+    if (row.keyless) { configLine("Key: ", "No key required."); }
+    else {
+      configLine("Set locally: ", row.env_var, true);
+      var key = document.createElement("p");
+      if (row.key_url) { configLink(row.public_key ? "Vendor's public key" : "Get a key", row.key_url, key); }
+      configResult.appendChild(key);
+    }
+    if (row.card) { configLine("", row.card); }
+    if (row.access) { configLine("Access: ", row.access); }
+    if (row.notice) { configLine("Does not work as published: ", row.notice); }
+    var details = document.createElement("details");
+    var summary = document.createElement("summary"); summary.textContent = "Limits and connection notes";
+    details.appendChild(summary);
+    [row.limits, row.note].filter(Boolean).forEach(function (text) {
+      var p = document.createElement("p"); p.textContent = text; details.appendChild(p);
+    });
+    var more = document.createElement("p"); configLink("Provider details", row.page, more);
+    details.appendChild(more); configResult.appendChild(details);
+  }
+  function chooseClient() {
+    var previous = provider.value;
+    provider.replaceChildren(new Option("Choose a provider", ""));
+    configs[client.value].forEach(function (row) { provider.add(new Option(row.name, row.id)); });
+    provider.value = configs[client.value].some(function (r) { return r.id === previous; }) ? previous : "";
+    provider.disabled = !configs[client.value].length;
+    showConfig();
+  }
+  client.addEventListener("change", chooseClient);
+  provider.addEventListener("change", showConfig);
+  chooseClient(); picker.hidden = false;
   // Copy buttons — hidden in the markup so a browser without the clipboard API
   // never shows a control that does nothing.
   if (navigator.clipboard) {

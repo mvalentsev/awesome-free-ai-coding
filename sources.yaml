@@ -77,27 +77,13 @@ read:
 
   - url: https://github.com/mnfst/awesome-free-llm-apis
     name: mnfst/awesome-free-llm-apis
-    checked_on: '2026-09-21'
-    reason: >-
-      The right subject and nothing new in it. Of the 38 hosts it links, 35 are
-      already carried; the three that are not are awesome.re (the list badge),
-      manifest.build (the maintainer's own product) and open.bigmodel.cn, which
-      is the China console of the vendor already listed under z.ai. A sixth
-      feed that re-states the five is prompt budget spent on agreement.
-      Re-read 2026-08-30 after a 2026-08-21 push: 43 hosts now, and the two it
-      gained over the first read are docs.bigmodel.cn and dash.cloudflare.com —
-      second spellings of vendors already carried. The verdict is unchanged.
-      Re-read 2026-09-21 at the user's request: nothing pushed since
-      2026-08-21, and data.json's 16 providers are all carried. Its agent
-      skill (free-llm-apis/SKILL.md) is behind the list it ships with — it
-      still recommends GitHub Models, retired 2026-07-30, Cerebras, which the
-      list itself removed on 2026-08-19, and Kluster AI, gone since June. What
-      it had that this project lacked was a check: its verifier counts an
-      HTTP 200 without choices[] as unknown, and since the same day the
-      keyless probe here reads a 200 for a completion before it counts a lane
-      as answering.
-    reopen_if: >-
-      Its provider table grows past what the curated feeds already carry.
+    checked_on: '2026-10-14'
+    reason: 'Reviewed cf97c32fec1b2e96e9936746e2731a81bd5ea33f: complete tree, README, data.json,
+      verifier and agent skill. All 16 provider records are covered. The skill still recommends
+      delisted providers. Its provider/model claims need vendor checks; another recurring
+      feed would repeat the existing inventory.'
+    reopen_if: Current data adds an in-scope service without a row or verdict here, or the
+      maintained setup skill demonstrates a missing connection path.
 
   - url: https://github.com/nherx/free-llm-api-resources
     name: nherx/free-llm-api-resources
@@ -372,27 +358,14 @@ read:
 
   - url: https://github.com/peter123023/awesome-free-llm-api
     name: peter123023/awesome-free-llm-api
-    checked_on: '2026-09-27'
-    reason: >-
-      A Chinese table worth reading: 86 stars, pushed 2026-09-04, rows sorted
-      by model with an "API 质量" column that records observed behaviour (NVIDIA
-      NIM "经常超时", AMD Token Factory "TTFT 偏高"). 33 hosts, 12 with no verdict
-      here, and every one of the 12 got one the same day: the mainland
-      consoles it quotes quotas for (Baidu Qianfan, Volcengine Ark, BigModel)
-      are on the watchlist with those quotas and the real-name wall, AMD Token
-      Factory and B.AI are on it as unreadable and free.empero.org as
-      unquantified, and Tencent's TokenHub and Token Harbor have been rows
-      since 2026-09-17 and 2026-09-16. Its figures for carried rows agree with
-      the registry (SenseNova "每 5 小时 1500 次", Ollama Cloud's unpublished
-      starter credit, OpenRouter's 50-a-day-then-1,000).
-      Read again 2026-09-27 as one of the originals of a promoter's forks: of its 53
-      sites 49 are known here. AtomGit's serverless-API page it links now redirects
-      to AtomCode's coding plan, a row since that day; LongCat has billed since
-      2026-06-30 and stays archived; Onomeo, a gateway over other vendors' free
-      tiers, is in the watchlist.
-    reopen_if: >-
-      A row outside the mainland consoles that links a vendor page this
-      registry has no verdict on.
+    checked_on: '2026-10-14'
+    reason: Reviewed 7ee4eed4e190c2ba66038ebca0553276526c29ac, including both Chinese and
+      English tables and all source links. API sibling hosts map to existing vendors. AtomGit
+      redirects to listed AtomCode; Longcat.ai is the archived LongCat service with current
+      paid model prices. Quality/latency observations are dated measurements, not universal
+      compatibility. No uncovered qualifying provider justifies another recurring feed.
+    reopen_if: A primary free API has no existing row/verdict, or a model observation exposes
+      a reproducible gap in current checks.
 
   - url: https://github.com/CYBIRD-D/FREE-LLM-API-Provider
     name: CYBIRD-D/FREE-LLM-API-Provider
@@ -1034,33 +1007,16 @@ read:
       free.
 
   - url: https://api.freellmapi.co/v1/latest
-    name: freellmapi hosted catalog
-    checked_on: '2026-09-21'
-    reason: >-
-      The signed catalog that tashfeenahmed/freellmapi's installs sync twice a
-      day, public on its monthly tier: version 2026.09.21 held 309 models on 22
-      platforms, each with request and token limits, a monthly token budget, a
-      context window and tool and vision flags, and 71 quirks — the operator's
-      own key-tested notes, many of them dated. The 21 platforms with chat
-      models all have a verdict here — the 22nd, Pinecone, serves only
-      embeddings, which this list leaves out — and the repository's key list,
-      read every run as a curated feed, names all 21 and some forty more, so
-      the catalog brings the scout no lead the feed does not. Its figures are
-      one operator's measurements and they lag the vendors' own pages this
-      registry reads: ModelScope still at 2,000 calls a day where the limits
-      page meters 魔粒, Mistral as per-minute and monthly token caps where the
-      pricing page now gives the Free plan $10 a month in credits. The quirks
-      were read whole as leads; where they touch a row here they agree with it
-      — NVIDIA's ~40 requests a minute, OpenRouter's account-wide 50 a day,
-      Hugging Face's $0.10 a month, OVHcloud's two anonymous requests a minute
-      — and the rest concern vendors already watchlisted or blocklisted. What
-      they taught was a probe check: gateways answering an id with a model it
-      does not name (every Lucidity open/* route as synth-2.5-preview, eleven
-      Septor -free aliases as minimax-m2.5-free), which the keyless probe here
-      now reads off every answer.
-    reopen_if: >-
-      It lists a chat platform with no verdict here, or the repository's key
-      list stops naming every chat platform the catalog serves.
+    name: FreeLLMAPI hosted catalog
+    checked_on: '2026-10-14'
+    reason: Public monthly version 2026.10.13.517b6a contains 34 platforms, 304 model records
+      and 89 quirks, including non-chat services. The existing repository key-list feed already
+      names its chat-provider leads. The catalog and adapters informed primary-source Inferbase/SimpleLLM
+      rows, Moondream/Gizmo/Plugsky verdicts and OrcaRouter/Together reconsideration. Delayed
+      snapshots, missing prices and operator-measured quotas cannot authorize copied free
+      families or universal budgets.
+    reopen_if: An in-scope chat platform has no row/verdict, the existing feed loses its
+      chat inventory, or a dated adapter observation reproduces a client failure here.
 
   # Read 2026-09-27: the originals of a promoter's 97 forks of AI-tool, free-API,
   # gateway and relay lists (ankita37105 on GitHub), every link of every README
@@ -1068,19 +1024,14 @@ read:
   # the lists already read. Counts are sites: a host, or an owner on GitHub.
   - url: https://freellm.net/feed.json
     name: FreeLLM.net JSON Feed
-    checked_on: '2026-09-27'
-    reason: >-
-      The JSON Feed of freellm.net, whose README the scout already reads as a feed
-      (open-free-llm-api/awesome-freellm-apis): fifty events of "New free model",
-      "Now free" and "No longer free" across the 31 providers it tracks, all of them
-      rows or verdicts here. Not adopted: those providers' catalogs are what this
-      list's own probes read twice a week, and its events need the same check a
-      probe makes — on 2026-09-26 it had GPT-OSS 120B and 20B "free→paid" on Groq,
-      while Groq's Free Plan Limits table carried both on 2026-09-27. Its model
-      table is HTML at freellm.net/models/, with no JSON API. Read 2026-09-27.
-    reopen_if: >-
-      It tracks providers this list carries no row or verdict for, or its events
-      lead this list's probes.
+    checked_on: '2026-10-14'
+    reason: Read with open-free-llm-api/awesome-freellm-apis at 9ede8bc4ac96b20b793f9981afef167bffe44e41,
+      its complete tree and current site/provider/model/config pages. The README is already
+      a curated feed; provider links add no uncovered qualifying service. Arrival and free-to-paid
+      events need primary plan/price checks. Its selector informed reuse of existing profiles,
+      not generic compatibility claims or placeholder credentials.
+    reopen_if: Events lead primary probes with confirmed free-access changes, or it adds
+      an in-scope provider without a row or verdict here.
 
   - url: https://github.com/12britz/awesome-free-models
     name: 12britz/awesome-free-models
@@ -2216,3 +2167,14 @@ read:
       one AI entry, Hugging Face, is a row here. Read 2026-09-30.
     reopen_if: >-
       It adds a section of AI APIs or coding agents.
+
+  - url: https://www.llmperks.com/
+    name: LLM Perks
+    checked_on: '2026-10-14'
+    reason: Read current provider, model, task, About and sitemap pages. All 15 providers
+      were covered. Its 98-free-Together-model claim conflicts with primary token prices
+      and the $15 activation purchase; Bonsai alone has zero ordinary input/output pricing.
+      Task/capability labels and unpublished quota placeholders are leads, not verified client
+      behavior. No distinct provider inventory justifies another recurring feed.
+    reopen_if: It adds an uncovered in-scope provider or current primary evidence of an offer
+      change that existing probes do not detect.

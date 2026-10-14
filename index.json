@@ -12439,6 +12439,227 @@
       "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/"
+    },
+    {
+      "id": "inferbase",
+      "name": "Inferbase",
+      "category": "aggregator",
+      "url": "https://inferbase.ai",
+      "source_urls": [
+        "https://inferbase.ai/pricing",
+        "https://inferbase.ai/terms",
+        "https://inferbase.ai/subprocessors",
+        "https://inferbase.ai/docs/gateway/client-compatibility",
+        "https://inferbase.ai/docs/getting-started/quickstart"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible managed inference on a permanent $0 Free plan, with a shared daily usage budget and no card required",
+      "limits": "All successful requests: 5,000 requests/month per organization\n\nManaged inference: 100 requests/day; $0.5/day; 10 requests/minute per organization\n\n60 requests/minute per key\n\nManaged chat, embeddings and rerank share the daily allowance. BYOK requests also count toward the monthly request ceiling, but their tokens are billed by the connected provider. Managed requests allow at most 8,192 input and 1,024 output tokens; these are request budgets, not full model context windows. Monthly requests reset on the 1st at 00:00 UTC. Exhausted allowances return 402. Managed image, audio and video generation require Pro.",
+      "quotas": [
+        {
+          "amount": 5000.0,
+          "unit": "requests",
+          "period": "month",
+          "scope": "organization",
+          "label": "All successful requests",
+          "source": "https://inferbase.ai/pricing",
+          "quote": "Free includes 5,000 requests a month",
+          "value_phrase": "5,000 requests a month"
+        },
+        {
+          "amount": 100.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "organization",
+          "label": "Managed inference",
+          "source": "https://inferbase.ai/pricing",
+          "quote": "100 requests and $0.50 of model usage a day",
+          "value_phrase": "100 requests",
+          "period_quote": "a day"
+        },
+        {
+          "amount": 0.5,
+          "unit": "USD",
+          "period": "day",
+          "scope": "organization",
+          "label": "Managed inference",
+          "source": "https://inferbase.ai/pricing",
+          "quote": "100 requests and $0.50 of model usage a day",
+          "value_phrase": "$0.50 of model usage a day"
+        },
+        {
+          "amount": 10.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "organization",
+          "label": "Managed inference",
+          "source": "https://inferbase.ai/pricing",
+          "quote": "managed inference allows 10 requests a minute per organization"
+        },
+        {
+          "amount": 60.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "key",
+          "source": "https://inferbase.ai/pricing",
+          "quote": "a key allows 60 requests per minute"
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://api.inferbase.ai/v1",
+        "key_url": "https://inferbase.ai/docs/getting-started/quickstart",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "auto"
+        ],
+        "no_family_ids": [
+          "auto"
+        ],
+        "anthropic_base_url": "https://api.inferbase.ai",
+        "note": "Create an account and a gateway API key. The auto ID routes among models eligible under the key policy; the response names the model that served the request. Managed usage spends a shared budget, so no model is independently free. The vendor documents OpenAI chat and Anthropic Messages tool loops; authenticated generation has not been checked here."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-14",
+        "source": "https://inferbase.ai/terms",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://inferbase.ai/pricing",
+        "keywords": [
+          "100 requests and $0.50 of model usage a day",
+          "no card is required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "catalog": "https://api.inferbase.ai/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-14",
+      "last_verified": "2026-10-14",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 65,
+      "no_account": false,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/inferbase/"
+    },
+    {
+      "id": "simplellm",
+      "name": "SimpleLLM",
+      "category": "api-free-tier",
+      "url": "https://simplellm.eu",
+      "source_urls": [
+        "https://simplellm.eu/docs/models.md",
+        "https://simplellm.eu/docs/limits.md",
+        "https://simplellm.eu/docs/compatibility.md",
+        "https://simplellm.eu/docs/billing.md",
+        "https://simplellm.eu/agb",
+        "https://simplellm.eu/impressum"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit",
+      "limits": "General: Per-minute requests allowance: see your account for values; scope not published\n\nFree models: Hourly requests allowance: see your account for values; Daily requests allowance: see your account for values; Hourly tokens allowance: see your account for values; Daily tokens allowance: see your account for values; scope not published\n\nAn account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports current minute, hourly and daily counters. The docs do not establish one shared scope for every key, model and upstream limit. The public catalog can list an enabled alias whose backend is disabled, so listing does not prove a successful completion. Planned or disabled rows are excluded. Numeric free limits and reset times are not publicly fixed.",
+      "quotas": [
+        {
+          "unit": "requests",
+          "period": "minute",
+          "scope": "unspecified",
+          "state": "account-specific",
+          "label": "General",
+          "source": "https://simplellm.eu/docs/limits.md",
+          "quote": "general requests-per-minute counters",
+          "reviewed_on": "2026-10-14",
+          "amount": null
+        },
+        {
+          "unit": "requests",
+          "period": "hour",
+          "scope": "unspecified",
+          "state": "account-specific",
+          "label": "Free models",
+          "source": "https://simplellm.eu/docs/limits.md",
+          "quote": "free-model hourly/daily request and token counters",
+          "reviewed_on": "2026-10-14",
+          "amount": null
+        },
+        {
+          "unit": "requests",
+          "period": "day",
+          "scope": "unspecified",
+          "state": "account-specific",
+          "label": "Free models",
+          "source": "https://simplellm.eu/docs/limits.md",
+          "quote": "free-model hourly/daily request and token counters",
+          "reviewed_on": "2026-10-14",
+          "amount": null
+        },
+        {
+          "unit": "tokens",
+          "period": "hour",
+          "scope": "unspecified",
+          "state": "account-specific",
+          "label": "Free models",
+          "source": "https://simplellm.eu/docs/limits.md",
+          "quote": "free-model hourly/daily request and token counters",
+          "reviewed_on": "2026-10-14",
+          "amount": null
+        },
+        {
+          "unit": "tokens",
+          "period": "day",
+          "scope": "unspecified",
+          "state": "account-specific",
+          "label": "Free models",
+          "source": "https://simplellm.eu/docs/limits.md",
+          "quote": "free-model hourly/daily request and token counters",
+          "reviewed_on": "2026-10-14",
+          "amount": null
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://api.simplellm.eu/v1",
+        "key_url": "https://simplellm.eu/docs/",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "free-gemma-4-E4B",
+          "free-Llama-3.1-8B-Instruct"
+        ],
+        "note": "Use the exact free-prefixed IDs. The public catalog gives both ordinary token prices in SimpleCredits; enabled/status and both prices are rechecked. V1 documents chat completions and SSE; tools depend on the model. Responses is undocumented and the Anthropic adapter is outside the supported V1 contract, so Codex uses the existing LiteLLM bridge. Authenticated generation has not been checked here."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-14",
+        "source": "https://simplellm.eu/agb",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://simplellm.eu/api/models",
+        "keywords": [],
+        "free_marker": "",
+        "require_zero_price": true,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-14",
+      "last_verified": "2026-10-14",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 82,
+      "no_account": false,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/"
     }
   ],
   "countries": [
@@ -14894,9 +15115,9 @@
         "together.xyz"
       ],
       "name": "Together AI",
-      "checked_on": "2026-08-14",
-      "reason": "Serverless inference priced per token with no free lane on its own pages. together.ai/pricing is a per-1M-token table whose cheapest row is still paid, and the word \"free\" does not occur once in the served text of that page, of docs.together.ai/docs/serverless/rate-limits, or of the quickstart; no model id ending in -Free is served on any of the three. The rate-limit page talks about bursts and real-time capacity and never about a tier.",
-      "reopen_if": "Together publishes a free tier or a zero-priced model row, or a model id ending in -Free returns to its catalog.",
+      "checked_on": "2026-10-14",
+      "reason": "Primary pricing now lists Ternary Bonsai 27B at zero input and output price, replacing the old all-paid verdict. Official billing requires an initial $15 credit purchase and offers no free trial. The competitor claim of 98 free Together models is unsupported by primary pricing. Exact independent free access after activation has not been established; no purchase was made. An initial payment is an access condition, not automatic disqualification.",
+      "reopen_if": "Primary sources establish the exact zero-priced API ID and activation conditions, and an authorized funded account confirms the independent free lane; or the activation payment is removed.",
       "current": true
     },
     {
@@ -15008,9 +15229,9 @@
         "orcarouter.ai"
       ],
       "name": "OrcaRouter",
-      "checked_on": "2026-08-14",
-      "reason": "A router whose free plan is free routing, not free tokens: \"Hacker Free Forever. Zero markup on all tokens ... 3 API keys · 0% token markup\", and in its own words \"You pay each provider's published rate; OrcaRouter adds $0 per token\". Its structured pricing data agrees — an Offer named \"Free\" at price 0 with the description \"Pay provider cost only\". That is the standing rule here that a zero in a price column is not a lane you can reach: nothing is granted, the $0 is the fee for the routing.",
-      "reopen_if": "OrcaRouter grants credits or a free model lane of its own, rather than charging nothing to pass a paid one through.",
+      "checked_on": "2026-10-14",
+      "reason": "The free-routing-only verdict is outdated. The active public free-package and pricing APIs name four generative zero-price aliases beside the OrcaVerify classifier. Baseline access is 10 requests/minute and 50/day without a top-up; HY4 Preview has a separate 50/minute and 250/day baseline. Established GitHub linkage gates free access. Docs describe an unpublished prompt cap and separate access-denied, quota and capacity failures; free IDs do not fall back to paid IDs. Terms name Continuum AI Pte. Ltd. and commercial upstream providers, but actual free-lane supply and eligible-account generation remain unproved. Classifier access does not add a coding model.",
+      "reopen_if": "An authorized established-GitHub account confirms the generative free lane, its serving route and current prompt/plan limits, while primary free-package and pricing APIs still agree.",
       "current": true
     },
     {
@@ -17116,6 +17337,36 @@
       "checked_on": "2026-10-08",
       "reason": "The current official pricing table at https://huggingface.co/docs/inference-providers/pricing lists Free Users with no monthly credits. Inference requires purchased credits or a paid PRO, Team or Enterprise subscription; BYOK offers no bundled free usage. The former $0.10/month allowance is no longer advertised.",
       "reopen_if": "Hugging Face publishes bundled free inference usage or a no-card trial available to free accounts, without buying credits or a subscription.",
+      "current": true
+    },
+    {
+      "domains": [
+        "moondream.ai"
+      ],
+      "name": "Moondream Cloud",
+      "checked_on": "2026-10-14",
+      "reason": "The primary Free plan is $0/month with $5/workspace/month in shared usage credits. The official OpenAI guide names moondream3.1-9b-a2b and moondream3-preview, multi-turn text/image chat and SSE. Stop sequences and tool/function calling are explicitly unsupported, so an OpenAI-compatible label does not establish a coding-agent tool loop. Remote image URLs are rejected; only base64 data URLs work. Local Photon usage is separate. Keyed activation and the initial credit balance have not been established.",
+      "reopen_if": "The official cloud API supports the coding-agent tool loop, with current Free activation/payment conditions and an authorized representative completion.",
+      "current": true
+    },
+    {
+      "domains": [
+        "gizmoplatforms.com"
+      ],
+      "name": "Gizmo API",
+      "checked_on": "2026-10-14",
+      "reason": "The developer page advertises a no-card Free API allowance of 1,000 zero-cost-model requests per calendar month, shared across keys and models, with 20 requests/minute. Terms instead require paid membership for service access. Developer pricing does not resolve that conflict or establish an independently usable tool-calling lane. No signed-in eligibility or completion was established.",
+      "reopen_if": "Terms and developer pricing agree that API Free needs no recurring paid membership, and exact free model/tool and supply conditions can be verified.",
+      "current": true
+    },
+    {
+      "domains": [
+        "plugsky.com"
+      ],
+      "name": "Plugsky",
+      "checked_on": "2026-10-14",
+      "reason": "Docs distinguish permanent $0 Micro/Lite aliases from a seven-day trial. The catalog describes changeable upstreams and fallback chains conditional on health, plan and budget; aliases cannot be copied as independently free upstream families. The shared ceiling is 30 requests/minute and five concurrent requests; token allowance is unpublished. The Terms link returned the home page. Activation/payment, free supply and model-specific tool behavior remain unresolved.",
+      "reopen_if": "Readable Terms and plan documents establish the permanent free API and its supply/activation conditions; an authorized tool-loop request verifies the free alias and fallback constraints.",
       "current": true
     }
   ]

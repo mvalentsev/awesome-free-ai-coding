@@ -35,6 +35,24 @@ async (page) => {
         await page.emulateMedia({colorScheme:scheme});
         const prefix=width+'/'+scheme+'/';
         if(!Array.from(selected).some(id=>id.startsWith(prefix))) continue;
+        for(const client of plan.clients || []) {
+          if(!selected.has(prefix+'config/'+client)) continue;
+          await go(plan.site+'?review='+plan.sha+'#plug');
+          await page.locator('#config-client').selectOption(client);
+          const choices=await page.locator('#config-provider option').evaluateAll(es=>es.map(e=>e.value).filter(Boolean));
+          const data=await page.locator('#client-configs').textContent();
+          const rows=JSON.parse(data)[client];
+          if(JSON.stringify(choices)!==JSON.stringify(rows.map(r=>r.id))) throw Error('Client choices disagree');
+          for(const row of rows) {
+            await page.locator('#config-provider').selectOption(row.id);
+            const result=page.locator('#config-result');
+            const text=await result.innerText();
+            if(!text.includes(row.command)||!text.includes(row.model)||!text.includes(row.route)) throw Error('Wrong client result: '+row.id);
+            if(row.access&&!text.includes(row.access)) throw Error('Hidden access condition: '+row.id);
+            for(const path of row.files) if(!await result.locator('a[href="'+plan.repository+'/blob/main/'+path+'"]').count()) throw Error('Wrong config link: '+path);
+          }
+          await record(prefix+'config/'+client,{choices:choices.length});
+        }
         if(Array.from(selected).some(id=>id.startsWith(prefix+'search/'))) {
         await go(plan.site+'?review='+plan.sha+'#search');
         if(plan.models.some(model=>model.rows.length)) await page.locator('#results .tries button').first().waitFor();

@@ -77,6 +77,20 @@ claude-vercel-ai-gateway() {
   claude "$@"
 }
 
+# ── Inferbase · get a key: https://inferbase.ai/docs/getting-started/quickstart
+#    free ids: auto
+claude-inferbase() {
+  if [ -z "${INFERBASE_API_KEY:-}" ]; then
+    echo "claude-inferbase: set INFERBASE_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
+  ANTHROPIC_BASE_URL="https://api.inferbase.ai" \
+  ANTHROPIC_AUTH_TOKEN="$INFERBASE_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="auto" \
+  claude "$@"
+}
+
 # ── Token Harbor · get a key: https://tokenharbor.ai/dashboard/api-keys
 #    free ids: deepseek-v4.1-flash:free, mimo-v2.6-flash:free
 claude-token-harbor() {

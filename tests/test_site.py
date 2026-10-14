@@ -35,6 +35,70 @@ def test_every_category_has_a_nav_label():
     assert set(SITE_NAV_LABELS) == set(Category)
 
 
+def test_client_choices_match_existing_generated_routes_and_preserve_payment_scope():
+    from freetier_radar.render import _site_client_configs
+
+    direct = make(id="direct", api={
+        "base_url": "https://x.ai/v1", "model_ids": ["metered", "unfunded"],
+        "anthropic_base_url": "https://x.ai",
+        "model_access": {"metered": {"source": "https://x.ai/free", "initial_payment_usd": 5}},
+        "codex": {"base_url": "https://x.ai/v1", "source": "https://x.ai/codex",
+                  "quote": "Use Codex CLI with this provider"},
+    })
+    chat = make(id="chat", api={"base_url": "https://chat.ai/v1", "model_ids": ["small"]})
+    choices = _site_client_configs([direct, chat], TODAY)
+    codex = {r["id"]: r for r in choices["codex"]}
+    assert codex["direct"]["files"] == ["configs/codex/direct.config.toml"]
+    assert codex["direct"]["command"] == "codex -p direct"
+    assert codex["direct"]["model"] == "unfunded" and not codex["direct"]["access"]
+    assert codex["chat"]["route"] == "Via LiteLLM"
+    assert codex["chat"]["model"] == "chat/small"
+    assert codex["chat"]["command"] == "codex -p litellm -m chat/small"
+    assert [r["id"] for r in choices["claude"]] == ["direct"]
+    funded = direct.model_copy(deep=True)
+    funded.api.model_ids = ["metered"]
+    funded_choices = _site_client_configs([funded], TODAY)
+    assert "$5" in funded_choices["codex"][0]["access"]
+
+
+def test_client_choices_exclude_archived_missing_models_and_static_blockers():
+    from freetier_radar.render import _site_client_configs
+
+    api = {"base_url": "https://x.ai/v1", "model_ids": ["small"]}
+    archived = make(id="archived", api=api, delisted={"on": TODAY, "reason": "Ended"})
+    dynamic = make(id="dynamic", api={**api, "session_header": "x-session"})
+    missing = make(id="missing", api={"base_url": "https://x.ai/v1", "no_ids": "Keyed catalog"})
+    assert _site_client_configs([archived, dynamic, missing], TODAY) == {
+        name: [] for name in ("opencode", "codex", "claude", "litellm")}
+
+
+def test_client_choices_respect_bearer_refusal_and_the_expiry_writer():
+    from datetime import datetime, timezone
+    from freetier_radar.models import expire_entries
+    from freetier_radar.render import _site_client_configs
+
+    bare = make(id="bare", api={"base_url": "https://x.ai/v1", "auth": "none",
+                                 "model_ids": ["small"], "refuses_bearer": True})
+    choices = _site_client_configs([bare], TODAY)
+    assert [r["id"] for r in choices["opencode"]] == ["bare"]
+    assert not choices["codex"] and not choices["litellm"]
+    expired = make(id="expired", api={"base_url": "https://x.ai/v1", "model_ids": ["small"],
+        "model_access": {"small": {"source": "https://x.ai/free", "until": "2026-01-01T00:00:00Z"}}})
+    rows = expire_entries([expired], datetime(2026, 1, 2, tzinfo=timezone.utc))
+    assert not any(_site_client_configs(rows, TODAY).values())
+
+
+def test_client_choices_keep_shared_quotas_out_of_model_labels():
+    from freetier_radar.render import _site_client_configs
+
+    entry = make(api={"base_url": "https://x.ai/v1", "model_ids": ["small"]},
+        quotas=[{"amount": 10, "unit": "requests", "period": "day", "scope": "account",
+                 "source": "https://x.ai/free", "quote": "10 requests per day"}])
+    row = _site_client_configs([entry], TODAY)["opencode"][0]
+    assert "10 requests/day" in row["limits"]
+    assert "10" not in row["model"] and not row["access"]
+
+
 def test_the_page_is_html_and_says_what_it_is(tmp_path):
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert html.startswith("<!doctype html>")

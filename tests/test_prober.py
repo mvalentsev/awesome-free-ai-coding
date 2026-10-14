@@ -87,6 +87,49 @@ def zero_price_entry() -> Entry:
 FREE_QWEN = {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}
 
 
+@pytest.mark.parametrize("fields, expected", [
+    ({"enabled": True, "status": "available"}, ProbeStatus.PASS),
+    ({"enabled": False, "status": "planned"}, ProbeStatus.FAIL),
+    ({"enabled": "false"}, ProbeStatus.FAIL),
+    ({"status": "planned"}, ProbeStatus.FAIL),
+    ({"available": True, "enabled": False}, ProbeStatus.FAIL),
+    ({"available": False, "enabled": True}, ProbeStatus.FAIL),
+    ({"enabled": True, "status": "available", "price_sc_input": 1}, ProbeStatus.FAIL),
+    ({"enabled": True, "status": "available", "price_sc_output": 1}, ProbeStatus.FAIL),
+    ({"enabled": True, "status": "available", "price_sc_cached": 0.5}, ProbeStatus.PASS),
+    ({"enabled": True, "pricing": {"request": 1}}, ProbeStatus.FAIL),
+])
+@respx.mock
+async def test_flat_token_prices_and_catalog_state_at_http_boundary(fields, expected):
+    """A free-tier label does not make a planned or metered SC alias callable.
+
+    Public contract: https://simplellm.eu/docs/models.md, checked 2026-10-14.
+    """
+    entry = zero_price_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1", model_ids=[FREE_QWEN["id"]])
+    row = {"id": FREE_QWEN["id"], "is_free": True,
+           "price_sc_input": 0, "price_sc_output": 0, **fields}
+    respx.get(entry.probe.endpoint).respond(200, json=[row])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is expected, result.detail
+
+
+@pytest.mark.parametrize("fields, expected", [
+    ({"price_sc_input": 0, "price_sc_output": 0}, ProbeStatus.PASS),
+    ({"price_sc_input": 0}, ProbeStatus.FAIL),
+    ({"price_sc_input": 0, "price_sc_output": None}, ProbeStatus.FAIL),
+    ({"price_sc_input": False, "price_sc_output": 0}, ProbeStatus.FAIL),
+])
+@respx.mock
+async def test_flat_token_price_requires_both_published_sides(fields, expected):
+    respx.get("https://api.x.ai/v1/models").respond(
+        200, json=[{"id": FREE_QWEN["id"], **fields}])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is expected, result.detail
+
+
 @pytest.mark.parametrize("id_field", ["id", "model_id"])
 @pytest.mark.parametrize("catalog_limits, detail", [
     ({"context_length": 131042, "top_provider": {"max_completion_tokens": 16384}}, ""),
