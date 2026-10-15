@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLM7.io free tier: limits, free models, verified 2026-10-13'
+title: 'LLM7.io free tier: limits, free models, verified 2026-10-15'
 description: OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but…
 permalink: /providers/llm7/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: LLM7.io
 ---
 
@@ -11,7 +11,7 @@ crumb: LLM7.io
 
 # LLM7.io free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13 · [llm7.io](https://llm7.io) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-15 · [llm7.io](https://llm7.io) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

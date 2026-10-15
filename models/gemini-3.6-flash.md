@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3.6-flash free: 2 providers, limits and ids, provider probes 2026-10-13'
+title: 'gemini-3.6-flash free: 2 providers, limits and ids, provider probes 2026-10-15'
 description: gemini-3.6-flash is served free by Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.6-flash/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: gemini-3.6-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3.6-flash
 
 # Where gemini-3.6-flash is free
 
-**2 rows on the list serve `gemini-3.6-flash` free:** Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-6-flash).
+**2 rows on the list serve `gemini-3.6-flash` free:** Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-6-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3.6-flash
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · last probe 2026-10-13 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · last probe 2026-10-15 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
@@ -39,7 +39,7 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-10-13 · listed since 2026-09-03
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-10-15 · listed since 2026-09-03
 
 Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models
 

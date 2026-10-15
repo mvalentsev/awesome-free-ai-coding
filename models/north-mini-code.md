@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'north-mini-code free: 4 providers, limits and ids, provider probes 2026-10-13'
+title: 'north-mini-code free: 4 providers, limits and ids, provider probes 2026-10-15'
 description: north-mini-code is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/north-mini-code/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: north-mini-code
 ---
 
@@ -11,7 +11,7 @@ crumb: north-mini-code
 
 # Where north-mini-code is free
 
-**4 rows on the list serve `north-mini-code` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week.
+**4 rows on the list serve `north-mini-code` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: north-mini-code
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-13 · listed since 2026-08-05
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-15 · listed since 2026-08-05
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -64,7 +64,7 @@ $0 a month; no account for the free lane.  The lane is whatever the gateway mark
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-08-14
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -89,7 +89,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · last probe 2026-10-13 · listed since 2026-08-14
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · last probe 2026-10-15 · listed since 2026-08-14
 
 Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
 

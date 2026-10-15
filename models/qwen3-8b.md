@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3-8b free: 1 provider, limits and ids, provider probes 2026-10-13'
+title: 'qwen3-8b free: 1 provider, limits and ids, provider probes 2026-10-15'
 description: qwen3-8b is served free by SiliconFlow (China). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3-8b/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: qwen3-8b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3-8b
 
 # Where qwen3-8b is free
 
-**One row on the list serves `qwen3-8b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week.
+**One row on the list serves `qwen3-8b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3-8b
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-10-13 · listed since 2026-09-19
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-10-15 · listed since 2026-09-19
 
 China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
 

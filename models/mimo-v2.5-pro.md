@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'mimo-v2.5-pro free: 1 provider, limits and ids, provider probes 2026-10-13'
+title: 'mimo-v2.5-pro free: 1 provider, limits and ids, provider probes 2026-10-15'
 description: mimo-v2.5-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.5-pro/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: mimo-v2.5-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.5-pro
 
 # Where mimo-v2.5-pro is free
 
-**One row on the list serves `mimo-v2.5-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-5-pro), below its strong bar.
+**One row on the list serves `mimo-v2.5-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-5-pro), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.5-pro
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-25
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

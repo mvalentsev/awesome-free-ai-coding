@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-10-13'
+title: 'Qoder free tier: limits, free models, verified 2026-10-15'
 description: Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs. The daily promotion must be claimed in the international desktop app and is available to free…
 permalink: /providers/qoder/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: Qoder
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder
 
 # Qoder free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-13 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-15 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

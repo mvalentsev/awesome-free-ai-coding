@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-tiny free: 2 providers, limits and ids, provider probes 2026-10-13'
+title: 'ling-3.0-tiny free: 2 providers, limits and ids, provider probes 2026-10-15'
 description: ling-3.0-tiny is served free by Requesty and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-tiny/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: ling-3.0-tiny
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-tiny
 
 # Where ling-3.0-tiny is free
 
-**2 rows on the list serve `ling-3.0-tiny` free:** Requesty and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week.
+**2 rows on the list serve `ling-3.0-tiny` free:** Requesty and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-tiny
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-08-11
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-08-11
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -34,7 +34,7 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

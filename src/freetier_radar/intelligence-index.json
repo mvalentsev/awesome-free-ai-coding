@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-10-13",
+  "read_on": "2026-10-15",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
@@ -12,11 +12,6 @@
       "slug": "apertus-70b-instruct",
       "index": 5.1,
       "estimated": true
-    },
-    "claude-haiku-5.5": {
-      "slug": "claude-haiku-5-5",
-      "index": 43.4,
-      "estimated": false
     },
     "claude-opus-4.6": {
       "slug": "claude-opus-4-6",
@@ -173,11 +168,6 @@
       "index": 12.7,
       "estimated": true
     },
-    "gpt-6.1-sol": {
-      "slug": "gpt-6-1-sol",
-      "index": 51.8,
-      "estimated": false
-    },
     "gpt-oss-120b": {
       "slug": "gpt-oss-120b",
       "index": 11.6,
@@ -250,8 +240,8 @@
     },
     "mimo-v2.5": {
       "slug": "mimo-v2-5-0424",
-      "index": 25.2,
-      "estimated": true
+      "index": 21.8,
+      "estimated": false
     },
     "mimo-v2.5-pro": {
       "slug": "mimo-v2-5-pro",
@@ -295,8 +285,8 @@
     },
     "mistral-small-3.2": {
       "slug": "mistral-small-3-2",
-      "index": 8.2,
-      "estimated": true
+      "index": 7.0,
+      "estimated": false
     },
     "muse-glimmer-30b": {
       "slug": "muse-glimmer",

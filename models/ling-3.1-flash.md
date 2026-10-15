@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.1-flash free: 1 provider, limits and ids, provider probes 2026-10-13'
+title: 'ling-3.1-flash free: 1 provider, limits and ids, provider probes 2026-10-15'
 description: ling-3.1-flash is served free by Vercel AI Gateway. It asks for a card on file. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.1-flash/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: ling-3.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.1-flash
 
 # Where ling-3.1-flash is free
 
-**One row on the list serves `ling-3.1-flash` free:** Vercel AI Gateway. It asks for a card on file. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-1-flash).
+**One row on the list serves `ling-3.1-flash` free:** Vercel AI Gateway. It asks for a card on file. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.1-flash
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-13 · listed since 2026-10-13
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-15 · listed since 2026-10-13
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-4.7-flash free: 3 providers, limits and ids, provider probes 2026-10-13'
+title: 'glm-4.7-flash free: 3 providers, limits and ids, provider probes 2026-10-13 or later'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: glm-4.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-10-13; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
+**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-10-13 or later; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-4.7-flash
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -65,7 +65,7 @@ GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output price
 
 ### [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/)
 
-🧭 Aggregators (one key, many providers) · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · last probe 2026-10-13 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · last probe 2026-10-15 · listed since 2026-10-01
 
 OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
 

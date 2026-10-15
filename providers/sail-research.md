@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Sail Research free tier: limits, free models, verified 2026-10-13'
+title: 'Sail Research free tier: limits, free models, verified 2026-10-15'
 description: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. Attaching a payment method is required for recurring free credit. Credit spends at per-token…
 permalink: /providers/sail-research/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: Sail Research
 ---
 
@@ -11,7 +11,7 @@ crumb: Sail Research
 
 # Sail Research free tier
 
-🔌 LLM APIs with free tier · card required · not offered in Russia, Iran, Syria and 2 more places · **live** — last verified by a probe on 2026-10-13 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · not offered in Russia, Iran, Syria and 2 more places · **live** — last verified by a probe on 2026-10-15 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

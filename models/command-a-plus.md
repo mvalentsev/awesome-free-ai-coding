@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'command-a-plus free: 1 provider, limits and ids, provider probes 2026-10-13'
+title: 'command-a-plus free: 1 provider, limits and ids, provider probes 2026-10-15'
 description: command-a-plus is served free by Cohere (trial keys). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/command-a-plus/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: command-a-plus
 ---
 
@@ -11,7 +11,7 @@ crumb: command-a-plus
 
 # Where command-a-plus is free
 
-**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/command-a-plus), below its strong bar.
+**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/command-a-plus), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: command-a-plus
 
 ### [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · last probe 2026-10-13 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · last probe 2026-10-15 · listed since 2026-09-25
 
 Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
 

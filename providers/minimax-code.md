@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'MiniMax Code free tier: limits, free models, verified 2026-10-13'
+title: 'MiniMax Code free tier: limits, free models, verified 2026-10-15'
 description: MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them. The higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points…
 permalink: /providers/minimax-code/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: MiniMax Code
 ---
 
@@ -11,7 +11,7 @@ crumb: MiniMax Code
 
 # MiniMax Code free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-13 · [agent.minimax.io](https://agent.minimax.io/download) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-15 · [agent.minimax.io](https://agent.minimax.io/download) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

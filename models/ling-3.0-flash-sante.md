@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-sante free: 1 provider, limits and ids, provider probes 2026-10-13'
+title: 'ling-3.0-flash-sante free: 1 provider, limits and ids, provider probes 2026-10-15'
 description: ling-3.0-flash-sante is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-10-13
+last_modified_at: 2026-10-15
 crumb: ling-3.0-flash-sante
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-sante
 
 # Where ling-3.0-flash-sante is free
 
-**One row on the list serves `ling-3.0-flash-sante` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-10-13; its offer is rechecked twice a week.
+**One row on the list serves `ling-3.0-flash-sante` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-flash-sante
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-13 · listed since 2026-09-30
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-30
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
