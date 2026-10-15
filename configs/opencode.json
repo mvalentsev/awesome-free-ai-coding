@@ -715,11 +715,7 @@
           "name": "upstage/solar-mini4:free"
         },
         "stepfun/step-5-preview:free": {
-          "name": "stepfun/step-5-preview:free",
-          "limit": {
-            "context": 1000000,
-            "output": 64000
-          }
+          "name": "stepfun/step-5-preview:free"
         }
       }
     },

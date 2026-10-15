@@ -6308,13 +6308,9 @@ entries:
     - meituan/longcat-2.5-preview:free
     - upstage/solar-mini4:free
     - stepfun/step-5-preview:free
-    model_limits:
-      stepfun/step-5-preview:free:
-        context_tokens: 1000000
-        output_tokens: 64000
-        source: https://inference-api.nousresearch.com/v1/models
     note: Select a :free model and use your Nous Portal key; paid variants are outside
-      the free plan.
+      the free plan. The Step 5 catalog has served different token limits; check its
+      current model entry before choosing a large context or output budget.
   data_use:
     trains: opt-out
     quote: When Privacy Mode is enabled, we will not store your inference payloads
