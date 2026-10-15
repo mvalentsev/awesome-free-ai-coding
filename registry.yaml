@@ -1596,7 +1596,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-10-13'
-  probe_failures: 1
+  probe_failures: 2
   provisional: false
   rank: 30
 - id: ovh-ai-endpoints
@@ -5972,7 +5972,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-09-14'
   last_verified: '2026-10-13'
-  probe_failures: 1
+  probe_failures: 2
   provisional: false
   rank: 99
 - id: jetbrains-ai

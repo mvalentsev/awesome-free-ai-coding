@@ -11,7 +11,7 @@ crumb: Yolo-Auto
 
 # Yolo-Auto free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13; the probe since has not found that evidence, and 3 misses in a row archive the row · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-13; the 2 probes since have not found that evidence, and 3 misses in a row archive the row · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
