@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'nemotron-3-super free: 6 providers, limits and ids, provider probes 2026-10-15'
-description: nemotron-3-super is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe…
+title: 'nemotron-3-super free: 5 providers, limits and ids, provider probes 2026-10-15'
+description: nemotron-3-super is served free by OpenRouter (free models), Kilo Code, Requesty, AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/nemotron-3-super/
 last_modified_at: 2026-10-15
 crumb: nemotron-3-super
@@ -11,7 +11,7 @@ crumb: nemotron-3-super
 
 # Where nemotron-3-super is free
 
-**6 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
+**5 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -77,26 +77,6 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 - Callable ids: `nvidia/nemotron-3-super-120b-a12b`
 - What you send may be used to train or improve models ([the vendor's words](https://www.requesty.ai/privacy)).
 
-### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
-
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-10-15 · listed since 2026-09-22
-
-Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Published ceiling: 40 requests/minute; 10,000 requests/day per account
-
-No card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.
-
-</details>
-
-- Base URL: `https://integrate.api.nvidia.com/v1`
-- Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `nvidia/nemotron-3-super-120b-a12b`
-- What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
-
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
 🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
@@ -150,6 +130,7 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ## Rows that listed it before
 
+- [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) — listed 2026-09-22 to 2026-10-15
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
 
 ## Related models

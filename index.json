@@ -2449,8 +2449,7 @@
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
-          "family": "nemotron-3-super",
-          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
+          "family": "nemotron-3.5-super-vl"
         },
         {
           "family": "laguna-xs-2.1"
@@ -13724,18 +13723,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
     },
     {
-      "family": "nemotron-3-super",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
-        "nvidia-nim",
-        "aihubmix",
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
-    },
-    {
       "family": "nemotron-3.5-lightning",
       "rows": [
         "opencode",
@@ -13817,6 +13804,17 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
+    },
+    {
+      "family": "nemotron-3-super",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
       "family": "glm-5.2",
@@ -14480,6 +14478,12 @@
       "family": "mistral-small-4",
       "rows": [
         "regolo"
+      ]
+    },
+    {
+      "family": "nemotron-3.5-super-vl",
+      "rows": [
+        "nvidia-nim"
       ]
     },
     {

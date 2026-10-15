@@ -1447,8 +1447,7 @@ entries:
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: nemotron-3.5-super-vl
   - family: laguna-xs-2.1
   - family: muse-glimmer-30b
     tier: notable
