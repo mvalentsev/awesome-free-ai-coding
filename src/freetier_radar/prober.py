@@ -1916,7 +1916,11 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
                 continue
             row = rows[mid]
             top = row.get("top_provider")
-            values = {"context_tokens": row.get("context_length"),
+            contexts = [row.get("context_length"),
+                        top.get("context_length") if isinstance(top, dict) else None]
+            context = min((value for value in contexts if type(value) is int and value > 0),
+                          default=None)
+            values = {"context_tokens": context,
                       "output_tokens": top.get("max_completion_tokens") if isinstance(top, dict) else None}
             changed = []
             for field, value in values.items():

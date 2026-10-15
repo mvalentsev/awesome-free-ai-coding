@@ -717,8 +717,8 @@
         "stepfun/step-5-preview:free": {
           "name": "stepfun/step-5-preview:free",
           "limit": {
-            "context": 1048576,
-            "output": 65536
+            "context": 1000000,
+            "output": 64000
           }
         }
       }

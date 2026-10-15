@@ -6310,8 +6310,8 @@ entries:
     - stepfun/step-5-preview:free
     model_limits:
       stepfun/step-5-preview:free:
-        context_tokens: 1048576
-        output_tokens: 65536
+        context_tokens: 1000000
+        output_tokens: 64000
         source: https://inference-api.nousresearch.com/v1/models
     note: Select a :free model and use your Nous Portal key; paid variants are outside
       the free plan.
