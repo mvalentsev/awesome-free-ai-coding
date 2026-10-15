@@ -824,25 +824,61 @@ async def test_the_free_mark_is_read_per_endpoint_and_per_publisher():
 
 
 @respx.mock
-async def test_a_deprecation_date_takes_an_id_out_before_it_stops_answering():
-    """A DEPRECATION date on the free list withdraws the endpoint on the first run
-    that sees it, while it still answers: a config id becomes a note, and a Models
-    family resting on it fails."""
+async def test_an_elapsed_deprecation_date_requires_current_endpoint_review():
+    """An announcement expires verification without inventing a withdrawal."""
     mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
              ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
                         ngc_endpoint("z-ai", "glm-5-3", deprecation="10/06/2026")))
     async with httpx.AsyncClient() as client:
-        result = await probe_entry(client, nim_entry(), backoff=0)
-    assert result.status is ProbeStatus.STALE_IDS
-    assert "z-ai/glm-5.3 is marked unavailable" in result.detail
+        result = await probe_entry(client, nim_entry(), backoff=0, today=date(2026, 10, 7))
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert "current endpoint availability requires review" in result.detail
 
     mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
              ngc_search(ngc_endpoint("moonshotai", "kimi-k3", deprecation="10/06/2026"),
                         ngc_endpoint("z-ai", "glm-5-3")))
     async with httpx.AsyncClient() as client:
-        result = await probe_entry(client, nim_entry(), backoff=0)
-    assert result.status is ProbeStatus.FAIL
-    assert "marked unavailable" in result.detail and "moonshotai/kimi-k3" in result.detail
+        result = await probe_entry(client, nim_entry(), backoff=0, today=date(2026, 10, 7))
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert "moonshotai/kimik3" in result.detail
+
+
+@pytest.mark.parametrize("day,status", [
+    (date(2026, 10, 15), ProbeStatus.PASS),
+    (date(2026, 10, 19), ProbeStatus.PASS),
+    (date(2026, 10, 20), ProbeStatus.INCONCLUSIVE),
+])
+@respx.mock
+async def test_free_endpoint_announcement_does_not_prematurely_withdraw_it(day, status):
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
+                        ngc_endpoint("z-ai", "glm-5-3", deprecation="10/19/2026")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0, today=day)
+    assert result.status is status
+
+
+@respx.mock
+async def test_unreadable_retirement_date_leaves_offer_unchecked():
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
+                        ngc_endpoint("z-ai", "glm-5-3", deprecation="later this month")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0, today=date(2026, 10, 15))
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert "retirement date" in result.detail
+
+
+@respx.mock
+async def test_future_retirement_does_not_override_catalog_unavailability():
+    catalog = nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3")
+    catalog["data"][1]["available"] = False
+    mock_nim(catalog, ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
+                                ngc_endpoint("z-ai", "glm-5-3", deprecation="10/19/2026")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0, today=date(2026, 10, 15))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "marked unavailable" in result.detail
 
 
 @respx.mock

@@ -67,7 +67,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
     # a catalog read with a free list is checked with the list's marks on it.
     page = resp
     if entry.probe.free_list is not None:
-        resp, stop = await _read_free_list(client, entry, resp, attempts, backoff)
+        resp, stop = await _read_free_list(client, entry, resp, attempts, backoff, today=today)
         if stop is not None:
             return stop
     detail = check_content(resp, entry)
@@ -158,9 +158,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
                                           today or date.today()))
         if entry.page_catalog is not None:
-            from .page_catalog import check_page_catalog, check_model_eligibility
+            from .page_catalog import check_page_catalog, check_model_eligibility, catalog_sources
             condition_bodies={}
-            for source in {c.source for c in entry.page_catalog.conditions.values() if c.source}:
+            for source in catalog_sources(entry.page_catalog):
                 response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
                 if response is not None:condition_bodies[source]=response.text
             changes = check_page_catalog(page.text, entry.page_catalog, condition_bodies, today=today)
@@ -296,7 +296,7 @@ async def _read_followed(client: httpx.AsyncClient, entry: Entry, index: httpx.R
 
 
 async def _read_free_list(client: httpx.AsyncClient, entry: Entry, catalog: httpx.Response,
-                          attempts: int, backoff: float
+                          attempts: int, backoff: float, *, today: date | None = None
                           ) -> tuple[httpx.Response | None, ProbeResult | None]:
     """The catalog with the vendor's free marks on it — see join_free_list. A
     list that cannot be read leaves the offer unchecked rather than unmet:
@@ -305,7 +305,7 @@ async def _read_free_list(client: httpx.AsyncClient, entry: Entry, catalog: http
     url = entry.probe.free_list
     listed, failure = await _fetch_page(client, url, attempts, backoff)
     if listed is not None:
-        joined, failure = join_free_list(catalog, listed, entry.probe.lane)
+        joined, failure = join_free_list(catalog, listed, entry.probe.lane, today=today)
         if joined is not None:
             return joined, None
     return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"free list {url} {failure}")
@@ -1411,9 +1411,9 @@ def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
     """The endpoints a free list marks free, keyed as `_free_endpoints` keys
     them, each with the date the vendor retires it or "" — or, where the
     document cannot be read as a free list, why. A retirement is a DEPRECATION
-    attribute holding the last day the endpoint is supported, as the vendor
-    writes it ("09/21/2026"); the model's page then reads "Free Endpoint:
-    Deprecated"."""
+    attribute announcing a deprecation date, as the vendor writes it
+    ("09/21/2026"). The model page can give a different last supported day;
+    the date alone does not establish that the endpoint is unavailable."""
     endpoints = _free_endpoints(resp)
     if isinstance(endpoints, str):
         return endpoints
@@ -1462,15 +1462,14 @@ def _utc_day(stamp: object) -> date | None:
 
 
 def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
-                   lane: str | None = None) -> tuple[httpx.Response | None, str]:
+                   lane: str | None = None, *, today: date | None = None
+                   ) -> tuple[httpx.Response | None, str]:
     """The catalog as it would read if it carried the free list's marks itself,
     or None and why the list could not be read.
 
     A catalog that prices nothing leaves require_zero_price nothing to read, so
-    the marks go where a flag would be: an id the list marks is `free`, one the
-    list also dates for retirement is `available: false` as well — the vendor's
-    word that the endpoint is going, said before the day it stops answering —
-    and every other id is `free: false`, the ones the catalog keeps answering
+    the marks go where a flag would be: an id the list marks is `free`, and every
+    other id is `free: false`, the ones the catalog keeps answering
     with no page at all among them. From there the family check, the dead ids
     and the unlisted ones read it as they read Kilo's isFree or Routeway's
     available. A catalog that is not JSON is handed back as it came, for the
@@ -1478,15 +1477,27 @@ def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
     marks = free_list_marks(free_list)
     if isinstance(marks, str):
         return None, marks
+    # The announced date is not proof of withdrawal: GLM's attribute says
+    # 10/27 but its notice says supported through 10/28, with isDeprecated=false.
+    # https://build.nvidia.com/z-ai/glm-5-3 (checked 2026-10-15).
+    # Expire verification after the date and require current endpoint review.
+    for key, stamp in marks.items():
+        if not stamp:
+            continue
+        try:
+            announced_day = datetime.strptime(stamp, "%m/%d/%Y").date()
+        except ValueError:
+            return None, f"unreadable retirement date {stamp!r} for {key}"
+        if announced_day < (today or date.today()):
+            return None, (f"announced retirement date {stamp} has passed for {key}; "
+                          "current endpoint availability requires review")
     try:
         data = catalog.json()
     except json.JSONDecodeError:
         return catalog, ""
     for model in _rows(data, lane):
-        retired = marks.get(_id_squash(_model_id(model)))
-        model["free"] = retired is not None
-        if retired:
-            model["available"] = False
+        key = _id_squash(_model_id(model))
+        model["free"] = key in marks
     return httpx.Response(catalog.status_code, json=data, request=catalog.request), ""
 
 
@@ -1746,8 +1757,11 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
         return [m.family for m in entry.models
                 if not any(names_family(m.family, _squash(name), _squash) for name in free)]
     squashed, text = _squash(resp.text), resp.text.lower()
+    labels = {model.model.family: model.name for model in entry.page_catalog.models
+              if model.model and model.listed and not model.expired} if entry.page_catalog else {}
     return [m.family for m in entry.models
-            if not names_family(m.family, squashed, _squash) and not _named_in_parts(m.family, text)]
+            if not names_family(m.family, squashed, _squash) and not _named_in_parts(m.family, text)
+            and not (m.family in labels and names_family(labels[m.family], squashed, _squash))]
 
 
 def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None:

@@ -46,19 +46,17 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Published allowance: $1.5/day per account (Full-access Free plan). Your daily allowance resets at midnight in your local timezone.
-
-Session-based limited mode: 6 one-hour sessions per day per account
+- Limits, in the vendor's words: Session-based limited mode: 6 one-hour sessions per day per account
 
 “Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.
 
-Daily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.
+Daily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.
 
-Check your account's picker for current model hour prices. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.
+Check your account's picker for current model hour prices. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo Fast: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.
 
-Freebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).
+Your balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).
 
-MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).
+MiMo Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).
 
 </details>
 
@@ -80,7 +78,9 @@ DeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per
 
 Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`
 
-Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported.
+Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
+
+Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
 </details>
 

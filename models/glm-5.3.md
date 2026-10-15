@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'glm-5.3 free: 3 providers, limits and ids, provider probes 2026-10-15'
-description: glm-5.3 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-5.3 free: 4 providers, limits and ids, provider probes 2026-10-15'
+description: glm-5.3 is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3/
 last_modified_at: 2026-10-15
 crumb: glm-5.3
@@ -11,11 +11,31 @@ crumb: glm-5.3
 
 # Where glm-5.3 is free
 
-**3 rows on the list serve `glm-5.3` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3).
+**4 rows on the list serve `glm-5.3` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
+
+### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
+
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-10-15 · listed since 2026-10-15
+
+Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Published ceiling: 40 requests/minute; 10,000 requests/day per account
+
+No card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.
+
+</details>
+
+- Base URL: `https://integrate.api.nvidia.com/v1`
+- Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
+- Callable ids: `z-ai/glm-5.3`
+- What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
@@ -90,7 +110,6 @@ Global and mainland BigModel accounts have different per-model daily trial grant
 
 ## Rows that listed it before
 
-- [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) — listed 2026-09-29 to 2026-10-15
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
 
 ## Related models

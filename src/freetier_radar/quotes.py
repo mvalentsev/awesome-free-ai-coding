@@ -130,6 +130,8 @@ def row_quote_source(entry: Entry, field: str) -> str | None:
         return entry.quotas[int(match[1])].source
     if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.conditions\.(.+)\.quote',field)):
         return entry.page_catalog.conditions[match[1]].source or entry.page_catalog.source
+    if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.budgets\[(\d+)\]\.amount_quote', field)):
+        return entry.page_catalog.budgets[int(match[1])].amount_source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
 
 
@@ -160,8 +162,9 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     if lane := entry.api or entry.client_lane:
         urls.extend(a.source for a in lane.model_access.values())
     if entry.page_catalog:
+        from .page_catalog import catalog_sources
         urls.append(entry.page_catalog.source)
-        urls.extend(c.source for c in entry.page_catalog.conditions.values() if c.source)
+        urls.extend(catalog_sources(entry.page_catalog))
         urls.extend(a.source for a in entry.page_catalog.model_access.values())
         urls.extend(m.first_free.source for m in entry.page_catalog.models if m.first_free)
     return list(dict.fromkeys(urls))

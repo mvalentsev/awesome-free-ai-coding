@@ -171,6 +171,89 @@ def page(*, amount=100, hours=10, names=("Alpha", "Beta", "Gamma"), rows=None,
 
 
 @respx.mock
+async def test_catalog_picker_label_can_differ_from_its_canonical_family():
+    data = session_catalog_data()
+    data['models'][0].update(name='Quick Choice', listed=True)
+    body = page().replace('Alpha', 'Quick Choice')
+    respx.get(data['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry(data), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert [model.family for model in entry(data).models] == ['alpha']
+
+
+@respx.mock
+async def test_catalog_picker_alias_cannot_hide_a_missing_or_changed_offer():
+    data = session_catalog_data()
+    data['models'][0].update(name='Quick Choice', listed=True)
+    async with httpx.AsyncClient() as client:
+        respx.get(data['source']).respond(200, text=page().replace('Alpha', 'Other Choice'))
+        missing = await probe_entry(client, entry(data), attempts=1, backoff=0)
+        respx.get(data['source']).respond(200, text=page(amount=150).replace('Alpha', 'Quick Choice'))
+        changed = await probe_entry(client, entry(data), attempts=1, backoff=0)
+    assert missing.status is ProbeStatus.STALE_MODELS
+    assert 'alpha' in missing.detail
+    assert changed.status is ProbeStatus.STALE_IDS and 'budget US' in changed.detail
+
+
+@respx.mock
+async def test_regional_budget_amount_is_rechecked_on_its_own_plan_source():
+    from freetier_radar.quotes import row_quote_source, row_urls
+    data = session_catalog_data()
+    data['read'].update(format='markdown', table_heading=None)
+    data['reviewed_on'] = date.today().isoformat()
+    plans = 'https://vendor.example/plans'
+    amount_quote = 'Free plan includes 100 Credits a day.'
+    data['budgets'] = [
+        {'id': 'us', 'amount': 100, 'countries': ['US'], 'quote': 'Full access covers US.',
+         'amount_source': plans, 'amount_quote': amount_quote},
+        {'id': 'other', 'amount': 25, 'scope': 'else', 'quote': '25 Credits a day elsewhere'},
+        {'id': 'vpn', 'amount': 20, 'scope': 'vpn', 'quote': '20 Credits a day on a VPN'},
+    ]
+    data['conditions']['wallet'] = {'kind': 'wallet', 'quote': 'Credits buy one-hour sessions.'}
+    for model in data['models'][:2]:
+        model.update(hours=None, condition='wallet', listed=True)
+    body = '''# Vendor
+Credits every day for free.
+### Which models?
+- Alpha: Balanced.
+- Beta: Reasoning.
+- Gamma: Paid.
+### How do credits work?
+Full access covers US. Credits buy one-hour sessions.
+Free plan includes 100 Credits a day.
+### What is limited mode?
+25 Credits a day elsewhere, or 20 Credits a day on a VPN.
+Session-based limited mode includes Alpha and Beta, with 6 one-hour sessions per day.
+Gamma needs a paid plan.
+'''
+    e = entry(data)
+    respx.get(data['source']).respond(200, text=body)
+    route = respx.get(plans).respond(200, text=amount_quote)
+    async with httpx.AsyncClient() as client:
+        good = await probe_entry(client, e, attempts=1, backoff=0)
+        route.respond(200, text='Free plan includes 50 Credits a day.')
+        changed = await probe_entry(client, e, attempts=1, backoff=0)
+        route.respond(503)
+        unreadable = await probe_entry(client, e, attempts=1, backoff=0)
+    assert good.status is ProbeStatus.PASS
+    assert changed.status is ProbeStatus.STALE_IDS and 'budgets[0].amount_quote' in changed.detail
+    assert unreadable.status is ProbeStatus.STALE_IDS and 'budgets[0].amount_quote' in unreadable.detail
+    assert plans in row_urls(e)
+    assert row_quote_source(e, 'page_catalog.budgets[0].amount_quote') == plans
+
+
+@pytest.mark.parametrize('quote', ['100 Credits', 'Free plan … 100 Credits', 'Free plan ... 100 Credits'])
+def test_a_separate_budget_amount_cannot_use_an_uncheckable_fragment(quote):
+    from pydantic import ValidationError
+    from freetier_radar.models import CreditBudget
+    with pytest.raises(ValidationError):
+        CreditBudget.model_validate({'id': 'us', 'amount': 100, 'countries': ['US'],
+            'quote': 'Full access covers US.', 'amount_source': 'https://vendor.example/plans',
+            'amount_quote': quote})
+
+
+@respx.mock
 async def test_markdown_faq_checks_budgets_without_inventing_model_hour_prices(tmp_path):
     from freetier_radar.render import build_index
     from freetier_radar.models import load_registry,save_registry

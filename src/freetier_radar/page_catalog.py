@@ -144,6 +144,11 @@ def _differences(label: str, expected: set[str], actual: set[str]) -> list[str]:
     return out
 
 
+def catalog_sources(catalog: PageCatalog) -> list[str]:
+    return list(dict.fromkeys([c.source for c in catalog.conditions.values() if c.source]
+                              + [b.amount_source for b in catalog.budgets if b.amount_source]))
+
+
 def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[str,str] | None = None,
                        today: date | None = None) -> list[str]:
     """Notes for a reviewer; a changed price does not end the whole service."""
@@ -211,6 +216,12 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     evidence = [" ".join(page.visible), *[answer for answers in page.faq.values() for answer in answers]]
     pages = [text for part in evidence for text in page_texts(part)]
     for field, quote in catalog_quotes(catalog):
+        if match := re.fullmatch(r'page_catalog\.budgets\[(\d+)\]\.amount_quote', field):
+            budget = catalog.budgets[int(match[1])]
+            source = body if budget.amount_source == catalog.source else (condition_bodies or {}).get(budget.amount_source)
+            if source is None or not quote_found(quote, page_texts(source)):
+                notes.append(f'{field} no longer evidenced on its own source')
+            continue
         if match := re.fullmatch(r'page_catalog\.conditions\.(.+)\.quote',field):
             condition=catalog.conditions[match[1]]
             if condition.source and condition.source != catalog.source:
@@ -261,6 +272,8 @@ def check_model_eligibility(catalog: PageCatalog, bodies: dict[str, str]) -> lis
 def catalog_quotes(catalog: PageCatalog) -> list[tuple[str, str]]:
     return ([("page_catalog.limited_allowance", catalog.limited_allowance)] if catalog.limited_allowance else []) + [
         (f"page_catalog.budgets[{i}].quote", b.quote) for i, b in enumerate(catalog.budgets) if b.quote] + [
+        (f"page_catalog.budgets[{i}].amount_quote", b.amount_quote)
+        for i, b in enumerate(catalog.budgets) if b.amount_quote] + [
         (f"page_catalog.conditions.{key}.quote", c.quote) for key, c in catalog.conditions.items() if c.quote] + [
         (f"page_catalog.notes[{i}]", quote) for i, quote in enumerate(catalog.notes)]
 

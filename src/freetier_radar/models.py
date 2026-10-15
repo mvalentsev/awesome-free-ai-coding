@@ -650,9 +650,24 @@ class CreditBudget(BaseModel):
     id: str = Field(pattern=r"^[a-z0-9-]+$")
     amount: int | None = Field(default=None, gt=0, strict=True)
     quote: str | None = Field(default=None, min_length=3, max_length=1200)
+    amount_source: str | None = Field(default=None, exclude_if=lambda v: v is None)
+    amount_quote: str | None = Field(default=None, min_length=3, max_length=1200,
+                                     exclude_if=lambda v: v is None)
     scope: Literal["countries", "else", "vpn"] = Field(
         default="countries", exclude_if=lambda v: v == "countries")
     countries: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+
+    @field_validator('amount_source')
+    @classmethod
+    def _amount_source_is_https(cls, value):
+        return FreeAccess._source_is_https(value) if value else value
+
+    @field_validator('amount_quote')
+    @classmethod
+    def _amount_quote_is_checkable(cls, value):
+        if value is not None and (len(value.split()) < 3 or '…' in value or '...' in value):
+            raise ValueError('a budget amount needs one checkable source fragment of at least three words')
+        return value
 
     @model_validator(mode="after")
     def _scope_names_known_countries(self) -> CreditBudget:
@@ -661,6 +676,9 @@ class CreditBudget(BaseModel):
             raise ValueError("a country budget needs countries; else/vpn budgets do not name countries")
         if len(set(self.countries)) != len(self.countries) or any(c not in COUNTRIES for c in self.countries):
             raise ValueError("budget countries must be distinct known country codes")
+        if bool(self.amount_source) != bool(self.amount_quote) or (
+                self.amount_quote and (self.amount is None or not self.quote)):
+            raise ValueError('a separately sourced budget amount needs its amount, source and quote')
         return self
 
 
@@ -801,7 +819,7 @@ class PageCatalog(BaseModel):
             if not all(b.quote for b in self.budgets):
                 raise ValueError('quoted budgets need evidence for every scope')
             for budget in self.budgets:
-                if budget.amount is not None and not re.search(rf'\b{budget.amount}\b', budget.quote):
+                if budget.amount is not None and not re.search(rf'\b{budget.amount}\b', budget.amount_quote or budget.quote):
                     raise ValueError('budget amount must match its evidence quote')
                 if budget.countries and set(budget.countries) != quoted_codes(budget.quote):
                     raise ValueError('budget countries must match their evidence quote')

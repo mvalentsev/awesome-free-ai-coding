@@ -162,6 +162,12 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/nvidia/nemotron-3.5-super-vl:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-super-vl:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -240,6 +246,12 @@ model_list:
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
     use_chat_completions_api: true
+- model_name: nvidia-nim/z-ai/glm-5.3
+  litellm_params:
+    model: openai/z-ai/glm-5.3
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
 - model_name: nvidia-nim/z-ai/glm-5.3-flash
   litellm_params:
     model: openai/z-ai/glm-5.3-flash
@@ -315,6 +327,18 @@ model_list:
 - model_name: nvidia-nim/meta/llama-3.2-11b-vision-instruct
   litellm_params:
     model: openai/meta/llama-3.2-11b-vision-instruct
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
+- model_name: nvidia-nim/nvidia/nemotron-3.5-super-vl-120b-a12b
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-super-vl-120b-a12b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
+- model_name: nvidia-nim/stepfun-ai/step-5-preview
+  litellm_params:
+    model: openai/stepfun-ai/step-5-preview
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
@@ -705,6 +729,12 @@ model_list:
   model_info:
     access: free until 2026-11-02 00:00+03:00
     source: https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
+- model_name: llmtr/nvidia/nemotron-3.5-super-vl-free
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-super-vl-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -726,6 +756,12 @@ model_list:
 - model_name: vercel-ai-gateway/nvidia/nemotron-3.5-lightning-free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-lightning-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: vercel-ai-gateway/stealth/cat-jam
+  litellm_params:
+    model: openai/stealth/cat-jam
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
@@ -1281,12 +1317,6 @@ model_list:
     api_base: https://api.inceptionlabs.ai/v1
     api_key: os.environ/INCEPTION_LABS_API_KEY
     use_chat_completions_api: true
-- model_name: blue-claw/auto
-  litellm_params:
-    model: openai/auto
-    api_base: https://openai.blueclaw.network/v1
-    api_key: os.environ/BLUE_CLAW_API_KEY
-    use_chat_completions_api: true
 - model_name: freeinference/glm-5.3-flash
   litellm_params:
     model: openai/glm-5.3-flash
@@ -1727,6 +1757,17 @@ model_list:
     model: openai/qwen/qwen3.8-27b
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/z-ai/glm-5.3
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

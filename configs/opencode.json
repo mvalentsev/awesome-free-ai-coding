@@ -87,6 +87,9 @@
         },
         "openrouter/free": {
           "name": "openrouter/free"
+        },
+        "nvidia/nemotron-3.5-super-vl:free": {
+          "name": "nvidia/nemotron-3.5-super-vl:free"
         }
       }
     },
@@ -152,15 +155,11 @@
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
         },
-        "stepfun/step-5-preview-free": {
-          "name": "stepfun/step-5-preview-free",
-          "limit": {
-            "context": 1000000,
-            "output": 64000
-          }
-        },
         "stealth/glyph-cluster": {
           "name": "stealth/glyph-cluster"
+        },
+        "nvidia/nemotron-3.5-super-vl:free": {
+          "name": "nvidia/nemotron-3.5-super-vl:free"
         }
       }
     },
@@ -212,6 +211,9 @@
         "apiKey": "{env:NVIDIA_NIM_API_KEY}"
       },
       "models": {
+        "z-ai/glm-5.3": {
+          "name": "z-ai/glm-5.3"
+        },
         "z-ai/glm-5.3-flash": {
           "name": "z-ai/glm-5.3-flash"
         },
@@ -250,6 +252,12 @@
         },
         "meta/llama-3.2-11b-vision-instruct": {
           "name": "meta/llama-3.2-11b-vision-instruct"
+        },
+        "nvidia/nemotron-3.5-super-vl-120b-a12b": {
+          "name": "nvidia/nemotron-3.5-super-vl-120b-a12b"
+        },
+        "stepfun-ai/step-5-preview": {
+          "name": "stepfun-ai/step-5-preview"
         }
       }
     },
@@ -511,6 +519,9 @@
             "context": 262144,
             "output": 32768
           }
+        },
+        "nvidia/nemotron-3.5-super-vl-free": {
+          "name": "nvidia/nemotron-3.5-super-vl-free"
         }
       }
     },
@@ -543,6 +554,9 @@
         },
         "nvidia/nemotron-3.5-lightning-free": {
           "name": "nvidia/nemotron-3.5-lightning-free"
+        },
+        "stealth/cat-jam": {
+          "name": "stealth/cat-jam"
         }
       }
     },
@@ -1058,19 +1072,6 @@
         },
         "mercury-edit-2": {
           "name": "mercury-edit-2"
-        }
-      }
-    },
-    "blue-claw": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Blue Claw Network",
-      "options": {
-        "baseURL": "https://openai.blueclaw.network/v1",
-        "apiKey": "{env:BLUE_CLAW_API_KEY}"
-      },
-      "models": {
-        "auto": {
-          "name": "auto"
         }
       }
     },

@@ -38,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/step-5-preview`, `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`, `cline-free/solar-mini4`
+- In Cline's own model list: `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`, `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`
 
 ## Evidence
 

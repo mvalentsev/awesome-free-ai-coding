@@ -18,6 +18,37 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [hyper.charm.land]
+    name: Charm Hyper
+    checked_on: '2026-10-15'
+    reason: >-
+      The current FAQ (https://hyper.charm.land/faq, also served as
+      https://hyper.charm.land/prose/faq) explicitly retires the monthly free
+      Hypercredit allowance. Remaining access requires paid Shred/Business
+      subscriptions or prepaid credits starting at $5. Older billing docs
+      (https://hyper.charm.land/docs/plans-billing.html) and the Crush README
+      still describe the previous free plan; that conflicts with the current
+      retirement notice. The archived row preserves the previous offer.
+    reopen_if: >-
+      Current primary terms restore bundled free usage or a usable free grant.
+      Reconcile the current FAQ, billing docs and account eligibility before
+      restoring the existing row.
+  - domains: [blueclaw.network]
+    name: Blue Claw Network
+    checked_on: '2026-10-15'
+    reason: >-
+      Current onboarding (https://blueclaw.network/ and
+      https://blueclaw.network/quickstart) requires buying prepaid credits
+      before API use and no longer advertises the previous $5 welcome grant.
+      The terms (https://blueclaw.network/terms) describe promotional credits
+      generically but establish no current signup amount or eligibility.
+      The public portal shows email sign-in without a free-grant claim.
+      An account-specific grant has not been measured. The archived row
+      preserves the previously published offer.
+    reopen_if: >-
+      A current primary offer establishes a usable free model quota, recurring
+      credit or signup grant. Check exact eligibility and any initial-payment
+      condition before restoring the existing row.
   - domains: [yolo-auto.com]
     name: Yolo-Auto
     checked_on: '2026-10-15'

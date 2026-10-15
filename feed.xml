@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-15T13:42:44Z</updated>
+  <updated>2026-10-15T22:14:29Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/blue-claw/20261015T221429Z</id>
+    <title>Archived: Blue Claw Network</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/"/>
+    <updated>2026-10-15T22:14:29Z</updated>
+    <summary type="text">delisted on 2026-10-15: Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart).</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/charm-hyper/20261015T221429Z</id>
+    <title>Archived: Crush + Charm Hyper</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/"/>
+    <updated>2026-10-15T22:14:29Z</updated>
+    <summary type="text">delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261015T221429Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-10-15T22:14:29Z</updated>
+    <summary type="text">added glm-5.3 · free models: glm-5.3, glm-5.3-flash, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261015T134244Z</id>
     <title>Free models changed: Nous Portal (Hermes Agent)</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-10-04T13:53:45Z</updated>
     <summary type="text">dropped motif-3 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, minimax-m3.1-flash-preview</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/siliconflow-cn/20261003T123759Z</id>
-    <title>Free models changed: SiliconFlow (China)</title>
-    <link rel="alternate" href="https://siliconflow.cn"/>
-    <updated>2026-10-03T12:37:59Z</updated>
-    <summary type="text">added deepseek-r1-0528-qwen3-8b, glm-z1-9b-0414, qwen2.5-7b, qwen3.5-4b · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261002T165639Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-10-02T16:56:39Z</updated>
-    <summary type="text">added qwen3.8-27b · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261002T165639Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-10-02T16:56:39Z</updated>
-    <summary type="text">added deepseek-v4.1-flash · free models: kimi-k3, glm-5.3, glm-5.3-flash, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
   </entry>
 </feed>

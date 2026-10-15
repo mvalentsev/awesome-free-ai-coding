@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Crush + Charm Hyper free tier: limits, free models, verified 2026-10-15'
+title: 'Crush + Charm Hyper free tier (archived): what it offered, and why it left the list'
 description: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention. The free plan is the default for new accounts. Sign up with Google, GitHub or email. Hypercredits are the vendor's usage unit; no fixed token count follows…
 permalink: /providers/charm-hyper/
 last_modified_at: 2026-10-15
@@ -9,35 +9,23 @@ crumb: Crush + Charm Hyper
 
 {% raw %}
 
-# Crush + Charm Hyper free tier
+# Crush + Charm Hyper free tier (archived)
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-15; the probe since has not found that evidence, and 3 misses in a row archive the row · [hyper.charm.land](https://hyper.charm.land) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **archived** — delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq). · [hyper.charm.land](https://hyper.charm.land) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## What you get
+## What it offered
 
 Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention
 
-## Free models
+## Free models it listed
 
-No model is free by itself here: the free part is an amount the account spends across the catalog, so the column names none. The limits below say what it buys; the ids to call, where the row has them, are under Connect.
+The row named no free model.
 
 ## Limits, in the vendor's words
 
 100 Hypercredits/month per account
 
 The free plan is the default for new accounts. Sign up with Google, GitHub or email. Hypercredits are the vendor's usage unit; no fixed token count follows from the allowance.
-
-## Where it is offered
-
-The vendor names no country it keeps the offer from ([source](https://hyper.charm.land/terms), read 2026-09-26).
-
-## What happens to what you send
-
-What you send is not used to train models. In the vendor's words: “We do not use your Content Data to train AI models. Your prompts and outputs are processed solely to provide the Services to you. … We select providers whose terms of service prohibit training on customer data.” ([source](https://hyper.charm.land/privacy)).
-
-## Connect
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
@@ -51,10 +39,11 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-15` — Archived: delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).
 - `2026-07-22` — Added: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention
 
 ---
 
-Generated from `registry.yaml` on 2026-10-15 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-15. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

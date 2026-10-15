@@ -96,6 +96,7 @@ entries:
     - dots-studio/dots-3-note-preview:free
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
+    - nvidia/nemotron-3.5-super-vl:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -837,13 +838,8 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - dots-studio/dots-3-note-preview:free
     - thinkingmachines/inkling-small:free
-    - stepfun/step-5-preview-free
     - stealth/glyph-cluster
-    model_limits:
-      stepfun/step-5-preview-free:
-        context_tokens: 1000000
-        output_tokens: 64000
-        source: https://api.kilo.ai/api/gateway/models
+    - nvidia/nemotron-3.5-super-vl:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -1441,6 +1437,9 @@ entries:
     reviewed_on: '2026-10-06'
   free_part: models
   models:
+  - family: glm-5.3
+    tier: strong
+    aa_model: glm-5-3
   - family: glm-5.3-flash
     tier: strong
     aa_model: glm-5-3-flash
@@ -1474,6 +1473,7 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
+    - z-ai/glm-5.3
     - z-ai/glm-5.3-flash
     - deepseek-ai/deepseek-v4.1-flash
     - nvidia/nemotron-3-ultra-550b-a55b
@@ -1487,6 +1487,8 @@ entries:
     - google/diffusiongemma-26b-a4b-it
     - meta/llama-3.2-90b-vision-instruct
     - meta/llama-3.2-11b-vision-instruct
+    - nvidia/nemotron-3.5-super-vl-120b-a12b
+    - stepfun-ai/step-5-preview
     ignored_ids:
     - nvidia/nemotron-3-embed-1b
     - nvidia/nemotron-3.5-content-safety
@@ -2325,6 +2327,10 @@ entries:
     machinery_keywords: []
   first_seen: '2026-07-22'
   last_verified: '2026-10-15'
+  delisted:
+    'on': '2026-10-15'
+    reason: The current FAQ retires the monthly free Hypercredit allowance; access
+      requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).
   probe_failures: 1
   provisional: false
   rank: 50
@@ -2375,12 +2381,14 @@ entries:
     - poolside/laguna-s-2.1-free
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-lightning-free
+    - stealth/cat-jam
     ignored_ids:
     - liquid/d1
     - convaiinnovations/laya
     - convaiinnovations/laya-free
     no_family_ids:
     - stealth/glyph-cluster
+    - stealth/cat-jam
     anthropic_base_url: https://ai-gateway.vercel.sh
     codex:
       base_url: https://ai-gateway.vercel.sh/codex/v1
@@ -4386,29 +4394,18 @@ entries:
     apply.” Available models depend on the app and access level. “Freebuff collects
     prompts, messages, code, files, repository data, and agent traces when you use
     features that need them”. Check the balance and picker in your app.
-  quotas:
-  - amount: 1.5
-    unit: USD
-    period: day
-    scope: account
-    label: Published allowance
-    condition: Full-access Free plan
-    condition_quote: Displayed allowances are for full access.
-    reset: Your daily allowance resets at midnight in your local timezone.
-    source: https://freebuff.com/plans
-    quote: Free $0 / month No card required Up to $46.50 of usage a month $1.50 refilled
-      daily
-    value_phrase: $1.50 refilled daily
-    reviewed_on: '2026-10-14'
   free_part: models
   page_catalog:
     source: https://freebuff.com/llms.txt
-    unit: Freebucks
+    unit: hours
     period: day
     budgets:
     - id: full
+      amount: 30
       quote: Full access covers US, CA, GB, AU, NZ, IE, NO, SE, DK, FI, NL, AT, LU,
         IS, DE, FR, ES, IT, PT, BE, CH, LI, MT and KR.
+      amount_source: https://freebuff.com/plans
+      amount_quote: Free $0 / month No card required 30 hours refilled daily
       countries:
       - US
       - CA
@@ -4435,12 +4432,12 @@ entries:
       - MT
       - KR
     - id: else
-      amount: 25
-      quote: the free limited-access allowance is 25 Freebucks a day
+      amount: 5
+      quote: the free limited-access allowance is 5 hours a day
       scope: else
     - id: vpn
-      amount: 20
-      quote: 20 on a VPN or proxy
+      amount: 4
+      quote: 4 hours on a VPN or proxy
       scope: vpn
     example_budget: full
     read:
@@ -4453,7 +4450,7 @@ entries:
     conditions:
       wallet:
         kind: wallet
-        quote: Freebucks buy one-hour model sessions.
+        quote: Your balance is measured in hours.
       paid-gemini:
         kind: paid
         quote: PAID-ONLY row
@@ -4462,7 +4459,7 @@ entries:
         kind: paid
         note: The public Free-plan comparison requires a paid plan; paid plans allow
           one one-hour session per day.
-        reviewed_on: '2026-10-14'
+        reviewed_on: '2026-10-15'
         source: https://freebuff.com/plans
       specialist:
         kind: specialist
@@ -4471,7 +4468,7 @@ entries:
       muse-full:
         kind: wallet
         note: Credit-funded at full access; a paid plan is required at limited access.
-        reviewed_on: '2026-10-14'
+        reviewed_on: '2026-10-15'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
     models:
     - name: Solar Pro 4
@@ -4492,7 +4489,7 @@ entries:
         'on': '2026-09-26'
         source: https://web.archive.org/web/20260926080857/https://freebuff.com/
       listed: true
-    - name: MiMo 2.6 Flash
+    - name: MiMo Fast
       model:
         family: mimo-v2.6-flash
         tier: strong
@@ -4557,10 +4554,11 @@ entries:
       condition: specialist
     limited_allowance: 6 one-hour sessions per day
     notes:
-    - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
-    - Daily Freebucks refill at midnight in your local timezone and unused daily Freebucks
+    - MiMo Fast is the default on CLI, Desktop, Web, and Cloud.
+    - Daily hours refill at midnight in your local timezone and unused daily hours
       do not carry over.
-    reviewed_on: '2026-10-14'
+    - Older app versions show the same balance as Freebucks, five to an hour.
+    reviewed_on: '2026-10-15'
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
@@ -4814,6 +4812,8 @@ entries:
   - https://llmtr.com/models/scaledown/summarize-free
   - https://llmtr.com/models/scaledown/extract-free
   - https://llmtr.com/models/scaledown/classify-free
+  - https://llmtr.com/models/nvidia/nemotron-3.5-super-vl-free
+  - https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4824,7 +4824,8 @@ entries:
     the usage and billing database. Heabsy requires provider-specific data-transfer
     consent: "Heabsy models cannot be called until your account has granted the data-transfer
     consent for Heabsy". Its stream is buffered until completion, and reasoning_effort
-    is unsupported.'
+    is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the
+    provider and used to improve the model".'
   quotas:
   - unit: usage
     period: day
@@ -4874,6 +4875,15 @@ entries:
     model_ids:
     - heabsy/qwen3.8-27b-heabsy-free
     reviewed_on: '2026-10-15'
+  - unit: usage
+    period: day
+    scope: unspecified
+    label: Nemotron3.5 Super VL
+    source: https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/
+    quote: free of charge with a daily quota
+    model_ids:
+    - nvidia/nemotron-3.5-super-vl-free
+    reviewed_on: '2026-10-15'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4904,6 +4914,7 @@ entries:
     - agnes/agnes-2.5-flash
     - deepseek/deepseek-v4.1-flash-free
     - heabsy/qwen3.8-27b-heabsy-free
+    - nvidia/nemotron-3.5-super-vl-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -4977,7 +4988,9 @@ entries:
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its
       data-transfer consent under Settings → Data-transfer consents. Heabsy accepts
-      stream: true but returns chunks after completion; it rejects reasoning_effort.'
+      stream: true but returns chunks after completion; it rejects reasoning_effort.
+      For Nemotron3.5 Super VL, omit reasoning_effort; use reasoning: false to disable
+      thinking.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -5780,10 +5793,10 @@ entries:
     aa_model: mimo-v2-6-flash
   client_lane:
     model_ids:
-    - cline-free/step-5-preview
     - cline-free/mimo-v2.6-flash
     - cline-free/muse-spark-1.3-contributor
     - cline-free/solar-mini4
+    - cline-free/nemotron-3.5-super-vl
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.
@@ -7198,6 +7211,10 @@ entries:
     machinery_keywords: []
   first_seen: '2026-09-17'
   last_verified: '2026-10-15'
+  delisted:
+    'on': '2026-10-15'
+    reason: Current onboarding requires purchasing prepaid credits before API use;
+      the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart).
   probe_failures: 1
   provisional: false
   rank: 91
