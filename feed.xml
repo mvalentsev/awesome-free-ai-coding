@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-14T23:53:12Z</updated>
+  <updated>2026-10-15T10:15:50Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261015T101550Z</id>
+    <title>Free models changed: Nous Portal (Hermes Agent)</title>
+    <link rel="alternate" href="https://portal.nousresearch.com"/>
+    <updated>2026-10-15T10:15:50Z</updated>
+    <summary type="text">dropped ling-3.0-flash-fin, ling-3.0-flash-sante · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, longcat-2.5-preview</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261015T101550Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-10-15T10:15:50Z</updated>
+    <summary type="text">added claude-fable-5-1, gemini-4-argon, gpt-6-astra, gpt-6-sol; dropped ling-3.0-flash-fin · free models: gpt-6-astra, gpt-6-sol, claude-fable-5-1, gemini-4-argon, big-pickle, mimo-v2.5, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.3-contributor, mimo-v2.6-flash, longcat-2.5-preview</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20261015T101550Z</id>
+    <title>Free models changed: Vercel AI Gateway</title>
+    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
+    <updated>2026-10-15T10:15:50Z</updated>
+    <summary type="text">dropped ling-3.1-flash · free models: laguna-s-2.1</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261014T235312Z</id>
     <title>Free models changed: LLMTR</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-10-01T20:38:41Z</updated>
     <summary type="text">added ling-3.1-flash, minimax-m3.1-flash-preview · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, motif-3, ling-3.1-flash, minimax-m3.1-flash-preview</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/meganova/20261001T203841Z</id>
-    <title>Free models changed: MegaNova</title>
-    <link rel="alternate" href="https://meganova.ai"/>
-    <updated>2026-10-01T20:38:41Z</updated>
-    <summary type="text">added glm-4.7-flash · free models: mistral-small-3.2, glm-4.7-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261001T141841Z</id>
-    <title>Free models changed: AIHubMix (free models)</title>
-    <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-10-01T14:18:41Z</updated>
-    <summary type="text">added agents-a1, intern-s2 · free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, mimo-v2.5-pro, mimo-v2.5, north-mini-code, nemotron-3-ultra, nemotron-3-super, minimax-m3, minimax-m2.7, hy3, laguna-s-2.1, laguna-xs-2.1, kimi-for-coding, ling-3.0-flash, ling-3.0-tiny, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-pro, mimo-v2-flash, mimo-v2-omni, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2, agents-a1, intern-s2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261001T141841Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-01T14:18:41Z</updated>
-    <summary type="text">dropped ling-3.0-flash-fin · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, motif-3</summary>
   </entry>
 </feed>

@@ -719,13 +719,14 @@ entries:
     reviewed_on: '2026-10-13'
   free_part: models
   models:
+  - family: gpt-6-astra
+  - family: gpt-6-sol
+  - family: claude-fable-5-1
+  - family: gemini-4-argon
   - family: big-pickle
   - family: mimo-v2.5
     tier: notable
     aa_model: mimo-v2-5-0424
-  - family: ling-3.0-flash-fin
-    tier: notable
-    aa_model: ling-3-0-flash-fin
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
@@ -2373,9 +2374,6 @@ entries:
   free_part: models
   models:
   - family: laguna-s-2.1
-  - family: ling-3.1-flash
-    tier: strong
-    aa_model: ling-3-1-flash
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -6278,10 +6276,6 @@ entries:
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
-  - family: ling-3.0-flash-fin
-    tier: notable
-    aa_model: ling-3-0-flash-fin
-  - family: ling-3.0-flash-sante
   - family: longcat-2.0
     tier: notable
     aa_model: longcat-2-0

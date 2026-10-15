@@ -1104,17 +1104,24 @@
       "free_part": "models",
       "models": [
         {
+          "family": "gpt-6-astra"
+        },
+        {
+          "family": "gpt-6-sol"
+        },
+        {
+          "family": "claude-fable-5-1"
+        },
+        {
+          "family": "gemini-4-argon"
+        },
+        {
           "family": "big-pickle"
         },
         {
           "family": "mimo-v2.5",
           "tier": "notable",
           "aa_model": "mimo-v2-5-0424"
-        },
-        {
-          "family": "ling-3.0-flash-fin",
-          "tier": "notable",
-          "aa_model": "ling-3-0-flash-fin"
         },
         {
           "family": "nemotron-3-ultra",
@@ -3642,11 +3649,6 @@
       "models": [
         {
           "family": "laguna-s-2.1"
-        },
-        {
-          "family": "ling-3.1-flash",
-          "tier": "strong",
-          "aa_model": "ling-3-1-flash"
         }
       ],
       "api": {
@@ -9003,14 +9005,6 @@
           "family": "laguna-xs-2.1"
         },
         {
-          "family": "ling-3.0-flash-fin",
-          "tier": "notable",
-          "aa_model": "ling-3-0-flash-fin"
-        },
-        {
-          "family": "ling-3.0-flash-sante"
-        },
-        {
           "family": "longcat-2.0",
           "tier": "notable",
           "aa_model": "longcat-2-0"
@@ -14052,15 +14046,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
-      "family": "ling-3.0-flash-fin",
-      "rows": [
-        "opencode",
-        "nous-portal"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
-    },
-    {
       "family": "ling-3.0-tiny",
       "rows": [
         "requesty",
@@ -14168,6 +14153,12 @@
     },
     {
       "family": "big-pickle",
+      "rows": [
+        "opencode"
+      ]
+    },
+    {
+      "family": "claude-fable-5-1",
       "rows": [
         "opencode"
       ]
@@ -14321,6 +14312,12 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/"
     },
     {
+      "family": "gemini-4-argon",
+      "rows": [
+        "opencode"
+      ]
+    },
+    {
       "family": "gemma-4",
       "rows": [
         "google-ai-studio"
@@ -14375,6 +14372,18 @@
       ]
     },
     {
+      "family": "gpt-6-astra",
+      "rows": [
+        "opencode"
+      ]
+    },
+    {
+      "family": "gpt-6-sol",
+      "rows": [
+        "opencode"
+      ]
+    },
+    {
       "family": "hy3",
       "rows": [
         "aihubmix"
@@ -14415,21 +14424,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
-    },
-    {
-      "family": "ling-3.0-flash-sante",
-      "rows": [
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
-    },
-    {
-      "family": "ling-3.1-flash",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "llama-3.2-11b-vision",
@@ -14763,6 +14757,21 @@
       "family": "kolibri-1",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
+    },
+    {
+      "family": "ling-3.0-flash-fin",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
+    },
+    {
+      "family": "ling-3.0-flash-sante",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "ling-3.1-flash",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "minimax-m3.1-flash-preview",

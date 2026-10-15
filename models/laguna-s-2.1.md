@@ -93,17 +93,11 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit
 
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
 - Limits, in the vendor's words: Gateway credit: $5/month per team
 
 Zero-priced model routes: Usage allowance: amount not published (period not published) per team
 
 A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
-
-</details>
-
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
