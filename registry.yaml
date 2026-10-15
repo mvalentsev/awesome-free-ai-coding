@@ -458,7 +458,7 @@ entries:
     source: https://docs.mistral.ai/admin/billing-usage/subscriptions
     quote: Each Mistral plan includes monthly usage that is shared across Studio,
       the API, and Vibe Code.
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   - unit: requests
     period: second
     scope: organization-model
@@ -466,7 +466,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Requests per second: The request throughput limit for the model.'
-    reviewed_on: '2026-10-13'
+    reviewed_on: '2026-10-15'
   - unit: tokens
     period: minute
     scope: organization-model
@@ -474,7 +474,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Tokens per minute: The token throughput limit for the model.'
-    reviewed_on: '2026-10-13'
+    reviewed_on: '2026-10-15'
   free_part: sum
   models: []
   api:
@@ -4802,14 +4802,22 @@ entries:
   - https://llmtr.com/models/nace/drex-v1.0-free
   - https://llmtr.com/models/nace/drex-v1.5-free
   - https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
+  - https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
+  - https://llmtr.com/docs/en/gateway/heabsy/
+  - https://llmtr.com/models/scaledown/summarize-free
+  - https://llmtr.com/models/scaledown/extract-free
+  - https://llmtr.com/models/scaledown/classify-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
-  limits: Free chat rows can be called on a new account with zero balance before any
-    top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token
-    allowance to track. Paid use is prepaid; an 8% margin applies once at top-up,
+  limits: 'Free chat rows can be called on a new account with zero balance before
+    any top-up. Laguna XS 2.1 follows Poolside''s free inference offer, without a
+    token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up,
     not to model prices. Prompt and response bodies are not permanently written to
-    the usage and billing database.
+    the usage and billing database. Heabsy requires provider-specific data-transfer
+    consent: "Heabsy models cannot be called until your account has granted the data-transfer
+    consent for Heabsy". Its stream is buffered until completion, and reasoning_effort
+    is unsupported.'
   quotas:
   - unit: usage
     period: day
@@ -4850,6 +4858,15 @@ entries:
     model_ids:
     - deepseek/deepseek-v4.1-flash-free
     reviewed_on: '2026-10-12'
+  - unit: usage
+    period: day
+    scope: account
+    label: Heabsy Qwen3.8 27B
+    source: https://llmtr.com/docs/en/gateway/heabsy/
+    quote: with a daily usage limit per account
+    model_ids:
+    - heabsy/qwen3.8-27b-heabsy-free
+    reviewed_on: '2026-10-15'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4879,6 +4896,7 @@ entries:
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - deepseek/deepseek-v4.1-flash-free
+    - heabsy/qwen3.8-27b-heabsy-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -4900,6 +4918,9 @@ entries:
       deepseek/deepseek-v4.1-flash-free:
         source: https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
         until: '2026-10-16T23:59:00+03:00'
+      heabsy/qwen3.8-27b-heabsy-free:
+        source: https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
+        until: '2026-11-02T00:00:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -4921,6 +4942,10 @@ entries:
         context_tokens: 1048576
         output_tokens: 393216
         source: https://llmtr.com/v1/models
+      heabsy/qwen3.8-27b-heabsy-free:
+        context_tokens: 262144
+        output_tokens: 32768
+        source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -4938,11 +4963,13 @@ entries:
     - nace/drex-v1.5-free
     - inclusionai/ling-3.1-flash
     - anthropic/claude-haiku-5.5-free
+    - scaledown/summarize-free
+    - scaledown/extract-free
+    - scaledown/classify-free
     note: 'New accounts have a reduced shared free-model allowance during their first
-      24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
-      ordinary, streaming and small tool cycles completed, but full Codex and OpenCode
-      requests returned provider_error. Ling completed an OpenCode tool turn; Codex
-      via LiteLLM did not complete with either model.'
+      24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its
+      data-transfer consent under Settings → Data-transfer consents. Heabsy accepts
+      stream: true but returns chunks after completion; it rejects reasoning_effort.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -6375,7 +6402,7 @@ entries:
     source: https://docs.llm7.io/limits.md
     quote: 100,000 tokens per 24 hours
     value_phrase: 100,000 tokens per 24 hours
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-15'
   - amount: 1.0
     unit: requests
     period: second
@@ -6397,7 +6424,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-15'
   - amount: 60.0
     unit: requests
     period: minute
@@ -6419,7 +6446,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-15'
   - amount: 250.0
     unit: requests
     period: hour
@@ -6441,7 +6468,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-15'
   free_part: models
   models: []
   api:
@@ -6506,7 +6533,7 @@ entries:
     source: https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit
     quote: $1 credit
     value_phrase: $1 credit
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   - amount: 10.0
     unit: requests
     period: minute
@@ -6514,7 +6541,7 @@ entries:
     source: https://docs.fireworks.ai/guides/quotas_usage/account-quotas
     quote: No payment method or no credits 10 RPM
     value_phrase: No payment method or no credits 10 RPM
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   free_part: sum
   models: []
   api:
@@ -6532,7 +6559,7 @@ entries:
     codex:
       base_url: https://api.fireworks.ai/inference/v1
       source: https://docs.fireworks.ai/nexus/harnesses
-      quote: The Codex CLI, the Codex app, and the ChatGPT desktop app share one config
+      quote: The Codex CLI reads ~/.codex/config.toml
     note: ids are accounts/fireworks/models/ plus the slug the serverless pricing
       page links, read 2026-09-17; /inference/v1/models answers 401 without a key,
       so none is read off a catalog. The quickstart gives the Anthropic SDK base_url
@@ -8934,7 +8961,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Daily check-ins earn 400 points
     value_phrase: Daily check-ins earn 400 points
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   - amount: 1000.0
     unit: points
     period: day
@@ -8945,7 +8972,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Check-ins on day 4 and day 7 award 1,000 points per day
     value_phrase: Check-ins on day 4 and day 7 award 1,000 points per day
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   free_part: sum
   models: []
   border:
@@ -9000,13 +9027,13 @@ entries:
     source: https://wallabytoken.com/blog/p/kimi-k3-free-trial
     quote: every new Wallaby Token account starts with $0.50 of free trial credit
       for the Kimi K3 API
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   - unit: requests
     scope: account
     label: Trial rate limit
     source: https://wallabytoken.com/terms
     quote: may be restricted to specific models and lower rate limits
-    reviewed_on: '2026-10-08'
+    reviewed_on: '2026-10-15'
   free_part: sum
   models: []
   api:

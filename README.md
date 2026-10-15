@@ -17,7 +17,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [Inferbase](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inferbase/) · [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) · [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) · [Wallaby](https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/)
+🆕 **New this week:** [Inferbase](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inferbase/) · [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) · [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/)
 
 ## 🚀 Start here
 

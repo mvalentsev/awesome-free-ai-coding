@@ -514,6 +514,13 @@
             "context": 1048576,
             "output": 393216
           }
+        },
+        "heabsy/qwen3.8-27b-heabsy-free": {
+          "name": "heabsy/qwen3.8-27b-heabsy-free (until 2026-11-02)",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
         }
       }
     },

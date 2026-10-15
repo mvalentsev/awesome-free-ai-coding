@@ -27,7 +27,9 @@ Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not publishe
 
 DeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`
 
-Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.
+Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`
+
+Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported.
 
 ## Where it is offered
 
@@ -41,9 +43,10 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `deepseek/deepseek-v4.1-flash-free`
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `deepseek/deepseek-v4.1-flash-free`, `heabsy/qwen3.8-27b-heabsy-free`
 - `deepseek/deepseek-v4.1-flash-free`: free until 2026-10-16 23:59+03:00 ([conditions](https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free))
-- Note: New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra's -262k variant is metered. Checked 2026-10-05: Qwen ordinary, streaming and small tool cycles completed, but full Codex and OpenCode requests returned provider_error. Ling completed an OpenCode tool turn; Codex via LiteLLM did not complete with either model.
+- `heabsy/qwen3.8-27b-heabsy-free`: free until 2026-11-02 00:00+03:00 ([conditions](https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free))
+- Note: New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its data-transfer consent under Settings → Data-transfer consents. Heabsy accepts stream: true but returns chunks after completion; it rejects reasoning_effort.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -73,6 +76,11 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/models/nace/drex-v1.0-free>
 - Source: <https://llmtr.com/models/nace/drex-v1.5-free>
 - Source: <https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free>
+- Source: <https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free>
+- Source: <https://llmtr.com/docs/en/gateway/heabsy/>
+- Source: <https://llmtr.com/models/scaledown/summarize-free>
+- Source: <https://llmtr.com/models/scaledown/extract-free>
+- Source: <https://llmtr.com/models/scaledown/classify-free>
 
 ## History
 
@@ -100,6 +108,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-14 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-15 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

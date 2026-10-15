@@ -702,6 +702,16 @@ model_list:
   model_info:
     access: free until 2026-10-16 23:59+03:00
     source: https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free
+- model_name: llmtr/heabsy/qwen3.8-27b-heabsy-free
+  litellm_params:
+    model: openai/heabsy/qwen3.8-27b-heabsy-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 32768
+  model_info:
+    access: free until 2026-11-02 00:00+03:00
+    source: https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -1895,6 +1905,18 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 393216
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/heabsy/qwen3.8-27b-heabsy-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 32768
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0
