@@ -11,7 +11,7 @@ crumb: Blue Claw Network
 
 # Blue Claw Network free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-15 · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-15; the probe since has not found that evidence, and 3 misses in a row archive the row · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

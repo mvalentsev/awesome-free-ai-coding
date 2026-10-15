@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'glm-4.7-flash free: 3 providers, limits and ids, provider probes 2026-10-13 or later'
+title: 'glm-4.7-flash free: 3 providers, limits and ids, provider probes 2026-10-15'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
 last_modified_at: 2026-10-15
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-10-13 or later; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
+**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -46,7 +46,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-10-13 · listed since 2026-07-27
+🔌 LLM APIs with free tier · no card · last probe 2026-10-15 · listed since 2026-07-27
 
 GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)
 

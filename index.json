@@ -2655,8 +2655,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-10-13",
-      "probe_failures": 2,
+      "last_verified": "2026-10-15",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 30,
       "no_account": false,
@@ -3356,7 +3356,6 @@
       "models": [
         {
           "family": "command-a-plus",
-          "tier": "notable",
           "aa_model": "command-a-plus"
         },
         {
@@ -3582,7 +3581,7 @@
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-10-15",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 50,
       "no_account": false,
@@ -10073,7 +10072,7 @@
       },
       "first_seen": "2026-09-17",
       "last_verified": "2026-10-15",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 91,
       "no_account": false,
@@ -14189,7 +14188,6 @@
       "rows": [
         "cohere"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/"
     },
     {

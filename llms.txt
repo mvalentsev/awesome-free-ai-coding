@@ -157,7 +157,7 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [claude-sonnet-4](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/): notable; Kiro
 - [claude-sonnet-4.5](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/): notable; Kiro
 - [claude-sonnet-4.6](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/): notable; Google Antigravity
-- [command-a-plus](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/): notable; Cohere (trial keys)
+- [command-a-plus](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/): Cohere (trial keys)
 - [deepseek-v3.2](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/): notable; Kiro
 - [deepseek-v4-pro](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/): strong; Alibaba Cloud Model Studio (DashScope, international)
 - [gemini-2.5-pro](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/): notable; Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
