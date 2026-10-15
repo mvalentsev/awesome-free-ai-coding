@@ -41,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “Your prompt
 - Key: `STANDARDCOMPUTE_API_KEY` — get one at <https://standardcompute.com/signup>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.stdcmpt.com`
 - Callable ids: `anthropic/claude-standardcompute`, `StandardCompute`
-- Note: one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — "For Claude Code, use https://api.stdcmpt.com without /v1". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own
+- Note: one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — "Claude Code uses https://api.stdcmpt.com without /v1". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own
 
 Try it from your terminal with your key in `STANDARDCOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

@@ -122,16 +122,8 @@
           "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
           "liquid/lfm-2.5-2.6b:free",
-          "openrouter/free",
-          "apodex/apodex-1.1-mini:free"
+          "openrouter/free"
         ],
-        "model_limits": {
-          "apodex/apodex-1.1-mini:free": {
-            "context_tokens": 262144,
-            "output_tokens": 235929,
-            "source": "https://openrouter.ai/api/v1/models"
-          }
-        },
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free"
         ],
@@ -1088,7 +1080,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. Offers rotate and each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Muse Spark Contributor permits training on prompts and completions; max effort belongs to the paid Standard variant.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. Offers rotate and each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Muse Spark Contributor permits training on prompts and completions; max effort belongs to the paid Standard variant. Official 1.19.0 and 2.0.28 builds also returned that 403 in isolated runs on 2026-10-15.",
       "quotas": [
         {
           "unit": "usage",
@@ -1110,11 +1102,6 @@
           "family": "mimo-v2.5",
           "tier": "notable",
           "aa_model": "mimo-v2-5-0424"
-        },
-        {
-          "family": "ling-3.0-flash-fin",
-          "tier": "notable",
-          "aa_model": "ling-3-0-flash-fin"
         },
         {
           "family": "nemotron-3-ultra",
@@ -1141,11 +1128,6 @@
       ],
       "newcomers": [
         {
-          "family": "ling-3.1-flash",
-          "on": "2026-10-06",
-          "source": "https://opencode.ai/v2/docs/console/models/"
-        },
-        {
           "family": "step-5-preview",
           "on": "2026-10-11",
           "source": "https://opencode.ai/v2/docs/console/models/"
@@ -1153,6 +1135,11 @@
         {
           "family": "jev-1.13",
           "on": "2026-10-11",
+          "source": "https://opencode.ai/v2/docs/console/models/"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "on": "2026-10-15",
           "source": "https://opencode.ai/v2/docs/console/models/"
         }
       ],
@@ -1178,7 +1165,20 @@
         ],
         "free_marker": "",
         "require_zero_price": false,
-        "machinery_keywords": []
+        "machinery_keywords": [],
+        "model_prices": {
+          "headers": [
+            "Model",
+            "Input",
+            "Output"
+          ],
+          "name_column": "Model",
+          "price_columns": [
+            "Input",
+            "Output"
+          ],
+          "free_value": "Free"
+        }
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-10-15",
@@ -1270,7 +1270,6 @@
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling-small:free",
           "stepfun/step-5-preview-free",
-          "inclusionai/ling-3.1-flash",
           "stealth/glyph-cluster"
         ],
         "model_limits": {
@@ -2086,7 +2085,7 @@
       ],
       "card_required": false,
       "offering": "Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage",
-      "limits": "Agent usage: Usage allowance: amount not published (period not published) per account\n\nFree includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says \"Your allowance refreshes weekly\"; the help docs describe \"two separate usage pools, each resetting with your monthly billing cycle\". The help center describes Tab through Auto on Hobby; check your account for the applicable allowance and reset.",
+      "limits": "Agent usage: Usage allowance: amount not published (period not published) per account\n\nFree includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions use a shared weekly pool; legacy paid Cursor plans retain monthly pools. Those paid-plan resets do not establish the Free reset; check your account for its allowance.",
       "quotas": [
         {
           "unit": "usage",
@@ -2440,16 +2439,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "kimi-k3",
-          "tier": "strong",
-          "aa_model": "kimi-k3"
-        },
-        {
-          "family": "glm-5.3",
-          "tier": "strong",
-          "aa_model": "glm-5-3"
-        },
-        {
           "family": "glm-5.3-flash",
           "tier": "strong",
           "aa_model": "glm-5-3-flash"
@@ -2509,8 +2498,6 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "moonshotai/kimi-k3",
-          "z-ai/glm-5.3",
           "z-ai/glm-5.3-flash",
           "deepseek-ai/deepseek-v4.1-flash",
           "nvidia/nemotron-3-ultra-550b-a55b",
@@ -2589,7 +2576,8 @@
       "url": "https://z.ai",
       "source_urls": [
         "https://docs.z.ai/guides/overview/pricing",
-        "https://docs.z.ai/devpack/tool/claude"
+        "https://docs.z.ai/devpack/tool/claude",
+        "https://docs.z.ai/guides/overview/pricing.md"
       ],
       "card_required": false,
       "offering": "GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)",
@@ -2599,9 +2587,9 @@
           "unit": "usage",
           "scope": "account",
           "label": "Free Flash models",
-          "source": "https://docs.z.ai/guides/overview/pricing",
-          "quote": "GLM-4.7-Flash Free",
-          "reviewed_on": "2026-10-13",
+          "source": "https://docs.z.ai/guides/overview/pricing.md",
+          "quote": "GLM-4.7-Flash | Free",
+          "reviewed_on": "2026-10-15",
           "amount": null,
           "period": null
         }
@@ -2656,11 +2644,11 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://docs.z.ai/guides/overview/pricing",
+        "endpoint": "https://docs.z.ai/guides/overview/pricing.md",
         "keywords": [
-          "GLM-4.7-Flash</td><td style=\"text-align:left\">Free</td>",
-          "GLM-4.5-Flash</td><td style=\"text-align:left\">Free</td>",
-          "GLM-4.6V-Flash</td><td style=\"text-align:left\">Free</td>"
+          "GLM-4.7-Flash | Free | Free | Free | Free",
+          "GLM-4.5-Flash | Free | Free | Free | Free",
+          "GLM-4.6V-Flash | Free | Free | Free | Free"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -3642,11 +3630,6 @@
       "models": [
         {
           "family": "laguna-s-2.1"
-        },
-        {
-          "family": "ling-3.1-flash",
-          "tier": "strong",
-          "aa_model": "ling-3-1-flash"
         }
       ],
       "api": {
@@ -3656,9 +3639,8 @@
         "openai_compatible": true,
         "model_ids": [
           "poolside/laguna-s-2.1-free",
-          "inclusionai/ling-3.1-flash",
-          "inclusionai/ling-3.1-flash-free",
-          "stealth/glyph-cluster"
+          "stealth/glyph-cluster",
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "ignored_ids": [
           "liquid/d1",
@@ -4776,11 +4758,13 @@
       "source_urls": [
         "https://docs.aihubmix.com/en/blogs/free-ai-models",
         "https://aihubmix.com/api/v1/models",
-        "https://docs.aihubmix.com/en/api/Claude-Code"
+        "https://docs.aihubmix.com/en/api/Claude-Code",
+        "https://aihubmix.com/models/qwen3.8-flash-free",
+        "https://aihubmix.com/models/qwen3.8-max-free"
       ],
       "card_required": false,
       "offering": "One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `xiaomi-mimo-v2-omni-free`, `xiaomi-mimo-v2.5-free`, `xiaomi-mimo-v2.5-pro-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `xiaomi-mimo-v2-pro-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `union-alpha-free`, `intern-s2-free`, `dots-3-note-preview-free`, `hy3-free`, `minimax-m2.7-free`, `lfm-2.5-2.6b-free`, `ling-3.0-tiny-free`, `nemotron-3.5-lightning-free`, `ling-3.0-flash-free`, `nemotron-nano-9b-v2-free`, `nemotron-nano-12b-v2-vl-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `nemotron-3-nano-30b-a3b-free`, `mimo-v2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Exact IDs for each published cap appear above; the remaining routes have no numerical budget published. Daily quotas have no trial expiry or payment-method requirement. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `xiaomi-mimo-v2-omni-free`, `xiaomi-mimo-v2.5-free`, `xiaomi-mimo-v2.5-pro-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `xiaomi-mimo-v2-pro-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `union-alpha-free`, `intern-s2-free`, `dots-3-note-preview-free`, `hy3-free`, `minimax-m2.7-free`, `lfm-2.5-2.6b-free`, `ling-3.0-tiny-free`, `nemotron-3.5-lightning-free`, `ling-3.0-flash-free`, `nemotron-nano-9b-v2-free`, `nemotron-nano-12b-v2-vl-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `nemotron-3-nano-30b-a3b-free`, `mimo-v2-flash-free`\n\nQwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Exact IDs for each published cap appear above; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
       "quotas": [
         {
           "amount": 5.0,
@@ -5292,6 +5276,22 @@
           "reviewed_on": "2026-10-13",
           "amount": null,
           "period": null
+        },
+        {
+          "unit": "usage",
+          "scope": "account-model",
+          "label": "Qwen3.8 Flash/Max GMI promotion",
+          "condition": "30 days from launch or until campaign credits run out; launch date unconfirmed.",
+          "condition_quote": "The offer lasts for 30 days from launch or until the campaign credits are exhausted, whichever comes first.",
+          "source": "https://aihubmix.com/models/qwen3.8-flash-free",
+          "quote": "The offer lasts for 30 days from launch or until the campaign credits are exhausted, whichever comes first.",
+          "model_ids": [
+            "qwen3.8-flash-free",
+            "qwen3.8-max-free"
+          ],
+          "reviewed_on": "2026-10-15",
+          "amount": null,
+          "period": null
         }
       ],
       "free_part": "models",
@@ -5517,7 +5517,9 @@
           "xiaomi-mimo-v2-pro-free",
           "xiaomi-mimo-v2.5-pro-free",
           "xiaomi-mimo-v2.6-flash-free",
-          "xiaomi-mimo-v2.6-pro-free"
+          "xiaomi-mimo-v2.6-pro-free",
+          "qwen3.8-flash-free",
+          "qwen3.8-max-free"
         ],
         "ignored_ids": [
           "qwen3.6-plus-preview-free",
@@ -7234,7 +7236,8 @@
           "anthropic/claude-haiku-5.5-free",
           "scaledown/summarize-free",
           "scaledown/extract-free",
-          "scaledown/classify-free"
+          "scaledown/classify-free",
+          "llmtr/embeddingmagibu-200m"
         ],
         "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its data-transfer consent under Settings → Data-transfer consents. Heabsy accepts stream: true but returns chunks after completion; it rejects reasoning_effort."
       },
@@ -8019,7 +8022,7 @@
           "StandardCompute"
         ],
         "anthropic_base_url": "https://api.stdcmpt.com",
-        "note": "one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — \"For Claude Code, use https://api.stdcmpt.com without /v1\". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own"
+        "note": "one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — \"Claude Code uses https://api.stdcmpt.com without /v1\". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own"
       },
       "data_use": {
         "trains": "no",
@@ -8447,11 +8450,16 @@
       },
       "first_seen": "2026-09-14",
       "last_verified": "2026-10-13",
+      "delisted": {
+        "on": "2026-10-15",
+        "reason": "free accounts now include 0 requests/week and API inference requires a paid plan"
+      },
       "probe_failures": 2,
       "provisional": false,
       "rank": 99,
       "no_account": false,
-      "archived": false,
+      "archived": true,
+      "archived_because": "delisted on 2026-10-15: free accounts now include 0 requests/week and API inference requires a paid plan",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/"
     },
     {
@@ -9003,14 +9011,6 @@
           "family": "laguna-xs-2.1"
         },
         {
-          "family": "ling-3.0-flash-fin",
-          "tier": "notable",
-          "aa_model": "ling-3-0-flash-fin"
-        },
-        {
-          "family": "ling-3.0-flash-sante"
-        },
-        {
           "family": "longcat-2.0",
           "tier": "notable",
           "aa_model": "longcat-2-0"
@@ -9028,8 +9028,6 @@
           "stepfun/step-3.7-flash:free",
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
-          "inclusionai/ling-3.0-flash-fin:free",
-          "inclusionai/ling-3.0-flash-sante:free",
           "meituan/longcat-2.0:free",
           "meituan/longcat-2.5-preview:free",
           "upstage/solar-mini4:free",
@@ -9037,8 +9035,8 @@
         ],
         "model_limits": {
           "stepfun/step-5-preview:free": {
-            "context_tokens": 1000000,
-            "output_tokens": 64000,
+            "context_tokens": 1048576,
+            "output_tokens": 65536,
             "source": "https://inference-api.nousresearch.com/v1/models"
           }
         },
@@ -9494,8 +9492,11 @@
           "qwen/qwen3.5-0.8b",
           "google/diffusiongemma-26b-a4b-it"
         ],
+        "opencode_output_tokens": {
+          "qwen/qwen3.8-27b": 8000
+        },
         "refuses_bearer": true,
-        "note": "Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` worked despite the authentication docs. Only qwen/qwen3.8-27b advertises tools; the other two IDs returned 500 for tools. OpenCode 2.0.24 sends 32,000 output tokens by default: HTTP 400, reply budget 16,000, absent from the catalog. An experimental 8,000-token output ceiling completed a tool read and reply, but the final CLI completion event was missing. Full agent completion remains unproved. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma."
+        "note": "Omit Authorization; generic bearer tokens return 401. The OpenCode profile sets a request output budget for qwen/qwen3.8-27b; this is a client setting, not a published model limit. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices."
       },
       "border": {
         "left_out": [],
@@ -13837,17 +13838,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
-      "family": "glm-5.3",
-      "rows": [
-        "nvidia-nim",
-        "aihubmix",
-        "alibaba-model-studio",
-        "zcode"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
-    },
-    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -13916,6 +13906,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
     },
     {
+      "family": "glm-5.3",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio",
+        "zcode"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+    },
+    {
       "family": "minimax-m2.5",
       "rows": [
         "kiro",
@@ -13943,16 +13943,6 @@
         "ovh-ai-endpoints"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
-    },
-    {
-      "family": "qwen3.8-flash",
-      "rows": [
-        "alibaba-model-studio",
-        "qoder-cn",
-        "yolo-auto"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
       "family": "agnes-2.5-flash",
@@ -14041,24 +14031,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
-    },
-    {
-      "family": "kimi-k3",
-      "rows": [
-        "nvidia-nim",
-        "aihubmix"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
-    },
-    {
-      "family": "ling-3.0-flash-fin",
-      "rows": [
-        "opencode",
-        "nous-portal"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
     },
     {
       "family": "ling-3.0-tiny",
@@ -14153,6 +14125,15 @@
         "bazaarlink"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"
+    },
+    {
+      "family": "qwen3.8-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "qoder-cn"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
       "family": "agents-a1",
@@ -14403,6 +14384,14 @@
       ]
     },
     {
+      "family": "kimi-k3",
+      "rows": [
+        "aihubmix"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
+    },
+    {
       "family": "leanstral-1.5",
       "rows": [
         "requesty"
@@ -14415,21 +14404,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
-    },
-    {
-      "family": "ling-3.0-flash-sante",
-      "rows": [
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
-    },
-    {
-      "family": "ling-3.1-flash",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "llama-3.2-11b-vision",
@@ -14765,6 +14739,21 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
     },
     {
+      "family": "ling-3.0-flash-fin",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
+    },
+    {
+      "family": "ling-3.0-flash-sante",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "ling-3.1-flash",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
+    },
+    {
       "family": "minimax-m3.1-flash-preview",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash-preview/"
@@ -14791,6 +14780,16 @@
     }
   ],
   "watchlist": [
+    {
+      "domains": [
+        "yolo-auto.com"
+      ],
+      "name": "Yolo-Auto",
+      "checked_on": "2026-10-15",
+      "reason": "The current pricing page gives Free accounts 0 requests/week and requires a paid plan for API inference, starting at $19/month (https://yolo-auto.com/pricing). The model catalog labels inference access as paid (https://yolo-auto.com/models). No-card account creation does not include a usable inference allowance. The previously listed offer and its history remain in the archived row.",
+      "reopen_if": "Primary terms introduce a positive free API allowance or usable trial compute without a recurring paid subscription. Restore the existing row after checking current activation and model conditions.",
+      "current": true
+    },
     {
       "domains": [
         "beatapi.io"

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-15'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1, ling-3.1-flash. A team must add a valid payment method before using free…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-10-15
 crumb: Vercel AI Gateway
@@ -19,7 +19,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Free models
 
-[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/)
+[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
 
 ## Limits, in the vendor's words
 
@@ -43,7 +43,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.1-flash`, `inclusionai/ling-3.1-flash-free`, `stealth/glyph-cluster`
+- Callable ids: `poolside/laguna-s-2.1-free`, `stealth/glyph-cluster`, `nvidia/nemotron-3.5-lightning-free`
 - Note: The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -67,6 +67,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-15` — Free models changed: dropped ling-3.1-flash
 - `2026-10-13` — Free models changed: added ling-3.1-flash
 - `2026-10-05` — Free models changed: dropped ling-3.0-flash-sante
 - `2026-09-26` — Free models changed: dropped ling-3.0-flash-fin

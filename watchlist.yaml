@@ -18,6 +18,20 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [yolo-auto.com]
+    name: Yolo-Auto
+    checked_on: '2026-10-15'
+    reason: >-
+      The current pricing page gives Free accounts 0 requests/week and
+      requires a paid plan for API inference, starting at $19/month
+      (https://yolo-auto.com/pricing). The model catalog labels inference
+      access as paid (https://yolo-auto.com/models). No-card account
+      creation does not include a usable inference allowance. The
+      previously listed offer and its history remain in the archived row.
+    reopen_if: >-
+      Primary terms introduce a positive free API allowance or usable
+      trial compute without a recurring paid subscription. Restore the
+      existing row after checking current activation and model conditions.
   - domains: [beatapi.io]
     name: BeatAPI
     checked_on: '2026-10-13'

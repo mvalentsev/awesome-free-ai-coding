@@ -11,6 +11,7 @@ import subprocess
 import sys
 import time
 import uuid
+from contextlib import ExitStack
 from datetime import datetime, timezone
 from fnmatch import fnmatchcase
 from pathlib import Path
@@ -353,16 +354,29 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
             notes = quota_changes(body, quota) if body is not None else ['source unreadable']
             quotas.append({'row': entry.id, 'field': f'quotas[{i}]', 'source': quota.source,
                            'notes': notes, 'passed': not notes})
+    # CONTRIBUTING preserves a delisted row's last published offer. Keep its
+    # diverging historical checks visible without asserting current eligibility.
+    historical_ids = {entry.id for entry in entries if entry.delisted is not None}
+    historical_checks = {}
+    current = {}
+    for name, records in (('quotes', quotes), ('quotas', quotas),
+                          ('page_catalogs', catalogs), ('model_checks', model_checks)):
+        historical_checks[name] = [record for record in records if record['row'] in historical_ids]
+        current[name] = [record for record in records if record['row'] not in historical_ids]
+    quotes, quotas = current['quotes'], current['quotas']
+    catalogs, model_checks = current['page_catalogs'], current['model_checks']
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
                                   'page_catalogs': catalogs,
                                   'quotas': quotas,
                                   'model_checks': model_checks,
+                                  'historical_rows': sorted(historical_ids),
+                                  'historical_checks': historical_checks,
                                   'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes)
                                             and all(c['passed'] for c in catalogs)
                                             and all(q['passed'] for q in quotas)
                                             and all(m['passed'] for m in model_checks),
-                                  'judgment': 'Source reads, quote matching and configured page catalogs; vendor eligibility still needs review.'})
+                                  'judgment': 'Current source/quote/catalog checks; historical checks remain separate. Vendor eligibility and dated withdrawal evidence still need review.'})
 
 
 def produced_run(repo: Path, sha: str, run: dict, log: str, name: str,
@@ -591,7 +605,8 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
             launch_error = 'OpenCode run --help failed; no provider request sent'
         else:
             try:
-                flags = opencode_run_flags(help_result.stdout.decode(errors='replace'))
+                # OpenCode 1.19.0 emits successful help on stderr (measured 2026-10-15).
+                flags = opencode_run_flags((help_result.stdout + help_result.stderr).decode(errors='replace'))
                 argv = [binary, 'run', *flags, '--format', 'json', '-m', provider + '/' + model, prompt]
             except ValueError as exc:
                 launch_error = str(exc)
@@ -602,12 +617,23 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
         argv = [binary, 'exec', '--json', '-p', provider, '-m', model, '--sandbox', 'read-only', '--skip-git-repo-check', prompt]
     if launch_error:
         code, stdout, stderr = 1, b'', launch_error.encode()
+        budget_trace = None
     else:
-        try:
-            done = subprocess.run(argv, cwd=project, env=env, stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
-            code, stdout, stderr = done.returncode, done.stdout, done.stderr
-        except subprocess.TimeoutExpired as exc:
-            code, stdout, stderr = -1, exc.stdout or b'', (exc.stderr or b'') + b'\n120-second timeout'
+        budget_trace = None
+        with ExitStack() as stack:
+            if client == 'opencode' and (tokens := entry.api.opencode_output_tokens.get(model)):
+                from .conformance import record_opencode_output_budget
+                local, budget_trace = stack.enter_context(
+                    record_opencode_output_budget(entry.api.base_url, model, tokens))
+                config_body = json.loads(config.read_text())
+                bundle.write(prefix + 'committed-opencode.json', config.read_bytes())
+                config_body['provider'][provider]['options']['baseURL'] = local
+                config.write_text(json.dumps(config_body, indent=2) + '\n')
+            try:
+                done = subprocess.run(argv, cwd=project, env=env, stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
+                code, stdout, stderr = done.returncode, done.stdout, done.stderr
+            except subprocess.TimeoutExpired as exc:
+                code, stdout, stderr = -1, exc.stdout or b'', (exc.stderr or b'') + b'\n120-second timeout'
     bundle.write(prefix + 'stdout.jsonl', stdout)
     bundle.write(prefix + 'stderr.log', stderr)
     events = []
@@ -624,6 +650,10 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
         result['session_export'] = exported
         if exported.get('passed'):
             result.update(passed=True, completed_turn=True, completion_source='session-export')
+    if budget_trace is not None:
+        bundle.save(prefix + 'output-budget', budget_trace)
+        result['output_budget'] = budget_trace
+        result['passed'] = result['passed'] and budget_trace['passed']
     phase = 'client-' + work.name
     return bundle.save(phase, {**result, 'sha': scope['sha'], 'provider': provider, 'phase': phase,
                                           'command': argv, 'launch_error': launch_error,

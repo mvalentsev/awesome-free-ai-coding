@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import yaml
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -320,6 +320,26 @@ class Follow(BaseModel):
         return value
 
 
+class ModelPriceTable(BaseModel):
+    """Bind page model eligibility to both prices in the same table row."""
+    model_config = ConfigDict(extra="forbid")
+    headers: list[str] = Field(min_length=3)
+    name_column: str
+    price_columns: list[str] = Field(min_length=2)
+    free_value: str = Field(default="Free", min_length=1)
+
+    @model_validator(mode="after")
+    def _columns_are_bound(self):
+        columns = [self.name_column, *self.price_columns]
+        if len(set(columns)) != len(columns) or not set(columns) <= set(self.headers):
+            raise ValueError("model_prices needs distinct name and price columns in its headers")
+        if len(set(self.headers)) != len(self.headers):
+            raise ValueError("model_prices headers must be distinct")
+        if self.free_value.casefold() != "free" and not re.fullmatch(r"\$?0(?:\.0+)?", self.free_value):
+            raise ValueError("model_prices free_value must be Free or an explicit zero price")
+        return self
+
+
 class Probe(BaseModel):
     type: ProbeType
     endpoint: str
@@ -337,6 +357,7 @@ class Probe(BaseModel):
     # tag outlives the offer it was anchoring. Where the data blob IS the
     # evidence, say so here and the whole response is searched.
     machinery_keywords: list[str] = []
+    model_prices: ModelPriceTable | None = Field(default=None, exclude_if=lambda v: v is None)
     # api-models: the key a vendor lists its free lane under, for a document
     # that publishes lanes side by side instead of flagging rows. Cline's
     # recommended-models answers `recommended`, `free`, `clinePass` and
@@ -366,6 +387,12 @@ class Probe(BaseModel):
             raise ValueError(
                 f"probe {self.endpoint}: follow names a page to read for keywords, so it "
                 "belongs on a page-keywords probe")
+        return self
+
+    @model_validator(mode="after")
+    def _model_prices_read_a_page(self) -> Probe:
+        if self.model_prices is not None and self.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError("model_prices belongs on a page-keywords probe")
         return self
 
     @model_validator(mode="after")
@@ -827,6 +854,10 @@ def _access_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
         raise ValueError(f"model_access names unlisted IDs: {', '.join(sorted(unknown))}")
 
 
+OPENCODE_OUTPUT_FIELD = "max_completion_tokens"
+OPENCODE_LEGACY_OUTPUT_FIELD = "max_tokens"
+
+
 class ModelLimits(BaseModel):
     """Vendor catalog token limits used by generated clients and rechecked by the probe."""
     model_config = ConfigDict(extra="forbid")
@@ -857,6 +888,9 @@ class ApiInfo(BaseModel):
     model_ids: list[str] = []  # exact callable ids for generated configs
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_limits: dict[str, ModelLimits] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    # Chosen OpenCode request budgets; these do not assert vendor model limits.
+    opencode_output_tokens: dict[str, Annotated[int, Field(gt=0, strict=True)]] = Field(
+        default_factory=dict, exclude_if=lambda v: not v)
     # Zero-priced ids the catalog carries that are deliberately not in
     # model_ids — an image generator, a row whose own description says it was
     # removed, a lane the row does not track — with the reason in the commit
@@ -941,6 +975,14 @@ class ApiInfo(BaseModel):
         unknown = self.model_limits.keys() - set(self.model_ids) - set(self.ignored_ids)
         if unknown:
             raise ValueError(f"model_limits names unlisted IDs: {', '.join(sorted(unknown))}")
+        unknown = self.opencode_output_tokens.keys() - set(self.model_ids) - set(self.ignored_ids)
+        if unknown:
+            raise ValueError(f"opencode_output_tokens names unlisted IDs: {', '.join(sorted(unknown))}")
+        for mid, tokens in self.opencode_output_tokens.items():
+            if mid in self.model_limits and tokens > self.model_limits[mid].output_tokens:
+                raise ValueError("opencode_output_tokens exceeds the catalog output limit")
+        if self.opencode_output_tokens and (not self.base_url or not self.openai_compatible):
+            raise ValueError("opencode_output_tokens needs an OpenAI-compatible endpoint")
         return self
 
     @property
@@ -1431,10 +1473,12 @@ class Entry(BaseModel):
 
     @model_validator(mode="after")
     def _limits_are_rechecked(self) -> Entry:
-        if self.api is not None and self.api.model_limits:
+        if self.api is not None and (self.api.model_limits or self.api.opencode_output_tokens):
             catalog = (self.probe.endpoint if self.probe.type is ProbeType.API_MODELS
                        else self.probe.catalog)
-            if not catalog or any(l.source != catalog for l in self.api.model_limits.values()):
+            if self.api.opencode_output_tokens and not catalog:
+                raise ValueError("api.opencode_output_tokens requires a catalog this probe rechecks")
+            if self.api.model_limits and (not catalog or any(l.source != catalog for l in self.api.model_limits.values())):
                 raise ValueError("api.model_limits source must be the catalog this probe rechecks")
         return self
 

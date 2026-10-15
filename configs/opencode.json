@@ -87,13 +87,6 @@
         },
         "openrouter/free": {
           "name": "openrouter/free"
-        },
-        "apodex/apodex-1.1-mini:free": {
-          "name": "apodex/apodex-1.1-mini:free",
-          "limit": {
-            "context": 262144,
-            "output": 235929
-          }
         }
       }
     },
@@ -166,9 +159,6 @@
             "output": 64000
           }
         },
-        "inclusionai/ling-3.1-flash": {
-          "name": "inclusionai/ling-3.1-flash"
-        },
         "stealth/glyph-cluster": {
           "name": "stealth/glyph-cluster"
         }
@@ -222,12 +212,6 @@
         "apiKey": "{env:NVIDIA_NIM_API_KEY}"
       },
       "models": {
-        "moonshotai/kimi-k3": {
-          "name": "moonshotai/kimi-k3"
-        },
-        "z-ai/glm-5.3": {
-          "name": "z-ai/glm-5.3"
-        },
         "z-ai/glm-5.3-flash": {
           "name": "z-ai/glm-5.3-flash"
         },
@@ -405,6 +389,12 @@
         },
         "xiaomi-mimo-v2.6-pro-free": {
           "name": "xiaomi-mimo-v2.6-pro-free"
+        },
+        "qwen3.8-flash-free": {
+          "name": "qwen3.8-flash-free"
+        },
+        "qwen3.8-max-free": {
+          "name": "qwen3.8-max-free"
         }
       }
     },
@@ -548,14 +538,11 @@
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
         },
-        "inclusionai/ling-3.1-flash": {
-          "name": "inclusionai/ling-3.1-flash"
-        },
-        "inclusionai/ling-3.1-flash-free": {
-          "name": "inclusionai/ling-3.1-flash-free"
-        },
         "stealth/glyph-cluster": {
           "name": "stealth/glyph-cluster"
+        },
+        "nvidia/nemotron-3.5-lightning-free": {
+          "name": "nvidia/nemotron-3.5-lightning-free"
         }
       }
     },
@@ -718,12 +705,6 @@
         "poolside/laguna-xs-2.1:free": {
           "name": "poolside/laguna-xs-2.1:free"
         },
-        "inclusionai/ling-3.0-flash-fin:free": {
-          "name": "inclusionai/ling-3.0-flash-fin:free"
-        },
-        "inclusionai/ling-3.0-flash-sante:free": {
-          "name": "inclusionai/ling-3.0-flash-sante:free"
-        },
         "meituan/longcat-2.0:free": {
           "name": "meituan/longcat-2.0:free"
         },
@@ -736,8 +717,8 @@
         "stepfun/step-5-preview:free": {
           "name": "stepfun/step-5-preview:free",
           "limit": {
-            "context": 1000000,
-            "output": 64000
+            "context": 1048576,
+            "output": 65536
           }
         }
       }
@@ -838,7 +819,11 @@
       },
       "models": {
         "qwen/qwen3.8-27b": {
-          "name": "qwen/qwen3.8-27b"
+          "name": "qwen/qwen3.8-27b",
+          "options": {
+            "max_completion_tokens": 8000,
+            "max_tokens": 8000
+          }
         },
         "qwen/qwen3.5-0.8b": {
           "name": "qwen/qwen3.5-0.8b"
@@ -1416,19 +1401,6 @@
       "models": {
         "qwen/qwen3.5-4b-free": {
           "name": "qwen/qwen3.5-4b-free"
-        }
-      }
-    },
-    "yolo-auto": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Yolo-Auto",
-      "options": {
-        "baseURL": "https://yolo-auto.com/v1",
-        "apiKey": "{env:YOLO_AUTO_API_KEY}"
-      },
-      "models": {
-        "qwen3.8-flash": {
-          "name": "qwen3.8-flash"
         }
       }
     },

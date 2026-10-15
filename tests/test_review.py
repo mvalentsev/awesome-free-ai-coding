@@ -301,7 +301,8 @@ def test_client_success_requires_the_fresh_answer_a_tool_and_no_error():
 
 
 @pytest.mark.parametrize('mode,auto', [('--standalone', True), ('--pure', True), ('--pure', False), (None, False)])
-def test_live_client_uses_the_binarys_isolated_run_mode(tmp_path, monkeypatch, mode, auto):
+@pytest.mark.parametrize('help_stream', ['stdout', 'stderr'])
+def test_live_client_uses_the_binarys_isolated_run_mode(tmp_path, monkeypatch, mode, auto, help_stream):
     entry = {'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier',
              'url': 'https://vendor.example', 'offering': 'Public chat lane',
              'free_part': 'models', 'models': [{'family': 'alpha'}],
@@ -320,8 +321,9 @@ import json, sys
 from pathlib import Path
 args = sys.argv[1:]
 supported = ''' + repr(supported) + '''
+help_stream = ''' + repr(help_stream) + '''
 if args == ['run', '--help']:
-    print('\\n'.join(supported))
+    print('\\n'.join(supported), file=getattr(sys, help_stream))
     sys.exit(0)
 if any(flag in args for flag in ('--standalone', '--pure', '--auto') if flag not in supported):
     print('Unrecognized flag', file=sys.stderr)
@@ -644,7 +646,8 @@ def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_pat
     assert scope['rows'] == ['vendor']
 
 @respx.mock
-async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path):
+@pytest.mark.parametrize('archived', [False, True])
+async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path, archived):
     from freetier_radar.models import Entry, save_registry
     repo = repo_at(tmp_path)
     entry = Entry.model_validate({
@@ -656,6 +659,9 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
                    'source':'https://vendor.example/limits','read':'constant',
                    'constant':'FREE_MODEL_RATE_LIMIT_RPM',
                    'quote':'Free models allow 20 requests per minute.'}]})
+    if archived:
+        from freetier_radar.models import Delisting
+        entry.delisted = Delisting(on='2026-10-15', reason='free API allowance ended')
     save_registry(repo/'registry.yaml',[entry])
     subprocess.run(['git','-C',str(repo),'add','registry.yaml'],check=True)
     env = {**os.environ, 'GIT_AUTHOR_NAME':'a reviewer','GIT_AUTHOR_EMAIL':'t@example.com',
@@ -668,8 +674,12 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
         '<p>Free models allow 20 requests per minute.</p><script>const FREE_MODEL_RATE_LIMIT_RPM=10;</script>')
     result = await review.sources(bundle, [])
     assert all(q['found'] for q in result['quotes'])
-    assert not result['passed']
-    assert result['quotas'][0]['notes'] == ['quota constant FREE_MODEL_RATE_LIMIT_RPM=10 (recorded 20)']
+    assert result['passed'] is archived
+    records = result['historical_checks']['quotas'] if archived else result['quotas']
+    assert records[0]['notes'] == ['quota constant FREE_MODEL_RATE_LIMIT_RPM=10 (recorded 20)']
+    if archived:
+        assert not records[0]['passed']
+        assert result['historical_rows'] == ['vendor']
 
 
 def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_path):

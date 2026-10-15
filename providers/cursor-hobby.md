@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-15'
-description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says "Your allowance refreshes weekly"; the help docs describe "two separate usage pools, each…
+description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions…
 permalink: /providers/cursor-hobby/
 last_modified_at: 2026-10-15
 crumb: Cursor (Free)
@@ -25,7 +25,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 Agent usage: Usage allowance: amount not published (period not published) per account
 
-Free includes limited Agent and Chat usage. No numerical Free allowance or specific free model list is published. The pricing FAQ says "Your allowance refreshes weekly"; the help docs describe "two separate usage pools, each resetting with your monthly billing cycle". The help center describes Tab through Auto on Hobby; check your account for the applicable allowance and reset.
+Free includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions use a shared weekly pool; legacy paid Cursor plans retain monthly pools. Those paid-plan resets do not establish the Free reset; check your account for its allowance.
 
 ## Where it is offered
 

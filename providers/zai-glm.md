@@ -54,9 +54,10 @@ curl -s https://api.z.ai/api/paas/v4/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.z.ai/guides/overview/pricing>, anchored on `GLM-4.7-Flash</td><td style="text-align:left">Free</td>`, `GLM-4.5-Flash</td><td style="text-align:left">Free</td>`, `GLM-4.6V-Flash</td><td style="text-align:left">Free</td>`
+- Probe: the page at <https://docs.z.ai/guides/overview/pricing.md>, anchored on `GLM-4.7-Flash | Free | Free | Free | Free`, `GLM-4.5-Flash | Free | Free | Free | Free`, `GLM-4.6V-Flash | Free | Free | Free | Free`
 - Source: <https://docs.z.ai/guides/overview/pricing>
 - Source: <https://docs.z.ai/devpack/tool/claude>
+- Source: <https://docs.z.ai/guides/overview/pricing.md>
 
 ## History
 

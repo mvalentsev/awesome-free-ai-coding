@@ -692,6 +692,43 @@ def test_client_limits_round_trip_and_require_the_rechecked_catalog(tmp_path: Pa
         Entry.model_validate(row)
 
 
+def test_opencode_output_budget_is_positive_and_bound_to_a_rechecked_id(tmp_path):
+    row = sample_entry()
+    row["api"] = {"base_url": "https://api.x.ai/v1", "model_ids": ["alpha"],
+                  "opencode_output_tokens": {"alpha": 8000}}
+    row["models"] = [{"family": "alpha"}]
+    row["probe"] = {"type": "api-models", "endpoint": "https://api.x.ai/v1/models"}
+    entry = Entry.model_validate(row)
+    path = tmp_path / "registry.yaml"
+    save_registry(path, [entry])
+    assert load_registry(path)[0].api.opencode_output_tokens == {"alpha": 8000}
+    assert not entry.api.model_limits
+    for budget in (0, -1, True, "8000"):
+        row["api"]["opencode_output_tokens"] = {"alpha": budget}
+        with pytest.raises(ValidationError):
+            Entry.model_validate(row)
+    row["api"]["opencode_output_tokens"] = {"unlisted": 8000}
+    with pytest.raises(ValidationError, match="unlisted IDs"):
+        Entry.model_validate(row)
+    row["api"]["opencode_output_tokens"] = {"alpha": 8000}
+    row["probe"] = {"type": "page-keywords", "endpoint": "https://api.x.ai/free",
+                    "keywords": ["Free model alpha available"]}
+    with pytest.raises(ValidationError, match="catalog"):
+        Entry.model_validate(row)
+
+
+def test_page_model_price_binding_rejects_nonzero_and_ambiguous_columns():
+    from freetier_radar.models import ModelPriceTable
+    binding = {"headers": ["Model", "Input", "Output"], "name_column": "Model",
+               "price_columns": ["Input", "Output"]}
+    assert ModelPriceTable.model_validate(binding).free_value == "Free"
+    for change in ({"free_value": "$1"}, {"free_value": "Free trial"},
+                   {"price_columns": ["Input", "Input"]}, {"price_columns": ["Input"]},
+                   {"price_columns": ["Input", "Missing"]}):
+        with pytest.raises(ValidationError):
+            ModelPriceTable.model_validate({**binding, **change})
+
+
 def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():
     """A keyed lane is always called with a bearer token, so a lane that refuses
     one can only be keyless (OVHcloud's anonymous lane answers "Bearer none"

@@ -47,6 +47,31 @@ def page_entry() -> Entry:
     })
 
 
+@pytest.mark.parametrize("table_state", ["present", "missing", "ambiguous"])
+@respx.mock
+async def test_page_models_require_free_input_and_output_in_the_bound_table(table_state):
+    row = page_entry().model_dump()
+    row["models"] = [{"family": name} for name in ("alpha", "beta", "gamma")]
+    row["probe"]["keywords"] = ["Alpha model free access"]
+    row["probe"]["model_prices"] = {"headers": ["Model", "Input", "Output"],
+                                     "name_column": "Model", "price_columns": ["Input", "Output"]}
+    body = '<p>Alpha model free access. Beta and Gamma are also available.</p><table>' \
+           '<tr><th>Model</th><th>Input</th><th>Output</th><th>Cached Read</th></tr>' \
+           '<tr><td>Alpha</td><td>Free</td><td>Free</td><td>Free</td></tr>' \
+           '<tr><td>Beta</td><td>$1</td><td>$2</td><td>Free</td></tr>' \
+           '<tr><td>Gamma</td><td>$1</td><td>Free</td><td>Free</td></tr></table>'
+    if table_state == "missing":
+        body = "Alpha model free access. Beta and Gamma are available."
+    elif table_state == "ambiguous":
+        body += body[body.index('<table>'):]
+    respx.get(row["probe"]["endpoint"]).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert "beta" in result.detail and "gamma" in result.detail
+    assert ("alpha" in result.detail) is (table_state != "present")
+
+
 @respx.mock
 async def test_api_models_ok():
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
@@ -164,6 +189,40 @@ def two_family_entry() -> Entry:
     e = zero_price_entry()
     e.models = [ModelFamily(family="qwen3-coder"), ModelFamily(family="llama-4")]
     return e
+
+
+@pytest.mark.parametrize("parameters, supported", [(None, False), (["max_tokens"], False),
+                                                   (["max_completion_tokens"], False),
+                                                   (["max_tokens", "max_completion_tokens"], True)])
+@respx.mock
+async def test_catalog_reports_lost_support_for_a_client_output_budget(parameters, supported):
+    row = zero_price_entry().model_dump()
+    row["api"] = {"base_url": "https://api.x.ai/v1", "model_ids": [FREE_QWEN["id"]],
+                  "opencode_output_tokens": {FREE_QWEN["id"]: 8000}}
+    respx.get(row["probe"]["endpoint"]).respond(200, json={"data": [
+        {**FREE_QWEN, "supported_parameters": parameters}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is (ProbeStatus.PASS if supported else ProbeStatus.STALE_IDS)
+    if not supported:
+        assert "unavailable" in result.detail
+
+
+@pytest.mark.parametrize("limits", [
+    {"max_output_tokens": 4000, "top_provider": {"max_completion_tokens": 16000}},
+    {"max_output_tokens": 16000, "top_provider": {"max_completion_tokens": 4000}},
+])
+@respx.mock
+async def test_client_budget_respects_each_published_output_limit(limits):
+    row = zero_price_entry().model_dump()
+    row["api"] = {"base_url": "https://api.x.ai/v1", "model_ids": [FREE_QWEN["id"]],
+                  "opencode_output_tokens": {FREE_QWEN["id"]: 8000}}
+    respx.get(row["probe"]["endpoint"]).respond(200, json={"data": [
+        {**FREE_QWEN, **limits, "supported_parameters": ["max_tokens", "max_completion_tokens"]}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "budget 8000 exceeds output limit 4000" in result.detail
 
 
 @respx.mock

@@ -555,6 +555,23 @@ The writers supply OpenCode's context/output limits and LiteLLM's default
 `max_tokens` for named and pooled deployments. An explicit client token request
 can override that LiteLLM default; verify affected clients with live requests.
 
+An OpenCode request budget can instead be chosen in `api.opencode_output_tokens[ID]`.
+This positive token count is a client setting, separate from the vendor's model
+limits. It writes `max_completion_tokens` into that model's request options
+and gives `max_tokens` the same budget for older clients;
+it does not supply a context window or assert an unpublished output limit.
+The probe rechecks support for this parameter in the row's catalog. Verify a
+budget with `freetier-review client`: it records the forwarded request budgets
+and checks the real tool read, final answer and completed session. Recheck on
+client or upstream changes and retain a dated vendor/client review.
+
+For a page listing paid and free models together, `probe.model_prices` binds
+the name column and at least two price columns in one exact table. A model is
+eligible only when both its input and output cells equal the declared free
+value; a free cached-input or storage cell does not qualify a paid model.
+An absent or ambiguous table asks for a model review rather than accepting
+names elsewhere on the page.
+
 **A key the reader has not set never becomes another of theirs.** LiteLLM gives
 an entry whose key variable is not set the `OPENAI_API_KEY` it runs with and
 sends it to that lane, so every place that prints the proxy's command starts it
@@ -1133,6 +1150,10 @@ a fresh file, a completed tool read and its final answer. Every attempt is kept.
 The report covers collected evidence; source reads and quote matches still need
 vendor judgment, affected API lanes still need controls, and the full diff still
 needs independent review. The hooks below remain mandatory.
+
+The sources phase keeps a delisted row's last-offer checks in `historical_checks`.
+They remain visible when current vendor pages differ, and do not assert current
+free eligibility. Source reads and a dated withdrawal judgment are still required.
 
 Before pushing, record that independent review with `judgment --result <file>`.
 The JSON names `base`, `sha`, every changed file in sorted `paths`,

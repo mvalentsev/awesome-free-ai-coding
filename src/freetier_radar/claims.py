@@ -23,7 +23,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
-from .models import SessionEligibility
+from .models import ApiInfo, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
@@ -129,6 +129,21 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r"last-offer checks in `(historical_checks)`",
+          lambda root: ("historical_checks",),
+          "review.sources; same changed HTTP quota fails an active row and remains a visible historical mismatch for a delisted row"),
+    Claim("CONTRIBUTING.md", r"`probe\.(model_prices)` binds",
+          lambda root: tuple(k for k in ("model_prices",) if k in Probe.model_fields),
+          "models.ModelPriceTable and prober.unevidenced_families; paid-input/free-output HTTP-boundary regression"),
+    Claim("CONTRIBUTING.md", r"An OpenCode request budget can instead be chosen in `api\.(opencode_output_tokens)\[ID\]`",
+          lambda root: tuple(k for k in ("opencode_output_tokens",) if k in ApiInfo.model_fields),
+          "models.ApiInfo; client request budgets, distinct from model_limits, in tests/test_models.py"),
+    Claim("CONTRIBUTING.md", r"It writes `(max_completion_tokens)` into that model.s request options",
+          lambda root: (OPENCODE_OUTPUT_FIELD,),
+          "render.build_opencode_config; conformance.check_opencode_output_budget and the real freetier-review client recorder"),
+    Claim("CONTRIBUTING.md", r"and gives `(max_tokens)` the same budget for older clients",
+          lambda root: (OPENCODE_LEGACY_OUTPUT_FIELD,),
+          "render.build_opencode_config; OpenCode1.19.0 real HTTP/request-budget and completed native session control"),
     Claim("CONTRIBUTING.md", r'these `criteria`: `(existing_behavior)`, `(reuse)`,\s+`(copy)`, `(user_path)`, `(regression)`, `(diff)`, `(eligibility)`',
           lambda root: CRITERIA,
           "quality.CRITERIA; judgment and normal pre-push regressions in tests/test_quality.py"),

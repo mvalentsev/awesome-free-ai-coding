@@ -19,7 +19,8 @@ from .countries import COUNTRIES, country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
-                     CODEX_LITELLM_PROFILE, PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
+                     CODEX_LITELLM_PROFILE, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD,
+                     PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
                      WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
                      folded_into, id_family, is_archived,
@@ -1705,6 +1706,12 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
         for mid, limits in e.api.model_limits.items():
             if mid in models:
                 models[mid]["limit"] = {"context": limits.context_tokens, "output": limits.output_tokens}
+        # OpenCode 2.0.28 forwards compatible-model options as request body fields.
+        # https://github.com/anomalyco/opencode/blob/v2.0.28/packages/core/src/v1/config/provider-options.ts
+        # Checked 2026-10-15 with the real client; conformance checks the emitted budget.
+        for mid, tokens in e.api.opencode_output_tokens.items():
+            if mid in models:
+                models[mid]["options"] = {OPENCODE_OUTPUT_FIELD: tokens, OPENCODE_LEGACY_OUTPUT_FIELD: tokens}
         providers[e.id] = {
             "npm": "@ai-sdk/openai-compatible",
             "name": e.name,

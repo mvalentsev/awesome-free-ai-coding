@@ -46,12 +46,13 @@ import httpx
 import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
+from .models import OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
 from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
            "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main",
-           "check_opencode_session_export"]
+           "check_opencode_session_export", "check_opencode_output_budget", "record_opencode_output_budget"]
 
 LITELLM_YAML = "configs/litellm.yaml"
 LITELLM_PROFILE = "configs/codex/litellm.config.toml"
@@ -139,6 +140,79 @@ class Finding:
     verdict: str          # "ok" or one of VERDICTS
     versions: str
     detail: str
+
+
+def check_opencode_output_budget(records: list[dict], model: str, tokens: int) -> dict:
+    """Check actual primary requests, including conflicting token fields."""
+    requests = [r for r in records if r.get("model") == model and r.get("tools")]
+    failures = []
+    for i, request in enumerate(requests):
+        value = request.get(OPENCODE_OUTPUT_FIELD)
+        if type(value) is not int or not 0 < value <= tokens:
+            failures.append(f"request {i}: max_completion_tokens={value!r}")
+        if OPENCODE_LEGACY_OUTPUT_FIELD in request:
+            value = request[OPENCODE_LEGACY_OUTPUT_FIELD]
+            if type(value) is not int or not 0 < value <= tokens:
+                failures.append(f"request {i}: max_tokens={value!r}")
+    return {"passed": bool(requests) and not failures, "checked_requests": len(requests),
+            "tokens": tokens, "failures": failures}
+
+
+@contextmanager
+def record_opencode_output_budget(base_url: str, model: str, tokens: int):
+    """Forward unchanged requests and inspect their budgets without recording keys."""
+    records, errors = [], []
+    prefix = "/" + os.urandom(16).hex()
+    limited = threading.Event()
+
+    class Recorder(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            if not self.path.startswith(prefix + "/"):
+                self.send_error(404)
+                return
+            if limited.is_set():
+                self.send_error(429, "No further upstream requests after a rate limit")
+                return
+            body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
+            try:
+                payload = json.loads(body)
+                headers = {k: v for k, v in self.headers.items()
+                           if k.lower() not in {"host", "content-length", "connection", "accept-encoding"}}
+                with httpx.Client(timeout=httpx.Timeout(95, connect=10)) as client:
+                    response = client.post(base_url.rstrip("/") + self.path[len(prefix):],
+                                           content=body, headers=headers)
+                if response.status_code == 429:
+                    limited.set()
+                records.append({**{k: payload[k] for k in ("model", OPENCODE_LEGACY_OUTPUT_FIELD, OPENCODE_OUTPUT_FIELD)
+                                   if k in payload}, "tools": bool(payload.get("tools")),
+                                "status": response.status_code})
+                self.send_response(response.status_code)
+                for key, value in response.headers.items():
+                    if key.lower() not in {"transfer-encoding", "content-length", "connection", "content-encoding"}:
+                        self.send_header(key, value)
+                self.send_header("Content-Length", str(len(response.content)))
+                self.end_headers()
+                self.wfile.write(response.content)
+            except (ValueError, httpx.HTTPError, OSError) as exc:
+                errors.append(type(exc).__name__)
+                self.send_error(502, "Request recording failed")
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Recorder)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    result = {"upstream": base_url}
+    try:
+        yield f"http://127.0.0.1:{server.server_port}{prefix}", result
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+        result.update(check_opencode_output_budget(records, model, tokens), records=records,
+                      errors=errors, rate_limited=limited.is_set())
+        result["passed"] = result["passed"] and not errors and not limited.is_set()
 
 
 def check_opencode_session_export(data: object, session_id: str, provider: str,

@@ -523,6 +523,17 @@ def test_catalog_limits_reach_named_and_pooled_clients():
     assert all(d["litellm_params"]["max_tokens"] == 16384 for d in deployments)
 
 
+def test_opencode_request_budget_does_not_invent_catalog_limits():
+    row = api_entry(probe={"type": "api-models", "endpoint": "https://api.x.ai/v1/models"},
+                    api={"base_url": "https://api.x.ai/v1",
+                         "model_ids": ["alpha", "beta"],
+                         "opencode_output_tokens": {"alpha": 8000}})
+    models = build_opencode_config([row], TODAY)["provider"][row.id]["models"]
+    assert models["alpha"]["options"] == {"max_completion_tokens": 8000, "max_tokens": 8000}
+    assert "limit" not in models["alpha"]
+    assert "options" not in models["beta"]
+
+
 def test_litellm_config_names_every_free_model_of_every_connectable_entry():
     entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}],
                          api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",

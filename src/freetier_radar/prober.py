@@ -17,7 +17,8 @@ import httpx
 from .page_reader import browser_challenge, page_evidence, recover_page, recover_page_sync
 
 from .models import (
-    CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
+    CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
+    OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
     _id_squash, _squash, id_family, names_family, is_archived_for_good, lane_ids, load_registry,
     notice_holds, save_registry,
 )
@@ -1716,7 +1717,8 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     still there. Deliberately weak. It reads the raw body, not the rendered
     text the keywords are held to, so a name the vendor serves only inside its
     page data counts; whether the page names the model as free is the stronger
-    question, and the one an anchor keyword answers. A family also counts where
+    question, and the one an anchor keyword answers. With model_prices, both
+    prices must instead be free in the same row of one bound table. A family also counts where
     its parts are named close together (see _named_in_parts).
 
     It never fails an entry: three failures archive a row, and a marketing page
@@ -1727,6 +1729,22 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """
     if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
         return []
+    if binding := entry.probe.model_prices:
+        from .quotas import _Tables
+        parser = _Tables()
+        parser.feed(resp.text)
+        tables = [table for table in parser.tables if set(binding.headers) <= set(table['headers'])]
+        free = []
+        if len(tables) == 1:
+            table = tables[0]
+            name = table['headers'].index(binding.name_column)
+            prices = [table['headers'].index(column) for column in binding.price_columns]
+            for row in table['rows']:
+                if len(row) > max(name, *prices) and all(
+                        row[i].casefold() == binding.free_value.casefold() for i in prices):
+                    free.append(row[name])
+        return [m.family for m in entry.models
+                if not any(names_family(m.family, _squash(name), _squash) for name in free)]
     squashed, text = _squash(resp.text), resp.text.lower()
     return [m.family for m in entry.models
             if not names_family(m.family, squashed, _squash) and not _named_in_parts(m.family, text)]
@@ -1888,7 +1906,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     dead = dead_model_ids(catalog, entry)
     unlisted = unlisted_free_ids(catalog, entry)
     notes = [_stale_ids_detail(dead, unlisted, entry)] if dead or unlisted else []
-    if entry.api and entry.api.model_limits:
+    if entry.api and (entry.api.model_limits or entry.api.opencode_output_tokens):
         rows = {}
         for row in _catalog_items(catalog, entry.probe.lane) or []:
             if mid := _model_id(row):
@@ -1908,6 +1926,20 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
                     changed.append(f"{field}={value} (recorded {recorded})")
             if changed:
                 notes.append(f"api.model_limits {mid}: " + ", ".join(changed))
+        for mid, budget in entry.api.opencode_output_tokens.items():
+            if mid not in entry.api.model_ids or mid not in rows:
+                continue
+            parameters = rows[mid].get("supported_parameters")
+            for parameter in (OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD):
+                if not isinstance(parameters, list) or parameter not in parameters:
+                    notes.append(f"api.opencode_output_tokens {mid}: {parameter} unavailable")
+            top = rows[mid].get("top_provider")
+            maximums = [rows[mid].get("max_output_tokens"),
+                        top.get("max_completion_tokens") if isinstance(top, dict) else None]
+            maximum = min((value for value in maximums if type(value) is int and value > 0),
+                          default=None)
+            if maximum is not None and maximum < budget:
+                notes.append(f"api.opencode_output_tokens {mid}: budget {budget} exceeds output limit {maximum}")
     return " | ".join(notes)
 
 

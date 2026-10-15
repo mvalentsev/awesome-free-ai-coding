@@ -2,8 +2,12 @@
 Codex: which sentences it proves, the commands it reads off the files, the
 config it points at its own lanes, and how it tells two requests apart."""
 import json
+import threading
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+import httpx
+import pytest
 import yaml
 
 from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_answer, _foreign_keys, as_run, bare,
@@ -12,8 +16,64 @@ from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_ans
                                         printed_run, shape_differences, summary)
 from freetier_radar.prober import codex_probe_body
 from freetier_radar.render import CODEX_SINCE, LITELLM_BRIDGE_SINCE
+from freetier_radar.conformance import check_opencode_output_budget, record_opencode_output_budget
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+@pytest.mark.parametrize("fields, valid", [
+    ({"max_completion_tokens": 8000}, True),
+    ({"max_completion_tokens": 4096, "max_tokens": 4096}, True),
+    ({"max_completion_tokens": 32000}, False),
+    ({"max_completion_tokens": 32000, "max_tokens": 8000}, False),
+    ({"max_tokens": 8000}, False),
+    ({"max_completion_tokens": True}, False),
+    ({"max_completion_tokens": 0}, False),
+    ({"max_completion_tokens": 8000, "max_tokens": 32000}, False),
+])
+def test_opencode_output_budget_checks_both_wire_fields(fields, valid):
+    records = [{"model": "alpha", "tools": True, **fields}]
+    assert check_opencode_output_budget(records, "alpha", 8000)["passed"] is valid
+    assert not check_opencode_output_budget(records, "other-model", 8000)["passed"]
+    assert not check_opencode_output_budget([], "alpha", 8000)["passed"]
+
+
+def test_output_budget_recorder_preserves_requests_and_stops_after_429():
+    received = []
+
+    class Upstream(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            received.append((self.path, self.rfile.read(int(self.headers["Content-Length"]))))
+            self.send_response(429 if len(received) == 2 else 200)
+            self.send_header("Retry-After", "60")
+            self.end_headers()
+            self.wfile.write(b'{"upstream":true}')
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Upstream)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    body = b'{"model":"alpha","tools":[{}],"max_completion_tokens":8000}'
+    try:
+        with record_opencode_output_budget(f"http://127.0.0.1:{server.server_port}/v1",
+                                           "alpha", 8000) as (base, result):
+            with httpx.Client(trust_env=False) as client:
+                response = client.post(base + "/chat/completions", content=body)
+                assert response.status_code == 200
+                assert response.json() == {"upstream": True}
+                assert response.headers["retry-after"] == "60"
+                assert client.post(base + "/chat/completions", content=body).status_code == 429
+                assert client.post(base + "/chat/completions", content=body).status_code == 429
+        assert received == [("/v1/chat/completions", body)] * 2
+        assert not result["passed"] and result["rate_limited"]
+        assert result["checked_requests"] == 2
+        assert all("authorization" not in record for record in result["records"])
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
 
 
 def test_every_sentence_a_check_proves_is_in_its_file():
