@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15",
+  "generated": "2026-10-16",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -7061,7 +7061,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nDeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -7077,19 +7077,6 @@
             "qwen/qwen3.8-27b-free"
           ],
           "reviewed_on": "2026-10-13",
-          "amount": null
-        },
-        {
-          "unit": "usage",
-          "period": "day",
-          "scope": "account-model",
-          "label": "DeepSeek V4.1 Flash",
-          "source": "https://llmtr.com/models/deepseek/deepseek-v4.1-flash-free",
-          "quote": "Hesap başına günlük ücretsiz kullanım sınırlıdır",
-          "model_ids": [
-            "deepseek/deepseek-v4.1-flash-free"
-          ],
-          "reviewed_on": "2026-10-12",
           "amount": null
         },
         {
@@ -7143,11 +7130,6 @@
           "family": "qwen3.8-27b",
           "tier": "strong",
           "aa_model": "qwen3-8-27b"
-        },
-        {
-          "family": "deepseek-v4.1-flash",
-          "tier": "strong",
-          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "api": {
@@ -7162,7 +7144,6 @@
           "poolside/laguna-xs-2.1",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "deepseek/deepseek-v4.1-flash-free",
           "heabsy/qwen3.8-27b-heabsy-free",
           "nvidia/nemotron-3.5-super-vl-free"
         ],
@@ -7250,7 +7231,8 @@
           "scaledown/summarize-free",
           "scaledown/extract-free",
           "scaledown/classify-free",
-          "llmtr/embeddingmagibu-200m"
+          "llmtr/embeddingmagibu-200m",
+          "deepseek/deepseek-v4.1-flash-free"
         ],
         "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its data-transfer consent under Settings → Data-transfer consents. Heabsy accepts stream: true but returns chunks after completion; it rejects reasoning_effort. For Nemotron3.5 Super VL, omit reasoning_effort; use reasoning: false to disable thinking."
       },
@@ -7290,8 +7272,7 @@
           "laguna-xs-2.1": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
-          "qwen3.8-27b": "",
-          "deepseek-v4.1-flash": "until 2026-10-16"
+          "qwen3.8-27b": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -13977,18 +13958,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "llmtr",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -14034,6 +14003,17 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "glm-5.2",

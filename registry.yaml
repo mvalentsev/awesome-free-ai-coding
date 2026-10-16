@@ -4897,9 +4897,6 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
-  - family: deepseek-v4.1-flash
-    tier: strong
-    aa_model: deepseek-v4-1-flash
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -4912,7 +4909,6 @@ entries:
     - poolside/laguna-xs-2.1
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
-    - deepseek/deepseek-v4.1-flash-free
     - heabsy/qwen3.8-27b-heabsy-free
     - nvidia/nemotron-3.5-super-vl-free
     model_access:
@@ -4985,6 +4981,7 @@ entries:
     - scaledown/extract-free
     - scaledown/classify-free
     - llmtr/embeddingmagibu-200m
+    - deepseek/deepseek-v4.1-flash-free
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its
       data-transfer consent under Settings → Data-transfer consents. Heabsy accepts

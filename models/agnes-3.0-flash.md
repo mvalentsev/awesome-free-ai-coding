@@ -3,7 +3,7 @@ layout: default
 title: 'agnes-3.0-flash free: 2 providers, limits and ids, provider probes 2026-10-15'
 description: agnes-3.0-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-3.0-flash/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-16
 crumb: agnes-3.0-flash
 ---
 
@@ -27,8 +27,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 <summary>Provider-wide limits</summary>
 
 - Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`
-
-DeepSeek V4.1 Flash: Daily usage allowance: amount not published per account per model; for `deepseek/deepseek-v4.1-flash-free`
 
 Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`
 
@@ -71,6 +69,6 @@ The Flash models' input, cached input and output are currently zero-priced; Pro 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-15 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

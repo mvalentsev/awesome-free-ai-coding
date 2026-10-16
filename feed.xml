@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-15T22:14:29Z</updated>
+  <updated>2026-10-16T22:46:12Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261016T224612Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-16T22:46:12Z</updated>
+    <summary type="text">dropped deepseek-v4.1-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/blue-claw/20261015T221429Z</id>
     <title>Archived: Blue Claw Network</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://vercel.com/ai-gateway"/>
     <updated>2026-10-05T15:48:32Z</updated>
     <summary type="text">dropped ling-3.0-flash-sante · free models: laguna-s-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261004T135345Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-04T13:53:45Z</updated>
-    <summary type="text">dropped motif-3 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, minimax-m3.1-flash-preview</summary>
   </entry>
 </feed>

@@ -506,13 +506,6 @@
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
         },
-        "deepseek/deepseek-v4.1-flash-free": {
-          "name": "deepseek/deepseek-v4.1-flash-free (until 2026-10-16)",
-          "limit": {
-            "context": 1048576,
-            "output": 393216
-          }
-        },
         "heabsy/qwen3.8-27b-heabsy-free": {
           "name": "heabsy/qwen3.8-27b-heabsy-free (until 2026-11-02)",
           "limit": {
