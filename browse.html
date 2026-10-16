@@ -111,6 +111,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   ["q", "cat", "where", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
   var entries = [];
   var generated = "";
+  var configClients = {};
   // A model's own page, where it has one: index.json's `models` names each.
   var modelPages = {};
 
@@ -260,6 +261,12 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
       }
       else if (e.api.key_url) connect.appendChild(link(e.api.key_url, "get a key"));
       else connect.appendChild(el("span", "muted", "key required"));
+      var clients = Object.keys(configClients).filter(function (name) { return configClients[name].indexOf(e.id) !== -1; });
+      if (clients.length) {
+        var config = new URLSearchParams({client: clients[0], provider: e.id});
+        connect.appendChild(el("br"));
+        connect.appendChild(link("./?" + config + "#plug", "Set up client"));
+      }
     } else {
       connect.appendChild(el("span", "muted", "not an API endpoint — see the page"));
     }
@@ -327,6 +334,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
       option.textContent = c.name;
       els.where.appendChild(option);
     });
+    configClients = data.client_configs || {};
     entries = data.entries.slice().sort(function (a, b) {
       var ka = sortKey(a), kb = sortKey(b);
       for (var i = 0; i < ka.length; i++) {

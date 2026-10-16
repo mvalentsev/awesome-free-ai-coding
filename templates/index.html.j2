@@ -79,6 +79,7 @@ p { margin: 0 0 12px; }
 .config-result { margin-bottom:20px; padding:16px; border-left:3px solid var(--accent);
   background:var(--surface); overflow-wrap:anywhere; }
 .config-result p:last-child { margin-bottom:0; }
+.config-result .copy { position:static; margin-left:8px; }
 
 /* ── hero ─────────────────────────────────────────────────────────────── */
 .hero { padding: 40px 0 24px; background:
@@ -893,12 +894,19 @@ tr.flash { animation: flash 1.6s ease-out; }
   var provider = document.getElementById("config-provider");
   var configResult = document.getElementById("config-result");
   var configs = JSON.parse(document.getElementById("client-configs").textContent);
-  function configLine(label, value, code) {
+  function configLine(label, value, code, copy) {
     var p = document.createElement("p");
     p.appendChild(document.createTextNode(label));
     var content = document.createElement(code ? "code" : "span");
     content.textContent = value;
     p.appendChild(content); configResult.appendChild(p);
+    if (copy && navigator.clipboard) {
+      var button = document.createElement("button");
+      button.type = "button"; button.className = "copy"; button.textContent = "Copy";
+      button.dataset.copy = value;
+      button.setAttribute("aria-label", copy);
+      p.appendChild(button);
+    }
   }
   function configLink(label, href, parent) {
     var a = document.createElement("a"); a.textContent = label; a.href = href;
@@ -920,8 +928,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     });
     configResult.appendChild(files);
     configLine("", row.setup);
-    if (row.proxy_command) { configLine("Start proxy: ", row.proxy_command, true); }
-    configLine("Launch: ", row.command, true);
+    if (row.proxy_command) { configLine("Start proxy: ", row.proxy_command, true, "Copy proxy command"); }
+    configLine("Launch: ", row.command, true, "Copy launch command");
     configLine("Model: ", row.model, true);
     if (row.keyless) { configLine("Key: ", "No key required."); }
     else {
@@ -950,20 +958,44 @@ tr.flash { animation: flash 1.6s ease-out; }
     provider.disabled = !configs[client.value].length;
     showConfig();
   }
-  client.addEventListener("change", chooseClient);
-  provider.addEventListener("change", showConfig);
-  chooseClient(); picker.hidden = false;
+  function syncConfig() {
+    var url = new URL(location.href);
+    url.searchParams.set("client", client.value);
+    if (provider.value) { url.searchParams.set("provider", provider.value); }
+    else { url.searchParams.delete("provider"); }
+    url.hash = "plug";
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
+  }
+  function restoreConfig() {
+    var params = new URLSearchParams(location.search);
+    var requested = params.get("client");
+    if (Object.prototype.hasOwnProperty.call(configs, requested)) { client.value = requested; }
+    chooseClient();
+    if (configs[client.value].some(function (row) { return row.id === params.get("provider"); })) {
+      provider.value = params.get("provider");
+      showConfig();
+    }
+  }
+  client.addEventListener("change", function () { chooseClient(); syncConfig(); });
+  provider.addEventListener("change", function () { showConfig(); syncConfig(); });
+  restoreConfig(); picker.hidden = false;
   // Copy buttons — hidden in the markup so a browser without the clipboard API
   // never shows a control that does nothing.
   if (navigator.clipboard) {
     document.querySelectorAll("button.copy").forEach(function (button) {
       button.hidden = false;
-      button.addEventListener("click", function () {
-        navigator.clipboard.writeText(button.dataset.copy).then(function () {
-          var was = button.textContent;
-          button.textContent = "Copied";
-          setTimeout(function () { button.textContent = was; }, 1200);
-        });
+    });
+    document.addEventListener("click", function (event) {
+      var button = event.target.closest("button.copy");
+      if (!button || button.disabled) { return; }
+      var was = button.textContent;
+      button.disabled = true;
+      navigator.clipboard.writeText(button.dataset.copy).then(function () {
+        button.textContent = "Copied";
+      }, function () {
+        button.textContent = "Copy failed";
+      }).finally(function () {
+        setTimeout(function () { button.textContent = was; button.disabled = false; }, 1200);
       });
     });
   }
@@ -1332,8 +1364,14 @@ tr.flash { animation: flash 1.6s ease-out; }
   }
 
   // The query lives in the address, so a search can be sent to someone.
+  function withoutSearch() {
+    var params = new URLSearchParams(location.search);
+    params.delete("q"); params.delete("s");
+    CONFIG.filters.forEach(function (f) { params.delete(f.id); });
+    return params;
+  }
   function sync(section, filters) {
-    var params = new URLSearchParams();
+    var params = withoutSearch();
     if (input.value.trim()) { params.set("q", input.value.trim()); }
     if (section) { params.set("s", section); }
     Object.keys(filters).forEach(function (f) { params.set(f, "1"); });
@@ -1391,7 +1429,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     state = { section: "", filters: {} };
     input.value = "";
     document.documentElement.style.overflow = "";
-    history.replaceState(null, "", location.pathname);
+    var params = withoutSearch();
+    history.replaceState(null, "", location.pathname + (params.toString() ? "?" + params : ""));
     if (restore !== false && opener && opener.focus) { opener.focus(); }
   }
 
@@ -1466,7 +1505,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   });
   // A search sent as a link opens as it was left.
   var params = new URLSearchParams(location.search);
-  if (location.hash === "#search" || params.has("q")) {
+  if (location.hash === "#search" || (!location.hash && params.has("q"))) {
     state.section = params.get("s") || "";
     CONFIG.filters.forEach(function (f) { state.filters[f.id] = params.get(f.id) === "1"; });
     open(null, params.get("q") || "");

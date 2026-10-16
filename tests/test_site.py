@@ -99,6 +99,22 @@ def test_client_choices_keep_shared_quotas_out_of_model_labels():
     assert "10" not in row["model"] and not row["access"]
 
 
+def test_browse_setup_choices_only_name_routes_with_generated_configs():
+    from freetier_radar.render import build_index
+
+    common = {"base_url": "https://x.ai/v1", "model_ids": ["small"]}
+    entries = [
+        make(id="chat", api=common),
+        make(id="bare", api={**common, "auth": "none", "refuses_bearer": True}),
+        make(id="dynamic", api={**common, "session_header": "x-session"}),
+        make(id="missing", api={"base_url": "https://x.ai/v1", "no_ids": "Keyed catalog"}),
+        make(id="gone", api=common, delisted={"on": TODAY, "reason": "Ended"}),
+        make(id="agent"),
+    ]
+    assert build_index(entries, TODAY)["client_configs"] == {
+        "opencode": ["chat", "bare"], "codex": ["chat"], "claude": [], "litellm": ["chat"]}
+
+
 def test_the_page_is_html_and_says_what_it_is(tmp_path):
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert html.startswith("<!doctype html>")
@@ -571,6 +587,60 @@ def _js_function(script: str, name: str) -> str:
         if depth == 0:
             return script[start:i + 1]
     raise AssertionError(f"{name} does not close")
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+@pytest.mark.parametrize("query,client_name,provider_name", [
+    ("?client=codex&provider=chat", "codex", "chat"),
+    ("?client=__proto__&provider=chat", "opencode", "chat"),
+    ("?client=constructor&provider=chat", "opencode", "chat"),
+    ("?client=claude&provider=chat", "claude", ""),
+    ("?client=codex&provider=removed", "codex", ""),
+])
+def test_shared_config_links_restore_only_existing_routes(tmp_path, query, client_name, provider_name):
+    html = _render([make()], tmp_path)
+    harness = "var location = " + json.dumps({"search": query}) + ";\n" + """
+    var configs = {opencode: [{id: 'chat'}], codex: [{id: 'chat'}], claude: []};
+    var client = {value: 'opencode'}, provider = {value: ''};
+    function chooseClient() { provider.value = ''; }
+    function showConfig() {}
+    """ + _js_function(html, "restoreConfig") + """
+    restoreConfig();
+    console.log(JSON.stringify([client.value, provider.value]));
+    """
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    assert json.loads(run.stdout) == [client_name, provider_name]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_config_and_search_url_state_preserve_each_other(tmp_path):
+    html = _render([make()], tmp_path)
+    harness = """
+    var location = {href: 'https://example.test/list/?q=groq&nocard=1&review=abc#search'};
+    var client = {value: 'codex'}, provider = {value: 'kilo-code'};
+    var written;
+    var history = {replaceState: function(a, b, url) { written = url; }};
+    """ + _js_function(html, "syncConfig") + _js_function(html, "withoutSearch") + """
+    syncConfig();
+    location.search = new URL(written, location.href).search;
+    var CONFIG = {filters: [{id:'nocard'}, {id:'nokey'}]};
+    var clean = withoutSearch();
+    provider.value = '';
+    location.href = new URL(written, location.href).href;
+    syncConfig();
+    console.log(JSON.stringify({selected: location.href, clean: String(clean), cleared: written}));
+    """
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    from urllib.parse import parse_qs, urlparse
+    got = json.loads(run.stdout)
+    selected = urlparse(got["selected"])
+    assert parse_qs(selected.query) == {"q": ["groq"], "nocard": ["1"], "review": ["abc"],
+                                         "client": ["codex"], "provider": ["kilo-code"]}
+    assert selected.fragment == "plug"
+    assert parse_qs(got["clean"]) == {"review": ["abc"], "client": ["codex"], "provider": ["kilo-code"]}
+    assert "provider" not in parse_qs(urlparse(got["cleared"]).query)
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")

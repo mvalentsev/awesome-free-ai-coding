@@ -1239,6 +1239,8 @@ def build_index(entries: list[Entry], today: date,
         # Every country a border can name, for a page that asks where the reader
         # is (browse.html's picker): the codes the borders are recorded in.
         "countries": _index_countries(),
+        "client_configs": {client: [row["id"] for row in rows]
+                           for client, rows in _site_client_configs(entries, today).items()},
         # Additive, like the watchlist: which rows serve each model free, the
         # question a machine asks of this list as often as a reader does, and
         # the page a model has where it has one.

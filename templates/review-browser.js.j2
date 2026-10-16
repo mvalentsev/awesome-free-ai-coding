@@ -53,6 +53,14 @@ async (page) => {
             if(!text.includes(row.command)||!text.includes(row.model)||!text.includes(row.route)) throw Error('Wrong client result: '+row.id);
             if(row.access&&!text.includes(row.access)) throw Error('Hidden access condition: '+row.id);
             for(const path of row.files) if(!await result.locator('a[href="'+plan.repository+'/blob/main/'+path+'"]').count()) throw Error('Wrong config link: '+path);
+            const selection=new URL(page.url()).searchParams;
+            if(selection.get('client')!==client || selection.get('provider')!==row.id) throw Error('Configuration missing from shared URL');
+          }
+          if(rows.length) {
+            const last=rows[rows.length-1];
+            await page.reload({waitUntil:'domcontentloaded'});
+            if(await page.locator('#config-client').inputValue()!==client || await page.locator('#config-provider').inputValue()!==last.id) throw Error('Configuration lost on reload');
+            if(!(await page.locator('#config-result').innerText()).includes(last.command)) throw Error('Restored command differs');
           }
           await record(prefix+'config/'+client,{choices:choices.length});
         }
