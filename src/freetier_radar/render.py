@@ -304,6 +304,7 @@ DATA_USE_WORDS = {
     "yes": "What you send may be used to train or improve models.",
     "opt-out": "What you send may be used to train or improve models unless you turn that off.",
     "no": "What you send is not used to train models.",
+    "unknown": "Training policy not established.",
 }
 
 
@@ -1222,6 +1223,7 @@ def build_index(entries: list[Entry], today: date,
         "generated": today.isoformat(),
         "source": REPO_URL,
         "feed": FEED_URL,
+        "data_use_words": dict(DATA_USE_WORDS),
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
              "no_account": needs_no_account(e),
@@ -1408,8 +1410,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
             "public_key": e.api.public_key or "",
             "key_url": e.api.key_url or "", "asks": asks,
             "note": _site_fold(e.api.note) if e.api.note else None,
-            "notice": ({"since": e.api.notice.since.isoformat(), "text": e.api.notice.text,
-                        "url": e.api.notice.url or ""} if e.api.notice else None),
+            "notice": _notice_data(e.api.notice),
         })
     return rows
 

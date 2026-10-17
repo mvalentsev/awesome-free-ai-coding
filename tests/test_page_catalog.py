@@ -586,6 +586,24 @@ def test_weekly_budget_keeps_its_period_in_all_presentations():
         assert 'daily' not in text.lower()
 
 
+@pytest.mark.parametrize("period,expected", [
+    ("day", "Beta: shared daily hours"),
+    ("week", "Beta: shared weekly hours"),
+    ("month", "Beta: shared monthly hours"),
+])
+def test_wallet_descriptions_keep_the_catalog_unit(period, expected):
+    from freetier_radar.render import build_index, build_llms_txt, build_provider_page
+    data = catalog_data()
+    data.update(unit="hours", period=period)
+    e = entry(data)
+    today = date(2026, 10, 6)
+    for text in (build_index([e], today)["entries"][0]["limits"],
+                 build_provider_page(e, [], today, registry=[e], pages=set()),
+                 build_llms_txt([e], today, pages=set())):
+        assert expected in text
+        assert "Beta: shared daily credits" not in text
+
+
 @pytest.mark.parametrize('body,finding', [(page(amount=150),'budget US: 150'), (None,'source unreadable')])
 @respx.mock
 async def test_review_receipts_cannot_pass_a_changed_or_unreadable_catalog(tmp_path, monkeypatch, body, finding):

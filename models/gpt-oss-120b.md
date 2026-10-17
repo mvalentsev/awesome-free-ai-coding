@@ -85,7 +85,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 🔌 LLM APIs with free tier · no card · last probe 2026-10-15 · listed since 2026-09-25
 
-EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller
+EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>

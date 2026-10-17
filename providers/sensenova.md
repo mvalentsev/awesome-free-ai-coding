@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-10-15'
-description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with…'
+description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model…'
 permalink: /providers/sensenova/
 last_modified_at: 2026-10-15
 crumb: SenseNova (SenseTime 商汤)
@@ -15,7 +15,7 @@ crumb: SenseNova (SenseTime 商汤)
 
 ## What you get
 
-SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta
+SenseTime's SenseNova API, with a $0 Free plan during public beta; registration and identity verification required
 
 ## Free models
 

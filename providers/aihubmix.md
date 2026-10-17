@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-10-15'
-description: 'One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code. Free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, mimo-v2.5-pro and 31…'
+description: 'OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients. Free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, mimo-v2.5-pro and 31 more. Free IDs end in -free; paid twins are metered at list prices. The daily…'
 permalink: /providers/aihubmix/
 last_modified_at: 2026-10-15
 crumb: AIHubMix (free models)
@@ -15,7 +15,7 @@ crumb: AIHubMix (free models)
 
 ## What you get
 
-One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
+OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
 ## Free models
 
@@ -31,7 +31,7 @@ Other free routes: Usage allowance: amount not published (period not published);
 
 Qwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`
 
-Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Exact IDs for each published cap appear above; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
+Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
 
 ## Where it is offered
 

@@ -288,7 +288,7 @@ def funding(catalog: PageCatalog, model: PageModel) -> str:
     return catalog.conditions[model.condition].kind
 
 
-FUNDING_WORDS = {"wallet": "Shared daily credits", "unmetered": "Unmetered offer",
+FUNDING_WORDS = {"unmetered": "Unmetered offer",
                  "free-session": "Free session with conditions", "paid": "Paid plan",
                  "specialist": "Specialist tasks only", "expired": "Offer ended"}
 
@@ -297,9 +297,10 @@ PERIOD_WORDS = {"day": "Daily", "week": "Weekly", "month": "Monthly"}
 
 
 def funding_words(catalog: PageCatalog, model: PageModel) -> str:
-    if funding(catalog, model) == "wallet":
-        return f"Shared {PERIOD_WORDS[catalog.period].lower()} credits"
-    return FUNDING_WORDS[funding(catalog, model)]
+    kind = funding(catalog, model)
+    if kind == "wallet":
+        return f"Shared {PERIOD_WORDS[catalog.period].lower()} {catalog.unit.lower()}"
+    return FUNDING_WORDS[kind]
 
 
 def offer_access(catalog: PageCatalog, model: PageModel) -> str:

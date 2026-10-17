@@ -146,6 +146,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   var comparison = [];
   var comparisonOpen = false;
   var countryNames = {};
+  var dataUseWords = {};
   // A model's own page, where it has one: index.json's `models` names each.
   var modelPages = {};
 
@@ -216,10 +217,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
   function trainingWords(e) {
     var value = e.data_use && e.data_use.trains;
-    if (value === "no") return "Does not train on submitted data.";
-    if (value === "yes") return "May use submitted data to train or improve models.";
-    if (value === "opt-out") return "May use submitted data to train or improve models unless you opt out.";
-    return "Training policy not established.";
+    return dataUseWords[value] || dataUseWords.unknown;
   }
 
   function toggleComparison(id) {
@@ -472,6 +470,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
     if (!response.ok) throw new Error("HTTP " + response.status);
     return response.json();
   }).then(function (data) {
+    dataUseWords = data.data_use_words;
     (data.models || []).forEach(function (x) { if (x.page) modelPages[x.family] = x.page; });
     (data.countries || []).forEach(function (c) {
       countryNames[c.code] = c.name;

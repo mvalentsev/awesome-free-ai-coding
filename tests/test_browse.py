@@ -1,7 +1,4 @@
-"""browse.html is a static page that reads index.json in the browser, so the
-only contract between them is the field names — checked here against what
-build_index actually publishes, so a renamed field cannot leave the page
-silently showing nothing."""
+"""Exercise Browse's JavaScript against generated data and shared policy copy."""
 import json
 import re
 import shutil
@@ -217,7 +214,8 @@ def test_comparison_links_resolve_only_three_distinct_live_offers():
 def test_comparison_preserves_unknown_training_and_country_scope():
     from test_site import _js_function
 
-    harness = "var countryNames = {RU:'Russia',US:'United States'};\n" + "\n".join(
+    harness = ("var countryNames = {RU:'Russia',US:'United States'};\nvar dataUseWords = "
+               + json.dumps(build_index([], TODAY)["data_use_words"]) + ";\n") + "\n".join(
         _js_function(_html(), name) for name in ("countryWords", "trainingWords")) + """
     console.log(JSON.stringify([
       countryWords({}), countryWords({border:{left_out:[]}}),
@@ -230,7 +228,29 @@ def test_comparison_preserves_unknown_training_and_country_scope():
     assert json.loads(result.stdout) == [
         "Country restrictions not established.", "No country exclusions listed.",
         "Offered in: United States.", "Not offered in: Russia.",
-        "Training policy not established.", "Does not train on submitted data.",
-        "May use submitted data to train or improve models.",
-        "May use submitted data to train or improve models unless you opt out.",
+        "Training policy not established.", "What you send is not used to train models.",
+        "What you send may be used to train or improve models.",
+        "What you send may be used to train or improve models unless you turn that off.",
     ]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+@pytest.mark.parametrize("policy", [None, "no", "yes", "opt-out"])
+def test_comparison_uses_the_reviewed_policy_words_from_the_shared_index(monkeypatch, policy):
+    from freetier_radar.render import DATA_USE_WORDS, build_provider_page
+    from test_site import _js_function
+
+    reviewed = "A reviewed explanation of " + (policy or "unknown") + "."
+    monkeypatch.setitem(DATA_USE_WORDS, policy or "unknown", reviewed)
+    data_use = ({"trains": policy, "quote": "The vendor states its data policy",
+                 "url": "https://x.ai/privacy"} if policy else None)
+    e = make(data_use=data_use)
+    index = build_index([e], TODAY)
+    if policy:
+        assert reviewed in build_provider_page(e, [], TODAY)
+    harness = "var dataUseWords = " + json.dumps(index.get("data_use_words", {})) + ";\n"
+    harness += _js_function(_html(), "trainingWords")
+    harness += "\nconsole.log(JSON.stringify(trainingWords(" + json.dumps(index["entries"][0]) + ")));"
+    result = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == reviewed

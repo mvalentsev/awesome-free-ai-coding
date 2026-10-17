@@ -21,7 +21,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — verified 2026-10-15 · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 - [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) — verified 2026-10-15 · `fantail`
 - [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) — verified 2026-10-15
-- [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-10-15
+- [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-10-15
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) — verified 2026-10-15
 
 ## 🔌 LLM APIs with free tier

@@ -1,31 +1,31 @@
 ---
 layout: default
-title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-10-15'
-description: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans. ChatGPT Free includes Codex, but the Free card names GPT-6 Luna in the desktop app, subject to rollout. Web, CLI, IDE extension and iOS access is specified on the Plus card; no CLI…
+title: 'Codex (ChatGPT Free) free tier: limits, free models, verified 2026-10-15'
+description: Codex desktop access on a $0 ChatGPT Free plan, subject to rollout. The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free allowance.
 permalink: /providers/openai-codex-cli/
 last_modified_at: 2026-10-15
-crumb: OpenAI Codex CLI
+crumb: Codex (ChatGPT Free)
 ---
 
 {% raw %}
 
-# OpenAI Codex CLI free tier
+# Codex (ChatGPT Free) free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-10-15 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-10-15 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/pricing) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans
+Codex desktop access on a $0 ChatGPT Free plan, subject to rollout
 
 ## Free models
 
-The vendor does not say which models the free part reaches, so the column names none.
+No free model family is listed yet; new offers must clear the two-week bar before entering this section.
 
 ## Limits, in the vendor's words
 
 Free plan: Usage allowance: amount not published (period not published) per account
 
-ChatGPT Free includes Codex, but the Free card names GPT-6 Luna in the desktop app, subject to rollout. Web, CLI, IDE extension and iOS access is specified on the Plus card; no CLI model or numerical Free allowance is published. GPT-5.5 retires on October 14, 2026. Desktop availability does not establish a callable free CLI model.
+The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free allowance.
 
 ## Where it is offered
 

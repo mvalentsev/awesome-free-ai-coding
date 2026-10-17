@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-10-15'
-description: Upstage Solar LLM API; $10 free credit on signup, no card. See the console for credit validity; subsequent usage is pay-as-you-go. The client-rendered documentation ships the grant in its page payload, rather than visible text after scripts are removed. The main pricing and Solar Pro product pages…
+description: Upstage Solar LLM API; $10 free credit on signup, no card. See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
 permalink: /providers/upstage/
 last_modified_at: 2026-10-15
 crumb: Upstage (Solar API)
@@ -25,7 +25,7 @@ No model is free by itself here: the free part is an amount the account spends a
 
 Signup credit: $10 once per account
 
-See the console for credit validity; subsequent usage is pay-as-you-go. The client-rendered documentation ships the grant in its page payload, rather than visible text after scripts are removed. The main pricing and Solar Pro product pages do not state the grant.
+See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
 
 ## Where it is offered
 

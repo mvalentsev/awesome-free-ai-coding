@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-10-15'
-description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b. The documentation attributes the anonymous cap to IP and model…'
+description: 'EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b. The documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model''s anonymous…'
 permalink: /providers/ovh-ai-endpoints/
 last_modified_at: 2026-10-15
 crumb: OVHcloud AI Endpoints
@@ -15,7 +15,7 @@ crumb: OVHcloud AI Endpoints
 
 ## What you get
 
-EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller
+EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card
 
 ## Free models
 
@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Your data i
 - Base URL: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`
 - Key: none — the lane is anonymous
 - Callable ids: `Qwen3.6-27B`, `Qwen3.8-27B`, `gpt-oss-120b`
-- Note: no key at all on the anonymous lane, where 2 requests per minute per model are shared by every anonymous caller (measured 2026-09-24) — a 429 means the minute's quota is gone, not the offer. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on
+- Note: Use anonymous requests for the free lane; a 429 indicates a rate limit, not the end of the offer. API access keys require a Public Cloud project with a payment method and are billed per token.
 
 Try it from your terminal — the lane takes no key:
 

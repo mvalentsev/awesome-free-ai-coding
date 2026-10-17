@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-10-15'
-description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The invite-code grant is the total signup balance, not an extra amount added to the…
+description: OpenAI-compatible inference with $2 of signup credit, or $4 in total with the vendor invite code, before any deposit. The invite-code grant is the total signup balance, not an extra amount added to the standard grant; supplies are limited. Credit spends at model list prices. L0 applies before the…
 permalink: /providers/hpc-ai/
 last_modified_at: 2026-10-15
 crumb: HPC-AI Model APIs
@@ -15,7 +15,7 @@ crumb: HPC-AI Model APIs
 
 ## What you get
 
-OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit
+OpenAI-compatible inference with $2 of signup credit, or $4 in total with the vendor invite code, before any deposit
 
 ## Free models
 

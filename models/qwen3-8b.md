@@ -21,7 +21,7 @@ crumb: qwen3-8b
 
 🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-10-15 · listed since 2026-09-19
 
-China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
+Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
