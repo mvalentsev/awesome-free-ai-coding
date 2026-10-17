@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-xs-2.1 free: 6 providers, limits and ids, provider probes 2026-10-15'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the…
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-10-16
+last_modified_at: 2026-10-17
 crumb: laguna-xs-2.1
 ---
 
@@ -124,6 +124,8 @@ Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
+Beam 1.0: Daily usage allowance: amount not published; scope not published; for `reflection/beam-1.0-501b-a23b`
+
 Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
 </details>
@@ -159,6 +161,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

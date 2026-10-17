@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 8 providers, limits and ids, provider probes 2026-10-15'
 description: qwen3.8-27b is served free by Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-10-16
+last_modified_at: 2026-10-17
 crumb: qwen3.8-27b
 ---
 
@@ -51,6 +51,8 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
+
+Beam 1.0: Daily usage allowance: amount not published; scope not published; for `reflection/beam-1.0-501b-a23b`
 
 Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
@@ -192,6 +194,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ---
 
-Generated from `registry.yaml` on 2026-10-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

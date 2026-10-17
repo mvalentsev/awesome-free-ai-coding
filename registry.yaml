@@ -4814,6 +4814,7 @@ entries:
   - https://llmtr.com/models/scaledown/classify-free
   - https://llmtr.com/models/nvidia/nemotron-3.5-super-vl-free
   - https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/
+  - https://llmtr.com/models/reflection/beam-1.0-501b-a23b
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4884,6 +4885,15 @@ entries:
     model_ids:
     - nvidia/nemotron-3.5-super-vl-free
     reviewed_on: '2026-10-15'
+  - unit: usage
+    period: day
+    scope: unspecified
+    label: Beam 1.0
+    source: https://llmtr.com/models/reflection/beam-1.0-501b-a23b
+    quote: günlük kotayla ücretsizdir
+    model_ids:
+    - reflection/beam-1.0-501b-a23b
+    reviewed_on: '2026-10-17'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4897,6 +4907,7 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
+  - family: beam-1.0
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -4911,6 +4922,7 @@ entries:
     - agnes/agnes-2.5-flash
     - heabsy/qwen3.8-27b-heabsy-free
     - nvidia/nemotron-3.5-super-vl-free
+    - reflection/beam-1.0-501b-a23b
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -4935,6 +4947,9 @@ entries:
       heabsy/qwen3.8-27b-heabsy-free:
         source: https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
         until: '2026-11-02T00:00:00+03:00'
+      reflection/beam-1.0-501b-a23b:
+        source: https://llmtr.com/models/reflection/beam-1.0-501b-a23b
+        until: '2026-10-22T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -4983,11 +4998,12 @@ entries:
     - llmtr/embeddingmagibu-200m
     - deepseek/deepseek-v4.1-flash-free
     note: 'New accounts have a reduced shared free-model allowance during their first
-      24 hours. Nemotron Ultra -262k is metered. Before calling Heabsy, grant its
-      data-transfer consent under Settings → Data-transfer consents. Heabsy accepts
-      stream: true but returns chunks after completion; it rejects reasoning_effort.
-      For Nemotron3.5 Super VL, omit reasoning_effort; use reasoning: false to disable
-      thinking.'
+      24 hours. Nemotron Ultra -262k is metered. Grant Heabsy data-transfer consent
+      in Settings → Data-transfer consents; its stream is buffered until completion
+      and reasoning_effort is unsupported. For Nemotron3.5 Super VL, omit reasoning_effort;
+      reasoning: false disables thinking. Beam always reasons; reasoning_effort defaults
+      to max and accepts low, medium, high, xhigh or max. Set max_tokens to bound
+      the answer, including reasoning.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -9095,7 +9111,8 @@ entries:
     $0 Free tier, no card required
   limits: The reset timezone is unpublished. Request and token ceilings apply separately
     from the credit balance; completions are billed at each model's price. An account
-    and API key are required.
+    and API key are required. The Terms call free use before purchase a courtesy that
+    may be changed or withdrawn.
   quotas:
   - unit: credits
     period: day
@@ -9103,7 +9120,7 @@ entries:
     source: https://www.aionlabs.ai/pricing/
     quote: A daily credit allowance to try agent jobs, the API, and browser chat.
       No card required.
-    reviewed_on: '2026-10-10'
+    reviewed_on: '2026-10-17'
   - amount: 15.0
     unit: requests
     period: minute
@@ -9179,6 +9196,10 @@ entries:
     - aion-labs/aion-rp-llama-3.1-8b
     note: Create an API key in the dashboard and send it as a bearer token with the
       OpenAI Chat Completions format.
+  data_use:
+    trains: 'no'
+    quote: We do not use your Input or Output to train models and we do not sell them.
+    url: https://www.aionlabs.ai/terms/
   border:
     left_out: []
     'on': '2026-10-10'

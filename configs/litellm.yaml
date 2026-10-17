@@ -725,6 +725,15 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
+- model_name: llmtr/reflection/beam-1.0-501b-a23b
+  litellm_params:
+    model: openai/reflection/beam-1.0-501b-a23b
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-10-22 23:59+03:00
+    source: https://llmtr.com/models/reflection/beam-1.0-501b-a23b
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4

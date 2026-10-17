@@ -193,3 +193,44 @@ def test_the_index_names_every_country_a_border_can_name():
     assert keys == sorted(keys)
     order = [c["code"] for c in countries]
     assert order.index("AX") < order.index("AL") and order.index("CN") < order.index("CO")
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_comparison_links_resolve_only_three_distinct_live_offers():
+    from test_site import _js_function
+
+    harness = _js_function(_html(), "comparisonIds") + """
+    const rows = [{id:'a'}, {id:'b'}, {id:'c'}, {id:'d'},
+                  {id:'gone',archived:true}, {id:'alias',duplicate_of:'a'}];
+    console.log(JSON.stringify([
+      comparisonIds(null, rows),
+      comparisonIds('missing,a,a,gone,alias,b,c,d', rows),
+      comparisonIds('__proto__,constructor,%3Cscript%3E,b', rows),
+      comparisonIds('d,a', rows)
+    ]));"""
+    result = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == [[], ["a", "b", "c"], ["b"], ["d", "a"]]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_comparison_preserves_unknown_training_and_country_scope():
+    from test_site import _js_function
+
+    harness = "var countryNames = {RU:'Russia',US:'United States'};\n" + "\n".join(
+        _js_function(_html(), name) for name in ("countryWords", "trainingWords")) + """
+    console.log(JSON.stringify([
+      countryWords({}), countryWords({border:{left_out:[]}}),
+      countryWords({border:{served:['US']}}), countryWords({border:{left_out:['RU']}}),
+      trainingWords({}), trainingWords({data_use:{trains:'no'}}),
+      trainingWords({data_use:{trains:'yes'}}), trainingWords({data_use:{trains:'opt-out'}})
+    ]));"""
+    result = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == [
+        "Country restrictions not established.", "No country exclusions listed.",
+        "Offered in: United States.", "Not offered in: Russia.",
+        "Training policy not established.", "Does not train on submitted data.",
+        "May use submitted data to train or improve models.",
+        "May use submitted data to train or improve models unless you opt out.",
+    ]

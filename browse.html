@@ -43,6 +43,25 @@ td.empty { padding: 18px 10px; }
 tr.archived { opacity: .6; }
 footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
 footer ul { margin: 6px 0 0; padding-left: 18px; }
+.compare-choice { display: inline-flex; gap: 5px; align-items: center; margin-top: 8px; cursor: pointer; font-size: 13px; }
+.compare-choice input { margin: 0; }
+.compare-hint { color: var(--muted); margin: 10px 0; }
+.comparison { margin: 16px 0 24px; }
+.comparison[hidden] { display: none; }
+.comparison h2 { font-size: 1.2rem; margin: 0; }
+.comparison-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 12px; }
+.comparison button { font: inherit; color: var(--accent); background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 4px 8px; cursor: pointer; }
+.comparison button:disabled { color: var(--muted); cursor: default; }
+.comparison-grid { display: grid; grid-template-columns: repeat(var(--compare-count), minmax(0, 1fr)); gap: 0 16px; }
+.comparison-grid[hidden] { display: none; }
+.comparison-provider { display: grid; grid-template-rows: subgrid; grid-row: span 8; min-width: 0; border: 1px solid var(--line); border-radius: 8px; overflow-wrap: anywhere; }
+.comparison-provider > div { padding: 10px 12px; border-top: 1px solid var(--line); }
+.comparison-provider > div:first-child { border-top: 0; }
+.comparison-provider h3 { font-size: 1rem; margin: 0 0 8px; }
+.comparison-provider h4 { font-size: 13px; color: var(--muted); margin: 0 0 5px; }
+.comparison-provider .models, .comparison-provider .connect { min-width: 0; }
+.comparison-limits { white-space: pre-wrap; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 /* A phone gets a card per row instead of a table wider than the screen. */
 @media (max-width: 760px) {
   body { padding: 16px 12px 32px; }
@@ -58,6 +77,8 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   td.offer, td.models, td.connect, td.verified, td.empty { grid-column: 1 / -1; margin-top: 8px; }
   td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
   td.verified::before { display: inline; content: attr(data-label) " "; }
+  .comparison-grid { grid-template-columns: 1fr; gap: 12px; }
+  .comparison-provider { display: block; grid-row: auto; }
 }
 </style>
 </head>
@@ -86,6 +107,16 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   <label class="chip"><input type="checkbox" id="notrain"> Not trained on</label>
   <label class="chip"><input type="checkbox" id="archived"> Show archived</label>
 </div>
+<p class="compare-hint">Select up to 3 offers to compare their models, limits and access conditions.</p>
+<section id="comparison" class="comparison" aria-labelledby="comparison-title" hidden>
+  <div class="comparison-toolbar">
+    <h2 id="comparison-title">Compare providers</h2>
+    <span id="comparison-status" role="status" aria-live="polite"></span>
+    <button id="comparison-toggle" type="button" aria-expanded="false" aria-controls="comparison-grid">Compare selected</button>
+    <button id="comparison-clear" type="button">Clear comparison</button>
+  </div>
+  <div id="comparison-grid" class="comparison-grid" hidden></div>
+</section>
 <p class="count" id="count">Loading index.json…</p>
 <div class="wrap"><table>
 <thead><tr><th>Provider</th><th>Category</th><th>Free offer</th><th>Free models</th><th>Connect</th><th>Verified</th></tr></thead>
@@ -112,6 +143,9 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   var entries = [];
   var generated = "";
   var configClients = {};
+  var comparison = [];
+  var comparisonOpen = false;
+  var countryNames = {};
   // A model's own page, where it has one: index.json's `models` names each.
   var modelPages = {};
 
@@ -150,6 +184,8 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     els.cat.value = params.get("cat") || "";
     els.where.value = params.get("where") || "";
     FILTERS.forEach(function (id) { els[id].checked = params.get(id) === "1"; });
+    comparison = comparisonIds(params.get("compare"), entries);
+    comparisonOpen = comparison.length > 1;
   }
   function writeState() {
     var params = new URLSearchParams();
@@ -157,8 +193,102 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     if (els.cat.value) params.set("cat", els.cat.value);
     if (els.where.value) params.set("where", els.where.value);
     FILTERS.forEach(function (id) { if (els[id].checked) params.set(id, "1"); });
+    if (comparison.length) params.set("compare", comparison.join(","));
     var qs = params.toString();
-    history.replaceState(null, "", qs ? "?" + qs : location.pathname);
+    history.replaceState(null, "", (qs ? "?" + qs : location.pathname) + location.hash);
+  }
+
+  function comparisonIds(value, rows) {
+    var live = rows.filter(function (e) { return !e.archived && !e.duplicate_of; });
+    return (value || "").split(",").filter(function (id, i, ids) {
+      return id && ids.indexOf(id) === i && live.some(function (e) { return e.id === id; });
+    }).slice(0, 3);
+  }
+
+  function countryWords(e) {
+    if (!e.border) return "Country restrictions not established.";
+    var codes = e.border.served || e.border.left_out || [];
+    if (!codes.length) return "No country exclusions listed.";
+    return (e.border.served ? "Offered in: " : "Not offered in: ") + codes.map(function (code) {
+      return countryNames[code] || code;
+    }).join(", ") + ".";
+  }
+
+  function trainingWords(e) {
+    var value = e.data_use && e.data_use.trains;
+    if (value === "no") return "Does not train on submitted data.";
+    if (value === "yes") return "May use submitted data to train or improve models.";
+    if (value === "opt-out") return "May use submitted data to train or improve models unless you opt out.";
+    return "Training policy not established.";
+  }
+
+  function toggleComparison(id) {
+    var i = comparison.indexOf(id);
+    if (i !== -1) comparison.splice(i, 1);
+    else if (comparison.length < 3) comparison.push(id);
+    if (comparison.length < 2) comparisonOpen = false;
+    renderComparison();
+    writeState();
+  }
+
+  function renderComparison() {
+    document.querySelectorAll("input[data-compare]").forEach(function (input) {
+      input.checked = comparison.indexOf(input.dataset.compare) !== -1;
+      input.disabled = !input.checked && comparison.length === 3;
+    });
+    var section = document.getElementById("comparison");
+    section.hidden = !comparison.length;
+    var names = comparison.map(function (id) { return entries.find(function (e) { return e.id === id; }).name; });
+    document.getElementById("comparison-status").textContent = comparison.length + " of 3 selected: " + names.join(", ") +
+      (comparison.length === 1 ? ". Choose another offer." : ".");
+    var toggle = document.getElementById("comparison-toggle");
+    toggle.disabled = comparison.length < 2;
+    toggle.textContent = comparisonOpen ? "Hide comparison" : "Compare selected";
+    toggle.setAttribute("aria-expanded", String(comparisonOpen));
+    var grid = document.getElementById("comparison-grid");
+    grid.hidden = !comparisonOpen;
+    grid.textContent = "";
+    grid.style.setProperty("--compare-count", comparison.length);
+    comparison.forEach(function (id) {
+      var e = entries.find(function (entry) { return entry.id === id; });
+      var card = el("article", "comparison-provider");
+      card.setAttribute("aria-label", e.name);
+      var header = el("div");
+      var heading = el("h3");
+      heading.appendChild(link(e.page, e.name));
+      header.appendChild(heading);
+      var remove = el("button", "", "Remove");
+      remove.type = "button";
+      remove.setAttribute("aria-label", "Remove " + e.name + " from comparison");
+      remove.addEventListener("click", function () {
+        toggleComparison(id);
+        var input = Array.from(document.querySelectorAll("input[data-compare]")).find(function (input) {
+          return input.dataset.compare === id;
+        });
+        (input || els.q).focus();
+      });
+      header.appendChild(remove);
+      card.appendChild(header);
+      // Reuse the ordinary row's model conditions, payment labels and client route.
+      var ordinary = row(e);
+      function field(label, value) {
+        var div = el("div");
+        div.appendChild(el("h4", "", label));
+        if (typeof value === "string") div.appendChild(el("div", "", value));
+        else while (value.firstChild) div.appendChild(value.firstChild);
+        card.appendChild(div);
+        return div;
+      }
+      field("Free offer", ordinary.querySelector(".offer"));
+      field("Free models", ordinary.querySelector(".models"));
+      field("Limits", e.limits || "The vendor publishes no figure for this tier.").lastChild.className = "comparison-limits";
+      field("Where offered", countryWords(e));
+      var data = field("Data use", trainingWords(e));
+      if (e.data_use && e.data_use.url) data.appendChild(link(e.data_use.url, "Vendor policy"));
+      field("Connect", ordinary.querySelector(".connect"));
+      field("Verified", ordinary.querySelector(".verified"));
+      grid.appendChild(card);
+    });
   }
 
   function el(tag, cls, content) {
@@ -203,6 +333,20 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     // rejected for cause, somewhere this list will not send anyone.
     var host = e.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "");
     name.appendChild(e.archived ? el("span", "muted", host) : link(e.url, host, "muted"));
+    if (!e.archived) {
+      name.appendChild(el("br"));
+      var choose = el("label", "compare-choice");
+      var check = el("input");
+      check.type = "checkbox";
+      check.dataset.compare = e.id;
+      check.checked = comparison.indexOf(e.id) !== -1;
+      check.disabled = !check.checked && comparison.length === 3;
+      check.setAttribute("aria-label", "Compare " + e.name);
+      check.addEventListener("change", function () { toggleComparison(e.id); });
+      choose.appendChild(check);
+      choose.appendChild(text("Compare"));
+      name.appendChild(choose);
+    }
     tr.appendChild(name);
 
     var cat = cell("cat");
@@ -316,6 +460,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
       els.count.appendChild(text(" · "));
       els.count.appendChild(el("span", "nowrap", "index generated " + generated));
     }
+    renderComparison();
     writeState();
   }
 
@@ -329,6 +474,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   }).then(function (data) {
     (data.models || []).forEach(function (x) { if (x.page) modelPages[x.family] = x.page; });
     (data.countries || []).forEach(function (c) {
+      countryNames[c.code] = c.name;
       var option = document.createElement("option");
       option.value = c.code;
       option.textContent = c.name;
@@ -353,6 +499,17 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
       els.strong.checked = true;
     }
     ["q", "cat", "where"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
+    document.getElementById("comparison-clear").addEventListener("click", function () {
+      comparison = [];
+      comparisonOpen = false;
+      renderComparison();
+      writeState();
+      els.q.focus();
+    });
+    document.getElementById("comparison-toggle").addEventListener("click", function () {
+      comparisonOpen = !comparisonOpen;
+      renderComparison();
+    });
     generated = data.generated;
     render();
   }).catch(function (err) {

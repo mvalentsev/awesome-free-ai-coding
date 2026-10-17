@@ -515,6 +515,9 @@
         },
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
+        },
+        "reflection/beam-1.0-501b-a23b": {
+          "name": "reflection/beam-1.0-501b-a23b (until 2026-10-22)"
         }
       }
     },

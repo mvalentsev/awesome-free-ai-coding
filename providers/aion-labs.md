@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Aion Labs free tier: limits, free models, verified 2026-10-15'
-description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required. The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required.
+description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required. The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms…
 permalink: /providers/aion-labs/
 last_modified_at: 2026-10-15
 crumb: Aion Labs
@@ -25,11 +25,15 @@ No model is free by itself here: the free part is an amount the account spends a
 
 Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account
 
-The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required.
+The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn.
 
 ## Where it is offered
 
 The vendor names no country it keeps the offer from ([source](https://www.aionlabs.ai/terms/), read 2026-10-10).
+
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “We do not use your Input or Output to train models and we do not sell them.” ([source](https://www.aionlabs.ai/terms/)).
 
 ## Connect
 
@@ -66,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

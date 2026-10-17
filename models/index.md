@@ -1,16 +1,16 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-15'
-description: 129 model families the list's 85 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 130 model families the list's 85 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-10-16
+last_modified_at: 2026-10-17
 ---
 
 {% raw %}
 
 # Every free model on the list
 
-129 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+130 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -64,6 +64,7 @@ last_modified_at: 2026-10-16
 | [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · strong | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) |
 | `agents-a1` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `apertus-70b` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
+| [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-10-22) |
 | `big-pickle` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) · notable | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
