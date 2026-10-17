@@ -357,6 +357,10 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     # CONTRIBUTING preserves a delisted row's last published offer. Keep its
     # diverging historical checks visible without asserting current eligibility.
     historical_ids = {entry.id for entry in entries if entry.delisted is not None}
+    current_urls = set(extra) | {url for row, selected in by_row.items()
+                                if row not in historical_ids for url in selected}
+    historical_urls = {url for row, selected in by_row.items()
+                       if row in historical_ids for url in selected} - current_urls
     historical_checks = {}
     current = {}
     for name, records in (('quotes', quotes), ('quotas', quotas),
@@ -365,6 +369,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         current[name] = [record for record in records if record['row'] not in historical_ids]
     quotes, quotas = current['quotes'], current['quotas']
     catalogs, model_checks = current['page_catalogs'], current['model_checks']
+    historical_checks['sources'] = [record for record in checks if record['url'] in historical_urls]
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
                                   'page_catalogs': catalogs,
@@ -372,7 +377,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                                   'model_checks': model_checks,
                                   'historical_rows': sorted(historical_ids),
                                   'historical_checks': historical_checks,
-                                  'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes)
+                                  'passed': all(r['passed'] for r in checks if r['url'] not in historical_urls)
+                                            and all(q['found'] for q in quotes)
                                             and all(c['passed'] for c in catalogs)
                                             and all(q['passed'] for q in quotas)
                                             and all(m['passed'] for m in model_checks),

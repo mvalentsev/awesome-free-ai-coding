@@ -27,6 +27,8 @@ Gateway credit: $5/month per team
 
 Zero-priced model routes: Usage allowance: amount not published (period not published) per team
 
+Beam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`
+
 A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
 
 ## Where it is offered
@@ -43,8 +45,8 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `poolside/laguna-s-2.1-free`, `stealth/glyph-cluster`, `nvidia/nemotron-3.5-lightning-free`, `stealth/cat-jam`
-- Note: The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty.
+- Callable ids: `poolside/laguna-s-2.1-free`, `stealth/glyph-cluster`, `nvidia/nemotron-3.5-lightning-free`, `stealth/cat-jam`, `reflection/beam-free`
+- Note: Use exact zero-priced IDs; metered routes spend gateway credit. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -62,6 +64,11 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 - Source: <https://vercel.com/docs/ai-gateway/faq>
 - Source: <https://vercel.com/docs/ai-gateway/openai-compat>
 - Source: <https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api>
+- Source: <https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free>
+- Source: <https://vercel.com/ai-gateway/models/beam-free>
+- Source: <https://vercel.com/ai-gateway/models/beam>
+- Source: <https://reflection.ai/legal/terms-of-service>
+- Source: <https://reflection.ai/legal/privacy-policy>
 
 ## History
 

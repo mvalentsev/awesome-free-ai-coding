@@ -1151,9 +1151,11 @@ The report covers collected evidence; source reads and quote matches still need
 vendor judgment, affected API lanes still need controls, and the full diff still
 needs independent review. The hooks below remain mandatory.
 
-The sources phase keeps a delisted row's last-offer checks in `historical_checks`.
-They remain visible when current vendor pages differ, and do not assert current
-free eligibility. Source reads and a dated withdrawal judgment are still required.
+The sources phase keeps a delisted row's last-offer checks in `historical_checks`,
+including source-read failures under `sources`. These remain visible without
+asserting current free eligibility. A URL used by a current row or explicitly
+requested still requires a successful read. Source reads and a dated withdrawal
+judgment are still required when an offer is withdrawn.
 
 Before pushing, record that independent review with `judgment --result <file>`.
 The JSON names `base`, `sha`, every changed file in sorted `paths`,

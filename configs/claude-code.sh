@@ -8,7 +8,7 @@
 # gateway the next credential it holds, your own sign-in included.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, liquid/lfm-2.5-2.6b:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, liquid/lfm-2.5-2.6b:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free, xingchen-agi/xing4.0-29b-a4b:free
 claude-openrouter-free() {
   if [ -z "${OPENROUTER_API_KEY:-}" ]; then
     echo "claude-openrouter-free: set OPENROUTER_API_KEY first (configs/free-llm.env.example)" >&2
@@ -64,7 +64,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, stealth/glyph-cluster, nvidia/nemotron-3.5-lightning-free, stealth/cat-jam
+#    free ids: poolside/laguna-s-2.1-free, stealth/glyph-cluster, nvidia/nemotron-3.5-lightning-free, stealth/cat-jam, reflection/beam-free
 claude-vercel-ai-gateway() {
   if [ -z "${VERCEL_AI_GATEWAY_API_KEY:-}" ]; then
     echo "claude-vercel-ai-gateway: set VERCEL_AI_GATEWAY_API_KEY first (configs/free-llm.env.example)" >&2

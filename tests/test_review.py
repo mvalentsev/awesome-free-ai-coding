@@ -682,6 +682,38 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
         assert result['historical_rows'] == ['vendor']
 
 
+@respx.mock
+@pytest.mark.parametrize("role", ["historical", "shared", "extra"])
+async def test_unread_historical_sources_stay_visible_without_certifying_current_use(tmp_path, monkeypatch, role):
+    import yaml
+    from freetier_radar.models import _row_payload
+    from test_render import make
+
+    current = "https://current.example/pricing"
+    past = "https://past.example/pricing"
+    active = make(id="current", url="https://current.example", source_urls=[past] if role == "shared" else [current],
+                  probe={"type": "page-keywords", "endpoint": current, "keywords": ["Recurring free quota for chat"]})
+    historical = make(id="past", url="https://past.example", source_urls=[past],
+                      probe={"type": "page-keywords", "endpoint": past, "keywords": ["Previous free quota for chat"]},
+                      delisted={"on": "2026-10-15", "reason": "The old offer ended"})
+    monkeypatch.setattr(review, "blob", lambda *args: yaml.safe_dump({
+        "entries": [_row_payload(active), _row_payload(historical)]}).encode())
+    bundle = review.Bundle(tmp_path / "evidence", tmp_path)
+    bundle.save("scope", {"base": "a" * 40, "sha": "b" * 40, "rows": ["current", "past"], "paths": []})
+    respx.get(current).respond(200, text="Recurring free quota for chat")
+    respx.get(past).respond(403, text="A blocked historical page is not current vendor evidence")
+    result = await review.sources(bundle, [past] if role == "extra" else [])
+    assert result["passed"] is (role == "historical")
+    unread = next(r for r in result["checks"] if r["url"] == past)
+    assert not unread["passed"] and unread["attempts"]
+    if role == "historical":
+        assert result["historical_checks"]["sources"] == [unread]
+        assert not result["historical_checks"]["model_checks"][0]["passed"]
+    else:
+        assert unread not in result["historical_checks"].get("sources", [])
+    assert all(r["passed"] for r in result["model_checks"])
+
+
 def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_path):
     from freetier_radar.review_browser import accept_browser, browser_plan, browser_script
     repo = repo_at(tmp_path)

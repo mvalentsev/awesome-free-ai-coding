@@ -168,6 +168,12 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/xingchen-agi/xing4.0-29b-a4b:free
+  litellm_params:
+    model: openai/xingchen-agi/xing4.0-29b-a4b:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -761,6 +767,12 @@ model_list:
 - model_name: vercel-ai-gateway/stealth/cat-jam
   litellm_params:
     model: openai/stealth/cat-jam
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: vercel-ai-gateway/reflection/beam-free
+  litellm_params:
+    model: openai/reflection/beam-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true

@@ -90,6 +90,9 @@
         },
         "nvidia/nemotron-3.5-super-vl:free": {
           "name": "nvidia/nemotron-3.5-super-vl:free"
+        },
+        "xingchen-agi/xing4.0-29b-a4b:free": {
+          "name": "xingchen-agi/xing4.0-29b-a4b:free"
         }
       }
     },
@@ -160,6 +163,9 @@
         },
         "nvidia/nemotron-3.5-super-vl:free": {
           "name": "nvidia/nemotron-3.5-super-vl:free"
+        },
+        "xingchen-agi/xing4.0-29b-a4b:free": {
+          "name": "xingchen-agi/xing4.0-29b-a4b:free"
         }
       }
     },
@@ -553,6 +559,9 @@
         },
         "stealth/cat-jam": {
           "name": "stealth/cat-jam"
+        },
+        "reflection/beam-free": {
+          "name": "reflection/beam-free"
         }
       }
     },

@@ -161,6 +161,9 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("browse.html", r'dataUseWords = data\.(data_use_words);',
           lambda root: ('data_use_words',),
           "render.build_index publishes DATA_USE_WORDS; reviewed-copy propagation in tests/test_browse.py"),
+    Claim("CONTRIBUTING.md", r"last-offer checks in `(historical_checks)`,\s+including source-read failures under `(sources)`",
+          lambda root: ("historical_checks", "sources"),
+          "review.sources; historical/shared/explicit HTTP-boundary controls in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"`quotas` stores `(amount)`, `(unit)`, `(period)` and `(scope)`",
           lambda root: tuple(field for field in ("amount", "unit", "period", "scope")
                              if field in UsageQuota.model_fields),

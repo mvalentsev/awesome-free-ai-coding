@@ -129,7 +129,8 @@
           "dots-studio/dots-3-note-preview:free",
           "liquid/lfm-2.5-2.6b:free",
           "openrouter/free",
-          "nvidia/nemotron-3.5-super-vl:free"
+          "nvidia/nemotron-3.5-super-vl:free",
+          "xingchen-agi/xing4.0-29b-a4b:free"
         ],
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free"
@@ -1277,7 +1278,8 @@
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling-small:free",
           "stealth/glyph-cluster",
-          "nvidia/nemotron-3.5-super-vl:free"
+          "nvidia/nemotron-3.5-super-vl:free",
+          "xingchen-agi/xing4.0-29b-a4b:free"
         ],
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free"
@@ -3617,11 +3619,16 @@
         "https://vercel.com/docs/ai-gateway/pricing",
         "https://vercel.com/docs/ai-gateway/faq",
         "https://vercel.com/docs/ai-gateway/openai-compat",
-        "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api"
+        "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api",
+        "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
+        "https://vercel.com/ai-gateway/models/beam-free",
+        "https://vercel.com/ai-gateway/models/beam",
+        "https://reflection.ai/legal/terms-of-service",
+        "https://reflection.ai/legal/privacy-policy"
       ],
       "card_required": true,
       "offering": "OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes",
-      "limits": "Gateway credit: $5/month per team\n\nZero-priced model routes: Usage allowance: amount not published (period not published) per team\n\nA team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.",
+      "limits": "Gateway credit: $5/month per team\n\nZero-priced model routes: Usage allowance: amount not published (period not published) per team\n\nBeam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`\n\nA team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.",
       "quotas": [
         {
           "amount": 5.0,
@@ -3643,6 +3650,21 @@
           "reviewed_on": "2026-10-13",
           "amount": null,
           "period": null
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Beam launch offer",
+          "condition": "The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.",
+          "condition_quote": "The model will stop serving when the free offer ends",
+          "source": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free",
+          "quote": "Beam is free to use for a limited time",
+          "model_ids": [
+            "reflection/beam-free"
+          ],
+          "reviewed_on": "2026-10-17",
+          "amount": null,
+          "period": null
         }
       ],
       "free_part": "models",
@@ -3660,16 +3682,25 @@
           "poolside/laguna-s-2.1-free",
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-lightning-free",
-          "stealth/cat-jam"
+          "stealth/cat-jam",
+          "reflection/beam-free"
         ],
         "ignored_ids": [
           "liquid/d1",
           "convaiinnovations/laya",
-          "convaiinnovations/laya-free"
+          "convaiinnovations/laya-free",
+          "reflection/beam"
         ],
         "no_family_ids": [
           "stealth/glyph-cluster",
           "stealth/cat-jam"
+        ],
+        "free_since": [
+          {
+            "id": "reflection/beam-free",
+            "on": "2026-10-16",
+            "source": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free"
+          }
         ],
         "anthropic_base_url": "https://ai-gateway.vercel.sh",
         "codex": {
@@ -3677,7 +3708,7 @@
           "source": "https://vercel.com/docs/ai-gateway/coding-agents/openai-codex",
           "quote": "Point Codex at its own compatibility endpoint"
         },
-        "note": "The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty."
+        "note": "Use exact zero-priced IDs; metered routes spend gateway credit. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty."
       },
       "data_use": {
         "trains": "opt-out",
@@ -5558,7 +5589,7 @@
         "codex": {
           "base_url": "https://aihubmix.com/v1",
           "source": "https://docs.aihubmix.com/en/api/Codex-CLI",
-          "quote": "Connect AIHubMix in Codex CLI"
+          "quote": "Connect AIHubMix in Codex (CLI and desktop app)"
         },
         "note": "The listed -free IDs are zero-priced. intern-s2-free serves Intern-S2-Preview 35B; union-alpha-free is a stealth model, and k2.6-code-preview-free describes kimi-for-coding. For Claude Code, use https://aihubmix.com as ANTHROPIC_BASE_URL."
       },
@@ -6309,7 +6340,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nAvailable models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nAvailable models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
@@ -6342,7 +6373,7 @@
           {
             "id": "full",
             "amount": 30,
-            "quote": "Full access covers US, CA, GB, AU, NZ, IE, NO, SE, DK, FI, NL, AT, LU, IS, DE, FR, ES, IT, PT, BE, CH, LI, MT and KR.",
+            "quote": "Full access covers US, CA, GB, AU, NZ, IE, NO, SE, DK, FI, NL, AT, LU, IS, DE, CH, FR, ES, IT, PT, BE, LI, MT and KR.",
             "amount_source": "https://freebuff.com/plans",
             "amount_quote": "Free $0 / month No card required 30 hours refilled daily",
             "countries": [
@@ -6449,7 +6480,7 @@
             "listed": true
           },
           {
-            "name": "MiMo Fast",
+            "name": "MiMo V2.6 Flash Fast",
             "model": {
               "family": "mimo-v2.6-flash",
               "tier": "strong",
@@ -6549,11 +6580,11 @@
         ],
         "limited_allowance": "6 one-hour sessions per day",
         "notes": [
-          "MiMo Fast is the default on CLI, Desktop, Web, and Cloud.",
+          "MiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud.",
           "Daily hours refill at midnight in your local timezone and unused daily hours do not carry over.",
           "Older app versions show the same balance as Freebucks, five to an hour."
         ],
-        "reviewed_on": "2026-10-15"
+        "reviewed_on": "2026-10-17"
       },
       "data_use": {
         "trains": "yes",
