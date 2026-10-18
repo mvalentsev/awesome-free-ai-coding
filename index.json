@@ -12738,6 +12738,135 @@
       "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/"
+    },
+    {
+      "id": "iteracompute",
+      "name": "IteraCompute",
+      "category": "api-free-tier",
+      "url": "https://iteracompute.com/free/",
+      "source_urls": [
+        "https://iteracompute.com/pricing/",
+        "https://iteracompute.com/free-tier-terms/",
+        "https://iteracompute.com/docs.html",
+        "https://iteracompute.com/integrations/opencode/",
+        "https://iteracompute.com/models/qwen3-8-27b/",
+        "https://iteracompute.com/changelog/",
+        "https://iteracompute.com/about/",
+        "https://iteracompute.com/terms.html",
+        "https://iteracompute.com/privacy.html"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up",
+      "limits": "Free tier: 30,000,000 tokens/month per account. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nFree tier: 160,000 tokens/minute per account\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all API keys on the account. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. Optional cumulative $10/$50 top-ups unlock larger allowances; the Free tier needs neither. Zero data retention requires a separate signed agreement.",
+      "quotas": [
+        {
+          "amount": 30000000.0,
+          "unit": "tokens",
+          "period": "month",
+          "scope": "account",
+          "label": "Free tier",
+          "reset": "Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.",
+          "source": "https://iteracompute.com/free/",
+          "quote": "Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge required 30M 128K 160,000",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Tier",
+              "Cumulative net recharge",
+              "Monthly tokens",
+              "Context",
+              "TPM"
+            ],
+            "column": "Monthly tokens",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        },
+        {
+          "amount": 160000.0,
+          "unit": "tokens",
+          "period": "minute",
+          "scope": "account",
+          "label": "Free tier",
+          "source": "https://iteracompute.com/free/",
+          "quote": "Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge required 30M 128K 160,000",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Tier",
+              "Cumulative net recharge",
+              "Monthly tokens",
+              "Context",
+              "TPM"
+            ],
+            "column": "TPM",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://api.iteracompute.com/v1",
+        "key_url": "https://platform.iteracompute.com/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "qwen/qwen3.8-27b"
+        ],
+        "free_since": [
+          {
+            "id": "qwen/qwen3.8-27b",
+            "on": "2026-10-09",
+            "source": "https://iteracompute.com/changelog/"
+          }
+        ],
+        "note": "Create a key with permission for the callable ID. Use Chat Completions; the vendor's Responses examples cover paid models. Configure your client's context and output budgets to match the Free limits on the provider page. Authenticated generation has not been checked here."
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Without your explicit authorization, we will not use your Model API call data, Interaction Data or Usage Data to train, fine-tune or optimize general-purpose foundation models offered to unspecified users.",
+        "url": "https://iteracompute.com/privacy.html"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-18",
+        "source": "https://iteracompute.com/terms.html",
+        "quote": "",
+        "read": "page",
+        "also_named": [
+          "CN"
+        ]
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://api.iteracompute.com/v1/models",
+        "keywords": [],
+        "free_marker": "",
+        "require_zero_price": true,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-18",
+      "last_verified": "2026-10-18",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 70,
+      "no_account": false,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/"
     }
   ],
   "countries": [
@@ -13763,6 +13892,7 @@
       "bazaarlink",
       "inferbase",
       "nous-portal",
+      "iteracompute",
       "regolo",
       "token-harbor",
       "tokenrouter",
@@ -13823,6 +13953,7 @@
       "bazaarlink",
       "inferbase",
       "nous-portal",
+      "iteracompute",
       "regolo",
       "token-harbor",
       "tokenrouter",
@@ -13901,6 +14032,7 @@
       "bazaarlink",
       "inferbase",
       "nous-portal",
+      "iteracompute",
       "regolo",
       "token-harbor",
       "tokenrouter",
@@ -16567,16 +16699,6 @@
       "checked_on": "2026-09-17",
       "reason": "New AI-inference users get a one-time package — 注册有奖活动：现在注册 qiniu.com/ai 开发者账号，立即获得 300万免费 Token 资源包, three million tokens counted at DeepSeek-V3.1's input price — issued after the first billed usage (使用服务并产生计费后自动发放). Two walls keep it off. The API FAQ says 目前AI产品仅支持中国大陆账号使用，暂不支持海外账号 — the AI products take mainland-China accounts only, not overseas ones — and a new user has a 24-hour grace period (24 小时免认证体验期) before real-name verification is required: the mainland real-name account this list does not carry, as for Baidu Qianfan and Volcengine.",
       "reopen_if": "Qiniu opens AI inference to accounts outside mainland China without real-name verification.",
-      "current": true
-    },
-    {
-      "domains": [
-        "iteracompute.com"
-      ],
-      "name": "IteraCompute",
-      "checked_on": "2026-09-17",
-      "reason": "Nine chat models priced per token in a keyless catalog that marks every row `is_free: false`; neither the home page nor the docs page names a free allowance, a trial or a signup credit (2026-09-17).",
-      "reopen_if": "A row marked free in the catalog, or a signup credit with a figure on a vendor page.",
       "current": true
     },
     {

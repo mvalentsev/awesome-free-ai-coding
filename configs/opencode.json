@@ -738,6 +738,19 @@
         }
       }
     },
+    "iteracompute": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "IteraCompute",
+      "options": {
+        "baseURL": "https://api.iteracompute.com/v1",
+        "apiKey": "{env:ITERACOMPUTE_API_KEY}"
+      },
+      "models": {
+        "qwen/qwen3.8-27b": {
+          "name": "qwen/qwen3.8-27b"
+        }
+      }
+    },
     "regolo": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Regolo AI",

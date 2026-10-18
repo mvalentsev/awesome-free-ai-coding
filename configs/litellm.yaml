@@ -1022,6 +1022,12 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
+- model_name: iteracompute/qwen/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b
+    api_base: https://api.iteracompute.com/v1
+    api_key: os.environ/ITERACOMPUTE_API_KEY
+    use_chat_completions_api: true
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2

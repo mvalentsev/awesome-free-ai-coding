@@ -2442,17 +2442,6 @@ watched:
       Qiniu opens AI inference to accounts outside mainland China without
       real-name verification.
 
-  - domains: [iteracompute.com]
-    name: IteraCompute
-    checked_on: '2026-09-17'
-    reason: >-
-      Nine chat models priced per token in a keyless catalog that marks every
-      row `is_free: false`; neither the home page nor the docs page names a free
-      allowance, a trial or a signup credit (2026-09-17).
-    reopen_if: >-
-      A row marked free in the catalog, or a signup credit with a figure on a
-      vendor page.
-
   - domains: [edenai.co, edenai.run]
     name: Eden AI
     checked_on: '2026-09-17'
