@@ -35,7 +35,7 @@ The vendor names no country it keeps the offer from ([source](https://www.cloudf
 
 ## What happens to what you send
 
-What you send is not used to train models. In the vendor's words: “Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services” ([source](https://developers.cloudflare.com/workers-ai/platform/data-usage/)).
+What you send is not used to train models. In the vendor's words: “Cloudflare does not use Customer Content processed by Workers AI to train AI models.” ([source](https://developers.cloudflare.com/workers-ai/platform/data-usage/)).
 
 ## Connect
 

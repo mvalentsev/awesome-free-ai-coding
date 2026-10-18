@@ -963,7 +963,7 @@
       },
       "data_use": {
         "trains": "no",
-        "quote": "Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services",
+        "quote": "Cloudflare does not use Customer Content processed by Workers AI to train AI models.",
         "url": "https://developers.cloudflare.com/workers-ai/platform/data-usage/"
       },
       "border": {
