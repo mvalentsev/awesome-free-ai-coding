@@ -148,7 +148,7 @@ claude-moark() {
 }
 
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
-#    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, diffusiongemma
+#    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, diffusiongemma, minimax-m3
 claude-freeinference() {
   if [ -z "${FREEINFERENCE_API_KEY:-}" ]; then
     echo "claude-freeinference: set FREEINFERENCE_API_KEY first (configs/free-llm.env.example)" >&2

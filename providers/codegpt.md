@@ -19,7 +19,7 @@ VS Code / JetBrains coding agent whose $0 plan includes model usage rather than 
 
 ## Free models
 
-The vendor does not say which models the free part reaches, so the column names none.
+The vendor does not identify which models the free offer includes. See Limits for the published conditions.
 
 ## Limits, in the vendor's words
 
@@ -50,6 +50,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

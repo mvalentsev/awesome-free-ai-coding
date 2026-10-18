@@ -19,13 +19,13 @@ Cloud-hosted open models on a $0 plan that grants starter usage credits for a st
 
 ## Free models
 
-The vendor does not say which models the free part reaches, so the column names none.
+The vendor does not identify which models the free offer includes. See Limits for the published conditions.
 
 ## Limits, in the vendor's words
 
 Starter usage: Monthly credits allowance: amount not published per account
 
-1 requests at once per account
+1 request at once per account
 
 The Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models. Per-token catalog prices do not identify the starter set. In a 2026-09-02 test, a Free key answered gpt-oss:120b, gemma4:31b and nemotron-3-ultra but returned 402 for minimax-m3. That measurement does not establish the current starter set.
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -25,7 +25,7 @@ No free model family is currently listed here; callable ids, where the row has t
 
 5 requests/2 days per account per model
 
-1 requests at once per account
+1 request at once per account
 
 Free is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes many roleplay and writing fine-tunes alongside coding-capable base models. Continuing beyond the trial allowance requires a paid plan.
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -19,7 +19,7 @@ Serverless inference on open-weight models with a $1 trial credit documented in 
 
 ## Free models
 
-No model is free by itself here: the free part is an amount the account spends across the catalog, so the column names none. The limits below say what it buys; the ids to call, where the row has them, are under Connect.
+The free offer is a budget for model usage across the catalog. See Limits for its conditions and Connect for API details, where available.
 
 ## Limits, in the vendor's words
 
@@ -44,7 +44,6 @@ What you send is not used to train models. In the vendor's words: “No AI Train
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.fireworks.ai/inference`
 - Codex CLI: [`configs/codex/fireworks-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/fireworks-ai.config.toml) — copy it to `~/.codex/`, then `codex -p fireworks-ai`; set up on the lane by the vendor's own page, <https://docs.fireworks.ai/nexus/harnesses>: "The Codex CLI reads ~/.codex/config.toml"
 - Callable ids: `accounts/fireworks/models/deepseek-v4p1-flash`, `accounts/fireworks/models/glm-5p3-flash`, `accounts/fireworks/models/minimax-m3`, `accounts/fireworks/models/glm-5p3`, `accounts/fireworks/models/kimi-k3`
-- Note: ids are accounts/fireworks/models/ plus the slug the serverless pricing page links, read 2026-09-17; /inference/v1/models answers 401 without a key, so none is read off a catalog. The quickstart gives the Anthropic SDK base_url https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL, the client appending /v1/messages
 
 Try it from your terminal with your key in `FIREWORKS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -73,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

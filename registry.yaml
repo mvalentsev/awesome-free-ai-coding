@@ -557,7 +557,8 @@ entries:
   - https://developers.cloudflare.com/workers-ai/platform/pricing/
   - https://developers.cloudflare.com/workers-ai/platform/limits/
   card_required: false
-  offering: 10k neurons/day free
+  offering: Serverless model inference on Cloudflare, with an OpenAI-compatible API
+    and a daily free allowance
   limits: 'Past the free allowance "further operations will fail with an error". Some
     models require a paid billing method even if neurons remain: Kimi K2.6, Kimi K2.7
     Code, GLM 5.2, GLM 5.3, GLM 5.3 Flash, DeepSeek V4 Flash 0731 and DeepSeek V4
@@ -4083,11 +4084,7 @@ entries:
     openai_compatible: true
     model_ids:
     - sensenova-6.8-flash-lite
-    note: the base url and the id are the ones SenseTime's own API guide on GitHub
-      (OpenSenseNova, API.md) prints; token.sensenova.cn/v1/models answers 401 `Authorization
-      Not Found` in an OpenAI-shaped envelope, so no run reads the catalog, and the
-      id of SenseNova U1 Fast, the plan's other free model, is printed on no page
-      a probe here can read.
+    note: An API ID for SenseNova U1 Fast has not been confirmed.
   border:
     served: [CN]
     'on': '2026-09-26'
@@ -5255,14 +5252,11 @@ entries:
     - deepseek-v4-flash
     - qwen3.6-35b
     - diffusiongemma
+    - minimax-m3
     anthropic_base_url: https://freeinference.org/anthropic
-    note: the four ids are the chat rows the keyless catalog at freeinference.org/v1/models
-      returns on 2026-09-27, glm-5.3-flash among them since 2026-09-05 (bge-m3, the
-      fifth, is an embedding model); the docs mark three more chat ids Free, which
-      stay out of the generated configs until a keyed read confirms them. The catalog's
-      prices are upstream reference accounting, "not fees charged by FreeInference
-      to users". The same key serves https://freeinference.org/anthropic, which the
-      docs give as Claude Code's ANTHROPIC_BASE_URL
+    note: Catalog prices are upstream reference values, not fees charged to Free users.
+      Models named only in the documentation have not had their callable IDs confirmed
+      here.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -5756,12 +5750,7 @@ entries:
     - glm-5.3-flash
     - claude-sonnet-4-6
     anthropic_base_url: https://api.routerplex.com
-    note: ids are the catalog page's own spellings (routerplex.com/models, 54 chat
-      ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com
-      and ANTHROPIC_MODEL=claude-sonnet-4-6 (guide reviewed 2026-09-13), the Anthropic
-      SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids
-      is checked against a catalog, and which of them the promotional credit can call
-      is not published
+    note: ''
   data_use:
     trains: 'no'
     quote: RouterPlex does not use your prompts or outputs to train models … Every
@@ -6603,11 +6592,7 @@ entries:
       base_url: https://api.fireworks.ai/inference/v1
       source: https://docs.fireworks.ai/nexus/harnesses
       quote: The Codex CLI reads ~/.codex/config.toml
-    note: ids are accounts/fireworks/models/ plus the slug the serverless pricing
-      page links, read 2026-09-17; /inference/v1/models answers 401 without a key,
-      so none is read off a catalog. The quickstart gives the Anthropic SDK base_url
-      https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL,
-      the client appending /v1/messages
+    note: ''
   data_use:
     trains: 'no'
     quote: 'No AI Training on Your Data: We do not use your prompts, training data,
@@ -7161,8 +7146,7 @@ entries:
       base_url: https://models.mixlayer.ai/v1
       source: https://docs.mixlayer.com/codex-cli
       quote: A separate profile keeps Mixlayer isolated from your default Codex configuration
-    note: the id is the pricing page's and the docs' own example; /v1/models answers
-      401 without a key, so it is not read off a catalog
+    note: ''
   data_use:
     trains: 'no'
     quote: By default, Mixlayer does not use Customer Content (Inputs/Outputs) to
@@ -7289,10 +7273,9 @@ entries:
       base_url: https://api.abliteration.ai/v1
       source: https://docs.abliteration.ai/integrations/codex
       quote: To use Codex with abliteration.ai, register a custom model provider
-    note: ids are the three the docs' models page serves, read 2026-09-23 — abliterated-model-large
-      the previous large model, from GLM-5.2; /v1/models answers 401 without a key.
-      The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with
-      an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages
+    note: Use abliterated-model-large-v2 for the newer large model. abliterated-model-large
+      is the previous GLM-5.2-based version. Use abliterated-model for image inputs;
+      both large models are text-only.
   data_use:
     trains: 'no'
     quote: Prompts, completions, and images are processed in memory and never stored

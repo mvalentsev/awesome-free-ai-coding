@@ -1099,6 +1099,9 @@
         },
         "diffusiongemma": {
           "name": "diffusiongemma"
+        },
+        "minimax-m3": {
+          "name": "minimax-m3"
         }
       }
     },

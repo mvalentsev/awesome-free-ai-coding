@@ -41,7 +41,6 @@ What you send is not used to train models. In the vendor's words: “By default,
 - Key: `MIXLAYER_API_KEY` — get one at <https://console.mixlayer.com/app/api-keys>
 - Codex CLI: [`configs/codex/mixlayer.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/mixlayer.config.toml) — copy it to `~/.codex/`, then `codex -p mixlayer`; set up on the lane by the vendor's own page, <https://docs.mixlayer.com/codex-cli>: "A separate profile keeps Mixlayer isolated from your default Codex configuration"
 - Callable ids: `qwen/qwen3.5-4b-free`
-- Note: the id is the pricing page's and the docs' own example; /v1/models answers 401 without a key, so it is not read off a catalog
 
 Try it from your terminal with your key in `MIXLAYER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -67,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

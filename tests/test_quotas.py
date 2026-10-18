@@ -232,6 +232,44 @@ def test_one_time_grant_cannot_look_like_a_recurring_allowance():
     assert '$10 once per account' == quota_words(quota)
 
 
+@pytest.mark.parametrize('amount,unit,expected', [
+    (1, 'requests', '1 request/hour per IP'),
+    (2, 'requests', '2 requests/hour per IP'),
+    (0.5, 'requests', '0.5 requests/hour per IP'),
+    (1, 'credits', '1 credit/hour per IP'),
+    (2, 'credits', '2 credits/hour per IP'),
+    (1, 'input tokens', '1 input token/hour per IP'),
+    (2, 'input tokens', '2 input tokens/hour per IP'),
+    (1, 'one-hour sessions', '1 one-hour session per hour per IP'),
+    (2, 'one-hour sessions', '2 one-hour sessions per hour per IP'),
+    (1, 'Hypercredits', '1 Hypercredit/hour per IP'),
+    (1, 'USD', '$1/hour per IP'),
+    (1, 'CUH', '1 CUH/hour per IP'),
+])
+def test_quota_display_inflects_counts_without_changing_the_recorded_unit(amount, unit, expected):
+    from freetier_radar.quotas import UsageQuota, quota_words
+    quota = UsageQuota.model_validate({**QUOTA, 'amount': amount, 'unit': unit,
+                                      'quote': f'{amount} {unit} per hour per IP'})
+    assert quota_words(quota) == expected
+    assert quota.model_dump()['unit'] == unit
+
+
+def test_singular_quota_reaches_public_surfaces_from_the_same_canonical_record():
+    from datetime import date
+    from freetier_radar.render import build_index, build_provider_page, build_site_context
+    entry = Entry.model_validate({**BASE, 'quotas':[
+        {**QUOTA, 'amount':1, 'quote':'1 request per hour per IP'}]})
+    today = date(2026, 10, 5)
+    index = build_index([entry], today)['entries'][0]
+    assert index['quotas'][0]['unit'] == 'requests'
+    site = next(row for section in build_site_context([entry], today)['sections']
+                for row in section['rows'] if row['id'] == entry.id)
+    for text in (index['limits'], build_provider_page(entry, [], today),
+                 str(site['limits'])):
+        assert '1 request/hour per IP' in text
+        assert '1 requests' not in text
+
+
 @respx.mock
 async def test_expired_catalog_quota_is_not_reported_as_a_current_missing_claim():
     from freetier_radar.quotes import check_entries

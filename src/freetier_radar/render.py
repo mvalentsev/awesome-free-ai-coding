@@ -2511,12 +2511,11 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     if archived:
         named = "The row named no free model."
     elif e.free_part is FreePart.SUM:
-        named = ("No model is free by itself here: the free part is an amount the account spends "
-                 "across the catalog, so the column names none. The limits below say what it buys; "
-                 "the ids to call, where the row has them, are under Connect.")
+        named = ("The free offer is a budget for model usage across the catalog. "
+                 "See Limits for its conditions and Connect for API details, where available.")
     elif e.free_part is FreePart.UNNAMED:
-        named = ("The vendor does not say which models the free part reaches, so the column names "
-                 "none.")
+        named = ("The vendor does not identify which models the free offer includes. "
+                 "See Limits for the published conditions.")
     elif e.newcomers:
         named = ("No free model family is listed yet; new offers must clear the two-week bar "
                  "before entering this section.")

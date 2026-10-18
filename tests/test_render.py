@@ -93,13 +93,17 @@ def test_a_provider_page_says_why_its_row_names_no_model():
     from freetier_radar.render import build_provider_page
 
     credit = build_provider_page(make(id="credit", free_part="sum"), [], TODAY)
-    assert "No model is free by itself here" in credit
+    assert "budget for model usage across the catalog" in credit
     assert "names no free model" not in credit
     auto = build_provider_page(make(id="auto", free_part="unnamed"), [], TODAY)
-    assert "The vendor does not say which models" in auto
+    assert "The vendor does not identify which models" in auto
     assert "names no free model" not in auto
     page = build_provider_page(make(id="page", free_part="models"), [], TODAY)
     assert "No free model family is currently listed" in page
+
+    for rendered in (credit, auto, page):
+        section = rendered.split("## Free models\n", 1)[1].split("\n## ", 1)[0]
+        assert "column" not in section
 
 
 def test_a_page_verified_callable_offer_does_not_infer_that_the_vendor_names_no_model():

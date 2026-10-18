@@ -23,7 +23,7 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-100,000 tokens/24 hours; 1 requests/second; 60 requests/minute; 250 requests/hour per key
+100,000 tokens/24 hours; 1 request/second; 60 requests/minute; 250 requests/hour per key
 
 Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but turbo alone does not establish eligibility: usage_based_only denotes paid usage. The operator names no upstream model provider.
 
@@ -65,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

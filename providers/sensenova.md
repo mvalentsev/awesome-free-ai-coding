@@ -36,7 +36,7 @@ Offered only in mainland China ([source](https://platform.sensenova.cn/login), r
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
 - Callable ids: `sensenova-6.8-flash-lite`
-- Note: the base url and the id are the ones SenseTime's own API guide on GitHub (OpenSenseNova, API.md) prints; token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope, so no run reads the catalog, and the id of SenseNova U1 Fast, the plan's other free model, is printed on no page a probe here can read.
+- Note: An API ID for SenseNova U1 Fast has not been confirmed.
 
 Try it from your terminal with your key in `SENSENOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -62,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

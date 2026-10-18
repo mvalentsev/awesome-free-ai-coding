@@ -1352,6 +1352,12 @@ model_list:
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
     use_chat_completions_api: true
+- model_name: freeinference/minimax-m3
+  litellm_params:
+    model: openai/minimax-m3
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
+    use_chat_completions_api: true
 - model_name: hpc-ai/zai-org/glm-5.3-flash
   litellm_params:
     model: openai/zai-org/glm-5.3-flash

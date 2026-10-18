@@ -430,6 +430,11 @@ SCOPE_WORDS = {'account':'per account','ip':'per IP','account-model':'per accoun
                'plan':'per service plan','team':'per team','endpoint':'shared across the endpoint','disputed':'sharing scope disputed'}
 PERIOD_ADJECTIVES = {'second':'Per-second','minute':'Per-minute','hour':'Hourly','day':'Daily','week':'Weekly',
                      'month':'Monthly','one-time':'One-time','concurrent':'Concurrent',None:''}
+_SINGULAR_UNITS = {'requests':'request', 'tokens':'token', 'neurons':'neuron', 'credits':'credit',
+                   'tasks':'task', 'one-hour sessions':'one-hour session', 'messages':'message',
+                   'completions':'completion', 'edit predictions':'edit prediction', 'points':'point',
+                   'input tokens':'input token', 'output tokens':'output token',
+                   'Hypercredits':'Hypercredit', 'weighted units':'weighted unit', 'interactions':'interaction'}
 
 
 def quota_value(q: UsageQuota) -> str:
@@ -446,7 +451,8 @@ def quota_value(q: UsageQuota) -> str:
             text += ' (period not published)'
         return text[0].upper() + text[1:] if q.period is None else text
     amount = f'{q.amount:,.15g}'
-    value = {'USD':'$','INR':'₹'}.get(q.unit,'') + amount if q.unit in ('USD','INR') else amount + ' ' + q.unit
+    unit = _SINGULAR_UNITS.get(q.unit, q.unit) if q.amount == 1 else q.unit
+    value = {'USD':'$','INR':'₹'}.get(q.unit,'') + amount if q.unit in ('USD','INR') else amount + ' ' + unit
     if q.period == 'concurrent':
         value += ' at once'
     elif q.period == 'one-time':

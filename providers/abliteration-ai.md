@@ -19,11 +19,11 @@ OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the 
 
 ## Free models
 
-No model is free by itself here: the free part is an amount the account spends across the catalog, so the column names none. The limits below say what it buys; the ids to call, where the row has them, are under Connect.
+The free offer is a budget for model usage across the catalog. See Limits for its conditions and Connect for API details, where available.
 
 ## Limits, in the vendor's words
 
-1 credits once per organization
+1 credit once per organization
 
 Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.
 
@@ -42,7 +42,7 @@ What you send is not used to train models. In the vendor's words: “Prompts, co
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.abliteration.ai`
 - Codex CLI: [`configs/codex/abliteration-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/abliteration-ai.config.toml) — copy it to `~/.codex/`, then `codex -p abliteration-ai`; set up on the lane by the vendor's own page, <https://docs.abliteration.ai/integrations/codex>: "To use Codex with abliteration.ai, register a custom model provider"
 - Callable ids: `abliterated-model-large-v2`, `abliterated-model`, `abliterated-model-large`
-- Note: ids are the three the docs' models page serves, read 2026-09-23 — abliterated-model-large the previous large model, from GLM-5.2; /v1/models answers 401 without a key. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages
+- Note: Use abliterated-model-large-v2 for the newer large model. abliterated-model-large is the previous GLM-5.2-based version. Use abliterated-model for image inputs; both large models are text-only.
 
 Try it from your terminal with your key in `ABLITERATION_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -70,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
