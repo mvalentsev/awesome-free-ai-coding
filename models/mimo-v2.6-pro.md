@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'mimo-v2.6-pro free: 1 provider, limits and ids, provider probes 2026-10-15'
+title: 'mimo-v2.6-pro free: 1 provider, limits and ids, provider probes 2026-10-19'
 description: mimo-v2.6-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-pro/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: mimo-v2.6-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.6-pro
 
 # Where mimo-v2.6-pro is free
 
-**One row on the list serves `mimo-v2.6-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-15; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-6-pro).
+**One row on the list serves `mimo-v2.6-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-19; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-6-pro).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.6-pro
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-10-06
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-10-06
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -55,6 +55,6 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

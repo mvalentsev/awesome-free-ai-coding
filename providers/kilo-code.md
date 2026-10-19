@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Kilo Code free tier: limits, free models, verified 2026-10-15'
+title: 'Kilo Code free tier: limits, free models, verified 2026-10-19'
 description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note and 1 more. The free-model…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Kilo Code
 ---
 
@@ -11,7 +11,7 @@ crumb: Kilo Code
 
 # Kilo Code free tier
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-10-15 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-10-19 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -78,6 +78,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

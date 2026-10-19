@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'longcat-2.5-preview free: 2 providers, limits and ids, provider probes 2026-10-15'
+title: 'longcat-2.5-preview free: 2 providers, limits and ids, provider probes 2026-10-19'
 description: longcat-2.5-preview is served free by opencode and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/longcat-2.5-preview/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: longcat-2.5-preview
 ---
 
@@ -11,7 +11,7 @@ crumb: longcat-2.5-preview
 
 # Where longcat-2.5-preview is free
 
-**2 rows on the list serve `longcat-2.5-preview` free:** opencode and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
+**2 rows on the list serve `longcat-2.5-preview` free:** opencode and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: longcat-2.5-preview
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-10-15 · listed since 2026-10-11
+🤖 Coding agents & CLIs · no card · last probe 2026-10-19 · listed since 2026-10-11
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -37,7 +37,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-10-13
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-10-13
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -61,6 +61,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

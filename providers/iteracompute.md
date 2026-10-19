@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'IteraCompute free tier: limits, free models, verified 2026-10-18'
+title: 'IteraCompute free tier: limits, free models, verified 2026-10-19'
 description: OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all API keys on the account. "Context includes input and requested…
 permalink: /providers/iteracompute/
-last_modified_at: 2026-10-18
+last_modified_at: 2026-10-19
 crumb: IteraCompute
 ---
 
@@ -11,7 +11,7 @@ crumb: IteraCompute
 
 # IteraCompute free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-10-18, a regular row from the first probe it passes on or after 2026-11-01 · **live** — last verified by a probe on 2026-10-18 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-10-18, a regular row from the first probe it passes on or after 2026-11-01 · **live** — last verified by a probe on 2026-10-19 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -74,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'dots-3-note free: 3 providers, limits and ids, provider probes 2026-10-15'
+title: 'dots-3-note free: 3 providers, limits and ids, provider probes 2026-10-19'
 description: dots-3-note is served free by OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/dots-3-note/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: dots-3-note
 ---
 
@@ -11,7 +11,7 @@ crumb: dots-3-note
 
 # Where dots-3-note is free
 
-**3 rows on the list serve `dots-3-note` free:** OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
+**3 rows on the list serve `dots-3-note` free:** OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: dots-3-note
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-15 · listed since 2026-09-24
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-19 · listed since 2026-09-24
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -58,7 +58,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -85,6 +85,6 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

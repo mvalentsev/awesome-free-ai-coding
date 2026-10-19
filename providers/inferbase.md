@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Inferbase free tier: limits, free models, verified 2026-10-15'
+title: 'Inferbase free tier: limits, free models, verified 2026-10-19'
 description: OpenAI-compatible managed inference on a permanent $0 Free plan, with a shared daily usage budget and no card required. Managed chat, embeddings and rerank share the daily allowance. BYOK requests also count toward the monthly request ceiling, but their tokens are billed by the connected provider…
 permalink: /providers/inferbase/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Inferbase
 ---
 
@@ -11,7 +11,7 @@ crumb: Inferbase
 
 # Inferbase free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-14, a regular row from the first probe it passes on or after 2026-10-28 · **live** — last verified by a probe on 2026-10-15 · [inferbase.ai](https://inferbase.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-14, a regular row from the first probe it passes on or after 2026-10-28 · **live** — last verified by a probe on 2026-10-19 · [inferbase.ai](https://inferbase.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -69,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

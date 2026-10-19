@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Wallaby free tier: limits, free models, verified 2026-10-15'
+title: 'Wallaby free tier: limits, free models, verified 2026-10-19'
 description: OpenAI-compatible Kimi K3 API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment. One trial per person or organisation, with a verified email and human check. The trial credit does not expire; requests stop when it is exhausted. Optional…
 permalink: /providers/wallaby/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Wallaby
 ---
 
@@ -11,7 +11,7 @@ crumb: Wallaby
 
 # Wallaby free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-10-08, a regular row from the first probe it passes on or after 2026-10-22 · **live** — last verified by a probe on 2026-10-15 · [wallabytoken.com](https://wallabytoken.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-10-08, a regular row from the first probe it passes on or after 2026-10-22 · **live** — last verified by a probe on 2026-10-19 · [wallabytoken.com](https://wallabytoken.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

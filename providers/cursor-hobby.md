@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-15'
+title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-19'
 description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions…
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Cursor (Free)
 ---
 
@@ -11,7 +11,7 @@ crumb: Cursor (Free)
 
 # Cursor (Free) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-15 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-19 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -57,6 +57,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

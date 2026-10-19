@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'laguna-s-2.1 free: 5 providers, limits and ids, provider probes 2026-10-15'
+title: 'laguna-s-2.1 free: 5 providers, limits and ids, provider probes 2026-10-19'
 description: laguna-s-2.1 is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models), Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to…
 permalink: /models/laguna-s-2.1/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: laguna-s-2.1
 ---
 
@@ -11,7 +11,7 @@ crumb: laguna-s-2.1
 
 # Where laguna-s-2.1 is free
 
-**5 rows on the list serve `laguna-s-2.1` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models), Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-15; their offers are rechecked twice a week.
+**5 rows on the list serve `laguna-s-2.1` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models), Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: laguna-s-2.1
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-15 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-19 · listed since 2026-08-11
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -58,7 +58,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -85,7 +85,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-15 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-10-19 · listed since 2026-08-14
 
 OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes
 
@@ -105,7 +105,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-15 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-16
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -135,6 +135,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

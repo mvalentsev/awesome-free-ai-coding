@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Mistral Studio free tier: limits, free models, verified 2026-10-15'
+title: 'Mistral Studio free tier: limits, free models, verified 2026-10-19'
 description: Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI. The monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts…
 permalink: /providers/mistral-free/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Mistral Studio
 ---
 
@@ -11,7 +11,7 @@ crumb: Mistral Studio
 
 # Mistral Studio free tier
 
-🔌 LLM APIs with free tier · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-10-15 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-10-19 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -70,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

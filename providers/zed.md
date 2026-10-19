@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Zed free tier: limits, free models, verified 2026-10-15'
+title: 'Zed free tier: limits, free models, verified 2026-10-19'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students. No card for the trial. GPT-6 Luna is the only hosted model during the trial, and the…'
 permalink: /providers/zed/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-19
 crumb: Zed
 ---
 
@@ -11,7 +11,7 @@ crumb: Zed
 
 # Zed free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-15 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-19 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -63,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
