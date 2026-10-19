@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-18T17:16:35Z</updated>
+  <updated>2026-10-19T11:05:19Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/jetbrains-ai/20261019T110519Z</id>
+    <title>Archived: JetBrains AI (AI Free)</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"/>
+    <updated>2026-10-19T11:05:19Z</updated>
+    <summary type="text">vendor-announced shutdown on 2026-07-13</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/iteracompute/20261018T171635Z</id>
     <title>Added: IteraCompute</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://kilo.ai"/>
     <updated>2026-10-05T16:12:49Z</updated>
     <summary type="text">dropped qwen3.8-27b · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261005T154832Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-10-05T15:48:32Z</updated>
-    <summary type="text">dropped deepseek-v4.1-flash · free models: muse-spark-1.3-contributor</summary>
   </entry>
 </feed>

@@ -8797,11 +8797,13 @@
       },
       "first_seen": "2026-09-14",
       "last_verified": "2026-10-19",
+      "retired_on": "2026-07-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
       "no_account": false,
-      "archived": false,
+      "archived": true,
+      "archived_because": "vendor-announced shutdown on 2026-07-13",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"
     },
     {
@@ -14825,12 +14827,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
-    },
-    {
-      "family": "mellum",
-      "rows": [
-        "jetbrains-ai"
-      ]
     },
     {
       "family": "mimo-v2-flash",
