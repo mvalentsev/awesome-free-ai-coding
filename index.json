@@ -130,7 +130,8 @@
           "liquid/lfm-2.5-2.6b:free",
           "openrouter/free",
           "nvidia/nemotron-3.5-super-vl:free",
-          "xingchen-agi/xing4.0-29b-a4b:free"
+          "xingchen-agi/xing4.0-29b-a4b:free",
+          "minimax/minimax-m3.1-flash:free"
         ],
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free"
@@ -1088,7 +1089,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. Offers rotate and each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Muse Spark Contributor permits training on prompts and completions; max effort belongs to the paid Standard variant. Official 1.19.0 and 2.0.28 builds also returned that 403 in isolated runs on 2026-10-15.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Official 1.19.0 and 2.0.28 builds also returned that 403 in isolated runs on 2026-10-15.",
       "quotas": [
         {
           "unit": "usage",
@@ -1121,11 +1122,6 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "muse-spark-1.3-contributor",
-          "tier": "strong",
-          "aa_model": "muse-spark-1-3-xhigh"
-        },
-        {
           "family": "mimo-v2.6-flash",
           "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
@@ -1136,11 +1132,6 @@
       ],
       "newcomers": [
         {
-          "family": "step-5-preview",
-          "on": "2026-10-11",
-          "source": "https://opencode.ai/v2/docs/console/models/"
-        },
-        {
           "family": "jev-1.13",
           "on": "2026-10-11",
           "source": "https://opencode.ai/v2/docs/console/models/"
@@ -1148,6 +1139,26 @@
         {
           "family": "deepseek-v4.1-flash",
           "on": "2026-10-15",
+          "source": "https://opencode.ai/v2/docs/console/models/"
+        },
+        {
+          "family": "glm-5.3-flash",
+          "on": "2026-10-19",
+          "source": "https://opencode.ai/v2/docs/console/models/"
+        },
+        {
+          "family": "minimax-m3.1-flash",
+          "on": "2026-10-19",
+          "source": "https://opencode.ai/v2/docs/console/models/"
+        },
+        {
+          "family": "beam-1.0",
+          "on": "2026-10-19",
+          "source": "https://opencode.ai/v2/docs/console/models/"
+        },
+        {
+          "family": "nemotron-3.5-super-vl",
+          "on": "2026-10-19",
           "source": "https://opencode.ai/v2/docs/console/models/"
         }
       ],
@@ -1279,7 +1290,8 @@
           "thinkingmachines/inkling-small:free",
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
-          "xingchen-agi/xing4.0-29b-a4b:free"
+          "xingchen-agi/xing4.0-29b-a4b:free",
+          "minimax/minimax-m3.1-flash:free"
         ],
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free"
@@ -3020,7 +3032,7 @@
           "qwen3-vl-plus",
           "glm-5.1"
         ],
-        "note": "Singapore (international) endpoint; keys are region-specific. Call the exact IDs listed here. Enable Free Quota Only per model in the console to stop calls when its grant ends."
+        "note": "Singapore (international) endpoint; use a region-specific general-purpose pay-as-you-go key, not a Token Plan or Coding Plan key. Call the exact IDs listed here. Enable Free Quota Only per model and wait for the setting to take effect before calling."
       },
       "data_use": {
         "trains": "no",
@@ -3624,7 +3636,8 @@
         "https://vercel.com/ai-gateway/models/beam-free",
         "https://vercel.com/ai-gateway/models/beam",
         "https://reflection.ai/legal/terms-of-service",
-        "https://reflection.ai/legal/privacy-policy"
+        "https://reflection.ai/legal/privacy-policy",
+        "https://vercel.com/changelog/minimax-m3-1-flash-now-available-on-ai-gateway-for-free"
       ],
       "card_required": true,
       "offering": "OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes",
@@ -3689,7 +3702,8 @@
           "liquid/d1",
           "convaiinnovations/laya",
           "convaiinnovations/laya-free",
-          "reflection/beam"
+          "reflection/beam",
+          "minimax/minimax-m3.1-flash"
         ],
         "no_family_ids": [
           "stealth/glyph-cluster",
@@ -3708,7 +3722,7 @@
           "source": "https://vercel.com/docs/ai-gateway/coding-agents/openai-codex",
           "quote": "Point Codex at its own compatibility endpoint"
         },
-        "note": "Use exact zero-priced IDs; metered routes spend gateway credit. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty."
+        "note": "Use the IDs listed here; a zero catalog price can depend on the provider and change after a promotion. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty."
       },
       "data_use": {
         "trains": "opt-out",
@@ -3751,18 +3765,20 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router",
-      "limits": "Without credit: 10 requests/minute; 60 weighted units/day per account\n\nWith credit: 20 requests/minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 15 requests/minute shared across the endpoint\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.",
+      "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.",
       "quotas": [
         {
           "amount": 10.0,
           "unit": "requests",
           "period": "minute",
+          "rolling": true,
           "scope": "account",
           "label": "Without credit",
           "source": "https://bazaarlink.ai/free",
           "quote": "No credit: 10 RPM",
           "value_phrase": "No credit: 10 RPM",
-          "reviewed_on": "2026-10-06"
+          "period_quote": "RPM uses a rolling 60-second window",
+          "reviewed_on": "2026-10-19"
         },
         {
           "amount": 60.0,
@@ -3779,12 +3795,14 @@
           "amount": 20.0,
           "unit": "requests",
           "period": "minute",
+          "rolling": true,
           "scope": "account",
           "label": "With credit",
           "source": "https://bazaarlink.ai/free",
           "quote": "With credit: 20 RPM",
           "value_phrase": "With credit: 20 RPM",
-          "reviewed_on": "2026-10-06"
+          "period_quote": "RPM uses a rolling 60-second window",
+          "reviewed_on": "2026-10-19"
         },
         {
           "amount": 120.0,
@@ -3809,22 +3827,29 @@
           "reviewed_on": "2026-10-06"
         },
         {
-          "amount": 15.0,
+          "amount": 20.0,
           "unit": "requests",
           "period": "minute",
           "scope": "endpoint",
           "label": "Free models",
           "source": "https://bazaarlink.ai/free",
-          "quote": "Site-wide free cap: 15 RPM",
-          "value_phrase": "Site-wide free cap: 15 RPM",
-          "reviewed_on": "2026-10-06"
+          "quote": "Site-wide free cap: 20 RPM",
+          "value_phrase": "Site-wide free cap: 20 RPM",
+          "reviewed_on": "2026-10-19"
+        },
+        {
+          "unit": "requests",
+          "scope": "ip",
+          "label": "Additional IP guard",
+          "source": "https://bazaarlink.ai/free",
+          "quote": "with an additional IP guard",
+          "reviewed_on": "2026-10-19",
+          "amount": null,
+          "period": null
         }
       ],
       "free_part": "models",
       "models": [
-        {
-          "family": "qwen3.7-flash"
-        },
         {
           "family": "deepseek-v4-flash",
           "tier": "strong",
@@ -3837,14 +3862,20 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "qwen/qwen3.7-flash:free",
           "deepseek/deepseek-v4-flash-0731free:free",
-          "auto:free"
+          "auto:free",
+          "nvidia/nemotron-3.5-lightning-free:free",
+          "reflection/beam-free:free",
+          "reflection/beam:free",
+          "stealth/cat-jam:free",
+          "stealth/glyph-cluster:free"
         ],
         "no_family_ids": [
-          "auto:free"
+          "auto:free",
+          "stealth/cat-jam:free",
+          "stealth/glyph-cluster:free"
         ],
-        "note": "only the two :free ids and auto:free cost nothing — the plain qwen3.7-flash beside the first is the metered twin (from $0.03/$0.13 per 1M, with higher long-prompt tiers), and deepseek-v4-flash-0731free without the suffix is metered at $0.20/$0.40. auto:free picks a free model for you, and on a funded account it can fall through to the paid routing table \"unless paid fallback is disabled\""
+        "note": "The listed :free routes use the shared free allowance. auto:free selects a free model and can use paid routing on a funded account \"unless paid fallback is disabled\". Cat Jam and Glyph Cluster are stealth models with undisclosed identities."
       },
       "border": {
         "left_out": [],
@@ -4204,6 +4235,11 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "ling-3.1-flash",
+          "tier": "strong",
+          "aa_model": "ling-3-1-flash"
         }
       ],
       "api": {
@@ -5578,7 +5614,9 @@
           "gpt-live-transcribe",
           "jina-ocr-v1",
           "gpt-realtime-2.1",
-          "nemotron-3.5-content-safety-free"
+          "nemotron-3.5-content-safety-free",
+          "wan3.0-video-free",
+          "wan3.0-video-prime-free"
         ],
         "no_family_ids": [
           "k2.6-code-preview-free",
@@ -7102,11 +7140,13 @@
         "https://llmtr.com/models/scaledown/classify-free",
         "https://llmtr.com/models/nvidia/nemotron-3.5-super-vl-free",
         "https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/",
-        "https://llmtr.com/models/reflection/beam-1.0-501b-a23b"
+        "https://llmtr.com/models/reflection/beam-1.0-501b-a23b",
+        "https://llmtr.com/models/ifm/jais-3-mova-36b-a4b",
+        "https://llmtr.com/models/ifm/k2-horizon-375b-a23b"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nBeam 1.0: Daily usage allowance: amount not published; scope not published; for `reflection/beam-1.0-501b-a23b`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nBeam 1.0: Daily usage allowance: amount not published; scope not published; for `reflection/beam-1.0-501b-a23b`\n\nJais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`\n\nK2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -7162,6 +7202,32 @@
           ],
           "reviewed_on": "2026-10-17",
           "amount": null
+        },
+        {
+          "unit": "tokens",
+          "period": "day",
+          "scope": "unspecified",
+          "label": "Jais 3 MoVA",
+          "source": "https://llmtr.com/models/ifm/jais-3-mova-36b-a4b",
+          "quote": "5 Kasım 2026 23:59’a (TSİ) kadar günlük token hakkıyla ücretsizdir.",
+          "model_ids": [
+            "ifm/jais-3-mova-36b-a4b"
+          ],
+          "reviewed_on": "2026-10-19",
+          "amount": null
+        },
+        {
+          "unit": "tokens",
+          "period": "day",
+          "scope": "unspecified",
+          "label": "K2 Horizon",
+          "source": "https://llmtr.com/models/ifm/k2-horizon-375b-a23b",
+          "quote": "5 Kasım 2026 23:59’a (TSİ) kadar günlük token hakkıyla ücretsizdir.",
+          "model_ids": [
+            "ifm/k2-horizon-375b-a23b"
+          ],
+          "reviewed_on": "2026-10-19",
+          "amount": null
         }
       ],
       "free_part": "models",
@@ -7191,6 +7257,14 @@
         },
         {
           "family": "beam-1.0"
+        },
+        {
+          "family": "jais-3-mova-36b-a4b"
+        },
+        {
+          "family": "k2-horizon-375b-a23b",
+          "tier": "notable",
+          "aa_model": "k2-horizon-375b-a23b"
         }
       ],
       "api": {
@@ -7207,7 +7281,9 @@
           "agnes/agnes-2.5-flash",
           "heabsy/qwen3.8-27b-heabsy-free",
           "nvidia/nemotron-3.5-super-vl-free",
-          "reflection/beam-1.0-501b-a23b"
+          "reflection/beam-1.0-501b-a23b",
+          "ifm/jais-3-mova-36b-a4b",
+          "ifm/k2-horizon-375b-a23b"
         ],
         "model_access": {
           "minimax/minimax-m3.1-flash-preview": {
@@ -7243,6 +7319,14 @@
           "reflection/beam-1.0-501b-a23b": {
             "source": "https://llmtr.com/models/reflection/beam-1.0-501b-a23b",
             "until": "2026-10-22T23:59:00+03:00"
+          },
+          "ifm/jais-3-mova-36b-a4b": {
+            "source": "https://llmtr.com/models/ifm/jais-3-mova-36b-a4b",
+            "until": "2026-11-05T23:59:00+03:00"
+          },
+          "ifm/k2-horizon-375b-a23b": {
+            "source": "https://llmtr.com/models/ifm/k2-horizon-375b-a23b",
+            "until": "2026-11-05T23:59:00+03:00"
           }
         },
         "model_limits": {
@@ -7275,6 +7359,16 @@
             "context_tokens": 262144,
             "output_tokens": 32768,
             "source": "https://llmtr.com/v1/models"
+          },
+          "ifm/jais-3-mova-36b-a4b": {
+            "context_tokens": 524288,
+            "output_tokens": 524288,
+            "source": "https://llmtr.com/v1/models"
+          },
+          "ifm/k2-horizon-375b-a23b": {
+            "context_tokens": 524288,
+            "output_tokens": 524288,
+            "source": "https://llmtr.com/v1/models"
           }
         },
         "ignored_ids": [
@@ -7300,7 +7394,7 @@
           "llmtr/embeddingmagibu-200m",
           "deepseek/deepseek-v4.1-flash-free"
         ],
-        "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra -262k is metered. Grant Heabsy data-transfer consent in Settings → Data-transfer consents; its stream is buffered until completion and reasoning_effort is unsupported. For Nemotron3.5 Super VL, omit reasoning_effort; reasoning: false disables thinking. Beam always reasons; reasoning_effort defaults to max and accepts low, medium, high, xhigh or max. Set max_tokens to bound the answer, including reasoning."
+        "note": "New accounts share a reduced free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents; streams buffer and reasoning_effort is unsupported. Omit reasoning_effort for Nemotron3.5 Super VL; reasoning: false disables thinking. Beam always reasons (low/medium/high/xhigh/max; default max). Jais 3 accepts low/high (default high); use tool_choice: auto. K2 Horizon always reasons (medium/high). Set max_tokens for the answer and reasoning."
       },
       "data_use": {
         "trains": "yes",
@@ -7339,7 +7433,9 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "beam-1.0": "until 2026-10-22"
+          "beam-1.0": "until 2026-10-22",
+          "jais-3-mova-36b-a4b": "until 2026-11-05",
+          "k2-horizon-375b-a23b": "until 2026-11-05"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -9093,9 +9189,17 @@
           "meituan/longcat-2.0:free",
           "meituan/longcat-2.5-preview:free",
           "upstage/solar-mini4:free",
-          "stepfun/step-5-preview:free"
+          "stepfun/step-5-preview:free",
+          "reflection/beam-1.0-501b-a23b:free"
         ],
-        "note": "Select a :free model and use your Nous Portal key; paid variants are outside the free plan. The Step 5 catalog has served different token limits; check its current model entry before choosing a large context or output budget."
+        "model_limits": {
+          "reflection/beam-1.0-501b-a23b:free": {
+            "context_tokens": 262144,
+            "output_tokens": 131072,
+            "source": "https://inference-api.nousresearch.com/v1/models"
+          }
+        },
+        "note": "Select a :free model and use your Nous Portal key; paid variants are outside the free plan. Beam has a 262K context and always reasons; its default effort is medium. The Step 5 catalog has served different token limits; check its current model entry before choosing a large context or output budget."
       },
       "data_use": {
         "trains": "opt-out",
@@ -10578,15 +10682,12 @@
         "left_out": [
           "CN"
         ],
-        "on": "2026-09-26",
+        "on": "2026-10-19",
         "source": "https://www.hpc-ai.com/agreement/service",
-        "quote": "The Services are intended for users outside Mainland China and are not available to individuals or entities located in Mainland China",
+        "quote": "The Services are not offered or made available to customers or users located in Mainland China.",
         "read": "page",
         "also_named": [
-          "HK",
-          "MO",
-          "SG",
-          "TW"
+          "SG"
         ]
       },
       "probe": {
@@ -12029,7 +12130,7 @@
           "label": "Qwen3.8 Flash promotion",
           "source": "https://docs.qoder.cn/events/flashoffer",
           "quote": "调用该模型不消耗 Credits",
-          "reviewed_on": "2026-10-12",
+          "reviewed_on": "2026-10-19",
           "amount": null,
           "period": null
         }
@@ -14480,15 +14581,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
     },
     {
-      "family": "muse-spark-1.3-contributor",
-      "rows": [
-        "opencode",
-        "cline"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
-    },
-    {
       "family": "nemotron-3-nano-30b",
       "rows": [
         "requesty",
@@ -14512,14 +14604,6 @@
         "siliconflow-cn"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
-    },
-    {
-      "family": "qwen3.7-flash",
-      "rows": [
-        "alibaba-model-studio",
-        "bazaarlink"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"
     },
     {
       "family": "qwen3.8-flash",
@@ -14779,6 +14863,21 @@
       ]
     },
     {
+      "family": "jais-3-mova-36b-a4b",
+      "rows": [
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/"
+    },
+    {
+      "family": "k2-horizon-375b-a23b",
+      "rows": [
+        "llmtr"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/"
+    },
+    {
       "family": "kimi-for-coding",
       "rows": [
         "aihubmix"
@@ -14805,6 +14904,14 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
+    },
+    {
+      "family": "ling-3.1-flash",
+      "rows": [
+        "requesty"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "llama-3.2-11b-vision",
@@ -14891,6 +14998,14 @@
       "rows": [
         "regolo"
       ]
+    },
+    {
+      "family": "muse-spark-1.3-contributor",
+      "rows": [
+        "cline"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
     },
     {
       "family": "nemotron-nano-12b-v2-vl",
@@ -15040,6 +15155,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/"
     },
     {
+      "family": "qwen3.7-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"
+    },
+    {
       "family": "qwen3.7-max",
       "rows": [
         "alibaba-model-studio"
@@ -15148,11 +15270,6 @@
       "family": "ling-3.0-flash-sante",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
-    },
-    {
-      "family": "ling-3.1-flash",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
       "family": "minimax-m3.1-flash-preview",

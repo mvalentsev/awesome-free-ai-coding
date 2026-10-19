@@ -27,6 +27,9 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import gzip
+import hashlib
+import io
 import json
 import re
 import statistics
@@ -34,8 +37,11 @@ import sys
 from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
+from urllib.parse import urljoin
 
 import httpx
+from cryptography.exceptions import InvalidTag
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 from .models import Entry, Tier, is_archived, load_registry, save_registry
 from .prober import UA
@@ -49,10 +55,12 @@ TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 FRONTIER_WITHIN = 10.0
 STRONG_WITHIN = 25.0
 
-# Next.js ships the page's data as string chunks pushed to self.__next_f; the
-# leaderboard's table is a JSON array inside their concatenation.
+# Artificial Analysis /leaderboards/models, checked 2026-10-19: Next.js ships
+# string chunks; scored rows use initialModels, older pages used models.
 _FLIGHT_CHUNK = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
-_MODELS_ARRAY = re.compile(r'\{"models":\s*\[')
+_MODELS_ARRAY = re.compile(r'"(?:models|initialModels)"\s*:\s*(\[)')
+_MANIFEST = re.compile(r'"manifest"\s*:\s*')
+TABLE_BYTES = 8 * 1024 * 1024
 
 
 @dataclass(frozen=True)
@@ -64,32 +72,81 @@ class Scored:
     estimated: bool
 
 
+def _flight_payload(page: str) -> str:
+    return "".join(json.loads(chunk) for chunk in _FLIGHT_CHUNK.findall(page))
+
+
+def _scored_models(rows: object) -> dict[str, Scored]:
+    if not isinstance(rows, list):
+        return {}
+    return {r["slug"]: Scored(slug=r["slug"], name=r.get("name") or r["slug"],
+                              index=float(r["intelligenceIndex"]),
+                              deprecated=bool(r.get("deprecated")),
+                              estimated=bool(r.get("intelligenceIndexIsEstimated")))
+            for r in rows if isinstance(r, dict) and isinstance(r.get("slug"), str)
+            and r["slug"] and type(r.get("intelligenceIndex")) in (int, float)}
+
+
 def parse_leaderboard(page: str) -> dict[str, Scored]:
     """Every scored model on the leaderboard page, by slug.
 
-    The page carries more than one `models` array — a picker without scores
-    comes first — so the one read is the array with the most scored rows."""
-    payload = "".join(json.loads(chunk) for chunk in _FLIGHT_CHUNK.findall(page))
+    The page also carries unscored picker arrays. Read the supported table
+    property with the most scored rows, regardless of its position in props."""
+    payload = _flight_payload(page)
     decoder = json.JSONDecoder()
-    best: list[dict] = []
+    best: dict[str, Scored] = {}
     for match in _MODELS_ARRAY.finditer(payload):
         try:
-            data, _ = decoder.raw_decode(payload, match.start())
+            data, _ = decoder.raw_decode(payload, match.start(1))
         except ValueError:
             continue
-        rows = [r for r in data.get("models") or []
-                if isinstance(r, dict) and r.get("slug")
-                and isinstance(r.get("intelligenceIndex"), (int, float))]
+        rows = _scored_models(data)
         if len(rows) > len(best):
             best = rows
     if not best:
         raise ValueError(f"{LEADERBOARD_URL} carries no scored models — the page changed shape, "
                          "and no tier can be read from it")
-    return {r["slug"]: Scored(slug=r["slug"], name=r.get("name") or r["slug"],
-                              index=float(r["intelligenceIndex"]),
-                              deprecated=bool(r.get("deprecated")),
-                              estimated=bool(r.get("intelligenceIndexIsEstimated")))
-            for r in best}
+    return best
+
+
+async def read_leaderboard(client: httpx.AsyncClient, page: str) -> dict[str, Scored]:
+    """Read the full table when the initial HTML contains only current models."""
+    payload = _flight_payload(page)
+    matches = list(_MANIFEST.finditer(payload))
+    if not matches:
+        return parse_leaderboard(page)
+    if len(matches) != 1:
+        raise ValueError("leaderboard carries ambiguous table manifests")
+    manifest, _ = json.JSONDecoder().raw_decode(payload, matches[0].end())
+    if not isinstance(manifest, dict):
+        raise ValueError("leaderboard manifest has an unsupported shape")
+    path, key_hex = manifest.get("path"), manifest.get("key")
+    if not isinstance(path, str) or not re.fullmatch(r'/data/[\w-]+\.(?:txt|json)', path, re.ASCII):
+        raise ValueError("leaderboard manifest does not name a same-origin data file")
+    if key_hex is not None and (not isinstance(key_hex, str)
+                               or not re.fullmatch(r'[0-9a-fA-F]{64}', key_hex)):
+        raise ValueError("leaderboard manifest has an invalid public decoding key")
+    response = await client.get(urljoin(LEADERBOARD_URL, path))
+    response.raise_for_status()
+    body = response.content
+    if len(body) > TABLE_BYTES:
+        raise ValueError("leaderboard data exceeds the read budget")
+    if key_hex is not None:
+        # artificialanalysis.ai/leaderboards/models publishes the key and client
+        # decoder (chunk68697, module57455), checked 2026-10-19. This is public data.
+        key = bytes.fromhex(key_hex)
+        try:
+            body = AESGCM(key).decrypt(hashlib.sha256(key).digest()[:12], body, None)
+            with gzip.GzipFile(fileobj=io.BytesIO(body)) as data:
+                body = data.read(TABLE_BYTES + 1)
+        except (InvalidTag, OSError, EOFError) as exc:
+            raise ValueError("leaderboard data could not be decoded and authenticated") from exc
+        if len(body) > TABLE_BYTES:
+            raise ValueError("decoded leaderboard data exceeds the read budget")
+    board = _scored_models(json.loads(body))
+    if not board:
+        raise ValueError("leaderboard manifest carries no scored models")
+    return board
 
 
 def index_top(models: dict[str, Scored]) -> Scored:
@@ -208,8 +265,8 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     entries = load_registry(registry)
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         resp = await client.get(LEADERBOARD_URL)
-    resp.raise_for_status()
-    board = parse_leaderboard(resp.text)
+        resp.raise_for_status()
+        board = await read_leaderboard(client, resp.text)
     top, marks = review(entries, board)
     live = [e for e in entries if not is_archived(e, date.today())]
     median = index_median(board)

@@ -46,7 +46,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
 - Callable ids: `poolside/laguna-s-2.1-free`, `stealth/glyph-cluster`, `nvidia/nemotron-3.5-lightning-free`, `stealth/cat-jam`, `reflection/beam-free`
-- Note: Use exact zero-priced IDs; metered routes spend gateway credit. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty.
+- Note: Use the IDs listed here; a zero catalog price can depend on the provider and change after a promotion. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -69,6 +69,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 - Source: <https://vercel.com/ai-gateway/models/beam>
 - Source: <https://reflection.ai/legal/terms-of-service>
 - Source: <https://reflection.ai/legal/privacy-policy>
+- Source: <https://vercel.com/changelog/minimax-m3-1-flash-now-available-on-ai-gateway-for-free>
 
 ## History
 

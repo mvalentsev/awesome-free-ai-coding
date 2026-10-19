@@ -37,7 +37,7 @@ The invite-code grant is the total signup balance, not an extra amount added to 
 
 ## Where it is offered
 
-Not offered in mainland China ([source](https://www.hpc-ai.com/agreement/service), read 2026-09-26). That leaves out 5.9% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Services are intended for users outside Mainland China and are not available to individuals or entities located in Mainland China”.
+Not offered in mainland China ([source](https://www.hpc-ai.com/agreement/service), read 2026-10-19). That leaves out 5.9% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Services are not offered or made available to customers or users located in Mainland China.”.
 
 ## What happens to what you send
 

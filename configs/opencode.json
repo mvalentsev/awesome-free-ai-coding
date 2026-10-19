@@ -93,6 +93,9 @@
         },
         "xingchen-agi/xing4.0-29b-a4b:free": {
           "name": "xingchen-agi/xing4.0-29b-a4b:free"
+        },
+        "minimax/minimax-m3.1-flash:free": {
+          "name": "minimax/minimax-m3.1-flash:free"
         }
       }
     },
@@ -166,6 +169,9 @@
         },
         "xingchen-agi/xing4.0-29b-a4b:free": {
           "name": "xingchen-agi/xing4.0-29b-a4b:free"
+        },
+        "minimax/minimax-m3.1-flash:free": {
+          "name": "minimax/minimax-m3.1-flash:free"
         }
       }
     },
@@ -524,6 +530,20 @@
         },
         "reflection/beam-1.0-501b-a23b": {
           "name": "reflection/beam-1.0-501b-a23b (until 2026-10-22)"
+        },
+        "ifm/jais-3-mova-36b-a4b": {
+          "name": "ifm/jais-3-mova-36b-a4b (until 2026-11-05)",
+          "limit": {
+            "context": 524288,
+            "output": 524288
+          }
+        },
+        "ifm/k2-horizon-375b-a23b": {
+          "name": "ifm/k2-horizon-375b-a23b (until 2026-11-05)",
+          "limit": {
+            "context": 524288,
+            "output": 524288
+          }
         }
       }
     },
@@ -683,14 +703,26 @@
         "apiKey": "{env:BAZAARLINK_API_KEY}"
       },
       "models": {
-        "qwen/qwen3.7-flash:free": {
-          "name": "qwen/qwen3.7-flash:free"
-        },
         "deepseek/deepseek-v4-flash-0731free:free": {
           "name": "deepseek/deepseek-v4-flash-0731free:free"
         },
         "auto:free": {
           "name": "auto:free"
+        },
+        "nvidia/nemotron-3.5-lightning-free:free": {
+          "name": "nvidia/nemotron-3.5-lightning-free:free"
+        },
+        "reflection/beam-free:free": {
+          "name": "reflection/beam-free:free"
+        },
+        "reflection/beam:free": {
+          "name": "reflection/beam:free"
+        },
+        "stealth/cat-jam:free": {
+          "name": "stealth/cat-jam:free"
+        },
+        "stealth/glyph-cluster:free": {
+          "name": "stealth/glyph-cluster:free"
         }
       }
     },
@@ -735,6 +767,13 @@
         },
         "stepfun/step-5-preview:free": {
           "name": "stepfun/step-5-preview:free"
+        },
+        "reflection/beam-1.0-501b-a23b:free": {
+          "name": "reflection/beam-1.0-501b-a23b:free",
+          "limit": {
+            "context": 262144,
+            "output": 131072
+          }
         }
       }
     },

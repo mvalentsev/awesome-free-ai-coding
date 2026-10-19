@@ -513,6 +513,30 @@ def test_retirement_sweep_never_sends_an_http_error_body_to_the_llm(status):
     assert any("FIND-RETIREMENTS" in p for p in llm.prompts) is (status == 200)
 
 
+@pytest.mark.parametrize("retired_on,expected", [
+    (date(2026, 7, 13), False),
+    (TODAY, True),
+    (date(2026, 7, 30), True),
+])
+def test_retirement_cannot_override_a_later_successful_verification(retired_on, expected):
+    # JetBrains licensing page, checked 2026-10-19: a July13 China restriction
+    # coexists with current AI Free. A quoted date can contradict a live probe.
+    quote = (f"The free tier is no longer available in China since {retired_on}."
+             if not expected else f"The free tier will be retired on {retired_on}.")
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire:\n  - id: x\n"
+                  f"    retired_on: '{retired_on}'\n    quote: {quote}\n```"})
+    entry = make(source_urls=["https://x.ai/blog"])
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=quote))
+    with httpx.Client(transport=transport) as client:
+        result = run_scout(llm, [entry], [], lambda urls: fetch_page_texts(urls, client), TODAY)
+
+    assert entry.retired_on == (retired_on if expected else None)
+    assert result["retired"] == ([f"x ({retired_on})"] if expected else [])
+    if not expected:
+        assert any("successful verification" in item and str(TODAY) in item
+                   for item in result["rejected"])
+
+
 def test_apply_retirements_ignores_bad_dates_and_short_quotes():
     pages = {"https://x.ai": "the free tier ends soon, we are shutting the free tier down"}
     entries = [make(source_urls=["https://x.ai"])]

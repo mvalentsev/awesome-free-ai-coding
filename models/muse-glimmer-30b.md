@@ -78,7 +78,7 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 
 ## Related models
 
-- [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — free at opencode and Cline
+- [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — free at Cline
 
 ---
 

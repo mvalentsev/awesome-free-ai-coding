@@ -1,11 +1,15 @@
 """A tier is a measurement: the Artificial Analysis Intelligence Index, read
 back off the leaderboard, decides it. These tests pin the reading and the rule."""
 import json
+import gzip
+import hashlib
 from datetime import date
 from pathlib import Path
 
 import httpx
+import pytest
 import respx
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 from freetier_radar.models import Entry, Tier, load_registry, save_registry
 from freetier_radar.tiers import (FRONTIER_WITHIN, LEADERBOARD_URL, STRONG_WITHIN, Scored, _amain,
@@ -58,6 +62,110 @@ def test_a_page_with_no_scored_table_is_an_error_not_an_empty_index():
     import pytest
     with pytest.raises(ValueError, match="no scored models"):
         parse_leaderboard("<html><body>a redesign</body></html>")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("table_key", ["models", "initialModels"])
+@respx.mock
+async def test_scored_table_props_are_read_through_the_http_writer(tmp_path, table_key):
+    # Artificial Analysis /leaderboards/models, checked 2026-10-19: scored rows
+    # now arrive in initialModels beside className, not as an object's first key.
+    payload = '0:["$","div",null,' + json.dumps({
+        "className": "container", table_key: SCORED,
+    }) + ']\n'
+    body = '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
+    route = respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {
+        "family": "glm-5.3", "aa_model": "glm-5-3", "tier": "strong",
+    })])
+
+    assert await _amain(registry, write=True, scores=scores) == 0
+    assert route.called
+    assert load_registry(registry)[0].models[0].tier is Tier.FRONTIER
+    measured = json.loads(scores.read_text())
+    assert measured["top"]["slug"] == "claude-fable-5-1"
+    assert measured["families"]["glm-5.3"]["index"] == 44.9
+
+
+def manifest_page(key):
+    # The current page's initialModels omits older models; its own manifest
+    # supplies the complete table. Artificial Analysis, checked 2026-10-19.
+    props = {"initialModels": [m for m in SCORED if not m["deprecated"]],
+             "manifest": {"path": "/data/0123456789abcdef.txt"}}
+    if key is not None:
+        props["manifest"]["key"] = key.hex()
+    payload = '0:["$","div",null,' + json.dumps(props) + ']\n'
+    return '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
+
+
+@pytest.mark.parametrize("encrypted", [False, True])
+@respx.mock
+async def test_writer_reads_the_complete_manifest_including_older_models(tmp_path, encrypted):
+    key = bytes(range(32)) if encrypted else None
+    body = json.dumps(SCORED).encode()
+    if key is not None:
+        body = AESGCM(key).encrypt(hashlib.sha256(key).digest()[:12], gzip.compress(body), None)
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=manifest_page(key)))
+    data = respx.get("https://artificialanalysis.ai/data/0123456789abcdef.txt").mock(
+        return_value=httpx.Response(200, content=body))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {"family": "old-giant", "aa_model": "old-giant"})])
+
+    assert await _amain(registry, write=True, scores=scores) == 0
+    assert data.called
+    measured = json.loads(scores.read_text())
+    assert measured["families"]["old-giant"]["index"] == 60.0
+    assert measured["top"]["slug"] == "claude-fable-5-1"
+    assert measured["median"] == 41.2
+
+
+@pytest.mark.parametrize("failure", ["unreadable", "tampered"])
+@respx.mock
+async def test_failed_manifest_read_preserves_the_registry_and_scores(tmp_path, failure):
+    key = bytes(range(32))
+    body = AESGCM(key).encrypt(hashlib.sha256(key).digest()[:12], gzip.compress(json.dumps(SCORED).encode()), None)
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=manifest_page(key)))
+    respx.get("https://artificialanalysis.ai/data/0123456789abcdef.txt").mock(
+        return_value=httpx.Response(403 if failure == "unreadable" else 200, content=body[:-1] + b"x"))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {"family": "glm-5.3", "aa_model": "glm-5-3", "tier": "strong"})])
+    previous = registry.read_bytes()
+    scores.write_text("previous scores")
+
+    with pytest.raises((ValueError, httpx.HTTPStatusError)):
+        await _amain(registry, write=True, scores=scores)
+    assert registry.read_bytes() == previous
+    assert scores.read_text() == "previous scores"
+
+
+@pytest.mark.parametrize("path", ["https://other.example/data/models.json", "//127.0.0.1/private", "/data/../private.json"])
+@respx.mock
+async def test_manifest_cannot_redirect_the_reader_to_an_arbitrary_source(tmp_path, path):
+    page = manifest_page(None).replace('/data/0123456789abcdef.txt', path)
+    route = respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [entry("a", {"family": "glm-5.3", "aa_model": "glm-5-3"})])
+    with pytest.raises(ValueError, match="same-origin data file"):
+        await _amain(registry, write=False)
+    assert route.call_count == 1
+
+
+@pytest.mark.parametrize("manifest", [None, []])
+@respx.mock
+async def test_unknown_manifest_shape_cannot_fall_back_to_a_partial_table(tmp_path, manifest):
+    props = {"initialModels": SCORED, "manifest": manifest}
+    payload = '0:["$","div",null,' + json.dumps(props) + ']\n'
+    body = '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {"family": "glm-5.3", "aa_model": "glm-5-3"})])
+    previous = registry.read_bytes()
+    scores.write_text("previous scores")
+    with pytest.raises(ValueError, match="manifest"):
+        await _amain(registry, write=True, scores=scores)
+    assert registry.read_bytes() == previous
+    assert scores.read_text() == "previous scores"
 
 
 def test_the_top_of_the_index_counts_current_models_only():

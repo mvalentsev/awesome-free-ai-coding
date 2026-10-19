@@ -26,8 +26,8 @@ from .models import CHALLENGE_MARKERS
 RECOVERY_SECONDS = 20
 RECOVERY_REDIRECTS = 5
 RECOVERY_BYTES = 8 * 1024 * 1024
-# curl_cffi 0.16.3's Chrome profile recovered both original vendor pages in
-# Actions on 2026-10-12. Source: curl-cffi.readthedocs.io/en/stable/impersonate/.
+# curl_cffi 0.16.3's Chrome alias recovered SEA-LION after ordinary HTTP403 in
+# Actions and a local read on 2026-10-19. Alias contract: github.com/lexiforest/curl_cffi#usage.
 # This is HTTP browser impersonation, without a JavaScript runtime.
 PROFILE = "chrome"
 _evidence: ContextVar[Path | None] = ContextVar("page_read_evidence", default=None)

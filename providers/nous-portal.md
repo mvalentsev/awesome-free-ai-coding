@@ -39,8 +39,8 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`, `stepfun/step-5-preview:free`
-- Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan. The Step 5 catalog has served different token limits; check its current model entry before choosing a large context or output budget.
+- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`, `stepfun/step-5-preview:free`, `reflection/beam-1.0-501b-a23b:free`
+- Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan. Beam has a 262K context and always reasons; its default effort is medium. The Step 5 catalog has served different token limits; check its current model entry before choosing a large context or output budget.
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

@@ -273,15 +273,6 @@ dismissed:
       — 57 free rows against 795 metered. AIHubMix subsidises the whole GLM line,
       which is why this list carries glm-5 as free here and nowhere else; a newer
       generation arriving on a subsidised lane is an addition, not a supersession.
-  - entry: bazaarlink
-    family: qwen3.7-flash
-    superseded_by: qwen3.8
-    dismissed_on: 2026-09-08
-    reason: >-
-      api.bazaarlink.ai/v1/models has exactly two free rows, and
-      qwen/qwen3.7-flash:free is one of them, while every Qwen3.8 the same catalog
-      carries — qwen3.8-max, qwen3.8-2.4t-a95b, qwen3.8-27b — is metered. The bump
-      would empty this row's Models column of its only free model.
   - entry: ovh-ai-endpoints
     family: qwen3.6
     superseded_by: qwen3.8

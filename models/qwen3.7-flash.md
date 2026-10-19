@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'qwen3.7-flash free: 2 providers, limits and ids, provider probes 2026-10-19'
-description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3.7-flash free: 1 provider, limits and ids, provider probes 2026-10-19'
+description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.7-flash/
 last_modified_at: 2026-10-19
 crumb: qwen3.7-flash
@@ -11,7 +11,7 @@ crumb: qwen3.7-flash
 
 # Where qwen3.7-flash is free
 
-**2 rows on the list serve `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week.
+**One row on the list serves `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-10-19; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -37,30 +37,9 @@ Free grants apply in Singapore (international) only, independently per model and
 - Callable ids: `qwen3.7-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
-### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
+## Rows that listed it before
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-08-03
-
-OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Without credit: 10 requests/minute; 60 weighted units/day per account
-
-With credit: 20 requests/minute; 120 weighted units/day per account
-
-Free models: 2 requests at once per account
-
-Free models: 15 requests/minute shared across the endpoint
-
-The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.
-
-</details>
-
-- Base URL: `https://api.bazaarlink.ai/v1`
-- Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
-- Callable ids: `qwen/qwen3.7-flash:free`
+- [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) — listed 2026-08-03 to 2026-10-19
 
 ## Related models
 

@@ -1,12 +1,12 @@
 {
-  "read_on": "2026-10-15",
+  "read_on": "2026-10-19",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "index": 57.6
   },
-  "median": 13.2,
+  "median": 13.3,
   "families": {
     "apertus-70b": {
       "slug": "apertus-70b-instruct",
@@ -193,6 +193,11 @@
       "index": 25.7,
       "estimated": false
     },
+    "k2-horizon-375b-a23b": {
+      "slug": "k2-horizon-375b-a23b",
+      "index": 30.5,
+      "estimated": false
+    },
     "kimi-k3": {
       "slug": "kimi-k3",
       "index": 43.6,
@@ -206,6 +211,11 @@
     "ling-3.0-tiny": {
       "slug": "ling-3-0-tiny",
       "index": 11.1,
+      "estimated": false
+    },
+    "ling-3.1-flash": {
+      "slug": "ling-3-1-flash",
+      "index": 41.1,
       "estimated": false
     },
     "longcat-2.0": {

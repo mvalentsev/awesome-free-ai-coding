@@ -39,7 +39,7 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ## Related models
 
-- [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/) — free at Alibaba Cloud Model Studio (DashScope, international) and BazaarLink
+- [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.7-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---

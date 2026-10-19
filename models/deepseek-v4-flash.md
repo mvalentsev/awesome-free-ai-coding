@@ -67,21 +67,17 @@ Free grants apply in Singapore (international) only, independently per model and
 
 OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
 
-<details markdown="block">
-<summary>Provider-wide limits</summary>
+- Limits, in the vendor's words: Without credit: 10 requests/rolling minute; 60 weighted units/day per account
 
-- Limits, in the vendor's words: Without credit: 10 requests/minute; 60 weighted units/day per account
-
-With credit: 20 requests/minute; 120 weighted units/day per account
+With credit: 20 requests/rolling minute; 120 weighted units/day per account
 
 Free models: 2 requests at once per account
 
-Free models: 15 requests/minute shared across the endpoint
+Free models: 20 requests/minute shared across the endpoint
+
+Additional IP guard: Requests allowance: amount not published (period not published) per IP
 
 The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.
-
-</details>
-
 - Base URL: `https://api.bazaarlink.ai/v1`
 - Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
 - Callable ids: `deepseek/deepseek-v4-flash-0731free:free`

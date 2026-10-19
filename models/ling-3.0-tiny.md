@@ -66,6 +66,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 ## Related models
 
 - [`ling-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/) — free at AIHubMix (free models)
+- [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/) — free at Requesty
 
 ---
 

@@ -229,8 +229,9 @@ RETIREMENT_PROMPT = SYSTEM_RULES + """
 TASK: FIND-RETIREMENTS. Below are live entries and the current text of their
 official pages. Report an entry ONLY when its own page announces that the free
 offering is ending or has already ended, and gives a date. A price change, a
-paid plan, a deprecated model or a retired unrelated product is NOT a
-retirement. Copy the announcing sentence verbatim from the page text — an
+paid plan, a deprecated model, a regional restriction or a retired unrelated
+product is NOT a whole-offer retirement. Preserve geographic and plan scope.
+Copy the announcing sentence verbatim from the page text — an
 entry whose quote is not on the page is discarded.
 Output format:
 retire:
@@ -996,12 +997,13 @@ def _retirement_excerpt(text: str) -> str:
 
 
 def apply_retirements(entries: list[Entry], retire: list[dict],
-                      pages: dict[str, str]) -> list[str]:
+                      pages: dict[str, str], rejected: list[str] | None = None) -> list[str]:
     """Set retired_on from a vendor's own shutdown announcement.
 
     The quote has to appear verbatim in the page text we fetched — a retirement
     date is the one field that archives a live entry outright, so a paraphrased
-    or invented announcement must not be able to set it."""
+    or invented announcement must not be able to set it. An announcement dated
+    before a successful verification is contradictory evidence for human review."""
     applied = []
     by_id = {e.id: e for e in entries}
     for r in retire:
@@ -1016,6 +1018,11 @@ def apply_retirements(entries: list[Entry], retire: list[dict],
         try:
             when = date.fromisoformat(str(r.get("retired_on", "")))
         except ValueError:
+            continue
+        if when < entry.last_verified:
+            if rejected is not None:
+                rejected.append(f"{entry.id}: retirement on {when} contradicts successful "
+                                f"verification on {entry.last_verified} — review the offer's scope")
             continue
         entry.retired_on = when
         applied.append(f"{entry.id} ({when.isoformat()})")
@@ -1137,7 +1144,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             # An optional sweep must never sink the run that finds new entries.
             try:
                 data = _ask(llm, RETIREMENT_PROMPT.format(context=context))
-                result["retired"] = apply_retirements(entries, data.get("retire") or [], pages)
+                result["retired"] = apply_retirements(
+                    entries, data.get("retire") or [], pages, result["rejected"])
             except RuntimeError as exc:
                 lost_to_backends("retirement sweep", exc)
 
