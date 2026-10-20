@@ -29,7 +29,7 @@ FAQ: 20 requests/minute (published sources disagree) per account
 
 Free models: 200 requests/day per account
 
-The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method and are behind a bot wall. No legal entity is named; support is email and Discord.
+The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.
 
 ## Where it is offered
 
