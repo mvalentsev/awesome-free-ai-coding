@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-10-19'
-description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions. Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its…
+description: 'Free plan of TRAE''s AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion. Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its amount differs between served versions of the pricing page. Measurements on…'
 permalink: /providers/trae/
 last_modified_at: 2026-10-19
 crumb: TRAE (TraeCode)
@@ -15,7 +15,7 @@ crumb: TRAE (TraeCode)
 
 ## What you get
 
-TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions
+Free plan of TRAE's AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion
 
 ## Free models
 
@@ -25,9 +25,9 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 Basic usage: One-time USD allowance: amount varies per account
 
-Autocompletion: 5,000 completions/month per account
+Autocompletion (where listed for Free): 5,000 completions/month per account
 
-TRAEWORK: 2 tasks at once per account
+TRAEWORK (where listed for Free): 2 tasks at once per account
 
 Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its amount differs between served versions of the pricing page. Measurements on 2026-09-16 found $1 and $3 on different networks; a runner read $1 on 2026-09-27. The payload also lists 1,000 advanced-model requests without stating their period. Published completion and concurrent-task figures apply where that Free table is served. Other versions describe limited usage and autocomplete without numbers.
 
@@ -56,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

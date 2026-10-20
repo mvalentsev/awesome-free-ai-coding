@@ -3,7 +3,7 @@ layout: default
 title: 'muse-glimmer-30b free: 3 providers, limits and ids, provider probes 2026-10-19'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-20
 crumb: muse-glimmer-30b
 ---
 
@@ -82,6 +82,6 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

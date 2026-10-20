@@ -44,16 +44,16 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 ## Related models
 
 - [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) — free at Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
-- [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
-- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
-- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
 - [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
 - [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — free at Google AI Studio (Gemini API)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

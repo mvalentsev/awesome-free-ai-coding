@@ -235,9 +235,6 @@
         "nvidia/nemotron-3-ultra-550b-a55b": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b"
         },
-        "nvidia/nemotron-3-super-120b-a12b": {
-          "name": "nvidia/nemotron-3-super-120b-a12b"
-        },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
         },
@@ -577,9 +574,6 @@
         "nvidia/nemotron-3.5-lightning-free": {
           "name": "nvidia/nemotron-3.5-lightning-free"
         },
-        "stealth/cat-jam": {
-          "name": "stealth/cat-jam"
-        },
         "reflection/beam-free": {
           "name": "reflection/beam-free"
         }
@@ -764,9 +758,6 @@
         },
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
-        },
-        "stepfun/step-5-preview:free": {
-          "name": "stepfun/step-5-preview:free"
         },
         "reflection/beam-1.0-501b-a23b:free": {
           "name": "reflection/beam-1.0-501b-a23b:free",

@@ -214,36 +214,6 @@ dismissed:
       would remove, is. The swap would trade a free model for a paid one, which is
       what this file exists to stop.
 
-  # Six more of the same run's bumps name a family the row already lists, and
-  # three name one the vendor serves free beside the old one rather than instead
-  # of it. Both shapes are the blind spot this file opens with, seen from a new
-  # angle: the scout is handed family names and cannot see which lane they sit
-  # in — not even when both names are already in the column it is proposing to
-  # edit. Read 2026-09-08.
-  - entry: antigravity
-    family: gemini-3.1-pro
-    superseded_by: gemini-3.8-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      The row already lists gemini-3.8-flash — added on 2026-09-03 beside
-      3.6-flash and 3.7-flash, from antigravity.google/pricing's own $0 bullet.
-      This bump would delete the frontier Pro model the same free plan grants in
-      order to name a Flash the row already carries: less claimed, nothing
-      updated.
-  - entry: antigravity
-    family: gemini-3.6-flash
-    superseded_by: gemini-3.8-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      Same row, same read: both families are in the column, and the vendor's free
-      bullet names the Flash generations together rather than one replacing the
-      last.
-  - entry: antigravity
-    family: gemini-3.7-flash
-    superseded_by: gemini-3.8-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      Same row, same read, the third of the trio.
   # upstage solar-mini → solar-pro-3 stood here from 2026-09-08 until 2026-09-25,
   # when the row's column emptied: Upstage's offer is a $10 signup credit spent
   # on any model, and a sum to spend names no model.

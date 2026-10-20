@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.8-flash free: 2 providers, limits and ids, provider probes 2026-10-19'
 description: gemini-3.8-flash is served free by Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.8-flash/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-20
 crumb: gemini-3.8-flash
 ---
 
@@ -54,7 +54,7 @@ Tab: Unmetered completions per account
 
 Command: Unmetered requests per account
 
-The model table includes older third-party models under Free & Google AI Plus, with removal on November 2, 2026; Claude 5.5 requires a paid plan. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on available capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party models in that column are scheduled for removal on November 2, 2026. Claude 5.5 and Gemini 4 Argon require paid plans. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 </details>
 
@@ -64,16 +64,16 @@ The model table includes older third-party models under Free & Google AI Plus, w
 ## Related models
 
 - [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) — free at Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
-- [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
-- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
-- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
 - [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash/) — free at Google AI Studio (Gemini API)
 - [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API)
+- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — free at Google AI Studio (Gemini API)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

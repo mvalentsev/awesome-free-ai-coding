@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-19'
-description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions…
+description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor's first-party models; numerical allowances are unpublished and third-party models are not included. The pricing FAQ describes weekly refreshes across tiers, while…
 permalink: /providers/cursor-hobby/
 last_modified_at: 2026-10-19
 crumb: Cursor (Free)
@@ -19,13 +19,13 @@ Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage
 
 ## Free models
 
-The vendor does not identify which models the free offer includes. See Limits for the published conditions.
+No free model family is listed yet; new offers must clear the two-week bar before entering this section.
 
 ## Limits, in the vendor's words
 
 Agent usage: Usage allowance: amount not published (period not published) per account
 
-Free includes limited Agent, Chat and Tab usage with Cursor models (Grok and Composer); exact Free model versions and numerical allowances are unpublished. Third-party models are not included. Current paid X subscriptions use a shared weekly pool; legacy paid Cursor plans retain monthly pools. Those paid-plan resets do not establish the Free reset; check your account for its allowance.
+Free includes limited Agent, Chat and Tab usage with Cursor's first-party models; numerical allowances are unpublished and third-party models are not included. The pricing FAQ describes weekly refreshes across tiers, while detailed docs explicitly assign weekly pools to paid X subscriptions and monthly pools to legacy Cursor plans. Those descriptions do not establish a consistent Free reset; check your account.
 
 ## Where it is offered
 
@@ -41,11 +41,12 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## Evidence
 
-- Probe: the page at <https://cursor.com/pricing>, anchored on `$0`, `Limited Agent requests`, `Limited Chat requests`
+- Probe: the page at <https://cursor.com/help/models-and-usage/available-models>, anchored on `Free and Plus include only Cursor's first-party models`
 - Source: <https://cursor.com/pricing>
 - Source: <https://cursor.com/help/models-and-usage/usage-limits>
 - Source: <https://cursor.com/help/account-and-billing/pricing>
 - Source: <https://cursor.com/docs/account/pricing>
+- Source: <https://cursor.com/help/models-and-usage/available-models>
 
 ## History
 
@@ -57,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

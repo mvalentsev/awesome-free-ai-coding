@@ -3,7 +3,7 @@ layout: default
 title: 'claude-sonnet-4.6 free: 1 provider, limits and ids, provider probes 2026-10-19'
 description: claude-sonnet-4.6 is served free by Google Antigravity. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-sonnet-4.6/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-20
 crumb: claude-sonnet-4.6
 ---
 
@@ -34,7 +34,7 @@ Tab: Unmetered completions per account
 
 Command: Unmetered requests per account
 
-The model table includes older third-party models under Free & Google AI Plus, with removal on November 2, 2026; Claude 5.5 requires a paid plan. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on available capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party models in that column are scheduled for removal on November 2, 2026. Claude 5.5 and Gemini 4 Argon require paid plans. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 </details>
 
@@ -49,6 +49,6 @@ The model table includes older third-party models under Free & Google AI Plus, w
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

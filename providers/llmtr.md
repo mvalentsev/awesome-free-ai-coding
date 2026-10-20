@@ -94,6 +94,7 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/models/reflection/beam-1.0-501b-a23b>
 - Source: <https://llmtr.com/models/ifm/jais-3-mova-36b-a4b>
 - Source: <https://llmtr.com/models/ifm/k2-horizon-375b-a23b>
+- Source: <https://llmtr.com/models/nace/drex-max-free>
 
 ## History
 
@@ -124,6 +125,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

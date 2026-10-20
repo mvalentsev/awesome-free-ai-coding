@@ -38,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`, `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`
+- In Cline's own model list: `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`, `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`, `cline-free/minimax-m3.1-flash`
 
 ## Evidence
 
@@ -63,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

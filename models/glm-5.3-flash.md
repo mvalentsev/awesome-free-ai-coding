@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5.3-flash free: 5 providers, limits and ids, provider probes 2026-10-19'
 description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-20
 crumb: glm-5.3-flash
 ---
 
@@ -153,6 +153,6 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

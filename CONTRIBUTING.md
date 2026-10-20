@@ -572,6 +572,12 @@ value; a free cached-input or storage cell does not qualify a paid model.
 An absent or ambiguous table asks for a model review rather than accepting
 names elsewhere on the page.
 
+For a model-by-plan table, `probe.model_plan` binds the model-name column and
+one exact plan column. Only an explicit inclusion mark in that cell qualifies
+the model; availability on another plan or elsewhere on the page does not.
+Missing or duplicate tables and duplicate model rows require review. This uses
+the same table reader as price eligibility, whose two-price requirement remains.
+
 **A key the reader has not set never becomes another of theirs.** LiteLLM gives
 an entry whose key variable is not set the `OPENAI_API_KEY` it runs with and
 sends it to that lane, so every place that prints the proxy's command starts it

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-10-19'
-description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. The model table includes older third-party models under Free…'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.8-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-20
 crumb: Google Antigravity
 ---
 
@@ -19,7 +19,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Free models
 
-[`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/), [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/), [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/), [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/), [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/), [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)
+[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/), [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/), [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)
 
 ## Limits, in the vendor's words
 
@@ -31,7 +31,7 @@ Tab: Unmetered completions per account
 
 Command: Unmetered requests per account
 
-The model table includes older third-party models under Free & Google AI Plus, with removal on November 2, 2026; Claude 5.5 requires a paid plan. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on available capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party models in that column are scheduled for removal on November 2, 2026. Claude 5.5 and Gemini 4 Argon require paid plans. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 ## Where it is offered
 
@@ -57,12 +57,13 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-20` — Free models changed: dropped gemini-3.1-pro, gemini-3.6-flash, gemini-3.7-flash
 - `2026-09-25` — Free models changed: added gpt-oss-120b; dropped gpt-oss
 - `2026-09-03` — Free models changed: added gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash; dropped gemini-3.5-flash
 - `2026-08-11` — Added: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 
 ---
 
-Generated from `registry.yaml` on 2026-10-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

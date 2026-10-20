@@ -6,6 +6,7 @@ import html
 import json
 import re
 import uuid
+from collections import Counter
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -1720,6 +1721,25 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     return f"missing keywords: {', '.join(missing)} — {len(resp.text):,} bytes read"
 
 
+def _table_models(body: str, headers: list[str], name_column: str,
+                  value_columns: list[str], included_value: str) -> list[str]:
+    from .quotas import _Tables
+    parser = _Tables()
+    parser.feed(body)
+    tables = [table for table in parser.tables if set(headers) <= set(table['headers'])]
+    if len(tables) != 1:
+        return []
+    table = tables[0]
+    if any(table['headers'].count(header) != 1 for header in headers):
+        return []
+    name = table['headers'].index(name_column)
+    values = [table['headers'].index(column) for column in value_columns]
+    counts = Counter(row[name].casefold() for row in table['rows'] if len(row) > name)
+    return [row[name] for row in table['rows']
+            if len(row) > max(name, *values) and counts[row[name].casefold()] == 1
+            and all(row[i].casefold() == included_value.casefold() for i in values)]
+
+
 def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """Families the README publishes that the probed page does not even name.
 
@@ -1729,7 +1749,8 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     text the keywords are held to, so a name the vendor serves only inside its
     page data counts; whether the page names the model as free is the stronger
     question, and the one an anchor keyword answers. With model_prices, both
-    prices must instead be free in the same row of one bound table. A family also counts where
+    prices must instead be free in the same row of one bound table. With model_plan,
+    that row must mark inclusion in the named plan. A family also counts where
     its parts are named close together (see _named_in_parts).
 
     It never fails an entry: three failures archive a row, and a marketing page
@@ -1741,19 +1762,14 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
         return []
     if binding := entry.probe.model_prices:
-        from .quotas import _Tables
-        parser = _Tables()
-        parser.feed(resp.text)
-        tables = [table for table in parser.tables if set(binding.headers) <= set(table['headers'])]
-        free = []
-        if len(tables) == 1:
-            table = tables[0]
-            name = table['headers'].index(binding.name_column)
-            prices = [table['headers'].index(column) for column in binding.price_columns]
-            for row in table['rows']:
-                if len(row) > max(name, *prices) and all(
-                        row[i].casefold() == binding.free_value.casefold() for i in prices):
-                    free.append(row[name])
+        free = _table_models(resp.text, binding.headers, binding.name_column,
+                             binding.price_columns, binding.free_value)
+    elif binding := entry.probe.model_plan:
+        free = _table_models(resp.text, binding.headers, binding.name_column,
+                             [binding.plan_column], binding.included_value)
+    else:
+        free = None
+    if free is not None:
         return [m.family for m in entry.models
                 if not any(names_family(m.family, _squash(name), _squash) for name in free)]
     squashed, text = _squash(resp.text), resp.text.lower()

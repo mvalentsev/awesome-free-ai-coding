@@ -340,6 +340,26 @@ class ModelPriceTable(BaseModel):
         return self
 
 
+class ModelPlanTable(BaseModel):
+    """Bind page model eligibility to an explicit inclusion cell for one plan."""
+    model_config = ConfigDict(extra="forbid")
+    headers: list[str] = Field(min_length=2)
+    name_column: str
+    plan_column: str
+    included_value: str = "✅"
+
+    @model_validator(mode="after")
+    def _columns_are_bound(self):
+        columns = [self.name_column, self.plan_column]
+        if len(set(columns)) != 2 or not set(columns) <= set(self.headers):
+            raise ValueError("model_plan needs distinct name and plan columns in its headers")
+        if len(set(self.headers)) != len(self.headers):
+            raise ValueError("model_plan headers must be distinct")
+        if self.included_value.casefold() not in {"yes", "true", "included", "✅", "✓", "✔"}:
+            raise ValueError("model_plan included_value must be an explicit inclusion mark")
+        return self
+
+
 class Probe(BaseModel):
     type: ProbeType
     endpoint: str
@@ -358,6 +378,7 @@ class Probe(BaseModel):
     # evidence, say so here and the whole response is searched.
     machinery_keywords: list[str] = []
     model_prices: ModelPriceTable | None = Field(default=None, exclude_if=lambda v: v is None)
+    model_plan: ModelPlanTable | None = Field(default=None, exclude_if=lambda v: v is None)
     # api-models: the key a vendor lists its free lane under, for a document
     # that publishes lanes side by side instead of flagging rows. Cline's
     # recommended-models answers `recommended`, `free`, `clinePass` and
@@ -393,6 +414,10 @@ class Probe(BaseModel):
     def _model_prices_read_a_page(self) -> Probe:
         if self.model_prices is not None and self.type is not ProbeType.PAGE_KEYWORDS:
             raise ValueError("model_prices belongs on a page-keywords probe")
+        if self.model_plan is not None and self.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError("model_plan belongs on a page-keywords probe")
+        if self.model_prices is not None and self.model_plan is not None:
+            raise ValueError("use one model eligibility table binding per probe")
         return self
 
     @model_validator(mode="after")
@@ -1458,7 +1483,7 @@ class Entry(BaseModel):
         a month sits beside the models it prices at zero, and those are its
         column."""
         p = self.probe
-        reads_free = self.client_lane is not None or (
+        reads_free = self.client_lane is not None or p.model_plan is not None or (
             p.type is ProbeType.API_MODELS
             and bool(p.require_zero_price or p.free_marker or p.lane or p.free_list))
         if reads_free and self.free_part in (FreePart.SUM, FreePart.UNNAMED):

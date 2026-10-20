@@ -72,6 +72,38 @@ async def test_page_models_require_free_input_and_output_in_the_bound_table(tabl
     assert ("alpha" in result.detail) is (table_state != "present")
 
 
+@pytest.mark.parametrize("table_state", ["present", "missing", "ambiguous", "duplicate-model", "duplicate-header"])
+@respx.mock
+async def test_page_models_require_inclusion_in_the_bound_free_plan(table_state):
+    row = page_entry().model_dump()
+    row["models"] = [{"family": name} for name in ("alpha", "beta", "gamma")]
+    row["probe"]["keywords"] = ["Alpha model free access"]
+    row["probe"]["model_plan"] = {"headers": ["Model", "Free", "Enterprise"],
+                                   "name_column": "Model", "plan_column": "Free",
+                                   "included_value": "✅"}
+    body = '<p>Alpha model free access. Beta and Gamma are available.</p><table>' \
+           '<tr><th>Model</th><th>Free</th><th>Enterprise</th></tr>' \
+           '<tr><td>Alpha</td><td>✅</td><td>✅</td></tr>' \
+           '<tr><td>Beta</td><td>❌</td><td>✅</td></tr>' \
+           '<tr><td>Gamma</td><td></td><td>✅</td></tr>'
+    if table_state == "duplicate-model":
+        body += '<tr><td>Alpha</td><td>❌</td><td>✅</td></tr>'
+    body += '</table><table><tr><th>Model</th><th>Paid</th></tr>' \
+            '<tr><td>Beta</td><td>✅</td></tr></table>'
+    if table_state == "missing":
+        body = "Alpha model free access. Beta and Gamma are available."
+    elif table_state == "ambiguous":
+        body += body[body.index('<table>'):]
+    elif table_state == "duplicate-header":
+        body = body.replace('<th>Enterprise</th>', '<th>Free</th><th>Enterprise</th>')
+    respx.get(row["probe"]["endpoint"]).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert "beta" in result.detail and "gamma" in result.detail
+    assert ("alpha" in result.detail) is (table_state != "present")
+
+
 @respx.mock
 async def test_api_models_ok():
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(

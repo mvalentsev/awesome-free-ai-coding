@@ -729,6 +729,32 @@ def test_page_model_price_binding_rejects_nonzero_and_ambiguous_columns():
             ModelPriceTable.model_validate({**binding, **change})
 
 
+def test_page_model_plan_binding_rejects_ambiguous_or_nonaffirmative_cells():
+    from freetier_radar.models import ModelPlanTable, Probe
+    binding = {"headers": ["Model", "Free", "Enterprise"], "name_column": "Model",
+               "plan_column": "Free"}
+    assert ModelPlanTable.model_validate(binding).included_value == "✅"
+    for change in ({"included_value": "❌"}, {"included_value": ""},
+                   {"plan_column": "Model"}, {"plan_column": "Missing"},
+                   {"headers": ["Model", "Free", "Free"]}):
+        with pytest.raises(ValidationError):
+            ModelPlanTable.model_validate({**binding, **change})
+    with pytest.raises(ValidationError, match="page-keywords"):
+        Probe.model_validate({"type": "api-models", "endpoint": "https://x.ai/models",
+                              "model_plan": binding})
+    with pytest.raises(ValidationError, match="one model eligibility"):
+        Probe.model_validate({"type": "page-keywords", "endpoint": "https://x.ai/free",
+                              "model_plan": binding,
+                              "model_prices": {"headers": ["Model", "Input", "Output"],
+                                               "name_column": "Model", "price_columns": ["Input", "Output"]}})
+    row = sample_entry()
+    row.update(models=[], free_part="sum", probe={"type": "page-keywords",
+               "endpoint": "https://x.ai/free", "keywords": ["Free model alpha available"],
+               "model_plan": binding})
+    with pytest.raises(ValidationError, match="probe reads free models"):
+        Entry.model_validate(row)
+
+
 def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():
     """A keyed lane is always called with a bearer token, so a lane that refuses
     one can only be keyless (OVHcloud's anonymous lane answers "Bearer none"
