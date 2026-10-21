@@ -1061,12 +1061,27 @@ model_list:
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
     max_tokens: 131072
+- model_name: nous-portal/ornith/ornith-1.5-122b:free
+  litellm_params:
+    model: openai/ornith/ornith-1.5-122b:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
 - model_name: iteracompute/qwen/qwen3.8-27b
   litellm_params:
     model: openai/qwen/qwen3.8-27b
     api_base: https://api.iteracompute.com/v1
     api_key: os.environ/ITERACOMPUTE_API_KEY
     use_chat_completions_api: true
+- model_name: iteracompute/moonshotai/kimi-k3-free
+  litellm_params:
+    model: openai/moonshotai/kimi-k3-free
+    api_base: https://api.iteracompute.com/v1
+    api_key: os.environ/ITERACOMPUTE_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $10 one-time top-up
+    source: https://iteracompute.com/models/kimi-k3-free/
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2
@@ -2096,6 +2111,17 @@ model_list:
     model: openai/deepseek/deepseek-v4-flash-0731free:free
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b
+    api_base: https://api.iteracompute.com/v1
+    api_key: os.environ/ITERACOMPUTE_API_KEY
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

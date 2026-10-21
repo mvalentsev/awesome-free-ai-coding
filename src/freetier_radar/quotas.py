@@ -528,10 +528,10 @@ def quota_summary(entry: Entry) -> str:
         text = (label + ': ' if label else '') + '; '.join(words) + ('; ' if scope == 'unspecified' else ' ') + scoped
         if condition:
             text += ' (' + condition + ')'
-        if reset:
-            text += '. ' + reset
         ids = list(dict.fromkeys(mid for q in quotas for mid in q.model_ids))
         if ids:
             text += '; for ' + ', '.join('`' + mid + '`' for mid in ids)
+        if reset:
+            text += '. ' + reset
         paragraphs.append(text)
     return '\n\n'.join(paragraphs)

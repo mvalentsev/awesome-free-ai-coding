@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-27b free: 8 providers, limits and ids, provider probes 2026-10-19'
-description: qwen3.8-27b is served free by Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each…
+title: 'qwen3.8-27b free: 9 providers, limits and ids, provider probes 2026-10-19'
+description: qwen3.8-27b is served free by Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-21
 crumb: qwen3.8-27b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-27b
 
 # Where qwen3.8-27b is free
 
-**8 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
+**9 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -126,6 +126,24 @@ Free grants apply in Singapore (international) only, independently per model and
 - Callable ids: `qwen3.8-27b`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
+### [IteraCompute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/)
+
+🔌 LLM APIs with free tier · no card · provisional since 2026-10-18 · last probe 2026-10-19 · listed since 2026-10-21
+
+OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up
+
+- Limits, in the vendor's words: Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
+
+Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
+
+Kimi K3 Free: Usage allowance: amount not published (period not published); scope not published; for `moonshotai/kimi-k3-free`
+
+Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Qwen Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge principal minus refunds, excluding grants and fees; spending the balance keeps access, while refunds below the threshold block new requests. Qwen allowances do not apply to Kimi, whose free route is "especially slow". Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
+- Base URL: `https://api.iteracompute.com/v1`
+- Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
+- Callable ids: `qwen/qwen3.8-27b`
+- What you send is not used to train models ([the vendor's words](https://iteracompute.com/privacy.html)).
+
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
 🎁 Trials (no card when possible) · no card · last probe 2026-10-19 · listed since 2026-09-17
@@ -198,6 +216,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ---
 
-Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

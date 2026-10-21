@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-10-19'
-description: OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all API keys on the account. "Context includes input and requested…
+description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context…'
 permalink: /providers/iteracompute/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-21
 crumb: IteraCompute
 ---
 
@@ -15,19 +15,21 @@ crumb: IteraCompute
 
 ## What you get
 
-OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up
+OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 
 ## Limits, in the vendor's words
 
-Free tier: 30,000,000 tokens/month per account. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
+Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
 
-Free tier: 160,000 tokens/minute per account
+Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
 
-Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all API keys on the account. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. Optional cumulative $10/$50 top-ups unlock larger allowances; the Free tier needs neither. Zero data retention requires a separate signed agreement.
+Kimi K3 Free: Usage allowance: amount not published (period not published); scope not published; for `moonshotai/kimi-k3-free`
+
+Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Qwen Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge principal minus refunds, excluding grants and fees; spending the balance keeps access, while refunds below the threshold block new requests. Qwen allowances do not apply to Kimi, whose free route is "especially slow". Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
 
 ## Where it is offered
 
@@ -41,8 +43,9 @@ What you send is not used to train models. In the vendor's words: “Without you
 
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
-- Callable ids: `qwen/qwen3.8-27b`
-- Note: Create a key with permission for the callable ID. Use Chat Completions; the vendor's Responses examples cover paid models. Configure your client's context and output budgets to match the Free limits on the provider page. Authenticated generation has not been checked here.
+- Callable ids: `qwen/qwen3.8-27b`, `moonshotai/kimi-k3-free`
+- `moonshotai/kimi-k3-free`: requires $10 one-time top-up ([conditions](https://iteracompute.com/models/kimi-k3-free/))
+- Note: Create a key scoped to your chosen ID. Use Chat Completions. Set Qwen context and output budgets to the Free limits on the provider page; give Kimi a bounded output budget because responses are slow. Authenticated generation has not been checked here.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -61,6 +64,8 @@ curl -s https://api.iteracompute.com/v1/chat/completions \
 - Source: <https://iteracompute.com/docs.html>
 - Source: <https://iteracompute.com/integrations/opencode/>
 - Source: <https://iteracompute.com/models/qwen3-8-27b/>
+- Source: <https://iteracompute.com/models/kimi-k3-free/>
+- Source: <https://iteracompute.com/subprocessors/>
 - Source: <https://iteracompute.com/changelog/>
 - Source: <https://iteracompute.com/about/>
 - Source: <https://iteracompute.com/terms.html>
@@ -70,10 +75,11 @@ curl -s https://api.iteracompute.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-21` — Free models changed: added qwen3.8-27b
 - `2026-10-18` — Added: OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up
 
 ---
 
-Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

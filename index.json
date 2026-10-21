@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20",
+  "generated": "2026-10-21",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -2195,12 +2195,9 @@
         }
       ],
       "free_part": "models",
-      "models": [],
-      "newcomers": [
+      "models": [
         {
-          "family": "gpt-6-luna",
-          "on": "2026-10-07",
-          "source": "https://github.com/mvalentsev/awesome-free-ai-coding/blob/b8afe8b3d6dc8d00ccb18290306e57f4c9cdfc4b/registry.yaml"
+          "family": "gpt-6-luna"
         }
       ],
       "border": {
@@ -2424,7 +2421,8 @@
         "type": "page-keywords",
         "endpoint": "https://learn.chatgpt.com/docs/pricing",
         "keywords": [
-          "codex are included in your chatgpt free"
+          "codex are included in your chatgpt free",
+          "Free Explore Codex capabilities on quick coding tasks. $0 /month Get Free GPT-6 Luna at Standard speed in the desktop app, subject to rollout"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -6390,7 +6388,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nAvailable models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nAvailable models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
@@ -6488,7 +6486,7 @@
           "paid-sol": {
             "kind": "paid",
             "note": "The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day.",
-            "reviewed_on": "2026-10-15",
+            "reviewed_on": "2026-10-21",
             "source": "https://freebuff.com/plans"
           },
           "specialist": {
@@ -6498,7 +6496,7 @@
           "muse-full": {
             "kind": "wallet",
             "note": "Credit-funded at full access; a paid plan is required at limited access.",
-            "reviewed_on": "2026-10-15",
+            "reviewed_on": "2026-10-21",
             "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           }
         },
@@ -6560,7 +6558,7 @@
             "listed": true
           },
           {
-            "name": "DeepSeek V4.1 Flash",
+            "name": "DeepSeek V4.1 Flash 10/17",
             "model": {
               "family": "deepseek-v4.1-flash",
               "tier": "strong",
@@ -6589,7 +6587,7 @@
             "condition": "wallet"
           },
           {
-            "name": "DeepSeek V4.1 Flash Fast",
+            "name": "DeepSeek V4.1 Flash Fast 10/17",
             "model": {
               "family": "deepseek-v4.1-flash"
             },
@@ -6634,11 +6632,11 @@
           "Daily hours refill at midnight in your local timezone and unused daily hours do not carry over.",
           "Older app versions show the same balance as Freebucks, five to an hour."
         ],
-        "reviewed_on": "2026-10-17"
+        "reviewed_on": "2026-10-21"
       },
       "data_use": {
         "trains": "yes",
-        "quote": "DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.",
+        "quote": "DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.",
         "url": "https://freebuff.com/llms.txt"
       },
       "border": {
@@ -8367,23 +8365,17 @@
       "free_part": "models",
       "models": [
         {
-          "family": "muse-spark-1.3-contributor",
-          "tier": "strong",
-          "aa_model": "muse-spark-1-3-xhigh"
-        },
-        {
-          "family": "mimo-v2.6-flash",
-          "tier": "strong",
-          "aa_model": "mimo-v2-6-flash"
+          "family": "solar-mini-4"
         }
       ],
       "client_lane": {
         "model_ids": [
-          "cline-free/mimo-v2.6-flash",
-          "cline-free/muse-spark-1.3-contributor",
           "cline-free/solar-mini4",
           "cline-free/nemotron-3.5-super-vl",
-          "cline-free/minimax-m3.1-flash"
+          "cline-free/minimax-m3.1-flash",
+          "reflection/beam-free",
+          "nvidia/nemotron-3.5-lightning-free",
+          "poolside/laguna-s-2.1-free"
         ]
       },
       "data_use": {
@@ -9157,7 +9149,7 @@
       ],
       "card_required": false,
       "offering": "Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent",
-      "limits": "Free models: Usage allowance: amount not published (period not published) per account\n\nChoose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. A portal key is required: a keyless chat call returns 402 even though the public catalog is readable. No page read mentions a card or a numerical rate cap.",
+      "limits": "Free models: Usage allowance: amount not published (period not published) per account\n\nChoose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key with ordinary API clients; the catalog itself is public. The Free plan publishes no card requirement or numerical rate cap.",
       "quotas": [
         {
           "unit": "usage",
@@ -9190,6 +9182,9 @@
         },
         {
           "family": "longcat-2.5-preview"
+        },
+        {
+          "family": "solar-mini-4"
         }
       ],
       "api": {
@@ -9204,7 +9199,8 @@
           "meituan/longcat-2.0:free",
           "meituan/longcat-2.5-preview:free",
           "upstage/solar-mini4:free",
-          "reflection/beam-1.0-501b-a23b:free"
+          "reflection/beam-1.0-501b-a23b:free",
+          "ornith/ornith-1.5-122b:free"
         ],
         "model_limits": {
           "reflection/beam-1.0-501b-a23b:free": {
@@ -12768,7 +12764,7 @@
           "label": "General",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "general requests-per-minute counters",
-          "reviewed_on": "2026-10-14",
+          "reviewed_on": "2026-10-21",
           "amount": null
         },
         {
@@ -12779,7 +12775,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-14",
+          "reviewed_on": "2026-10-21",
           "amount": null
         },
         {
@@ -12790,7 +12786,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-14",
+          "reviewed_on": "2026-10-21",
           "amount": null
         },
         {
@@ -12801,7 +12797,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-14",
+          "reviewed_on": "2026-10-21",
           "amount": null
         },
         {
@@ -12812,7 +12808,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-14",
+          "reviewed_on": "2026-10-21",
           "amount": null
         }
       ],
@@ -12865,21 +12861,23 @@
         "https://iteracompute.com/docs.html",
         "https://iteracompute.com/integrations/opencode/",
         "https://iteracompute.com/models/qwen3-8-27b/",
+        "https://iteracompute.com/models/kimi-k3-free/",
+        "https://iteracompute.com/subprocessors/",
         "https://iteracompute.com/changelog/",
         "https://iteracompute.com/about/",
         "https://iteracompute.com/terms.html",
         "https://iteracompute.com/privacy.html"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up",
-      "limits": "Free tier: 30,000,000 tokens/month per account. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nFree tier: 160,000 tokens/minute per account\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all API keys on the account. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. Optional cumulative $10/$50 top-ups unlock larger allowances; the Free tier needs neither. Zero data retention requires a separate signed agreement.",
+      "offering": "OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up",
+      "limits": "Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nQwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`\n\nKimi K3 Free: Usage allowance: amount not published (period not published); scope not published; for `moonshotai/kimi-k3-free`\n\nRegister and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Qwen Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge principal minus refunds, excluding grants and fees; spending the balance keeps access, while refunds below the threshold block new requests. Qwen allowances do not apply to Kimi, whose free route is \"especially slow\". Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
       "quotas": [
         {
           "amount": 30000000.0,
           "unit": "tokens",
           "period": "month",
           "scope": "account",
-          "label": "Free tier",
+          "label": "Qwen Free tier",
           "reset": "Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.",
           "source": "https://iteracompute.com/free/",
           "quote": "Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge required 30M 128K 160,000",
@@ -12901,14 +12899,17 @@
             "cell_part": "",
             "active_tab": "",
             "active_class": ""
-          }
+          },
+          "model_ids": [
+            "qwen/qwen3.8-27b"
+          ]
         },
         {
           "amount": 160000.0,
           "unit": "tokens",
           "period": "minute",
           "scope": "account",
-          "label": "Free tier",
+          "label": "Qwen Free tier",
           "source": "https://iteracompute.com/free/",
           "quote": "Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge required 30M 128K 160,000",
           "read": "table",
@@ -12929,27 +12930,49 @@
             "cell_part": "",
             "active_tab": "",
             "active_class": ""
-          }
+          },
+          "model_ids": [
+            "qwen/qwen3.8-27b"
+          ]
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Kimi K3 Free",
+          "source": "https://iteracompute.com/models/kimi-k3-free/",
+          "quote": "Fair-use limits apply and free capacity has no SLA.",
+          "model_ids": [
+            "moonshotai/kimi-k3-free"
+          ],
+          "reviewed_on": "2026-10-21",
+          "amount": null,
+          "period": null
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "aa_model": "qwen3-8-27b"
+        }
+      ],
       "api": {
         "base_url": "https://api.iteracompute.com/v1",
         "key_url": "https://platform.iteracompute.com/api-keys",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "qwen/qwen3.8-27b"
+          "qwen/qwen3.8-27b",
+          "moonshotai/kimi-k3-free"
         ],
-        "free_since": [
-          {
-            "id": "qwen/qwen3.8-27b",
-            "on": "2026-10-09",
-            "source": "https://iteracompute.com/changelog/"
+        "model_access": {
+          "moonshotai/kimi-k3-free": {
+            "source": "https://iteracompute.com/models/kimi-k3-free/",
+            "initial_payment_usd": 10.0
           }
-        ],
-        "note": "Create a key with permission for the callable ID. Use Chat Completions; the vendor's Responses examples cover paid models. Configure your client's context and output budgets to match the Free limits on the provider page. Authenticated generation has not been checked here."
+        },
+        "note": "Create a key scoped to your chosen ID. Use Chat Completions. Set Qwen context and output budgets to the Free limits on the provider page; give Kimi a bounded output budget because responses are slow. Authenticated generation has not been checked here."
       },
       "data_use": {
         "trains": "no",
@@ -12981,6 +13004,12 @@
       "rank": 70,
       "no_account": false,
       "archived": false,
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "qwen3.8-27b": ""
+        }
+      },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/"
     }
   ],
@@ -14196,6 +14225,7 @@
         "llmtech",
         "hetzner-inference",
         "alibaba-model-studio",
+        "iteracompute",
         "regolo",
         "vlm-run-gateway",
         "ovh-ai-endpoints"
@@ -14301,18 +14331,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
-      "family": "mimo-v2.6-flash",
-      "rows": [
-        "opencode",
-        "freebuff",
-        "cline",
-        "aihubmix",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
-    },
-    {
       "family": "nemotron-3-super",
       "rows": [
         "openrouter-free",
@@ -14375,6 +14393,17 @@
         "pollinations"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
+    },
+    {
+      "family": "mimo-v2.6-flash",
+      "rows": [
+        "opencode",
+        "freebuff",
+        "aihubmix",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
     },
     {
       "family": "north-mini-code",
@@ -14452,6 +14481,15 @@
         "ovh-ai-endpoints"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
+    },
+    {
+      "family": "solar-mini-4",
+      "rows": [
+        "freebuff",
+        "cline",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/"
     },
     {
       "family": "agnes-2.5-flash",
@@ -14851,6 +14889,13 @@
       ]
     },
     {
+      "family": "gpt-6-luna",
+      "rows": [
+        "openai-codex-cli"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
+    },
+    {
       "family": "hy3",
       "rows": [
         "aihubmix"
@@ -15008,14 +15053,6 @@
       "rows": [
         "regolo"
       ]
-    },
-    {
-      "family": "muse-spark-1.3-contributor",
-      "rows": [
-        "cline"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
     },
     {
       "family": "nemotron-nano-12b-v2-vl",
@@ -15210,12 +15247,6 @@
       ]
     },
     {
-      "family": "solar-mini-4",
-      "rows": [
-        "freebuff"
-      ]
-    },
-    {
       "family": "solar-pro-4",
       "rows": [
         "freebuff"
@@ -15257,11 +15288,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/"
     },
     {
-      "family": "gpt-6-luna",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
-    },
-    {
       "family": "gpt-6.1-sol",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6.1-sol/"
@@ -15295,6 +15321,11 @@
       "family": "muse-spark-1.2",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/"
+    },
+    {
+      "family": "muse-spark-1.3-contributor",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
     },
     {
       "family": "qwen3-max",
@@ -15477,7 +15508,7 @@
       "checked_on": "2026-07-22",
       "reason": "Direct API grants are application-gated, and an application with a selection step is not an offer a developer can simply use — the same bar that keeps TokenRouter's builder programme out of its entry. The :free Trinity variants that are open live on OpenRouter, which this list already covers.",
       "reopen_if": "Arcee opens direct API credits without an application.",
-      "current": true
+      "current": false
     },
     {
       "domains": [

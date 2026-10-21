@@ -765,6 +765,9 @@
             "context": 262144,
             "output": 131072
           }
+        },
+        "ornith/ornith-1.5-122b:free": {
+          "name": "ornith/ornith-1.5-122b:free"
         }
       }
     },
@@ -778,6 +781,9 @@
       "models": {
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
+        },
+        "moonshotai/kimi-k3-free": {
+          "name": "moonshotai/kimi-k3-free (requires $10 top-up)"
         }
       }
     },

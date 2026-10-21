@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-xs-2.1 free: 6 providers, limits and ids, provider probes 2026-10-19'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the…
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-10-20
+last_modified_at: 2026-10-21
 crumb: laguna-xs-2.1
 ---
 
@@ -144,7 +144,7 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 - Limits, in the vendor's words: Free models: Usage allowance: amount not published (period not published) per account
 
-Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. A portal key is required: a keyless chat call returns 402 even though the public catalog is readable. No page read mentions a card or a numerical rate cap.
+Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key with ordinary API clients; the catalog itself is public. The Free plan publishes no card requirement or numerical rate cap.
 
 </details>
 
@@ -159,6 +159,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

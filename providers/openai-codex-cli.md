@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Codex (ChatGPT Free) free tier: limits, free models, verified 2026-10-19'
-description: Codex desktop access on a $0 ChatGPT Free plan, subject to rollout. The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free allowance.
+description: 'Codex desktop access on a $0 ChatGPT Free plan, subject to rollout. Free models: gpt-6-luna. The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free…'
 permalink: /providers/openai-codex-cli/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-21
 crumb: Codex (ChatGPT Free)
 ---
 
@@ -19,7 +19,7 @@ Codex desktop access on a $0 ChatGPT Free plan, subject to rollout
 
 ## Free models
 
-No free model family is listed yet; new offers must clear the two-week bar before entering this section.
+[`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
 
 ## Limits, in the vendor's words
 
@@ -37,7 +37,7 @@ Offered in the 208 countries and territories its list names, not in mainland Chi
 
 ## Evidence
 
-- Probe: the page at <https://learn.chatgpt.com/docs/pricing>, anchored on `codex are included in your chatgpt free`
+- Probe: the page at <https://learn.chatgpt.com/docs/pricing>, anchored on `codex are included in your chatgpt free`, `Free Explore Codex capabilities on quick coding tasks. $0 /month Get Free GPT-6 Luna at Standard speed in the desktop app, subject to rollout`
 - Source: <https://learn.chatgpt.com/docs/pricing>
 - Source: <https://github.com/openai/codex>
 - Source: <https://learn.chatgpt.com/docs/models>
@@ -46,12 +46,13 @@ Offered in the 208 countries and territories its list names, not in mainland Chi
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-21` — Free models changed: added gpt-6-luna
 - `2026-09-23` — Free models changed: dropped gpt-5.6
 - `2026-07-19` — Free models changed: added gpt-5.6
 - `2026-07-19` — Added: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans
 
 ---
 
-Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

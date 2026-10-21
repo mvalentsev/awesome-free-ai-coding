@@ -1382,11 +1382,8 @@ entries:
     quote: Explore Codex capabilities on quick coding tasks
     reviewed_on: '2026-10-20'
   free_part: models
-  models: []
-  newcomers:
+  models:
   - family: gpt-6-luna
-    'on': '2026-10-07'
-    source: https://github.com/mvalentsev/awesome-free-ai-coding/blob/b8afe8b3d6dc8d00ccb18290306e57f4c9cdfc4b/registry.yaml
   border:
     served: [AD, AE, AF, AG, AL, AM, AO, AR, AT, AU, AW, AX, AZ, BA, BB, BD, BE, BF,
       BG, BH, BI, BJ, BL, BM, BN, BO, BR, BS, BT, BW, BZ, CA, CD, CF, CG, CH, CI,
@@ -1408,6 +1405,8 @@ entries:
     endpoint: https://learn.chatgpt.com/docs/pricing
     keywords:
     - codex are included in your chatgpt free
+    - Free Explore Codex capabilities on quick coding tasks. $0 /month Get Free GPT-6
+      Luna at Standard speed in the desktop app, subject to rollout
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -4511,7 +4510,7 @@ entries:
         kind: paid
         note: The public Free-plan comparison requires a paid plan; paid plans allow
           one one-hour session per day.
-        reviewed_on: '2026-10-15'
+        reviewed_on: '2026-10-21'
         source: https://freebuff.com/plans
       specialist:
         kind: specialist
@@ -4520,7 +4519,7 @@ entries:
       muse-full:
         kind: wallet
         note: Credit-funded at full access; a paid plan is required at limited access.
-        reviewed_on: '2026-10-15'
+        reviewed_on: '2026-10-21'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
     models:
     - name: Solar Pro 4
@@ -4563,7 +4562,7 @@ entries:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
       listed: true
-    - name: DeepSeek V4.1 Flash
+    - name: DeepSeek V4.1 Flash 10/17
       model:
         family: deepseek-v4.1-flash
         tier: strong
@@ -4582,7 +4581,7 @@ entries:
       model:
         family: mimo-v2.6-pro
       condition: wallet
-    - name: DeepSeek V4.1 Flash Fast
+    - name: DeepSeek V4.1 Flash Fast 10/17
       model:
         family: deepseek-v4.1-flash
       condition: wallet
@@ -4610,10 +4609,10 @@ entries:
     - Daily hours refill at midnight in your local timezone and unused daily hours
       do not carry over.
     - Older app versions show the same balance as Freebucks, five to an hour.
-    reviewed_on: '2026-10-17'
+    reviewed_on: '2026-10-21'
   data_use:
     trains: 'yes'
-    quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
+    quote: 'DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.'
     url: https://freebuff.com/llms.txt
   border:
     left_out: []
@@ -5883,19 +5882,15 @@ entries:
     reviewed_on: '2026-10-20'
   free_part: models
   models:
-  - family: muse-spark-1.3-contributor
-    tier: strong
-    aa_model: muse-spark-1-3-xhigh
-  - family: mimo-v2.6-flash
-    tier: strong
-    aa_model: mimo-v2-6-flash
+  - family: solar-mini-4
   client_lane:
     model_ids:
-    - cline-free/mimo-v2.6-flash
-    - cline-free/muse-spark-1.3-contributor
     - cline-free/solar-mini4
     - cline-free/nemotron-3.5-super-vl
     - cline-free/minimax-m3.1-flash
+    - reflection/beam-free
+    - nvidia/nemotron-3.5-lightning-free
+    - poolside/laguna-s-2.1-free
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.
@@ -6384,10 +6379,10 @@ entries:
   card_required: false
   offering: Nous Research's inference portal with a $0 Free plan for :free models,
     accessible through an OpenAI-compatible API and Hermes Agent
-  limits: 'Choose the Free plan and use exact :free IDs; they are zero-priced, while
-    metered routes are outside it. A portal key is required: a keyless chat call returns
-    402 even though the public catalog is readable. No page read mentions a card or
-    a numerical rate cap.'
+  limits: Choose the Free plan and use exact :free IDs; they are zero-priced, while
+    metered routes are outside it. Use a portal key with ordinary API clients; the
+    catalog itself is public. The Free plan publishes no card requirement or numerical
+    rate cap.
   quotas:
   - unit: usage
     scope: account
@@ -6406,6 +6401,7 @@ entries:
     tier: notable
     aa_model: longcat-2-0
   - family: longcat-2.5-preview
+  - family: solar-mini-4
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -6419,6 +6415,7 @@ entries:
     - meituan/longcat-2.5-preview:free
     - upstage/solar-mini4:free
     - reflection/beam-1.0-501b-a23b:free
+    - ornith/ornith-1.5-122b:free
     model_limits:
       reflection/beam-1.0-501b-a23b:free:
         context_tokens: 262144
@@ -9425,7 +9422,7 @@ entries:
     label: General
     source: https://simplellm.eu/docs/limits.md
     quote: general requests-per-minute counters
-    reviewed_on: '2026-10-14'
+    reviewed_on: '2026-10-21'
   - unit: requests
     period: hour
     scope: unspecified
@@ -9433,7 +9430,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-14'
+    reviewed_on: '2026-10-21'
   - unit: requests
     period: day
     scope: unspecified
@@ -9441,7 +9438,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-14'
+    reviewed_on: '2026-10-21'
   - unit: tokens
     period: hour
     scope: unspecified
@@ -9449,7 +9446,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-14'
+    reviewed_on: '2026-10-21'
   - unit: tokens
     period: day
     scope: unspecified
@@ -9457,7 +9454,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-14'
+    reviewed_on: '2026-10-21'
   free_part: models
   models: []
   api:
@@ -9501,26 +9498,32 @@ entries:
   - https://iteracompute.com/docs.html
   - https://iteracompute.com/integrations/opencode/
   - https://iteracompute.com/models/qwen3-8-27b/
+  - https://iteracompute.com/models/kimi-k3-free/
+  - https://iteracompute.com/subprocessors/
   - https://iteracompute.com/changelog/
   - https://iteracompute.com/about/
   - https://iteracompute.com/terms.html
   - https://iteracompute.com/privacy.html
   card_required: false
-  offering: OpenAI-compatible API with a recurring free token allowance on a self-hosted
-    open model, without a card or balance top-up
-  limits: Register and verify an email, or sign in with Google. Input and output,
-    including reasoning, count across all API keys on the account. "Context includes
-    input and requested output; output is capped at 8,192 tokens." Free total context
-    is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota
-    returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After.
-    No SLA. Optional cumulative $10/$50 top-ups unlock larger allowances; the Free
-    tier needs neither. Zero data retention requires a separate signed agreement.
+  offering: OpenAI-compatible API with recurring free usage on a self-hosted open
+    model and a separate zero-price route after a one-time top-up
+  limits: Register and verify an email, or sign in with Google. Qwen input and output,
+    including reasoning, count across all account keys. "Context includes input and
+    requested output; output is capped at 8,192 tokens." Qwen Free total context is
+    128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota
+    returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative
+    $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge
+    principal minus refunds, excluding grants and fees; spending the balance keeps
+    access, while refunds below the threshold block new requests. Qwen allowances
+    do not apply to Kimi, whose free route is "especially slow". Shared capacity may
+    queue; honor Retry-After. No SLA. Zero data retention requires a separate signed
+    agreement.
   quotas:
   - amount: 30000000.0
     unit: tokens
     period: month
     scope: account
-    label: Free tier
+    label: Qwen Free tier
     reset: Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing
       time); unused tokens do not roll over.
     source: https://iteracompute.com/free/
@@ -9542,11 +9545,13 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
+    model_ids:
+    - qwen/qwen3.8-27b
   - amount: 160000.0
     unit: tokens
     period: minute
     scope: account
-    label: Free tier
+    label: Qwen Free tier
     source: https://iteracompute.com/free/
     quote: Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge
       required 30M 128K 160,000
@@ -9566,8 +9571,21 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
+    model_ids:
+    - qwen/qwen3.8-27b
+  - unit: usage
+    scope: unspecified
+    label: Kimi K3 Free
+    source: https://iteracompute.com/models/kimi-k3-free/
+    quote: Fair-use limits apply and free capacity has no SLA.
+    model_ids:
+    - moonshotai/kimi-k3-free
+    reviewed_on: '2026-10-21'
   free_part: models
-  models: []
+  models:
+  - family: qwen3.8-27b
+    tier: strong
+    aa_model: qwen3-8-27b
   api:
     base_url: https://api.iteracompute.com/v1
     key_url: https://platform.iteracompute.com/api-keys
@@ -9575,14 +9593,15 @@ entries:
     openai_compatible: true
     model_ids:
     - qwen/qwen3.8-27b
-    free_since:
-    - id: qwen/qwen3.8-27b
-      'on': '2026-10-09'
-      source: https://iteracompute.com/changelog/
-    note: Create a key with permission for the callable ID. Use Chat Completions;
-      the vendor's Responses examples cover paid models. Configure your client's context
-      and output budgets to match the Free limits on the provider page. Authenticated
-      generation has not been checked here.
+    - moonshotai/kimi-k3-free
+    model_access:
+      moonshotai/kimi-k3-free:
+        source: https://iteracompute.com/models/kimi-k3-free/
+        initial_payment_usd: 10.0
+    note: Create a key scoped to your chosen ID. Use Chat Completions. Set Qwen context
+      and output budgets to the Free limits on the provider page; give Kimi a bounded
+      output budget because responses are slow. Authenticated generation has not been
+      checked here.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call

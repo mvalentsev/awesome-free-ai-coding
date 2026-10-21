@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-19'
-description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, longcat-2.5-preview. Choose the Free plan and use exact :free IDs; they are zero-priced, while…'
+description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, longcat-2.5-preview, solar-mini-4. Choose the Free plan and use exact :free IDs; they are…'
 permalink: /providers/nous-portal/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-21
 crumb: Nous Portal (Hermes Agent)
 ---
 
@@ -19,13 +19,13 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ## Free models
 
-[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/), [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/)
+[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/), [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/), [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)
 
 ## Limits, in the vendor's words
 
 Free models: Usage allowance: amount not published (period not published) per account
 
-Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. A portal key is required: a keyless chat call returns 402 even though the public catalog is readable. No page read mentions a card or a numerical rate cap.
+Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key with ordinary API clients; the catalog itself is public. The Free plan publishes no card requirement or numerical rate cap.
 
 ## Where it is offered
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`, `reflection/beam-1.0-501b-a23b:free`
+- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`, `upstage/solar-mini4:free`, `reflection/beam-1.0-501b-a23b:free`, `ornith/ornith-1.5-122b:free`
 - Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan. Beam has a 262K context and always reasons; its default effort is medium.
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -62,6 +62,7 @@ curl -s https://inference-api.nousresearch.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-21` — Free models changed: added solar-mini-4
 - `2026-10-15` — Free models changed: dropped ling-3.0-flash-fin, ling-3.0-flash-sante
 - `2026-10-13` — Free models changed: added longcat-2.5-preview
 - `2026-10-01` — Free models changed: dropped solar-pro-4
@@ -70,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

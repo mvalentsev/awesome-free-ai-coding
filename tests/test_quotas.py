@@ -131,6 +131,20 @@ def test_concurrent_work_is_not_a_recurring_request_budget():
     assert quota_words(q)=='3 tasks at once per account'
 
 
+@pytest.mark.parametrize('reset', ['Unused allowance does not carry over.', 'Unused allowance does not carry over'])
+@pytest.mark.parametrize('model_bound', [False, True])
+def test_model_scope_precedes_the_separate_reset_sentence(reset, model_bound):
+    from freetier_radar.quotas import quota_summary
+    quota = {**QUOTA, 'reset': reset, 'quote': QUOTA['quote'] + '. ' + reset}
+    if model_bound:
+        quota['model_ids'] = ['coding-model']
+    entry = Entry.model_validate({**BASE, 'quotas': [quota],
+        'api': {'base_url': 'https://api.vendor.example/v1', 'model_ids': ['coding-model']}})
+    expected = '200 requests/hour per IP' + ('; for `coding-model`' if model_bound else '')
+    assert quota_summary(entry) == expected + '. ' + reset
+    assert entry.quotas[0].reset == reset
+
+
 def test_explicit_unmetered_usage_stays_distinct_from_an_unpublished_amount():
     from freetier_radar.quotas import UsageQuota,quota_words
     q=UsageQuota.model_validate({**QUOTA,'amount':None,'unit':'completions','period':None,
