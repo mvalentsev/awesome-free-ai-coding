@@ -11,7 +11,7 @@ crumb: Experiential Labs
 
 # Experiential Labs free tier
 
-🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · **live** — last verified by a probe on 2026-10-19 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · **live** — last verified by a probe on 2026-10-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -60,6 +60,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'AtomCode free tier: limits, free models, verified 2026-10-19'
+title: 'AtomCode free tier: limits, free models, verified 2026-10-22'
 description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash, qwen3-vl-8b-instruct, glm-5.2…'
 permalink: /providers/atomcode/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: AtomCode
 ---
 
@@ -11,7 +11,7 @@ crumb: AtomCode
 
 # AtomCode free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-19 · [atomcode.atomgit.com](https://atomcode.atomgit.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [atomcode.atomgit.com](https://atomcode.atomgit.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -49,6 +49,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

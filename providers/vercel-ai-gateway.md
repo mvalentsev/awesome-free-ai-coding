@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-19'
+title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-22'
 description: 'OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes. Free models: laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: Vercel AI Gateway
 ---
 
@@ -11,7 +11,7 @@ crumb: Vercel AI Gateway
 
 # Vercel AI Gateway free tier
 
-🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-10-19 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-10-22 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -89,6 +89,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

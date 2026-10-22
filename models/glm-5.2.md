@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.2 free: 4 providers, limits and ids, provider probes 2026-10-19'
+title: 'glm-5.2 free: 4 providers, limits and ids, provider probes 2026-10-22'
 description: glm-5.2 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.2/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: glm-5.2
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.2
 
 # Where glm-5.2 is free
 
-**4 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-2).
+**4 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-2).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.2
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -46,7 +46,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-19 · listed since 2026-09-30
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-22 · listed since 2026-09-30
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -66,7 +66,7 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-19 · listed since 2026-09-22
+🎁 Trials (no card when possible) · no card · last probe 2026-10-22 · listed since 2026-09-22
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -86,7 +86,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-19 · listed since 2026-10-12
+🎁 Trials (no card when possible) · no card · last probe 2026-10-22 · listed since 2026-10-12
 
 Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
 
@@ -118,6 +118,6 @@ Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-10-19'
+title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-10-22'
 description: AI Singapore's OpenAI-compatible API for its Southeast Asian language models. The free API is intended for prototyping; production use is directed to cloud partners. The free-offer page names no model, while the model API docs publish the per-user rate. No token or credit budget or expiry is stated.
 permalink: /providers/sea-lion/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: SEA-LION (AI Singapore)
 ---
 
@@ -11,7 +11,7 @@ crumb: SEA-LION (AI Singapore)
 
 # SEA-LION (AI Singapore) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-19 · [sea-lion.ai](https://sea-lion.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-22 · [sea-lion.ai](https://sea-lion.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -62,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

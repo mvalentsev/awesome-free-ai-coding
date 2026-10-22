@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'BazaarLink free tier: limits, free models, verified 2026-10-19'
+title: 'BazaarLink free tier: limits, free models, verified 2026-10-22'
 description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: deepseek-v4-flash. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate…'
 permalink: /providers/bazaarlink/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: BazaarLink
 ---
 
@@ -11,7 +11,7 @@ crumb: BazaarLink
 
 # BazaarLink free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-19 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-22 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -72,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

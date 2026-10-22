@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-10-19'
+title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-10-22'
 description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5-turbo, glm-5.3-flash. Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel…'
 permalink: /providers/zcode/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: ZCode (Z.ai)
 ---
 
@@ -11,7 +11,7 @@ crumb: ZCode (Z.ai)
 
 # ZCode (Z.ai) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-19 · [zcode.z.ai](https://zcode.z.ai/en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [zcode.z.ai](https://zcode.z.ai/en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -61,6 +61,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

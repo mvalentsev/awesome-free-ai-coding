@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'nemotron-3-super free: 5 providers, limits and ids, provider probes 2026-10-19'
+title: 'nemotron-3-super free: 5 providers, limits and ids, provider probes 2026-10-22'
 description: nemotron-3-super is served free by OpenRouter (free models), Kilo Code, Requesty, AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/nemotron-3-super/
-last_modified_at: 2026-10-20
+last_modified_at: 2026-10-22
 crumb: nemotron-3-super
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3-super
 
 # Where nemotron-3-super is free
 
-**5 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-19; their offers are rechecked twice a week.
+**5 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3-super
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-19 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-22 · listed since 2026-08-11
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -58,7 +58,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-08-11
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-08-11
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -73,7 +73,7 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -100,7 +100,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-19 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-24
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -142,6 +142,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

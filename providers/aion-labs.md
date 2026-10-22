@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Aion Labs free tier: limits, free models, verified 2026-10-19'
+title: 'Aion Labs free tier: limits, free models, verified 2026-10-22'
 description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required. The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms…
 permalink: /providers/aion-labs/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: Aion Labs
 ---
 
@@ -11,7 +11,7 @@ crumb: Aion Labs
 
 # Aion Labs free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-10-10, a regular row from the first probe it passes on or after 2026-10-24 · **live** — last verified by a probe on 2026-10-19 · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-10-10, a regular row from the first probe it passes on or after 2026-10-24 · **live** — last verified by a probe on 2026-10-22 · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -70,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

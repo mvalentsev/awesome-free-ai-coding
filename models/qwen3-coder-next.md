@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3-coder-next free: 1 provider, limits and ids, provider probes 2026-10-19'
+title: 'qwen3-coder-next free: 1 provider, limits and ids, provider probes 2026-10-22'
 description: qwen3-coder-next is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3-coder-next/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: qwen3-coder-next
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3-coder-next
 
 # Where qwen3-coder-next is free
 
-**One row on the list serves `qwen3-coder-next` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-19; its offer is rechecked twice a week.
+**One row on the list serves `qwen3-coder-next` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3-coder-next
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-19 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · last probe 2026-10-22 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -45,6 +45,6 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

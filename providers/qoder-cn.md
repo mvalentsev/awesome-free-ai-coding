@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-10-19'
+title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-10-22'
 description: 'Alibaba Cloud''s coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app. Free models: qwen3.8-flash. The model promotion is open to personal users, including free accounts with zero…'
 permalink: /providers/qoder-cn/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: Qoder CN (formerly Lingma)
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder CN (formerly Lingma)
 
 # Qoder CN (formerly Lingma) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-19 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -59,6 +59,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

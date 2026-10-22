@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-19'
+title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-19 or later'
 description: 133 model families the list's 86 live rows serve free, and every row that serves each one; 90 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-10-21
+last_modified_at: 2026-10-22
 ---
 
 {% raw %}
@@ -67,7 +67,7 @@ last_modified_at: 2026-10-21
 | [`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) · notable | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | `command-a` | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
-| [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
+| [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · notable | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | `command-a-reasoning` | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | `command-a-vision` | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | `command-r` | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
@@ -94,7 +94,7 @@ last_modified_at: 2026-10-21
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
 | [`glm-4.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `glm-z1-9b-0414` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
-| [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) | [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
+| [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) · strong | [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
 | [`hy3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) · notable | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) |
 | `intern-s2` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |

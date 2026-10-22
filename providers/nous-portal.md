@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-19'
+title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-22'
 description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, longcat-2.5-preview, solar-mini-4. Choose the Free plan and use exact :free IDs; they are…'
 permalink: /providers/nous-portal/
-last_modified_at: 2026-10-21
+last_modified_at: 2026-10-22
 crumb: Nous Portal (Hermes Agent)
 ---
 
@@ -11,7 +11,7 @@ crumb: Nous Portal (Hermes Agent)
 
 # Nous Portal (Hermes Agent) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-19 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-22 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
