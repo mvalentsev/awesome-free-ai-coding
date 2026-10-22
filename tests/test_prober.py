@@ -47,6 +47,30 @@ def page_entry() -> Entry:
     })
 
 
+@pytest.mark.parametrize(("fields", "free"), [
+    ({"pricing": "free"}, True),
+    ({"pricing": "paid"}, False),
+    ({"pricing": "0"}, False),
+    ({"pricing": 0}, False),
+    ({}, False),
+    ({"pricing": "free", "isFree": False}, False),
+    ({"pricing": "free", "available": False}, False),
+    ({"pricing": {"prompt": "0", "completion": "0"}}, True),
+])
+@respx.mock
+async def test_catalog_explicit_free_price_label_and_withdrawal_controls(fields, free):
+    row = {**BASE, "models": [{"family": "glm-4.7-flash"}],
+           "probe": {"type": "api-models", "endpoint": "https://api.x.ai/v1/models",
+                     "require_zero_price": True}}
+    # NovAI /v1/models publishes pricing="free" (checked 2026-10-22):
+    # https://aiapi-pro.com/v1/models. Missing prices on its paid rows are not free.
+    respx.get(row["probe"]["endpoint"]).respond(
+        200, json={"data": [{"id": "glm-4.7-flash", "owned_by": "zhipu", **fields}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert (result.status is ProbeStatus.PASS) is free
+
+
 @pytest.mark.parametrize("table_state", ["present", "missing", "ambiguous"])
 @respx.mock
 async def test_page_models_require_free_input_and_output_in_the_bound_table(table_state):

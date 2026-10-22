@@ -11,7 +11,7 @@ crumb: command-a-plus
 
 # Where command-a-plus is free
 
-**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/command-a-plus), below its strong bar.
+**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

@@ -1,10 +1,10 @@
 # Codex CLI on Fireworks AI's free lane — generated from registry.yaml, do not
 # edit by hand.
 # Fireworks AI's own page sets Codex CLI up on this lane,
-# https://docs.fireworks.ai/nexus/harnesses, and every run of the list reads
-# it back and asks the lane's Responses route again; only a key can run a turn
-# there. Needs Codex CLI 0.134 or later; the file goes where Codex keeps its
-# config, ~/.codex unless CODEX_HOME says otherwise:
+# https://docs.fireworks.ai/nexus/harnesses/codex, and every run of the list
+# reads it back and asks the lane's Responses route again; only a key can run
+# a turn there. Needs Codex CLI 0.134 or later; the file goes where Codex
+# keeps its config, ~/.codex unless CODEX_HOME says otherwise:
 #
 #   cp configs/codex/fireworks-ai.config.toml ~/.codex/
 #   codex -p fireworks-ai

@@ -42,7 +42,7 @@ What you send is not used to train models. In the vendor's words: “No AI Train
 - Base URL: `https://api.fireworks.ai/inference/v1`
 - Key: `FIREWORKS_AI_API_KEY` — get one at <https://app.fireworks.ai/settings/users/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.fireworks.ai/inference`
-- Codex CLI: [`configs/codex/fireworks-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/fireworks-ai.config.toml) — copy it to `~/.codex/`, then `codex -p fireworks-ai`; set up on the lane by the vendor's own page, <https://docs.fireworks.ai/nexus/harnesses>: "The Codex CLI reads ~/.codex/config.toml"
+- Codex CLI: [`configs/codex/fireworks-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/fireworks-ai.config.toml) — copy it to `~/.codex/`, then `codex -p fireworks-ai`; set up on the lane by the vendor's own page, <https://docs.fireworks.ai/nexus/harnesses/codex>: "Connect the Codex CLI to Fireworks with the Nexus CLI or manual setup"
 - Callable ids: `accounts/fireworks/models/deepseek-v4p1-flash`, `accounts/fireworks/models/glm-5p3-flash`, `accounts/fireworks/models/minimax-m3`, `accounts/fireworks/models/glm-5p3`, `accounts/fireworks/models/kimi-k3`
 
 Try it from your terminal with your key in `FIREWORKS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -63,6 +63,7 @@ curl -s https://api.fireworks.ai/inference/v1/chat/completions \
 - Source: <https://docs.fireworks.ai/serverless/pricing>
 - Source: <https://docs.fireworks.ai/getting-started/quickstart>
 - Source: <https://docs.fireworks.ai/updates/changelog>
+- Source: <https://docs.fireworks.ai/nexus/harnesses/codex>
 
 ## History
 

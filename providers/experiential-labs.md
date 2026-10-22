@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-19'
-description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. Free requires a one-time $1 card-verification charge, added to the balance. Credits…
+description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. The monthly credit requires a one-time $1 card check. A credit is one cent. Pricing…
 permalink: /providers/experiential-labs/
 last_modified_at: 2026-10-19
 crumb: Experiential Labs
@@ -25,7 +25,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 500 credits/month per account
 
-Free requires a one-time $1 card-verification charge, added to the balance. Credits spend at provider list prices with no token markup; a credit is one cent. Free catalog discounts are reductions from price, not individually free models. Jev is marked Free but lists no tool or streaming support. Prompt and response storage is enabled on Free; disabling it requires a paid plan.
+The monthly credit requires a one-time $1 card check. A credit is one cent. Pricing advertises no per-token charge on three models, but the Free-selected model catalog and provider plan discounts still price its chat models; independently free chat access is unconfirmed. Free decision models use a separate structured-decision API. Prompt and response storage is enabled on Free; disabling it requires a paid plan.
 
 ## Where it is offered
 
@@ -35,22 +35,30 @@ The vendor names no country it keeps the offer from ([source](https://www.experi
 
 - Base URL: `https://api.experientiallabs.ai/v1`
 - Key: `EXPERIENTIAL_LABS_API_KEY` — get one at <https://platform.experientiallabs.ai>
-- Callable ids: none listed — its /v1/models answers only a gateway key, and no page it publishes says which name a request carries
-- Note: the catalog at /v1/models answers only a gateway key; the model list with prices is public at platform.experientiallabs.ai/models
+- Callable ids: `gpt-6-luna`, `deepseek-v4.1-flash`
+- `gpt-6-luna`: requires $1 one-time card verification ([conditions](https://www.experientiallabs.ai/pricing))
+- `deepseek-v4.1-flash`: requires $1 one-time card verification ([conditions](https://www.experientiallabs.ai/pricing))
+- Note: The public catalog uses model slugs as API IDs. These chat IDs are examples for the credit balance; the Free catalog prices them despite conflicting homepage claims. Native decision models use /v1/systemone rather than chat completions. An API key is required.
 
-Check your key from your terminal — with it in `EXPERIENTIAL_LABS_API_KEY`, the vendor's catalog lists the models it can call:
+Try it from your terminal with your key in `EXPERIENTIAL_LABS_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
 ```sh
-curl -s https://api.experientiallabs.ai/v1/models \
-  -H "Authorization: Bearer $EXPERIENTIAL_LABS_API_KEY"
+curl -s https://api.experientiallabs.ai/v1/chat/completions \
+  -H "Authorization: Bearer $EXPERIENTIAL_LABS_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gpt-6-luna","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the page at <https://www.experientiallabs.ai/pricing>, anchored on `500 credits a month once you verify a card`
+- Probe: the page at <https://www.experientiallabs.ai/pricing>, anchored on `500 credits/mo after a one-time $1 card check`
 - Source: <https://www.experientiallabs.ai/pricing>
 - Source: <https://www.experientiallabs.ai/>
 - Source: <https://platform.experientiallabs.ai/models>
+- Source: <https://platform.experientiallabs.ai/llms.txt>
+- Source: <https://api.experientiallabs.ai/api/models/gpt-6-luna>
+- Source: <https://api.experientiallabs.ai/api/models/deepseek-v4.1-flash>
+- Source: <https://api.experientiallabs.ai/api/models/clef-flash>
 
 ## History
 

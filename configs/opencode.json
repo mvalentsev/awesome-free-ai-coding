@@ -96,6 +96,9 @@
         },
         "minimax/minimax-m3.1-flash:free": {
           "name": "minimax/minimax-m3.1-flash:free"
+        },
+        "recursive/flint-v1.0:free": {
+          "name": "recursive/flint-v1.0:free"
         }
       }
     },
@@ -158,9 +161,6 @@
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
-        "thinkingmachines/inkling-small:free": {
-          "name": "thinkingmachines/inkling-small:free"
-        },
         "stealth/glyph-cluster": {
           "name": "stealth/glyph-cluster"
         },
@@ -172,6 +172,9 @@
         },
         "minimax/minimax-m3.1-flash:free": {
           "name": "minimax/minimax-m3.1-flash:free"
+        },
+        "recursive/flint-v1.0:free": {
+          "name": "recursive/flint-v1.0:free"
         }
       }
     },
@@ -290,9 +293,6 @@
         "kimi-for-coding-free": {
           "name": "kimi-for-coding-free"
         },
-        "xiaomi-mimo-v2.5-free": {
-          "name": "xiaomi-mimo-v2.5-free"
-        },
         "north-mini-code-free": {
           "name": "north-mini-code-free"
         },
@@ -391,15 +391,6 @@
         },
         "union-alpha-free": {
           "name": "union-alpha-free"
-        },
-        "xiaomi-mimo-v2-omni-free": {
-          "name": "xiaomi-mimo-v2-omni-free"
-        },
-        "xiaomi-mimo-v2-pro-free": {
-          "name": "xiaomi-mimo-v2-pro-free"
-        },
-        "xiaomi-mimo-v2.5-pro-free": {
-          "name": "xiaomi-mimo-v2.5-pro-free"
         },
         "xiaomi-mimo-v2.6-flash-free": {
           "name": "xiaomi-mimo-v2.6-flash-free"
@@ -541,6 +532,16 @@
             "context": 524288,
             "output": 524288
           }
+        },
+        "minimax/minimax-m3.1-flash-free": {
+          "name": "minimax/minimax-m3.1-flash-free (until 2026-10-26)",
+          "limit": {
+            "context": 1000000,
+            "output": 524288
+          }
+        },
+        "voltropy/vast-10m-flash-free": {
+          "name": "voltropy/vast-10m-flash-free (until 2026-10-26)"
         }
       }
     },
@@ -712,11 +713,11 @@
         "reflection/beam:free": {
           "name": "reflection/beam:free"
         },
-        "stealth/cat-jam:free": {
-          "name": "stealth/cat-jam:free"
-        },
         "stealth/glyph-cluster:free": {
           "name": "stealth/glyph-cluster:free"
+        },
+        "qwen/qwen3.7-flash:free": {
+          "name": "qwen/qwen3.7-flash:free"
         }
       }
     },
@@ -1129,6 +1130,25 @@
         }
       }
     },
+    "novai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NovAI",
+      "options": {
+        "baseURL": "https://aiapi-pro.com/v1",
+        "apiKey": "{env:NOVAI_API_KEY}"
+      },
+      "models": {
+        "glm-4.7-flash": {
+          "name": "glm-4.7-flash"
+        },
+        "glm-4.6v-flash": {
+          "name": "glm-4.6v-flash"
+        },
+        "glm-4.1v-thinking-flash": {
+          "name": "glm-4.1v-thinking-flash"
+        }
+      }
+    },
     "freeinference": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "FreeInference (Harvard SEAS)",
@@ -1344,7 +1364,14 @@
         "baseURL": "https://api.experientiallabs.ai/v1",
         "apiKey": "{env:EXPERIENTIAL_LABS_API_KEY}"
       },
-      "models": {}
+      "models": {
+        "gpt-6-luna": {
+          "name": "gpt-6-luna (requires $1 card verification)"
+        },
+        "deepseek-v4.1-flash": {
+          "name": "deepseek-v4.1-flash (requires $1 card verification)"
+        }
+      }
     },
     "sail-research": {
       "npm": "@ai-sdk/openai-compatible",
@@ -1368,18 +1395,6 @@
         },
         "deepseek-ai/DeepSeek-V4-Flash-0731": {
           "name": "deepseek-ai/DeepSeek-V4-Flash-0731"
-        }
-      }
-    },
-    "uncloseai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "uncloseai (unturf)",
-      "options": {
-        "baseURL": "https://hermes.ai.unturf.com/v1"
-      },
-      "models": {
-        "turboderp/Qwen3.8-27B-exl3": {
-          "name": "turboderp/Qwen3.8-27B-exl3"
         }
       }
     },

@@ -278,15 +278,29 @@ watched:
 
   - domains: [arcee.ai]
     name: Arcee (Trinity)
-    checked_on: '2026-07-22'
+    checked_on: '2026-10-22'
     reason: >-
-      Direct API grants are application-gated, and an application with a
-      selection step is not an offer a developer can simply use — the same bar
-      that keeps TokenRouter's builder programme out of its entry. The :free
-      Trinity variants that are open live on OpenRouter, which this list
-      already covers.
+      Current direct API documentation prices every listed model and publishes
+      no automatic signup credit or no-payment API allowance. The quickstart
+      requires an account and API key and points to the wallet for top-ups.
+      The documented free chat app and Trinity routes on OpenRouter do not
+      establish a free direct API offer.
     reopen_if: >-
-      Arcee opens direct API credits without an application.
+      Arcee publishes directly usable API credits or a free model allowance
+      without an application or recurring paid subscription.
+
+  - domains: [uncloseai.com, hermes.ai.unturf.com]
+    name: uncloseai (unturf)
+    checked_on: '2026-10-22'
+    reason: >-
+      The Hermes catalog and fresh ordinary, streaming and invalid-key calls
+      return 401 public_beta_closed: the public beta is closed, an API key is
+      required and key registration is closed. The website still describes
+      the keyless endpoint, contradicting the live service. The published row
+      and its history are retained in Archive.
+    reopen_if: >-
+      The public endpoint reopens or the operator documents an obtainable
+      free API key and current callable chat model.
 
   - domains: [ofox.ai]
     name: OfoxAI

@@ -49,7 +49,7 @@ curl -s https://api.bytez.com/models/v2/openai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.bytez.com/model-api/docs/billing.md>, anchored on `$0 / month - Get $1 in free credits`, `Run open models up to 7B parameters`
+- Probe: the page at <https://docs.bytez.com/model-api/docs/billing.md>, anchored on `\$0 / month - Get \$1 in free credits`, `Run open models up to 7B parameters`
 - Source: <https://docs.bytez.com/model-api/docs/billing.md>
 - Source: <https://docs.bytez.com/model-api/docs/billing>
 - Source: <https://docs.bytez.com/model-api/docs/get-started.md>

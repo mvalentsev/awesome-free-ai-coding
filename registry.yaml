@@ -99,11 +99,13 @@ entries:
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
     - minimax/minimax-m3.1-flash:free
+    - recursive/flint-v1.0:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
+    - recursive/flint-v1.0:free
     anthropic_base_url: https://openrouter.ai/api
     codex:
       base_url: https://openrouter.ai/api/v1
@@ -455,7 +457,7 @@ entries:
     source: https://docs.mistral.ai/admin/billing-usage/subscriptions
     quote: Each Mistral plan includes monthly usage that is shared across Studio,
       the API, and Vibe Code.
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - unit: requests
     period: second
     scope: organization-model
@@ -463,7 +465,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Requests per second: The request throughput limit for the model.'
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - unit: tokens
     period: minute
     scope: organization-model
@@ -471,7 +473,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Tokens per minute: The token throughput limit for the model.'
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   api:
@@ -707,8 +709,7 @@ entries:
     on OpenCode for a limited time". Collected free-model data may improve models;
     NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free''s
     provider does not train on inputs and retains them for 30 days; its listed territorial
-    exclusions include Russia. Official 1.19.0 and 2.0.28 builds also returned that
-    403 in isolated runs on 2026-10-15.'
+    exclusions include Russia.'
   quotas:
   - unit: usage
     scope: unspecified
@@ -819,9 +820,6 @@ entries:
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
-  - family: inkling-small
-    tier: notable
-    aa_model: inkling-small
   - family: dots-3-note
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
@@ -842,11 +840,11 @@ entries:
     - poolside/laguna-xs-2.1:free
     - liquid/lfm-2.5-2.6b:free
     - dots-studio/dots-3-note-preview:free
-    - thinkingmachines/inkling-small:free
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
     - minimax/minimax-m3.1-flash:free
+    - recursive/flint-v1.0:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -854,6 +852,7 @@ entries:
     - openrouter/free
     - liquid/lfm-2.5-2.6b:free
     - stealth/glyph-cluster
+    - recursive/flint-v1.0:free
     refuses_bearer: true
     codex:
       base_url: https://api.kilo.ai/api/gateway
@@ -1516,6 +1515,8 @@ entries:
     - nvidia/riva-translate-4b-instruct-v2
     - nvidia/riva-translate-4b-instruct-v1.1
     - nvidia/ising-calibration-1.5-31b
+    - nvidia/nemotron-3.5-embed-1b
+    - nvidia/nemotron-3.5-embed-8b
     note: Use available chat endpoints marked Free Endpoint. /v1/models also lists
       older IDs without a free mark, so catalog membership alone does not establish
       free access.
@@ -1562,7 +1563,7 @@ entries:
     label: Free Flash models
     source: https://docs.z.ai/guides/overview/pricing.md
     quote: GLM-4.7-Flash | Free
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -1977,6 +1978,10 @@ entries:
   - https://www.experientiallabs.ai/pricing
   - https://www.experientiallabs.ai/
   - https://platform.experientiallabs.ai/models
+  - https://platform.experientiallabs.ai/llms.txt
+  - https://api.experientiallabs.ai/api/models/gpt-6-luna
+  - https://api.experientiallabs.ai/api/models/deepseek-v4.1-flash
+  - https://api.experientiallabs.ai/api/models/clef-flash
   card_required: true
   access:
     source: https://www.experientiallabs.ai/pricing
@@ -1985,22 +1990,21 @@ entries:
   offering: An open-source AI gateway backed by Y Combinator — every hosted provider
     behind one OpenAI-compatible key at the providers' list prices — whose free plan
     carries 500 credits ($5) a month after card verification
-  limits: Free requires a one-time $1 card-verification charge, added to the balance.
-    Credits spend at provider list prices with no token markup; a credit is one cent.
-    Free catalog discounts are reductions from price, not individually free models.
-    Jev is marked Free but lists no tool or streaming support. Prompt and response
-    storage is enabled on Free; disabling it requires a paid plan.
+  limits: The monthly credit requires a one-time $1 card check. A credit is one cent.
+    Pricing advertises no per-token charge on three models, but the Free-selected
+    model catalog and provider plan discounts still price its chat models; independently
+    free chat access is unconfirmed. Free decision models use a separate structured-decision
+    API. Prompt and response storage is enabled on Free; disabling it requires a paid
+    plan.
   quotas:
   - amount: 500.0
     unit: credits
     period: month
     scope: account
     source: https://www.experientiallabs.ai/pricing
-    quote: 500 credits a month once you verify a card (a one-time $1 charge, added
-      to your balance).
-    value_phrase: 500 credits a month once you verify a card (a one-time $1 charge,
-      added to your balance).
-    reviewed_on: '2026-10-06'
+    quote: 500 credits/mo after a one-time $1 card check
+    value_phrase: 500 credits/mo
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   api:
@@ -2008,11 +2012,13 @@ entries:
     key_url: https://platform.experientiallabs.ai
     auth: api-key
     openai_compatible: true
-    model_ids: []
-    no_ids: its /v1/models answers only a gateway key, and no page it publishes says
-      which name a request carries
-    note: the catalog at /v1/models answers only a gateway key; the model list with
-      prices is public at platform.experientiallabs.ai/models
+    model_ids:
+    - gpt-6-luna
+    - deepseek-v4.1-flash
+    note: The public catalog uses model slugs as API IDs. These chat IDs are examples
+      for the credit balance; the Free catalog prices them despite conflicting homepage
+      claims. Native decision models use /v1/systemone rather than chat completions.
+      An API key is required.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -2021,7 +2027,7 @@ entries:
     type: page-keywords
     endpoint: https://www.experientiallabs.ai/pricing
     keywords:
-    - 500 credits a month once you verify a card
+    - 500 credits/mo after a one-time $1 card check
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -2168,7 +2174,6 @@ entries:
   free_part: models
   models:
   - family: command-a-plus
-    tier: notable
     aa_model: command-a-plus
   - family: command-a-reasoning
   - family: north-mini-code
@@ -2421,6 +2426,8 @@ entries:
     - convaiinnovations/laya-free
     - reflection/beam
     - minimax/minimax-m3.1-flash
+    - baseten/elephant-1
+    - baseten/mammoth-1
     no_family_ids:
     - stealth/glyph-cluster
     free_since:
@@ -2554,16 +2561,15 @@ entries:
     - nvidia/nemotron-3.5-lightning-free:free
     - reflection/beam-free:free
     - reflection/beam:free
-    - stealth/cat-jam:free
     - stealth/glyph-cluster:free
+    - qwen/qwen3.7-flash:free
     no_family_ids:
     - auto:free
-    - stealth/cat-jam:free
     - stealth/glyph-cluster:free
+    - qwen/qwen3.7-flash:free
     note: The listed :free routes use the shared free allowance. auto:free selects
       a free model and can use paid routing on a funded account "unless paid fallback
-      is disabled". Cat Jam and Glyph Cluster are stealth models with undisclosed
-      identities.
+      is disabled". Glyph Cluster is a stealth model with an undisclosed identity.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -3188,9 +3194,6 @@ entries:
     - xiaomi-mimo-v2.6-flash-free
     - coding-glm-5.2-free
     - coding-kimi-k3-free
-    - xiaomi-mimo-v2-omni-free
-    - xiaomi-mimo-v2.5-free
-    - xiaomi-mimo-v2.5-pro-free
     - coding-glm-5.1-free
     - coding-minimax-m2.7-free
     - coding-glm-5-free
@@ -3212,9 +3215,6 @@ entries:
     - xiaomi-mimo-v2.6-flash-free
     - coding-glm-5.2-free
     - coding-kimi-k3-free
-    - xiaomi-mimo-v2-omni-free
-    - xiaomi-mimo-v2.5-free
-    - xiaomi-mimo-v2.5-pro-free
     - coding-glm-5.1-free
     - coding-minimax-m2.7-free
     - coding-glm-5-free
@@ -3232,9 +3232,6 @@ entries:
     - xiaomi-mimo-v2.6-pro-free
     - xiaomi-mimo-v2.6-flash-free
     - coding-kimi-k3-free
-    - xiaomi-mimo-v2-omni-free
-    - xiaomi-mimo-v2.5-free
-    - xiaomi-mimo-v2.5-pro-free
     - coding-glm-5.1-free
     - coding-minimax-m2.7-free
     reviewed_on: '2026-10-06'
@@ -3273,7 +3270,6 @@ entries:
     read: catalog
     model_ids:
     - coding-minimax-m3-free
-    - xiaomi-mimo-v2-pro-free
     - glm-4.7-flash-free
     - coding-glm-4.7-free
     - k2.6-code-preview-free
@@ -3292,7 +3288,6 @@ entries:
     read: catalog
     model_ids:
     - coding-minimax-m3-free
-    - xiaomi-mimo-v2-pro-free
     - glm-4.7-flash-free
     - coding-glm-4.7-free
     - coding-glm-4.6-free
@@ -3307,7 +3302,6 @@ entries:
     read: catalog
     model_ids:
     - coding-minimax-m3-free
-    - xiaomi-mimo-v2-pro-free
     reviewed_on: '2026-10-06'
   - amount: 100.0
     unit: requests
@@ -3682,12 +3676,6 @@ entries:
   - family: glm-5-turbo
     tier: notable
     aa_model: glm-5-turbo
-  - family: mimo-v2.5-pro
-    tier: notable
-    aa_model: mimo-v2-5-pro
-  - family: mimo-v2.5
-    tier: notable
-    aa_model: mimo-v2-5-0424
   - family: north-mini-code
     aa_model: north-mini-code
   - family: nemotron-3-ultra
@@ -3730,15 +3718,9 @@ entries:
   - family: minimax-m2
     tier: notable
     aa_model: minimax-m2
-  - family: mimo-v2-pro
-    tier: notable
-    aa_model: mimo-v2-pro
   - family: mimo-v2-flash
     tier: notable
     aa_model: mimo-v2-flash
-  - family: mimo-v2-omni
-    tier: notable
-    aa_model: mimo-v2-omni
   - family: dots-3-note
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
@@ -3765,7 +3747,6 @@ entries:
     - coding-glm-5.1-free
     - coding-kimi-k3-free
     - kimi-for-coding-free
-    - xiaomi-mimo-v2.5-free
     - north-mini-code-free
     - ling-3.0-tiny-free
     - nemotron-3-ultra-550b-a55b-free
@@ -3799,9 +3780,6 @@ entries:
     - nemotron-nano-12b-v2-vl-free
     - nemotron-nano-9b-v2-free
     - union-alpha-free
-    - xiaomi-mimo-v2-omni-free
-    - xiaomi-mimo-v2-pro-free
-    - xiaomi-mimo-v2.5-pro-free
     - xiaomi-mimo-v2.6-flash-free
     - xiaomi-mimo-v2.6-pro-free
     - qwen3.8-flash-free
@@ -4321,6 +4299,10 @@ entries:
     machinery_keywords: []
   first_seen: '2026-08-30'
   last_verified: '2026-10-19'
+  delisted:
+    'on': '2026-10-22'
+    reason: public beta closed; the endpoint requires a key and key registration is
+      closed
   probe_failures: 1
   provisional: false
   rank: 97
@@ -4872,6 +4854,8 @@ entries:
   - https://llmtr.com/models/ifm/jais-3-mova-36b-a4b
   - https://llmtr.com/models/ifm/k2-horizon-375b-a23b
   - https://llmtr.com/models/nace/drex-max-free
+  - https://llmtr.com/models/minimax/minimax-m3.1-flash-free
+  - https://llmtr.com/models/voltropy/vast-10m-flash-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4932,7 +4916,7 @@ entries:
     quote: with a daily usage limit per account
     model_ids:
     - heabsy/qwen3.8-27b-heabsy-free
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - unit: usage
     period: day
     scope: unspecified
@@ -4941,7 +4925,7 @@ entries:
     quote: free of charge with a daily quota
     model_ids:
     - nvidia/nemotron-3.5-super-vl-free
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - unit: usage
     period: day
     scope: unspecified
@@ -4950,7 +4934,7 @@ entries:
     quote: günlük kotayla ücretsizdir
     model_ids:
     - reflection/beam-1.0-501b-a23b
-    reviewed_on: '2026-10-17'
+    reviewed_on: '2026-10-22'
   - unit: tokens
     period: day
     scope: unspecified
@@ -4969,6 +4953,31 @@ entries:
     model_ids:
     - ifm/k2-horizon-375b-a23b
     reviewed_on: '2026-10-19'
+  - amount: 5000000.0
+    unit: tokens
+    period: day
+    scope: account-model
+    label: MiniMax M3.1 Flash
+    reset: 00:00’da (TSİ)
+    source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
+    quote: Her hesap günde 5 milyon token kullanabilir; girdi, çıktı ve önbellekten
+      okunan girdi birlikte sayılır, hak 00:00’da (TSİ) yenilenir.
+    value_phrase: Her hesap günde 5 milyon token
+    model_ids:
+    - minimax/minimax-m3.1-flash-free
+    reviewed_on: '2026-10-22'
+  - amount: 10000000.0
+    unit: tokens
+    period: day
+    scope: person
+    label: Vast-10M Flash
+    source: https://llmtr.com/models/voltropy/vast-10m-flash-free
+    quote: 26 Ekim 2026 23:59’a (TSİ) kadar kişi başı günde 10 milyon token (girdi
+      ve çıktı birlikte) ücretsizdir.
+    value_phrase: kişi başı günde 10 milyon token
+    model_ids:
+    - voltropy/vast-10m-flash-free
+    reviewed_on: '2026-10-22'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4987,6 +4996,10 @@ entries:
   - family: k2-horizon-375b-a23b
     tier: notable
     aa_model: k2-horizon-375b-a23b
+  - family: minimax-m3.1-flash
+    tier: strong
+    aa_model: minimax-m3-1-flash
+  - family: vast-10m-flash
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5004,6 +5017,8 @@ entries:
     - reflection/beam-1.0-501b-a23b
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
+    - minimax/minimax-m3.1-flash-free
+    - voltropy/vast-10m-flash-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -5037,6 +5052,12 @@ entries:
       ifm/k2-horizon-375b-a23b:
         source: https://llmtr.com/models/ifm/k2-horizon-375b-a23b
         until: '2026-11-05T23:59:00+03:00'
+      minimax/minimax-m3.1-flash-free:
+        source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
+        until: '2026-10-26T23:59:00+03:00'
+      voltropy/vast-10m-flash-free:
+        source: https://llmtr.com/models/voltropy/vast-10m-flash-free
+        until: '2026-10-26T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -5070,6 +5091,10 @@ entries:
         context_tokens: 524288
         output_tokens: 524288
         source: https://llmtr.com/v1/models
+      minimax/minimax-m3.1-flash-free:
+        context_tokens: 1000000
+        output_tokens: 524288
+        source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -5098,7 +5123,9 @@ entries:
       Omit reasoning_effort for Nemotron3.5 Super VL; reasoning: false disables thinking.
       Beam always reasons (low/medium/high/xhigh/max; default max). Jais 3 accepts
       low/high (default high); use tool_choice: auto. K2 Horizon always reasons (medium/high).
-      Set max_tokens for the answer and reasoning.'
+      Set max_tokens for the answer and reasoning. Vast supports tools and JSON schema
+      without reasoning; long prompts can delay the first token for minutes. Use streaming
+      and a long timeout.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -6521,7 +6548,7 @@ entries:
     source: https://docs.llm7.io/limits.md
     quote: 100,000 tokens per 24 hours
     value_phrase: 100,000 tokens per 24 hours
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - amount: 1.0
     unit: requests
     period: second
@@ -6543,7 +6570,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - amount: 60.0
     unit: requests
     period: minute
@@ -6565,7 +6592,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - amount: 250.0
     unit: requests
     period: hour
@@ -6587,7 +6614,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: models
   models: []
   api:
@@ -6635,6 +6662,7 @@ entries:
   - https://docs.fireworks.ai/serverless/pricing
   - https://docs.fireworks.ai/getting-started/quickstart
   - https://docs.fireworks.ai/updates/changelog
+  - https://docs.fireworks.ai/nexus/harnesses/codex
   card_required: false
   offering: Serverless inference on open-weight models with a $1 trial credit documented
     in the billing FAQ; current pricing no longer advertises a signup grant
@@ -6652,7 +6680,7 @@ entries:
     source: https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit
     quote: $1 credit
     value_phrase: $1 credit
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - amount: 10.0
     unit: requests
     period: minute
@@ -6660,7 +6688,7 @@ entries:
     source: https://docs.fireworks.ai/guides/quotas_usage/account-quotas
     quote: No payment method or no credits 10 RPM
     value_phrase: No payment method or no credits 10 RPM
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   api:
@@ -6677,8 +6705,8 @@ entries:
     anthropic_base_url: https://api.fireworks.ai/inference
     codex:
       base_url: https://api.fireworks.ai/inference/v1
-      source: https://docs.fireworks.ai/nexus/harnesses
-      quote: The Codex CLI reads ~/.codex/config.toml
+      source: https://docs.fireworks.ai/nexus/harnesses/codex
+      quote: Connect the Codex CLI to Fireworks with the Nexus CLI or manual setup
     note: ''
   data_use:
     trains: 'no'
@@ -6935,9 +6963,9 @@ entries:
     scope: account
     label: Open models up to 7B
     source: https://docs.bytez.com/model-api/docs/billing.md
-    quote: $1'} free credits, refreshed every 4 weeks
-    value_phrase: $1'} free credits, refreshed every 4 weeks
-    reviewed_on: '2026-10-06'
+    quote: \$1 free credits, refreshed every 4 weeks
+    value_phrase: \$1 free credits, refreshed every 4 weeks
+    reviewed_on: '2026-10-22'
   - amount: 1.0
     unit: requests
     period: concurrent
@@ -6946,7 +6974,7 @@ entries:
     source: https://docs.bytez.com/model-api/docs/billing.md
     quote: 1 concurrent request (open models)
     value_phrase: 1 concurrent request (open models)
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   api:
@@ -6968,7 +6996,7 @@ entries:
     type: page-keywords
     endpoint: https://docs.bytez.com/model-api/docs/billing.md
     keywords:
-    - $0 / month - Get $1 in free credits
+    - \$0 / month - Get \$1 in free credits
     - Run open models up to 7B parameters
     free_marker: ''
     require_zero_price: false
@@ -9074,7 +9102,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Daily check-ins earn 400 points
     value_phrase: Daily check-ins earn 400 points
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - amount: 1000.0
     unit: points
     period: day
@@ -9085,7 +9113,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Check-ins on day 4 and day 7 award 1,000 points per day
     value_phrase: Check-ins on day 4 and day 7 award 1,000 points per day
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   border:
@@ -9140,13 +9168,13 @@ entries:
     source: https://wallabytoken.com/blog/p/kimi-k3-free-trial
     quote: every new Wallaby Token account starts with $0.50 of free trial credit
       for the Kimi K3 API
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   - unit: requests
     scope: account
     label: Trial rate limit
     source: https://wallabytoken.com/terms
     quote: may be restricted to specific models and lower rate limits
-    reviewed_on: '2026-10-15'
+    reviewed_on: '2026-10-22'
   free_part: sum
   models: []
   api:
@@ -9628,3 +9656,93 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 70
+- id: novai
+  name: NovAI
+  category: aggregator
+  url: https://aiapi-pro.com
+  source_urls:
+  - https://aiapi-pro.com/free/index.html
+  - https://aiapi-pro.com/transparency.html
+  - https://aiapi-pro.com/register.html
+  - https://aiapi-pro.com/models/glm-4.7-flash.html
+  - https://aiapi-pro.com/blog/free-ai-coding-api-cline-continue-aider-cursor
+  - https://aiapi-pro.com/docs.md
+  - https://aiapi-pro.com/terms.html
+  - https://aiapi-pro.com/privacy.html
+  card_required: false
+  offering: Hong Kong OpenAI-compatible gateway with a recurring free allowance on
+    selected text and vision models, separate from its signup credit
+  limits: The daily call allowance is shared across free chat, image and video models;
+    calls at the cap return 429 until reset. An email account and API key are required.
+    Signup accepts selected email providers and is screened for abuse. Paid models
+    and top-ups are optional. The gateway says it does not store or train on prompts;
+    upstream providers apply their own policies. Users must be at least 18.
+  quotas:
+  - amount: 10.0
+    unit: requests
+    period: day
+    scope: account
+    label: Shared free-model calls
+    reset: 00:00 UTC+8
+    source: https://aiapi-pro.com/free/index.html
+    quote: 10 free-model calls per day and 5 requests per minute on the free tier,
+      resetting at 00:00 UTC+8.
+    value_phrase: 10 free-model calls per day
+    reviewed_on: '2026-10-22'
+  - amount: 5.0
+    unit: requests
+    period: minute
+    scope: account
+    source: https://aiapi-pro.com/free/index.html
+    quote: 10 free-model calls per day and 5 requests per minute on the free tier,
+      resetting at 00:00 UTC+8.
+    value_phrase: 5 requests per minute
+    reviewed_on: '2026-10-22'
+  - amount: 2.0
+    unit: USD
+    period: one-time
+    scope: account
+    label: Separate signup credit
+    condition: Valid for 14 days
+    condition_quote: valid 14 days
+    source: https://aiapi-pro.com/register.html
+    quote: $2.00 welcome credit (valid 14 days)
+    value_phrase: $2.00 welcome credit
+    reviewed_on: '2026-10-22'
+  free_part: models
+  models: []
+  api:
+    base_url: https://aiapi-pro.com/v1
+    key_url: https://aiapi-pro.com/register.html
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - glm-4.7-flash
+    - glm-4.6v-flash
+    - glm-4.1v-thinking-flash
+    ignored_ids:
+    - cogview-3-flash
+    - cogvideox-flash
+    no_family_ids:
+    - glm-4.7-flash
+    - glm-4.6v-flash
+    - glm-4.1v-thinking-flash
+    note: Use a NovAI API key and an exact chat model ID. GLM-4.7-Flash documents
+      OpenAI-compatible function calling and coding-agent setup. CogView and CogVideo
+      are media generators, separate from the chat configurations.
+  border:
+    left_out: []
+    'on': '2026-10-22'
+    source: https://aiapi-pro.com/terms.html
+  probe:
+    type: api-models
+    endpoint: https://aiapi-pro.com/v1/models
+    keywords: []
+    free_marker: ''
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-10-22'
+  last_verified: '2026-10-22'
+  probe_failures: 0
+  provisional: true
+  rank: 90

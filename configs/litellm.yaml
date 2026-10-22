@@ -180,6 +180,12 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/recursive/flint-v1.0:free
+  litellm_params:
+    model: openai/recursive/flint-v1.0:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -369,12 +375,6 @@ model_list:
 - model_name: aihubmix/kimi-for-coding-free
   litellm_params:
     model: openai/kimi-for-coding-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/xiaomi-mimo-v2.5-free
-  litellm_params:
-    model: openai/xiaomi-mimo-v2.5-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -576,24 +576,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/xiaomi-mimo-v2-omni-free
-  litellm_params:
-    model: openai/xiaomi-mimo-v2-omni-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/xiaomi-mimo-v2-pro-free
-  litellm_params:
-    model: openai/xiaomi-mimo-v2-pro-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/xiaomi-mimo-v2.5-pro-free
-  litellm_params:
-    model: openai/xiaomi-mimo-v2.5-pro-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/xiaomi-mimo-v2.6-flash-free
   litellm_params:
     model: openai/xiaomi-mimo-v2.6-flash-free
@@ -760,6 +742,25 @@ model_list:
   model_info:
     access: free until 2026-11-05 23:59+03:00
     source: https://llmtr.com/models/ifm/k2-horizon-375b-a23b
+- model_name: llmtr/minimax/minimax-m3.1-flash-free
+  litellm_params:
+    model: openai/minimax/minimax-m3.1-flash-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 524288
+  model_info:
+    access: free until 2026-10-26 23:59+03:00
+    source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
+- model_name: llmtr/voltropy/vast-10m-flash-free
+  litellm_params:
+    model: openai/voltropy/vast-10m-flash-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-10-26 23:59+03:00
+    source: https://llmtr.com/models/voltropy/vast-10m-flash-free
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -1000,15 +1001,15 @@ model_list:
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
     use_chat_completions_api: true
-- model_name: bazaarlink/stealth/cat-jam:free
-  litellm_params:
-    model: openai/stealth/cat-jam:free
-    api_base: https://api.bazaarlink.ai/v1
-    api_key: os.environ/BAZAARLINK_API_KEY
-    use_chat_completions_api: true
 - model_name: bazaarlink/stealth/glyph-cluster:free
   litellm_params:
     model: openai/stealth/glyph-cluster:free
+    api_base: https://api.bazaarlink.ai/v1
+    api_key: os.environ/BAZAARLINK_API_KEY
+    use_chat_completions_api: true
+- model_name: bazaarlink/qwen/qwen3.7-flash:free
+  litellm_params:
+    model: openai/qwen/qwen3.7-flash:free
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
     use_chat_completions_api: true
@@ -1388,6 +1389,24 @@ model_list:
     api_base: https://api.inceptionlabs.ai/v1
     api_key: os.environ/INCEPTION_LABS_API_KEY
     use_chat_completions_api: true
+- model_name: novai/glm-4.7-flash
+  litellm_params:
+    model: openai/glm-4.7-flash
+    api_base: https://aiapi-pro.com/v1
+    api_key: os.environ/NOVAI_API_KEY
+    use_chat_completions_api: true
+- model_name: novai/glm-4.6v-flash
+  litellm_params:
+    model: openai/glm-4.6v-flash
+    api_base: https://aiapi-pro.com/v1
+    api_key: os.environ/NOVAI_API_KEY
+    use_chat_completions_api: true
+- model_name: novai/glm-4.1v-thinking-flash
+  litellm_params:
+    model: openai/glm-4.1v-thinking-flash
+    api_base: https://aiapi-pro.com/v1
+    api_key: os.environ/NOVAI_API_KEY
+    use_chat_completions_api: true
 - model_name: freeinference/glm-5.3-flash
   litellm_params:
     model: openai/glm-5.3-flash
@@ -1568,6 +1587,24 @@ model_list:
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
     use_chat_completions_api: true
+- model_name: experiential-labs/gpt-6-luna
+  litellm_params:
+    model: openai/gpt-6-luna
+    api_base: https://api.experientiallabs.ai/v1
+    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $1 one-time card verification
+    source: https://www.experientiallabs.ai/pricing
+- model_name: experiential-labs/deepseek-v4.1-flash
+  litellm_params:
+    model: openai/deepseek-v4.1-flash
+    api_base: https://api.experientiallabs.ai/v1
+    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $1 one-time card verification
+    source: https://www.experientiallabs.ai/pricing
 - model_name: sail-research/moonshotai/Kimi-K3
   litellm_params:
     model: openai/moonshotai/Kimi-K3
@@ -1597,12 +1634,6 @@ model_list:
     model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
     api_base: https://api.sailresearch.com/v1
     api_key: os.environ/SAIL_RESEARCH_API_KEY
-    use_chat_completions_api: true
-- model_name: uncloseai/turboderp/Qwen3.8-27B-exl3
-  litellm_params:
-    model: openai/turboderp/Qwen3.8-27B-exl3
-    api_base: https://hermes.ai.unturf.com/v1
-    api_key: none
     use_chat_completions_api: true
 - model_name: pollinations/gpt-oss-20b
   litellm_params:
@@ -1987,6 +2018,18 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/minimax/minimax-m3.1-flash-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 524288
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
     api_key: lt-trial-ba1ef28c6d32ed6980678d8d
@@ -2199,17 +2242,6 @@ model_list:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
     api_key: lt-trial-ba1ef28c6d32ed6980678d8d
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
-    model: openai/turboderp/Qwen3.8-27B-exl3
-    api_base: https://hermes.ai.unturf.com/v1
-    api_key: none
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

@@ -43,8 +43,8 @@ The vendor names no country it keeps the offer from ([source](https://bazaarlink
 
 - Base URL: `https://api.bazaarlink.ai/v1`
 - Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
-- Callable ids: `deepseek/deepseek-v4-flash-0731free:free`, `auto:free`, `nvidia/nemotron-3.5-lightning-free:free`, `reflection/beam-free:free`, `reflection/beam:free`, `stealth/cat-jam:free`, `stealth/glyph-cluster:free`
-- Note: The listed :free routes use the shared free allowance. auto:free selects a free model and can use paid routing on a funded account "unless paid fallback is disabled". Cat Jam and Glyph Cluster are stealth models with undisclosed identities.
+- Callable ids: `deepseek/deepseek-v4-flash-0731free:free`, `auto:free`, `nvidia/nemotron-3.5-lightning-free:free`, `reflection/beam-free:free`, `reflection/beam:free`, `stealth/glyph-cluster:free`, `qwen/qwen3.7-flash:free`
+- Note: The listed :free routes use the shared free allowance. auto:free selects a free model and can use paid routing on a funded account "unless paid fallback is disabled". Glyph Cluster is a stealth model with an undisclosed identity.
 
 Try it from your terminal with your key in `BAZAARLINK_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

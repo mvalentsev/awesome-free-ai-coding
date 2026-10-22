@@ -167,8 +167,8 @@ def _table_changes(body: str, quota: UsageQuota) -> list[str]:
 
 def _numbers(text: str) -> set[float]:
     values = set()
-    for m in re.finditer(r'(?<![a-zA-Z0-9_.])([0-9][0-9,]*(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?)\s*(million|thousand|[mk]\b|万)?', text, re.I):
-        scale = {'million':1e6,'m':1e6,'thousand':1e3,'k':1e3,'万':1e4}.get((m[2] or '').lower(),1)
+    for m in re.finditer(r'(?<![a-zA-Z0-9_.])([0-9][0-9,]*(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?)\s*(million|milyon|thousand|[mk]\b|万)?', text, re.I):
+        scale = {'million':1e6,'milyon':1e6,'m':1e6,'thousand':1e3,'k':1e3,'万':1e4}.get((m[2] or '').lower(),1)
         values.add(float(m[1].replace(',',''))*scale)
     words = {'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,
              'nine':9,'ten':10,'eleven':11,'twelve':12,'fifteen':15,'twenty':20}
@@ -186,7 +186,7 @@ class UsageQuota(BaseModel):
     period: Literal['second','minute','hour','day','week','month','one-time','concurrent'] | None = None
     window: int = Field(default=1, gt=0, exclude_if=lambda v: v == 1)
     rolling: bool = Field(default=False, exclude_if=lambda v: not v)
-    scope: Literal['account','ip','account-model','project','key','unspecified','ip-model',
+    scope: Literal['account','person','ip','account-model','project','key','unspecified','ip-model',
                    'organization','organization-model','project-model','key-model','plan','team','endpoint','disputed']
     state: Literal['variable','unmetered','account-specific','disputed'] | None = None
     label: str = Field(default='', max_length=120, exclude_if=lambda v: not v)
@@ -262,7 +262,7 @@ class UsageQuota(BaseModel):
                      'list-price value':r'\b(?:list.price|value.based)\b'}.get(self.unit, r'\b' + self.unit + r'\b')
             periods = {'second':r'\b(?:seconds?|secs?|rps)\b',
                        'minute':r'\b(?:minutes?|min|rpm|tpm)\b', 'hour':r'\b(?:hours?|rph)\b|小时',
-                       'day':r'\b(?:days?|daily|rpd)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
+                       'day':r'\b(?:days?|daily|rpd|günde|günlük)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
                        'month':r'\b(?:months?|monthly|mo)\b|每月|月',
                        'one-time':r'\b(?:one.time|sign.?up|welcome|initial|new accounts?|new users?|registration|trials?|preview|once|first time)\b|注册|首次|试用|仅可领取一次',
                        'concurrent':r'\b(?:concurrent|simultaneous|simultaneously|in flight|at a time)\b|并发',
@@ -423,7 +423,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
     return notes
 
 
-SCOPE_WORDS = {'account':'per account','ip':'per IP','account-model':'per account per model',
+SCOPE_WORDS = {'account':'per account','person':'per person','ip':'per IP','account-model':'per account per model',
                'project':'per project','key':'per key','unspecified':'scope not published',
                'ip-model':'per IP per model','organization':'per organization',
                'organization-model':'per organization per model','project-model':'per project per model','key-model':'per key per model',

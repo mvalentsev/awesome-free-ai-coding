@@ -1616,6 +1616,10 @@ def _is_free(model: dict) -> bool:
                 and not _charges_elsewhere(model))
     if flag is not None:
         return flag
+    # NovAI explicitly labels free rows, leaving paid rows unpriced:
+    # https://aiapi-pro.com/v1/models (checked 2026-10-22).
+    if model.get("pricing") == "free":
+        return True
     prices = _price_of(model)
     return prices is not None and all(p == 0 for p in prices) and not _charges_elsewhere(model)
 

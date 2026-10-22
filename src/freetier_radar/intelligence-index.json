@@ -6,7 +6,7 @@
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "index": 57.6
   },
-  "median": 13.1,
+  "median": 13.2,
   "families": {
     "apertus-70b": {
       "slug": "apertus-70b-instruct",
@@ -233,24 +233,9 @@
       "index": 16.0,
       "estimated": true
     },
-    "mimo-v2-omni": {
-      "slug": "mimo-v2-omni",
-      "index": 23.9,
-      "estimated": true
-    },
-    "mimo-v2-pro": {
-      "slug": "mimo-v2-pro",
-      "index": 28.6,
-      "estimated": true
-    },
     "mimo-v2.5": {
       "slug": "mimo-v2-5-0424",
       "index": 21.8,
-      "estimated": false
-    },
-    "mimo-v2.5-pro": {
-      "slug": "mimo-v2-5-pro",
-      "index": 26.0,
       "estimated": false
     },
     "mimo-v2.6-flash": {
@@ -286,6 +271,11 @@
     "minimax-m3": {
       "slug": "minimax-m3",
       "index": 29.2,
+      "estimated": false
+    },
+    "minimax-m3.1-flash": {
+      "slug": "minimax-m3-1-flash",
+      "index": 42.7,
       "estimated": false
     },
     "mistral-small-3.2": {

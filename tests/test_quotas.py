@@ -11,6 +11,29 @@ BASE = {'id':'vendor','name':'Vendor','url':'https://vendor.example','category':
 QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
+@pytest.mark.parametrize(('phrase','amount','scope'), [
+    ('Her hesap günde 5 milyon token', 5_000_000, 'account'),
+    ('kişi başı günde 10 milyon token', 10_000_000, 'person'),
+])
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_turkish_million_daily_tokens_bind_to_current_http_source(phrase, amount, scope, changed):
+    # LLMTR's free MiniMax/Vast pages publish Turkish numeric caps (2026-10-22):
+    # https://llmtr.com/models/minimax/minimax-m3.1-flash-free
+    q={**QUOTA,'amount':amount,'unit':'tokens','period':'day','scope':scope,
+       'quote':phrase,'value_phrase':phrase}
+    e=Entry.model_validate({**BASE,'quotas':[q]})
+    respx.get(e.probe.endpoint).respond(200,text='Recurring free quota for chat')
+    body=phrase.replace(str(amount//1_000_000), '4') if changed else phrase
+    respx.get(q['source']).respond(200,text=body)
+    async with httpx.AsyncClient() as client:
+        result=await probe_entry(client,e,attempts=1,backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+    if scope=='person':
+        from freetier_radar.quotas import quota_words
+        assert 'per person' in quota_words(e.quotas[0])
+        assert 'per account' not in quota_words(e.quotas[0])
+
 @respx.mock
 async def test_a_live_offer_does_not_hide_a_changed_numeric_quota():
     e=Entry.model_validate({**BASE,'quotas':[QUOTA]})
