@@ -7138,7 +7138,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nBeam 1.0: Daily usage allowance: amount not published; scope not published; for `reflection/beam-1.0-501b-a23b`\n\nJais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`\n\nK2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nVast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`\n\nK2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nVast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -7178,19 +7178,6 @@
           "quote": "free of charge with a daily quota",
           "model_ids": [
             "nvidia/nemotron-3.5-super-vl-free"
-          ],
-          "reviewed_on": "2026-10-22",
-          "amount": null
-        },
-        {
-          "unit": "usage",
-          "period": "day",
-          "scope": "unspecified",
-          "label": "Beam 1.0",
-          "source": "https://llmtr.com/models/reflection/beam-1.0-501b-a23b",
-          "quote": "günlük kotayla ücretsizdir",
-          "model_ids": [
-            "reflection/beam-1.0-501b-a23b"
           ],
           "reviewed_on": "2026-10-22",
           "amount": null
@@ -7277,9 +7264,6 @@
           "aa_model": "qwen3-8-27b"
         },
         {
-          "family": "beam-1.0"
-        },
-        {
           "family": "jais-3-mova-36b-a4b"
         },
         {
@@ -7310,7 +7294,6 @@
           "agnes/agnes-2.5-flash",
           "heabsy/qwen3.8-27b-heabsy-free",
           "nvidia/nemotron-3.5-super-vl-free",
-          "reflection/beam-1.0-501b-a23b",
           "ifm/jais-3-mova-36b-a4b",
           "ifm/k2-horizon-375b-a23b",
           "minimax/minimax-m3.1-flash-free",
@@ -7437,7 +7420,8 @@
           "scaledown/classify-free",
           "llmtr/embeddingmagibu-200m",
           "deepseek/deepseek-v4.1-flash-free",
-          "nace/drex-max-free"
+          "nace/drex-max-free",
+          "reflection/beam-1.0-501b-a23b"
         ],
         "note": "New accounts share a reduced free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents; streams buffer and reasoning_effort is unsupported. Omit reasoning_effort for Nemotron3.5 Super VL; reasoning: false disables thinking. Beam always reasons (low/medium/high/xhigh/max; default max). Jais 3 accepts low/high (default high); use tool_choice: auto. K2 Horizon always reasons (medium/high). Set max_tokens for the answer and reasoning. Vast supports tools and JSON schema without reasoning; long prompts can delay the first token for minutes. Use streaming and a long timeout."
       },
@@ -7478,7 +7462,6 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "beam-1.0": "until 2026-10-22",
           "jais-3-mova-36b-a4b": "until 2026-11-05",
           "k2-horizon-375b-a23b": "until 2026-11-05",
           "minimax-m3.1-flash": "until 2026-10-26",
@@ -14775,13 +14758,6 @@
       ]
     },
     {
-      "family": "beam-1.0",
-      "rows": [
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
-    },
-    {
       "family": "big-pickle",
       "rows": [
         "opencode"
@@ -15408,6 +15384,11 @@
       "family": "apodex-1.1-mini",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
+    },
+    {
+      "family": "beam-1.0",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "claude-haiku-5.5",

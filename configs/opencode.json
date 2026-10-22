@@ -516,9 +516,6 @@
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
         },
-        "reflection/beam-1.0-501b-a23b": {
-          "name": "reflection/beam-1.0-501b-a23b (until 2026-10-22)"
-        },
         "ifm/jais-3-mova-36b-a4b": {
           "name": "ifm/jais-3-mova-36b-a4b (until 2026-11-05)",
           "limit": {

@@ -4991,7 +4991,6 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
-  - family: beam-1.0
   - family: jais-3-mova-36b-a4b
   - family: k2-horizon-375b-a23b
     tier: notable
@@ -5014,7 +5013,6 @@ entries:
     - agnes/agnes-2.5-flash
     - heabsy/qwen3.8-27b-heabsy-free
     - nvidia/nemotron-3.5-super-vl-free
-    - reflection/beam-1.0-501b-a23b
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
     - minimax/minimax-m3.1-flash-free
@@ -5118,6 +5116,7 @@ entries:
     - llmtr/embeddingmagibu-200m
     - deepseek/deepseek-v4.1-flash-free
     - nace/drex-max-free
+    - reflection/beam-1.0-501b-a23b
     note: 'New accounts share a reduced free allowance for 24 hours. Heabsy needs
       Settings → Data-transfer consents; streams buffer and reasoning_effort is unsupported.
       Omit reasoning_effort for Nemotron3.5 Super VL; reasoning: false disables thinking.
