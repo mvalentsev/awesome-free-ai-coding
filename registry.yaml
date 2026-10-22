@@ -819,9 +819,6 @@ entries:
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
-  - family: inkling-small
-    tier: notable
-    aa_model: inkling-small
   - family: dots-3-note
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b

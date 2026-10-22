@@ -1258,11 +1258,6 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "inkling-small",
-          "tier": "notable",
-          "aa_model": "inkling-small"
-        },
-        {
           "family": "dots-3-note"
         },
         {
@@ -14547,15 +14542,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
     },
     {
-      "family": "inkling-small",
-      "rows": [
-        "openrouter-free",
-        "kilo-code"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
-    },
-    {
       "family": "ling-3.0-tiny",
       "rows": [
         "requesty",
@@ -14915,6 +14901,14 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
+    },
+    {
+      "family": "inkling-small",
+      "rows": [
+        "openrouter-free"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
     },
     {
       "family": "intern-s2",

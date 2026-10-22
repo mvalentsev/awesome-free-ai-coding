@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ## Related models
 
-- [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) — free at OpenRouter (free models) and Kilo Code
+- [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) — free at OpenRouter (free models)
 
 ---
 

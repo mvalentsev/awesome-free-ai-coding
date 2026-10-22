@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'inkling-small free: 2 providers, limits and ids, provider probes 2026-10-22'
-description: inkling-small is served free by OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'inkling-small free: 1 provider, limits and ids, provider probes 2026-10-22'
+description: inkling-small is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/inkling-small/
 last_modified_at: 2026-10-22
 crumb: inkling-small
@@ -11,7 +11,7 @@ crumb: inkling-small
 
 # Where inkling-small is free
 
-**2 rows on the list serve `inkling-small` free:** OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
+**One row on the list serves `inkling-small` free:** OpenRouter (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -41,20 +41,9 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 - Callable ids: `thinkingmachines/inkling-small:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://openrouter.ai/docs/guides/privacy/provider-logging)).
 
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
+## Rows that listed it before
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-22 · listed since 2026-09-24
-
-Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
-
-- Limits, in the vendor's words: 200 requests/hour per IP
-
-The free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `thinkingmachines/inkling-small:free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-09-24 to 2026-10-22
 
 ## Related models
 
