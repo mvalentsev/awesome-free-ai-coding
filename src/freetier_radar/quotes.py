@@ -17,6 +17,8 @@ import asyncio
 import html
 import re
 import sys
+from html.parser import HTMLParser
+from urllib.parse import urljoin
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -114,6 +116,10 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     # The words a keyed lane's Codex profile rests on (see models.CodexRoute).
     if entry.api and entry.api.codex and entry.api.codex.quote:
         found.append(("api.codex.quote", entry.api.codex.quote))
+    if lane := entry.api or entry.client_lane:
+        field = "api" if entry.api else "client_lane"
+        found.extend((f"{field}.model_bindings.{mid}.quote", b.quote)
+                     for mid,b in lane.model_bindings.items() if mid in lane.model_ids)
     if entry.page_catalog:
         from .page_catalog import catalog_quotes
         found.extend(catalog_quotes(entry.page_catalog))
@@ -126,6 +132,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if (match := re.fullmatch(r"(?:api|client_lane)\.model_bindings\.(.+)\.quote", field)) and (lane := entry.api or entry.client_lane):
+        return lane.model_bindings[match[1]].source
     if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote|period_quote)", field):
         return entry.quotas[int(match[1])].source
     if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.conditions\.(.+)\.quote',field)):
@@ -133,6 +141,43 @@ def row_quote_source(entry: Entry, field: str) -> str | None:
     if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.budgets\[(\d+)\]\.amount_quote', field)):
         return entry.page_catalog.budgets[int(match[1])].amount_source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
+
+
+def model_binding_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
+    """Check a bound route's identity text and optional model-card link."""
+    class Links(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.hrefs = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == 'a' and (href := dict(attrs).get('href')):
+                self.hrefs.append(href)
+
+    notes = []
+    lane = entry.api or entry.client_lane
+    for mid, binding in lane.model_bindings.items() if lane else []:
+        if mid not in lane.model_ids:
+            continue
+        body = bodies.get(binding.source)
+        if body is None:
+            notes.append(f"model binding {mid}: source could not be checked")
+            continue
+        if binding.read == "catalog":
+            from .prober import _catalog_items, _model_id
+            items = _catalog_items(httpx.Response(200, text=body)) or []
+            models = [m for m in items if _model_id(m) == mid]
+            values = [str(models[0].get(key) or '') for key in ('name', 'model_name', 'description', 'desc')] if len(models) == 1 else []
+            if not any(flatten(binding.quote) in flatten(value) for value in values):
+                notes.append(f"model binding {mid}: identity quote missing, changed or ambiguous in this catalog row")
+        elif flatten(binding.quote) not in page_texts(body)[0]:
+            notes.append(f"model binding {mid}: identity quote no longer on its source")
+        if binding.target:
+            links = Links()
+            links.feed(body)
+            if binding.target not in {urljoin(binding.source,href) for href in links.hrefs}:
+                notes.append(f"model binding {mid}: model-card target no longer linked")
+    return notes
 
 
 def quote_found(quote: str, pages: list[str]) -> bool:
@@ -161,6 +206,7 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.append(entry.access.source)
     if lane := entry.api or entry.client_lane:
         urls.extend(a.source for a in lane.model_access.values())
+        urls.extend(b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids)
     if entry.page_catalog:
         from .page_catalog import catalog_sources
         urls.append(entry.page_catalog.source)
@@ -173,6 +219,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
 def catalog_urls(entry: Entry) -> set[str]:
     """Known JSON/API reads remain on their original HTTP transport."""
     urls = {entry.probe.catalog} if entry.probe.catalog else set()
+    if lane := entry.api or entry.client_lane:
+        urls.update(b.source for b in lane.model_bindings.values() if b.read == "catalog")
     if entry.probe.type is ProbeType.API_MODELS or entry.probe.follow is not None:
         urls.add(entry.probe.endpoint)
     urls.update(q.source for q in entry.quotas if q.read == "catalog")

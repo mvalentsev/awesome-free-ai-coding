@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-10-22'
-description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b and 2 more…'
+description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b and 7 more…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: LLMTR
 ---
 
@@ -19,7 +19,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) (until 2026-10-26), [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) (until 2026-10-26)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) (until 2026-10-26), [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) (until 2026-10-26), [`intern-s2-397b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/intern-s2-397b/) (until 2026-10-31), [`atria-dawn`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn/) (until 2026-10-31), [`atria-dawn-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/) (until 2026-10-31), [`agents-a1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/) (until 2026-10-31), [`sage-a1.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/sage-a1.5/) (until 2026-10-31)
 
 ## Limits, in the vendor's words
 
@@ -37,7 +37,9 @@ MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/min
 
 Vast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`
 
-Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
+Shanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)
+
+Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.
 
 ## Where it is offered
 
@@ -51,13 +53,18 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `heabsy/qwen3.8-27b-heabsy-free`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`, `minimax/minimax-m3.1-flash-free`, `voltropy/vast-10m-flash-free`
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `heabsy/qwen3.8-27b-heabsy-free`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`, `minimax/minimax-m3.1-flash-free`, `voltropy/vast-10m-flash-free`, `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`
 - `heabsy/qwen3.8-27b-heabsy-free`: free until 2026-11-02 00:00+03:00 ([conditions](https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free))
 - `ifm/jais-3-mova-36b-a4b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/jais-3-mova-36b-a4b))
 - `ifm/k2-horizon-375b-a23b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/k2-horizon-375b-a23b))
 - `minimax/minimax-m3.1-flash-free`: free until 2026-10-26 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
 - `voltropy/vast-10m-flash-free`: free until 2026-10-26 23:59+03:00 ([conditions](https://llmtr.com/models/voltropy/vast-10m-flash-free))
-- Note: New accounts share a reduced free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents; streams buffer and reasoning_effort is unsupported. Omit reasoning_effort for Nemotron3.5 Super VL; reasoning: false disables thinking. Beam always reasons (low/medium/high/xhigh/max; default max). Jais 3 accepts low/high (default high); use tool_choice: auto. K2 Horizon always reasons (medium/high). Set max_tokens for the answer and reasoning. Vast supports tools and JSON schema without reasoning; long prompts can delay the first token for minutes. Use streaming and a long timeout.
+- `internlm/intern-s2-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/intern-s2-free))
+- `internlm/atria-dawn-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/atria-dawn-free))
+- `internlm/atria-dawn-preview-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/atria-dawn-preview-free))
+- `internlm/agents-a1-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/agents-a1-free))
+- `internlm/sage-a1.5-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/sage-a1.5-free))
+- Note: New accounts have a lower free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B) requires tool_choice: auto and has no response_format. Include reasoning in max_tokens. Vast has no reasoning; use streaming and a long timeout for long prompts.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -100,11 +107,22 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/models/nace/drex-max-free>
 - Source: <https://llmtr.com/models/minimax/minimax-m3.1-flash-free>
 - Source: <https://llmtr.com/models/voltropy/vast-10m-flash-free>
+- Source: <https://llmtr.com/models/internlm/intern-s2-free>
+- Source: <https://llmtr.com/models/internlm/atria-dawn-free>
+- Source: <https://llmtr.com/models/internlm/atria-dawn-preview-free>
+- Source: <https://llmtr.com/models/internlm/agents-a1-free>
+- Source: <https://llmtr.com/models/internlm/sage-a1.5-free>
+- Source: <https://llmtr.com/models/baseten/elephant-1-free>
+- Source: <https://llmtr.com/models/baseten/mammoth-1-free>
+- Source: <https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage>
+- Source: <https://llmtr.com/blog/shanghai-ai-lab-modellerinde-dusunmeyi-kapatma>
+- Source: <https://llmtr.com/blog/shanghai-ai-lab-modelleri-1-kasim-2026-sonrasi>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-23` — Free models changed: added agents-a1, atria-dawn, atria-dawn-preview, intern-s2-397b, sage-a1.5
 - `2026-10-22` — Free models changed: dropped beam-1.0
 - `2026-10-22` — Free models changed: added minimax-m3.1-flash, vast-10m-flash
 - `2026-10-19` — Free models changed: added jais-3-mova-36b-a4b, k2-horizon-375b-a23b
@@ -132,6 +150,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

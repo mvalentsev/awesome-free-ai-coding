@@ -166,9 +166,16 @@ def _table_changes(body: str, quota: UsageQuota) -> list[str]:
 
 
 def _numbers(text: str) -> set[float]:
+    # LLMTR uses Turkish "500.000" and "500 bin" for its daily token cap:
+    # https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage
+    # checked 2026-10-23. Require Turkish context for ambiguous dot grouping;
+    # keep English decimals and fractional prices such as 0.001 unchanged.
+    if re.search(r'\b(?:günde|günlük|kişi|hesap|bin|milyon)\b', text, re.I):
+        text = re.sub(r'(?<![a-zA-Z0-9_.])([1-9]\d{0,2}(?:\.\d{3})+)(?!\d|\.\d)',
+                      lambda m: m[1].replace('.', ''), text)
     values = set()
-    for m in re.finditer(r'(?<![a-zA-Z0-9_.])([0-9][0-9,]*(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?)\s*(million|milyon|thousand|[mk]\b|万)?', text, re.I):
-        scale = {'million':1e6,'milyon':1e6,'m':1e6,'thousand':1e3,'k':1e3,'万':1e4}.get((m[2] or '').lower(),1)
+    for m in re.finditer(r'(?<![a-zA-Z0-9_.])([0-9][0-9,]*(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?)\s*(million|milyon|thousand|bin\b|[mk]\b|万)?', text, re.I):
+        scale = {'million':1e6,'milyon':1e6,'m':1e6,'thousand':1e3,'bin':1e3,'k':1e3,'万':1e4}.get((m[2] or '').lower(),1)
         values.add(float(m[1].replace(',',''))*scale)
     words = {'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,
              'nine':9,'ten':10,'eleven':11,'twelve':12,'fifteen':15,'twenty':20}

@@ -296,9 +296,6 @@
         "north-mini-code-free": {
           "name": "north-mini-code-free"
         },
-        "ling-3.0-tiny-free": {
-          "name": "ling-3.0-tiny-free"
-        },
         "nemotron-3-ultra-550b-a55b-free": {
           "name": "nemotron-3-ultra-550b-a55b-free"
         },
@@ -344,9 +341,6 @@
         "glm-4.7-flash-free": {
           "name": "glm-4.7-flash-free"
         },
-        "hy3-free": {
-          "name": "hy3-free"
-        },
         "intern-s2-free": {
           "name": "intern-s2-free"
         },
@@ -362,17 +356,8 @@
         "lfm-2.5-2.6b-free": {
           "name": "lfm-2.5-2.6b-free"
         },
-        "ling-3.0-flash-free": {
-          "name": "ling-3.0-flash-free"
-        },
         "mimo-v2-flash-free": {
           "name": "mimo-v2-flash-free"
-        },
-        "minimax-m2.7-free": {
-          "name": "minimax-m2.7-free"
-        },
-        "nemotron-3-nano-30b-a3b-free": {
-          "name": "nemotron-3-nano-30b-a3b-free"
         },
         "nemotron-3-nano-omni-30b-a3b-reasoning-free": {
           "name": "nemotron-3-nano-omni-30b-a3b-reasoning-free"
@@ -382,15 +367,6 @@
         },
         "nemotron-3.5-lightning-free": {
           "name": "nemotron-3.5-lightning-free"
-        },
-        "nemotron-nano-12b-v2-vl-free": {
-          "name": "nemotron-nano-12b-v2-vl-free"
-        },
-        "nemotron-nano-9b-v2-free": {
-          "name": "nemotron-nano-9b-v2-free"
-        },
-        "union-alpha-free": {
-          "name": "union-alpha-free"
         },
         "xiaomi-mimo-v2.6-flash-free": {
           "name": "xiaomi-mimo-v2.6-flash-free"
@@ -403,6 +379,12 @@
         },
         "qwen3.8-max-free": {
           "name": "qwen3.8-max-free"
+        },
+        "gemma-4-26b-a4b-it-free": {
+          "name": "gemma-4-26b-a4b-it-free"
+        },
+        "gemma-4-31b-it-free": {
+          "name": "gemma-4-31b-it-free"
         }
       }
     },
@@ -539,6 +521,41 @@
         },
         "voltropy/vast-10m-flash-free": {
           "name": "voltropy/vast-10m-flash-free (until 2026-10-26)"
+        },
+        "internlm/intern-s2-free": {
+          "name": "internlm/intern-s2-free (until 2026-10-31)",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          }
+        },
+        "internlm/atria-dawn-free": {
+          "name": "internlm/atria-dawn-free (until 2026-10-31)",
+          "limit": {
+            "context": 524288,
+            "output": 524288
+          }
+        },
+        "internlm/atria-dawn-preview-free": {
+          "name": "internlm/atria-dawn-preview-free (until 2026-10-31)",
+          "limit": {
+            "context": 524288,
+            "output": 524288
+          }
+        },
+        "internlm/agents-a1-free": {
+          "name": "internlm/agents-a1-free (until 2026-10-31)",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          }
+        },
+        "internlm/sage-a1.5-free": {
+          "name": "internlm/sage-a1.5-free (until 2026-10-31)",
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          }
         }
       }
     },

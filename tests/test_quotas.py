@@ -11,6 +11,54 @@ BASE = {'id':'vendor','name':'Vendor','url':'https://vendor.example','category':
 QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
+@pytest.mark.parametrize('phrase', ['günde 500.000 token', 'günde 500 bin token'])
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_turkish_thousand_quota_from_http_table(phrase, changed):
+    q={**QUOTA,'amount':500_000,'unit':'tokens','period':'day','scope':'account-model',
+       'read':'table','quote':'Daily free model allowance',
+       'table':{'headers':['Model','Daily tokens'],'column':'Daily tokens','rows':['coding-model']}}
+    e=Entry.model_validate({**BASE,'quotas':[q]})
+    respx.get(e.probe.endpoint).respond(200,text='Recurring free quota for chat')
+    cell=phrase.replace('500','400') if changed else phrase
+    body=('<p>Daily free model allowance</p><table><tr><th>Model</th><th>Daily tokens</th></tr>'
+          f'<tr><td>coding-model</td><td>{cell}</td></tr></table>')
+    respx.get(q['source']).respond(200,text=body)
+    async with httpx.AsyncClient() as client:
+        result=await probe_entry(client,e,attempts=1,backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+
+@pytest.mark.parametrize(('phrase','amount'), [
+    ('Her hesap için günde 500.000 token',500_000),
+    ('Kişi başı günlük 1.500.000 token',1_500_000),
+    ('kişi başı günde 500 bin token',500_000),
+    ('günde 1.5 bin token',1_500),
+])
+def test_turkish_thousand_quote_keeps_its_numeric_amount(phrase, amount):
+    from freetier_radar.quotas import UsageQuota
+    q=UsageQuota.model_validate({**QUOTA,'amount':amount,'unit':'tokens','period':'day',
+                                'quote':phrase,'value_phrase':phrase})
+    assert q.amount==amount
+
+@pytest.mark.parametrize(('phrase','amount'), [
+    ('günde 500.000 token',500),
+    ('500 billion tokens per day',500_000),
+    ('500.000 tokens per day',500_000),
+    ('günde 0.001 tokens',1),
+])
+def test_turkish_scaling_does_not_reinterpret_other_numbers(phrase, amount):
+    from pydantic import ValidationError
+    from freetier_radar.quotas import UsageQuota
+    with pytest.raises(ValidationError):
+        UsageQuota.model_validate({**QUOTA,'amount':amount,'unit':'tokens','period':'day',
+                                   'quote':phrase,'value_phrase':phrase})
+
+def test_turkish_context_preserves_fractional_prices():
+    from freetier_radar.quotas import UsageQuota
+    q=UsageQuota.model_validate({**QUOTA,'amount':0.001,'unit':'USD','period':'day',
+                                'quote':'günde $0.001','value_phrase':'günde $0.001'})
+    assert q.amount==0.001
+
 @pytest.mark.parametrize(('phrase','amount','scope'), [
     ('Her hesap günde 5 milyon token', 5_000_000, 'account'),
     ('kişi başı günde 10 milyon token', 10_000_000, 'person'),

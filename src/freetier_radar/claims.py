@@ -23,7 +23,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
-from .models import ApiInfo, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ClientLane, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
@@ -129,6 +129,12 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r"Set `read: (catalog)` to bind identity text to that exact ID",
+          lambda root: tuple(value for value in ModelBinding.model_fields['read'].annotation.__args__ if value == 'catalog'),
+          "quotes.model_binding_changes; exact-ID identity, other-row quote and duplicate-row HTTP controls in tests/test_model_bindings.py"),
+    Claim("CONTRIBUTING.md", r"`api\.(model_bindings)\[ID\]` or `client_lane\.(model_bindings)\[ID\]`",
+          lambda root: tuple("model_bindings" for kind in (ApiInfo, ClientLane) if "model_bindings" in kind.model_fields),
+          "models.entry_id_family; tests/test_model_bindings.py covers HTTP identity drift, distinct gateways, model pages and expiry"),
     Claim("CONTRIBUTING.md", r"last-offer checks in `(historical_checks)`",
           lambda root: ("historical_checks",),
           "review.sources; same changed HTTP quota fails an active row and remains a visible historical mismatch for a delisted row"),

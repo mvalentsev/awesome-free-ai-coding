@@ -646,6 +646,35 @@ def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_pat
     assert scope['rows'] == ['vendor']
 
 @respx.mock
+@pytest.mark.parametrize('target_changed', [False, True])
+async def test_sources_recheck_a_bound_model_card_beside_a_matching_identity_quote(tmp_path, target_changed):
+    from freetier_radar.models import Entry, save_registry
+    repo=repo_at(tmp_path)
+    source='https://vendor.example/identity';target='https://maker.example/science-397b'
+    entry=Entry.model_validate({
+        'id':'vendor','name':'Vendor','url':'https://vendor.example','category':'aggregator',
+        'offering':'Free chat models','free_part':'models','first_seen':'2026-09-01','last_verified':'2026-10-23',
+        'models':[{'family':'science-397b'}],
+        'api':{'base_url':'https://vendor.example/v1','model_ids':['science-free'],
+               'model_bindings':{'science-free':{'family':'science-397b','source':source,
+                                                'quote':'The science-free route','target':target}}},
+        'probe':{'type':'api-models','endpoint':'https://vendor.example/models','require_zero_price':True}})
+    save_registry(repo/'registry.yaml',[entry])
+    subprocess.run(['git','-C',str(repo),'add','registry.yaml'],check=True)
+    env={**os.environ,'GIT_AUTHOR_NAME':'a reviewer','GIT_AUTHOR_EMAIL':'t@example.com',
+         'GIT_COMMITTER_NAME':'a reviewer','GIT_COMMITTER_EMAIL':'t@example.com'}
+    subprocess.run(['git','-C',str(repo),'commit','-qm','fix: fixture identity'],check=True,env=env)
+    bundle=review.Bundle(repo/'.evidence',repo);review.prepare(repo,'HEAD~1','HEAD',bundle)
+    respx.get(entry.probe.endpoint).respond(200,json={'data':[{'id':'science-free','pricing':{'prompt':'0','completion':'0'}}]})
+    respx.get(source).respond(200,text='<p>The science-free route</p><a href="'+
+                              (target.replace('397b','35b') if target_changed else target)+'">Model card</a>')
+    result=await review.sources(bundle,[])
+    assert all(q['found'] for q in result['quotes'])
+    assert result['passed'] is (not target_changed)
+    assert any('model-card target' in note for record in result['model_checks'] for note in record['notes']) is target_changed
+
+
+@respx.mock
 @pytest.mark.parametrize('archived', [False, True])
 async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path, archived):
     from freetier_radar.models import Entry, save_registry

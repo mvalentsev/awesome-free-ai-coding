@@ -30,7 +30,7 @@ import httpx
 import yaml
 
 from . import git
-from .models import (Entry, FreePart, expire_entries, family_access, family_names, id_access,
+from .models import (Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
                      is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
 
@@ -148,8 +148,7 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
             continue
         recorded = {s.id: s for s in lane.free_since}
         for model_id in lane.model_ids:
-            if model_id in lane.no_family_ids or any(family_names(m.family, model_id)
-                                                     for m in e.models):
+            if model_id in lane.no_family_ids or entry_id_family(e, model_id) is not None:
                 continue
             day, source = vendor.get((e.id, model_id)), "the vendor's list"
             record = recorded.get(model_id)

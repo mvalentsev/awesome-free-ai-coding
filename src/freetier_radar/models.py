@@ -922,6 +922,52 @@ class ModelLimits(BaseModel):
         return self
 
 
+class ModelBinding(BaseModel):
+    """A sourced identity for a gateway ID that omits its model's variant."""
+    model_config = ConfigDict(extra="forbid")
+    family: str
+    source: str
+    quote: str = Field(min_length=3, max_length=1200)
+    read: Literal["page", "catalog"] = Field(default="page", exclude_if=lambda v: v == "page")
+    target: str | None = Field(default=None, exclude_if=lambda v: v is None)
+
+    @field_validator("family", mode="before")
+    @classmethod
+    def _canonical_family(cls, value):
+        return ModelFamily._family_is_spelled_one_way(value)
+
+    @field_validator("family")
+    @classmethod
+    def _safe_family(cls, value):
+        return ModelFamily._family_is_a_page_name(value)
+
+    @field_validator("source", "target")
+    @classmethod
+    def _public_source(cls, value):
+        if value is not None and not valid_source_url(value):
+            raise ValueError("model binding needs a public https source or target")
+        return value
+
+    @field_validator("quote")
+    @classmethod
+    def _complete_quote(cls, value):
+        if len(value.strip()) < 3 or not any(c.isalnum() for c in value) or '...' in value or '…' in value:
+            raise ValueError("model binding needs one complete identity source fragment")
+        return value.strip()
+
+    @model_validator(mode="after")
+    def _link_is_on_a_page(self):
+        if self.target and self.read != "page":
+            raise ValueError("model binding target requires a page source")
+        return self
+
+
+def _binding_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
+                            bindings: dict[str, ModelBinding]) -> None:
+    if unknown := bindings.keys() - set(model_ids) - set(ignored_ids):
+        raise ValueError(f"model_bindings names unlisted IDs: {', '.join(sorted(unknown))}")
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -929,6 +975,7 @@ class ApiInfo(BaseModel):
     auth: str = "api-key"  # "api-key" | "none"
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
+    model_bindings: dict[str, ModelBinding] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_limits: dict[str, ModelLimits] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Chosen OpenCode request budgets; these do not assert vendor model limits.
@@ -1015,6 +1062,7 @@ class ApiInfo(BaseModel):
     @model_validator(mode="after")
     def _access_names_ids(self) -> ApiInfo:
         _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
+        _binding_ids_are_listed(self.model_ids, self.ignored_ids, self.model_bindings)
         unknown = self.model_limits.keys() - set(self.model_ids) - set(self.ignored_ids)
         if unknown:
             raise ValueError(f"model_limits names unlisted IDs: {', '.join(sorted(unknown))}")
@@ -1170,6 +1218,7 @@ class ClientLane(BaseModel):
     this list's history for the two-week bar. Nothing a reader pastes is
     written from them: there is nothing to connect to."""
     model_ids: list[str]
+    model_bindings: dict[str, ModelBinding] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Ids the lane carries that no Models-column family will name, on purpose —
@@ -1185,6 +1234,7 @@ class ClientLane(BaseModel):
     @model_validator(mode="after")
     def _access_names_ids(self) -> ClientLane:
         _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
+        _binding_ids_are_listed(self.model_ids, self.ignored_ids, self.model_bindings)
         return self
 
     @model_validator(mode="after")
@@ -1645,6 +1695,16 @@ def live_families(entry: Entry) -> list[str]:
     return [m.family for m in entry.models if m.superseded_by is None]
 
 
+def entry_id_family(entry: Entry, model_id: str, families: Iterable[str] | None = None) -> str | None:
+    """Resolve a row's exact ID before applying the common name matcher."""
+    names = list(families) if families is not None else live_families(entry)
+    lane = entry.api or entry.client_lane
+    binding = lane.model_bindings.get(model_id) if lane else None
+    if binding is not None:
+        return binding.family if binding.family in names else None
+    return id_family(names, model_id)
+
+
 def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
     lane = entry.api or entry.client_lane
     scoped = (lane.model_access.get(model_id) if lane else
@@ -1662,7 +1722,7 @@ def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
 def family_access(entry: Entry, family: str) -> FreeAccess | None:
     """The least restrictive surviving ID: a free variant keeps a family free."""
     lane = lane_ids(entry)
-    ids = [i for i in lane.model_ids if id_family(live_families(entry), i) == family] if lane else []
+    ids = [i for i in lane.model_ids if entry_id_family(entry, i) == family] if lane else []
     if entry.page_catalog:
         ids = [m.name for m in entry.page_catalog.models if m.model and m.model.family == family
                and entry.page_catalog.independently_free(m)]
@@ -1739,8 +1799,8 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
             continue
         surviving = [i for i in block.model_ids if i not in expired]
         families = live_families(e)
-        affected = {id_family(families, i) for i in expired}
-        kept = {id_family(families, i) for i in surviving}
+        affected = {entry_id_family(e, i, families) for i in expired}
+        kept = {entry_id_family(e, i, families) for i in surviving}
         updates = {"model_ids": surviving,
                    "ignored_ids": list(dict.fromkeys([*block.ignored_ids, *sorted(expired)])),
                    "no_family_ids": [i for i in block.no_family_ids if i not in expired],

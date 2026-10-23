@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-10-22'
-description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. Available models depend on the app and access level. “Freebuff collects…'
+description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. Available models depend on the app and access level. “Promotional prices…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-10-22
 crumb: Freebuff
@@ -25,7 +25,7 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 Session-based limited mode: 6 one-hour sessions per day per account
 
-Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.
+Available models depend on the app and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.
 
 Daily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.
 
@@ -77,6 +77,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

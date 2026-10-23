@@ -23,11 +23,11 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
                      PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
                      WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
-                     folded_into, id_family, is_archived,
+                     folded_into, entry_id_family, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
                      load_blocklist, load_registry, load_watchlist, probe_frequency,
                      access_words, expire_entries, family_access, id_access, requires_payment,
-                     save_registry, preferred_ids, family_names)
+                     save_registry, preferred_ids)
 # The promotion day is the probe's, and the pages say how far off it is.
 from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bars a family's score must clear to be called frontier or strong, which
@@ -1774,9 +1774,9 @@ def _litellm_ids(e: Entry) -> list[str]:
 
 
 def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
-    """The measured tier of the family an id belongs to (`id_family`:
+    """The measured tier of the family an id belongs to (`entry_id_family`:
     zai-org/GLM-5.3-Flash is glm-5.3-flash, not glm-5.3)."""
-    family = id_family(live_families(e), model_id)
+    family = entry_id_family(e, model_id)
     return next((m.tier for m in e.models if m.family == family and m.superseded_by is None), None)
 
 
@@ -2633,7 +2633,7 @@ def _listed_since(events: list[Event], entry_id: str, family: str) -> date | Non
 
 def _promotion_rows(entries: list[Entry], family: str) -> set[str]:
     return {e.id for e in entries if (lane := e.api or e.client_lane)
-            for i, a in lane.model_access.items() if a.until and family_names(family, i)}
+            for i, a in lane.model_access.items() if a.until and entry_id_family(e, i, [family]) == family}
 
 
 def _served_before(events: list[Event], family: str, serving: set[str],
@@ -2662,7 +2662,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     history stay on the row's own page, one click from its name."""
     lane = lane_ids(e)
     families = live_families(e)
-    ids = [i for i in (lane.model_ids if lane else []) if id_family(families, i) == family]
+    ids = [i for i in (lane.model_ids if lane else []) if entry_id_family(e, i, families) == family]
     flags = [CATEGORY_TITLES[e.category]]
     if not requires_payment(e, family):
         flags.append(_card_words(e))

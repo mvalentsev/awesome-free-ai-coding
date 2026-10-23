@@ -332,6 +332,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                     findings.append('current model catalog unreadable')
                 if catalog is not None and (ids := stale_ids(catalog, entry)):
                     findings.append(ids)
+        from .quotes import model_binding_changes
+        findings.extend(model_binding_changes(entry, raw_bodies))
         model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
                              'passed': not findings,
                              'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})

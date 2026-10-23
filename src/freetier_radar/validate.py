@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, jsonl_lines, load_history
-from .models import (Entry, FreePart, domain_of, family_names, is_archived, is_blocked,
+from .models import (Entry, FreePart, domain_of, entry_id_family, is_archived, is_blocked,
                      is_connectable, lane_ids, load_blocklist, load_dismissed, load_registry,
                      load_sources, load_watchlist, prose_names, save_registry, under)
 
@@ -173,7 +173,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(
                     f"registry: {e.id} {lane.field}.no_family_ids names {i}, which is not in "
                     f"{lane.field}.model_ids — list the id there or take it out")
-            named = [m.family for m in e.models if family_names(m.family, i)]
+            named = [family] if (family := entry_id_family(e, i)) else []
             if named:
                 problems.append(
                     f"registry: {e.id} {lane.field}.no_family_ids names {i}, but family "
@@ -184,7 +184,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         lane = lane_ids(e)
         for s in lane.free_since if lane else []:
-            named = [m.family for m in e.models if family_names(m.family, s.id)]
+            named = [family] if (family := entry_id_family(e, s.id)) else []
             if named:
                 problems.append(
                     f"registry: {e.id} {lane.field}.free_since dates {s.id}, which family "

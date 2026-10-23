@@ -20,7 +20,7 @@ from .page_reader import browser_challenge, page_evidence, recover_page, recover
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
     OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, id_family, names_family, is_archived_for_good, lane_ids, load_registry,
+    _id_squash, _squash, names_family, is_archived_for_good, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -154,6 +154,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # border_moved) are both read, and both notes kept: one does not answer
         # the other.
         moved = []
+        if (lane := entry.api or entry.client_lane) and lane.model_bindings:
+            from .quotes import model_binding_changes
+            bodies = {}
+            for source in dict.fromkeys(b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids):
+                response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
+                if response is not None:
+                    bodies[source] = response.text
+            moved.extend(model_binding_changes(entry, bodies))
         if entry.quotas:
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
@@ -1513,6 +1521,7 @@ def _empty_lane(resp: httpx.Response, lane: str) -> str:
 
 
 def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
+    from .models import entry_id_family
     items = _catalog_items(resp, entry.probe.lane)
     if items is None:
         return "response is not JSON"
@@ -1527,7 +1536,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         # is glm-5.2's, and must not keep glm-5 alive after glm-5's own id left.
         matches = [
             m for m in items
-            if id_family(families, _model_id(m)) == family.family
+            if entry_id_family(entry, _model_id(m), families) == family.family
             and entry.probe.carries_marker(_model_id(m))
         ]
         if not matches:

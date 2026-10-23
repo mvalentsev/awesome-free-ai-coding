@@ -384,12 +384,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/ling-3.0-tiny-free
-  litellm_params:
-    model: openai/ling-3.0-tiny-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/nemotron-3-ultra-550b-a55b-free
   litellm_params:
     model: openai/nemotron-3-ultra-550b-a55b-free
@@ -480,12 +474,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/hy3-free
-  litellm_params:
-    model: openai/hy3-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/intern-s2-free
   litellm_params:
     model: openai/intern-s2-free
@@ -516,27 +504,9 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/ling-3.0-flash-free
-  litellm_params:
-    model: openai/ling-3.0-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/mimo-v2-flash-free
   litellm_params:
     model: openai/mimo-v2-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/minimax-m2.7-free
-  litellm_params:
-    model: openai/minimax-m2.7-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/nemotron-3-nano-30b-a3b-free
-  litellm_params:
-    model: openai/nemotron-3-nano-30b-a3b-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -555,24 +525,6 @@ model_list:
 - model_name: aihubmix/nemotron-3.5-lightning-free
   litellm_params:
     model: openai/nemotron-3.5-lightning-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/nemotron-nano-12b-v2-vl-free
-  litellm_params:
-    model: openai/nemotron-nano-12b-v2-vl-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/nemotron-nano-9b-v2-free
-  litellm_params:
-    model: openai/nemotron-nano-9b-v2-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/union-alpha-free
-  litellm_params:
-    model: openai/union-alpha-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -597,6 +549,18 @@ model_list:
 - model_name: aihubmix/qwen3.8-max-free
   litellm_params:
     model: openai/qwen3.8-max-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/gemma-4-26b-a4b-it-free
+  litellm_params:
+    model: openai/gemma-4-26b-a4b-it-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/gemma-4-31b-it-free
+  litellm_params:
+    model: openai/gemma-4-31b-it-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -752,6 +716,56 @@ model_list:
   model_info:
     access: free until 2026-10-26 23:59+03:00
     source: https://llmtr.com/models/voltropy/vast-10m-flash-free
+- model_name: llmtr/internlm/intern-s2-free
+  litellm_params:
+    model: openai/internlm/intern-s2-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 262144
+  model_info:
+    access: free until 2026-10-31 23:59+03:00
+    source: https://llmtr.com/models/internlm/intern-s2-free
+- model_name: llmtr/internlm/atria-dawn-free
+  litellm_params:
+    model: openai/internlm/atria-dawn-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 524288
+  model_info:
+    access: free until 2026-10-31 23:59+03:00
+    source: https://llmtr.com/models/internlm/atria-dawn-free
+- model_name: llmtr/internlm/atria-dawn-preview-free
+  litellm_params:
+    model: openai/internlm/atria-dawn-preview-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 524288
+  model_info:
+    access: free until 2026-10-31 23:59+03:00
+    source: https://llmtr.com/models/internlm/atria-dawn-preview-free
+- model_name: llmtr/internlm/agents-a1-free
+  litellm_params:
+    model: openai/internlm/agents-a1-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 262144
+  model_info:
+    access: free until 2026-10-31 23:59+03:00
+    source: https://llmtr.com/models/internlm/agents-a1-free
+- model_name: llmtr/internlm/sage-a1.5-free
+  litellm_params:
+    model: openai/internlm/sage-a1.5-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 262144
+  model_info:
+    access: free until 2026-10-31 23:59+03:00
+    source: https://llmtr.com/models/internlm/sage-a1.5-free
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4

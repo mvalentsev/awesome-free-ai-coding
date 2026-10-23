@@ -409,6 +409,16 @@ that carries both, or list fewer families: an id that belongs to the free lane b
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
 
+**A short gateway ID can have a sourced model identity.** Record it in
+`api.model_bindings[ID]` or `client_lane.model_bindings[ID]`, with `family`,
+`source`, `quote` and an optional `target` model-card link on that source.
+Set `read: catalog` to bind identity text to that exact ID in a JSON catalog.
+The exact ID must already be listed. Its source text and link are checked again
+by the probe and review collector. The binding applies only to that row;
+another gateway can serve a different variant under the same short ID.
+Family matching, model pages, tiers, age reports and promotion expiry use the
+same binding. A binding cannot make a paid or unavailable ID free.
+
 **A page catalog keeps the complete picker separate from free families.**
 `page_catalog` derives `models` and `newcomers`; the registry writer saves only
 the catalog for these rows. Record regional credit budgets, model-hour examples
