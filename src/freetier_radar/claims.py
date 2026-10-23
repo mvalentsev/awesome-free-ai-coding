@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from typing import Callable, get_args
 
@@ -32,7 +33,7 @@ from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
-                     README_STARTERS, README_STRONG)
+                     README_STARTERS, README_STRONG, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
 # The render's own words for a figure (see words.py).
@@ -170,6 +171,20 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("browse.html", r'dataUseWords = data\.(data_use_words);',
           lambda root: ('data_use_words',),
           "render.build_index publishes DATA_USE_WORDS; reviewed-copy propagation in tests/test_browse.py"),
+    Claim("browse.html", r'(?s)<select id="client"[^>]*>(.*?)</select>',
+          lambda root: tuple(_site_client_configs([], date.min)),
+          "render._site_client_configs; exact eligibility, unsupported native-only lanes and selected-client controls in tests/test_browse.py",
+          read=lambda match: tuple(re.findall(r'<option value="([^"]+)"', match[1]))),
+    Claim("browse.html", r'configClients = data\.(client_configs) \|\| \{\};',
+          lambda root: ('client_configs',),
+          "render.build_index derives membership from generated writers; tests/test_site.py and tests/test_browse.py"),
+    Claim("browse.html", r'return lane \? lane\.(model_ids) \|\| \[\] : \[\];',
+          lambda root: tuple(field for field in ('model_ids',)
+                             if all(field in kind.model_fields for kind in (ApiInfo, ClientLane))),
+          "models.ApiInfo and ClientLane; current versus ignored exact-ID regression in tests/test_browse.py"),
+    Claim("browse.html", r'e\.access_labels\.(ids) && e\.access_labels\.ids\[id\]',
+          lambda root: ('ids',),
+          "render._index_access_labels uses models.id_access/access_words; full deadline and inherited-payment controls in tests/test_browse.py"),
     Claim("CONTRIBUTING.md", r"last-offer checks in `(historical_checks)`,\s+including source-read failures under `(sources)`",
           lambda root: ("historical_checks", "sources"),
           "review.sources; historical/shared/explicit HTTP-boundary controls in tests/test_review.py"),

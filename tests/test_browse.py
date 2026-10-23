@@ -46,8 +46,11 @@ def test_browse_page_reads_only_fields_index_json_publishes():
               delisted={"on": TODAY, "reason": "the same service as the row before it"})],
         TODAY)["entries"]
     entry = live
+    client_row = build_index([make(client_lane={"model_ids": ["native/free"]},
+                                   probe={"type": "api-models", "endpoint": "https://x.ai/models",
+                                          "require_zero_price": True})], TODAY)["entries"][0]
     used = set(re.findall(r"\be\.([a-z_]+)\b", html))
-    published = set(live) | set(gone) | set(folded)
+    published = set(live) | set(gone) | set(folded) | set(client_row)
     assert used and used <= published, used - published
     # an archived row says why it left instead of a date no probe earned
     assert "e.archived_because" in html
@@ -143,7 +146,7 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
                             models=[{"family": "nemotron-3-ultra"}, {"family": "qwen3-8b"}])],
                       TODAY)["entries"][0]
     harness = (PAGE.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
-        _js_function(html, n) for n in ("families", "haystack")) + f"""
+        _js_function(html, n) for n in ("callableIds", "families", "haystack")) + f"""
     var e = {json.dumps(row)};
     function finds(q) {{ return haystack(e).indexOf(written(q.trim().toLowerCase())) !== -1; }}
     console.log(JSON.stringify(["Nemotron 3 Ultra", "nemotron-3-ultra", "a free lane",
@@ -151,6 +154,85 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
     run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
     assert run.returncode == 0, run.stderr
     assert json.loads(run.stdout) == [True, True, True, False, True]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+@pytest.mark.parametrize("lane", ["api", "client_lane"])
+def test_search_finds_current_callable_ids_without_publishing_or_reviving_a_family(lane):
+    from test_site import _js_function
+
+    metadata = {"model_ids": ["vendor/preview-35b:free"], "ignored_ids": ["vendor/ended:free"]}
+    if lane == "api":
+        metadata["base_url"] = "https://vendor.example/v1"
+    e = make(models=[{"family": "stable"}], **{lane: metadata},
+             probe={"type": "api-models", "endpoint": "https://vendor.example/models",
+                    "require_zero_price": True})
+    row = build_index([e], TODAY)["entries"][0]
+    html = _html()
+    functions = ["callableIds", "families", "haystack"]
+    script = (PAGE.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
+        _js_function(html, name) for name in functions)
+    script += f"""
+    var e = {json.dumps(row)};
+    console.log(JSON.stringify(['vendor/preview-35b:free','VENDOR/PREVIEW_35B:FREE',
+                                'vendor/ended:free','stable'].map(function(q) {{
+      return haystack(e).includes(written(q.toLowerCase()));
+    }})));"""
+    result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == [True, True, False, True]
+    assert [m["family"] for m in row["models"]] == ["stable"]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_client_choice_reuses_config_eligibility_and_never_substitutes_another_client():
+    from test_site import _js_function
+
+    script = """
+    var configClients = {opencode:['shared','bare'], codex:['shared'],
+                         claude:['shared'], litellm:['shared']};
+    var els = {client:{value:''}};
+    """ + _js_function(_html(), "setupClient") + """
+    var results = [];
+    for (const selected of ['', 'opencode', 'codex', 'claude', 'litellm', 'constructor', '__proto__']) {
+      els.client.value = selected;
+      results.push(['shared','bare','native-only','missing'].map(function(id) {
+        return setupClient({id:id,api:{openai_compatible:true}});
+      }));
+    }
+    console.log(JSON.stringify(results));"""
+    result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == [
+        ["opencode", "opencode", "", ""], ["opencode", "opencode", "", ""],
+        ["codex", "", "", ""], ["claude", "", "", ""], ["litellm", "", "", ""],
+        ["", "", "", ""], ["", "", "", ""],
+    ]
+
+
+@pytest.mark.parametrize("lane", ["api", "client_lane"])
+def test_matched_id_conditions_preserve_payment_inheritance_and_exact_deadline(lane):
+    metadata = {
+        "model_ids": ["vendor/stable", "vendor/preview"], "ignored_ids": ["vendor/ended"],
+        "model_access": {"vendor/preview": {"source": "https://vendor.example/offer",
+                                           "until": "2026-11-06T01:59:00+05:00"}},
+    }
+    if lane == "api":
+        metadata["base_url"] = "https://vendor.example/v1"
+    row = build_index([make(
+        models=[{"family": "stable"}], **{lane: metadata},
+        access={"source": "https://vendor.example/pricing", "initial_payment_usd": 5,
+                "topup_fee_percent": 8},
+        probe={"type": "api-models", "endpoint": "https://vendor.example/models",
+               "require_zero_price": True},
+    )], TODAY)["entries"][0]
+    labels = row["access_labels"]
+    assert labels["ids"] == {
+        "vendor/stable": "requires $5 one-time top-up + 8% fee",
+        "vendor/preview": "requires $5 one-time top-up + 8% fee; free until 2026-11-06 01:59+05:00",
+    }
+    assert list(labels["models"]) == ["stable"]
+    assert labels["models"]["stable"] == "requires $5 top-up + 8% fee"
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")

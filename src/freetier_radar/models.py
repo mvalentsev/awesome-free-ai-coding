@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from enum import Enum
@@ -890,11 +890,12 @@ class PageCatalog(BaseModel):
         return self
 
 
-def _access_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
-                           conditions: dict[str, FreeAccess]) -> None:
-    unknown = conditions.keys() - set(model_ids) - set(ignored_ids)
-    if unknown:
-        raise ValueError(f"model_access names unlisted IDs: {', '.join(sorted(unknown))}")
+def _metadata_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
+                             **fields: Mapping[str, object]) -> None:
+    listed = set(model_ids) | set(ignored_ids)
+    for field, values in fields.items():
+        if unknown := values.keys() - listed:
+            raise ValueError(f"{field} names unlisted IDs: {', '.join(sorted(unknown))}")
 
 
 OPENCODE_OUTPUT_FIELD = "max_completion_tokens"
@@ -960,12 +961,6 @@ class ModelBinding(BaseModel):
         if self.target and self.read != "page":
             raise ValueError("model binding target requires a page source")
         return self
-
-
-def _binding_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
-                            bindings: dict[str, ModelBinding]) -> None:
-    if unknown := bindings.keys() - set(model_ids) - set(ignored_ids):
-        raise ValueError(f"model_bindings names unlisted IDs: {', '.join(sorted(unknown))}")
 
 
 class ApiInfo(BaseModel):
@@ -1061,14 +1056,10 @@ class ApiInfo(BaseModel):
 
     @model_validator(mode="after")
     def _access_names_ids(self) -> ApiInfo:
-        _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
-        _binding_ids_are_listed(self.model_ids, self.ignored_ids, self.model_bindings)
-        unknown = self.model_limits.keys() - set(self.model_ids) - set(self.ignored_ids)
-        if unknown:
-            raise ValueError(f"model_limits names unlisted IDs: {', '.join(sorted(unknown))}")
-        unknown = self.opencode_output_tokens.keys() - set(self.model_ids) - set(self.ignored_ids)
-        if unknown:
-            raise ValueError(f"opencode_output_tokens names unlisted IDs: {', '.join(sorted(unknown))}")
+        _metadata_ids_are_listed(
+            self.model_ids, self.ignored_ids, model_access=self.model_access,
+            model_bindings=self.model_bindings, model_limits=self.model_limits,
+            opencode_output_tokens=self.opencode_output_tokens)
         for mid, tokens in self.opencode_output_tokens.items():
             if mid in self.model_limits and tokens > self.model_limits[mid].output_tokens:
                 raise ValueError("opencode_output_tokens exceeds the catalog output limit")
@@ -1233,8 +1224,8 @@ class ClientLane(BaseModel):
 
     @model_validator(mode="after")
     def _access_names_ids(self) -> ClientLane:
-        _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
-        _binding_ids_are_listed(self.model_ids, self.ignored_ids, self.model_bindings)
+        _metadata_ids_are_listed(self.model_ids, self.ignored_ids,
+                                 model_access=self.model_access, model_bindings=self.model_bindings)
         return self
 
     @model_validator(mode="after")

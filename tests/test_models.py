@@ -6,7 +6,7 @@ from pydantic import ValidationError
 
 import yaml
 
-from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Watched,
+from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ApiInfo, ClientLane, Entry, Watched,
                                     id_family, is_anchor, is_covered, is_source_current,
                                     known_domains, load_registry, load_sources, load_watchlist,
                                     prose_names, save_registry, watch_match)
@@ -690,6 +690,37 @@ def test_client_limits_round_trip_and_require_the_rechecked_catalog(tmp_path: Pa
     row["api"]["model_limits"] = {"unlisted": limits}
     with pytest.raises(ValidationError, match="unlisted IDs"):
         Entry.model_validate(row)
+
+
+@pytest.mark.parametrize(("lane_type", "field"), [
+    (ApiInfo, "model_access"), (ApiInfo, "model_bindings"),
+    (ApiInfo, "model_limits"), (ApiInfo, "opencode_output_tokens"),
+    (ClientLane, "model_access"), (ClientLane, "model_bindings"),
+])
+@pytest.mark.parametrize("membership", ["model_ids", "ignored_ids", "unknown"])
+def test_id_metadata_stays_bound_to_current_or_retained_ids(lane_type, field, membership):
+    value = {
+        "model_access": {"source": "https://vendor.example/offer", "initial_payment_usd": 5},
+        "model_bindings": {"family": "science-397b", "source": "https://vendor.example/model",
+                           "quote": "Science stable 397B"},
+        "model_limits": {"context_tokens": 32768, "output_tokens": 8192,
+                         "source": "https://vendor.example/models"},
+        "opencode_output_tokens": 8000,
+    }[field]
+    raw = {"model_ids": ["current"], "ignored_ids": ["ended"]}
+    if lane_type is ApiInfo:
+        raw["base_url"] = "https://vendor.example/v1"
+    ids = {"model_ids": ["current"], "ignored_ids": ["ended"],
+           "unknown": ["z-typo", "a-typo"]}[membership]
+    raw[field] = dict.fromkeys(ids, value)
+    if membership == "unknown":
+        with pytest.raises(ValidationError) as error:
+            lane_type.model_validate(raw)
+        assert error.value.errors()[0]["msg"] == (
+            f"Value error, {field} names unlisted IDs: a-typo, z-typo")
+    else:
+        lane = lane_type.model_validate(raw)
+        assert set(lane.model_dump(mode="json")[field]) == set(ids)
 
 
 def test_opencode_output_budget_is_positive_and_bound_to_a_rechecked_id(tmp_path):

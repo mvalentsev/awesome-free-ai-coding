@@ -87,13 +87,20 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 <h1>Free LLM APIs &amp; coding agents, filtered</h1>
 <p class="sub">Every row of <a href="./">awesome-free-ai-coding</a>, read live from <a href="index.json">index.json</a> — legal free tiers, no-card trials and free models, probe-verified twice a week. Narrow it to what you need; each row's page has the vendor's own words, the limits and the history.</p>
 <div class="controls">
-  <input type="search" id="q" placeholder="Search names, offers, models…" aria-label="Search">
+  <input type="search" id="q" placeholder="Search names, offers, model IDs…" aria-label="Search">
   <select id="cat" aria-label="Category">
     <option value="">All categories</option>
     <option value="agent-cli">Coding agents &amp; CLIs</option>
     <option value="api-free-tier">LLM APIs with free tier</option>
     <option value="trial">Trials</option>
     <option value="aggregator">Aggregators</option>
+  </select>
+  <select id="client" aria-label="Client setup" title="Offers with a ready-made configuration for this client">
+    <option value="">Client setup: any</option>
+    <option value="opencode">OpenCode</option>
+    <option value="codex">Codex CLI</option>
+    <option value="claude">Claude Code</option>
+    <option value="litellm">LiteLLM</option>
   </select>
   <select id="where" aria-label="Where you are">
     <option value="">Where you are: anywhere</option>
@@ -139,7 +146,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   var LABEL = { "agent-cli": "Agent / CLI", "api-free-tier": "API free tier", "trial": "Trial", "aggregator": "Aggregator" };
   var FILTERS = ["nocard", "nokey", "openai", "claude", "strong", "frontier", "notrain", "archived"];
   var els = {};
-  ["q", "cat", "where", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
+  ["q", "cat", "client", "where", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
   var entries = [];
   var generated = "";
   var configClients = {};
@@ -152,6 +159,15 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
   function families(e) {
     return (e.models || []).filter(function (m) { return !m.superseded_by; });
+  }
+  function callableIds(e) {
+    var lane = e.api || e.client_lane;
+    return lane ? lane.model_ids || [] : [];
+  }
+  function setupClient(e) {
+    var clients = Object.keys(configClients).filter(function (name) { return configClients[name].indexOf(e.id) !== -1; });
+    var selected = els.client.value;
+    return selected ? (clients.indexOf(selected) !== -1 ? selected : "") : clients[0] || "";
   }
   function keyless(e) { return !!(e.api && e.api.auth === "none"); }
   // A key the vendor prints for anyone is no account to open either.
@@ -177,12 +193,13 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   function notTrained(e) { return !!(e.data_use && e.data_use.trains === "no"); }
   function haystack(e) {
     var names = families(e).map(function (m) { return m.family; }).join(" ");
-    return written([e.name, e.offering, e.category, names].join(" ").toLowerCase());
+    return written([e.name, e.offering, e.category, names, callableIds(e).join(" ")].join(" ").toLowerCase());
   }
   function readState() {
     var params = new URLSearchParams(location.search);
     els.q.value = params.get("q") || "";
     els.cat.value = params.get("cat") || "";
+    els.client.value = params.get("client") || "";
     els.where.value = params.get("where") || "";
     FILTERS.forEach(function (id) { els[id].checked = params.get(id) === "1"; });
     comparison = comparisonIds(params.get("compare"), entries);
@@ -192,6 +209,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
     var params = new URLSearchParams();
     if (els.q.value) params.set("q", els.q.value);
     if (els.cat.value) params.set("cat", els.cat.value);
+    if (els.client.value) params.set("client", els.client.value);
     if (els.where.value) params.set("where", els.where.value);
     FILTERS.forEach(function (id) { if (els[id].checked) params.set(id, "1"); });
     if (comparison.length) params.set("compare", comparison.join(","));
@@ -403,15 +421,30 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       }
       else if (e.api.key_url) connect.appendChild(link(e.api.key_url, "get a key"));
       else connect.appendChild(el("span", "muted", "key required"));
-      var clients = Object.keys(configClients).filter(function (name) { return configClients[name].indexOf(e.id) !== -1; });
-      if (clients.length) {
-        var config = new URLSearchParams({client: clients[0], provider: e.id});
+      var client = setupClient(e);
+      if (client) {
+        var config = new URLSearchParams({client: client, provider: e.id});
         connect.appendChild(el("br"));
         connect.appendChild(link("./?" + config + "#plug", "Set up client"));
+      } else if (els.client.value) {
+        connect.appendChild(el("br"));
+        connect.appendChild(el("span", "muted", "No configuration for the selected client."));
       }
     } else {
       connect.appendChild(el("span", "muted", "not an API endpoint — see the page"));
     }
+    var query = written(els.q.value.trim().toLowerCase());
+    callableIds(e).filter(function (id) { return query && written(id.toLowerCase()) === query; }).forEach(function (id) {
+      var matched = el("div");
+      matched.appendChild(text("Model ID: "));
+      matched.appendChild(el("code", "", id));
+      var condition = e.access_labels && e.access_labels.ids && e.access_labels.ids[id];
+      if (condition) {
+        matched.appendChild(el("br"));
+        matched.appendChild(el("small", "muted", condition));
+      }
+      connect.appendChild(matched);
+    });
     tr.appendChild(connect);
 
     // An archived row says why it left: the last date its probe passed can
@@ -431,6 +464,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       if (e.duplicate_of) return false;
       if (e.archived && !els.archived.checked) return false;
       if (cat && e.category !== cat) return false;
+      if (els.client.value && !setupClient(e)) return false;
       if (!reaches(e, els.where.value)) return false;
       if (els.nocard.checked && e.card_required) return false;
       if (els.nokey.checked && !noAccount(e)) return false;
@@ -452,6 +486,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
     var live = entries.filter(function (e) { return !e.archived; }).length;
     var where = els.where.value ? els.where.options[els.where.selectedIndex].textContent : "";
     els.count.textContent = shown.length + " of " + live + " live offers shown" +
+      (els.client.value ? ", with " + els.client.options[els.client.selectedIndex].textContent + " setup" : "") +
       (where ? ", the ones offered in " + where : "") +
       (els.archived.checked ? " (archive included)" : "");
     if (generated) {
@@ -497,7 +532,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       els.frontier.checked = false;
       els.strong.checked = true;
     }
-    ["q", "cat", "where"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
+    ["q", "cat", "client", "where"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
     document.getElementById("comparison-clear").addEventListener("click", function () {
       comparison = [];
       comparisonOpen = false;

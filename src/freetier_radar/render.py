@@ -1215,6 +1215,17 @@ def _index_countries() -> list[dict]:
     return sorted(named, key=lambda c: _country_key(c["name"]))
 
 
+def _index_access_labels(e: Entry) -> dict:
+    lane = e.api or e.client_lane
+    if not (e.access or e.page_catalog or (lane and lane.model_access)):
+        return {}
+    return {"access_labels": {
+        "offer": access_words(e.access, compact=True),
+        "models": {f: _access_description(e, f, compact=True) for f in live_families(e)},
+        "ids": {mid: access_words(id_access(e, mid)) for mid in (lane.model_ids if lane else [])},
+    }}
+
+
 def build_index(entries: list[Entry], today: date,
                 watchlist: list[Watched] | None = None,
                 pages: set[str] | None = None) -> dict:
@@ -1230,10 +1241,7 @@ def build_index(entries: list[Entry], today: date,
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),
-             **({"access_labels": {"offer": access_words(e.access, compact=True),
-                                   "models": {f: _access_description(e, f, compact=True)
-                                              for f in live_families(e)}}}
-                if e.access or e.page_catalog or ((lane := e.api or e.client_lane) and lane.model_access) else {}),
+             **_index_access_labels(e),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
             for e in entries

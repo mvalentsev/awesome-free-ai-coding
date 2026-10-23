@@ -3240,7 +3240,11 @@
       "archived": false,
       "access_labels": {
         "offer": "requires $1 card verification",
-        "models": {}
+        "models": {},
+        "ids": {
+          "gpt-6-luna": "requires $1 one-time card verification",
+          "deepseek-v4.1-flash": "requires $1 one-time card verification"
+        }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
     },
@@ -6568,7 +6572,8 @@
           "mimo-v2.6-flash": "",
           "glm-5.3-flash": "",
           "deepseek-v4.1-flash": ""
-        }
+        },
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"
     },
@@ -7001,6 +7006,13 @@
         "models": {
           "mistral-small-3.2": "",
           "glm-4.7-flash": "requires $1 top-up"
+        },
+        "ids": {
+          "mistralai/Mistral-Small-3.2-24B-Instruct-2506": "",
+          "meganova-ai/manta-mini-1.0": "",
+          "meganova-ai/manta-flash-1.0": "",
+          "zai-org/GLM-4.7-Flash": "requires $1 one-time top-up",
+          "meganova-ai/manta-pro-1.0": "requires $1 one-time top-up"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/"
@@ -7482,6 +7494,25 @@
           "atria-dawn-preview": "until 2026-10-31",
           "agents-a1": "until 2026-10-31",
           "sage-a1.5": "until 2026-10-31"
+        },
+        "ids": {
+          "nvidia/nemotron-3-ultra-550b-a55b": "",
+          "nvidia/nemotron-3-super-120b-a12b": "",
+          "qwen/qwen3.8-27b-free": "",
+          "poolside/laguna-xs-2.1": "",
+          "agnes/agnes-3.0-flash": "",
+          "agnes/agnes-2.5-flash": "",
+          "heabsy/qwen3.8-27b-heabsy-free": "free until 2026-11-02 00:00+03:00",
+          "nvidia/nemotron-3.5-super-vl-free": "",
+          "ifm/jais-3-mova-36b-a4b": "free until 2026-11-05 23:59+03:00",
+          "ifm/k2-horizon-375b-a23b": "free until 2026-11-05 23:59+03:00",
+          "minimax/minimax-m3.1-flash-free": "free until 2026-10-26 23:59+03:00",
+          "voltropy/vast-10m-flash-free": "free until 2026-10-26 23:59+03:00",
+          "internlm/intern-s2-free": "free until 2026-10-31 23:59+03:00",
+          "internlm/atria-dawn-free": "free until 2026-10-31 23:59+03:00",
+          "internlm/atria-dawn-preview-free": "free until 2026-10-31 23:59+03:00",
+          "internlm/agents-a1-free": "free until 2026-10-31 23:59+03:00",
+          "internlm/sage-a1.5-free": "free until 2026-10-31 23:59+03:00"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -9167,6 +9198,10 @@
         "models": {
           "deepseek-v4.1-flash": "",
           "mimo-v2.6-flash": ""
+        },
+        "ids": {
+          "deepseek-v4.1-flash:free": "",
+          "mimo-v2.6-flash:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/"
@@ -13043,6 +13078,10 @@
         "offer": "",
         "models": {
           "qwen3.8-27b": ""
+        },
+        "ids": {
+          "qwen/qwen3.8-27b": "",
+          "moonshotai/kimi-k3-free": "requires $10 one-time top-up"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/"
