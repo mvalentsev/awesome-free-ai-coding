@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-10-22'
-description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context…'
+description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192…'
 permalink: /providers/iteracompute/
 last_modified_at: 2026-10-22
 crumb: IteraCompute
@@ -15,7 +15,7 @@ crumb: IteraCompute
 
 ## What you get
 
-OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up
+OpenAI-compatible API with recurring free usage on a self-hosted open model
 
 ## Free models
 
@@ -27,9 +27,7 @@ Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. All
 
 Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
 
-Kimi K3 Free: Usage allowance: amount not published (period not published); scope not published; for `moonshotai/kimi-k3-free`
-
-Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Qwen Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge principal minus refunds, excluding grants and fees; spending the balance keeps access, while refunds below the threshold block new requests. Qwen allowances do not apply to Kimi, whose free route is "especially slow". Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
+Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
 
 ## Where it is offered
 
@@ -43,9 +41,8 @@ What you send is not used to train models. In the vendor's words: “Without you
 
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
-- Callable ids: `qwen/qwen3.8-27b`, `moonshotai/kimi-k3-free`
-- `moonshotai/kimi-k3-free`: requires $10 one-time top-up ([conditions](https://iteracompute.com/models/kimi-k3-free/))
-- Note: Create a key scoped to your chosen ID. Use Chat Completions. Set Qwen context and output budgets to the Free limits on the provider page; give Kimi a bounded output budget because responses are slow. Authenticated generation has not been checked here.
+- Callable ids: `qwen/qwen3.8-27b`
+- Note: Create a key scoped to qwen/qwen3.8-27b. Use Chat Completions and set context and output budgets to the Free limits on the provider page. Authenticated generation has not been checked here.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -64,7 +61,6 @@ curl -s https://api.iteracompute.com/v1/chat/completions \
 - Source: <https://iteracompute.com/docs.html>
 - Source: <https://iteracompute.com/integrations/opencode/>
 - Source: <https://iteracompute.com/models/qwen3-8-27b/>
-- Source: <https://iteracompute.com/models/kimi-k3-free/>
 - Source: <https://iteracompute.com/subprocessors/>
 - Source: <https://iteracompute.com/changelog/>
 - Source: <https://iteracompute.com/about/>

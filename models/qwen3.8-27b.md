@@ -134,15 +134,13 @@ Free grants apply in Singapore (international) only, independently per model and
 
 🔌 LLM APIs with free tier · no card · provisional since 2026-10-18 · last probe 2026-10-22 · listed since 2026-10-21
 
-OpenAI-compatible API with recurring free usage on a self-hosted open model and a separate zero-price route after a one-time top-up
+OpenAI-compatible API with recurring free usage on a self-hosted open model
 
 - Limits, in the vendor's words: Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
 
 Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
 
-Kimi K3 Free: Usage allowance: amount not published (period not published); scope not published; for `moonshotai/kimi-k3-free`
-
-Register and verify an email, or sign in with Google. Qwen input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Qwen Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge principal minus refunds, excluding grants and fees; spending the balance keeps access, while refunds below the threshold block new requests. Qwen allowances do not apply to Kimi, whose free route is "especially slow". Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
+Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`

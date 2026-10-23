@@ -796,9 +796,6 @@
       "models": {
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
-        },
-        "moonshotai/kimi-k3-free": {
-          "name": "moonshotai/kimi-k3-free (requires $10 top-up)"
         }
       }
     },

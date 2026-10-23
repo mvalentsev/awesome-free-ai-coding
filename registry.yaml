@@ -9529,7 +9529,6 @@ entries:
   - https://iteracompute.com/docs.html
   - https://iteracompute.com/integrations/opencode/
   - https://iteracompute.com/models/qwen3-8-27b/
-  - https://iteracompute.com/models/kimi-k3-free/
   - https://iteracompute.com/subprocessors/
   - https://iteracompute.com/changelog/
   - https://iteracompute.com/about/
@@ -9537,18 +9536,16 @@ entries:
   - https://iteracompute.com/privacy.html
   card_required: false
   offering: OpenAI-compatible API with recurring free usage on a self-hosted open
-    model and a separate zero-price route after a one-time top-up
-  limits: Register and verify an email, or sign in with Google. Qwen input and output,
+    model
+  limits: Register and verify an email, or sign in with Google. Input and output,
     including reasoning, count across all account keys. "Context includes input and
-    requested output; output is capped at 8,192 tokens." Qwen Free total context is
-    128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota
-    returns 429 without automatic paid overage. Qwen needs no recharge; optional cumulative
-    $10/$50 top-ups unlock larger Qwen allowances. Kimi requires completed recharge
-    principal minus refunds, excluding grants and fees; spending the balance keeps
-    access, while refunds below the threshold block new requests. Qwen allowances
-    do not apply to Kimi, whose free route is "especially slow". Shared capacity may
-    queue; honor Retry-After. No SLA. Zero data retention requires a separate signed
-    agreement.
+    requested output; output is capped at 8,192 tokens." Free total context is 128K.
+    Requests reserve maximum usage, then settle actual usage. Exhausted quota returns
+    429 without automatic paid overage. No recharge is required; optional cumulative
+    $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal
+    minus refunds, excluding grants and fees. Spending the balance keeps the tier;
+    refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero
+    data retention requires a separate signed agreement.
   quotas:
   - amount: 30000000.0
     unit: tokens
@@ -9604,14 +9601,6 @@ entries:
       active_class: ''
     model_ids:
     - qwen/qwen3.8-27b
-  - unit: usage
-    scope: unspecified
-    label: Kimi K3 Free
-    source: https://iteracompute.com/models/kimi-k3-free/
-    quote: Fair-use limits apply and free capacity has no SLA.
-    model_ids:
-    - moonshotai/kimi-k3-free
-    reviewed_on: '2026-10-21'
   free_part: models
   models:
   - family: qwen3.8-27b
@@ -9624,15 +9613,11 @@ entries:
     openai_compatible: true
     model_ids:
     - qwen/qwen3.8-27b
+    ignored_ids:
     - moonshotai/kimi-k3-free
-    model_access:
-      moonshotai/kimi-k3-free:
-        source: https://iteracompute.com/models/kimi-k3-free/
-        initial_payment_usd: 10.0
-    note: Create a key scoped to your chosen ID. Use Chat Completions. Set Qwen context
-      and output budgets to the Free limits on the provider page; give Kimi a bounded
-      output budget because responses are slow. Authenticated generation has not been
-      checked here.
+    note: Create a key scoped to qwen/qwen3.8-27b. Use Chat Completions and set context
+      and output budgets to the Free limits on the provider page. Authenticated generation
+      has not been checked here.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call
