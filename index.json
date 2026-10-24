@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23",
+  "generated": "2026-10-24",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -3687,7 +3687,7 @@
           "label": "Zero-priced model routes",
           "source": "https://vercel.com/docs/ai-gateway/pricing",
           "quote": "Free tier eligible models",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-24",
           "amount": null,
           "period": null
         },
@@ -3702,7 +3702,7 @@
           "model_ids": [
             "reflection/beam-free"
           ],
-          "reviewed_on": "2026-10-17",
+          "reviewed_on": "2026-10-24",
           "amount": null,
           "period": null
         }
@@ -12568,7 +12568,7 @@
           "scope": "account",
           "source": "https://www.aionlabs.ai/pricing/",
           "quote": "A daily credit allowance to try agent jobs, the API, and browser chat. No card required.",
-          "reviewed_on": "2026-10-17",
+          "reviewed_on": "2026-10-24",
           "amount": null
         },
         {
