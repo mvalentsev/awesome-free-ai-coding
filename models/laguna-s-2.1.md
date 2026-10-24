@@ -93,11 +93,11 @@ OpenAI-compatible model gateway with $5 of monthly credit after adding a payment
 
 - Limits, in the vendor's words: Gateway credit: $5/month per team
 
-Zero-priced model routes: Usage allowance: amount not published (period not published) per team
+Free credit rate limits: Requests allowance: amount not published (period not published); scope not published (Limits apply per model.)
 
 Beam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`
 
-A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
+A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
