@@ -20,7 +20,7 @@ def _html() -> str:
 def test_browse_page_uses_local_assets_and_reads_index_json_beside_itself():
     html = _html()
     assert 'fetch("index.json"' in html
-    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js"]
+    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js", "assets/search.js"]
     assert (PAGE.parent / "assets/model-name.js").is_file()
     assert not re.search(r'<link\b[^>]*rel="stylesheet"', html), "no external styles"
     assert "prefers-color-scheme" in html
@@ -139,16 +139,13 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
     """The site's search and the 404 page send a model name here as a reader
     writes it: "nemotron 3 ultra" finds a row that lists nemotron-3-ultra. The
     page's own functions run on a row index.json publishes."""
-    from test_site import _js_function
-
-    html = _html()
+    from test_site import SEARCH_ASSETS
     row = build_index([make(offering="A free lane",
                             models=[{"family": "nemotron-3-ultra"}, {"family": "qwen3-8b"}])],
                       TODAY)["entries"][0]
-    harness = (PAGE.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
-        _js_function(html, n) for n in ("callableIds", "families", "haystack")) + f"""
-    var e = {json.dumps(row)};
-    function finds(q) {{ return haystack(e).indexOf(written(q.trim().toLowerCase())) !== -1; }}
+    harness = SEARCH_ASSETS + f"\nvar e = {json.dumps(row['search'])};" + """
+    FreeTierSearch.prepareOffer(e);
+    function finds(q) { return FreeTierSearch.scoreOffer(e, FreeTierSearch.fold(q).split(" ")) > 0; }
     console.log(JSON.stringify(["Nemotron 3 Ultra", "nemotron-3-ultra", "a free lane",
                                 "qwen 3.8", "qwen3 8b"].map(finds)));"""
     run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
@@ -156,10 +153,11 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
     assert json.loads(run.stdout) == [True, True, True, False, True]
 
 
+
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
 @pytest.mark.parametrize("lane", ["api", "client_lane"])
 def test_search_finds_current_callable_ids_without_publishing_or_reviving_a_family(lane):
-    from test_site import _js_function
+    from test_site import SEARCH_ASSETS
 
     metadata = {"model_ids": ["vendor/preview-35b:free"], "ignored_ids": ["vendor/ended:free"]}
     if lane == "api":
@@ -168,20 +166,14 @@ def test_search_finds_current_callable_ids_without_publishing_or_reviving_a_fami
              probe={"type": "api-models", "endpoint": "https://vendor.example/models",
                     "require_zero_price": True})
     row = build_index([e], TODAY)["entries"][0]
-    html = _html()
-    functions = ["callableIds", "families", "haystack"]
-    script = (PAGE.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
-        _js_function(html, name) for name in functions)
-    script += f"""
-    var e = {json.dumps(row)};
-    console.log(JSON.stringify(['vendor/preview-35b:free','VENDOR/PREVIEW_35B:FREE',
-                                'vendor/ended:free','stable'].map(function(q) {{
-      return haystack(e).includes(written(q.toLowerCase()));
-    }})));"""
-    result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
-    assert result.returncode == 0, result.stderr
-    assert json.loads(result.stdout) == [True, True, False, True]
-    assert [m["family"] for m in row["models"]] == ["stable"]
+    script = SEARCH_ASSETS + "\nvar row = " + json.dumps(row["search"]) + ";\n" + """
+    FreeTierSearch.prepareOffer(row);
+    console.log(JSON.stringify(["vendor/preview-35b:free", "VENDOR/PREVIEW_35B:FREE",
+      "vendor/ended:free", "stable"].map(q => FreeTierSearch.scoreOffer(row, [FreeTierSearch.fold(q)]) > 0)));"""
+    run = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    assert json.loads(run.stdout) == [True, True, False, True]
+    assert row["models"] == [{"family": "stable"}]
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")

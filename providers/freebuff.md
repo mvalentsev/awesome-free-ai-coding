@@ -3,7 +3,7 @@ layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-10-22'
 description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. Available models depend on the app and access level. “Promotional prices…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: Freebuff
 ---
 

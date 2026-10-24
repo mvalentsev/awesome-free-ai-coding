@@ -20,6 +20,8 @@ from freetier_radar.render import (
 from test_render import TODAY, make
 
 TEMPLATES = Path(__file__).resolve().parent.parent / "templates"
+SEARCH_ASSETS = "\n".join((TEMPLATES.parent / "assets" / name).read_text()
+                           for name in ("model-name.js", "search.js"))
 
 
 def _render(entries, tmp_path, today=TODAY) -> str:
@@ -122,7 +124,7 @@ def test_the_page_is_html_and_says_what_it_is(tmp_path):
     assert 'lang="en"' in html
     assert 'name="viewport"' in html
     assert "prefers-color-scheme" in html
-    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js"]
+    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js", "assets/search.js"]
     assert (TEMPLATES.parent / "assets/model-name.js").is_file()
     assert not re.search(r'<link\b[^>]*rel="stylesheet"', html), "no external styles"
 
@@ -559,7 +561,7 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
                make(id="gone", name="Gone", retired_on=TODAY)]
     html = _render(entries, tmp_path)
     row = re.search(r'<tr id="row-a" data-id="a" data-section="api-free-tier"\s+'
-                    r'data-flags="([^"]*)">', html)
+                    r'data-flags="([^"]*)"', html)
     assert row and row.group(1).split() == ["nocard", "nokey", "strong"], row
     assert re.search(r'<tr id="row-b" data-id="b" [^>]*data-flags=""', html)
     assert re.search(r'<tr id="model-m1" data-family="m1" data-tier="strong"\s+'
@@ -567,19 +569,27 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
     assert '<tr data-id="gone">' in html
     # The pages are read off the links the rows already carry.
     assert re.search(r'<td class="when" data-label="Verified">\s*<a href="[^"]+/providers/a/">', html)
-    script = html.split('id="search-config">')[1]
-    for selector in ('"section.listing tbody tr[data-id]"', '"#model-index tr[data-family]"',
-                     '"#archive tbody tr[data-id]"', '"a.name"', '"td.what"', '"td.limits"',
-                     '"td.models .chip"', '".tags"', '"td.when a"', '"th a"'):
-        assert selector in script, selector
-    for attr in ("id", "section", "flags"):
-        assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
-    for attr in ("family", "tier", "rows"):
-        assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
+    from html.parser import HTMLParser
+    class Rows(HTMLParser):
+        records = {}
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            if tag == "tr" and "data-search" in attrs:
+                self.records[attrs["data-id"]] = json.loads(attrs["data-search"])
+    parser = Rows()
+    parser.feed(html)
+    from freetier_radar.render import build_index
+    canonical = {e["id"]: e["search"] for e in build_index(entries, TODAY)["entries"] if not e["archived"]}
+    assert parser.records == canonical
+    assert parser.records["a"]["models"] == ["m1"]
+    assert parser.records["a"]["flags"] == ["nocard", "nokey", "strong"]
+
 
 
 def _js_function(script: str, name: str) -> str:
     """One function of the page's script, its braces matched."""
+    if f"function {name}(" not in script:
+        script = (TEMPLATES.parent / "assets/search.js").read_text()
     start = script.index(f"function {name}(")
     depth = 0
     for i in range(script.index("{", start), len(script)):
@@ -603,7 +613,7 @@ def test_shared_config_links_restore_only_existing_routes(tmp_path, query, clien
     var configs = {opencode: [{id: 'chat'}], codex: [{id: 'chat'}], claude: []};
     var client = {value: 'opencode'}, provider = {value: ''};
     function chooseClient() { provider.value = ''; }
-    function showConfig() {}
+    function chooseModel() {}
     """ + _js_function(html, "restoreConfig") + """
     restoreConfig();
     console.log(JSON.stringify([client.value, provider.value]));
@@ -618,7 +628,7 @@ def test_config_and_search_url_state_preserve_each_other(tmp_path):
     html = _render([make()], tmp_path)
     harness = """
     var location = {href: 'https://example.test/list/?q=groq&nocard=1&review=abc#search'};
-    var client = {value: 'codex'}, provider = {value: 'kilo-code'};
+    var client = {value: 'codex'}, provider = {value: 'kilo-code'}, model = {value: 'reflection/beam-free'};
     var written;
     var history = {replaceState: function(a, b, url) { written = url; }};
     """ + _js_function(html, "syncConfig") + _js_function(html, "withoutSearch") + """
@@ -637,9 +647,9 @@ def test_config_and_search_url_state_preserve_each_other(tmp_path):
     got = json.loads(run.stdout)
     selected = urlparse(got["selected"])
     assert parse_qs(selected.query) == {"q": ["groq"], "nocard": ["1"], "review": ["abc"],
-                                         "client": ["codex"], "provider": ["kilo-code"]}
+                                         "client": ["codex"], "provider": ["kilo-code"], "model": ["reflection/beam-free"]}
     assert selected.fragment == "plug"
-    assert parse_qs(got["clean"]) == {"review": ["abc"], "client": ["codex"], "provider": ["kilo-code"]}
+    assert parse_qs(got["clean"]) == {"review": ["abc"], "client": ["codex"], "provider": ["kilo-code"], "model": ["reflection/beam-free"]}
     assert "provider" not in parse_qs(urlparse(got["cleared"]).query)
 
 
@@ -652,7 +662,7 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
     script = _render([make()], tmp_path).split('id="search-config">')[1]
     names = ("fold", "squash", "prepareOffer", "prepareModel",
              "scoreOffer", "wholeOffer", "scoreModel", "spelled", "withAccess", "snippet")
-    harness = (TEMPLATES.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
+    harness = SEARCH_ASSETS + "\n" + "\n".join(
         _js_function(script, n) for n in names) + """
     function q(s) { return fold(s).split(" ").filter(Boolean); }
     function offer(models, limits, access, modelAccess, name) {
@@ -749,11 +759,11 @@ def test_toggling_a_search_chip_preserves_other_choices(tmp_path, query, clicked
     html = _render([make()], tmp_path)
     config = json.loads(re.search(r'id="search-config">(.*?)</script>', html, re.S).group(1))
     script = html.split('id="search-config">')[1]
-    parser = script[script.index("function parse("):script.index("function wanted(")]
+    parser = script[script.index("function parse("):script.index("var wanted =")]
     binding = script[script.index("CONFIG.sections.concat(CONFIG.filters).forEach("):
                      script.index('input.addEventListener("input"')]
     setup = {"CONFIG": config, "query": query, "initial": initial, "clicked": clicked}
-    harness = "var args = " + json.dumps(setup) + ";\n" + """
+    harness = SEARCH_ASSETS + "\nvar args = " + json.dumps(setup) + ";\n" + """
     var CONFIG = args.CONFIG, buttons = [], renders = 0;
     var state = {section: args.initial.section || "", filters: args.initial.filters || {}};
     var input = {value: args.query, focus: function () {}};

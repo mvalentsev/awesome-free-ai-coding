@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.6-max free: no current listing, last listed 2026-10-12'
 description: No row currently lists qwen3.6-max under Free models. The list carried it at Alibaba Cloud Model Studio (DashScope, international) until 2026-10-12. Each row's page gives its current offer.
 permalink: /models/qwen3.6-max/
-last_modified_at: 2026-10-12
+last_modified_at: 2026-10-13
 crumb: qwen3.6-max
 ---
 

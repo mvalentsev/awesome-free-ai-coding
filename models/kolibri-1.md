@@ -3,7 +3,7 @@ layout: default
 title: 'kolibri-1 free: no current listing, last listed 2026-10-10'
 description: No row currently lists kolibri-1 under Free models. The list carried it at LLMTR until 2026-10-10. Each row's page gives its current offer.
 permalink: /models/kolibri-1/
-last_modified_at: 2026-10-10
+last_modified_at: 2026-10-13
 crumb: kolibri-1
 ---
 

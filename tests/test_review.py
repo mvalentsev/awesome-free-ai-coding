@@ -100,6 +100,33 @@ def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_fac
     assert '2026-10-11' in (bundle.out / 'diff.patch').read_text()
 
 
+@pytest.mark.parametrize('substantive', [False, True])
+def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(tmp_path, substantive):
+    repo, _, _ = push_repo_at(tmp_path)
+    page = repo / 'providers/vendor.md'
+    page.parent.mkdir(exist_ok=True)
+    page.write_text('---\ntitle: Vendor\nlast_modified_at: 2026-10-10\n---\n# Vendor\n\nLimit: 10 requests/day\n')
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: baseline'], check=True)
+    data = json.loads((repo / 'index.json').read_text())
+    data['entries'][0]['search'] = {'name': data['entries'][0].get('name', 'Vendor')}
+    (repo / 'index.json').write_text(json.dumps(data))
+    page.write_text(page.read_text().replace('last_modified_at: 2026-10-10',
+                                           'last_modified_at: 2026-10-24'))
+    if substantive:
+        page.write_text(page.read_text().replace('10 requests/day', '20 requests/day'))
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: reconcile content'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    from freetier_radar.quality import vendor_scope, eligibility_scope
+    expected = ['vendor'] if substantive else []
+    assert scope['rows'] == expected
+    assert vendor_scope(repo, scope['base'], scope['sha'])['rows'] == expected
+    assert scope['eligibility'] == eligibility_scope(repo, scope['base'], scope['sha'])
+    assert scope['paths'] == ['index.json', 'providers/vendor.md']
+
+
 def push_repo_at(tmp_path):
     repo = repo_at(tmp_path)
     base = review.revision(repo, 'HEAD~1')

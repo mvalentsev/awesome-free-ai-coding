@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-fin free: no current listing, last listed 2026-10-15'
 description: No row currently lists ling-3.0-flash-fin under Free models. The list carried it at opencode, Nous Portal (Hermes Agent), LLMTR, Kilo Code, OpenRouter (free models) and Vercel AI Gateway until 2026-10-15. Each row's page gives its current offer.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-23
 crumb: ling-3.0-flash-fin
 ---
 

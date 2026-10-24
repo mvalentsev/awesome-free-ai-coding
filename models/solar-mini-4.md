@@ -3,7 +3,7 @@ layout: default
 title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-10-22'
 description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: solar-mini-4
 ---
 

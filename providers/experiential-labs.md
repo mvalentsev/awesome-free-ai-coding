@@ -3,7 +3,7 @@ layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-19'
 description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. The monthly credit requires a one-time $1 card check. A credit is one cent. Pricing…
 permalink: /providers/experiential-labs/
-last_modified_at: 2026-10-19
+last_modified_at: 2026-10-22
 crumb: Experiential Labs
 ---
 

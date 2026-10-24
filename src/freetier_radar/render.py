@@ -44,6 +44,7 @@ from .page_catalog import catalog_index, catalog_words, family_condition, limits
 # CONTRIBUTING.md prints.
 from .gate import committed_log
 from .layout import MAP, markdown_table
+from .page_dates import PageDates
 
 __all__ = ["FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS",
@@ -792,9 +793,9 @@ def _starter(e: Entry) -> dict:
             "page": provider_page_url(e.id)}
 
 
-def _codex_command(e: Entry) -> str:
+def _codex_command(e: Entry, model: str | None = None) -> str:
     """How a reader starts Codex CLI on a row's own profile."""
-    return f"codex -p {e.id}"
+    return f"codex -p {e.id}" + (f" -m {shlex.quote(model)}" if model else "")
 
 
 def _pick(e: Entry, families: list[str] | None = None) -> dict:
@@ -1235,12 +1236,14 @@ def build_index(entries: list[Entry], today: date,
         "source": REPO_URL,
         "feed": FEED_URL,
         "data_use_words": dict(DATA_USE_WORDS),
+        "search_config": _search_config(),
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
              "no_account": needs_no_account(e),
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),
+             "search": _search_record(e),
              **_index_access_labels(e),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
@@ -1341,6 +1344,29 @@ def _site_fold(text: str) -> dict[str, str]:
     return {"text": text, "teaser": f"{_cut(text, README_LIMITS_TEASER)} …"}
 
 
+def _search_record(e: Entry) -> dict:
+    """The same complete facts and filter answers for both browser searches.
+
+    Collapsing a cell only changes its presentation, never this input. Callable
+    IDs remain separate from the qualified families a result may label free.
+    """
+    families = live_families(e)
+    lane = lane_ids(e)
+    return {
+        "name": e.name, "models": families,
+        "ids": lane.model_ids if lane else [],
+        "what": e.offering, "limits": limits_text(e),
+        "access": access_words(e.access, compact=True),
+        "modelAccess": {f: _access_description(e, f, compact=True) for f in families},
+        "section": {"id": e.category.value},
+        "flags": [flag for flag, on in (
+            ("nocard", not e.card_required), ("nokey", needs_no_account(e)),
+            ("claude", bool(e.api and e.api.anthropic_base_url)),
+            ("strong", any(m.superseded_by is None and m.tier in (Tier.FRONTIER, Tier.STRONG)
+                           for m in e.models))) if on],
+    }
+
+
 def _site_row(e: Entry) -> dict:
     """A row of a section table: the facts, with every judgement already made.
 
@@ -1354,6 +1380,7 @@ def _site_row(e: Entry) -> dict:
     chips = [{"family": m.family, "tier": m.tier.value if m.tier else "",
               "access": _access_description(e, m.family, compact=True)} for m in families]
     api = e.api
+    search = _search_record(e)
     return {
         "id": e.id,
         "name": e.name,
@@ -1375,11 +1402,8 @@ def _site_row(e: Entry) -> dict:
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
         # The same answers as the words the page's search filters on, one per
         # filter it offers (SEARCH_FILTERS) — held to them by a test.
-        "flags": [flag for flag, on in (
-            ("nocard", not e.card_required),
-            ("nokey", needs_no_account(e)),
-            ("claude", bool(api and api.anthropic_base_url)),
-            ("strong", any(m.tier in (Tier.FRONTIER, Tier.STRONG) for m in families))) if on],
+        "flags": search["flags"],
+        "search": search,
         # A row whose published lane is known not to work says so where it is
         # read, not only on its own page, before a reader copies the base URL.
         "notice": _notice_data(api.notice if api else None),
@@ -1434,39 +1458,72 @@ def _site_client_configs(entries: list[Entry], today: date) -> dict[str, list[di
     for e in _connectable(entries, today):
         if not e.api.model_ids:
             continue
-        mid = preferred_ids(e)[0]
-        deployment = f"{e.id}/{mid}"
+        preferred = preferred_ids(e)
+        proxied = [i for i in preferred if f"{e.id}/{i}" in deployments]
         common = {
             "id": e.id, "name": e.name, "page": provider_page_url(e.id),
             "key_url": e.api.key_url or "", "env_var": env_var(e.id),
             "keyless": e.api.key_kind == "none", "public_key": e.api.public_key or "",
-            "card": _card_words(e), "access": access_words(id_access(e, mid)),
+            "card": _card_words(e),
             "limits": " ".join(filter(None, (quota_summary(e), e.limits))), "note": e.api.note,
             "notice": e.api.notice.text if e.api.notice else "",
         }
-        if e.id in opencode and mid in opencode[e.id]["models"]:
+        if e.id in opencode:
             clients["opencode"].append({**common, "files": ["configs/opencode.json"],
-                "model": deployment, "command": "opencode",
-                "setup": "Save opencode.json in your project, then choose this model in OpenCode.",
+                "setup": "Save opencode.json in your project. Append your task to the launch command.",
                 "route": "Direct"})
         if e.id in direct:
             clients["codex"].append({**common, "files": [codex_profile_path(e)],
-                "model": mid, "command": _codex_command(e), "route": "Direct",
+                "route": "Direct",
                 "setup": f"Copy the profile to ~/.codex/. Requires Codex CLI {CODEX_SINCE} or later."})
-        elif deployment in deployments:
+        elif proxied:
             clients["codex"].append({**common, "files": ["configs/litellm.yaml", CODEX_LITELLM_PATH],
-                "model": deployment, "command": f"codex -p {CODEX_LITELLM_PROFILE} -m {shlex.quote(deployment)}",
                 "proxy_command": litellm_command(), "route": "Via LiteLLM",
                 "setup": f"Save litellm.yaml under configs/, copy the profile to ~/.codex/, then start the proxy. Requires Codex CLI {CODEX_SINCE} and LiteLLM {LITELLM_BRIDGE_SINCE} or later."})
         if e.id in anthropic:
             clients["claude"].append({**common, "files": ["configs/claude-code.sh"],
-                "model": mid, "command": f"claude-{e.id}", "route": "Direct",
+                "route": "Direct",
                 "setup": "Save the file under configs/ and run source configs/claude-code.sh in bash or zsh."})
-        if deployment in deployments:
+        if proxied:
             clients["litellm"].append({**common, "files": ["configs/litellm.yaml"],
-                "model": deployment, "command": litellm_command(), "route": "Local proxy",
+                "route": "Local proxy",
                 "setup": f"Save the file under configs/. Point your client at {LITELLM_LOCAL_URL} and choose this model."})
+        for client, rows in clients.items():
+            if not rows or rows[-1]["id"] != e.id:
+                continue
+            row = rows[-1]
+            if client == "opencode":
+                ids = [i for i in preferred if i in opencode[e.id]["models"]]
+            elif client == "claude" or (client == "codex" and row["route"] == "Direct"):
+                ids = preferred
+            else:
+                ids = proxied
+            row["models"] = [_client_model(e, i, client, row["route"], i == preferred[0]) for i in ids]
+            row.update({key: value for key, value in row["models"][0].items() if key != "id"})
     return clients
+
+
+def _client_model(e: Entry, mid: str, client: str, route: str, default: bool) -> dict:
+    """A callable model's command and conditions, from the same generated route.
+
+    Commands are assembled here, with shell quoting, rather than patched in the
+    browser. Shared limits remain on the provider; access belongs to this ID.
+    """
+    deployment = f"{e.id}/{mid}"
+    model = deployment if client in ("opencode", "litellm") or route == "Via LiteLLM" else mid
+    if client == "opencode":
+        # Shared by the v1/v2 CLI; v2.1.3 removed --model from the bare TUI
+        # command. https://opencode.ai/v2/docs/models, checked 2026-10-24.
+        command = f"opencode run --model {shlex.quote(model)}"
+    elif client == "codex":
+        command = (_codex_command(e, None if default else mid) if route == "Direct" else
+                   f"codex -p {CODEX_LITELLM_PROFILE} -m {shlex.quote(model)}")
+    elif client == "claude":
+        command = f"claude-{e.id}" + ("" if default else f" --model {shlex.quote(model)}")
+    else:
+        command = litellm_command()
+    return {"id": mid, "model": model, "command": command,
+            "access": access_words(id_access(e, mid))}
 
 
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
@@ -2219,14 +2276,12 @@ def _page_description(e: Entry) -> str:
 
 
 def _last_modified(e: Entry, events: list[Event]) -> date:
-    """The newest day a row's page changed for a reader: the last probe that
-    passed it, the day its border was read or its newest history line,
-    whichever came last, as a UTC day.
+    """Dated provenance for a page builder before PageDates reconciles content.
 
-    It goes in the page's front matter as `last_modified_at`, which
-    jekyll-sitemap writes as the URL's <lastmod> and jekyll-seo-tag as the
-    page's `dateModified`, for a crawler deciding what to read again. The
-    footer's render date is not it: a render changes no fact on the page."""
+    A limits or source correction need not produce a history event. The shared
+    page writer records its actual content date separately from these earned
+    verification dates, which this function never changes.
+    """
     # A border read is a fact the page gained that day, with no history line.
     read = [e.border.on] if e.border is not None else []
     return max([e.last_verified, *read, *(ev.ts.astimezone(timezone.utc).date()
@@ -2282,8 +2337,10 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
                    f"`{api.anthropic_base_url}`")
     if codex_ready(e):
         path = codex_profile_path(e)
+        chosen = next((mid for mid in preferred_ids(e) if mid in ids), None)
+        command = _codex_command(e, chosen if chosen != preferred_ids(e)[0] else None)
         line = (f"- Codex CLI: [`{path}`]({REPO_URL}/blob/main/{path}) — copy it to "
-                f"`~/.codex/`, then `{_codex_command(e)}`")
+                f"`~/.codex/`, then `{command}`")
         if api.codex.base_url != api.base_url.rstrip("/"):
             line += f"; Codex's base is `{api.codex.base_url}`"
         if api.codex.source:
@@ -3041,12 +3098,15 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     return text
 
 
-def _write_files(folder: Path, pattern: str, files: dict[str, str]) -> None:
+def _write_files(folder: Path, pattern: str, files: dict[str, str],
+                 dates: PageDates | None = None) -> None:
     """Write each file into `folder` and remove the ones there that match
     `pattern` and are no longer among them. A file of another kind is not the
     render's to delete."""
     folder.mkdir(parents=True, exist_ok=True)
     for name, text in files.items():
+        if dates is not None:
+            text = dates.stamp(f"{folder.name}/{name}", text)
         (folder / name).write_text(text, encoding="utf-8")
     for stale in folder.glob(pattern):
         if stale.name not in files:
@@ -3067,6 +3127,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     # The model pages, worked out once for every file that links one: the
     # rule's, and every page already published beside the registry.
     pages = model_pages(entries, history, today, _published_beside(registry_path))
+    dates = PageDates(registry_path.parent, today)
     (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
     # A page per row, the checked page and the index.
     _write_files(root / PROVIDERS_DIR, "*.md", {
@@ -3075,14 +3136,14 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                                              is_blocked(domain_of(e.url), blocklist),
                                              registry=entries, pages=pages)
            for e in entries},
-        f"{PROVIDERS_INDEX_PAGE}.md": build_providers_index(entries, today, history, pages)})
+        f"{PROVIDERS_INDEX_PAGE}.md": build_providers_index(entries, today, history, pages)}, dates)
     # A page per model that has one, the pages already published among them,
     # and the index of every model. The only file taken away is one no family
     # names: a page the site published stays (`model_pages`).
     _write_files(root / MODELS_DIR, "*.md", {
         **{f"{family}.md": build_model_page(family, entries, history, today, pages)
            for family in sorted(pages)},
-        "index.md": build_models_index(entries, today, history, pages)})
+        "index.md": build_models_index(entries, today, history, pages)}, dates)
     (root / "index.json").write_text(
         json.dumps(build_index(entries, today, watchlist, pages), indent=2,
                    ensure_ascii=False) + "\n",

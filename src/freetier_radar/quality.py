@@ -22,13 +22,20 @@ def changed_paths(repo: Path, base: str, sha: str) -> list[str]:
     return sorted(filter(None, result.stdout.split('\0')))
 
 
-def eligibility_scope(repo: Path, base: str, sha: str) -> dict[str, list[str]]:
-    """Derive fact-review coverage from committed data, independent of a signoff."""
+def vendor_scope(repo: Path, base: str, sha: str) -> dict:
+    """One fact-review scope for source collection and mandatory signoffs.
+
+    Search records repeat canonical fields; modification dates and daily stamps
+    are writer metadata. Neither alone changes vendor facts. Canonical registry,
+    remaining index fields and substantive page content each establish scope.
+    """
+    from .page_dates import content_hash
     indexes, registries = [], []
     for ref in (base, sha):
         index = json.loads(git.show(repo, ref, 'index.json') or '{}')
         registry = yaml.safe_load(git.show(repo, ref, 'registry.yaml') or '') or {}
-        indexes.append({e['id']: e for e in index.get('entries', [])})
+        indexes.append({e['id']: {k: v for k, v in e.items() if k != 'search'}
+                        for e in index.get('entries', [])})
         registries.append({e['id']: e for e in registry.get('entries', [])})
     rows = set()
     for left, right in (indexes, registries):
@@ -36,15 +43,21 @@ def eligibility_scope(repo: Path, base: str, sha: str) -> dict[str, list[str]]:
     for path in changed_paths(repo, base, sha):
         if path.startswith('providers/') and path.endswith('.md'):
             old, new = (git.show(repo, ref, path) or '' for ref in (base, sha))
-            pattern = r'(?m)(^Generated from `registry.yaml` on )\d{4}-\d{2}-\d{2}\b'
-            if re.sub(pattern, r'\1<date>', old) != re.sub(pattern, r'\1<date>', new):
+            if content_hash(old) != content_hash(new):
                 rows.add(Path(path).stem)
+    known = set().union(*(set(index) for index in indexes), *(set(registry) for registry in registries))
+    rows &= known
     result = {}
     for row in sorted(rows):
         families = sorted({m['family'] for index in indexes for m in index.get(row, {}).get('models', [])})
         if families:
             result[row] = families
-    return result
+    return {'rows': sorted(rows), 'eligibility': result}
+
+
+def eligibility_scope(repo: Path, base: str, sha: str) -> dict[str, list[str]]:
+    """Derive mandatory model-fact coverage independently of the signoff."""
+    return vendor_scope(repo, base, sha)['eligibility']
 
 
 def validate_judgment(value: dict, scope: dict) -> None:

@@ -149,13 +149,10 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
     if result.returncode:
         raise ValueError('cannot read the push diff')
     bundle.write('push.diff.patch', result.stdout.encode())
-    registries = {}
     for ref, label in ((base, 'before'), (sha, 'after')):
         for path in ('registry.yaml', 'index.json'):
             body = blob(repo, ref, path)
             bundle.write(label + '/' + path, body)
-            if path == 'registry.yaml':
-                registries[label] = yaml.safe_load(body)['entries']
     def changed(previous, current, field):
         old = {v[field]: v for v in previous}
         new = {v[field]: v for v in current}
@@ -163,19 +160,16 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
     def changed_pages(folder, key, field):
         def semantic_change(path):
             old, new = (git.show(repo, ref, path) or '' for ref in (base, sha))
-            if folder == 'providers':
-                pattern = r'(?m)(^Generated from `registry.yaml` on )\d{4}-\d{2}-\d{2}\b'
-                old, new = (re.sub(pattern, r'\1<date>', text) for text in (old, new))
-            return old != new
+            from .page_dates import content_hash
+            return content_hash(old) != content_hash(new)
         return {v[field] for v in [*before.get(key, []), *after.get(key, [])]
                 if (path := f'{folder}/{v[field]}.md') in paths and semantic_change(path)}
-    rows = sorted(set(changed(before.get('entries', []), after.get('entries', []), 'id')) |
-                  set(changed(registries['before'], registries['after'], 'id')) |
-                  changed_pages('providers', 'entries', 'id'))
+    from .quality import vendor_scope
+    facts = vendor_scope(repo, base, sha)
+    rows = facts['rows']
     families = sorted(set(changed(before.get('models', []), after.get('models', []), 'family')) |
                       changed_pages('models', 'models', 'family'))
-    from .quality import eligibility_scope
-    eligibility = eligibility_scope(repo, base, sha)
+    eligibility = facts['eligibility']
     required = {'pages build and deployment'}
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)

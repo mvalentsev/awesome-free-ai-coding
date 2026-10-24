@@ -1059,6 +1059,10 @@ def _check_selector_model(run: _Run, litellm_version: str, codex_version: str,
     match = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', page, re.S)
     choices = json.loads(match.group(1))["codex"] if match else []
     row = next((r for r in choices if r["route"] == "Via LiteLLM" and r["keyless"]), None)
+    if row and row.get("models"):
+        # Exercise an explicit non-default choice when the route has one. The
+        # generated command is the same value the model picker copies.
+        row = {**row, **row["models"][-1]}
     v = f"Codex {codex_version} + LiteLLM {litellm_version}"
     lane = next((l for l in lanes_ if row and l.name == row["model"]), None)
     if not row or not lane:

@@ -139,6 +139,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 </ul></footer>
 </main>
 <script src="assets/model-name.js"></script>
+<script src="assets/search.js"></script>
 <script>
 (function () {
   "use strict";
@@ -150,6 +151,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   var entries = [];
   var generated = "";
   var configClients = {};
+  var searchConfig = {};
   var comparison = [];
   var comparisonOpen = false;
   var countryNames = {};
@@ -191,10 +193,6 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   }
   function trains(e) { return !!(e.data_use && e.data_use.trains !== "no"); }
   function notTrained(e) { return !!(e.data_use && e.data_use.trains === "no"); }
-  function haystack(e) {
-    var names = families(e).map(function (m) { return m.family; }).join(" ");
-    return written([e.name, e.offering, e.category, names, callableIds(e).join(" ")].join(" ").toLowerCase());
-  }
   function readState() {
     var params = new URLSearchParams(location.search);
     els.q.value = params.get("q") || "";
@@ -424,6 +422,10 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       var client = setupClient(e);
       if (client) {
         var config = new URLSearchParams({client: client, provider: e.id});
+        var exact = callableIds(e).find(function (id) {
+          return written(FreeTierSearch.fold(id)) === written(FreeTierSearch.fold(els.q.value.trim()));
+        });
+        if (exact) config.set("model", exact);
         connect.appendChild(el("br"));
         connect.appendChild(link("./?" + config + "#plug", "Set up client"));
       } else if (els.client.value) {
@@ -456,8 +458,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   }
 
   function render() {
-    var q = written(els.q.value.trim().toLowerCase());
-    var cat = els.cat.value;
+    var query = FreeTierSearch.parse(els.q.value, searchConfig);
+    var cat = query.picked.section || els.cat.value;
     var shown = entries.filter(function (e) {
       // One service, one line: a row folded into another named a service the
       // table already has. index.json keeps it, so an old id still resolves.
@@ -473,7 +475,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       if (els.strong.checked && !hasStrong(e)) return false;
       if (els.frontier.checked && !hasFrontier(e)) return false;
       if (els.notrain.checked && !notTrained(e)) return false;
-      if (q && haystack(e).indexOf(q) === -1) return false;
+      if (!FreeTierSearch.wanted(e.search, cat, query.picked.filters)) return false;
+      if (query.terms.length && !FreeTierSearch.scoreOffer(e.search, query.terms)) return false;
       return true;
     });
     els.rows.textContent = "";
@@ -515,6 +518,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       els.where.appendChild(option);
     });
     configClients = data.client_configs || {};
+    searchConfig = data.search_config;
+    data.entries.forEach(function (e) { FreeTierSearch.prepareOffer(e.search); });
     entries = data.entries.slice().sort(function (a, b) {
       var ka = sortKey(a), kb = sortKey(b);
       for (var i = 0; i < ka.length; i++) {

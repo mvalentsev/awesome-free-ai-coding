@@ -32,6 +32,12 @@ def browser_plan(bundle: Bundle) -> dict:
     html = git.show(bundle.repo, scope['sha'], 'index.html') or ''
     config_block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
     clients = list(json.loads(config_block.group(1))) if config_block else []
+    words = {word for group in index.get('search_config', {}).values() for item in group
+             for word in item.get('words', [])}
+    named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
+                    and e.get('page') and re.fullmatch(r'[A-Za-z][A-Za-z0-9]+', e.get('name', ''))
+                    and e['name'].lower() not in words
+                    and e['name'].lower() not in current), key=lambda e: (len(e['name']), e['name']))[:2]
     cases = []
     for width in widths:
         for scheme in schemes:
@@ -39,6 +45,8 @@ def browser_plan(bundle: Bundle) -> dict:
             cases += [prefix + kind + '/' + m['family'] for kind in ('search', 'browse', 'model') for m in models]
             cases += [prefix + 'provider/' + e['id'] for e in rows]
             cases += [prefix + 'config/' + client for client in clients]
+            if len(named) == 2:
+                cases.append(prefix + 'search-flow')
             if width != 320:
                 cases.append(prefix + 'readme')
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
@@ -47,6 +55,7 @@ def browser_plan(bundle: Bundle) -> dict:
             'models': models, 'rows': rows, 'folded_targets': folded_targets,
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
             'clients': clients,
+            'search_rows': [{'name': e['name'], 'page': e['page']} for e in named],
             'output': str(bundle.out / 'browser-execution.json')}
 
 

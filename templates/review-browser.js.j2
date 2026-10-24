@@ -55,6 +55,14 @@ async (page) => {
             for(const path of row.files) if(!await result.locator('a[href="'+plan.repository+'/blob/main/'+path+'"]').count()) throw Error('Wrong config link: '+path);
             const selection=new URL(page.url()).searchParams;
             if(selection.get('client')!==client || selection.get('provider')!==row.id) throw Error('Configuration missing from shared URL');
+            for(const model of row.models) {
+              await page.locator('#config-model').selectOption(model.id);
+              const selected=await result.innerText();
+              if(!selected.includes(model.command)||!selected.includes('Model: '+model.model)) throw Error('Selected model lost: '+row.id+'/'+model.id);
+              if(model.access&&!selected.includes(model.access)) throw Error('Selected model access hidden');
+              if(new URL(page.url()).searchParams.get('model')!==model.id) throw Error('Selected model missing from URL');
+            }
+            await page.locator('#config-model').selectOption(row.models[0].id);
           }
           if(rows.length) {
             const last=rows[rows.length-1];
@@ -63,6 +71,37 @@ async (page) => {
             if(!(await page.locator('#config-result').innerText()).includes(last.command)) throw Error('Restored command differs');
           }
           await record(prefix+'config/'+client,{choices:choices.length});
+        }
+        if(selected.has(prefix+'search-flow')) {
+          const [first,second]=plan.search_rows;
+          await go(plan.site+'?q='+encodeURIComponent(first.name)+'#search');
+          await page.locator('#results a[href="'+first.page+'"]').waitFor();
+          await page.locator('#q').fill(second.name);
+          await page.locator('#q').press('Enter');
+          await page.waitForURL(second.page);
+          await go(plan.site+'?q='+encodeURIComponent(first.name)+'#search');
+          await page.locator('#q').fill(second.name);
+          await page.locator('#q').press('Escape');
+          await page.waitForTimeout(100);
+          if(!await page.locator('#search').evaluate(e=>e.hidden) || new URL(page.url()).hash==='#search') throw Error('Closed search restored by a pending update');
+          await go(plan.site+'#search');
+          const lead=await page.locator('section.listing tr[data-id]').evaluateAll(rows=>{
+            for(const row of rows) {
+              const summary=row.querySelector('td.limits summary'), full=row.querySelector('td.limits .full');
+              if(!summary||!full) continue;
+              const rest=full.textContent.toLowerCase();
+              const token=(summary.textContent.match(/\b\d[\d,]+\b/g)||[]).find(t=>!rest.includes(t));
+              if(token) return {token,page:row.querySelector('td.when a').href};
+            }
+            return null;
+          });
+          if(lead) {
+            await page.locator('#q').fill(lead.token);
+            await page.locator('#results a[href="'+lead.page+'"]').waitFor();
+            await page.locator('#to-table').click();
+            await page.locator('#rows a[href="'+lead.page+'"]').first().waitFor();
+          }
+          await record(prefix+'search-flow',{lead});
         }
         if(Array.from(selected).some(id=>id.startsWith(prefix+'search/'))) {
         await go(plan.site+'?review='+plan.sha+'#search');

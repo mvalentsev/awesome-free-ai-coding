@@ -3,7 +3,7 @@ layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-10-22'
 description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Windsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying…'
 permalink: /providers/windsurf/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-24
 crumb: Devin Desktop (formerly Windsurf)
 ---
 
@@ -11,7 +11,7 @@ crumb: Devin Desktop (formerly Windsurf)
 
 # Devin Desktop (formerly Windsurf) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-22 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

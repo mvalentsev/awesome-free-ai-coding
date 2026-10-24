@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-10-22'
 description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: deepseek-v4.1-flash
 ---
 

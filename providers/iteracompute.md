@@ -3,7 +3,7 @@ layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-10-22'
 description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192…'
 permalink: /providers/iteracompute/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: IteraCompute
 ---
 

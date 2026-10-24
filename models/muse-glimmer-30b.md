@@ -3,7 +3,7 @@ layout: default
 title: 'muse-glimmer-30b free: 3 providers, limits and ids, provider probes 2026-10-22'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-24
 crumb: muse-glimmer-30b
 ---
 
@@ -73,7 +73,7 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
-- Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
+- Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway -m muse-glimmer-30b:free`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
 - Callable ids: `muse-glimmer-30b:free`
 
 ---

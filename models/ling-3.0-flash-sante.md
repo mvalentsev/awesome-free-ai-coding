@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-sante free: no current listing, last listed 2026-10-15'
 description: No row currently lists ling-3.0-flash-sante under Free models. The list carried it at Nous Portal (Hermes Agent), Kilo Code, OpenRouter (free models) and Vercel AI Gateway until 2026-10-15. Each row's page gives its current offer.
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-10-15
+last_modified_at: 2026-10-23
 crumb: ling-3.0-flash-sante
 ---
 

@@ -885,7 +885,7 @@ entries:
   rank: 20
 - id: trae
   name: TRAE (TraeCode)
-  category: trial
+  category: agent-cli
   url: https://www.trae.ai
   source_urls:
   - https://www.trae.ai/pricing
@@ -970,7 +970,7 @@ entries:
   rank: 78
 - id: windsurf
   name: Devin Desktop (formerly Windsurf)
-  category: trial
+  category: agent-cli
   url: https://devin.ai/desktop
   source_urls:
   - https://devin.ai/pricing
@@ -1080,7 +1080,7 @@ entries:
   rank: 30
 - id: github-copilot-free
   name: GitHub Copilot Free
-  category: trial
+  category: agent-cli
   url: https://github.com/features/copilot
   source_urls:
   - https://docs.github.com/en/copilot/get-started/plans
@@ -1141,7 +1141,7 @@ entries:
   rank: 10
 - id: google-jules
   name: Google Jules
-  category: trial
+  category: agent-cli
   url: https://jules.google/
   source_urls:
   - https://jules.google/docs/usage-limits
@@ -1230,7 +1230,7 @@ entries:
   rank: 30
 - id: kiro
   name: Kiro
-  category: trial
+  category: agent-cli
   url: https://kiro.dev/
   source_urls:
   - https://kiro.dev/pricing/
@@ -1300,7 +1300,7 @@ entries:
   rank: 20
 - id: cursor-hobby
   name: Cursor (Free)
-  category: trial
+  category: agent-cli
   url: https://cursor.com/
   source_urls:
   - https://cursor.com/pricing
@@ -5207,7 +5207,7 @@ entries:
   rank: 85
 - id: codebuddy
   name: CodeBuddy (Tencent)
-  category: trial
+  category: agent-cli
   url: https://www.codebuddy.ai
   source_urls:
   - https://www.workbuddy.ai/docs/ide/Account/pricing
@@ -6128,7 +6128,7 @@ entries:
   rank: 99
 - id: jetbrains-ai
   name: JetBrains AI (AI Free)
-  category: trial
+  category: agent-cli
   url: https://www.jetbrains.com/ai/
   source_urls:
   - https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html
@@ -8968,7 +8968,7 @@ entries:
   rank: 83
 - id: baidu-comate
   name: Baidu Comate (文心快码)
-  category: trial
+  category: agent-cli
   url: https://comate.baidu.com
   source_urls:
   - https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a

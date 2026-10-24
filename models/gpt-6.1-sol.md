@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-6.1-sol free: no current listing'
 description: No row currently lists gpt-6.1-sol under Free models. Each row's page gives its current offer.
 permalink: /models/gpt-6.1-sol/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-21
 crumb: gpt-6.1-sol
 ---
 

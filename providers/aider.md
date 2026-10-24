@@ -3,7 +3,7 @@ layout: default
 title: 'Aider free tier (archived): what it offered, and why it left the list'
 description: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama. Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
 permalink: /providers/aider/
-last_modified_at: 2026-07-19
+last_modified_at: 2026-09-27
 crumb: Aider
 ---
 

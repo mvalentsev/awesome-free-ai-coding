@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.1-flash free: 1 provider, limits and ids, provider probes 2026-10-22'
 description: ling-3.1-flash is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.1-flash/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-23
 crumb: ling-3.1-flash
 ---
 

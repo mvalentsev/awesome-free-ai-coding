@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m3.1-flash-preview free: no current listing, last listed 2026-10-06'
 description: No row currently lists minimax-m3.1-flash-preview under Free models. The list carried it at LLMTR until 2026-10-06. Each row's page gives its current offer.
 permalink: /models/minimax-m3.1-flash-preview/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-22
 crumb: minimax-m3.1-flash-preview
 ---
 

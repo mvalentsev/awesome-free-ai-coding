@@ -560,7 +560,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         <tbody>
           {% for r in s.rows %}
           <tr id="row-{{ r.id }}" data-id="{{ r.id }}" data-section="{{ s.id }}"
-              data-flags="{{ r.flags | join(' ') }}">
+              data-flags="{{ r.flags | join(' ') }}" data-search="{{ r.search | tojson | forceescape }}">
             <th class="who" scope="row">
               <a class="name" href="{{ r.url }}">{{ r.name }}</a>
               <div class="tags">
@@ -664,6 +664,9 @@ tr.flash { animation: flash 1.6s ease-out; }
         </label>
         <label for="config-provider">Provider
           <select id="config-provider"></select>
+        </label>
+        <label for="config-model">Model
+          <select id="config-model"></select>
         </label>
       </div>
       <div id="config-result" class="config-result" aria-live="polite" aria-atomic="true"></div>
@@ -884,6 +887,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 <script type="application/json" id="client-configs">{{ client_configs | safe }}</script>
 
 <script src="assets/model-name.js"></script>
+<script src="assets/search.js"></script>
 <script>
 // Progressive enhancement only: the page is complete without a line of this.
 (function () {
@@ -892,6 +896,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   var picker = document.getElementById("config-picker");
   var client = document.getElementById("config-client");
   var provider = document.getElementById("config-provider");
+  var model = document.getElementById("config-model");
   var configResult = document.getElementById("config-result");
   var configs = JSON.parse(document.getElementById("client-configs").textContent);
   function configLine(label, value, code, copy) {
@@ -920,6 +925,12 @@ tr.flash { animation: flash 1.6s ease-out; }
         "No generated configuration is available for this client. Use the connection table below.");
       return;
     }
+    var choice = row.models.find(function (m) { return m.id === model.value; });
+    if (!choice) {
+      configLine("", "This model has no generated setup for this provider and client. Choose an available model.");
+      return;
+    }
+    row = Object.assign({}, row, {model: choice.model, command: choice.command, access: choice.access});
     var files = document.createElement("p");
     files.appendChild(document.createTextNode(row.route + ": "));
     row.files.forEach(function (path, i) {
@@ -956,6 +967,20 @@ tr.flash { animation: flash 1.6s ease-out; }
     configs[client.value].forEach(function (row) { provider.add(new Option(row.name, row.id)); });
     provider.value = configs[client.value].some(function (r) { return r.id === previous; }) ? previous : "";
     provider.disabled = !configs[client.value].length;
+    chooseModel();
+  }
+  function chooseModel(requested) {
+    var previous = requested === undefined ? model.value : requested;
+    var row = configs[client.value].find(function (r) { return r.id === provider.value; });
+    model.replaceChildren();
+    model.disabled = !row;
+    if (row) {
+      row.models.forEach(function (m) { model.add(new Option(m.id, m.id)); });
+      if (previous && !row.models.some(function (m) { return m.id === previous; })) {
+        model.add(new Option("Choose an available model", ""), 0);
+        model.value = "";
+      } else { model.value = previous || row.models[0].id; }
+    }
     showConfig();
   }
   function syncConfig() {
@@ -963,6 +988,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     url.searchParams.set("client", client.value);
     if (provider.value) { url.searchParams.set("provider", provider.value); }
     else { url.searchParams.delete("provider"); }
+    if (provider.value && model.value) { url.searchParams.set("model", model.value); }
+    else { url.searchParams.delete("model"); }
     url.hash = "plug";
     history.replaceState(null, "", url.pathname + url.search + url.hash);
   }
@@ -973,11 +1000,12 @@ tr.flash { animation: flash 1.6s ease-out; }
     chooseClient();
     if (configs[client.value].some(function (row) { return row.id === params.get("provider"); })) {
       provider.value = params.get("provider");
-      showConfig();
+      chooseModel(params.get("model") || "");
     }
   }
   client.addEventListener("change", function () { chooseClient(); syncConfig(); });
-  provider.addEventListener("change", function () { showConfig(); syncConfig(); });
+  provider.addEventListener("change", function () { chooseModel(""); syncConfig(); });
+  model.addEventListener("change", function () { showConfig(); syncConfig(); });
   restoreConfig(); picker.hidden = false;
   // Copy buttons — hidden in the markup so a browser without the clipboard API
   // never shows a control that does nothing.
@@ -1019,7 +1047,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   var results = document.getElementById("results");
   var chipsBox = dialog.querySelector(".palette-chips");
   var toTable = document.getElementById("to-table");
-  var opener = null, active = -1, options = [], index = null, timer = null;
+  var opener = null, active = -1, options = [], index = null;
   var state = { section: "", filters: {} };
   // What an empty box offers to try: the most-served model families on the
   // page, one of each line (not three Nemotrons), then a vendor and the
@@ -1034,12 +1062,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   // Case and accents away, one character for one, so a place found in the
   // folded text is the same place in the text shown: "Côte" finds "cote", and
   // the "…" a snippet starts with stays one character long.
-  function fold(text) {
-    return (text || "").replace(/[\s\S]/g, function (c) {
-      var low = c.toLowerCase(), base = low.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      return base.length === 1 ? base : low.length === 1 ? low : c;
-    });
-  }
+  var fold = FreeTierSearch.fold;
   function textOf(el) { return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
   function full(cell) { return cell ? textOf(cell.querySelector(".full") || cell) : ""; }
 
@@ -1047,20 +1070,11 @@ tr.flash { animation: flash 1.6s ease-out; }
     var sections = {};
     CONFIG.sections.forEach(function (sec) { sections[sec.id] = sec; });
     var offers = [].map.call(document.querySelectorAll("section.listing tbody tr[data-id]"), function (tr, i) {
-      var name = tr.querySelector("a.name");
-      var models = [].map.call(tr.querySelectorAll("td.models .chip"), textOf)
-        .filter(function (t) { return !/^\+\d+ more$/.test(t); });
-      var modelAccess = {};
-      [].forEach.call(tr.querySelectorAll("td.models .model-access"), function (node) {
-        var chip = node.querySelector(".chip"), access = textOf(node.querySelector("small"));
-        if (chip && access) { modelAccess[textOf(chip)] = access; }
+      return Object.assign(JSON.parse(tr.dataset.search), {
+        kind: "offer", id: tr.dataset.id, order: i, row: tr,
+        page: tr.querySelector("td.when a").getAttribute("href"),
+        section: sections[tr.dataset.section], tags: tr.querySelector(".tags")
       });
-      return { kind: "offer", id: tr.dataset.id, order: i, row: tr,
-               page: tr.querySelector("td.when a").getAttribute("href"),
-               section: sections[tr.dataset.section], flags: tr.dataset.flags.split(" "),
-               name: textOf(name), tags: tr.querySelector(".tags"), models: models,
-               access: textOf(tr.querySelector("td.what .access")), modelAccess: modelAccess,
-               what: full(tr.querySelector("td.what")), limits: full(tr.querySelector("td.limits")) };
     });
     var byId = {};
     offers.forEach(function (o) { byId[o.id] = o; });
@@ -1083,19 +1097,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 
   // Words that name a filter become the filter: "no card" asks for the rows
   // that ask for none, not for rows whose prose says so.
-  function parse(raw) {
-    var text = " " + fold(raw).replace(/\s+/g, " ") + " ";
-    var picked = { section: "", filters: {} };
-    function take(words, apply) {
-      words.slice().sort(function (a, b) { return b.length - a.length; }).forEach(function (w) {
-        var at = text.indexOf(" " + w + " ");
-        if (at !== -1) { text = text.slice(0, at) + " " + text.slice(at + w.length + 1); apply(); }
-      });
-    }
-    CONFIG.filters.forEach(function (f) { take(f.words, function () { picked.filters[f.id] = true; }); });
-    CONFIG.sections.forEach(function (sec) { take(sec.words, function () { picked.section = sec.id; }); });
-    return { terms: text.split(" ").filter(Boolean), picked: picked };
-  }
+  function parse(raw) { return FreeTierSearch.parse(raw, CONFIG); }
 
   function selection(q) {
     var filters = {};
@@ -1104,60 +1106,9 @@ tr.flash { animation: flash 1.6s ease-out; }
     return { section: q.picked.section || state.section, filters: filters };
   }
 
-  function wanted(o, section, filters) {
-    if (section && o.section.id !== section) { return false; }
-    return Object.keys(filters).every(function (f) { return !filters[f] || o.flags.indexOf(f) !== -1; });
-  }
-
-  // Each term has to be somewhere; the best field it is in decides the order.
-  // A single letter is the start of a name, not a letter anywhere in a quote.
-  function scoreOffer(o, terms) {
-    var total = 0;
-    for (var i = 0; i < terms.length; i++) {
-      var t = terms[i], best = 0;
-      if (t.length === 1) {
-        best = o.fName.indexOf(t) === 0 ? 12
-          : o.fModels.some(function (m) { return m.indexOf(t) === 0; }) ? 6 : 0;
-      } else if (o.fName.indexOf(t) === 0) { best = 12; }
-      else if (o.fName.indexOf(t) !== -1) { best = 9; }
-      else if (o.fModels.some(function (m) { return m.indexOf(t) !== -1; })) { best = 6; }
-      else if (o.fWhat.indexOf(t) !== -1) { best = 3; }
-      else if (o.fLimits.indexOf(t) !== -1) { best = 1; }
-      if (!best) { total = 0; break; }
-      total += best;
-    }
-    return Math.max(total, wholeOffer(o, terms));
-  }
-  // Terms that spell one name — "Nemotron 3 Ultra", "GLM 5", "Gemma 4 26B" —
-  // are read whole as well: a lone digit starts no
-  // name on its own, so term by term the name found nothing.
-  function wholeOffer(o, terms) {
-    var whole = terms.length > 1 ? written(terms.join("")) : "";
-    if (whole.length < 3) { return 0; }
-    if (o.wModels.some(function (m) { return m.indexOf(whole) !== -1; })) { return 6 * terms.length; }
-    return o.wWhat.indexOf(whole) !== -1 ? 3 * terms.length
-      : o.wLimits.indexOf(whole) !== -1 ? terms.length : 0;
-  }
-  function squash(text) { return text.replace(/[\s._-]+/g, ""); }
-  function prepareOffer(o) {
-    o.fName = fold(o.name); o.fModels = o.models.map(fold);
-    o.fWhat = fold(o.what); o.fLimits = fold(o.limits);
-    o.wModels = o.fModels.map(written); o.wWhat = written(o.fWhat); o.wLimits = written(o.fLimits);
-  }
-  function prepareModel(m) { m.fFamily = fold(m.family); m.wFamily = written(m.fFamily); }
-  function scoreModel(m, terms) {
-    var whole = written(terms.join(""));
-    if (terms.length > 1 && whole.length > 2 && m.wFamily.indexOf(whole) !== -1) {
-      return m.wFamily === whole ? 32 : m.wFamily.indexOf(whole) === 0 ? 20 : 12;
-    }
-    var total = squash(m.fFamily) === squash(terms.join("")) ? 20 : 0;
-    for (var i = 0; i < terms.length; i++) {
-      var at = m.fFamily.indexOf(terms[i]);
-      if (at === -1 || (terms[i].length === 1 && at !== 0)) { return 0; }
-      total += m.fFamily === terms[i] ? 12 : at === 0 ? 8 : 5;
-    }
-    return total;
-  }
+  var wanted = FreeTierSearch.wanted, prepareOffer = FreeTierSearch.prepareOffer;
+  var prepareModel = FreeTierSearch.prepareModel, scoreOffer = FreeTierSearch.scoreOffer;
+  var scoreModel = FreeTierSearch.scoreModel;
 
   // A run of text with every term marked, built as nodes: a vendor's sentence
   // is text here as it is everywhere else on the page.
@@ -1457,7 +1408,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     chipsBox.appendChild(b);
   });
 
-  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(render, 60); });
+  input.addEventListener("input", render);
   input.addEventListener("keydown", function (ev) {
     if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
       ev.preventDefault();

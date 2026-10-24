@@ -3,7 +3,7 @@ layout: default
 title: 'Easy GonkaAI API free tier (archived): what it offered, and why it left the list'
 description: 'Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models). Free models: minimax-m2, kimi-k2. 10M free tokens on signup (one-time trial, no card); paid usage billed in crypto'
 permalink: /providers/easy-gonka-api/
-last_modified_at: 2026-07-19
+last_modified_at: 2026-09-27
 crumb: Easy GonkaAI API
 ---
 

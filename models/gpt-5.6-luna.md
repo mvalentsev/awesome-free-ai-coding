@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-5.6-luna free: no current listing, last listed 2026-09-27'
 description: No row currently lists gpt-5.6-luna under Free models. The list carried it at Zed and Freebuff until 2026-09-27. Each row's page gives its current offer.
 permalink: /models/gpt-5.6-luna/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-10-21
 crumb: gpt-5.6-luna
 ---
 

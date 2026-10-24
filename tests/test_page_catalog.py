@@ -78,6 +78,26 @@ def test_shared_session_allowance_stays_in_limits_instead_of_model_labels(tmp_pa
     if surface == "site":
         text = render_site(reg, Path("templates"), tmp_path / "index.html", today=today)
         model_text = re.search(r'<td class="models"[^>]*>(.*?)</td>', text, re.S).group(1)
+        # The shared search input is escaped data in an attribute. Count all
+        # public text nodes, including folded limits, rather than that metadata.
+        from html.parser import HTMLParser
+        class Text(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.skip = False
+                self.parts = []
+            def handle_starttag(self, tag, attrs):
+                if tag in ("script", "style"):
+                    self.skip = True
+            def handle_endtag(self, tag):
+                if tag in ("script", "style"):
+                    self.skip = False
+            def handle_data(self, data):
+                if not self.skip:
+                    self.parts.append(data)
+        parser = Text()
+        parser.feed(text)
+        text = "".join(parser.parts)
     elif surface == "readme":
         text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=today)
         model_text = next(line for line in text.splitlines() if line.startswith('- **[Vendor]'))

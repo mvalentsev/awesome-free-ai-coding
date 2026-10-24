@@ -3,7 +3,7 @@ layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-22'
 description: 'OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes. Free models: laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-24
 crumb: Vercel AI Gateway
 ---
 

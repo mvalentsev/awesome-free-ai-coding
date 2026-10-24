@@ -3,7 +3,7 @@ layout: default
 title: 'motif-3 free: no current listing, last listed 2026-10-04'
 description: No row currently lists motif-3 under Free models. The list carried it at LLMTR until 2026-10-04. Each row's page gives its current offer.
 permalink: /models/motif-3/
-last_modified_at: 2026-10-04
+last_modified_at: 2026-10-13
 crumb: motif-3
 ---
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Google Jules free tier: limits, free models, verified 2026-10-22'
 description: 'Free tier of Google''s async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. Free models: gemini-2.5. The limits table still names Gemini 2.5 Pro for Free, while the 2026-01-30 changelog says Gemini 3 Flash became the base model for all tiers. Google AI…'
 permalink: /providers/google-jules/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-24
 crumb: Google Jules
 ---
 
@@ -11,7 +11,7 @@ crumb: Google Jules
 
 # Google Jules free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-22 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

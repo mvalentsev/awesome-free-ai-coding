@@ -3,7 +3,7 @@ layout: default
 title: 'Puter.js (free LLM API) free tier (archived): what it offered, and why it left the list'
 description: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model. No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits
 permalink: /providers/puter-free/
-last_modified_at: 2026-07-19
+last_modified_at: 2026-09-27
 crumb: Puter.js (free LLM API)
 ---
 

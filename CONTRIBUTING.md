@@ -91,6 +91,12 @@ directory can grow into a feed long after someone first opened it.
 
 ## How rows are ordered
 
+`agent-cli` contains coding tools with ongoing Free usage, including completion
+allowances alongside introductory credits. `trial` contains offers funded only
+by a finite introductory grant or trial. A limited monthly allowance is still a
+recurring Free plan. Check every advertised free mode before choosing a category;
+the optional paid-plan trial does not define the permanent Free plan.
+
 `rank` sorts a row within its section — lower renders higher — and it answers one
 question: **how much work can a developer actually get done on this offer without
 paying?** In order of what moves a row up:
@@ -948,8 +954,14 @@ which rows listed it — the list never takes back an address a search engine
 indexed or an answer cited, as it never deletes a row. The render reads the
 pages already in `models/` beside the registry to know which it published, and
 `freetier-gate` refuses a commit, a push or a run that deletes a page under
-`providers/` or `models/`. Every page under both carries `last_modified_at`, the
-newest of its rows' verified dates and history lines, which Jekyll writes into
+`providers/` or `models/`. Every page under both carries `last_modified_at`.
+The content writer advances the modification date when the
+page's substantive content changes, including limits, sources and copy; a daily
+generation stamp alone does not advance it. Existing pages retain their date
+through repeat renders and source archives. Full Git history reconciles dates
+against substantive committed changes; archives and shallow clones retain the
+recorded date. Verification dates remain the scheduled probe's provenance.
+Jekyll writes the content modification date into
 the sitemap as `<lastmod>` and into the page's structured data as
 `dateModified`. **Never edit them by hand** either.
 
@@ -1048,7 +1060,7 @@ cannot print two versions of it.
 | `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-render` |
 | `announced.jsonl` | **log** — the posts the announcer has sent, append-only | `history.jsonl` | `freetier-announce` |
 | `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
-| `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `assets/model-name.js`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `assets/model-name.js`, `assets/search.js`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/README.md` | **generated** — the connection table, beside the configs · not on the site | `templates/configs-README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/opencode.json` | **generated** — the opencode config | `registry.yaml` | `freetier-render` |
 | `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
@@ -1061,11 +1073,11 @@ cannot print two versions of it.
 | `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
-| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js` | `hand` |
+| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js` | `hand` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
-| `assets/*.js` | **page** — shared browser model-name matching | — | `hand` |
+| `assets/*.js` | **page** — shared browser query and model-name matching | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
