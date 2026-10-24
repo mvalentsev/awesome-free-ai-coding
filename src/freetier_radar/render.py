@@ -1243,7 +1243,7 @@ def build_index(entries: list[Entry], today: date,
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),
-             "search": _search_record(e),
+             "search": _search_record(e, archive_reason(e, today) if is_archived(e, today) else ""),
              **_index_access_labels(e),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
@@ -1314,7 +1314,8 @@ def _search_config() -> dict:
     return {
         "sections": [{"id": cat.value, "label": SITE_NAV_LABELS[cat],
                       "emoji": CATEGORY_TITLES[cat].partition(" ")[0],
-                      "words": list(SEARCH_SECTION_WORDS[cat])} for cat in CATEGORY_TITLES],
+                      "words": list(dict.fromkeys((cat.value, *SEARCH_SECTION_WORDS[cat])))}
+                     for cat in CATEGORY_TITLES],
         "filters": [{"id": fid, "label": label, "words": list(words)}
                     for fid, label, words in SEARCH_FILTERS],
     }
@@ -1344,7 +1345,7 @@ def _site_fold(text: str) -> dict[str, str]:
     return {"text": text, "teaser": f"{_cut(text, README_LIMITS_TEASER)} …"}
 
 
-def _search_record(e: Entry) -> dict:
+def _search_record(e: Entry, reason: str = "") -> dict:
     """The same complete facts and filter answers for both browser searches.
 
     Collapsing a cell only changes its presentation, never this input. Callable
@@ -1355,7 +1356,7 @@ def _search_record(e: Entry) -> dict:
     return {
         "name": e.name, "models": families,
         "ids": lane.model_ids if lane else [],
-        "what": e.offering, "limits": limits_text(e),
+        "what": e.offering, "limits": limits_text(e), "why": reason,
         "access": access_words(e.access, compact=True),
         "modelAccess": {f: _access_description(e, f, compact=True) for f in families},
         "section": {"id": e.category.value},
@@ -1529,7 +1530,8 @@ def _client_model(e: Entry, mid: str, client: str, route: str, default: bool) ->
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
     gone = _archive(entries, today)
     return [{"id": e.id, "name": e.name, "page": provider_page_url(e.id),
-             "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today))}
+             "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today)),
+             "search": _search_record(e, archive_reason(e, today))}
             for e in gone]
 
 

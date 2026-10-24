@@ -15,6 +15,7 @@
         "label": "Agents",
         "emoji": "🤖",
         "words": [
+          "agent-cli",
           "agents",
           "agent",
           "cli"
@@ -25,6 +26,7 @@
         "label": "APIs",
         "emoji": "🔌",
         "words": [
+          "api-free-tier",
           "apis",
           "api"
         ]
@@ -34,8 +36,8 @@
         "label": "Trials",
         "emoji": "🎁",
         "words": [
-          "trials",
-          "trial"
+          "trial",
+          "trials"
         ]
       },
       {
@@ -43,8 +45,8 @@
         "label": "Aggregators",
         "emoji": "🧭",
         "words": [
-          "aggregators",
           "aggregator",
+          "aggregators",
           "gateways",
           "gateway",
           "routers",
@@ -301,6 +303,7 @@
         ],
         "what": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
         "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
@@ -698,6 +701,7 @@
         ],
         "what": "Free tier on the Gemini API, priced model by model rather than as one account quota",
         "limits": "Usage allowance: see your account for values (period not published) per project per model\n\nFree eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Access to the 2.5 models is restricted to projects that previously used them. Actual rate limits are visible after signing in to AI Studio. Free-tier prompts and responses may be used to improve Google products; paid usage has different data-use terms. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gemini-3.8-flash": "",
@@ -958,6 +962,7 @@
         ],
         "what": "Fast inference against a free plan Groq publishes as a per-model rate table",
         "limits": "Coding models: 30 requests/minute; 1,000 requests/day; 8,000 tokens/minute; 200,000 tokens/day per organization per model; for `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`\n\nThese are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits; their API examples do not establish free coding-model eligibility. Groq calls the table \"a high level summary and there may be exceptions\"; the account limits page gives the exact values.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gpt-oss-120b": "",
@@ -1095,6 +1100,7 @@
         ],
         "what": "Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI",
         "limits": "Shared Studio, API and Vibe allowance: Monthly usage allowance: amount not published per organization\n\nAPI rate limits: Per-second requests allowance: see your account for values; Per-minute tokens allowance: see your account for values per organization per model\n\nThe monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -1158,6 +1164,7 @@
         "ids": [],
         "what": "Free playground+API for catalog models with GitHub account",
         "limits": "Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30",
+        "why": "vendor-announced shutdown on 2026-06-16",
         "access": "",
         "modelAccess": {
           "gpt-4.1": ""
@@ -1259,6 +1266,7 @@
         ],
         "what": "Serverless model inference on Cloudflare, with an OpenAI-compatible API and a daily free allowance",
         "limits": "10,000 neurons/day per account. All limits reset daily at 00:00 UTC.\n\nFree text generation: 300 requests/minute per account\n\nPast the free allowance \"further operations will fail with an error\". Some models require a paid billing method even if neurons remain: Kimi K2.6, Kimi K2.7 Code, GLM 5.2, GLM 5.3, GLM 5.3 Flash, DeepSeek V4 Flash 0731 and DeepSeek V4 Pro 0813. The free text-generation rate does not apply to models requiring the Workers Paid plan.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -1359,6 +1367,7 @@
         ],
         "what": "Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog",
         "limits": "Starter usage: Monthly credits allowance: amount not published per account\n\n1 request at once per account\n\nThe Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models. Per-token catalog prices do not identify the starter set. In a 2026-09-02 test, a Free key answered gpt-oss:120b, gemma4:31b and nemotron-3-ultra but returned 402 for minimax-m3. That measurement does not establish the current starter set.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -1513,6 +1522,7 @@
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
         "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "big-pickle": "",
@@ -1696,6 +1706,7 @@
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
@@ -2039,6 +2050,7 @@
         "ids": [],
         "what": "Free plan of TRAE's AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion",
         "limits": "Basic usage: One-time USD allowance: amount varies per account\n\nAutocompletion (where listed for Free): 5,000 completions/month per account\n\nTRAEWORK (where listed for Free): 2 tasks at once per account\n\nFree uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its amount differs between served versions of the pricing page. Measurements on 2026-09-16 found $1 and $3 on different networks; a runner read $1 on 2026-09-27. The payload also lists 1,000 advanced-model requests without stating their period. Published completion and concurrent-task figures apply where that Free table is served. Other versions describe limited usage and autocomplete without numbers.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -2155,6 +2167,7 @@
         "ids": [],
         "what": "Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf",
         "limits": "Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nInline edits: Unmetered interactions per account\n\nWindsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying extra usage is a paid-plan feature. A separate SWE-2 promotion appears on the Pro card and does not establish eligibility for the Free plan.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "swe-1.6": ""
@@ -2215,6 +2228,7 @@
         "ids": [],
         "what": "Xiaomi's open-source (MIT) terminal coding agent; its built-in \"MiMo Auto\" channel used to run Xiaomi's MiMo models with no login, API key, or card",
         "limits": "Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: \"The free API service has ended\"; a paid Token Plan or a third-party API key is required now. The README stopped offering the channel; the landing page at mimo.xiaomi.com/coder still read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17",
+        "why": "vendor-announced shutdown on 2026-07-26",
         "access": "",
         "modelAccess": {
           "mimo-v2.5": ""
@@ -2311,6 +2325,7 @@
         "ids": [],
         "what": "Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage",
         "limits": "2,000 completions/month per account\n\nChat and agent usage: Monthly credits allowance: amount not published per account\n\nChat and agent features spend GitHub AI Credits, whose Free amount is unpublished. Model selection is automatic on Copilot Free and Student. Free is available only to individual developers who do not receive Copilot through an organization or enterprise.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -2437,6 +2452,7 @@
         "ids": [],
         "what": "Free tier of Google's async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously",
         "limits": "15 tasks/rolling day; 3 tasks at once per account\n\nThe limits table still names Gemini 2.5 Pro for Free, while the 2026-01-30 changelog says Gemini 3 Flash became the base model for all tiers. Google AI upgrades require an individual @gmail.com account; family-plan task limits are not pooled. Google may adjust limits and features.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gemini-2.5": ""
@@ -2556,6 +2572,7 @@
         "ids": [],
         "what": "Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models",
         "limits": "50 credits/month per account\n\nRequires social login or AWS Builder ID. Credits do not roll over. Free requests are served from the US and AWS GovCloud is excluded. The docs' Free column determines model eligibility; newer Sonnet, Opus, Haiku and GPT tiers marked paid are outside the Free allowance.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "claude-sonnet-4.5": "",
@@ -2662,6 +2679,7 @@
         "ids": [],
         "what": "Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage",
         "limits": "Agent usage: Usage allowance: amount not published (period not published) per account\n\nFree includes limited Agent, Chat and Tab usage with Cursor's first-party models; numerical allowances are unpublished and third-party models are not included. The pricing FAQ describes weekly refreshes across tiers, while detailed docs explicitly assign weekly pools to paid X subscriptions and monthly pools to legacy Cursor plans. Those descriptions do not establish a consistent Free reset; check your account.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -2949,6 +2967,7 @@
         "ids": [],
         "what": "Codex desktop access on a $0 ChatGPT Free plan, subject to rollout",
         "limits": "Free plan: Usage allowance: amount not published (period not published) per account\n\nThe Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free allowance.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gpt-6-luna": ""
@@ -3175,6 +3194,7 @@
         ],
         "what": "Free endpoints for the models build.nvidia.com marks \"Free Endpoint\", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)",
         "limits": "Published ceiling: 40 requests/minute; 10,000 requests/day per account\n\nNo card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "glm-5.3": "",
@@ -3307,6 +3327,7 @@
         ],
         "what": "GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)",
         "limits": "Free Flash models: Usage allowance: amount not published (period not published) per account\n\nGLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows' limited-time-free cached-storage column does not make their input or output free. No numerical rate or usage allowance is published.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "glm-4.7-flash": "",
@@ -3419,6 +3440,7 @@
         ],
         "what": "EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card",
         "limits": "Anonymous lane: 2 requests/minute sharing scope disputed\n\nThe documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model's anonymous capacity, so its effective sharing scope remains disputed. Anonymous requests can receive 429 before a caller has spent the documented cap. Authenticated API keys are metered per token and use the paid project/model limits; they do not create a larger free allowance.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gpt-oss-120b": "",
@@ -3512,6 +3534,7 @@
         ],
         "what": "Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model",
         "limits": "Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published\n\nThe legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier; the configured gpt-oss-20b alias completed a keyless POST on 2026-10-07. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gpt-oss-20b": ""
@@ -3816,6 +3839,7 @@
         ],
         "what": "A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible",
         "limits": "Typical signup grant: 1,000,000 tokens once per account per model (Valid for 90 days from activation, model release or approval, whichever is later)\n\nFree grants apply in Singapore (international) only, independently per model and dated snapshot. The model pricing tables decide eligibility: Kimi has no free-quota column and glm-5.2-fast-preview has none. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.8-max": "",
@@ -3941,6 +3965,7 @@
         ],
         "what": "Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account",
         "limits": "HF-routed usage: $0.1/month per account\n\nCredits apply only to HF-routed requests and their amount is subject to change. They spend at each provider's own rates across the router's catalog; a spending balance does not make any individual model free.",
+        "why": "delisted on 2026-10-08: free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -4034,6 +4059,7 @@
         ],
         "what": "An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification",
         "limits": "500 credits/month per account\n\nThe monthly credit requires a one-time $1 card check. A credit is one cent. Pricing advertises no per-token charge on three models, but the Free-selected model catalog and provider plan discounts still price its chat models; independently free chat access is unconfirmed. Free decision models use a separate structured-decision API. Prompt and response storage is enabled on Free; disabling it requires a paid plan.",
+        "why": "",
         "access": "requires $1 card verification",
         "modelAccess": {},
         "section": {
@@ -4129,6 +4155,7 @@
         ],
         "what": "Upstage Solar LLM API; $10 free credit on signup, no card",
         "limits": "Signup credit: $10 once per account\n\nSee the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -4342,6 +4369,7 @@
         ],
         "what": "Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type",
         "limits": "Trial keys: 1,000 requests/month per key\n\nTrial Chat models: 20 requests/minute per key per model\n\nNorth Mini Code on production keys: 500 requests/minute per key per model\n\nTrial keys are for evaluation, not production or commercial use; new accounts start with Trial keys. Chat limits differ from those for reranking, embeddings, tokenization and audio. North Mini Code is free on both Trial and production keys until the corresponding rate limit is reached. The trial monthly request allowance applies alongside its per-model rate caps.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "command-a-plus": "",
@@ -4450,6 +4478,7 @@
         "ids": [],
         "what": "Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs",
         "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nPro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)\n\nThe daily promotion must be claimed in the international desktop app and is available to free and paid individual users. \"End time: To be announced\". The former Lite fallback was removed on 2026-09-18: credit exhaustion no longer switches to Lite, and Efficient is free only for paid users. Trial completions and next edits are unmetered during the trial; this does not create a permanent free agent budget.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -4530,6 +4559,7 @@
         "ids": [],
         "what": "Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention",
         "limits": "100 Hypercredits/month per account\n\nThe free plan is the default for new accounts. Sign up with Google, GitHub or email. Hypercredits are the vendor's usage unit; no fixed token count follows from the allowance.",
+        "why": "delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -4688,6 +4718,7 @@
         ],
         "what": "OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes",
         "limits": "Gateway credit: $5/month per team\n\nFree credit rate limits: Requests allowance: amount not published (period not published); scope not published (Limits apply per model.)\n\nBeam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`\n\nA team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "laguna-s-2.1": ""
@@ -4863,6 +4894,7 @@
         ],
         "what": "OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router",
         "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4-flash": ""
@@ -4967,6 +4999,7 @@
         ],
         "what": "OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models",
         "limits": "Free route: Usage allowance: amount not published (period not published) per account\n\nThe free route belongs to the default group. Other catalog routes are metered, apart from an unmarked zero-priced stealth route. No numerical free request or token budget is published.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-nano-omni": ""
@@ -5061,6 +5094,7 @@
         ],
         "what": "Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it",
         "limits": "20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)",
+        "why": "delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier",
         "access": "",
         "modelAccess": {
           "deepseek": "",
@@ -5208,6 +5242,7 @@
         ],
         "what": "OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models",
         "limits": "Rate-limits documentation: 5 requests/minute (published sources disagree) per account\n\nFAQ: 20 requests/minute (published sources disagree) per account\n\nFree models: 200 requests/day per account\n\nThe FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4-flash": "",
@@ -5374,6 +5409,7 @@
         ],
         "what": "OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks",
         "limits": "200 requests/day per account\n\nNo credit card for the Free plan, which serves free models only. Routing, caching, fallbacks, spend tracking and EU data residency are included. Past the free allowance the same key moves to pay-as-you-go.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
@@ -5755,6 +5791,7 @@
         "ids": [],
         "what": "Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models",
         "limits": "Gemini agent allowance: Weekly usage allowance: amount not published per account\n\nClaude and GPT agent allowance: Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nCommand: Unmetered requests per account\n\nFollow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party models in that column are scheduled for removal on November 2, 2026. Claude 5.5 and Gemini 4 Argon require paid plans. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gemini-3.8-flash": "",
@@ -5848,6 +5885,7 @@
         ],
         "what": "AI Singapore's OpenAI-compatible API for its Southeast Asian language models",
         "limits": "10 requests/minute per account\n\nThe free API is intended for prototyping; production use is directed to cloud partners. The free-offer page names no model, while the model API docs publish the per-user rate. No token or credit budget or expiry is stated.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -5926,6 +5964,7 @@
         ],
         "what": "AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio's, and the vendor sunset Studio's Jamba API on 2026-08-09",
         "limits": "Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: \"On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library\". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call",
+        "why": "vendor-announced shutdown on 2026-08-09",
         "access": "",
         "modelAccess": {
           "jamba-mini": "",
@@ -6010,6 +6049,7 @@
         "ids": [],
         "what": "VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it",
         "limits": "Economy models: 10 interactions/day per account\n\nPremium models: $1 once per account\n\nNo credit card is required. The Economy tier is described as free forever, but its routed model names are unpublished. Unlimited Economy use requires the paid Professional plan. The premium welcome credit is a separate one-time mode.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -6778,6 +6818,7 @@
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
         "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nQwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "glm-5.3": "",
@@ -6983,6 +7024,7 @@
         ],
         "what": "A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits",
         "limits": "100,000,000 tokens once; 1,000 requests/minute; 1,000,000 input tokens/minute; 100,000 output tokens/minute per account\n\nNo payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute traffic limits. After it, usage is pay-as-you-go at the model's current token prices; a launch discount is not a separate free model.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -7070,6 +7112,7 @@
         ],
         "what": "An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account",
         "limits": "100,000,000 tokens once per account\n\nSignup tokens enter the account pool; a new key starts empty and returns 402 until tokens are allocated at /account. Extra keys do not grant extra tokens. Save the fingerprint shown once: it is the password, with no email recovery. Terms prohibit automated account creation to harvest grants and permit ending discretionary free access. Further top-ups are crypto. Requests go to independent decentralized operators under FROMZERO OÜ's terms.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -7157,6 +7200,7 @@
         ],
         "what": "Free self-serve developer access to Poolside's own Laguna coding models",
         "limits": "Usage allowance: amount not published (period not published) per organization\n\nThe quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited capacity or a withdrawn offer.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -7248,6 +7292,7 @@
         ],
         "what": "SenseTime's SenseNova API, with a $0 Free plan during public beta; registration and identity verification required",
         "limits": "Public beta: 60,000 credits/5 hours per account\n\nFree during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The API guide calls the available model an \"early preview release\" and requires \"registration plus identity verification\". The page states a five-hour allowance without specifying a rolling reset. Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "sensenova-6.8-flash-lite": ""
@@ -7420,6 +7465,7 @@
         ],
         "what": "OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs",
         "limits": "4,000,000 input tokens/60 seconds; 100,000 output tokens/60 seconds; 10 requests/60 seconds per key\n\nFree while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap or end date is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.6": "",
@@ -7513,6 +7559,7 @@
         ],
         "what": "Keyless OpenAI-compatible chat endpoint — no signup, no key, no account",
         "limits": "Hermes public endpoint: 3 requests/second per IP\n\nHermes is the public text lane. qwen.ai.unturf.com requires a key and rejects anonymous traffic with 403. A down model's hostname returns 502; that temporary failure does not establish shutdown. Query Model Discovery for current callable IDs, since static examples can name an older ID.",
+        "why": "delisted on 2026-10-22: public beta closed; the endpoint requires a key and key registration is closed",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -7677,6 +7724,7 @@
         ],
         "what": "EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card",
         "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
+        "why": "",
         "access": "",
         "modelAccess": {
           "glm-5.2": "",
@@ -8016,6 +8064,7 @@
         "ids": [],
         "what": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
         "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nAvailable models depend on the app and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+        "why": "",
         "access": "",
         "modelAccess": {
           "solar-pro-4": "",
@@ -8484,6 +8533,7 @@
         ],
         "what": "OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit",
         "limits": "Tier 1: Manta Mini 1.0: 50 requests/day per account per model; for `meganova-ai/manta-mini-1.0`\n\nTier 1: Manta Flash 1.0: 50 requests/day per account per model; for `meganova-ai/manta-flash-1.0`\n\nTier 1: Mistral-Small-3.2-24B-Instruct-2506: 50 requests/day per account per model; for `mistralai/Mistral-Small-3.2-24B-Instruct-2506`\n\nTier 2: Manta Mini 1.0: 500 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-mini-1.0`\n\nTier 2: Manta Flash 1.0: 500 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-flash-1.0`\n\nTier 2: Mistral-Small-3.2-24B-Instruct-2506: 300 requests/day per account per model (After a $1 deposit); for `mistralai/Mistral-Small-3.2-24B-Instruct-2506`\n\nTier 2: Manta Pro 1.0: 50 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-pro-1.0`\n\nTier 2: GLM-4.7-Flash: 50 requests/day per account per model (After a $1 deposit); for `zai-org/GLM-4.7-Flash`\n\nTier 1: 60 requests/minute; 200,000 tokens/minute per account\n\nTier 1 registration needs no card. A $1 deposit unlocks Tier 2's separate per-model free allowances. Daily quotas reset at 00:00 UTC; they are per model, not one total budget to spend on any model. Free modules are for evaluation and interactive use, not production or unattended batches. The operator is Nebula Nova Inc. Audio and embedding quotas do not establish coding-model allowances.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "mistral-small-3.2": "",
@@ -9011,6 +9061,7 @@
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
         "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`\n\nK2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nVast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
@@ -9151,6 +9202,7 @@
         "ids": [],
         "what": "Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card",
         "limits": "14-day trial: Unmetered credits per team (Free for 14 days)\n\nOpen Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)\n\nNo card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9290,6 +9342,7 @@
         "ids": [],
         "what": "Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia",
         "limits": "Base Free plan: 100 credits/month per account\n\nPromotional daily bonus: 30 credits/day per account\n\nStandard completion allowance: 5,000 completions/month per account\n\nCurrent promotion: Unmetered completions per account\n\nSignup credit: 250 credits once per account (Valid for 14 days)\n\nThe current promotion makes completions unmetered and enables auto routing across all available models. \"Standard quotas resume when the promotion ends\" and \"The end date of this promotion will be announced separately\". Monthly base and bonus credits expire in their month without rollover. Free needs no card; the Pro trial does. Models are unnamed. Users must be at least 18. A 2026-09-25 DNS measurement found the international website, login and extension endpoint unavailable from US, Indian and Russian networks; the docs are also served on workbuddy.ai.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9423,6 +9476,7 @@
         ],
         "what": "Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup",
         "limits": "Usage allowance: amount varies (period not published) per account\n\nNo card. This is an experimental research service with capacity-dependent limits. Prompts and responses may be logged for research; sanitized content, usage statistics and routing metrics may be published or open-sourced. Only models marked Free accept a Free key; Pro catalog rows need a Pro-enabled key.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4-flash": "",
@@ -9572,6 +9626,7 @@
         ],
         "what": "Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use",
         "limits": "5 requests/second; 200 requests/minute per account per model; for `typhoon-v2.5-30b-a3b-instruct`\n\nA free research showcase, with higher limits available by email. Usage data is collected to improve the model and API; the vendor says it is not shared with third parties. Production users are directed to Together AI. A key is minted in the playground after signup; no page read mentions a card. OCR has its own lower rates, separate from the coding model.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9706,6 +9761,7 @@
         "ids": [],
         "what": "IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill",
         "limits": "Lite: 300,000 tokens/month; 2 requests/second per service plan\n\nLite compute: 20 CUH/month per service plan\n\nThe Lite service plan has limited capacity and no published expiry. IBM Cloud signup requires personal and card information to verify identity; Lite plans do not incur charges. Its covered foundation models are listed separately. The compute allowance and inference-token budget measure different kinds of usage.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9804,6 +9860,7 @@
         ],
         "what": "Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account",
         "limits": "$5/month per account\n\nAttaching a payment method is required for recurring free credit. Credit spends at per-token prices that depend on the requested completion window. The vendor states \"No strict rate limits\" and says request and response data is not used to train models without written consent.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9904,6 +9961,7 @@
         ],
         "what": "India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint",
         "limits": "₹100 once per account\n\nStarter: 40 requests/minute per account per model; for `sarvam-105b`\n\nSignup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter rate below is for Sarvam-105B. DeepSeek, GLM and Gemma beta models use /v2/chat/completions, which standard subscription keys cannot access by default; approval is requested per key. No page read mentions a card.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -9995,6 +10053,7 @@
         ],
         "what": "A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is",
         "limits": "Platform compute: $0.25 once per account\n\nA finite platform-compute trial, not a recurring budget or fixed token count. No card is required, but eligibility and availability are discretionary; contact support if activation offers no grant. No expiry or per-token conversion is published. The vendor recommends a small connection test and warns that a longer coding comparison may need paid allowance.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -10125,6 +10184,7 @@
         ],
         "what": "A one-time $1 of free credit on a prepaid reseller that bills its catalog at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is",
         "limits": "Key-creation grant: $1 once per account\n\nTrial traffic: 10 requests/minute; 250,000 tokens/minute; 4 requests at once per account\n\nThe key-creation grant is for an account with no earlier paid top-up, existing credit or setup grant; signup has no payment step and the grant does not expire. It spends at catalog prices with no token markup. Before a first paid top-up, only an unpublished subset of models may accept promotional credit, at reduced rates. Terms do not guarantee a grant and allow one account per person. Continuing requires at least $5 by card or $15 by crypto. No legal entity is named; the catalog needs a key.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -10222,6 +10282,7 @@
         ],
         "what": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
         "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. These models work only in the Cline IDE extension and CLI, not through the Cline API. Free usage may improve model performance and quality.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "solar-mini-4": ""
@@ -10376,6 +10437,7 @@
         ],
         "what": "Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them",
         "limits": "Published allowed rate: 30 requests/minute per account\n\nEffective rate: 10 requests/minute per account\n\nThe Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: \"Promotional end dates are subject to Agnes AI platform announcements and your account bill\". Allowed and effective text RPM are separate ceilings for the default user class; the account's keys share them. Image rates are separate. No daily budget is published.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "agnes-3.0-flash": "",
@@ -10484,6 +10546,7 @@
         ],
         "what": "One open-weight Qwen model served on the vendor's own flat-rate API for coding agents; the free plan is 15 requests a week with no card",
         "limits": "15 requests/week per account. Resets Monday at 00:00 UTC.\n\nNo card. The vendor calls the Free tier both free forever and for testing. It runs the model-serving stack rather than reselling another API. Sign in through Google, GitHub or Discord; multiple accounts may not combine capacity. Prompt and response bodies are not stored or retained.",
+        "why": "delisted on 2026-10-15: free accounts now include 0 requests/week and API inference requires a paid plan",
         "access": "",
         "modelAccess": {
           "qwen3.8-flash": ""
@@ -10785,6 +10848,7 @@
         "ids": [],
         "what": "AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents",
         "limits": "AI Free: 3 credits/30 days per account\n\nUnmetered completions per account\n\nThe credit window resets every 30 days from first use; AI Credits are not a guaranteed token count. Mellum completion is a separate unmetered free mode. An active eligible IDE licence is required, including educational, open-source, trial or supported non-commercial licences. IntelliJ without Ultimate, PyCharm without Pro and Android Studio are excluded. Only the optional AI Pro trial asks for a card. Serviceable territories exclude mainland China and other provider-restricted regions.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "mellum": ""
@@ -10904,6 +10968,7 @@
         "ids": [],
         "what": "Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students",
         "limits": "Shared Zed and Delta trial: $5 once per account (Valid for 14 days)\n\n14-day trial: Unmetered edit predictions per account\n\nVerified student plan: $10/month; Unmetered edit predictions per account (Free for one year to verified university students)\n\nNo card for the trial. GPT-6 Luna is the only hosted model during the trial, and the shared Zed/Delta trial ends when the credit or time runs out, whichever comes first. It then converts to Free, which uses your own API keys or external agents. The docs say \"Zed's hosted models and edit predictions require a Pro subscription.\" Verified university students receive a separate year of free Student access. Token credit is a spending wallet at hosted-model prices, not a list of individually zero-priced models.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11046,6 +11111,7 @@
         ],
         "what": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
         "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\n60 requests/minute; 1,800 requests/hour per account\n\n\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process request content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04",
+        "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4.1-flash": "",
@@ -11197,6 +11263,7 @@
         ],
         "what": "Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent",
         "limits": "Free models: Usage allowance: amount not published (period not published) per account\n\nChoose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key with ordinary API clients; the catalog itself is public. The Free plan publishes no card requirement or numerical rate cap.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "step-3.7-flash": "",
@@ -11259,6 +11326,7 @@
         "ids": [],
         "what": "AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month",
         "limits": "Closed to new users since 2026-05-15. AWS's end-of-support post of 2026-04-30: \"New Q Developer Free Tier account creation (via Builder ID in IDE plugins) and new Q Developer subscription creation (via the AWS Console) will be blocked\", and \"The May 15, 2026 cutoff applies only to creating new Q Developer accounts and new subscriptions\"; the product page adds \"On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins\", pointing to Kiro, which this list carries. The pricing page still reads as it did — \"Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user\", \"50 agentic requests per month\" in its Free column — for the accounts that already exist. Read 2026-09-23",
+        "why": "vendor-announced shutdown on 2026-05-15",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11435,6 +11503,7 @@
         ],
         "what": "OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models",
         "limits": "100,000 tokens/24 hours; 1 request/second; 60 requests/minute; 250 requests/hour per key\n\nGet a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but turbo alone does not establish eligibility: usage_based_only denotes paid usage. The operator names no upstream model provider.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11551,6 +11620,7 @@
         ],
         "what": "Serverless inference on open-weight models with a $1 trial credit documented in the billing FAQ; current pricing no longer advertises a signup grant",
         "limits": "Documented credit; signup eligibility unverified: $1 (period not published) (published sources disagree) per account\n\n10 requests/minute per account\n\nThe billing FAQ describes a credit and account suspension after exhaustion without a payment method. Current pricing instead emphasizes prepaid credit and does not promise a signup grant; new-account eligibility remains unverified. No expiry or recurrence is stated. Credit spends at list token prices. The low account rate applies when no payment method or no credit is present.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11737,6 +11807,7 @@
         ],
         "what": "OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta",
         "limits": "Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP\n\nGPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together and are shared by callers behind the same NAT or proxy. The gateway is beta; anonymous access is intended for evaluation. The operator is Autonomi AI Inc.; its terms render in a browser.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.8-27b": "",
@@ -11854,6 +11925,7 @@
         ],
         "what": "Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification",
         "limits": "Claimed promotional package: 1,000,000 tokens once per account per model (Valid for 1 year)\n\nThe claiming promotion runs through December 31, 2026. Grants are selected per model or claimed on its first call; one note instead says models share the account's quota, so confirm the console's scope. Exhaustion stops usage unless post-payment is enabled. Real-name verification accepts residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are directed to the international service.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11950,6 +12022,7 @@
         ],
         "what": "Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing",
         "limits": "Open models up to 7B: $1/4 weeks; 1 request at once per account\n\nCredits expire four weeks after grant. The free balance supports open models up to 7B parameters. Closed-model docs conflict between provider prices plus a platform fee and BYOK billed directly by the provider, so the free dollar does not establish bundled closed-model access. Larger open models require paid credit and a paid plan.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12045,6 +12118,7 @@
         "ids": [],
         "what": "OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time",
         "limits": "5 requests/2 days per account per model\n\n1 request at once per account\n\nFree is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes many roleplay and writing fine-tunes alongside coding-capable base models. Continuing beyond the trial allowance requires a paid plan.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12151,6 +12225,7 @@
         ],
         "what": "EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability",
         "limits": "Advertised route; free access unconfirmed: Usage allowance: amount not published (period not published); scope not published\n\nThe signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists paid alternatives. The API catalog retains the ID without a price or availability claim. Free access remains unconfirmed. Paid credit purchases add a 3% fee. Opper Technology AB operates in Sweden on AWS Stockholm.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gemma-4-31b": ""
@@ -12250,6 +12325,7 @@
         ],
         "what": "Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought",
         "limits": "100 requests/day per account\n\nChoose the free experience token; it can be used without buying a resource package. At the daily cap it returns `400 已达到最大当日免费 API 使用次数，请购买资源后继续使用 API`. Featured models are listed in the client-rendered model square. Its separately marked free models require a purchased resource package. Sign in through Gitee; acceptance of non-mainland phone numbers is unverified.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12350,6 +12426,7 @@
         ],
         "what": "Serverless open models priced per token, one of them at $0 and callable without prepaid credit",
         "limits": "Usage allowance: see your account for values (period not published) per organization per model\n\nFree models do not need prepaid credit; paid models return 402 when the balance is empty. The zero-priced Qwen route is separate from metered models. Rate limits are set per organization and model, with actual values unpublished. The operator is Mixlayer Labs Inc.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.5-4b": ""
@@ -12439,6 +12516,7 @@
         ],
         "what": "OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start",
         "limits": "$5 once per account\n\nNo card to start; sign in by an emailed code. Further usage is prepaid USD without a subscription. No public page states the model list, prices or grant expiry; see the console. Requests go to independent GPU operators, including Livepeer partners. Prompt, input and output logging is off by default, but no TEE, E2EE or confidential-compute guarantee is offered.",
+        "why": "delisted on 2026-10-15: Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart).",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12538,6 +12616,7 @@
         ],
         "what": "OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card",
         "limits": "1 credit once per organization\n\nSign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12640,6 +12719,7 @@
         ],
         "what": "Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card",
         "limits": "Signup credit: $0.05 (period not published) per account\n\nEmail-claim grant: $1 once per account\n\nAn account can be created by a keyless POST; email sign-in claims the additional grant once per person. Some models require a completed credit purchase and return `403 billing_required` without it; adding a card or holding promotional credit does not meet that condition. The eligible subset is unpublished. Usage bills at provider list prices without token markup; top-ups start at $5 plus a 5% fee.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12754,6 +12834,7 @@
         ],
         "what": "OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time",
         "limits": "Promotional signup credit: $25 once per account\n\nBefore first deposit: 100 requests/day; 3 requests at once per account\n\nThe signup grant is a limited-time offer with no payment step. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -12980,6 +13061,7 @@
         ],
         "what": "OpenAI-compatible inference with $2 of signup credit, or $4 in total with the vendor invite code, before any deposit",
         "limits": "Standard signup grant: $2 once per account\n\nSignup grant with invite code: $4 once per account (Use invite code HPCAI-MAPI)\n\nL0 before first deposit: 5 requests/minute per account per model; for `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `zai-org/glm-5.3`, `deepseek/deepseek-v4-flash`, `anthropic/claude-fable-5`, `anthropic/claude-opus-4.7`, `anthropic/claude-opus-4.8`, `anthropic/claude-opus-5`, `moonshotai/kimi-k3`, `openai/gpt-5.5`, `openai/gpt-oss-120b`, `qwen/qwen3.8-2.4t-a95b`, `qwen/qwen3.8-max`, `zai-org/glm-5.2`, `anthropic/claude-opus-4.6`, `xiaomi/mimo-v2.5-pro`, `xiaomi/mimo-v2.5`, `moonshotai/kimi-k2.6`, `nvidia/nemotron-3-ultra-550b-a55b`, `minimax/minimax-m3`, `qwen/qwen-3.5-397b-a17b`, `qwen/qwen-3.5-35b-a3b`, `qwen/qwen-3.5-27b`\n\nStandard L0 models: 2,000,000 tokens/minute per account per model; for `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `zai-org/glm-5.3`, `deepseek/deepseek-v4-flash`, `anthropic/claude-fable-5`, `anthropic/claude-opus-4.7`, `anthropic/claude-opus-4.8`, `anthropic/claude-opus-5`, `moonshotai/kimi-k3`, `openai/gpt-5.5`, `openai/gpt-oss-120b`, `qwen/qwen3.8-2.4t-a95b`, `qwen/qwen3.8-max`, `zai-org/glm-5.2`, `xiaomi/mimo-v2.5-pro`, `xiaomi/mimo-v2.5`, `moonshotai/kimi-k2.6`, `nvidia/nemotron-3-ultra-550b-a55b`, `minimax/minimax-m3`, `qwen/qwen-3.5-397b-a17b`, `qwen/qwen-3.5-35b-a3b`, `qwen/qwen-3.5-27b`\n\nL0: Claude Opus 4.6: 10,000,000 tokens/minute per account per model; for `anthropic/claude-opus-4.6`\n\nThe invite-code grant is the total signup balance, not an extra amount added to the standard grant; supplies are limited. Credit spends at model list prices. L0 applies before the first deposit; spending alone does not promote an account to L1. Claude Opus 4.6 has a higher token rate than the other positive-RPM L0 models; DeepSeek V4 Pro has zero L0 RPM. No card requirement or credit expiry is published.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13031,6 +13113,7 @@
         "ids": [],
         "what": "Xiaomi's MiMo Code terminal coding agent",
         "limits": "",
+        "why": "delisted on 2026-07-19: the same project as MiMo Code, the name Xiaomi's own README prints — a placeholder from the list's first day at mimocode.ai, a domain that still publishes no site, taken off the same day as unverifiable and folded into that row on 2026-09-20",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13084,6 +13167,7 @@
         "ids": [],
         "what": "Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama",
         "limits": "Tool is free and open-source; model usage is BYOK (no bundled free-model quota)",
+        "why": "delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13135,6 +13219,7 @@
         "ids": [],
         "what": "Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model",
         "limits": "No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits",
+        "why": "delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13198,6 +13283,7 @@
         "ids": [],
         "what": "Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models)",
         "limits": "10M free tokens on signup (one-time trial, no card); paid usage billed in crypto",
+        "why": "delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)",
         "access": "",
         "modelAccess": {
           "minimax-m2": "",
@@ -13277,6 +13363,7 @@
         ],
         "what": "Official DeepSeek API; every new account gets a one-time free token grant, no card required",
         "limits": "5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models",
+        "why": "delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant",
         "access": "",
         "modelAccess": {
           "deepseek-chat": "",
@@ -13357,6 +13444,7 @@
         ],
         "what": "Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month",
         "limits": "$10 free credits at the start of every month, usable on any API feature",
+        "why": "delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits",
         "access": "",
         "modelAccess": {
           "reka-core": "",
@@ -13428,6 +13516,7 @@
         ],
         "what": "Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit",
         "limits": "Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year",
+        "why": "delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13505,6 +13594,7 @@
         ],
         "what": "Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota",
         "limits": "100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout",
+        "why": "delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day",
         "access": "",
         "modelAccess": {
           "longcat-2.0": "",
@@ -13586,6 +13676,7 @@
         ],
         "what": "Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all",
         "limits": "Cerebras' own docs: \"New accounts receive $5 in free credits after adding a verified payment method\", credits \"expire 30 days after they're granted\", and \"If you skip adding a payment method at sign-up, Playground and API access remain inactive until you do\". Asked \"Is there a permanently free tier?\" the same page answers \"No\". Free Trial rate limits are per model and the same on both the public catalog now lists — 5 RPM, 30K uncached TPM, 90K total TPM, 1M TPH, 1M TPD each (read 2026-09-03), the two TPM figures being the dual bucket the page describes. That catalog has turned over twice: GLM 4.7 was deprecated on 2026-08-17 exactly as it announced, and Gemma 4 31B left between the 09:55 UTC probe on 2026-09-03, which still found it named, and a re-read eleven hours later — replaced by Qwen 3.8 27B, the one model here that reads images, 2 per request on this tier. The marketing pricing page still promises the credits \"after making an account\" and mentions no card — that was the old API tier, which accounts opened before the change kept until 2026-08-17 and which is now gone",
+        "why": "delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit",
         "access": "",
         "modelAccess": {
           "gpt-oss": "",
@@ -13648,6 +13739,7 @@
         "ids": [],
         "what": "Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token",
         "limits": "\"One million free credits allow you to test the service without commitment for one month\" and \"The API is billed on a credit basis. Each request consumes one credit or LLM token\" (support guide 2845, read 2026-09-02). The card is the gate: \"A credit card is required to start using the API. An unpaid invoice will result in service suspension\", and the sales FAQ adds that at account creation \"we'll ask you to confirm your identity by registering a valid payment card\". After the wallet, list rates in CHF per 1M tokens — Gemma 4 31B at CHF 0.20/0.40, Kimi K2.6 at CHF 0.60/3.00, Qwen3.5-122B at CHF 0.40/3.20 — billed at the end of the month, with a spending limit settable in the Manager. Models are hosted in Switzerland, and \"We don't currently offer the option of training our AI Services using custom data\"",
+        "why": "delisted on 2026-09-16: a one-month wallet of a million credits, and \"A credit card is required to start using the API\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13721,6 +13813,7 @@
         "ids": [],
         "what": "Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — sixteen on 2026-09-16, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them",
         "limits": "\"Models with the :free suffix, for example step-3-7-flash:free, are billed at Rp 0. In exchange, there is a per-account request limit per minute\", and \"Besides the per-minute limit, :free models also carry a daily request allowance with three tiers, based on account status\". The figures live in the public pricing endpoint the docs point at, kenari.id/api/public/pricing (re-read 2026-09-03, unchanged): a new account gets 50 requests a day at 5 per minute, an account whose top-ups pass Rp 10,000 gets 1,000 a day at 10 per minute, and a subscription lifts the per-minute cap to 15. \"Running out of daily quota returns HTTP 429 with a Retry-After header and reason free_quota_daily\", and \"The free lane is best-effort: capacity is kept lean, with no guarantee of the same speed or availability as paid models\". Sign-up asks for no card — top-ups are QRIS, \"tanpa kartu kredit internasional\", without an international credit card — and the privacy policy says \"Kami tidak menyimpan isi prompt maupun isi respons\", prompt and response content are not stored; the terms forbid reselling access. Docs are Indonesian with a full English mirror under /en/docs",
+        "why": "delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
@@ -13786,6 +13879,7 @@
         "ids": [],
         "what": "EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer",
         "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — \"The Free Tier is applied to the most expensive tokens first\", across the whole serverless catalog, which on 2026-08-14 read glm-5.2, deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b and the Mistral line",
+        "why": "delisted on 2026-09-16: 1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13907,6 +14001,7 @@
         ],
         "what": "EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account",
         "limits": "2,000,000 tokens/day per IP. reset at 00:00 UTC\n\nShared trial key: 4 requests at once per key\n\n64 requests at once shared across the endpoint\n\nThe public trial key shares its concurrency among all callers; the daily token budget is per IP and counts both prompt and completion. Its context is 131,072 tokens; personal paid keys have the full 262,144 and share the endpoint's separate inflight ceiling. Paid keys are issued by email, per token without subscription or minimum. Prompts and completions are volatile and never persisted or trained on; metadata, including IP, is retained 13 months. The sole proprietor operates in Poland, with GPUs in Italy behind a German edge.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.8-27b": ""
@@ -14050,6 +14145,7 @@
         ],
         "what": "Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents",
         "limits": "Verified free models: Usage allowance: see your account for values (period not published) per account per model\n\nFree models are zero-priced but require real-name verification. Online verification uses an Alipay face scan and accepted mainland, Hong Kong, Macau, Taiwan or Chinese permanent-residence documents; other applicants must contact staff. Sign in by SMS or email. Per-model fixed rate values are shown in the client-rendered model square, rather than public docs.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "xing4.0-29b": "",
@@ -14211,6 +14307,7 @@
         ],
         "what": "Alibaba model community with a free daily API inference allowance measured in credits, after Alibaba Cloud real-name verification",
         "limits": "Magicube daily login: 200 credits/day per account (Valid for the day)\n\nDaily bound-account bonus: 50 credits/day per account (Alibaba Cloud account bound; valid for the day)\n\nAdditional community rewards: Credits allowance: amount varies (period not published) per account\n\nAPI inference requires a bound Alibaba Cloud account with real-name verification; spending Magicube also requires a verified personal email. Calls cost 0.5, 1 or 2 credits by model class, so credits are not a fixed request count. Community rewards are separate and variable. Concurrency follows platform load. This is non-commercial, unsuitable for production requiring high concurrency or SLA; older models can be replaced.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -14385,6 +14482,7 @@
         ],
         "what": "Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account",
         "limits": "Preview models: Per-minute requests allowance: amount varies per project per model\n\nStable Gemini models: 10 requests/minute per project per model (Free express trial lasts up to 90 days); for `gemini-2.5-pro`, `gemini-2.5-flash`\n\nPreview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`\n\nThe free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "gemini-3.1-pro": "",
@@ -14534,6 +14632,7 @@
         "ids": [],
         "what": "Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card",
         "limits": "Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3 and GLM-5.3-Flash in separate buckets. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "glm-5.3": "",
@@ -14731,6 +14830,7 @@
         "ids": [],
         "what": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, using recurring hosted-response credits",
         "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 1,000 input tokens/minute; 1,160 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "fantail": ""
@@ -14851,6 +14951,7 @@
         "ids": [],
         "what": "Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app",
         "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nBasic-model fallback: Completions allowance: amount not published (period not published) per account\n\nQwen3.8 Flash promotion: Requests allowance: amount not published (period not published) per account per model\n\nThe model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Its end is \"结束时间将提前在本页公告\" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is \"结束时间：另行公告\" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. International Qoder has a separate account and price list.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.8-flash": ""
@@ -14934,6 +15035,7 @@
         "ids": [],
         "what": "Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days",
         "limits": "5,000 points once per account (Valid for 7 days)\n\nPersonal Standard completion: Completions allowance: amount not published (period not published) per account\n\nPersonal Standard completion is free, with no published amount or model name. The points grant is introductory. Auto-Free fallback is a paid-plan benefit; Personal Standard does not receive the paid hourly token fallback.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15024,6 +15126,7 @@
         "ids": [],
         "what": "Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day",
         "limits": "Claimed Lite plan: Rolling 5-hour usage allowance: amount not published per account (Valid for 30 days)\n\nClaimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per day, not a per-user inference cap. GLM-5.2 needs a separate Pro claim: \"Pro Trial 7 days Free claim, 100 slots/day at 10:00\" or \"Pro 30 days Free claim, requires a merged PR in the activity repository\". All plan usage is measured in rolling five-hour windows without published numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other providers use your own key.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4-flash": "",
@@ -15119,6 +15222,7 @@
         "ids": [],
         "what": "MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them",
         "limits": "Standard check-in: 400 points/day per account (Points valid for 30 days)\n\nCheck-in days 4 and 7: 1,000 points/day per account (Points valid for 30 days)\n\nThe higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points cover MiniMax Code task scenarios; their spending value follows the product UI. The desktop check-in names no payment step. Global and mainland accounts use separate sites. The CLI accepts account credits or BYOK, but no source establishes check-in-point eligibility there. Users must be at least 16.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15216,6 +15320,7 @@
         ],
         "what": "OpenAI-compatible Kimi K3 API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment",
         "limits": "Signup trial credit: $0.5 once per account (No card or top-up required)\n\nTrial rate limit: Requests allowance: amount not published (period not published) per account\n\nOne trial per person or organisation, with a verified email and human check. The trial credit does not expire; requests stop when it is exhausted. Optional paid top-ups start at $20. Trial access may have lower rate limits or model restrictions; the vendor publishes no numeric trial rate. Wallaby says it does not log or train on prompts, but its privacy policy does not establish the upstream providers' retention or training rules. Users must be at least 18.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15393,6 +15498,7 @@
         ],
         "what": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required",
         "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nThe reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15520,6 +15626,7 @@
         ],
         "what": "OpenAI-compatible managed inference on a permanent $0 Free plan, with a shared daily usage budget and no card required",
         "limits": "All successful requests: 5,000 requests/month per organization\n\nManaged inference: 100 requests/day; $0.5/day; 10 requests/minute per organization\n\n60 requests/minute per key\n\nManaged chat, embeddings and rerank share the daily allowance. BYOK requests also count toward the monthly request ceiling, but their tokens are billed by the connected provider. Managed requests allow at most 8,192 input and 1,024 output tokens; these are request budgets, not full model context windows. Monthly requests reset on the 1st at 00:00 UTC. Exhausted allowances return 402. Managed image, audio and video generation require Pro.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15650,6 +15757,7 @@
         ],
         "what": "OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit",
         "limits": "General: Per-minute requests allowance: see your account for values; scope not published\n\nFree models: Hourly requests allowance: see your account for values; Daily requests allowance: see your account for values; Hourly tokens allowance: see your account for values; Daily tokens allowance: see your account for values; scope not published\n\nAn account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports current minute, hourly and daily counters. The docs do not establish one shared scope for every key, model and upstream limit. The public catalog can list an enabled alias whose backend is disabled, so listing does not prove a successful completion. Planned or disabled rows are excluded. Numeric free limits and reset times are not publicly fixed.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -15807,6 +15915,7 @@
         ],
         "what": "OpenAI-compatible API with recurring free usage on a self-hosted open model",
         "limits": "Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nQwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
+        "why": "",
         "access": "",
         "modelAccess": {
           "qwen3.8-27b": ""
@@ -15932,6 +16041,7 @@
         ],
         "what": "Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit",
         "limits": "Shared free-model calls: 10 requests/day per account. 00:00 UTC+8\n\n5 requests/minute per account\n\nSeparate signup credit: $2 once per account (Valid for 14 days)\n\nThe daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {

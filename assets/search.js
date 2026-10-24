@@ -2,6 +2,16 @@
 
 // One query contract for the palette and Browse; DOM and rendering stay with each page.
 var FreeTierSearch = (function () {
+  // Prefer the actual request ID. A normalized spelling can match several
+  // different IDs; keep that ambiguity for the model picker to resolve.
+  function matchingIds(raw, ids) {
+    var query = (raw || "").trim();
+    if (!query) { return []; }
+    var exact = ids.filter(function (id) { return id === query; });
+    return exact.length ? exact : ids.filter(function (id) {
+      return written(fold(id)) === written(fold(query));
+    });
+  }
   function fold(text) {
     return (text || "").replace(/[\s\S]/g, function (c) {
       var low = c.toLowerCase(), base = low.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -59,7 +69,7 @@ var FreeTierSearch = (function () {
   function squash(text) { return text.replace(/[\s._-]+/g, ""); }
   function prepareOffer(o) {
     o.fName = fold(o.name); o.fModels = (o.models || []).concat(o.ids || []).map(fold);
-    o.fWhat = fold([o.what, o.access || ""].concat(Object.values(o.modelAccess || {})).join(" ")); o.fLimits = fold(o.limits);
+    o.fWhat = fold([o.what, o.access || "", o.why || ""].concat(Object.values(o.modelAccess || {})).join(" ")); o.fLimits = fold(o.limits);
     o.wModels = o.fModels.map(written); o.wWhat = written(o.fWhat); o.wLimits = written(o.fLimits);
   }
   function prepareModel(m) { m.fFamily = fold(m.family); m.wFamily = written(m.fFamily); }
@@ -77,6 +87,6 @@ var FreeTierSearch = (function () {
     return total;
   }
 
-  return {fold: fold, parse: parse, wanted: wanted, prepareOffer: prepareOffer,
+  return {fold: fold, parse: parse, matchingIds: matchingIds, wanted: wanted, prepareOffer: prepareOffer,
     prepareModel: prepareModel, scoreOffer: scoreOffer, scoreModel: scoreModel};
 })();

@@ -811,7 +811,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         </thead>
         <tbody>
           {% for r in archived %}
-          <tr data-id="{{ r.id }}">
+          <tr data-id="{{ r.id }}" data-search="{{ r.search | tojson | forceescape }}">
             <th class="who" scope="row"><a class="name" href="{{ r.page }}">{{ r.name }}</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
               {% if r.why.teaser %}
@@ -1063,8 +1063,6 @@ tr.flash { animation: flash 1.6s ease-out; }
   // folded text is the same place in the text shown: "Côte" finds "cote", and
   // the "…" a snippet starts with stays one character long.
   var fold = FreeTierSearch.fold;
-  function textOf(el) { return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
-  function full(cell) { return cell ? textOf(cell.querySelector(".full") || cell) : ""; }
 
   function readPage() {
     var sections = {};
@@ -1085,13 +1083,14 @@ tr.flash { animation: flash 1.6s ease-out; }
                page: own ? own.getAttribute("href") : "", row: tr, rows: rows };
     });
     var gone = [].map.call(document.querySelectorAll("#archive tbody tr[data-id]"), function (tr, i) {
-      return { kind: "gone", order: i, id: tr.dataset.id,
-               page: tr.querySelector("a.name").getAttribute("href"),
-               name: textOf(tr.querySelector("a.name")), why: full(tr.querySelector("td.what")) };
+      return Object.assign(JSON.parse(tr.dataset.search), {
+        kind: "gone", order: i, id: tr.dataset.id,
+        page: tr.querySelector("a.name").getAttribute("href")
+      });
     });
     offers.forEach(prepareOffer);
     models.forEach(prepareModel);
-    gone.forEach(function (g) { g.fName = fold(g.name); g.fWhy = fold(g.why); });
+    gone.forEach(prepareOffer);
     return { offers: offers, models: models, gone: gone };
   }
 
@@ -1251,12 +1250,7 @@ tr.flash { animation: flash 1.6s ease-out; }
       .filter(function (x) { return x.score > 0; })
       .sort(function (a, b) { return b.score - a.score || a.m.order - b.m.order; });
     var gone = !terms.length || narrowed ? [] : index.gone
-      .filter(function (g) {
-        return terms.every(function (t) {
-          return t.length === 1 ? g.fName.indexOf(t) === 0
-            : g.fName.indexOf(t) !== -1 || g.fWhy.indexOf(t) !== -1;
-        });
-      });
+      .filter(function (g) { return scoreOffer(g, terms) > 0; });
     if (models.length) {
       group("Models", models.length);
       models.slice(0, 8).forEach(function (x) {
@@ -1311,7 +1305,7 @@ tr.flash { animation: flash 1.6s ease-out; }
            + "the same way, is one link below.");
     }
     select(options.length ? 0 : -1);
-    sync(section, filters);
+    sync(section, filters, gone.length > 0);
   }
 
   // The query lives in the address, so a search can be sent to someone.
@@ -1321,7 +1315,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     CONFIG.filters.forEach(function (f) { params.delete(f.id); });
     return params;
   }
-  function sync(section, filters) {
+  function sync(section, filters, archived) {
     var params = withoutSearch();
     if (input.value.trim()) { params.set("q", input.value.trim()); }
     if (section) { params.set("s", section); }
@@ -1334,6 +1328,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     if (filters.nokey) { table.set("nokey", "1"); }
     if (filters.claude) { table.set("claude", "1"); }
     if (filters.strong) { table.set("strong", "1"); }
+    if (archived) { table.set("archived", "1"); }
     toTable.href = "browse.html" + (table.toString() ? "?" + table : "");
   }
 

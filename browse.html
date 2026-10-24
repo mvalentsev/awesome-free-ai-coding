@@ -422,10 +422,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       var client = setupClient(e);
       if (client) {
         var config = new URLSearchParams({client: client, provider: e.id});
-        var exact = callableIds(e).find(function (id) {
-          return written(FreeTierSearch.fold(id)) === written(FreeTierSearch.fold(els.q.value.trim()));
-        });
-        if (exact) config.set("model", exact);
+        var matches = FreeTierSearch.matchingIds(els.q.value, callableIds(e));
+        if (matches.length) config.set("model", matches.length === 1 ? matches[0] : els.q.value.trim());
         connect.appendChild(el("br"));
         connect.appendChild(link("./?" + config + "#plug", "Set up client"));
       } else if (els.client.value) {
@@ -435,8 +433,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
     } else {
       connect.appendChild(el("span", "muted", "not an API endpoint — see the page"));
     }
-    var query = written(els.q.value.trim().toLowerCase());
-    callableIds(e).filter(function (id) { return query && written(id.toLowerCase()) === query; }).forEach(function (id) {
+    FreeTierSearch.matchingIds(els.q.value, callableIds(e)).forEach(function (id) {
       var matched = el("div");
       matched.appendChild(text("Model ID: "));
       matched.appendChild(el("code", "", id));

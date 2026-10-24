@@ -566,7 +566,7 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
     assert re.search(r'<tr id="row-b" data-id="b" [^>]*data-flags=""', html)
     assert re.search(r'<tr id="model-m1" data-family="m1" data-tier="strong"\s+'
                      r'data-rows="a b">', html)
-    assert '<tr data-id="gone">' in html
+    assert '<tr data-id="gone" data-search=' in html
     # The pages are read off the links the rows already carry.
     assert re.search(r'<td class="when" data-label="Verified">\s*<a href="[^"]+/providers/a/">', html)
     from html.parser import HTMLParser
@@ -579,7 +579,7 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
     parser = Rows()
     parser.feed(html)
     from freetier_radar.render import build_index
-    canonical = {e["id"]: e["search"] for e in build_index(entries, TODAY)["entries"] if not e["archived"]}
+    canonical = {e["id"]: e["search"] for e in build_index(entries, TODAY)["entries"]}
     assert parser.records == canonical
     assert parser.records["a"]["models"] == ["m1"]
     assert parser.records["a"]["flags"] == ["nocard", "nokey", "strong"]
