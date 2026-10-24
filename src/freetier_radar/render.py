@@ -1236,7 +1236,7 @@ def build_index(entries: list[Entry], today: date,
         "source": REPO_URL,
         "feed": FEED_URL,
         "data_use_words": dict(DATA_USE_WORDS),
-        "search_config": _search_config(),
+        "search_config": _search_config(entries),
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
              "no_account": needs_no_account(e),
@@ -1308,10 +1308,11 @@ SEARCH_FILTERS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
 )
 
 
-def _search_config() -> dict:
+def _search_config(entries: list[Entry] | None = None) -> dict:
     """The search's filters, in the page as JSON: the sections the nav names and
     the four row answers, each with the words that select it."""
     return {
+        "names": list(dict.fromkeys(e.name for e in entries or [])),
         "sections": [{"id": cat.value, "label": SITE_NAV_LABELS[cat],
                       "emoji": CATEGORY_TITLES[cat].partition(" ")[0],
                       "words": list(dict.fromkeys((cat.value, *SEARCH_SECTION_WORDS[cat])))}
@@ -1623,7 +1624,7 @@ def build_site_context(entries: list[Entry], today: date,
         "radar": SITE_RADAR,
         # Serialised here, like the structured data: autoescaping would turn a
         # JSON document's quotes into entities.
-        "search_config": _script_json(_search_config()),
+        "search_config": _script_json(_search_config(entries)),
     }
 
 

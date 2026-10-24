@@ -32,8 +32,8 @@ def browser_plan(bundle: Bundle) -> dict:
     html = git.show(bundle.repo, scope['sha'], 'index.html') or ''
     config_block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
     clients = list(json.loads(config_block.group(1))) if config_block else []
-    words = {word for group in index.get('search_config', {}).values() for item in group
-             for word in item.get('words', [])}
+    words = {word for key in ('sections', 'filters')
+             for item in index.get('search_config', {}).get(key, []) for word in item.get('words', [])}
     named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
                     and e.get('page') and re.fullmatch(r'[A-Za-z][A-Za-z0-9]+', e.get('name', ''))
                     and e['name'].lower() not in words

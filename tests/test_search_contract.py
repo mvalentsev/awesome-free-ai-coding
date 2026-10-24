@@ -32,7 +32,8 @@ def test_full_folded_lead_cross_field_terms_and_callable_ids_match_on_both_surfa
     entries = [make(id="groq", name="Groq", limits="1,160 tokens/minute\n\n" + "Details. " * 50,
                     api={"base_url":"https://example.com/v1", "model_ids":["vendor/preview:free"]}),
                make(id="other", name="Other", limits="10 tokens/minute"),
-               make(id="version", name="Version", models=[{"family":"qwen3-8b"}])]
+               make(id="version", name="Version", models=[{"family":"qwen3-8b"}]),
+               make(id="example", name="Example-Model APIs", category="trial")]
     registry = tmp_path / "registry.yaml"
     save_registry(registry, entries)
     html = render_site(registry, TEMPLATES, tmp_path / "index.html", today=TODAY)
@@ -40,7 +41,7 @@ def test_full_folded_lead_cross_field_terms_and_callable_ids_match_on_both_surfa
     sources = [records(html), {e["id"]:e["search"] for e in index["entries"]}]
     assert sources[0] == sources[1]
     assert sources[0]["groq"]["limits"].startswith("1,160 tokens/minute")
-    queries = ["groq tokens", "1,160", "vendor/preview:free", "no card groq tokens", "qwen3 8b", "qwen 3.8", "missing", "api-free-tier"]
+    queries = ["groq tokens", "1,160", "vendor/preview:free", "no card groq tokens", "qwen3 8b", "qwen 3.8", "missing", "api-free-tier", "Example Model APIs no card"]
     script = SEARCH_ASSETS + "\nconst sources=" + json.dumps(sources) + ";\nconst config=" + json.dumps(index["search_config"]) + ";\n" + """
     const queries = QUERIES;
     console.log(JSON.stringify(sources.map(rows => queries.map(text => {
@@ -53,7 +54,7 @@ def test_full_folded_lead_cross_field_terms_and_callable_ids_match_on_both_surfa
     }))));""".replace("QUERIES", json.dumps(queries))
     result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
     assert result.returncode == 0, result.stderr
-    expected = [["groq"], ["groq"], ["groq"], ["groq"], ["version"], [], [], ["groq", "other", "version"]]
+    expected = [["groq"], ["groq"], ["groq"], ["groq"], ["version"], [], [], ["groq", "other", "version"], ["example"]]
     assert json.loads(result.stdout) == [expected, expected]
 
 

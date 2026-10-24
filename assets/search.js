@@ -19,17 +19,37 @@ var FreeTierSearch = (function () {
     });
   }
   function parse(raw, config) {
-    var text = " " + fold(raw).replace(/\s+/g, " ") + " ";
+    var tokens = fold(raw).split(/\s+/).filter(Boolean).map(function (value) {
+      return {value: value, literal: false};
+    });
+    // A section word inside an offer's name is literal. Explicit filters
+    // outside that name still apply. Match the same separators as name search.
+    (config.names || []).forEach(function (name) {
+      var key = written(fold(name));
+      for (var start = 0; start < tokens.length; start++) {
+        var joined = "";
+        for (var end = start; end < tokens.length && joined.length < key.length; end++) {
+          joined += written(tokens[end].value);
+          if (joined === key) {
+            for (var i = start; i <= end; i++) { tokens[i].literal = true; }
+          }
+        }
+      }
+    });
     var picked = { section: "", filters: {} };
     function take(words, apply) {
       words.slice().sort(function (a, b) { return b.length - a.length; }).forEach(function (w) {
-        var at = text.indexOf(" " + w + " ");
-        if (at !== -1) { text = text.slice(0, at) + " " + text.slice(at + w.length + 1); apply(); }
+        var words = w.split(" ");
+        for (var at = 0; at <= tokens.length - words.length; at++) {
+          if (words.every(function (word, offset) {
+            return !tokens[at + offset].literal && tokens[at + offset].value === word;
+          })) { tokens.splice(at, words.length); apply(); break; }
+        }
       });
     }
     config.filters.forEach(function (f) { take(f.words, function () { picked.filters[f.id] = true; }); });
     config.sections.forEach(function (sec) { take(sec.words, function () { picked.section = sec.id; }); });
-    return { terms: text.split(" ").filter(Boolean), picked: picked };
+    return { terms: tokens.map(function (t) { return t.value; }), picked: picked };
   }
 
   function wanted(o, section, filters) {
