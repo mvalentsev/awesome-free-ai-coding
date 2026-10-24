@@ -117,3 +117,18 @@ def test_archived_reason_lead_is_shared_and_the_table_link_keeps_the_archive(tmp
     result = subprocess.run(["node", "-e", script],capture_output=True,text=True,timeout=30)
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout) == {"matches":True,"href":"browse.html?q=withdrawn&archived=1"}
+
+
+def test_model_page_command_selects_that_family_without_changing_provider_default():
+    from freetier_radar.render import build_model_page, build_provider_page
+    e = make(id="vendor", models=[{"family":"stable"},{"family":"science-397b"}],
+             api={"base_url":"https://x.ai/v1","model_ids":["stable","science-free"],
+                  "codex":{"base_url":"https://x.ai/v1","source":"https://x.ai/codex",
+                           "quote":"Use Codex CLI with this provider"},
+                  "model_bindings":{"science-free":{"family":"science-397b",
+                                    "source":"https://x.ai/science","quote":"The science-free route"}}})
+    model = build_model_page("science-397b", [e], [], TODAY, pages={"stable","science-397b"})
+    provider = build_provider_page(e, [], TODAY, registry=[e], pages={"stable","science-397b"})
+    assert "codex -p vendor -m science-free" in model
+    assert "Callable ids: `science-free`" in model
+    assert "then `codex -p vendor`" in provider

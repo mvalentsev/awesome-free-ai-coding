@@ -19,6 +19,7 @@ on:
       - configs/litellm.yaml
       - configs/codex/*.config.toml
       - src/freetier_radar/conformance.py
+      - src/freetier_radar/render.py
       - src/freetier_radar/prober.py
       - .github/workflows/conformance.yml
 

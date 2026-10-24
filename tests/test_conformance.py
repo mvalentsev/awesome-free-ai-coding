@@ -21,6 +21,15 @@ from freetier_radar.conformance import check_opencode_output_budget, record_open
 ROOT = Path(__file__).resolve().parent.parent
 
 
+def test_generated_client_command_changes_trigger_the_real_client_conformance_run():
+    import inspect
+    from freetier_radar.render import _site_client_configs
+    workflow = yaml.safe_load((ROOT / ".github/workflows/conformance.yml").read_text())
+    trigger = workflow.get("on", workflow.get(True))["push"]
+    source = Path(inspect.getsourcefile(_site_client_configs)).relative_to(ROOT).as_posix()
+    assert source in trigger["paths"]
+
+
 @pytest.mark.parametrize("fields, valid", [
     ({"max_completion_tokens": 8000}, True),
     ({"max_completion_tokens": 4096, "max_tokens": 4096}, True),
