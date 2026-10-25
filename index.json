@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24",
+  "generated": "2026-10-25",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -1502,7 +1502,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
       "quotas": [
         {
           "unit": "usage",
@@ -1510,7 +1510,7 @@
           "label": "Free model usage",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "quote": "Big Pickle",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-25",
           "amount": null,
           "period": null
         }
@@ -1519,11 +1519,6 @@
       "models": [
         {
           "family": "big-pickle"
-        },
-        {
-          "family": "mimo-v2.5",
-          "tier": "notable",
-          "aa_model": "mimo-v2-5-0424"
         },
         {
           "family": "nemotron-3-ultra",
@@ -1538,15 +1533,12 @@
           "family": "mimo-v2.6-flash",
           "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
-        },
-        {
-          "family": "longcat-2.5-preview"
         }
       ],
       "newcomers": [
         {
-          "family": "jev-1.13",
-          "on": "2026-10-11",
+          "family": "flint-40b",
+          "on": "2026-10-25",
           "source": "https://opencode.ai/v2/docs/console/models/"
         },
         {
@@ -1556,11 +1548,6 @@
         },
         {
           "family": "glm-5.3-flash",
-          "on": "2026-10-19",
-          "source": "https://opencode.ai/v2/docs/console/models/"
-        },
-        {
-          "family": "minimax-m3.1-flash",
           "on": "2026-10-19",
           "source": "https://opencode.ai/v2/docs/console/models/"
         },
@@ -1593,7 +1580,7 @@
         "endpoint": "https://opencode.ai/v2/docs/console/models/",
         "keywords": [
           "big pickle",
-          "mimo-v2.5-free"
+          "mimo-v2.6-flash-free"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -1623,24 +1610,20 @@
         "name": "opencode",
         "models": [
           "big-pickle",
-          "mimo-v2.5",
           "nemotron-3-ultra",
           "nemotron-3.5-lightning",
-          "mimo-v2.6-flash",
-          "longcat-2.5-preview"
+          "mimo-v2.6-flash"
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
+        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
         "why": "",
         "access": "",
         "modelAccess": {
           "big-pickle": "",
-          "mimo-v2.5": "",
           "nemotron-3-ultra": "",
           "nemotron-3.5-lightning": "",
-          "mimo-v2.6-flash": "",
-          "longcat-2.5-preview": ""
+          "mimo-v2.6-flash": ""
         },
         "section": {
           "id": "agent-cli"
@@ -17706,14 +17689,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
     },
     {
-      "family": "longcat-2.5-preview",
-      "rows": [
-        "opencode",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/"
-    },
-    {
       "family": "minimax-m2.1",
       "rows": [
         "kiro",
@@ -18125,6 +18100,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
     },
     {
+      "family": "longcat-2.5-preview",
+      "rows": [
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/"
+    },
+    {
       "family": "mellum",
       "rows": [
         "jetbrains-ai"
@@ -18137,14 +18119,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/"
-    },
-    {
-      "family": "mimo-v2.5",
-      "rows": [
-        "opencode"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/"
     },
     {
       "family": "mimo-v2.6-pro",
@@ -18468,6 +18442,11 @@
       "family": "mimo-v2-pro",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-pro/"
+    },
+    {
+      "family": "mimo-v2.5",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/"
     },
     {
       "family": "mimo-v2.5-pro",

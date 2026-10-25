@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-10-22'
 description: mimo-v2.6-flash is served free by opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-flash/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-25
 crumb: mimo-v2.6-flash
 ---
 
@@ -28,7 +28,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 - Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
 
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.
 
 </details>
 
@@ -121,11 +121,10 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 ## Related models
 
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
-- [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) — free at opencode
 - [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — free at AIHubMix (free models)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-24 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,7 +3,7 @@ layout: default
 title: 'longcat-2.0 free: 1 provider, limits and ids, provider probes 2026-10-22'
 description: longcat-2.0 is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/longcat-2.0/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-25
 crumb: longcat-2.0
 ---
 
@@ -43,10 +43,10 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ## Related models
 
-- [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/) — free at opencode and Nous Portal (Hermes Agent)
+- [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/) — free at Nous Portal (Hermes Agent)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-24 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

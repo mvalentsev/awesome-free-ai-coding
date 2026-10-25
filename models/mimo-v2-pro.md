@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2-pro free: no current listing, last listed 2026-10-22'
 description: No row currently lists mimo-v2-pro under Free models. The list carried it at AIHubMix (free models) until 2026-10-22. Each row's page gives its current offer.
 permalink: /models/mimo-v2-pro/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-25
 crumb: mimo-v2-pro
 ---
 
@@ -23,11 +23,10 @@ crumb: mimo-v2-pro
 
 - [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff, AIHubMix (free models) and Token Harbor
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
-- [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) — free at opencode
 - [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — free at AIHubMix (free models)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-24 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

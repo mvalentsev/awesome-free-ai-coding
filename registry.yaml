@@ -707,22 +707,20 @@ entries:
     OpenCode''s free tier can only be used from within OpenCode`. Use `opencode/<model-id>`
     and select the Free variant. Offers rotate; each named free offer is "available
     on OpenCode for a limited time". Collected free-model data may improve models;
-    NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free''s
-    provider does not train on inputs and retains them for 30 days; its listed territorial
-    exclusions include Russia.'
+    NVIDIA offers are trial-only and exclude personal or confidential data. Flint
+    40B Free allows training and retains data for 30 days. Beam Free''s provider does
+    not train on inputs and retains them for 30 days; its listed territorial exclusions
+    include Russia.'
   quotas:
   - unit: usage
     scope: unspecified
     label: Free model usage
     source: https://opencode.ai/v2/docs/console/models/
     quote: Big Pickle
-    reviewed_on: '2026-10-20'
+    reviewed_on: '2026-10-25'
   free_part: models
   models:
   - family: big-pickle
-  - family: mimo-v2.5
-    tier: notable
-    aa_model: mimo-v2-5-0424
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
@@ -731,18 +729,14 @@ entries:
   - family: mimo-v2.6-flash
     tier: strong
     aa_model: mimo-v2-6-flash
-  - family: longcat-2.5-preview
   newcomers:
-  - family: jev-1.13
-    'on': '2026-10-11'
+  - family: flint-40b
+    'on': '2026-10-25'
     source: https://opencode.ai/v2/docs/console/models/
   - family: deepseek-v4.1-flash
     'on': '2026-10-15'
     source: https://opencode.ai/v2/docs/console/models/
   - family: glm-5.3-flash
-    'on': '2026-10-19'
-    source: https://opencode.ai/v2/docs/console/models/
-  - family: minimax-m3.1-flash
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
   - family: beam-1.0
@@ -764,7 +758,7 @@ entries:
     endpoint: https://opencode.ai/v2/docs/console/models/
     keywords:
     - big pickle
-    - mimo-v2.5-free
+    - mimo-v2.6-flash-free
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

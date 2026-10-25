@@ -1,13 +1,13 @@
 # awesome-free-ai-coding
 
-> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-10-24 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
+> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-10-25 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
 
 Each offer links to a page with the free tier in the vendor's own words, the connection details (base URL, where to get a key, model ids, an Anthropic-format URL where the vendor documents one), the evidence the probe reads and the row's history. "No card" means the vendor asks for no payment method; "no key" means the endpoint answers without an account; "no account" means the vendor prints a key anyone may call it with. Offers the list carried and carries no more are listed last, under Archived, each with why it left.
 
 ## Coding agents & CLIs
 
 - [GitHub Copilot Free](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/): Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage; no card; not offered in Russia, Iran, Belarus and 2 more places; what you send may be used to train or improve models unless you turn that off
-- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/): Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK; no card; what you send may be used to train or improve models; free models: `big-pickle`, `mimo-v2.5`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `mimo-v2.6-flash`, `longcat-2.5-preview`
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/): Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK; no card; what you send may be used to train or improve models; free models: `big-pickle`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `mimo-v2.6-flash`
 - [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/): Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models; no card; not offered in Iran, Syria, Cuba and 1 more place; what you send may be used to train or improve models; no key; OpenAI-compatible at https://api.kilo.ai/api/gateway; Codex CLI profile at https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml; free models: `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `dots-3-note`, `nemotron-3-nano-omni`
 - [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/): Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models; no card; what you send may be used to train or improve models unless you turn that off; free models: `claude-sonnet-4.5`, `claude-sonnet-4`, `glm-5`, `minimax-m2.5`, `deepseek-v3.2`, `qwen3-coder-next`, `minimax-m2.1`
 - [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/): Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models; no card; not offered in mainland China, Russia, Hong Kong and 21 more places; what you send may be used to train or improve models unless you turn that off; free models: `gemini-3.8-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss-120b`
@@ -138,7 +138,6 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [gemini-3.8-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/): strong; Google AI Studio (Gemini API), Google Antigravity
 - [glm-5](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/): notable; Kiro, AIHubMix (free models)
 - [glm-5-turbo](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/): notable; AIHubMix (free models), ZCode (Z.ai)
-- [longcat-2.5-preview](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/): opencode, Nous Portal (Hermes Agent)
 - [minimax-m2.1](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/): notable; Kiro, AIHubMix (free models)
 - [minimax-m2.7](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/): notable; AIHubMix (free models), Routeway
 - [minimax-m3](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/): notable; AIHubMix (free models), FreeInference (Harvard SEAS)
@@ -174,8 +173,8 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [ling-3.0-tiny](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/): Requesty
 - [ling-3.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/): strong; Requesty
 - [longcat-2.0](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/): notable; Nous Portal (Hermes Agent)
+- [longcat-2.5-preview](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/): Nous Portal (Hermes Agent)
 - [mimo-v2-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/): notable; AIHubMix (free models)
-- [mimo-v2.5](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/): notable; opencode
 - [mimo-v2.6-pro](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/): strong; AIHubMix (free models)
 - [minimax-m2](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/): notable; AIHubMix (free models)
 - [minimax-m3.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/): strong; LLMTR (free until 2026-10-26 23:59+03:00)

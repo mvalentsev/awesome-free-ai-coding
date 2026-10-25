@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-10-22'
-description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, mimo-v2.5, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, longcat-2.5-preview. Free models work only inside…'
+description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash. Free models work only inside OpenCode; other clients receive…'
 permalink: /providers/opencode/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-25
 crumb: opencode
 ---
 
@@ -19,13 +19,13 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Free models
 
-`big-pickle`, [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/)
+`big-pickle`, [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 
 ## Limits, in the vendor's words
 
 Free model usage: Usage allowance: amount not published (period not published); scope not published
 
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.
 
 ## Where it is offered
 
@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Evidence
 
-- Probe: the page at <https://opencode.ai/v2/docs/console/models/>, anchored on `big pickle`, `mimo-v2.5-free`
+- Probe: the page at <https://opencode.ai/v2/docs/console/models/>, anchored on `big pickle`, `mimo-v2.6-flash-free`
 - Source: <https://opencode.ai/v2/docs/console/models/>
 - Source: <https://opencode.ai/docs/>
 - Source: <https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001>
@@ -51,6 +51,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-25` — Free models changed: dropped longcat-2.5-preview, mimo-v2.5
 - `2026-10-19` — Free models changed: dropped muse-spark-1.3-contributor
 - `2026-10-15` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-10-11` — Free models changed: added longcat-2.5-preview
@@ -65,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
