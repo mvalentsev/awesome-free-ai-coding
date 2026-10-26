@@ -81,7 +81,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-10-26
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-10-26
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-10-26
-- [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-10-22
+- [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-10-26
 - [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) — verified 2026-10-26
 - [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) — verified 2026-10-26
 - [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) — verified 2026-10-26

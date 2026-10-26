@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Sarvam AI free tier: limits, free models, verified 2026-10-22'
+title: 'Sarvam AI free tier: limits, free models, verified 2026-10-26'
 description: India's Sarvam AI grants verified users ₹100 in credits that never expire, spendable across its APIs, including Sarvam-105B chat through an OpenAI-compatible endpoint. Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token…
 permalink: /providers/sarvam/
 last_modified_at: 2026-10-26
@@ -11,7 +11,7 @@ crumb: Sarvam AI
 
 # Sarvam AI free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22; the probe since has not found that evidence, and 3 misses in a row archive the row · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-26 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
