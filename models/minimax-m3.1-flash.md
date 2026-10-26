@@ -32,9 +32,9 @@ Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
-Jais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`
+Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
 
-K2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`
+K2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
 
 MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
 
@@ -49,13 +49,13 @@ Free chat rows can be called on a new account with zero balance before any top-u
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
 - Callable ids: `minimax/minimax-m3.1-flash-free`
-- `minimax/minimax-m3.1-flash-free`: free until 2026-10-26 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
+- `minimax/minimax-m3.1-flash-free`: free until 2026-11-02 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
 - What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/poolside-laguna/)).
 
 ## Related models
 
-- [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) — free at Kiro and AIHubMix (free models)
+- [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro and AIHubMix (free models)
 - [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
 - [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)

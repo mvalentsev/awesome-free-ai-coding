@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Prompts, co
 - Base URL: `https://api.abliteration.ai/v1`
 - Key: `ABLITERATION_AI_API_KEY` — get one at <https://abliteration.ai/console>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.abliteration.ai`
-- Codex CLI: [`configs/codex/abliteration-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/abliteration-ai.config.toml) — copy it to `~/.codex/`, then `codex -p abliteration-ai`; set up on the lane by the vendor's own page, <https://docs.abliteration.ai/integrations/codex>: "To use Codex with abliteration.ai, register a custom model provider"
+- Codex CLI: [`configs/codex/abliteration-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/abliteration-ai.config.toml) — copy it to `~/.codex/`, then `codex -p abliteration-ai`; set up on the lane by the vendor's own page, <https://docs.abliteration.ai/integrations/codex>: "To use Codex with Abliteration"
 - Callable ids: `abliterated-model-large-v2`, `abliterated-model`, `abliterated-model-large`
 - Note: Use abliterated-model-large-v2 for the newer large model. abliterated-model-large is the previous GLM-5.2-based version. Use abliterated-model for image inputs; both large models are text-only.
 

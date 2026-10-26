@@ -38,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`, `cline-free/minimax-m3.1-flash`, `reflection/beam-free`, `nvidia/nemotron-3.5-lightning-free`, `poolside/laguna-s-2.1-free`
+- In Cline's own model list: `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`, `reflection/beam-free`, `nvidia/nemotron-3.5-lightning-free`, `poolside/laguna-s-2.1-free`
 
 ## Evidence
 

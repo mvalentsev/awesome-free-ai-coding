@@ -8,7 +8,7 @@
 # gateway the next credential it holds, your own sign-in included.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, liquid/lfm-2.5-2.6b:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free, xingchen-agi/xing4.0-29b-a4b:free, minimax/minimax-m3.1-flash:free, recursive/flint-v1.0:free
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, liquid/lfm-2.5-2.6b:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free, xingchen-agi/xing4.0-29b-a4b:free, recursive/flint-v1.0:free
 claude-openrouter-free() {
   if [ -z "${OPENROUTER_API_KEY:-}" ]; then
     echo "claude-openrouter-free: set OPENROUTER_API_KEY first (configs/free-llm.env.example)" >&2
@@ -36,7 +36,7 @@ claude-requesty() {
 }
 
 # ── AIHubMix (free models) · get a key: https://aihubmix.com/token
-#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, north-mini-code-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, mimo-v2-flash-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-lightning-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free, qwen3.8-flash-free, qwen3.8-max-free, gemma-4-26b-a4b-it-free, gemma-4-31b-it-free
+#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, north-mini-code-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, mimo-v2-flash-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3.5-lightning-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free, qwen3.8-flash-free, qwen3.8-max-free, gemma-4-26b-a4b-it-free, gemma-4-31b-it-free, flint-v1.0-free, nemotron-3.5-super-vl-free, xing4.0-29b-a4b-free
 claude-aihubmix() {
   if [ -z "${AIHUBMIX_API_KEY:-}" ]; then
     echo "claude-aihubmix: set AIHUBMIX_API_KEY first (configs/free-llm.env.example)" >&2
@@ -148,7 +148,7 @@ claude-moark() {
 }
 
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
-#    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, diffusiongemma, minimax-m3
+#    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, minimax-m3
 claude-freeinference() {
   if [ -z "${FREEINFERENCE_API_KEY:-}" ]; then
     echo "claude-freeinference: set FREEINFERENCE_API_KEY first (configs/free-llm.env.example)" >&2

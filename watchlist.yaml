@@ -18,6 +18,22 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [experientiallabs.ai, api.experientiallabs.ai, platform.experientiallabs.ai]
+    name: Experiential Labs
+    checked_on: '2026-10-26'
+    reason: >-
+      The general monthly free credit is no longer offered on
+      https://www.experientiallabs.ai/pricing. That page advertises free chat
+      models, but selecting Free at https://platform.experientiallabs.ai/models
+      shows positive GPT-6 Luna and DeepSeek V4.1 Flash prices and Free with Pro.
+      Their public provider metadata also gives Free no discount. The explicitly
+      free Clef Flash and Luna Decisions routes use structured decisions rather
+      than chat or coding tools. Missing and invalid keys return 401; no
+      authenticated free-chat completion or card verification was performed.
+      The published row, page and history remain in Archive.
+    reopen_if: >-
+      Current Free-selected chat prices and provider terms agree on a usable
+      free coding lane, or a general no-subscription credit allowance returns.
   - domains: [hyper.charm.land]
     name: Charm Hyper
     checked_on: '2026-10-15'

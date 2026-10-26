@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-10-22'
-description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. Signup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter…
+description: India's Sarvam AI grants verified users ₹100 in credits that never expire, spendable across its APIs, including Sarvam-105B chat through an OpenAI-compatible endpoint. Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token…
 permalink: /providers/sarvam/
 last_modified_at: 2026-10-26
 crumb: Sarvam AI
@@ -15,7 +15,7 @@ crumb: Sarvam AI
 
 ## What you get
 
-India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint
+India's Sarvam AI grants verified users ₹100 in credits that never expire, spendable across its APIs, including Sarvam-105B chat through an OpenAI-compatible endpoint
 
 ## Free models
 
@@ -25,9 +25,9 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ₹100 once per account
 
-Starter: 40 requests/minute per account per model; for `sarvam-105b`
+Pay-as-you-go Sarvam-105B: 60 requests/minute per account (Shared by all API keys under the account); for `sarvam-105b`
 
-Signup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter rate below is for Sarvam-105B. DeepSeek, GLM and Gemma beta models use /v2/chat/completions, which standard subscription keys cannot access by default; approval is requested per key. No page read mentions a card.
+Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token conversion. Rate limits apply per account across its keys, with separate pools by API. The listed Pay-as-you-go rate covers Sarvam-105B. The v2 chat and Responses APIs are generally available for the documented open models; the pricing page still labels some other models beta. No page read mentions a card.
 
 ## Where it is offered
 
@@ -40,9 +40,9 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - Base URL: `https://api.sarvam.ai/v1`
-- Key: `SARVAM_API_KEY` — get one at <https://dashboard.sarvam.ai>
+- Key: `SARVAM_API_KEY` — get one at <https://indus.sarvam.ai/key-management>
 - Callable ids: `sarvam-105b`
-- Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only sarvam-105b and its voice-agent variant, sarvam-105b-conversations, which the configs leave out; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees
+- Note: The vendor accepts api-subscription-key and Authorization: Bearer. This configuration uses /v1/chat/completions for sarvam-105b; the conversations variant is omitted. The separate /v2/chat/completions and /v2/responses routes are generally available for their listed models. Prices are in rupees.
 
 Try it from your terminal with your key in `SARVAM_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -55,12 +55,13 @@ curl -s https://api.sarvam.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every new user receives ₹100 in credits`
+- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every verified user receives ₹100 in credits`
 - Source: <https://docs.sarvam.ai/api/getting-started/pricing.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/models.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/ratelimits.md>
 - Source: <https://docs.sarvam.ai/api-reference/authentication.md>
 - Source: <https://docs.sarvam.ai/api-reference/beta-apis.md>
+- Source: <https://api.sarvam.ai/v2/models>
 
 ## History
 

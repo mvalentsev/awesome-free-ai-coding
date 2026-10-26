@@ -36,7 +36,7 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
-- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile sets a request output budget for qwen/qwen3.8-27b; this is a client setting, not a published model limit. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
+- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a matching request output budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
 
 Try it from your terminal — the lane takes no key:
 

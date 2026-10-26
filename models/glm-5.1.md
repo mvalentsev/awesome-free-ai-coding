@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'glm-5.1 free: 3 providers, limits and ids, provider probes 2026-10-26'
-description: glm-5.1 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-5.1 free: 2 providers, limits and ids, provider probes 2026-10-26'
+description: glm-5.1 is served free by AIHubMix (free models) and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.1/
 last_modified_at: 2026-10-26
 crumb: glm-5.1
@@ -11,7 +11,7 @@ crumb: glm-5.1
 
 # Where glm-5.1 is free
 
-**3 rows on the list serve `glm-5.1` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-1), below its strong bar.
+**2 rows on the list serve `glm-5.1` free:** AIHubMix (free models) and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-1), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -66,25 +66,9 @@ Free grants apply in Singapore (international) only, independently per model and
 - Callable ids: `glm-5.1`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
-### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
+## Rows that listed it before
 
-🔌 LLM APIs with free tier · no card · last probe 2026-10-26 · listed since 2026-09-05
-
-Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Usage allowance: amount varies (period not published) per account
-
-No card. This is an experimental research service with capacity-dependent limits. Prompts and responses may be logged for research; sanitized content, usage statistics and routing metrics may be published or open-sourced. Only models marked Free accept a Free key; Pro catalog rows need a Pro-enabled key.
-
-</details>
-
-- Base URL: `https://freeinference.org/v1`
-- Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
-- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: the row lists none for this model
+- [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — listed 2026-09-05 to 2026-10-26
 
 ## Related models
 

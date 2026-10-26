@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-10-26'
-description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: deepseek-v4-flash, glm-5.1, glm-5.3-flash, minimax-m3, qwen3.6, minimax-m2.5, diffusiongemma. No card. This is an…'
+description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: deepseek-v4-flash, glm-5.3-flash, minimax-m3, qwen3.6. No card. This is an experimental research service with…'
 permalink: /providers/freeinference/
 last_modified_at: 2026-10-26
 crumb: FreeInference (Harvard SEAS)
@@ -19,7 +19,7 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/)
+[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 
 ## Limits, in the vendor's words
 
@@ -36,8 +36,8 @@ The vendor names no country it keeps the offer from ([source](https://freeinfere
 - Base URL: `https://freeinference.org/v1`
 - Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: `glm-5.3-flash`, `deepseek-v4-flash`, `qwen3.6-35b`, `diffusiongemma`, `minimax-m3`
-- Note: Catalog prices are upstream reference values, not fees charged to Free users. Models named only in the documentation have not had their callable IDs confirmed here.
+- Callable ids: `glm-5.3-flash`, `deepseek-v4-flash`, `qwen3.6-35b`, `minimax-m3`
+- Note: Catalog prices are upstream reference values, not fees charged to Free users.
 
 Try it from your terminal with your key in `FREEINFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -61,6 +61,7 @@ curl -s https://freeinference.org/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-26` — Free models changed: dropped diffusiongemma, glm-5.1, minimax-m2.5
 - `2026-09-24` — Free models changed: added diffusiongemma, minimax-m2.5
 - `2026-09-05` — Added: Harvard SEAS's MadSys Lab serving frontier open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

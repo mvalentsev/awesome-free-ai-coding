@@ -174,12 +174,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/minimax/minimax-m3.1-flash:free
-  litellm_params:
-    model: openai/minimax/minimax-m3.1-flash:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/recursive/flint-v1.0:free
   litellm_params:
     model: openai/recursive/flint-v1.0:free
@@ -354,6 +348,18 @@ model_list:
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
+- model_name: nvidia-nim/minimaxai/minimax-m3.1-flash
+  litellm_params:
+    model: openai/minimaxai/minimax-m3.1-flash
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
+- model_name: nvidia-nim/nvidia/nemotron-3.5-bolt-e4b
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-bolt-e4b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
 - model_name: aihubmix/coding-glm-5.2-free
   litellm_params:
     model: openai/coding-glm-5.2-free
@@ -516,12 +522,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/nemotron-3-super-120b-a12b-free
-  litellm_params:
-    model: openai/nemotron-3-super-120b-a12b-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/nemotron-3.5-lightning-free
   litellm_params:
     model: openai/nemotron-3.5-lightning-free
@@ -561,6 +561,24 @@ model_list:
 - model_name: aihubmix/gemma-4-31b-it-free
   litellm_params:
     model: openai/gemma-4-31b-it-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/flint-v1.0-free
+  litellm_params:
+    model: openai/flint-v1.0-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/nemotron-3.5-super-vl-free
+  litellm_params:
+    model: openai/nemotron-3.5-super-vl-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/xing4.0-29b-a4b-free
+  litellm_params:
+    model: openai/xing4.0-29b-a4b-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -705,7 +723,7 @@ model_list:
     use_chat_completions_api: true
     max_tokens: 524288
   model_info:
-    access: free until 2026-10-26 23:59+03:00
+    access: free until 2026-11-02 23:59+03:00
     source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
 - model_name: llmtr/voltropy/vast-10m-flash-free
   litellm_params:
@@ -1421,12 +1439,6 @@ model_list:
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
     use_chat_completions_api: true
-- model_name: freeinference/diffusiongemma
-  litellm_params:
-    model: openai/diffusiongemma
-    api_base: https://freeinference.org/v1
-    api_key: os.environ/FREEINFERENCE_API_KEY
-    use_chat_completions_api: true
 - model_name: freeinference/minimax-m3
   litellm_params:
     model: openai/minimax-m3
@@ -1583,24 +1595,6 @@ model_list:
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
     use_chat_completions_api: true
-- model_name: experiential-labs/gpt-6-luna
-  litellm_params:
-    model: openai/gpt-6-luna
-    api_base: https://api.experientiallabs.ai/v1
-    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: requires $1 one-time card verification
-    source: https://www.experientiallabs.ai/pricing
-- model_name: experiential-labs/deepseek-v4.1-flash
-  litellm_params:
-    model: openai/deepseek-v4.1-flash
-    api_base: https://api.experientiallabs.ai/v1
-    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: requires $1 one-time card verification
-    source: https://www.experientiallabs.ai/pricing
 - model_name: sail-research/moonshotai/Kimi-K3
   litellm_params:
     model: openai/moonshotai/Kimi-K3

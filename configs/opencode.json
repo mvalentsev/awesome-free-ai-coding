@@ -94,9 +94,6 @@
         "xingchen-agi/xing4.0-29b-a4b:free": {
           "name": "xingchen-agi/xing4.0-29b-a4b:free"
         },
-        "minimax/minimax-m3.1-flash:free": {
-          "name": "minimax/minimax-m3.1-flash:free"
-        },
         "recursive/flint-v1.0:free": {
           "name": "recursive/flint-v1.0:free"
         }
@@ -169,9 +166,6 @@
         },
         "xingchen-agi/xing4.0-29b-a4b:free": {
           "name": "xingchen-agi/xing4.0-29b-a4b:free"
-        },
-        "minimax/minimax-m3.1-flash:free": {
-          "name": "minimax/minimax-m3.1-flash:free"
         },
         "recursive/flint-v1.0:free": {
           "name": "recursive/flint-v1.0:free"
@@ -270,6 +264,12 @@
         },
         "stepfun-ai/step-5-preview": {
           "name": "stepfun-ai/step-5-preview"
+        },
+        "minimaxai/minimax-m3.1-flash": {
+          "name": "minimaxai/minimax-m3.1-flash"
+        },
+        "nvidia/nemotron-3.5-bolt-e4b": {
+          "name": "nvidia/nemotron-3.5-bolt-e4b"
         }
       }
     },
@@ -362,9 +362,6 @@
         "nemotron-3-nano-omni-30b-a3b-reasoning-free": {
           "name": "nemotron-3-nano-omni-30b-a3b-reasoning-free"
         },
-        "nemotron-3-super-120b-a12b-free": {
-          "name": "nemotron-3-super-120b-a12b-free"
-        },
         "nemotron-3.5-lightning-free": {
           "name": "nemotron-3.5-lightning-free"
         },
@@ -385,6 +382,15 @@
         },
         "gemma-4-31b-it-free": {
           "name": "gemma-4-31b-it-free"
+        },
+        "flint-v1.0-free": {
+          "name": "flint-v1.0-free"
+        },
+        "nemotron-3.5-super-vl-free": {
+          "name": "nemotron-3.5-super-vl-free"
+        },
+        "xing4.0-29b-a4b-free": {
+          "name": "xing4.0-29b-a4b-free"
         }
       }
     },
@@ -513,7 +519,7 @@
           }
         },
         "minimax/minimax-m3.1-flash-free": {
-          "name": "minimax/minimax-m3.1-flash-free (until 2026-10-26)",
+          "name": "minimax/minimax-m3.1-flash-free (until 2026-11-02)",
           "limit": {
             "context": 1000000,
             "output": 524288
@@ -896,9 +902,13 @@
       "models": {
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b",
+          "limit": {
+            "context": 168000,
+            "output": 4096
+          },
           "options": {
-            "max_completion_tokens": 8000,
-            "max_tokens": 8000
+            "max_completion_tokens": 4096,
+            "max_tokens": 4096
           }
         },
         "qwen/qwen3.5-0.8b": {
@@ -1177,9 +1187,6 @@
         "qwen3.6-35b": {
           "name": "qwen3.6-35b"
         },
-        "diffusiongemma": {
-          "name": "diffusiongemma"
-        },
         "minimax-m3": {
           "name": "minimax-m3"
         }
@@ -1365,22 +1372,6 @@
         },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
-        }
-      }
-    },
-    "experiential-labs": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Experiential Labs",
-      "options": {
-        "baseURL": "https://api.experientiallabs.ai/v1",
-        "apiKey": "{env:EXPERIENTIAL_LABS_API_KEY}"
-      },
-      "models": {
-        "gpt-6-luna": {
-          "name": "gpt-6-luna (requires $1 card verification)"
-        },
-        "deepseek-v4.1-flash": {
-          "name": "deepseek-v4.1-flash (requires $1 card verification)"
         }
       }
     },

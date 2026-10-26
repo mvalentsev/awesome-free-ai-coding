@@ -1940,6 +1940,16 @@ def for_a_human(detail: str) -> str:
     return ""
 
 
+def _catalog_output_limit(model: dict) -> int | None:
+    """The smallest positive output cap the catalog publishes for a model."""
+    top = model.get("top_provider")
+    # gateway.vlm.run/v1/openai/models uses max_output_tokens (checked 2026-10-26).
+    values = [model.get("max_output_tokens"),
+              top.get("max_completion_tokens") if isinstance(top, dict) else None]
+    return min((value for value in values if type(value) is int and value > 0),
+               default=None)
+
+
 def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     """What the catalog says about this row's published ids, in both
     directions, or "" while they are all backed. A passing row gets it as its
@@ -1964,7 +1974,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
             context = min((value for value in contexts if type(value) is int and value > 0),
                           default=None)
             values = {"context_tokens": context,
-                      "output_tokens": top.get("max_completion_tokens") if isinstance(top, dict) else None}
+                      "output_tokens": _catalog_output_limit(row)}
             changed = []
             for field, value in values.items():
                 if type(value) is not int or value <= 0:
@@ -1980,11 +1990,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
             for parameter in (OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD):
                 if not isinstance(parameters, list) or parameter not in parameters:
                     notes.append(f"api.opencode_output_tokens {mid}: {parameter} unavailable")
-            top = rows[mid].get("top_provider")
-            maximums = [rows[mid].get("max_output_tokens"),
-                        top.get("max_completion_tokens") if isinstance(top, dict) else None]
-            maximum = min((value for value in maximums if type(value) is int and value > 0),
-                          default=None)
+            maximum = _catalog_output_limit(rows[mid])
             if maximum is not None and maximum < budget:
                 notes.append(f"api.opencode_output_tokens {mid}: budget {budget} exceeds output limit {maximum}")
     return " | ".join(notes)

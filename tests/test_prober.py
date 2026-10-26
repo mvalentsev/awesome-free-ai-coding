@@ -214,6 +214,13 @@ async def test_flat_token_price_requires_both_published_sides(fields, expected):
 @pytest.mark.parametrize("id_field", ["id", "model_id"])
 @pytest.mark.parametrize("catalog_limits, detail", [
     ({"context_length": 131042, "top_provider": {"max_completion_tokens": 16384}}, ""),
+    ({"context_length": 131042, "max_output_tokens": 16384}, ""),
+    ({"context_length": 131042, "max_output_tokens": 8192,
+      "top_provider": {"max_completion_tokens": 32768}},
+     "output_tokens=8192 (recorded 16384)"),
+    ({"context_length": 131042, "max_output_tokens": 32768,
+      "top_provider": {"max_completion_tokens": 16384}}, ""),
+    ({"context_length": 131042, "max_output_tokens": True}, "output_tokens unavailable"),
     ({"context_length": 65536, "top_provider": {"max_completion_tokens": 8192}},
      "context_tokens=65536 (recorded 131042), output_tokens=8192 (recorded 16384)"),
     ({"context_length": 131042, "top_provider": {"context_length": 65536, "max_completion_tokens": 16384}},

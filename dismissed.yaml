@@ -217,15 +217,6 @@ dismissed:
   # upstage solar-mini → solar-pro-3 stood here from 2026-09-08 until 2026-09-25,
   # when the row's column emptied: Upstage's offer is a $10 signup credit spent
   # on any model, and a sum to spend names no model.
-  - entry: freeinference
-    family: glm-5.1
-    superseded_by: glm-5.3-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      doc.freeinference.org/models — the page this row's probe reads — names
-      GLM-5.1 and GLM 5.3 Flash both, and the row lists both families. A lab
-      serving open weights adds checkpoints; it does not retire one to add
-      another.
   - entry: hetzner-inference
     family: qwen3.6
     superseded_by: qwen3.8

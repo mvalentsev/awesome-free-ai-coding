@@ -98,7 +98,6 @@ entries:
     - openrouter/free
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
-    - minimax/minimax-m3.1-flash:free
     - recursive/flint-v1.0:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
@@ -837,7 +836,6 @@ entries:
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
-    - minimax/minimax-m3.1-flash:free
     - recursive/flint-v1.0:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
@@ -860,11 +858,11 @@ entries:
     url: https://api.kilo.ai/api/gateway/models
   border:
     left_out: [CU, IR, KP, SY]
-    'on': '2026-09-26'
+    'on': '2026-10-26'
     source: https://kilo.ai/terms
     quote: including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk
       People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine
-    also_named: [UA, US]
+    also_named: [UA, US, GE, RS, ZA]
   probe:
     type: api-models
     endpoint: https://api.kilo.ai/api/gateway/models
@@ -1421,6 +1419,8 @@ entries:
   - https://forums.developer.nvidia.com/t/account-access-verification-update/360900.json
   - https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml
   - https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b
+  - https://build.nvidia.com/minimaxai/minimax-m3.1-flash
+  - https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b
   card_required: false
   offering: Free endpoints for the models build.nvidia.com marks "Free Endpoint",
     open-weight models from several labs among them, called with a free NVIDIA Developer
@@ -1501,6 +1501,8 @@ entries:
     - meta/llama-3.2-11b-vision-instruct
     - nvidia/nemotron-3.5-super-vl-120b-a12b
     - stepfun-ai/step-5-preview
+    - minimaxai/minimax-m3.1-flash
+    - nvidia/nemotron-3.5-bolt-e4b
     ignored_ids:
     - nvidia/nemotron-3-embed-1b
     - nvidia/nemotron-3.5-content-safety
@@ -1981,25 +1983,16 @@ entries:
     source: https://www.experientiallabs.ai/pricing
     initial_payment_usd: 1.0
     payment_kind: card verification
-  offering: An open-source AI gateway backed by Y Combinator — every hosted provider
-    behind one OpenAI-compatible key at the providers' list prices — whose free plan
-    carries 500 credits ($5) a month after card verification
-  limits: The monthly credit requires a one-time $1 card check. A credit is one cent.
-    Pricing advertises no per-token charge on three models, but the Free-selected
-    model catalog and provider plan discounts still price its chat models; independently
-    free chat access is unconfirmed. Free decision models use a separate structured-decision
-    API. Prompt and response storage is enabled on Free; disabling it requires a paid
+  offering: Open-source AI gateway backed by Y Combinator whose advertised Free chat
+    access conflicts with its Free-selected model prices
+  limits: The general monthly credit is no longer offered. Pricing advertises free
+    DeepSeek V4.1 Flash and GPT-6 Luna, but the Free-selected catalog marks them Free
+    with Pro and retains positive input/output prices; provider metadata also gives
+    Free no discount. The explicitly free Clef Flash and Luna Decisions routes use
+    structured decisions, not chat or coding tools. Pricing still lists a one-time
+    $1 card check. Free prompt and response storage cannot be disabled without a paid
     plan.
-  quotas:
-  - amount: 500.0
-    unit: credits
-    period: month
-    scope: account
-    source: https://www.experientiallabs.ai/pricing
-    quote: 500 credits/mo after a one-time $1 card check
-    value_phrase: 500 credits/mo
-    reviewed_on: '2026-10-22'
-  free_part: sum
+  free_part: unnamed
   models: []
   api:
     base_url: https://api.experientiallabs.ai/v1
@@ -2009,10 +2002,9 @@ entries:
     model_ids:
     - gpt-6-luna
     - deepseek-v4.1-flash
-    note: The public catalog uses model slugs as API IDs. These chat IDs are examples
-      for the credit balance; the Free catalog prices them despite conflicting homepage
-      claims. Native decision models use /v1/systemone rather than chat completions.
-      An API key is required.
+    note: An API key is required. These retained chat IDs are metered on the selected
+      Free catalog; no general free credit is published. Native decision models use
+      /v1/systemone rather than chat completions.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -2027,6 +2019,10 @@ entries:
     machinery_keywords: []
   first_seen: '2026-09-21'
   last_verified: '2026-10-19'
+  delisted:
+    'on': '2026-10-26'
+    reason: no confirmed free chat allowance after the general monthly credit was
+      withdrawn
   probe_failures: 2
   provisional: false
   rank: 96
@@ -2540,7 +2536,7 @@ entries:
     label: Additional IP guard
     source: https://bazaarlink.ai/free
     quote: with an additional IP guard
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-10-26'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -3168,6 +3164,9 @@ entries:
   - https://aihubmix.com/models/gemma-4-26b-a4b-it-free
   - https://aihubmix.com/models/gemma-4-31b-it-free
   - https://aihubmix.com/models/intern-s2-free
+  - https://aihubmix.com/models/flint-v1.0-free
+  - https://aihubmix.com/models/nemotron-3.5-super-vl-free
+  - https://aihubmix.com/models/xing4.0-29b-a4b-free
   card_required: false
   offering: OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format
     endpoint for coding clients
@@ -3601,8 +3600,6 @@ entries:
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: minimax-m3
     tier: notable
     aa_model: minimax-m3
@@ -3679,7 +3676,6 @@ entries:
     - lfm-2.5-2.6b-free
     - mimo-v2-flash-free
     - nemotron-3-nano-omni-30b-a3b-reasoning-free
-    - nemotron-3-super-120b-a12b-free
     - nemotron-3.5-lightning-free
     - xiaomi-mimo-v2.6-flash-free
     - xiaomi-mimo-v2.6-pro-free
@@ -3687,6 +3683,9 @@ entries:
     - qwen3.8-max-free
     - gemma-4-26b-a4b-it-free
     - gemma-4-31b-it-free
+    - flint-v1.0-free
+    - nemotron-3.5-super-vl-free
+    - xing4.0-29b-a4b-free
     model_bindings:
       intern-s2-free:
         family: intern-s2-preview-35b
@@ -4776,6 +4775,9 @@ entries:
   - https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage
   - https://llmtr.com/blog/shanghai-ai-lab-modellerinde-dusunmeyi-kapatma
   - https://llmtr.com/blog/shanghai-ai-lab-modelleri-1-kasim-2026-sonrasi
+  - https://llmtr.com/blog/arapca-dil-modeli-api-jais-3
+  - https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens
+  - https://llmtr.com/blog/jais-3-vs-k2-horizon
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4856,24 +4858,44 @@ entries:
     model_ids:
     - reflection/beam-1.0-501b-a23b
     reviewed_on: '2026-10-22'
-  - unit: tokens
+  - amount: 200000.0
+    unit: tokens
     period: day
-    scope: unspecified
+    scope: account-model
     label: Jais 3 MoVA
-    source: https://llmtr.com/models/ifm/jais-3-mova-36b-a4b
-    quote: 5 Kasım 2026 23:59’a (TSİ) kadar günlük token hakkıyla ücretsizdir.
+    condition: Input and output count together; lower first-day allowance for new
+      accounts
+    condition_quote: Bu dönemde her hesabın bu model için günde 200.000 token hakkı
+      vardır; girdi ve çıktı birlikte sayılır ve hak her gün 00:00'da (TSİ) yenilenir.
+      Yeni açılan hesaplar ilk gün daha düşük bir hakla başlar.
+    reset: 00:00'da (TSİ)
+    source: https://llmtr.com/blog/arapca-dil-modeli-api-jais-3
+    quote: Bu dönemde her hesabın bu model için günde 200.000 token hakkı vardır;
+      girdi ve çıktı birlikte sayılır ve hak her gün 00:00'da (TSİ) yenilenir. Yeni
+      açılan hesaplar ilk gün daha düşük bir hakla başlar.
+    value_phrase: günde 200.000 token
     model_ids:
     - ifm/jais-3-mova-36b-a4b
-    reviewed_on: '2026-10-19'
-  - unit: tokens
+    reviewed_on: '2026-10-26'
+  - amount: 200000.0
+    unit: tokens
     period: day
-    scope: unspecified
+    scope: account-model
     label: K2 Horizon
-    source: https://llmtr.com/models/ifm/k2-horizon-375b-a23b
-    quote: 5 Kasım 2026 23:59’a (TSİ) kadar günlük token hakkıyla ücretsizdir.
+    condition: Input, output and reasoning count together; lower first-day allowance
+      for new accounts
+    condition_quote: her hesabın bu model için günde 200.000 token hakkı vardır, yeni
+      açılan hesaplar ilk gün daha düşük bir hakla başlar; girdi ve çıktı birlikte
+      sayılır ve düşünme token'ları çıktıya dahildir.
+    reset: 00:00'da (TSİ)
+    source: https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens
+    quote: her hesabın bu model için günde 200.000 token hakkı vardır, yeni açılan
+      hesaplar ilk gün daha düşük bir hakla başlar; girdi ve çıktı birlikte sayılır
+      ve düşünme token'ları çıktıya dahildir.
+    value_phrase: günde 200.000 token
     model_ids:
     - ifm/k2-horizon-375b-a23b
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-10-26'
   - amount: 5000000.0
     unit: tokens
     period: day
@@ -5012,7 +5034,7 @@ entries:
         until: '2026-11-05T23:59:00+03:00'
       minimax/minimax-m3.1-flash-free:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
-        until: '2026-10-26T23:59:00+03:00'
+        until: '2026-11-02T23:59:00+03:00'
       voltropy/vast-10m-flash-free:
         source: https://llmtr.com/models/voltropy/vast-10m-flash-free
         until: '2026-10-26T23:59:00+03:00'
@@ -5334,9 +5356,6 @@ entries:
   - family: deepseek-v4-flash
     tier: strong
     aa_model: deepseek-v4-flash
-  - family: glm-5.1
-    tier: notable
-    aa_model: glm-5-1
   - family: glm-5.3-flash
     tier: strong
     aa_model: glm-5-3-flash
@@ -5344,10 +5363,6 @@ entries:
     tier: notable
     aa_model: minimax-m3
   - family: qwen3.6
-  - family: minimax-m2.5
-    tier: notable
-    aa_model: minimax-m2-5
-  - family: diffusiongemma
   api:
     base_url: https://freeinference.org/v1
     key_url: https://freeinference.org
@@ -5357,12 +5372,9 @@ entries:
     - glm-5.3-flash
     - deepseek-v4-flash
     - qwen3.6-35b
-    - diffusiongemma
     - minimax-m3
     anthropic_base_url: https://freeinference.org/anthropic
     note: Catalog prices are upstream reference values, not fees charged to Free users.
-      Models named only in the documentation have not had their callable IDs confirmed
-      here.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -5642,59 +5654,54 @@ entries:
   - https://docs.sarvam.ai/api/getting-started/ratelimits.md
   - https://docs.sarvam.ai/api-reference/authentication.md
   - https://docs.sarvam.ai/api-reference/beta-apis.md
+  - https://api.sarvam.ai/v2/models
   card_required: false
-  offering: India's Sarvam AI credits every new account ₹100 that never expire, spendable
-    on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped
+  offering: India's Sarvam AI grants verified users ₹100 in credits that never expire,
+    spendable across its APIs, including Sarvam-105B chat through an OpenAI-compatible
     endpoint
-  limits: Signup credit is universal across APIs and never expires; its value is in
-    INR, with no guaranteed token conversion. The Starter rate below is for Sarvam-105B.
-    DeepSeek, GLM and Gemma beta models use /v2/chat/completions, which standard subscription
-    keys cannot access by default; approval is requested per key. No page read mentions
-    a card.
+  limits: Signup credit requires a verified user, applies across APIs and never expires;
+    its value is in INR, with no guaranteed token conversion. Rate limits apply per
+    account across its keys, with separate pools by API. The listed Pay-as-you-go
+    rate covers Sarvam-105B. The v2 chat and Responses APIs are generally available
+    for the documented open models; the pricing page still labels some other models
+    beta. No page read mentions a card.
   quotas:
   - amount: 100.0
     unit: INR
     period: one-time
     scope: account
     source: https://docs.sarvam.ai/api/getting-started/ratelimits.md
-    quote: Sarvam offers ₹100 worth of free credits for every user on signup.
-    value_phrase: Sarvam offers ₹100 worth of free credits for every user on signup.
-    reviewed_on: '2026-10-06'
-  - amount: 40.0
+    quote: Sarvam offers ₹100 worth of free credits for every verified user on signup.
+    value_phrase: ₹100 worth of free credits
+    period_quote: on signup
+    reviewed_on: '2026-10-26'
+  - amount: 60.0
     unit: requests
     period: minute
-    scope: account-model
-    label: Starter
+    scope: account
+    label: Pay-as-you-go Sarvam-105B
+    condition: Shared by all API keys under the account
+    condition_quote: Rate limits are measured per account, not per API key. All keys
+      under an account share the same limit pool.
     source: https://docs.sarvam.ai/api/getting-started/ratelimits.md
-    quote: '#### Sarvam-105B model
-
-
-      This large model has lower limits due to its compute requirements.
-
-
-      |                | Starter    | Pro        | Business    |
-
-      | -------------- | ---------- | ---------- | ----------- |
-
-      | **Rate Limit** | 40 req/min | 60 req/min | 120 req/min |'
-    value_phrase: 40 req/min
+    quote: '| **Rate Limit** | 60 req/min | 200 req/min | 300 req/min |'
+    value_phrase: 60 req/min
     model_ids:
     - sarvam-105b
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-26'
   free_part: sum
   models: []
   api:
     base_url: https://api.sarvam.ai/v1
-    key_url: https://dashboard.sarvam.ai
+    key_url: https://indus.sarvam.ai/key-management
     auth: api-key
     openai_compatible: true
     model_ids:
     - sarvam-105b
-    note: 'the vendor''s own header is api-subscription-key, and the same key is accepted
-      as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only
-      sarvam-105b and its voice-agent variant, sarvam-105b-conversations, which the
-      configs leave out; the open models are on the /v2 beta, whitelisted per key.
-      Prices are in rupees'
+    note: 'The vendor accepts api-subscription-key and Authorization: Bearer. This
+      configuration uses /v1/chat/completions for sarvam-105b; the conversations variant
+      is omitted. The separate /v2/chat/completions and /v2/responses routes are generally
+      available for their listed models. Prices are in rupees.'
   data_use:
     trains: opt-out
     quote: We use Your content (including inputs, uploads, prompts, or generated outputs)
@@ -5709,7 +5716,7 @@ entries:
     type: page-keywords
     endpoint: https://docs.sarvam.ai/api/getting-started/pricing.md
     keywords:
-    - Every new user receives ₹100 in credits
+    - Every verified user receives ₹100 in credits
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -5913,7 +5920,6 @@ entries:
     model_ids:
     - cline-free/solar-mini4
     - cline-free/nemotron-3.5-super-vl
-    - cline-free/minimax-m3.1-flash
     - reflection/beam-free
     - nvidia/nemotron-3.5-lightning-free
     - poolside/laguna-s-2.1-free
@@ -6832,13 +6838,18 @@ entries:
     - qwen/qwen3.8-27b
     - qwen/qwen3.5-0.8b
     - google/diffusiongemma-26b-a4b-it
+    model_limits:
+      qwen/qwen3.8-27b:
+        context_tokens: 168000
+        output_tokens: 4096
+        source: https://gateway.vlm.run/v1/openai/models
     opencode_output_tokens:
-      qwen/qwen3.8-27b: 8000
+      qwen/qwen3.8-27b: 4096
     refuses_bearer: true
     note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile
-      sets a request output budget for qwen/qwen3.8-27b; this is a client setting,
-      not a published model limit. Only that ID advertises tool support; the other
-      listed IDs are ordinary-chat choices.
+      uses the catalog context/output limits and a matching request output budget
+      for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed
+      IDs are ordinary-chat choices.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -7383,7 +7394,7 @@ entries:
     codex:
       base_url: https://api.abliteration.ai/v1
       source: https://docs.abliteration.ai/integrations/codex
-      quote: To use Codex with abliteration.ai, register a custom model provider
+      quote: To use Codex with Abliteration
     note: Use abliterated-model-large-v2 for the newer large model. abliterated-model-large
       is the previous GLM-5.2-based version. Use abliterated-model for image inputs;
       both large models are text-only.
@@ -8934,7 +8945,7 @@ entries:
     label: Qwen3.8 Flash promotion
     source: https://docs.qoder.cn/events/flashoffer
     quote: 调用该模型不消耗 Credits
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-10-26'
   free_part: models
   models:
   - family: qwen3.8-flash

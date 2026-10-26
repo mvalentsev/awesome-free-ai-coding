@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'minimax-m2.5 free: 3 providers, limits and ids, provider probes 2026-10-26'
-description: minimax-m2.5 is served free by Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'minimax-m2.5 free: 2 providers, limits and ids, provider probes 2026-10-26'
+description: minimax-m2.5 is served free by Kiro and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2.5/
 last_modified_at: 2026-10-26
 crumb: minimax-m2.5
@@ -11,7 +11,7 @@ crumb: minimax-m2.5
 
 # Where minimax-m2.5 is free
 
-**3 rows on the list serve `minimax-m2.5` free:** Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2-5), below its strong bar.
+**2 rows on the list serve `minimax-m2.5` free:** Kiro and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2-5), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -64,25 +64,9 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m coding-minimax-m2.5-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `coding-minimax-m2.5-free`
 
-### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
+## Rows that listed it before
 
-🔌 LLM APIs with free tier · no card · last probe 2026-10-26 · listed since 2026-09-24
-
-Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Usage allowance: amount varies (period not published) per account
-
-No card. This is an experimental research service with capacity-dependent limits. Prompts and responses may be logged for research; sanitized content, usage statistics and routing metrics may be published or open-sourced. Only models marked Free accept a Free key; Pro catalog rows need a Pro-enabled key.
-
-</details>
-
-- Base URL: `https://freeinference.org/v1`
-- Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
-- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: the row lists none for this model
+- [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — listed 2026-09-24 to 2026-10-26
 
 ## Related models
 
@@ -90,7 +74,7 @@ No card. This is an experimental research service with capacity-dependent limits
 - [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
 - [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
-- [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — free at LLMTR (until 2026-10-26)
+- [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — free at LLMTR (until 2026-11-02)
 
 ---
 

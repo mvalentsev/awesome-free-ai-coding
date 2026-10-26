@@ -19,7 +19,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) (until 2026-10-26), [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) (until 2026-10-26), [`intern-s2-397b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/intern-s2-397b/) (until 2026-10-31), [`atria-dawn`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn/) (until 2026-10-31), [`atria-dawn-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/) (until 2026-10-31), [`agents-a1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/) (until 2026-10-31), [`sage-a1.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/sage-a1.5/) (until 2026-10-31)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) (until 2026-11-02), [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) (until 2026-10-26), [`intern-s2-397b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/intern-s2-397b/) (until 2026-10-31), [`atria-dawn`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn/) (until 2026-10-31), [`atria-dawn-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/) (until 2026-10-31), [`agents-a1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/) (until 2026-10-31), [`sage-a1.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/sage-a1.5/) (until 2026-10-31)
 
 ## Limits, in the vendor's words
 
@@ -29,9 +29,9 @@ Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
-Jais 3 MoVA: Daily tokens allowance: amount not published; scope not published; for `ifm/jais-3-mova-36b-a4b`
+Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
 
-K2 Horizon: Daily tokens allowance: amount not published; scope not published; for `ifm/k2-horizon-375b-a23b`
+K2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
 
 MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
 
@@ -57,7 +57,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - `heabsy/qwen3.8-27b-heabsy-free`: free until 2026-11-02 00:00+03:00 ([conditions](https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free))
 - `ifm/jais-3-mova-36b-a4b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/jais-3-mova-36b-a4b))
 - `ifm/k2-horizon-375b-a23b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/k2-horizon-375b-a23b))
-- `minimax/minimax-m3.1-flash-free`: free until 2026-10-26 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
+- `minimax/minimax-m3.1-flash-free`: free until 2026-11-02 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
 - `voltropy/vast-10m-flash-free`: free until 2026-10-26 23:59+03:00 ([conditions](https://llmtr.com/models/voltropy/vast-10m-flash-free))
 - `internlm/intern-s2-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/intern-s2-free))
 - `internlm/atria-dawn-free`: free until 2026-10-31 23:59+03:00 ([conditions](https://llmtr.com/models/internlm/atria-dawn-free))
@@ -117,6 +117,9 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage>
 - Source: <https://llmtr.com/blog/shanghai-ai-lab-modellerinde-dusunmeyi-kapatma>
 - Source: <https://llmtr.com/blog/shanghai-ai-lab-modelleri-1-kasim-2026-sonrasi>
+- Source: <https://llmtr.com/blog/arapca-dil-modeli-api-jais-3>
+- Source: <https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens>
+- Source: <https://llmtr.com/blog/jais-3-vs-k2-horizon>
 
 ## History
 
