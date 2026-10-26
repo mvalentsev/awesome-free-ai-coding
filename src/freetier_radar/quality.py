@@ -12,6 +12,8 @@ from . import git
 CRITERIA = ('existing_behavior', 'reuse', 'copy', 'user_path', 'regression', 'diff', 'eligibility')
 ELIGIBILITY_FIELDS = ('plan', 'payment', 'regions', 'limits', 'deadline', 'conflicts')
 ELIGIBILITY_MAX_AGE_DAYS = 1
+CONFLICT_STATES = ('none', 'resolved', 'unresolved')
+WITHDRAWAL_VERDICTS = ('ended', 'ineligible')
 SIGNOFFS = '.remember/review-signoffs'
 
 
@@ -50,13 +52,18 @@ def vendor_scope(repo: Path, base: str, sha: str) -> dict:
     result = {}
     for row in sorted(rows):
         families = sorted({m['family'] for index in indexes for m in index.get(row, {}).get('models', [])})
-        if families:
-            result[row] = families
-    return {'rows': sorted(rows), 'eligibility': result}
+        result[row] = families
+    withdrawals = []
+    for row in sorted(rows):
+        old, new = (index.get(row, {}) for index in indexes)
+        removed = {m['family'] for m in old.get('models', [])} - {m['family'] for m in new.get('models', [])}
+        if old and (removed or (not old.get('archived') and new.get('archived'))):
+            withdrawals.append(row)
+    return {'rows': sorted(rows), 'eligibility': result, 'withdrawals': withdrawals}
 
 
 def eligibility_scope(repo: Path, base: str, sha: str) -> dict[str, list[str]]:
-    """Derive mandatory model-fact coverage independently of the signoff."""
+    """Derive mandatory offer and model coverage independently of the signoff."""
     return vendor_scope(repo, base, sha)['eligibility']
 
 
@@ -85,7 +92,7 @@ def validate_judgment(value: dict, scope: dict) -> None:
     if not isinstance(records, list) or any(not isinstance(r, dict) for r in records):
         raise ValueError('model eligibility needs structured records')
     if sorted(r.get('row', '') for r in records) != sorted(required):
-        raise ValueError('model eligibility must cover every affected row with named free models')
+        raise ValueError('offer eligibility must cover every affected row, including unnamed free offers')
     for record in records:
         row = record['row']
         if record.get('families') != required[row]:
@@ -93,6 +100,31 @@ def validate_judgment(value: dict, scope: dict) -> None:
         for field in ELIGIBILITY_FIELDS:
             if not isinstance(record.get(field), str) or not record[field].strip():
                 raise ValueError(row + ': eligibility needs ' + field)
+        if record.get('conflict_status') not in CONFLICT_STATES:
+            raise ValueError(row + ': eligibility needs an explicit conflict_status')
+        if record['conflict_status'] == 'resolved' and (
+                not isinstance(record.get('resolution'), str) or not record['resolution'].strip()):
+            raise ValueError(row + ': resolved conflicts need the superseding evidence and reasoning')
+        if row in scope.get('withdrawals', []):
+            if record['conflict_status'] == 'unresolved':
+                raise ValueError(row + ': withdrawal cannot rely on unresolved free-access conflicts')
+            modes = record.get('access_modes')
+            if not isinstance(modes, list) or not modes:
+                raise ValueError(row + ': withdrawal needs every advertised free access mode')
+            names = []
+            for mode in modes:
+                if not isinstance(mode, dict) or not isinstance(mode.get('name'), str) or not mode['name'].strip():
+                    raise ValueError(row + ': withdrawal needs named access modes')
+                names.append(mode['name'])
+                if mode.get('verdict') not in WITHDRAWAL_VERDICTS:
+                    raise ValueError(row + ': withdrawal has an available or unresolved access mode')
+                if not isinstance(mode.get('finding'), str) or not mode['finding'].strip():
+                    raise ValueError(row + ': withdrawal access mode needs a concrete finding')
+                sources = mode.get('sources')
+                if not isinstance(sources, list) or not sources or any(s not in record.get('sources', []) for s in sources):
+                    raise ValueError(row + ': withdrawal access modes need current reviewed sources')
+            if len(names) != len(set(names)):
+                raise ValueError(row + ': withdrawal access modes must be distinct')
         for field in ('sources', 'evidence'):
             if not isinstance(record.get(field), list) or not record[field] or any(
                     not isinstance(v, str) or not v for v in record[field]):
@@ -133,7 +165,8 @@ def current_eligibility_sources(bundle, records: list[dict]) -> None:
 def accept_judgment(bundle, value: dict) -> dict:
     from .review import digest, integrity, now, scoped
     scope = scoped(bundle)
-    if scope.get('eligibility', {}) != eligibility_scope(bundle.repo, scope['base'], scope['sha']):
+    facts = vendor_scope(bundle.repo, scope['base'], scope['sha'])
+    if scope.get('eligibility', {}) != facts['eligibility'] or scope.get('withdrawals', []) != facts['withdrawals']:
         raise ValueError('eligibility scope does not match the committed facts')
     validate_judgment(value, scope)
     if sorted(scope['paths']) != changed_paths(bundle.repo, scope['base'], scope['sha']):
@@ -195,7 +228,8 @@ def review_problems(repo: Path, base: str, sha: str) -> list[str]:
         if not scope or not judgment or scope.get('sha') != sha or scope.get('push_base', scope['base']) != base:
             raise ValueError('review covers a different push')
         check_judgment(bundle, scope)
-        if scope.get('eligibility', {}) != eligibility_scope(repo, scope['base'], sha):
+        facts = vendor_scope(repo, scope['base'], sha)
+        if scope.get('eligibility', {}) != facts['eligibility'] or scope.get('withdrawals', []) != facts['withdrawals']:
             raise ValueError('eligibility scope does not match the committed facts')
         fresh_eligibility(judgment.get('model_eligibility', []))
         current_eligibility_sources(bundle, judgment.get('model_eligibility', []))

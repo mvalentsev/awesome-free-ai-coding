@@ -25,10 +25,14 @@ timezone. A spend allowance still names no individually free model.
 Record whole-offer payment conditions in `access`, and conditions on specific
 callable IDs in `api.model_access` (or `client_lane.model_access`). Each uses the
 same structure: `source` (an official HTTPS page), `initial_payment_usd`, optional
-`payment_kind: card verification` (otherwise `top-up`), `topup_fee_percent`, and
+`payment_kind`, `topup_fee_percent`, and
 `until` (a timestamp with timezone, for model promotions). Omit conditions that
 do not apply. These fields generate the disclosures; do not duplicate them in
-templates or add exceptions for a particular vendor. For example:
+templates or add exceptions for a particular vendor.
+
+`payment_kind` accepts `top-up`, `card verification`, or `charge`; `top-up` is
+the default. Use `charge` when the vendor requires a settled payment without
+describing it as a credit top-up or card verification. For example:
 
 ```yaml
 model_access:
@@ -1193,12 +1197,19 @@ The JSON names `base`, `sha`, every changed file in sorted `paths`,
 private file paths. The command imports and hashes those files; pre-push refuses
 a missing review, a different push, incomplete coverage or changed evidence.
 
-For every affected row with named free models, `model_eligibility` covers the
-previous and resulting families. Each record names the current `plan`, `payment`,
+For every affected row, including unnamed free offers, `model_eligibility` covers
+the previous and resulting families (an empty list still needs a record).
+Each record names the current `plan`, `payment`,
 `regions`, `limits`, `deadline`, and `conflicts`, with `checked_at`, current
 `sources`, and private `evidence`. Source reads must succeed; records older than
-one day cannot authorize a new push. Resolve contradictory live plan and catalog
-evidence explicitly. A matching quote, a source-code default, a model's existence,
+one day cannot authorize a new push. Record `conflict_status` as `none`, `resolved`,
+or `unresolved`; a resolved conflict needs a concrete `resolution` identifying the
+superseding evidence. An archival or family withdrawal cannot pass with unresolved
+free-access conflicts. Its `access_modes` must review every advertised free mode
+separately, with a name, finding and current reviewed sources. Each mode must be
+`ended` or `ineligible`; an available or unresolved mode blocks the withdrawal.
+Ending a general credit wallet does not establish that a recurring free-model
+allowance ended. A matching quote, a source-code default, a model's existence,
 or a historical promotion does not establish current free eligibility.
 
 A page catalog's `free-session` condition needs `eligibility`: a named `plan`,
@@ -1321,7 +1332,12 @@ runs behind a catch-all, so before this existed a malformed one could reach
 `history.jsonl` too, for the different reason that the log is the only file here
 that cannot be regenerated from another one.
 
-The `update` workflow also takes manual inputs: `dry_run` runs every phase and
+The `update` workflow also takes manual inputs: `provider_ids` selects
+space-separated provider IDs for targeted verification. Only those rows earn
+verification fields; unknown or permanently archived IDs stop the run. Resolve
+the delisting or retirement first. Targeted runs skip tier changes, scouting and
+announcements, and stop if a selected offer fails or cannot be checked. An empty
+input retains the complete scheduled run. `dry_run` runs every selected phase and
 writes nothing (the scout's report lands in the run summary instead of a PR),
 and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.

@@ -2119,12 +2119,18 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     return needs_attention
 
 
-async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False) -> int:
+async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False,
+                 ids: list[str] | None = None) -> int:
     """Returns the number of rows that FAILED, so a dry run can refuse to be
     chained past with `&&`. Flags that verify a row — stale-ids, stale-models —
     are not counted; neither is INCONCLUSIVE, which is the row's problem to
-    report and not the run's."""
+    report and not the run's. A targeted run also counts INCONCLUSIVE because
+    it has no later scout to handle an unavailable verification."""
     entries = load_registry(registry_path)
+    selected = set(ids or ())
+    unknown = selected - {e.id for e in entries}
+    if unknown:
+        raise ValueError('unknown provider ids: ' + ', '.join(sorted(unknown)))
     sem = asyncio.Semaphore(CONCURRENCY)
 
     # One date for the whole run: a notice's hold is read against it by the probe
@@ -2139,7 +2145,10 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     # A row archived for good is not even asked: no answer could bring it back,
     # a retired endpoint is meant to be dead, and a delisted row can point at a
     # service the blocklist says never to fetch.
-    probed = [e for e in entries if not is_archived_for_good(e, today)]
+    probed = [e for e in entries if not is_archived_for_good(e, today)
+              and (not selected or e.id in selected)]
+    if selected - {e.id for e in probed}:
+        raise ValueError('selected providers must have their delisting or retirement resolved before verification')
     with page_evidence(failures_dir / "page-reads"):
         async with httpx.AsyncClient(headers=UA) as client:
             outcomes = await asyncio.gather(*(bounded(e) for e in probed))
@@ -2165,7 +2174,8 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     # locally.
     for row in payload:
         print(f"  {row['id']}: {row['status']} — {row['detail'] or 'no detail'}")
-    return sum(1 for _, r in flagged if r.status is ProbeStatus.FAIL)
+    return sum(1 for _, r in flagged if r.status is ProbeStatus.FAIL
+               or (selected and r.status is ProbeStatus.INCONCLUSIVE))
 
 
 def main() -> None:
@@ -2174,10 +2184,14 @@ def main() -> None:
     parser.add_argument("--failures", type=Path, default=Path("failures"))
     parser.add_argument("--dry-run", action="store_true",
                         help="probe everything and report, but write no verification dates")
+    parser.add_argument("--ids", nargs='+', help="verify only these provider IDs; reject unknown or permanently archived IDs")
     args = parser.parse_args()
-    failed = asyncio.run(_amain(args.registry, args.failures, args.dry_run))
+    try:
+        failed = asyncio.run(_amain(args.registry, args.failures, args.dry_run, args.ids))
+    except ValueError as exc:
+        parser.error(str(exc))
     # A real run hands its failures to the scout and must exit 0 for the
     # workflow to reach it; a dry run is read by a person, and a person
     # chaining it in a shell wants the chain to stop here.
-    if args.dry_run and failed:
+    if (args.dry_run or args.ids) and failed:
         raise SystemExit(1)

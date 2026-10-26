@@ -24,7 +24,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
-from .models import ApiInfo, Category, ClientLane, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, Category, ClientLane, FreeAccess, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -42,7 +42,8 @@ from .words import number as _word, ordinal as _ordinal, series as _series, week
 from .borders import SHARED
 from .countries import country_name
 from .quotas import UNKNOWN_RECHECK_DAYS, UsageQuota
-from .quality import CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS
+from .quality import (CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS,
+                      CONFLICT_STATES, WITHDRAWAL_VERDICTS)
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -131,6 +132,9 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'`payment_kind` accepts `(top-up)`, `(card verification)`, or `(charge)`',
+          lambda root: get_args(FreeAccess.model_fields['payment_kind'].annotation),
+          "models.FreeAccess; shared payment inheritance and rendering in tests/test_free_access.py"),
     Claim("CONTRIBUTING.md", r"Every page under both carries `(last_modified_at)`",
           lambda root: (MODIFIED,),
           "page_dates.PageDates.stamp; tests/test_page_dates.py checks substantive changes, stable repeats, archives and legacy Git provenance"),
@@ -171,6 +175,17 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: ELIGIBILITY_FIELDS, "quality.validate_judgment; tests/test_quality.py"),
     Claim("CONTRIBUTING.md", r'records older than\s+(one) day cannot authorize a new push',
           lambda root: (_word(ELIGIBILITY_MAX_AGE_DAYS),), "quality.fresh_eligibility; tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'`conflict_status` as `(none)`, `(resolved)`,\s+or `(unresolved)`',
+          lambda root: CONFLICT_STATES,
+          "quality.validate_judgment; unresolved withdrawal and ordinary disclosure controls in tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'Each mode must be\s+`(ended)` or `(ineligible)`',
+          lambda root: WITHDRAWAL_VERDICTS,
+          "quality.validate_judgment; available recurring mode blocks archival in tests/test_quality.py"),
+    Claim("CONTRIBUTING.md", r'inputs: `(provider_ids)` selects',
+          lambda root: tuple(k for k in (yaml.safe_load((root / '.github/workflows/update.yml').read_text()).get('on')
+              or yaml.safe_load((root / '.github/workflows/update.yml').read_text()).get(True))['workflow_dispatch']['inputs']
+              if k == 'provider_ids'),
+          "update.yml; exact workflow arguments, injection controls and isolated HTTP verification in tests/test_targeted_verification.py and tests/test_prober.py"),
     Claim("CONTRIBUTING.md", r'an exact model/plan `(table)` binding, the free cell.s `(value)`, and a `(plan_price)`',
           lambda root: tuple(field for field in ('table', 'value', 'plan_price')
                              if field in SessionEligibility.model_fields),

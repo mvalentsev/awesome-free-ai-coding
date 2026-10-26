@@ -562,6 +562,7 @@ def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path):
                             'model_eligibility': [{'row': row, 'families': families,
                                 'plan': 'Free', 'payment': 'No payment', 'regions': 'All countries',
                                 'limits': 'Unpublished', 'deadline': 'None', 'conflicts': 'None in fixture',
+                                'conflict_status': 'none',
                                 'checked_at': '2026-10-13T00:00:00+00:00',
                                 'sources': ['https://vendor.example'], 'evidence': [proof]}
                                 for row, families in scope['eligibility'].items()],

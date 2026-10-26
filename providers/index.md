@@ -108,10 +108,11 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) — verified 2026-10-26 · `mistral-small-3.2` · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up)
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-10-26
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-10-26
+- [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-10-19
 
 ## Archived
 
-- [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) — delisted on 2026-10-26: no confirmed free chat allowance after the general monthly credit was withdrawn
+- [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) — delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) — delisted on 2026-10-22: public beta closed; the endpoint requires a key and key registration is closed
 - [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) — delisted on 2026-10-15: free accounts now include 0 requests/week and API inference requires a paid plan
 - [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) — delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).
@@ -122,8 +123,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas
 - [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit
 - [Cerebras Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/) — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit
-- [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero
 - [LongCat API Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/) — delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day
+- [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — unverified for 74 days, last passed 2026-08-13
 - [Reka AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/) — delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits
 - [AI21 Labs (Jamba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/) — vendor-announced shutdown on 2026-08-09
 - [DeepSeek Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/) — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant
@@ -132,6 +133,5 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) — delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)
 - [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly
 - [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) — vendor-announced shutdown on 2026-06-16
-- [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) — vendor-announced shutdown on 2026-05-15
 
 {% endraw %}

@@ -18,22 +18,19 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
-  - domains: [experientiallabs.ai, api.experientiallabs.ai, platform.experientiallabs.ai]
-    name: Experiential Labs
+  - domains: [aws.amazon.com]
+    name: Amazon Q Developer
     checked_on: '2026-10-26'
     reason: >-
-      The general monthly free credit is no longer offered on
-      https://www.experientiallabs.ai/pricing. That page advertises free chat
-      models, but selecting Free at https://platform.experientiallabs.ai/models
-      shows positive GPT-6 Luna and DeepSeek V4.1 Flash prices and Free with Pro.
-      Their public provider metadata also gives Free no discount. The explicitly
-      free Clef Flash and Luna Decisions routes use structured decisions rather
-      than chat or coding tools. Missing and invalid keys return 401; no
-      authenticated free-chat completion or card verification was performed.
-      The published row, page and history remain in Archive.
+      The current Amazon Q Developer end-of-support announcement closes new Free
+      accounts and new subscriptions from May 15, 2026. Existing subscriptions can
+      add users and existing IDE users retain access until April 30, 2027. This is
+      a new-user eligibility exclusion, not a claim that all existing users lost
+      the product in May. Source:
+      https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/.
     reopen_if: >-
-      Current Free-selected chat prices and provider terms agree on a usable
-      free coding lane, or a general no-subscription credit allowance returns.
+      AWS reopens Free account creation or documents a new bundled free coding
+      offer reachable by new users. Check existing-user access independently.
   - domains: [hyper.charm.land]
     name: Charm Hyper
     checked_on: '2026-10-15'
@@ -241,28 +238,6 @@ watched:
     reopen_if: >-
       Supermaven takes new users again with a free plan that includes chat,
       agent use or an API.
-
-  - domains: [novita.ai]
-    name: Novita AI
-    checked_on: '2026-08-14'
-    reason: >-
-      Listed here from 2026-07-19 until 2026-08-14, when a hand check found the
-      free lane gone with no announcement anywhere. novita.ai/pricing carries
-      102 published prices and not one of them is zero; the two models this
-      entry named as free are now billed — inclusionai/ling-3.0-flash at
-      $0.06/$0.18 per Mt and mindai/macaron-v1-venti at 15000/45000 micro-units
-      — and novita.ai/models marks every one of its 102 rows "isFree": false in
-      its own page data. The keyless catalog does carry eleven rows at
-      input_token_price_per_m 0, but they publish no pricing object, four are
-      plainly internal (ai_infer_test_1/2/3, bunny) and the rest 404 on their
-      own model pages, so that is an unpriced shelf and not an offer. What is
-      left is the ~$0.5 signup credit, and a trial is not a tier. The old probe
-      passed through all of this because it anchored on the id
-      "ling-3.0-flash" plus the word "free" — both still on the page — instead
-      of on the price beside the id.
-    reopen_if: >-
-      novita.ai/pricing shows a zero price, or a model on novita.ai/models
-      carries "isFree": true.
 
   - domains: [tokenrouter.io]
     name: TokenRouter.io

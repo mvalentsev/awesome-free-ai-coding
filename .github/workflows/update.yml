@@ -20,6 +20,10 @@ on:
         description: "Run every phase, commit nothing, open no PR (report lands in the run summary)"
         type: boolean
         default: false
+      provider_ids:
+        description: "Optional space-separated provider IDs for targeted verification; skips tiers, scouting and announcements"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -70,8 +74,23 @@ jobs:
       # checks a dry run is dispatched to try among them. A scheduled run has no inputs, so
       # null == true is false and nothing changes there.
       - name: Probe all entries
+        id: probe
         continue-on-error: ${{ inputs.dry_run == true }}
-        run: uv run freetier-probe --registry registry.yaml --failures failures ${{ inputs.dry_run && '--dry-run' || '' }}
+        env:
+          PROBE_IDS: ${{ inputs.provider_ids }}
+          PROBE_DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          args=(--registry registry.yaml --failures failures)
+          if [ -n "$PROBE_IDS" ]; then
+            read -r -a ids <<< "${PROBE_IDS//$'\n'/ }"
+            [ "${#ids[@]}" -gt 0 ] || { echo 'Provider IDs cannot be empty'; exit 1; }
+            for id in "${ids[@]}"; do
+              [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo 'Invalid provider ID'; exit 1; }
+            done
+            args+=(--ids "${ids[@]}")
+          fi
+          if [ "$PROBE_DRY_RUN" = true ]; then args+=(--dry-run); fi
+          uv run freetier-probe "${args[@]}"
 
       # A tier is a measurement, and a measurement goes stale: the index moves as
       # models ship. Re-read on every run, so the frontier answer at the top of the
@@ -81,6 +100,7 @@ jobs:
       # beside the bars report: a new model the board scores into a tier with no
       # aa_model on its family is named there, for the reviewer to measure.
       - name: Re-read tier marks from the Artificial Analysis index
+        if: ${{ !inputs.provider_ids }}
         continue-on-error: true
         run: |
           set -o pipefail
@@ -100,9 +120,19 @@ jobs:
       # failed step.
       - name: Read every quoted phrase back against its pages
         continue-on-error: true
+        env:
+          PROBE_IDS: ${{ inputs.provider_ids }}
         run: |
           set -o pipefail
-          uv run freetier-quotes --report | tee -a "$GITHUB_STEP_SUMMARY"
+          ids=()
+          if [ -n "$PROBE_IDS" ]; then
+            read -r -a ids <<< "${PROBE_IDS//$'\n'/ }"
+            [ "${#ids[@]}" -gt 0 ] || { echo 'Provider IDs cannot be empty'; exit 1; }
+            for id in "${ids[@]}"; do
+              [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo 'Invalid provider ID'; exit 1; }
+            done
+          fi
+          uv run freetier-quotes --report "${ids[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
 
       # The render records what this run changed in history.jsonl — with any
       # change the calendar made since the last commit — before it writes a page.
@@ -164,7 +194,7 @@ jobs:
       # before the accounts do. Runs after the verification commit so a post
       # never links a page that is not yet deployed, and never on a dry run.
       - name: Announce what changed
-        if: ${{ !inputs.dry_run }}
+        if: ${{ !inputs.dry_run && !inputs.provider_ids }}
         env:
           BLUESKY_HANDLE: ${{ vars.BLUESKY_HANDLE }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
@@ -180,6 +210,7 @@ jobs:
           git push
 
       - name: Scout (web discovery + LLM proposals)
+        if: ${{ !inputs.provider_ids }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -196,6 +227,7 @@ jobs:
         run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md ${{ inputs.dry_run && '--dry-run' || '' }}
 
       - name: Record the scout's changes and render every page
+        if: ${{ !inputs.provider_ids }}
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       # CI runs on a pull request this workflow opens only once someone with
@@ -203,6 +235,7 @@ jobs:
       # branch's tree, earned fields and new rows
       # included, and their result heads the PR body and the run summary.
       - name: Check the scout's branch
+        if: ${{ !inputs.provider_ids }}
         run: |
           {
             echo "## Checks on this branch"
@@ -229,11 +262,11 @@ jobs:
       # run there is no PR to carry it, and on a scheduled run it is worth
       # having next to the log rather than only in the PR body.
       - name: Publish the scout report in the run summary
-        if: always()
+        if: ${{ always() && !inputs.provider_ids }}
         run: cat scout-pr.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Open scout PR
-        if: ${{ !inputs.dry_run }}
+        if: ${{ !inputs.dry_run && !inputs.provider_ids }}
         uses: peter-evans/create-pull-request@v8
         with:
           branch: scout/weekly
@@ -247,7 +280,7 @@ jobs:
       # that could not think and a scout that found nothing produce the same
       # empty report, and only this step tells them apart.
       - name: Check the scout actually had a backend
-        if: always()
+        if: ${{ always() && !inputs.provider_ids }}
         run: |
           if [ ! -f scout-status.json ]; then
             echo "::error::the scout wrote no status file — it died before it could report"
@@ -269,6 +302,12 @@ jobs:
                     + ", ".join(outages) + " — those phases did not run")
           sys.exit(1 if aborted or outages else 0)
           PY
+
+      - name: Require selected providers to verify
+        if: ${{ always() && inputs.provider_ids }}
+        env:
+          PROBE_OUTCOME: ${{ steps.probe.outcome }}
+        run: test "$PROBE_OUTCOME" = success
 
       - name: Preserve public page recovery evidence
         uses: actions/upload-artifact@v7

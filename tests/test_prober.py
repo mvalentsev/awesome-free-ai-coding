@@ -71,6 +71,31 @@ async def test_catalog_explicit_free_price_label_and_withdrawal_controls(fields,
     assert (result.status is ProbeStatus.PASS) is free
 
 
+@pytest.mark.parametrize('free_remains', [True, False])
+@respx.mock
+async def test_experiential_partial_promotion_change_does_not_end_the_whole_offer(free_remains):
+    from pathlib import Path
+    from freetier_radar.models import load_registry
+    current = next(e for e in load_registry(Path(__file__).resolve().parent.parent / 'registry.yaml')
+                   if e.id == 'experiential-labs')
+    source = 'https://platform.experientiallabs.ai/llms.txt'
+    quota = next(q for q in current.quotas if q.label == 'Fable 5.1 promotional output')
+    current = current.model_copy(update={'border': None, 'quotas': [quota], 'source_urls': [source]})
+    # The independent Free tiers documented here are separate from plan discounts:
+    # https://platform.experientiallabs.ai/llms.txt, captured 2026-10-26.
+    body = ('Free tiers: some platform-funded models carry a promotional free daily tier '
+            '(today gpt-6-astra). Eligibility: the org has a saved card AND one settled $1+ charge. '
+            'Astra has 500k input tokens per UTC day. '
+            '<slug>:free works on models with a free tier and is free only: '
+            'past the allowance it stops with a free limit message and is never charged.')
+    if not free_remains:
+        body = 'All model inference requires a paid subscription; no promotional allowance remains.'
+    respx.get(source).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, current, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if free_remains else ProbeStatus.FAIL)
+
+
 @pytest.mark.parametrize("table_state", ["present", "missing", "ambiguous"])
 @respx.mock
 async def test_page_models_require_free_input_and_output_in_the_bound_table(table_state):
@@ -2018,6 +2043,38 @@ async def test_a_dry_run_counts_its_failures_so_a_shell_chain_can_stop(tmp_path)
     save_registry(reg, [good, bad])
     failed = await _amain(reg, tmp_path / "failures", dry_run=True)
     assert failed == 1
+
+
+@pytest.mark.parametrize('dry_run', [False, True])
+@respx.mock
+async def test_selected_verification_never_requests_or_changes_other_rows(tmp_path, dry_run):
+    from freetier_radar.models import load_registry
+    selected, untouched = page_entry(), api_entry()
+    untouched.probe_failures = 2
+    registry = tmp_path / 'registry.yaml'
+    save_registry(registry, [selected, untouched])
+    before = registry.read_bytes()
+    request = respx.get(selected.probe.endpoint).respond(
+        200, text='qwen3-coder free tier no credit card')
+    assert await _amain(registry, tmp_path / 'failures', dry_run=dry_run, ids=['pagey']) == 0
+    assert request.call_count == 1
+    after = load_registry(registry)
+    assert after[1].model_dump() == untouched.model_dump()
+    if dry_run:
+        assert registry.read_bytes() == before
+    else:
+        assert after[0].last_verified == date.today()
+
+
+@respx.mock
+async def test_unknown_selected_provider_fails_before_any_request_or_write(tmp_path):
+    registry = tmp_path / 'registry.yaml'
+    save_registry(registry, [page_entry()])
+    before = registry.read_bytes()
+    with pytest.raises(ValueError, match='unknown provider'):
+        await _amain(registry, tmp_path / 'failures', ids=['typo'])
+    assert registry.read_bytes() == before
+    assert not (tmp_path / 'failures').exists()
 
 
 def test_stale_ids_verifies_the_entry_like_a_pass():

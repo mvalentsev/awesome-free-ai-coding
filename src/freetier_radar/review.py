@@ -204,7 +204,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
             required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/' + path))['name'])
         required.add(workflow['name'])
     scope = {'base': base, 'sha': sha, 'paths': paths, 'deleted_paths': deleted_paths, 'rows': rows,
-             'eligibility': eligibility,
+             'eligibility': eligibility, 'withdrawals': facts['withdrawals'],
              'push_base': push_base, 'push_paths': push_paths,
              'families': families,
              'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}

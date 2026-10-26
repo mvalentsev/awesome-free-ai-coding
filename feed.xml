@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-26T08:27:25Z</updated>
+  <updated>2026-10-26T14:47:40Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/experiential-labs/20261026T144740Z</id>
+    <title>Restored: Experiential Labs</title>
+    <link rel="alternate" href="https://www.experientiallabs.ai"/>
+    <updated>2026-10-26T14:47:40Z</updated>
+    <summary type="text">Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261026T082725Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -17,7 +24,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/experiential-labs/20261026T082725Z</id>
     <title>Archived: Experiential Labs</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"/>
+    <link rel="alternate" href="https://www.experientiallabs.ai"/>
     <updated>2026-10-26T08:27:25Z</updated>
     <summary type="text">delisted on 2026-10-26: no confirmed free chat allowance after the general monthly credit was withdrawn</summary>
   </entry>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://qoder.cn"/>
     <updated>2026-10-12T07:32:01Z</updated>
     <summary type="text">added qwen3.8-flash · free models: qwen3.8-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sensenova/20261012T073201Z</id>
-    <title>Free models changed: SenseNova (SenseTime 商汤)</title>
-    <link rel="alternate" href="https://www.sensenova.cn"/>
-    <updated>2026-10-12T07:32:01Z</updated>
-    <summary type="text">added sensenova-6.8-flash-lite · free models: sensenova-6.8-flash-lite</summary>
   </entry>
 </feed>

@@ -62,6 +62,61 @@ def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
     assert push(tmp_path, base, head) == []
 
 
+def withdrawal_proposal(repo):
+    base, head = proposal(repo)
+    row = {'id': 'vendor', 'models': [], 'free_part': 'unnamed', 'archived': False}
+    (repo / 'index.json').write_text(json.dumps({'entries': [row]}))
+    git(repo, 'add', 'index.json')
+    git(repo, 'commit', '-qm', 'chore: unnamed free offer')
+    base = git(repo, 'rev-parse', 'HEAD')
+    row['archived'] = True
+    row['delisted'] = {'on': '2026-10-26', 'reason': 'old general credits ended'}
+    (repo / 'index.json').write_text(json.dumps({'entries': [row]}))
+    git(repo, 'add', 'index.json')
+    git(repo, 'commit', '-qm', 'fix: archive unnamed offer')
+    head = git(repo, 'rev-parse', 'HEAD')
+    bundle, value = signoff(repo, base, head)
+    from freetier_radar.quality import vendor_scope
+    scope = bundle.load('scope')
+    scope.update(vendor_scope(repo, base, head))
+    scope['paths'] = value['paths'] = ['index.json']
+    bundle.save('scope', scope)
+    return base, head, bundle, value
+
+
+def test_archiving_unnamed_offer_cannot_bypass_eligibility_review(tmp_path):
+    base, head, bundle, value = withdrawal_proposal(tmp_path)
+    with pytest.raises(ValueError, match='eligibility'):
+        accept_judgment(bundle, value)
+    assert push(tmp_path, base, head)
+
+
+@pytest.mark.parametrize('mode', ['unresolved', 'available', 'ended', 'ineligible'])
+def test_withdrawal_must_resolve_every_reviewed_free_access_mode(tmp_path, mode):
+    base, head, bundle, value = withdrawal_proposal(tmp_path)
+    source = 'https://vendor.example/pricing'
+    bundle.save('sources', {'checks': [{'url': source, 'passed': True,
+        'attempts': [{'at': datetime.now(timezone.utc).isoformat()}]}]})
+    record = {'row': 'vendor', 'families': [], 'plan': 'Free', 'payment': '$1 card check',
+        'regions': 'No named exclusions', 'limits': 'General credits ended; free model cap remains',
+        'deadline': 'No published end', 'conflicts': 'Pricing advertises Free while catalog has positive list prices',
+        'conflict_status': 'unresolved' if mode == 'unresolved' else 'resolved',
+        'resolution': 'A current explicit withdrawal supersedes the older offer' if mode == 'ended' else 'Route is decision-only',
+        'access_modes': [{'name': 'recurring free models', 'verdict': mode,
+            'finding': 'Review the separate recurring allowance, not only the withdrawn general grant',
+            'sources': [source]}],
+        'checked_at': datetime.now(timezone.utc).isoformat(),
+        'sources': [source], 'evidence': [str(tmp_path / '.remember/finding.txt')]}
+    value['model_eligibility'] = [record]
+    if mode in ('unresolved', 'available'):
+        with pytest.raises(ValueError, match='withdrawal|unresolved|available'):
+            accept_judgment(bundle, value)
+        assert push(tmp_path, base, head)
+    else:
+        accept_judgment(bundle, value)
+        assert push(tmp_path, base, head) == []
+
+
 @pytest.mark.parametrize('defect', ['missing', 'partial-families', 'missing-conflicts',
                                   'stale', 'unread-source', 'stale-source', 'future', None])
 def test_eligibility_signoff_requires_current_conditions_for_every_changed_family(tmp_path, defect):
@@ -84,6 +139,7 @@ def test_eligibility_signoff_requires_current_conditions_for_every_changed_famil
               'plan': 'Free', 'payment': 'No payment', 'regions': 'US only',
               'limits': 'One hour per day', 'deadline': 'No published end date',
               'conflicts': 'Compared live Free and Starter tables; no conflict',
+              'conflict_status': 'none',
               'checked_at': datetime.now(timezone.utc).isoformat(),
               'sources': [source], 'evidence': [evidence]}
     value['model_eligibility'] = [record]

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Novita AI free tier (archived): what it offered, and why it left the list'
-description: Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit. Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year
+description: Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output. Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks…
 permalink: /providers/novita/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-10-26
 crumb: Novita AI
 ---
 
@@ -11,11 +11,11 @@ crumb: Novita AI
 
 # Novita AI free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — unverified for 74 days, last passed 2026-08-13 · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 
-Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit
+Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output
 
 ## Free models it listed
 
@@ -23,12 +23,17 @@ The row named no free model.
 
 ## Limits, in the vendor's words
 
-Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year
+Zero-priced model: Requests allowance: amount not published (period not published); scope not published
+
+Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.
 
 ## Evidence
 
-- Probe: the page at <https://novita.ai/pricing>, anchored on `ling-3.0-flash`, `free`
+- Probe: the page at <https://novita.ai/models/model-detail/apodex-apodex-1.1-mini>, anchored on `apodex/apodex-1.1-mini`, `Input $0 / M Tokens`, `Output $0 / M Tokens`; ids checked in <https://api.novita.ai/openai/v1/models>
 - Source: <https://novita.ai/pricing>
+- Source: <https://novita.ai/models/model-detail/apodex-apodex-1.1-mini>
+- Source: <https://novita.ai/docs/guides/quickstart>
+- Source: <https://api.novita.ai/openai/v1/models>
 
 ## History
 
@@ -39,6 +44,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26. A probe still reads it twice a week, and the first probe it passes brings it back to the list; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

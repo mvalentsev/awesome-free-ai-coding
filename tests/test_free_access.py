@@ -257,14 +257,15 @@ async def test_expired_codex_lane_still_checks_the_catalog_without_calling_an_em
     assert result.status is ProbeStatus.PASS
 
 
-def test_model_deadline_does_not_erase_a_provider_payment_requirement():
+@pytest.mark.parametrize('payment_kind', ['top-up', 'card verification', 'charge'])
+def test_model_deadline_does_not_erase_a_provider_payment_requirement(payment_kind):
     from freetier_radar.models import id_access, family_access, requires_payment
-    row = entry(access={"initial_payment_usd": 1, "payment_kind": "card verification",
+    row = entry(access={"initial_payment_usd": 1, "payment_kind": payment_kind,
                         "source": "https://vendor.example/pricing"}, api={
         "base_url": "https://vendor.example/v1", "model_ids": ["preview"],
         "model_access": {"preview": {"until": PAID["until"], "source": PAID["source"]}}})
     assert requires_payment(row) and requires_payment(row, "preview")
-    assert id_access(row, "preview").payment_kind == "card verification"
+    assert id_access(row, "preview").payment_kind == payment_kind
     assert family_access(row, "preview").initial_payment_usd == 1
 
 

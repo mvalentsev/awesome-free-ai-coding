@@ -626,7 +626,7 @@ class FreeAccess(BaseModel):
     model_config = ConfigDict(extra="forbid")
     source: str
     initial_payment_usd: float | None = Field(default=None, gt=0, allow_inf_nan=False)
-    payment_kind: Literal["top-up", "card verification"] = Field(
+    payment_kind: Literal["top-up", "card verification", "charge"] = Field(
         default="top-up", exclude_if=lambda v: v == "top-up")
     topup_fee_percent: float = Field(default=0, ge=0, allow_inf_nan=False,
                                      exclude_if=lambda v: not v)
@@ -654,7 +654,7 @@ class FreeAccess(BaseModel):
                                       or self.payment_kind != "top-up"):
             raise ValueError("a top-up fee needs an initial top-up")
         if self.payment_kind != "top-up" and self.initial_payment_usd is None:
-            raise ValueError("card verification needs its charge")
+            raise ValueError("a payment kind needs its charge")
         return self
 
 

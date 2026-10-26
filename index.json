@@ -4088,17 +4088,174 @@
         "https://platform.experientiallabs.ai/llms.txt",
         "https://api.experientiallabs.ai/api/models/gpt-6-luna",
         "https://api.experientiallabs.ai/api/models/deepseek-v4.1-flash",
-        "https://api.experientiallabs.ai/api/models/clef-flash"
+        "https://api.experientiallabs.ai/api/models/clef-flash",
+        "https://api.experientiallabs.ai/api/models/gpt-6-astra",
+        "https://api.experientiallabs.ai/api/models/claude-fable-5.1"
       ],
       "card_required": true,
       "access": {
-        "source": "https://www.experientiallabs.ai/pricing",
+        "source": "https://platform.experientiallabs.ai/llms.txt",
         "initial_payment_usd": 1.0,
-        "payment_kind": "card verification"
+        "payment_kind": "charge"
       },
-      "offering": "Open-source AI gateway backed by Y Combinator whose advertised Free chat access conflicts with its Free-selected model prices",
-      "limits": "The general monthly credit is no longer offered. Pricing advertises free DeepSeek V4.1 Flash and GPT-6 Luna, but the Free-selected catalog marks them Free with Pro and retains positive input/output prices; provider metadata also gives Free no discount. The explicitly free Clef Flash and Luna Decisions routes use structured decisions, not chat or coding tools. Pricing still lists a one-time $1 card check. Free prompt and response storage cannot be disabled without a paid plan.",
-      "free_part": "unnamed",
+      "offering": "Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet",
+      "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan\n\nThe documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop at their quota instead of switching to paid credit. Cached input does not count toward these promotional quotas. The separate pricing-page Free core caps apply to its advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases. That page has no general monthly credits; its Free card speed conflicts with its detailed table and FAQ, and its chat claims conflict with positive Free-selected catalog prices. Jev uses a decision API rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+      "quotas": [
+        {
+          "amount": 500000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "organization-model",
+          "label": "Astra promotional input",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "day",
+          "model_ids": [
+            "gpt-6-astra:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 100000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "organization-model",
+          "label": "Astra promotional output",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "day",
+          "model_ids": [
+            "gpt-6-astra:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 200000.0,
+          "unit": "tokens",
+          "period": "hour",
+          "scope": "organization-model",
+          "label": "Astra promotional input",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "per hour",
+          "model_ids": [
+            "gpt-6-astra:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 40000.0,
+          "unit": "tokens",
+          "period": "hour",
+          "scope": "organization-model",
+          "label": "Astra promotional output",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "per hour",
+          "model_ids": [
+            "gpt-6-astra:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 375000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "organization-model",
+          "label": "Fable 5.1 promotional input",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "day",
+          "model_ids": [
+            "claude-fable-5.1:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 75000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "organization-model",
+          "label": "Fable 5.1 promotional output",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "day",
+          "model_ids": [
+            "claude-fable-5.1:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 100000.0,
+          "unit": "tokens",
+          "period": "hour",
+          "scope": "organization-model",
+          "label": "Fable 5.1 promotional input",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "per hour",
+          "model_ids": [
+            "claude-fable-5.1:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 30000.0,
+          "unit": "tokens",
+          "period": "hour",
+          "scope": "organization-model",
+          "label": "Fable 5.1 promotional output",
+          "source": "https://platform.experientiallabs.ai/llms.txt",
+          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
+          "period_quote": "per hour",
+          "model_ids": [
+            "claude-fable-5.1:free"
+          ],
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 10.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "plan",
+          "label": "Free core models",
+          "source": "https://www.experientiallabs.ai/pricing",
+          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
+          "value_phrase": "10 shared requests/min",
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 250000.0,
+          "unit": "tokens",
+          "period": "minute",
+          "scope": "plan",
+          "label": "Free core models",
+          "source": "https://www.experientiallabs.ai/pricing",
+          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
+          "value_phrase": "250K shared tokens/min",
+          "reviewed_on": "2026-10-26"
+        },
+        {
+          "amount": 1000000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "plan",
+          "label": "Free core models",
+          "source": "https://www.experientiallabs.ai/pricing",
+          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
+          "value_phrase": "1M tokens/day",
+          "reviewed_on": "2026-10-26"
+        }
+      ],
+      "free_part": "models",
       "models": [],
       "api": {
         "base_url": "https://api.experientiallabs.ai/v1",
@@ -4106,10 +4263,10 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "gpt-6-luna",
-          "deepseek-v4.1-flash"
+          "gpt-6-astra:free",
+          "claude-fable-5.1:free"
         ],
-        "note": "An API key is required. These retained chat IDs are metered on the selected Free catalog; no general free credit is published. Native decision models use /v1/systemone rather than chat completions."
+        "note": "An API key is required. These documented promotional :free aliases stop without charging when their allowance is spent. Do not remove the suffix: plain model IDs can switch to paid credit. The separate pricing-page Luna and DeepSeek chat offers have conflicting Free catalog prices."
       },
       "border": {
         "left_out": [],
@@ -4121,9 +4278,9 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://www.experientiallabs.ai/pricing",
+        "endpoint": "https://platform.experientiallabs.ai/llms.txt",
         "keywords": [
-          "500 credits/mo after a one-time $1 card check"
+          "some platform-funded models carry a promotional free daily tier"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -4131,26 +4288,22 @@
       },
       "first_seen": "2026-09-21",
       "last_verified": "2026-10-19",
-      "delisted": {
-        "on": "2026-10-26",
-        "reason": "no confirmed free chat allowance after the general monthly credit was withdrawn"
-      },
       "probe_failures": 2,
       "provisional": false,
       "rank": 96,
       "no_account": false,
-      "archived": true,
+      "archived": false,
       "search": {
         "name": "Experiential Labs",
         "models": [],
         "ids": [
-          "gpt-6-luna",
-          "deepseek-v4.1-flash"
+          "gpt-6-astra:free",
+          "claude-fable-5.1:free"
         ],
-        "what": "Open-source AI gateway backed by Y Combinator whose advertised Free chat access conflicts with its Free-selected model prices",
-        "limits": "The general monthly credit is no longer offered. Pricing advertises free DeepSeek V4.1 Flash and GPT-6 Luna, but the Free-selected catalog marks them Free with Pro and retains positive input/output prices; provider metadata also gives Free no discount. The explicitly free Clef Flash and Luna Decisions routes use structured decisions, not chat or coding tools. Pricing still lists a one-time $1 card check. Free prompt and response storage cannot be disabled without a paid plan.",
-        "why": "delisted on 2026-10-26: no confirmed free chat allowance after the general monthly credit was withdrawn",
-        "access": "requires $1 card verification",
+        "what": "Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet",
+        "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan\n\nThe documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop at their quota instead of switching to paid credit. Cached input does not count toward these promotional quotas. The separate pricing-page Free core caps apply to its advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases. That page has no general monthly credits; its Free card speed conflicts with its detailed table and FAQ, and its chat claims conflict with positive Free-selected catalog prices. Jev uses a decision API rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+        "why": "",
+        "access": "requires $1 charge",
         "modelAccess": {},
         "section": {
           "id": "aggregator"
@@ -4158,14 +4311,13 @@
         "flags": []
       },
       "access_labels": {
-        "offer": "requires $1 card verification",
+        "offer": "requires $1 charge",
         "models": {},
         "ids": {
-          "gpt-6-luna": "requires $1 one-time card verification",
-          "deepseek-v4.1-flash": "requires $1 one-time card verification"
+          "gpt-6-astra:free": "requires $1 one-time charge",
+          "claude-fable-5.1:free": "requires $1 one-time charge"
         }
       },
-      "archived_because": "delisted on 2026-10-26: no confirmed free chat allowance after the general monthly credit was withdrawn",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
     },
     {
@@ -11398,7 +11550,11 @@
       },
       "first_seen": "2026-09-16",
       "last_verified": "2026-09-21",
-      "retired_on": "2026-05-15",
+      "retired_on": "2027-04-30",
+      "delisted": {
+        "on": "2026-10-26",
+        "reason": "closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support"
+      },
       "probe_failures": 0,
       "provisional": true,
       "rank": 45,
@@ -11410,7 +11566,7 @@
         "ids": [],
         "what": "AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month",
         "limits": "Closed to new users since 2026-05-15. AWS's end-of-support post of 2026-04-30: \"New Q Developer Free Tier account creation (via Builder ID in IDE plugins) and new Q Developer subscription creation (via the AWS Console) will be blocked\", and \"The May 15, 2026 cutoff applies only to creating new Q Developer accounts and new subscriptions\"; the product page adds \"On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins\", pointing to Kiro, which this list carries. The pricing page still reads as it did — \"Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user\", \"50 agentic requests per month\" in its Free column — for the accounts that already exist. Read 2026-09-23",
-        "why": "vendor-announced shutdown on 2026-05-15",
+        "why": "delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -11420,7 +11576,7 @@
           "nocard"
         ]
       },
-      "archived_because": "vendor-announced shutdown on 2026-05-15",
+      "archived_because": "delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"
     },
     {
@@ -13557,11 +13713,27 @@
       "category": "api-free-tier",
       "url": "https://novita.ai/",
       "source_urls": [
-        "https://novita.ai/pricing"
+        "https://novita.ai/pricing",
+        "https://novita.ai/models/model-detail/apodex-apodex-1.1-mini",
+        "https://novita.ai/docs/guides/quickstart",
+        "https://api.novita.ai/openai/v1/models"
       ],
       "card_required": false,
-      "offering": "Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit",
-      "limits": "Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year",
+      "offering": "Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output",
+      "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
+      "quotas": [
+        {
+          "unit": "requests",
+          "scope": "unspecified",
+          "label": "Zero-priced model",
+          "source": "https://novita.ai/models/model-detail/apodex-apodex-1.1-mini",
+          "quote": "Input $0 / M Tokens Output $0 / M Tokens",
+          "reviewed_on": "2026-10-26",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "models",
       "models": [],
       "api": {
         "base_url": "https://api.novita.ai/openai",
@@ -13569,29 +13741,33 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "deepseek/deepseek-v4-pro",
-          "qwen/qwen3.7-max",
-          "zai-org/glm-5.2"
+          "apodex/apodex-1.1-mini"
         ],
         "note": ""
       },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-26",
+        "source": "https://novita.ai/legal/terms-of-service",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://novita.ai/pricing",
+        "endpoint": "https://novita.ai/models/model-detail/apodex-apodex-1.1-mini",
         "keywords": [
-          "ling-3.0-flash",
-          "free"
+          "apodex/apodex-1.1-mini",
+          "Input $0 / M Tokens",
+          "Output $0 / M Tokens"
         ],
         "free_marker": "",
         "require_zero_price": false,
+        "catalog": "https://api.novita.ai/openai/v1/models",
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-13",
-      "delisted": {
-        "on": "2026-08-14",
-        "reason": "the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero"
-      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -13601,13 +13777,11 @@
         "name": "Novita AI",
         "models": [],
         "ids": [
-          "deepseek/deepseek-v4-pro",
-          "qwen/qwen3.7-max",
-          "zai-org/glm-5.2"
+          "apodex/apodex-1.1-mini"
         ],
-        "what": "Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit",
-        "limits": "Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year",
-        "why": "delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero",
+        "what": "Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output",
+        "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
+        "why": "unverified for 74 days, last passed 2026-08-13",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13617,7 +13791,7 @@
           "nocard"
         ]
       },
-      "archived_because": "delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero",
+      "archived_because": "unverified for 74 days, last passed 2026-08-13",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/"
     },
     {
@@ -17201,6 +17375,7 @@
       "ovh-ai-endpoints",
       "standardcompute",
       "poolside",
+      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17260,6 +17435,7 @@
       "impossibl",
       "standardcompute",
       "poolside",
+      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17339,6 +17515,7 @@
       "impossibl",
       "standardcompute",
       "poolside",
+      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -18480,14 +18657,12 @@
   "watchlist": [
     {
       "domains": [
-        "experientiallabs.ai",
-        "api.experientiallabs.ai",
-        "platform.experientiallabs.ai"
+        "aws.amazon.com"
       ],
-      "name": "Experiential Labs",
+      "name": "Amazon Q Developer",
       "checked_on": "2026-10-26",
-      "reason": "The general monthly free credit is no longer offered on https://www.experientiallabs.ai/pricing. That page advertises free chat models, but selecting Free at https://platform.experientiallabs.ai/models shows positive GPT-6 Luna and DeepSeek V4.1 Flash prices and Free with Pro. Their public provider metadata also gives Free no discount. The explicitly free Clef Flash and Luna Decisions routes use structured decisions rather than chat or coding tools. Missing and invalid keys return 401; no authenticated free-chat completion or card verification was performed. The published row, page and history remain in Archive.",
-      "reopen_if": "Current Free-selected chat prices and provider terms agree on a usable free coding lane, or a general no-subscription credit allowance returns.",
+      "reason": "The current Amazon Q Developer end-of-support announcement closes new Free accounts and new subscriptions from May 15, 2026. Existing subscriptions can add users and existing IDE users retain access until April 30, 2027. This is a new-user eligibility exclusion, not a claim that all existing users lost the product in May. Source: https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/.",
+      "reopen_if": "AWS reopens Free account creation or documents a new bundled free coding offer reachable by new users. Check existing-user access independently.",
       "current": true
     },
     {
@@ -18619,16 +18794,6 @@
       "checked_on": "2026-09-16",
       "reason": "Being wound down. \"Sunsetting Supermaven\" (supermaven.com/blog, Nov 21, 2025): \"We will provide free autocomplete inference for existing customers for the foreseeable future.\" The pricing page still shows \"Free Tier $0 /month\", but the free promise covers existing customers, and it was completions only — no chat, agent use or API.",
       "reopen_if": "Supermaven takes new users again with a free plan that includes chat, agent use or an API.",
-      "current": true
-    },
-    {
-      "domains": [
-        "novita.ai"
-      ],
-      "name": "Novita AI",
-      "checked_on": "2026-08-14",
-      "reason": "Listed here from 2026-07-19 until 2026-08-14, when a hand check found the free lane gone with no announcement anywhere. novita.ai/pricing carries 102 published prices and not one of them is zero; the two models this entry named as free are now billed — inclusionai/ling-3.0-flash at $0.06/$0.18 per Mt and mindai/macaron-v1-venti at 15000/45000 micro-units — and novita.ai/models marks every one of its 102 rows \"isFree\": false in its own page data. The keyless catalog does carry eleven rows at input_token_price_per_m 0, but they publish no pricing object, four are plainly internal (ai_infer_test_1/2/3, bunny) and the rest 404 on their own model pages, so that is an unpriced shelf and not an offer. What is left is the ~$0.5 signup credit, and a trial is not a tier. The old probe passed through all of this because it anchored on the id \"ling-3.0-flash\" plus the word \"free\" — both still on the page — instead of on the price beside the id.",
-      "reopen_if": "novita.ai/pricing shows a zero price, or a model on novita.ai/models carries \"isFree\": true.",
       "current": true
     },
     {
