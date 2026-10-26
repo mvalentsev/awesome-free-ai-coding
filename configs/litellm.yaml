@@ -1583,6 +1583,12 @@ model_list:
     api_base: https://api.stdcmpt.com/v1
     api_key: os.environ/STANDARDCOMPUTE_API_KEY
     use_chat_completions_api: true
+- model_name: novita/apodex/apodex-1.1-mini
+  litellm_params:
+    model: openai/apodex/apodex-1.1-mini
+    api_base: https://api.novita.ai/openai
+    api_key: os.environ/NOVITA_API_KEY
+    use_chat_completions_api: true
 - model_name: poolside/poolside/laguna-s-2.1
   litellm_params:
     model: openai/poolside/laguna-s-2.1

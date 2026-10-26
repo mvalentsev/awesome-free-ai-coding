@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Experiential Labs free tier: limits, free models, verified 2026-10-19'
+title: 'Experiential Labs free tier: limits, free models, verified 2026-10-26'
 description: Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet. The documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop…
 permalink: /providers/experiential-labs/
 last_modified_at: 2026-10-26
@@ -11,7 +11,7 @@ crumb: Experiential Labs
 
 # Experiential Labs free tier
 
-🧭 Aggregators (one key, many providers) · card required · requires $1 one-time charge · **live** — last verified by a probe on 2026-10-19; the 2 probes since have not found that evidence, and 3 misses in a row archive the row · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · requires $1 one-time charge · **live** — last verified by a probe on 2026-10-26 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1359,6 +1359,19 @@
         }
       }
     },
+    "novita": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Novita AI",
+      "options": {
+        "baseURL": "https://api.novita.ai/openai",
+        "apiKey": "{env:NOVITA_API_KEY}"
+      },
+      "models": {
+        "apodex/apodex-1.1-mini": {
+          "name": "apodex/apodex-1.1-mini"
+        }
+      }
+    },
     "poolside": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Poolside Platform",

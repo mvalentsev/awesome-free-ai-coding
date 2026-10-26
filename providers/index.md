@@ -55,6 +55,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-10-26 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-10-26
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-10-26 · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+- [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-10-26
 - [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) — verified 2026-10-26
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-10-26
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-10-26 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
@@ -108,7 +109,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) — verified 2026-10-26 · `mistral-small-3.2` · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up)
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-10-26
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-10-26
-- [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-10-19
+- [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-10-26
 
 ## Archived
 
@@ -124,7 +125,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit
 - [Cerebras Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/) — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit
 - [LongCat API Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/) — delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day
-- [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — unverified for 74 days, last passed 2026-08-13
 - [Reka AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/) — delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits
 - [AI21 Labs (Jamba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/) — vendor-announced shutdown on 2026-08-09
 - [DeepSeek Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/) — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant

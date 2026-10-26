@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-26T14:47:40Z</updated>
+  <updated>2026-10-26T17:08:59Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/novita/20261026T170859Z</id>
+    <title>Restored: Novita AI</title>
+    <link rel="alternate" href="https://novita.ai/"/>
+    <updated>2026-10-26T17:08:59Z</updated>
+    <summary type="text">Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/experiential-labs/20261026T144740Z</id>
     <title>Restored: Experiential Labs</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
     <updated>2026-10-12T07:32:01Z</updated>
     <summary type="text">dropped qwen3-coder · free models: gpt-oss-120b, qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder-cn/20261012T073201Z</id>
-    <title>Free models changed: Qoder CN (formerly Lingma)</title>
-    <link rel="alternate" href="https://qoder.cn"/>
-    <updated>2026-10-12T07:32:01Z</updated>
-    <summary type="text">added qwen3.8-flash · free models: qwen3.8-flash</summary>
   </entry>
 </feed>

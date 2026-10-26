@@ -2182,8 +2182,8 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-21'
-  last_verified: '2026-10-19'
-  probe_failures: 2
+  last_verified: '2026-10-26'
+  probe_failures: 0
   provisional: false
   rank: 96
 - id: upstage
@@ -8174,7 +8174,7 @@ entries:
     catalog: https://api.novita.ai/openai/v1/models
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-08-13'
+  last_verified: '2026-10-26'
   probe_failures: 0
   provisional: false
   rank: 96

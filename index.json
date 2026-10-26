@@ -4287,8 +4287,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-21",
-      "last_verified": "2026-10-19",
-      "probe_failures": 2,
+      "last_verified": "2026-10-26",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 96,
       "no_account": false,
@@ -13767,12 +13767,12 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-13",
+      "last_verified": "2026-10-26",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
       "no_account": false,
-      "archived": true,
+      "archived": false,
       "search": {
         "name": "Novita AI",
         "models": [],
@@ -13781,7 +13781,7 @@
         ],
         "what": "Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output",
         "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
-        "why": "unverified for 74 days, last passed 2026-08-13",
+        "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13791,7 +13791,6 @@
           "nocard"
         ]
       },
-      "archived_because": "unverified for 74 days, last passed 2026-08-13",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/"
     },
     {
@@ -17374,6 +17373,7 @@
       "impossibl",
       "ovh-ai-endpoints",
       "standardcompute",
+      "novita",
       "poolside",
       "experiential-labs",
       "sail-research",
@@ -17434,6 +17434,7 @@
       "abliteration-ai",
       "impossibl",
       "standardcompute",
+      "novita",
       "poolside",
       "experiential-labs",
       "sail-research",
@@ -17514,6 +17515,7 @@
       "abliteration-ai",
       "impossibl",
       "standardcompute",
+      "novita",
       "poolside",
       "experiential-labs",
       "sail-research",
