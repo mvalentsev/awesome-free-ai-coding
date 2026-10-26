@@ -15962,9 +15962,11 @@
           "qwen/qwen3.8-27b"
         ],
         "ignored_ids": [
-          "moonshotai/kimi-k3-free"
+          "moonshotai/kimi-k3-free",
+          "tencent/hy3:free",
+          "deepseek/deepseek-v4.1-flash:free"
         ],
-        "note": "Create a key scoped to qwen/qwen3.8-27b. Use Chat Completions and set context and output budgets to the Free limits on the provider page. Authenticated generation has not been checked here."
+        "note": "The published no-recharge Free allowance covers Qwen. Create a key scoped to qwen/qwen3.8-27b. Other zero-priced catalog routes have no published access conditions. Use Chat Completions and the Free context/output budgets on the provider page. Authenticated generation has not been checked here."
       },
       "data_use": {
         "trains": "no",

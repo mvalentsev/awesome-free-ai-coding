@@ -42,7 +42,7 @@ What you send is not used to train models. In the vendor's words: “Without you
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`
-- Note: Create a key scoped to qwen/qwen3.8-27b. Use Chat Completions and set context and output budgets to the Free limits on the provider page. Authenticated generation has not been checked here.
+- Note: The published no-recharge Free allowance covers Qwen. Create a key scoped to qwen/qwen3.8-27b. Other zero-priced catalog routes have no published access conditions. Use Chat Completions and the Free context/output budgets on the provider page. Authenticated generation has not been checked here.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

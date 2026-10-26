@@ -9622,9 +9622,12 @@ entries:
     - qwen/qwen3.8-27b
     ignored_ids:
     - moonshotai/kimi-k3-free
-    note: Create a key scoped to qwen/qwen3.8-27b. Use Chat Completions and set context
-      and output budgets to the Free limits on the provider page. Authenticated generation
-      has not been checked here.
+    - tencent/hy3:free
+    - deepseek/deepseek-v4.1-flash:free
+    note: The published no-recharge Free allowance covers Qwen. Create a key scoped
+      to qwen/qwen3.8-27b. Other zero-priced catalog routes have no published access
+      conditions. Use Chat Completions and the Free context/output budgets on the
+      provider page. Authenticated generation has not been checked here.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call
