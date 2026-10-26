@@ -174,7 +174,10 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
             # Its departure is already announced (see Status.DELETED).
             continue
         elif was is None or was.status is Status.DELETED:
-            kind = EventType.ADDED if now_.status is Status.LIVE else EventType.ARCHIVED
+            # A removed legacy row retains its identity and original arrival.
+            # Its return is not a second Added that would reset first_seen.
+            kind = (EventType.RESTORED if was is not None else
+                    EventType.ADDED if now_.status is Status.LIVE else EventType.ARCHIVED)
             events.append(Event(ts=now, event=kind, id=entry_id, name=now_.name,
                                 url=now_.url, models=list(now_.models),
                                 detail=now_.summary))

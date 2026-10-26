@@ -150,6 +150,28 @@ def test_a_row_deleted_before_rows_were_archived_joins_the_archive_without_a_sec
     assert diff_state(replay(added + removed), restored, NOW) == []
 
 
+def test_writer_restores_a_legacy_removed_row_without_resetting_its_arrival(tmp_path):
+    """A historical removal predates Archive; its live return keeps the same ID
+    and original first_seen, rather than appending a contradictory new Added."""
+    first = datetime(2026, 1, 1, tzinfo=timezone.utc)
+    later = date(2026, 10, 26)
+    clock = datetime(2026, 10, 26, 15, tzinfo=timezone.utc)
+    old = diff_state({}, registry_state([make(last_verified=first.date())], first.date()), first)
+    old += diff_state(replay(old), {}, NOW)
+    registry, history = tmp_path / 'registry.yaml', tmp_path / 'history.jsonl'
+    append_history(history, old)
+    prefix = history.read_bytes()
+    row = make(last_verified=later)
+    save_registry(registry, [row])
+
+    block = record_changes(registry, history, later, clock)
+
+    assert [(e.event, e.id) for e in block] == [(EventType.RESTORED, 'example')]
+    assert history.read_bytes().startswith(prefix)
+    assert [(e.id, e.ts.date()) for e in load_history(history) if e.event is EventType.ADDED] == [('example', row.first_seen)]
+    assert record_changes(registry, history, later, clock) == []
+
+
 def test_a_row_deleted_from_the_registry_is_refused_rather_than_recorded(tmp_path: Path):
     """A row leaves the list through the Archive and nowhere else: a render that
     finds one deleted stops before the history records its removal, so the
@@ -194,13 +216,13 @@ def test_an_id_deleted_from_the_registry_is_removed():
     assert events[0].name == "Example"
 
 
-def test_a_removed_id_that_comes_back_is_an_addition_again():
+def test_a_removed_id_that_comes_back_is_restored():
     recorded = replay(diff_state({}, registry_state([make()], TODAY), NOW))
     recorded = replay(diff_state(recorded, registry_state([], TODAY), NOW))
 
     events = diff_state(recorded, registry_state([make()], TODAY), NOW)
 
-    assert [(e.event, e.id) for e in events] == [(EventType.ADDED, "example")]
+    assert [(e.event, e.id) for e in events] == [(EventType.RESTORED, "example")]
 
 
 # ---- the free-model list ---------------------------------------------------

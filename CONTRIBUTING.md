@@ -244,6 +244,9 @@ without linking it. Its id stays taken, since the id is its page's URL: a vendor
 that comes back is restored by removing `delisted`, and the scout reports a
 proposal under an archived row's id instead of dropping it.
 
+Returning a legacy row whose history ends in `removed` appends `restored`.
+Its original `first_seen` and the published history are preserved.
+
 ### Two rows, one service
 
 A service the registry holds twice is folded, never deleted. The second row

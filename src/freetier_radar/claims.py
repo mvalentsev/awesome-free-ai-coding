@@ -23,6 +23,7 @@ import yaml
 from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
+from .history import EventType
 from .layout import MAP, Kind
 from .models import ApiInfo, Category, ClientLane, FreeAccess, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
@@ -132,6 +133,9 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'history ends in `(removed)` appends `(restored)`',
+          lambda root: (EventType.REMOVED.value, EventType.RESTORED.value),
+          "history.diff_state and record_changes; legacy return preserves arrival and append-only prefix in tests/test_history.py"),
     Claim("CONTRIBUTING.md", r'`payment_kind` accepts `(top-up)`, `(card verification)`, or `(charge)`',
           lambda root: get_args(FreeAccess.model_fields['payment_kind'].annotation),
           "models.FreeAccess; shared payment inheritance and rendering in tests/test_free_access.py"),
