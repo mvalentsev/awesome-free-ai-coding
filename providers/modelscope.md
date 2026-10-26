@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-10-22'
+title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-10-26'
 description: Alibaba model community with a free daily API inference allowance measured in credits, after Alibaba Cloud real-name verification. API inference requires a bound Alibaba Cloud account with real-name verification; spending Magicube also requires a verified personal email. Calls cost 0.5, 1 or 2…
 permalink: /providers/modelscope/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-26
 crumb: ModelScope API-Inference (Alibaba)
 ---
 
@@ -11,7 +11,7 @@ crumb: ModelScope API-Inference (Alibaba)
 
 # ModelScope API-Inference (Alibaba) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-10-22 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-10-26 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

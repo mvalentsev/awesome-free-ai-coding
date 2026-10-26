@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-10-22'
+title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-10-26'
 description: 'Free plan of TRAE''s AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion. Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its amount differs between served versions of the pricing page. Measurements on…'
 permalink: /providers/trae/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-26
 crumb: TRAE (TraeCode)
 ---
 
@@ -11,7 +11,7 @@ crumb: TRAE (TraeCode)
 
 # TRAE (TraeCode) free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Canada and 11 more places · **live** — last verified by a probe on 2026-10-22 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Canada and 11 more places · **live** — last verified by a probe on 2026-10-26 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -56,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

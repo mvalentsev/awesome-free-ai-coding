@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-10-22",
+  "read_on": "2026-10-26",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
@@ -183,11 +183,6 @@
       "index": 9.0,
       "estimated": false
     },
-    "hy3": {
-      "slug": "hy3",
-      "index": 25.3,
-      "estimated": false
-    },
     "inkling": {
       "slug": "inkling",
       "index": 25.0,
@@ -206,11 +201,6 @@
     "kimi-k3": {
       "slug": "kimi-k3",
       "index": 43.6,
-      "estimated": false
-    },
-    "ling-3.0-flash": {
-      "slug": "ling-3-0-flash",
-      "index": 20.1,
       "estimated": false
     },
     "ling-3.0-tiny": {

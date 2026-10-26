@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-10-22'
+title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-10-26'
 description: Upstage Solar LLM API; $10 free credit on signup, no card. See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
 permalink: /providers/upstage/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-26
 crumb: Upstage (Solar API)
 ---
 
@@ -11,7 +11,7 @@ crumb: Upstage (Solar API)
 
 # Upstage (Solar API) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-22 · [console.upstage.ai](https://console.upstage.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-26 · [console.upstage.ai](https://console.upstage.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -66,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

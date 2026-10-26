@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.1 free: 3 providers, limits and ids, provider probes 2026-10-22'
+title: 'glm-5.1 free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: glm-5.1 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.1/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-26
 crumb: glm-5.1
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.1
 
 # Where glm-5.1 is free
 
-**3 rows on the list serve `glm-5.1` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-1), below its strong bar.
+**3 rows on the list serve `glm-5.1` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-1), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.1
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -48,7 +48,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-22 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-26 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -68,7 +68,7 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-10-22 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · last probe 2026-10-26 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 
@@ -99,6 +99,6 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

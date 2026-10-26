@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-tiny free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'ling-3.0-tiny free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: ling-3.0-tiny is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-tiny/
-last_modified_at: 2026-10-23
+last_modified_at: 2026-10-26
 crumb: ling-3.0-tiny
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-tiny
 
 # Where ling-3.0-tiny is free
 
-**One row on the list serves `ling-3.0-tiny` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
+**One row on the list serves `ling-3.0-tiny` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-tiny
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-08-11
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-08-11
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -43,6 +43,6 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

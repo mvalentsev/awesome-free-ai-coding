@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4-pro free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'deepseek-v4-pro free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: deepseek-v4-pro is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-pro/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-26
 crumb: deepseek-v4-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4-pro
 
 # Where deepseek-v4-pro is free
 
-**One row on the list serves `deepseek-v4-pro` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-pro).
+**One row on the list serves `deepseek-v4-pro` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-pro).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4-pro
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-22 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-10-26 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -49,6 +49,6 @@ Free grants apply in Singapore (international) only, independently per model and
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

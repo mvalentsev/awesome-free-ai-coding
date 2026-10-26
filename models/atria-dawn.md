@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'atria-dawn free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'atria-dawn free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: atria-dawn is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/atria-dawn/
-last_modified_at: 2026-10-23
+last_modified_at: 2026-10-26
 crumb: atria-dawn
 ---
 
@@ -11,7 +11,7 @@ crumb: atria-dawn
 
 # Where atria-dawn is free
 
-**One row on the list serves `atria-dawn` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
+**One row on the list serves `atria-dawn` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: atria-dawn
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-10-23
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-10-23
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -58,6 +58,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

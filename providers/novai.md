@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'NovAI free tier: limits, free models, verified 2026-10-22'
+title: 'NovAI free tier: limits, free models, verified 2026-10-26'
 description: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. The daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required…
 permalink: /providers/novai/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-26
 crumb: NovAI
 ---
 
@@ -11,7 +11,7 @@ crumb: NovAI
 
 # NovAI free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-22, a regular row from the first probe it passes on or after 2026-11-05 · **live** — last verified by a probe on 2026-10-22 · [aiapi-pro.com](https://aiapi-pro.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-22, a regular row from the first probe it passes on or after 2026-11-05 · **live** — last verified by a probe on 2026-10-26 · [aiapi-pro.com](https://aiapi-pro.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'agents-a1 free: 2 providers, limits and ids, provider probes 2026-10-22'
+title: 'agents-a1 free: 2 providers, limits and ids, provider probes 2026-10-26'
 description: agents-a1 is served free by AIHubMix (free models) and LLMTR. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agents-a1/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-26
 crumb: agents-a1
 ---
 
@@ -11,7 +11,7 @@ crumb: agents-a1
 
 # Where agents-a1 is free
 
-**2 rows on the list serve `agents-a1` free:** AIHubMix (free models) and LLMTR. None asks for a card. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week.
+**2 rows on the list serve `agents-a1` free:** AIHubMix (free models) and LLMTR. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: agents-a1
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-10-01
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -48,7 +48,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-10-23
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-10-23
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -83,6 +83,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'inkling-small free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'inkling-small free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: inkling-small is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/inkling-small/
-last_modified_at: 2026-10-24
+last_modified_at: 2026-10-26
 crumb: inkling-small
 ---
 
@@ -11,7 +11,7 @@ crumb: inkling-small
 
 # Where inkling-small is free
 
-**One row on the list serves `inkling-small` free:** OpenRouter (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
+**One row on the list serves `inkling-small` free:** OpenRouter (free models). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: inkling-small
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -51,6 +51,6 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

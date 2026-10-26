@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3-8b free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'qwen3-8b free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: qwen3-8b is served free by SiliconFlow (China). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3-8b/
-last_modified_at: 2026-10-22
+last_modified_at: 2026-10-26
 crumb: qwen3-8b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3-8b
 
 # Where qwen3-8b is free
 
-**One row on the list serves `qwen3-8b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
+**One row on the list serves `qwen3-8b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3-8b
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-10-22 · listed since 2026-09-19
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-10-26 · listed since 2026-09-19
 
 Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents
 
@@ -48,6 +48,6 @@ Free models are zero-priced but require real-name verification. Online verificat
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

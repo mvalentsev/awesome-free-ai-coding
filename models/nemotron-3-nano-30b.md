@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'nemotron-3-nano-30b free: 1 provider, limits and ids, provider probes 2026-10-22'
+title: 'nemotron-3-nano-30b free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: nemotron-3-nano-30b is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/nemotron-3-nano-30b/
-last_modified_at: 2026-10-23
+last_modified_at: 2026-10-26
 crumb: nemotron-3-nano-30b
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3-nano-30b
 
 # Where nemotron-3-nano-30b is free
 
-**One row on the list serves `nemotron-3-nano-30b` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-10-22; its offer is rechecked twice a week.
+**One row on the list serves `nemotron-3-nano-30b` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3-nano-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-24
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -45,6 +45,6 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

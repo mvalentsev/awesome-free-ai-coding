@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-10-22'
+title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-10-23
+last_modified_at: 2026-10-26
 crumb: solar-mini-4
 ---
 
@@ -11,7 +11,7 @@ crumb: solar-mini-4
 
 # Where solar-mini-4 is free
 
-**3 rows on the list serve `solar-mini-4` free:** Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-10-22; their offers are rechecked twice a week.
+**3 rows on the list serve `solar-mini-4` free:** Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: solar-mini-4
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-10-22 · listed since 2026-10-10
+🤖 Coding agents & CLIs · no card · last probe 2026-10-26 · listed since 2026-10-10
 
 Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access
 
@@ -45,7 +45,7 @@ MiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-10-22 · listed since 2026-10-21
+🤖 Coding agents & CLIs · no card · last probe 2026-10-26 · listed since 2026-10-21
 
 Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 
@@ -58,7 +58,7 @@ Free promotions require a Cline account, with Google, GitHub or email signup and
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-22 · listed since 2026-10-21
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-10-21
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -78,6 +78,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-25 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
