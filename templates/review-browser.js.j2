@@ -236,6 +236,25 @@ async (page) => {
           const body=page.locator('article.markdown-body').first();await body.waitFor();
           const list=body.locator('details').filter({has:page.locator('summary',{hasText:'Where each one is free'})});
           await list.waitFor();
+          // GitHub replaced this README node after code-view.loaded and a native
+          // click at f85e0f6 (2026-10-26). Wait for node and layout to settle first.
+          await list.evaluate(initial=>new Promise((resolve,reject)=>{
+            const label=initial.querySelector('summary').textContent;
+            const started=performance.now();let previous=null,bounds='',since=started;
+            const frame=()=>{
+              const now=performance.now();
+              const current=Array.from(document.querySelectorAll('article.markdown-body details'))
+                .find(d=>d.querySelector('summary')?.textContent===label);
+              const rect=current?.getBoundingClientRect();
+              const next=rect?[rect.x,rect.y,rect.width,rect.height].join(','):'';
+              if(!current||current!==previous||next!==bounds) {
+                previous=current;bounds=next;since=now;
+              } else if(now-since>=300) {resolve();return;}
+              if(now-started>=10000) {reject(Error('README node or layout did not settle'));return;}
+              requestAnimationFrame(frame);
+            };
+            requestAnimationFrame(frame);
+          }));
           if(await list.count()!==1) throw Error('Missing shared model list');
           if(await list.getAttribute('open')!==null) throw Error('README list initially open');
           await list.locator('summary').click();
