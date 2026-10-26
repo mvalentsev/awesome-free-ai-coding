@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-26'
-description: 130 model families the list's 87 live rows serve free, and every row that serves each one; 90 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 129 model families the list's 87 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-10-26
 ---
@@ -10,7 +10,7 @@ last_modified_at: 2026-10-26
 
 # Every free model on the list
 
-130 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+129 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -144,13 +144,13 @@ last_modified_at: 2026-10-26
 | `solar-pro-4` | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · notable | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
-| [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-10-26) |
 | `xing4.0-29b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 
 ## Previously listed models
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
+| [`vast-10m-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/) | 2026-10-26 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) | 2026-10-25 | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/), [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/), [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) |
 | [`ling-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/) | 2026-10-23 | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) |
 | [`hy3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/) | 2026-10-23 | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |

@@ -725,15 +725,6 @@ model_list:
   model_info:
     access: free until 2026-11-02 23:59+03:00
     source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
-- model_name: llmtr/voltropy/vast-10m-flash-free
-  litellm_params:
-    model: openai/voltropy/vast-10m-flash-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-10-26 23:59+03:00
-    source: https://llmtr.com/models/voltropy/vast-10m-flash-free
 - model_name: llmtr/internlm/intern-s2-free
   litellm_params:
     model: openai/internlm/intern-s2-free

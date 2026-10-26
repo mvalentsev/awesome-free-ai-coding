@@ -5124,7 +5124,6 @@ entries:
   - family: minimax-m3.1-flash
     tier: strong
     aa_model: minimax-m3-1-flash
-  - family: vast-10m-flash
   - family: intern-s2-397b
   - family: atria-dawn
   - family: atria-dawn-preview
@@ -5147,7 +5146,6 @@ entries:
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
     - minimax/minimax-m3.1-flash-free
-    - voltropy/vast-10m-flash-free
     - internlm/intern-s2-free
     - internlm/atria-dawn-free
     - internlm/atria-dawn-preview-free
@@ -5296,6 +5294,7 @@ entries:
     - reflection/beam-1.0-501b-a23b
     - baseten/elephant-1-free
     - baseten/mammoth-1-free
+    - voltropy/vast-10m-flash-free
     note: 'New accounts have a lower free allowance for 24 hours. Heabsy needs Settings
       → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5
       VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high

@@ -8857,7 +8857,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nVast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
       "quotas": [
         {
           "unit": "usage",
@@ -8951,20 +8951,6 @@
           "reviewed_on": "2026-10-22"
         },
         {
-          "amount": 10000000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "person",
-          "label": "Vast-10M Flash",
-          "source": "https://llmtr.com/models/voltropy/vast-10m-flash-free",
-          "quote": "26 Ekim 2026 23:59’a (TSİ) kadar kişi başı günde 10 milyon token (girdi ve çıktı birlikte) ücretsizdir.",
-          "value_phrase": "kişi başı günde 10 milyon token",
-          "model_ids": [
-            "voltropy/vast-10m-flash-free"
-          ],
-          "reviewed_on": "2026-10-22"
-        },
-        {
           "amount": 500000.0,
           "unit": "tokens",
           "period": "day",
@@ -9025,9 +9011,6 @@
           "aa_model": "minimax-m3-1-flash"
         },
         {
-          "family": "vast-10m-flash"
-        },
-        {
           "family": "intern-s2-397b"
         },
         {
@@ -9060,7 +9043,6 @@
           "ifm/jais-3-mova-36b-a4b",
           "ifm/k2-horizon-375b-a23b",
           "minimax/minimax-m3.1-flash-free",
-          "voltropy/vast-10m-flash-free",
           "internlm/intern-s2-free",
           "internlm/atria-dawn-free",
           "internlm/atria-dawn-preview-free",
@@ -9244,7 +9226,8 @@
           "nace/drex-max-free",
           "reflection/beam-1.0-501b-a23b",
           "baseten/elephant-1-free",
-          "baseten/mammoth-1-free"
+          "baseten/mammoth-1-free",
+          "voltropy/vast-10m-flash-free"
         ],
         "note": "New accounts have a lower free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B) requires tool_choice: auto and has no response_format. Include reasoning in max_tokens. Vast has no reasoning; use streaming and a long timeout for long prompts."
       },
@@ -9288,7 +9271,6 @@
           "jais-3-mova-36b-a4b",
           "k2-horizon-375b-a23b",
           "minimax-m3.1-flash",
-          "vast-10m-flash",
           "intern-s2-397b",
           "atria-dawn",
           "atria-dawn-preview",
@@ -9307,7 +9289,6 @@
           "ifm/jais-3-mova-36b-a4b",
           "ifm/k2-horizon-375b-a23b",
           "minimax/minimax-m3.1-flash-free",
-          "voltropy/vast-10m-flash-free",
           "internlm/intern-s2-free",
           "internlm/atria-dawn-free",
           "internlm/atria-dawn-preview-free",
@@ -9315,7 +9296,7 @@
           "internlm/sage-a1.5-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nVast-10M Flash: 10,000,000 tokens/day per person; for `voltropy/vast-10m-flash-free`\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+        "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -9328,7 +9309,6 @@
           "jais-3-mova-36b-a4b": "until 2026-11-05",
           "k2-horizon-375b-a23b": "until 2026-11-05",
           "minimax-m3.1-flash": "until 2026-11-02",
-          "vast-10m-flash": "until 2026-10-26",
           "intern-s2-397b": "until 2026-10-31",
           "atria-dawn": "until 2026-10-31",
           "atria-dawn-preview": "until 2026-10-31",
@@ -9355,7 +9335,6 @@
           "jais-3-mova-36b-a4b": "until 2026-11-05",
           "k2-horizon-375b-a23b": "until 2026-11-05",
           "minimax-m3.1-flash": "until 2026-11-02",
-          "vast-10m-flash": "until 2026-10-26",
           "intern-s2-397b": "until 2026-10-31",
           "atria-dawn": "until 2026-10-31",
           "atria-dawn-preview": "until 2026-10-31",
@@ -9374,7 +9353,6 @@
           "ifm/jais-3-mova-36b-a4b": "free until 2026-11-05 23:59+03:00",
           "ifm/k2-horizon-375b-a23b": "free until 2026-11-05 23:59+03:00",
           "minimax/minimax-m3.1-flash-free": "free until 2026-11-02 23:59+03:00",
-          "voltropy/vast-10m-flash-free": "free until 2026-10-26 23:59+03:00",
           "internlm/intern-s2-free": "free until 2026-10-31 23:59+03:00",
           "internlm/atria-dawn-free": "free until 2026-10-31 23:59+03:00",
           "internlm/atria-dawn-preview-free": "free until 2026-10-31 23:59+03:00",
@@ -18543,13 +18521,6 @@
       ]
     },
     {
-      "family": "vast-10m-flash",
-      "rows": [
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/"
-    },
-    {
       "family": "xing4.0-29b",
       "rows": [
         "siliconflow-cn"
@@ -18654,6 +18625,11 @@
       "family": "qwen3.6-max",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/"
+    },
+    {
+      "family": "vast-10m-flash",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/vast-10m-flash/"
     }
   ],
   "watchlist": [

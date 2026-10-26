@@ -525,9 +525,6 @@
             "output": 524288
           }
         },
-        "voltropy/vast-10m-flash-free": {
-          "name": "voltropy/vast-10m-flash-free (until 2026-10-26)"
-        },
         "internlm/intern-s2-free": {
           "name": "internlm/intern-s2-free (until 2026-10-31)",
           "limit": {

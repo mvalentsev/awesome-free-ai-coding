@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-26T17:08:59Z</updated>
+  <updated>2026-10-26T23:47:44Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261026T234744Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-26T23:47:44Z</updated>
+    <summary type="text">dropped vast-10m-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, intern-s2-397b, atria-dawn, atria-dawn-preview, agents-a1, sage-a1.5</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/novita/20261026T170859Z</id>
     <title>Restored: Novita AI</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-10-12T07:32:01Z</updated>
     <summary type="text">dropped ling-3.0-flash-sante · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20261012T073201Z</id>
-    <title>Free models changed: OVHcloud AI Endpoints</title>
-    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
-    <updated>2026-10-12T07:32:01Z</updated>
-    <summary type="text">dropped qwen3-coder · free models: gpt-oss-120b, qwen3.6, qwen3.8-27b</summary>
   </entry>
 </feed>
