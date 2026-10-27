@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26",
+  "generated": "2026-10-27",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -458,7 +458,7 @@
           "state": "account-specific",
           "source": "https://ai.google.dev/gemini-api/docs/rate-limits",
           "quote": "View your active rate limits in AI Studio",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -1258,7 +1258,17 @@
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-30",
-      "retired_on": "2026-06-16",
+      "retired_on": "2026-07-30",
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://docs.github.com/en/github-models",
+          "https://github.blog/changelog/2026-06-16-github-models-is-no-longer-available-to-new-customers/",
+          "https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/",
+          "https://models.inference.ai.azure.com",
+          "https://models.github.ai/catalog/models"
+        ]
+      },
       "probe_failures": 1,
       "provisional": false,
       "rank": 80,
@@ -1272,7 +1282,7 @@
         "ids": [],
         "what": "Free playground+API for catalog models with GitHub account",
         "limits": "Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30",
-        "why": "vendor-announced shutdown on 2026-06-16",
+        "why": "vendor-announced shutdown on 2026-07-30",
         "access": "",
         "modelAccess": {
           "gpt-4.1": ""
@@ -1284,7 +1294,7 @@
           "nocard"
         ]
       },
-      "archived_because": "vendor-announced shutdown on 2026-06-16",
+      "archived_because": "vendor-announced shutdown on 2026-07-30",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/"
     },
     {
@@ -1392,31 +1402,24 @@
       "category": "api-free-tier",
       "url": "https://ollama.com/cloud",
       "source_urls": [
-        "https://ollama.com/cloud"
+        "https://ollama.com/cloud",
+        "https://ollama.com/pricing",
+        "https://ollama.com/blog/transparent-pricing",
+        "https://docs.ollama.com/cloud"
       ],
       "card_required": false,
-      "offering": "Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog",
-      "limits": "Starter usage: Monthly credits allowance: amount not published per account\n\n1 request at once per account\n\nThe Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models. Per-token catalog prices do not identify the starter set. In a 2026-09-02 test, a Free key answered gpt-oss:120b, gemma4:31b and nemotron-3-ultra but returned 402 for minimax-m3. That measurement does not establish the current starter set.",
+      "offering": "Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage",
+      "limits": "Advertised starter usage: Monthly credits allowance: amount not published per account\n\nThe August 31 announcement still advertises monthly starter usage for a starter subset, but current pricing and download guidance describe paid cloud usage and omit that allowance. Current Free eligibility, amount and model set remain unresolved. The announcement describes signup-date monthly resets without rollover. Confirm the allowance in your account before using a cloud model; per-token prices do not establish starter eligibility. Local model execution is a separate, free use of the software.",
       "quotas": [
         {
           "unit": "credits",
           "period": "month",
           "scope": "account",
-          "label": "Starter usage",
-          "source": "https://ollama.com/cloud",
-          "quote": "On the Free plan, usage resets monthly from the date you signed up.",
-          "reviewed_on": "2026-10-20",
+          "label": "Advertised starter usage",
+          "source": "https://ollama.com/blog/transparent-pricing",
+          "quote": "Free: a starter amount each month for a set of starter models",
+          "reviewed_on": "2026-10-27",
           "amount": null
-        },
-        {
-          "amount": 1.0,
-          "unit": "requests",
-          "period": "concurrent",
-          "scope": "account",
-          "source": "https://ollama.com/pricing",
-          "quote": "Free includes 1 concurrent request",
-          "value_phrase": "Free includes 1 concurrent request",
-          "reviewed_on": "2026-10-06"
         }
       ],
       "free_part": "unnamed",
@@ -1426,12 +1429,9 @@
         "key_url": "https://ollama.com/settings/keys",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [
-          "gpt-oss:120b",
-          "gemma4:31b",
-          "nemotron-3-ultra"
-        ],
-        "note": "Use an Ollama cloud API key. The public model catalog includes models outside the starter allowance; check starter eligibility in your account before choosing an ID."
+        "model_ids": [],
+        "no_ids": "Current pricing and the starter-allowance announcement conflict; confirm the allowance and eligible model IDs in your account.",
+        "note": "An Ollama cloud API key is required. Confirm current free entitlement and select an eligible model in your account before making requests."
       },
       "data_use": {
         "trains": "no",
@@ -1448,10 +1448,9 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://ollama.com/cloud",
+        "endpoint": "https://ollama.com/blog/transparent-pricing",
         "keywords": [
-          "Starter usage credits included",
-          "Includes access to starter models"
+          "The free plan now includes a small amount of monthly usage for a set of starter models."
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -1468,13 +1467,9 @@
       "search": {
         "name": "Ollama Cloud",
         "models": [],
-        "ids": [
-          "gpt-oss:120b",
-          "gemma4:31b",
-          "nemotron-3-ultra"
-        ],
-        "what": "Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog",
-        "limits": "Starter usage: Monthly credits allowance: amount not published per account\n\n1 request at once per account\n\nThe Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models. Per-token catalog prices do not identify the starter set. In a 2026-09-02 test, a Free key answered gpt-oss:120b, gemma4:31b and nemotron-3-ultra but returned 402 for minimax-m3. That measurement does not establish the current starter set.",
+        "ids": [],
+        "what": "Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage",
+        "limits": "Advertised starter usage: Monthly credits allowance: amount not published per account\n\nThe August 31 announcement still advertises monthly starter usage for a starter subset, but current pricing and download guidance describe paid cloud usage and omit that allowance. Current Free eligibility, amount and model set remain unresolved. The announcement describes signup-date monthly resets without rollover. Confirm the allowance in your account before using a cloud model; per-token prices do not establish starter eligibility. Local model execution is a separate, free use of the software.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -1840,7 +1835,7 @@
           "label": "Basic usage",
           "source": "https://www.trae.ai/pricing",
           "quote": "For free users, it's a one-time allowance and doesn't reset monthly.",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -1852,7 +1847,7 @@
           "source": "https://www.trae.ai/pricing",
           "quote": "Autocompletion 5000 / month",
           "value_phrase": "Autocompletion 5000 / month",
-          "reviewed_on": "2026-10-20"
+          "reviewed_on": "2026-10-27"
         },
         {
           "amount": 2.0,
@@ -1863,7 +1858,7 @@
           "source": "https://www.trae.ai/pricing",
           "quote": "Concurrent cloud tasks 2",
           "value_phrase": "Concurrent cloud tasks 2",
-          "reviewed_on": "2026-10-20"
+          "reviewed_on": "2026-10-27"
         }
       ],
       "free_part": "unnamed",
@@ -2179,7 +2174,7 @@
           "label": "Agent usage",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -2189,7 +2184,7 @@
           "label": "Agent usage",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -2199,7 +2194,7 @@
           "label": "Tab",
           "source": "https://devin.ai/pricing",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -2210,7 +2205,7 @@
           "label": "Inline edits",
           "source": "https://devin.ai/pricing",
           "quote": "Unlimited inline edits",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -2307,6 +2302,13 @@
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
       "retired_on": "2026-07-26",
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
+          "https://mimo.xiaomi.com/mimocode/start"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -2365,7 +2367,7 @@
           "label": "Chat and agent usage",
           "source": "https://github.com/features/copilot",
           "quote": "a limited monthly allowance of GitHub AI Credits for chat and agent features",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         }
       ],
@@ -2706,7 +2708,7 @@
           "label": "Agent usage",
           "source": "https://cursor.com/pricing",
           "quote": "Limited Agent requests",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -2803,7 +2805,7 @@
           "label": "Free plan",
           "source": "https://learn.chatgpt.com/docs/pricing",
           "quote": "Explore Codex capabilities on quick coding tasks",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -3466,7 +3468,7 @@
           "source": "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
           "quote": "Anonymous: 2 requests per minute, per IP and per model.",
           "value_phrase": "Anonymous: 2 requests per minute, per IP and per model.",
-          "reviewed_on": "2026-10-20"
+          "reviewed_on": "2026-10-27"
         }
       ],
       "free_part": "models",
@@ -3567,7 +3569,7 @@
       ],
       "card_required": false,
       "offering": "Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model",
-      "limits": "Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published\n\nThe legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier; the configured gpt-oss-20b alias completed a keyless POST on 2026-10-07. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.",
+      "limits": "Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published\n\nThe legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.",
       "quotas": [
         {
           "unit": "usage",
@@ -3575,7 +3577,7 @@
           "label": "Legacy anonymous lane",
           "source": "https://text.pollinations.ai/models",
           "quote": "anonymous",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -3594,7 +3596,12 @@
         "model_ids": [
           "gpt-oss-20b"
         ],
-        "note": "The legacy endpoint needs no key. Both bare requests and the dummy Bearer token used by LiteLLM completed on 2026-10-07; anonymous requests can also return HTTP 402, so availability varies. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests."
+        "note": "The legacy endpoint accepts keyless requests, but current completion checks fail; see the dated warning. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests.",
+        "notice": {
+          "since": "2026-10-27",
+          "text": "October 27 checks of the legacy anonymous API returned HTTP 500 for gpt-oss-20b and HTTP 503/500 for openai-fast; the 503 requested a 10-second wait. No completion was confirmed. The catalog still advertises anonymous GPT-OSS 20B. Error responses point to the separate keyed Pollen API.",
+          "url": "https://enter.pollinations.ai/"
+        }
       },
       "border": {
         "left_out": [],
@@ -3631,7 +3638,7 @@
           "gpt-oss-20b"
         ],
         "what": "Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model",
-        "limits": "Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published\n\nThe legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier; the configured gpt-oss-20b alias completed a keyless POST on 2026-10-07. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.",
+        "limits": "Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published\n\nThe legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -4047,6 +4054,14 @@
       "delisted": {
         "on": "2026-10-08",
         "reason": "free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://huggingface.co/docs/inference-providers/pricing",
+          "https://router.huggingface.co/v1/models",
+          "https://huggingface.co/docs/inference-providers/integrations/codex"
+        ]
       },
       "probe_failures": 1,
       "provisional": false,
@@ -4683,7 +4698,7 @@
           "condition_quote": "The 2-week Pro Trial includes 300 credits",
           "source": "https://docs.qoder.com/account/pricing",
           "quote": "Unlimited completions & next edits",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         }
       ],
@@ -4790,6 +4805,17 @@
       "delisted": {
         "on": "2026-10-15",
         "reason": "The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq)."
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://hyper.charm.land/faq",
+          "https://github.com/charmbracelet/crush",
+          "https://hyper.charm.land/docs/plans-billing.html",
+          "https://hyper.charm.land/docs",
+          "https://hyper.charm.land/privacy",
+          "https://hyper.charm.land/prose/faq"
+        ]
       },
       "probe_failures": 1,
       "provisional": false,
@@ -5170,7 +5196,7 @@
           "label": "Free route",
           "source": "https://api.tokenrouter.com/api/pricing",
           "quote": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -5316,6 +5342,17 @@
         "on": "2026-09-23",
         "reason": "new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://docs.sambanova.ai/docs/en/models/rate-limits",
+          "https://api.sambanova.ai/v1/models",
+          "https://sambanova.ai/products/sambacloud",
+          "https://cloud.sambanova.ai/plans",
+          "https://sambanova.ai/pricing",
+          "https://docs.sambanova.ai/docs/en/get-started/quickstart"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -5379,7 +5416,7 @@
           "source": "https://docs.routeway.ai/getting-started/rate-limits.md",
           "quote": "5 Requests Per Minute (RPM)",
           "value_phrase": "5 Requests Per Minute (RPM)",
-          "reviewed_on": "2026-10-20"
+          "reviewed_on": "2026-10-27"
         },
         {
           "amount": 20.0,
@@ -5391,7 +5428,7 @@
           "source": "https://docs.routeway.ai/getting-started/faq.md",
           "quote": "20 requests/minute",
           "value_phrase": "20 requests/minute",
-          "reviewed_on": "2026-10-20"
+          "reviewed_on": "2026-10-27"
         },
         {
           "amount": 200.0,
@@ -5699,7 +5736,7 @@
           "label": "Gemini agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Gemini models Weekly limit remaining",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -5709,7 +5746,7 @@
           "label": "Claude and GPT agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Claude and GPT models Weekly limit remaining",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -5719,7 +5756,7 @@
           "label": "Tab",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -5730,7 +5767,7 @@
           "label": "Command",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Command requests",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -6190,6 +6227,17 @@
       "first_seen": "2026-08-14",
       "last_verified": "2026-09-03",
       "retired_on": "2026-08-09",
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://www.ai21.com/pricing/",
+          "https://docs.ai21.com/august-deprecation-notice",
+          "https://docs.ai21.com/docs/jamba-foundation-models.md",
+          "https://docs.ai21.com/docs/create-api-key.md",
+          "https://docs.ai21.com/docs/usage-cost.md",
+          "https://app.ai21.com/"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -6324,7 +6372,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nQwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
       "quotas": [
         {
           "amount": 5.0,
@@ -6574,7 +6622,7 @@
           "model_ids": [
             "agents-a1-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6587,7 +6635,7 @@
           "model_ids": [
             "intern-s2-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6600,7 +6648,7 @@
           "model_ids": [
             "dots-3-note-preview-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6613,7 +6661,7 @@
           "model_ids": [
             "lfm-2.5-2.6b-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6626,7 +6674,7 @@
           "model_ids": [
             "nemotron-3.5-lightning-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6639,7 +6687,7 @@
           "model_ids": [
             "nemotron-3-super-120b-a12b-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6652,7 +6700,7 @@
           "model_ids": [
             "nemotron-3-nano-omni-30b-a3b-reasoning-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6665,7 +6713,7 @@
           "model_ids": [
             "nemotron-3-ultra-550b-a55b-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6678,7 +6726,7 @@
           "model_ids": [
             "north-mini-code-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6691,7 +6739,7 @@
           "model_ids": [
             "laguna-xs-2.1-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6704,7 +6752,7 @@
           "model_ids": [
             "laguna-s-2.1-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6717,23 +6765,7 @@
           "model_ids": [
             "mimo-v2-flash-free"
           ],
-          "reviewed_on": "2026-10-20",
-          "amount": null,
-          "period": null
-        },
-        {
-          "unit": "usage",
-          "scope": "account-model",
-          "label": "Qwen3.8 Flash/Max GMI promotion",
-          "condition": "30 days from launch or until campaign credits run out; launch date unconfirmed.",
-          "condition_quote": "The offer lasts for 30 days from launch or until the campaign credits are exhausted, whichever comes first.",
-          "source": "https://aihubmix.com/models/qwen3.8-flash-free",
-          "quote": "The offer lasts for 30 days from launch or until the campaign credits are exhausted, whichever comes first.",
-          "model_ids": [
-            "qwen3.8-flash-free",
-            "qwen3.8-max-free"
-          ],
-          "reviewed_on": "2026-10-23",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -6930,8 +6962,6 @@
           "nemotron-3.5-lightning-free",
           "xiaomi-mimo-v2.6-flash-free",
           "xiaomi-mimo-v2.6-pro-free",
-          "qwen3.8-flash-free",
-          "qwen3.8-max-free",
           "gemma-4-26b-a4b-it-free",
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
@@ -7053,8 +7083,6 @@
           "nemotron-3.5-lightning-free",
           "xiaomi-mimo-v2.6-flash-free",
           "xiaomi-mimo-v2.6-pro-free",
-          "qwen3.8-flash-free",
-          "qwen3.8-max-free",
           "gemma-4-26b-a4b-it-free",
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
@@ -7062,7 +7090,7 @@
           "xing4.0-29b-a4b-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nQwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -7386,7 +7414,7 @@
           "scope": "organization",
           "source": "https://docs.poolside.ai/get-started/quickstart",
           "quote": "fast, free developer access",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -7789,6 +7817,14 @@
       "delisted": {
         "on": "2026-10-22",
         "reason": "public beta closed; the endpoint requires a key and key registration is closed"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://uncloseai.com/",
+          "https://uncloseai.com/inference.html",
+          "https://hermes.ai.unturf.com/v1/models"
+        ]
       },
       "probe_failures": 1,
       "provisional": false,
@@ -8853,11 +8889,12 @@
         "https://llmtr.com/blog/shanghai-ai-lab-modelleri-1-kasim-2026-sonrasi",
         "https://llmtr.com/blog/arapca-dil-modeli-api-jais-3",
         "https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens",
-        "https://llmtr.com/blog/jais-3-vs-k2-horizon"
+        "https://llmtr.com/blog/jais-3-vs-k2-horizon",
+        "https://llmtr.com/models/poolside/laguna-xs-2.1"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
       "quotas": [
         {
           "unit": "usage",
@@ -8872,7 +8909,7 @@
             "nvidia/nemotron-3-super-120b-a12b",
             "qwen/qwen3.8-27b-free"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -8984,9 +9021,6 @@
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "agnes-3.0-flash"
         },
         {
@@ -9035,7 +9069,6 @@
           "nvidia/nemotron-3-ultra-550b-a55b",
           "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.8-27b-free",
-          "poolside/laguna-xs-2.1",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
           "heabsy/qwen3.8-27b-heabsy-free",
@@ -9229,12 +9262,12 @@
           "baseten/mammoth-1-free",
           "voltropy/vast-10m-flash-free"
         ],
-        "note": "New accounts have a lower free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B) requires tool_choice: auto and has no response_format. Include reasoning in max_tokens. Vast has no reasoning; use streaming and a long timeout for long prompts."
+        "note": "New accounts have a lower free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B) requires tool_choice: auto and has no response_format. Include reasoning in max_tokens."
       },
       "data_use": {
         "trains": "yes",
-        "quote": "Poolside states that prompts and completions on free access may be logged and used to improve its products.",
-        "url": "https://llmtr.com/docs/en/gateway/poolside-laguna/"
+        "quote": "Text, images and videos sent to the free row may be retained by the provider and used to improve the model",
+        "url": "https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/"
       },
       "border": {
         "left_out": [],
@@ -9264,7 +9297,6 @@
         "models": [
           "nemotron-3-ultra",
           "nemotron-3-super",
-          "laguna-xs-2.1",
           "agnes-3.0-flash",
           "agnes-2.5-flash",
           "qwen3.8-27b",
@@ -9281,7 +9313,6 @@
           "nvidia/nemotron-3-ultra-550b-a55b",
           "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.8-27b-free",
-          "poolside/laguna-xs-2.1",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
           "heabsy/qwen3.8-27b-heabsy-free",
@@ -9296,13 +9327,12 @@
           "internlm/sage-a1.5-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+        "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
         "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
           "nemotron-3-super": "",
-          "laguna-xs-2.1": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
@@ -9328,7 +9358,6 @@
         "models": {
           "nemotron-3-ultra": "",
           "nemotron-3-super": "",
-          "laguna-xs-2.1": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
@@ -9345,7 +9374,6 @@
           "nvidia/nemotron-3-ultra-550b-a55b": "",
           "nvidia/nemotron-3-super-120b-a12b": "",
           "qwen/qwen3.8-27b-free": "",
-          "poolside/laguna-xs-2.1": "",
           "agnes/agnes-3.0-flash": "",
           "agnes/agnes-2.5-flash": "",
           "heabsy/qwen3.8-27b-heabsy-free": "free until 2026-11-02 00:00+03:00",
@@ -9385,7 +9413,7 @@
           "condition_quote": "Free 14 Day Trial no credit card",
           "source": "https://www.qodo.ai/pricing/",
           "quote": "Unlimited credits",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -9396,7 +9424,7 @@
           "condition_quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
           "source": "https://www.qodo.ai/pricing/",
           "quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -9517,7 +9545,7 @@
           "label": "Current promotion",
           "source": "https://www.workbuddy.ai/docs/ide/Account/pricing",
           "quote": "code completion is unlimited",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -9609,7 +9637,7 @@
           "state": "variable",
           "source": "https://freeinference.org/terms",
           "quote": "Quotas, rate limits, model access, and usage limits may change based on usage, demand, infrastructure capacity, abuse prevention, operational needs, and individual or aggregate activity",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -9646,8 +9674,30 @@
           "qwen3.6-35b",
           "minimax-m3"
         ],
+        "model_bindings": {
+          "glm-5.3-flash": {
+            "family": "glm-5.3-flash",
+            "source": "https://doc.freeinference.org/models",
+            "quote": "glm-5.3-flash"
+          },
+          "deepseek-v4-flash": {
+            "family": "deepseek-v4-flash",
+            "source": "https://doc.freeinference.org/models",
+            "quote": "deepseek-v4-flash"
+          },
+          "qwen3.6-35b": {
+            "family": "qwen3.6",
+            "source": "https://doc.freeinference.org/models",
+            "quote": "qwen3.6-35b"
+          },
+          "minimax-m3": {
+            "family": "minimax-m3",
+            "source": "https://doc.freeinference.org/models",
+            "quote": "minimax-m3"
+          }
+        },
         "anthropic_base_url": "https://freeinference.org/anthropic",
-        "note": "Catalog prices are upstream reference values, not fees charged to Free users."
+        "note": "Use a model marked Free in the documentation and returned for your key by the authenticated /v1/models endpoint. The public catalog omits minimax-m3 although the docs still mark it Free; confirm that ID for your key. Catalog prices are upstream accounting values, not fees charged to Free users."
       },
       "border": {
         "left_out": [],
@@ -9665,8 +9715,20 @@
         ],
         "free_marker": "",
         "require_zero_price": false,
-        "catalog": "https://freeinference.org/v1/models",
-        "machinery_keywords": []
+        "machinery_keywords": [],
+        "model_plan": {
+          "headers": [
+            "Model ID",
+            "Access",
+            "Context",
+            "Max Output",
+            "Input",
+            "Highlights"
+          ],
+          "name_column": "Model ID",
+          "plan_column": "Access",
+          "included_value": "Free"
+        }
       },
       "first_seen": "2026-09-05",
       "last_verified": "2026-10-26",
@@ -10434,7 +10496,7 @@
           "label": "Free model promotions",
           "source": "https://docs.cline.bot/getting-started/free-models",
           "quote": "up to a limited usage quota",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         }
       ],
@@ -10745,6 +10807,19 @@
         "on": "2026-10-15",
         "reason": "free accounts now include 0 requests/week and API inference requires a paid plan"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://yolo-auto.com/",
+          "https://yolo-auto.com/pricing",
+          "https://yolo-auto.com/models",
+          "https://yolo-auto.com/docs",
+          "https://yolo-auto.com/free-llm-api",
+          "https://yolo-auto.com/about",
+          "https://yolo-auto.com/terms",
+          "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+        ]
+      },
       "probe_failures": 2,
       "provisional": false,
       "rank": 99,
@@ -10809,7 +10884,7 @@
           "state": "unmetered",
           "source": "https://lp.jetbrains.com/ai-ides-faq/",
           "quote": "Unlimited code completion",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -11112,7 +11187,7 @@
           "label": "14-day trial",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "unlimited Edit Predictions for 14 days from when you start the trial",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -11137,7 +11212,7 @@
           "condition_quote": "The plan is available free for one year to verified university students.",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "The Zed Student Plan includes unlimited Edit Predictions",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -11206,11 +11281,12 @@
         "https://tokenharbor.ai/models?category=free",
         "https://tokenharbor.ai/docs/integrations/claude-code",
         "https://tokenharbor.ai/docs/api/curl",
-        "https://tokenharbor.ai/terms"
+        "https://tokenharbor.ai/terms",
+        "https://tokenharbor.ai/docs/api/rate-limits"
       ],
       "card_required": false,
       "offering": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
-      "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\n60 requests/minute; 1,800 requests/hour per account\n\n\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process request content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04",
+      "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.",
       "quotas": [
         {
           "unit": "list-price value",
@@ -11221,7 +11297,7 @@
           "label": "Free routes",
           "source": "https://tokenharbor.ai/faq",
           "quote": "Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count, because different models and requests have different costs. Your dashboard shows usage as a percentage.",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -11229,18 +11305,44 @@
           "unit": "requests",
           "period": "minute",
           "scope": "account",
-          "source": "https://tokenharbor.ai/faq",
-          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models",
-          "value_phrase": "60 requests/minute"
+          "label": "Free accounts",
+          "source": "https://tokenharbor.ai/docs/api/rate-limits",
+          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models.",
+          "value_phrase": "60 requests/minute",
+          "reviewed_on": "2026-10-27"
         },
         {
           "amount": 1800.0,
           "unit": "requests",
           "period": "hour",
           "scope": "account",
-          "source": "https://tokenharbor.ai/faq",
-          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models",
-          "value_phrase": "1,800 requests/hour"
+          "label": "Free accounts",
+          "source": "https://tokenharbor.ai/docs/api/rate-limits",
+          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models.",
+          "value_phrase": "1,800 requests/hour",
+          "reviewed_on": "2026-10-27"
+        },
+        {
+          "amount": 100.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "ip",
+          "label": "Free accounts",
+          "source": "https://tokenharbor.ai/docs/api/rate-limits",
+          "quote": "100 requests/minute and 3,000 requests/hour per IP address.",
+          "value_phrase": "100 requests/minute",
+          "reviewed_on": "2026-10-27"
+        },
+        {
+          "amount": 3000.0,
+          "unit": "requests",
+          "period": "hour",
+          "scope": "ip",
+          "label": "Free accounts",
+          "source": "https://tokenharbor.ai/docs/api/rate-limits",
+          "quote": "100 requests/minute and 3,000 requests/hour per IP address.",
+          "value_phrase": "3,000 requests/hour",
+          "reviewed_on": "2026-10-27"
         }
       ],
       "free_part": "models",
@@ -11324,7 +11426,7 @@
           "mimo-v2.6-flash:free"
         ],
         "what": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
-        "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\n60 requests/minute; 1,800 requests/hour per account\n\n\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process request content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04",
+        "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -11373,7 +11475,7 @@
           "label": "Free models",
           "source": "https://portal.nousresearch.com/",
           "quote": "Standard rate limits",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -11397,9 +11499,6 @@
           "aa_model": "longcat-2-0"
         },
         {
-          "family": "longcat-2.5-preview"
-        },
-        {
           "family": "solar-mini-4"
         }
       ],
@@ -11413,7 +11512,6 @@
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
           "meituan/longcat-2.0:free",
-          "meituan/longcat-2.5-preview:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11462,7 +11560,6 @@
           "laguna-s-2.1",
           "laguna-xs-2.1",
           "longcat-2.0",
-          "longcat-2.5-preview",
           "solar-mini-4"
         ],
         "ids": [
@@ -11470,7 +11567,6 @@
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
           "meituan/longcat-2.0:free",
-          "meituan/longcat-2.5-preview:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11484,7 +11580,6 @@
           "laguna-s-2.1": "",
           "laguna-xs-2.1": "",
           "longcat-2.0": "",
-          "longcat-2.5-preview": "",
           "solar-mini-4": ""
         },
         "section": {
@@ -11532,6 +11627,15 @@
       "delisted": {
         "on": "2026-10-26",
         "reason": "closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/",
+          "https://aws.amazon.com/q/developer/pricing/",
+          "https://aws.amazon.com/q/developer/",
+          "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/service-improvement.html"
+        ]
       },
       "probe_failures": 0,
       "provisional": true,
@@ -12379,7 +12483,7 @@
           "label": "Advertised route; free access unconfirmed",
           "source": "https://opper.ai/sign-up/free.md",
           "quote": "gemini/gemma-4-31b is a free model, so this call works before you add a card.",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -12583,7 +12687,7 @@
           "state": "account-specific",
           "source": "https://docs.mixlayer.com/credits-and-limits.md",
           "quote": "Mixlayer does not publish fixed limit values because limits can differ by organization and model",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -12727,6 +12831,15 @@
       "delisted": {
         "on": "2026-10-15",
         "reason": "Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart)."
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://blueclaw.network/",
+          "https://blueclaw.network/quickstart",
+          "https://blueclaw.network/how-it-works",
+          "https://blueclaw.network/operators"
+        ]
       },
       "probe_failures": 1,
       "provisional": false,
@@ -12877,7 +12990,7 @@
           "source": "https://impossibl.com/llms.txt",
           "quote": "an agent-created account has $0.05",
           "value_phrase": "an agent-created account has $0.05",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "period": null
         },
         {
@@ -13381,6 +13494,13 @@
         "on": "2026-07-19",
         "reason": "BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://aider.chat/",
+          "https://aider.chat/docs/faq.html"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 100,
@@ -13432,6 +13552,14 @@
       "delisted": {
         "on": "2026-07-19",
         "reason": "a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://developer.puter.com/tutorials/free-llm-api/",
+          "https://docs.puter.com/rate-limits-and-quotas/",
+          "https://developer.puter.com/tutorials/openai-compatible-api/"
+        ]
       },
       "probe_failures": 0,
       "provisional": true,
@@ -13571,6 +13699,12 @@
         "on": "2026-07-27",
         "reason": "the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://api-docs.deepseek.com/quick_start/pricing/"
+        ]
+      },
       "probe_failures": 0,
       "provisional": true,
       "rank": 15,
@@ -13651,6 +13785,16 @@
       "delisted": {
         "on": "2026-08-11",
         "reason": "the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://reka.ai/news/end-of-summer-updates",
+          "https://docs.reka.ai/pricing",
+          "https://developer.reka.ai",
+          "https://developer.reka.ai/reka-pass",
+          "https://developer.reka.ai/usage"
+        ]
       },
       "probe_failures": 0,
       "provisional": false,
@@ -13820,6 +13964,14 @@
         "on": "2026-08-14",
         "reason": "the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://longcat.chat/platform/docs/api-docs",
+          "https://longcat.chat/platform/docs/change-log",
+          "https://longcat.chat/platform/docs/faq"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
@@ -13901,6 +14053,14 @@
         "on": "2026-09-16",
         "reason": "its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit"
       },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://inference-docs.cerebras.ai/support/rate-limits",
+          "https://www.cerebras.ai/pricing",
+          "https://inference-docs.cerebras.ai/models"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 35,
@@ -13969,6 +14129,14 @@
       "delisted": {
         "on": "2026-09-16",
         "reason": "a one-month wallet of a million credits, and \"A credit card is required to start using the API\" — a one-off credit behind a card, which CONTRIBUTING does not admit"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services",
+          "https://www.infomaniak.com/en/hosting/ai-services/prices",
+          "https://www.infomaniak.com/en/support/faq/2802/understanding-invoicing-for-ai-services"
+        ]
       },
       "probe_failures": 0,
       "provisional": true,
@@ -14109,6 +14277,14 @@
       "delisted": {
         "on": "2026-09-16",
         "reason": "1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit"
+      },
+      "archive_review": {
+        "checked_on": "2026-10-26",
+        "sources": [
+          "https://www.scaleway.com/en/docs/generative-apis/faq/",
+          "https://www.scaleway.com/en/pricing/model-as-a-service/#generative-apis",
+          "https://www.scaleway.com/en/docs/account/how-to/create-an-account/"
+        ]
       },
       "probe_failures": 0,
       "provisional": false,
@@ -14282,7 +14458,7 @@
           "label": "Verified free models",
           "source": "https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
           "quote": "免费模型的 Rate Limits 固定",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -14470,7 +14646,7 @@
             "field": "Data.TargetPrefix",
             "suffix": "/dist/magicube/intro/intro_CN.md"
           },
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -14587,7 +14763,7 @@
           "label": "Preview models",
           "source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview",
           "quote": "gemini-3.1-pro-preview Dynamic",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         },
         {
@@ -14639,7 +14815,7 @@
             "gemini-3.1-pro-preview",
             "gemini-3-flash-preview"
           ],
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         }
       ],
@@ -15134,7 +15310,7 @@
           "label": "Basic-model fallback",
           "source": "https://docs.qoder.cn/product-overview/billing-description",
           "quote": "有限次数的补全",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         },
@@ -15238,7 +15414,7 @@
           "label": "Personal Standard completion",
           "source": "https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a",
           "quote": "智能补全 免费",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null,
           "period": null
         }
@@ -15312,7 +15488,7 @@
           "condition_quote": "Lite 30 days Free claim, 1,000 slots/day",
           "source": "https://atomcode.atomgit.com/docs/en/login.html",
           "quote": "Quota is measured on a rolling 5-hour window",
-          "reviewed_on": "2026-10-20",
+          "reviewed_on": "2026-10-27",
           "amount": null
         }
       ],
@@ -17344,7 +17520,6 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
-      "ollama-cloud",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -17406,7 +17581,6 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
-      "ollama-cloud",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -17487,7 +17661,6 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
-      "ollama-cloud",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -17537,18 +17710,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
-    },
-    {
-      "family": "laguna-xs-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "aihubmix",
-        "llmtr",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
     },
     {
       "family": "nemotron-3-nano-omni",
@@ -17620,6 +17781,17 @@
         "nous-portal"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
+    },
+    {
+      "family": "laguna-xs-2.1",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "aihubmix",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
     },
     {
       "family": "deepseek-v4.1-flash",
@@ -18250,13 +18422,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
     },
     {
-      "family": "longcat-2.5-preview",
-      "rows": [
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/"
-    },
-    {
       "family": "mellum",
       "rows": [
         "jetbrains-ai"
@@ -18575,6 +18740,11 @@
       "family": "ling-3.0-flash-sante",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "longcat-2.5-preview",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/"
     },
     {
       "family": "mimo-v2-omni",

@@ -195,6 +195,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     index to it, the endpoint otherwise — its catalog, the page its word on
     training is quoted from and the page that sets Codex up on its lane."""
     urls = list(entry.source_urls) + [page or entry.probe.endpoint]
+    if entry.archive_review:
+        urls.extend(entry.archive_review.sources)
     urls.extend(q.source for q in entry.quotas)
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)

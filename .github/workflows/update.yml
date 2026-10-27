@@ -134,6 +134,12 @@ jobs:
           fi
           uv run freetier-quotes --report "${ids[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Collect archived offers due for manual review
+        if: ${{ !inputs.provider_ids }}
+        run: |
+          set -o pipefail
+          uv run freetier-archive-review --out failures/archive-review | tee -a "$GITHUB_STEP_SUMMARY"
+
       # The render records what this run changed in history.jsonl — with any
       # change the calendar made since the last commit — before it writes a page.
       - name: Record what changed and render every page
@@ -316,3 +322,11 @@ jobs:
           name: public-page-reads
           path: failures/page-reads/
           if-no-files-found: ignore
+
+      - name: Preserve archived-offer review evidence
+        uses: actions/upload-artifact@v7
+        if: ${{ always() && !inputs.provider_ids }}
+        with:
+          name: archive-review
+          path: failures/archive-review/
+          if-no-files-found: error

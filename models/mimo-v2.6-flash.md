@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-10-26'
 description: mimo-v2.6-flash is served free by opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-flash/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: mimo-v2.6-flash
 ---
 
@@ -76,8 +76,6 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 Other free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`
 
-Qwen3.8 Flash/Max GMI promotion: Usage allowance: amount not published (period not published) per account per model (30 days from launch or until campaign credits run out; launch date unconfirmed.); for `qwen3.8-flash-free`, `qwen3.8-max-free`
-
 Gemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`
 
 Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
@@ -101,9 +99,11 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 - Limits, in the vendor's words: Free routes: Rolling 7-day list-price value allowance: amount not published per account
 
-60 requests/minute; 1,800 requests/hour per account
+Free accounts: 60 requests/minute; 1,800 requests/hour per account
 
-"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
+Free accounts: 100 requests/minute; 3,000 requests/hour per IP
+
+Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.
 
 </details>
 
@@ -125,6 +125,6 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ---
 
-Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,7 +3,7 @@ layout: default
 title: 'GitHub Models free tier (archived): what it offered, and why it left the list'
 description: 'Free playground+API for catalog models with GitHub account. Free models: gpt-4.1. Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30'
 permalink: /providers/github-models/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-10-27
 crumb: GitHub Models
 ---
 
@@ -11,7 +11,7 @@ crumb: GitHub Models
 
 # GitHub Models free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — vendor-announced shutdown on 2026-06-16 · [github.com](https://github.com/marketplace/models) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — vendor-announced shutdown on 2026-07-30 · [github.com](https://github.com/marketplace/models) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 
@@ -42,6 +42,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-27. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

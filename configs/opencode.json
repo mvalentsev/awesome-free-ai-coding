@@ -371,12 +371,6 @@
         "xiaomi-mimo-v2.6-pro-free": {
           "name": "xiaomi-mimo-v2.6-pro-free"
         },
-        "qwen3.8-flash-free": {
-          "name": "qwen3.8-flash-free"
-        },
-        "qwen3.8-max-free": {
-          "name": "qwen3.8-max-free"
-        },
         "gemma-4-26b-a4b-it-free": {
           "name": "gemma-4-26b-a4b-it-free"
         },
@@ -484,9 +478,6 @@
             "context": 131042,
             "output": 16384
           }
-        },
-        "poolside/laguna-xs-2.1": {
-          "name": "poolside/laguna-xs-2.1"
         },
         "agnes/agnes-3.0-flash": {
           "name": "agnes/agnes-3.0-flash"
@@ -770,9 +761,6 @@
         },
         "meituan/longcat-2.0:free": {
           "name": "meituan/longcat-2.0:free"
-        },
-        "meituan/longcat-2.5-preview:free": {
-          "name": "meituan/longcat-2.5-preview:free"
         },
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
@@ -1240,17 +1228,7 @@
         "baseURL": "https://ollama.com/v1",
         "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
       },
-      "models": {
-        "gpt-oss:120b": {
-          "name": "gpt-oss:120b"
-        },
-        "gemma4:31b": {
-          "name": "gemma4:31b"
-        },
-        "nemotron-3-ultra": {
-          "name": "nemotron-3-ultra"
-        }
-      }
+      "models": {}
     },
     "routerplex": {
       "npm": "@ai-sdk/openai-compatible",

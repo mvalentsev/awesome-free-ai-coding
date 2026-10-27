@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Ollama Cloud free tier: limits, free models, verified 2026-10-26'
-description: Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models…
+description: Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage. The August 31 announcement still advertises monthly starter usage for a starter subset, but current pricing and download guidance describe paid…
 permalink: /providers/ollama-cloud/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: Ollama Cloud
 ---
 
@@ -15,7 +15,7 @@ crumb: Ollama Cloud
 
 ## What you get
 
-Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog
+Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage
 
 ## Free models
 
@@ -23,11 +23,9 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 ## Limits, in the vendor's words
 
-Starter usage: Monthly credits allowance: amount not published per account
+Advertised starter usage: Monthly credits allowance: amount not published per account
 
-1 request at once per account
-
-The Free plan includes starter usage and starter models, whose amount and list are unpublished. Usage resets monthly from signup and does not roll over; adding credit unlocks all models. Per-token catalog prices do not identify the starter set. In a 2026-09-02 test, a Free key answered gpt-oss:120b, gemma4:31b and nemotron-3-ultra but returned 402 for minimax-m3. That measurement does not establish the current starter set.
+The August 31 announcement still advertises monthly starter usage for a starter subset, but current pricing and download guidance describe paid cloud usage and omit that allowance. Current Free eligibility, amount and model set remain unresolved. The announcement describes signup-date monthly resets without rollover. Confirm the allowance in your account before using a cloud model; per-token prices do not establish starter eligibility. Local model execution is a separate, free use of the software.
 
 ## Where it is offered
 
@@ -41,22 +39,23 @@ What you send is not used to train models. In the vendor's words: “Prompt or r
 
 - Base URL: `https://ollama.com/v1`
 - Key: `OLLAMA_CLOUD_API_KEY` — get one at <https://ollama.com/settings/keys>
-- Callable ids: `gpt-oss:120b`, `gemma4:31b`, `nemotron-3-ultra`
-- Note: Use an Ollama cloud API key. The public model catalog includes models outside the starter allowance; check starter eligibility in your account before choosing an ID.
+- Callable ids: none listed — Current pricing and the starter-allowance announcement conflict; confirm the allowance and eligible model IDs in your account.
+- Note: An Ollama cloud API key is required. Confirm current free entitlement and select an eligible model in your account before making requests.
 
-Try it from your terminal with your key in `OLLAMA_CLOUD_API_KEY` — it goes from your machine to the vendor and nowhere else:
+Check your key from your terminal — with it in `OLLAMA_CLOUD_API_KEY`, the vendor's catalog lists the models it can call:
 
 ```sh
-curl -s https://ollama.com/v1/chat/completions \
-  -H "Authorization: Bearer $OLLAMA_CLOUD_API_KEY" \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"gpt-oss:120b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+curl -s https://ollama.com/v1/models \
+  -H "Authorization: Bearer $OLLAMA_CLOUD_API_KEY"
 ```
 
 ## Evidence
 
-- Probe: the page at <https://ollama.com/cloud>, anchored on `Starter usage credits included`, `Includes access to starter models`; ids checked in <https://ollama.com/v1/models>
+- Probe: the page at <https://ollama.com/blog/transparent-pricing>, anchored on `The free plan now includes a small amount of monthly usage for a set of starter models.`; ids checked in <https://ollama.com/v1/models>
 - Source: <https://ollama.com/cloud>
+- Source: <https://ollama.com/pricing>
+- Source: <https://ollama.com/blog/transparent-pricing>
+- Source: <https://docs.ollama.com/cloud>
 
 ## History
 
@@ -68,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

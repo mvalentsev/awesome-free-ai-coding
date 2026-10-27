@@ -352,7 +352,9 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                            'notes': notes, 'passed': not notes})
     # CONTRIBUTING preserves a delisted row's last published offer. Keep its
     # diverging historical checks visible without asserting current eligibility.
-    historical_ids = {entry.id for entry in entries if entry.delisted is not None}
+    from .models import is_archived_for_good
+    historical_ids = {entry.id for entry in entries
+                      if is_archived_for_good(entry, datetime.now(timezone.utc).date())}
     current_urls = set(extra) | {url for row, selected in by_row.items()
                                 if row not in historical_ids for url in selected}
     historical_urls = {url for row, selected in by_row.items()

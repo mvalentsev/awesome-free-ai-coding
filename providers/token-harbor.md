@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-10-26'
-description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash, mimo-v2.6-flash. "Models on permanent free routes carry an explicit :free model ID and are listed under…'
+description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash, mimo-v2.6-flash. Enable explicit :free routes in the dashboard before calling them; the rotating model…'
 permalink: /providers/token-harbor/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: Token Harbor
 ---
 
@@ -25,9 +25,11 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 Free routes: Rolling 7-day list-price value allowance: amount not published per account
 
-60 requests/minute; 1,800 requests/hour per account
+Free accounts: 60 requests/minute; 1,800 requests/hour per account
 
-"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
+Free accounts: 100 requests/minute; 3,000 requests/hour per IP
+
+Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.
 
 ## Where it is offered
 
@@ -65,6 +67,7 @@ curl -s https://tokenharbor.ai/v1/chat/completions \
 - Source: <https://tokenharbor.ai/docs/integrations/claude-code>
 - Source: <https://tokenharbor.ai/docs/api/curl>
 - Source: <https://tokenharbor.ai/terms>
+- Source: <https://tokenharbor.ai/docs/api/rate-limits>
 
 ## History
 
@@ -77,6 +80,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

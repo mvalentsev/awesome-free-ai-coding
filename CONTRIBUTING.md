@@ -238,7 +238,7 @@ That covers an offer that ended without notice, a row that no longer meets
 day the row came off; `reason` is the sentence the Archive prints beside it —
 lower case, no full stop — while the long account goes to `watchlist.yaml`, or
 for cause to `blocklist.yaml`. A delisted row keeps what it was published with,
-probe included, and is never probed again. It drops its connection details only
+probe included, and its verification probe is skipped. It drops its connection details only
 when its service is rejected for cause, and its page then names the service
 without linking it. Its id stays taken, since the id is its page's URL: a vendor
 that comes back is restored by removing `delisted`, and the scout reports a
@@ -246,6 +246,18 @@ proposal under an archived row's id instead of dropping it.
 
 Returning a legacy row whose history ends in `removed` appends `restored`.
 Its original `first_seen` and the published history are preserved.
+
+The scheduled update collects current primary sources for archived offers when
+their manual review is at least 7 days old, through `freetier-archive-review`.
+The canonical `archive_review` pairs
+`checked_on` with `sources` for a completed manual review of every advertised
+free mode, including current conditions beyond the last offer's sources. The collector
+does not advance that date or restore a row. Missing dates are due immediately;
+duplicates and blocklisted services are excluded, including blocked source
+links and redirect targets. Its summary and `archive-review` artifact retain
+unavailable reads and last-offer probe findings for the reviewer. A matching
+old probe does not establish current eligibility. Source collection has a
+120-second budget; unfinished reads remain explicit in the report.
 
 ### Two rows, one service
 

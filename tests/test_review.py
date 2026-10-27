@@ -741,7 +741,8 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
 
 @respx.mock
 @pytest.mark.parametrize("role", ["historical", "shared", "extra"])
-async def test_unread_historical_sources_stay_visible_without_certifying_current_use(tmp_path, monkeypatch, role):
+@pytest.mark.parametrize("archive", ["delisted", "retired"])
+async def test_unread_historical_sources_stay_visible_without_certifying_current_use(tmp_path, monkeypatch, role, archive):
     import yaml
     from freetier_radar.models import _row_payload
     from test_render import make
@@ -752,7 +753,8 @@ async def test_unread_historical_sources_stay_visible_without_certifying_current
                   probe={"type": "page-keywords", "endpoint": current, "keywords": ["Recurring free quota for chat"]})
     historical = make(id="past", url="https://past.example", source_urls=[past],
                       probe={"type": "page-keywords", "endpoint": past, "keywords": ["Previous free quota for chat"]},
-                      delisted={"on": "2026-10-15", "reason": "The old offer ended"})
+                      **({"delisted": {"on": "2026-10-15", "reason": "The old offer ended"}}
+                         if archive == "delisted" else {"retired_on": "2026-10-15"}))
     monkeypatch.setattr(review, "blob", lambda *args: yaml.safe_dump({
         "entries": [_row_payload(active), _row_payload(historical)]}).encode())
     bundle = review.Bundle(tmp_path / "evidence", tmp_path)

@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, Category, ClientLane, FreeAccess, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -106,6 +106,11 @@ def _page_recovery_limits() -> tuple[str, ...]:
     return tuple(str(v) for v in (RECOVERY_SECONDS, RECOVERY_REDIRECTS, RECOVERY_BYTES // (1024 * 1024)))
 
 
+def _archive_review_limits(root: Path) -> tuple[str, ...]:
+    from .archive_review import ARCHIVE_RECHECK_DAYS, ARCHIVE_REVIEW_SECONDS
+    return (str(ARCHIVE_RECHECK_DAYS), str(ARCHIVE_REVIEW_SECONDS))
+
+
 def _site_url() -> tuple[str, str]:
     """PAGES_URL as Jekyll's `url` and `baseurl`."""
     host, base = PAGES_URL.rsplit("/", 1)
@@ -133,6 +138,12 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'`archive_review` pairs\s+`(checked_on)` with `(sources)`',
+          lambda root: tuple(ArchiveReview.model_fields),
+          "models.ArchiveReview; canonical current-source and date controls in tests/test_archive_review.py"),
+    Claim("CONTRIBUTING.md", r'(?s)manual review is at least (\d+) days old, through `freetier-archive-review`.*?Source collection has a\s+(\d+)-second budget',
+          _archive_review_limits,
+          "archive_review.due_entries and collect; scheduled HTTP and exclusion controls in tests/test_archive_review.py"),
     Claim("CONTRIBUTING.md", r'history ends in `(removed)` appends `(restored)`',
           lambda root: (EventType.REMOVED.value, EventType.RESTORED.value),
           "history.diff_state and record_changes; legacy return preserves arrival and append-only prefix in tests/test_history.py"),

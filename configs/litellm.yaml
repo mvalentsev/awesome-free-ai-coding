@@ -540,18 +540,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/qwen3.8-flash-free
-  litellm_params:
-    model: openai/qwen3.8-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/qwen3.8-max-free
-  litellm_params:
-    model: openai/qwen3.8-max-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/gemma-4-26b-a4b-it-free
   litellm_params:
     model: openai/gemma-4-26b-a4b-it-free
@@ -661,12 +649,6 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 16384
-- model_name: llmtr/poolside/laguna-xs-2.1
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtr/agnes/agnes-3.0-flash
   litellm_params:
     model: openai/agnes/agnes-3.0-flash
@@ -1054,12 +1036,6 @@ model_list:
 - model_name: nous-portal/meituan/longcat-2.0:free
   litellm_params:
     model: openai/meituan/longcat-2.0:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
-- model_name: nous-portal/meituan/longcat-2.5-preview:free
-  litellm_params:
-    model: openai/meituan/longcat-2.5-preview:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
@@ -1483,24 +1459,6 @@ model_list:
     model: openai/accounts/fireworks/models/kimi-k3
     api_base: https://api.fireworks.ai/inference/v1
     api_key: os.environ/FIREWORKS_AI_API_KEY
-    use_chat_completions_api: true
-- model_name: ollama-cloud/gpt-oss:120b
-  litellm_params:
-    model: openai/gpt-oss:120b
-    api_base: https://ollama.com/v1
-    api_key: os.environ/OLLAMA_CLOUD_API_KEY
-    use_chat_completions_api: true
-- model_name: ollama-cloud/gemma4:31b
-  litellm_params:
-    model: openai/gemma4:31b
-    api_base: https://ollama.com/v1
-    api_key: os.environ/OLLAMA_CLOUD_API_KEY
-    use_chat_completions_api: true
-- model_name: ollama-cloud/nemotron-3-ultra
-  litellm_params:
-    model: openai/nemotron-3-ultra
-    api_base: https://ollama.com/v1
-    api_key: os.environ/OLLAMA_CLOUD_API_KEY
     use_chat_completions_api: true
 - model_name: routerplex/deepseek-v4-flash
   litellm_params:

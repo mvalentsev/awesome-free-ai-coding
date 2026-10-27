@@ -355,7 +355,7 @@ class ModelPlanTable(BaseModel):
             raise ValueError("model_plan needs distinct name and plan columns in its headers")
         if len(set(self.headers)) != len(self.headers):
             raise ValueError("model_plan headers must be distinct")
-        if self.included_value.casefold() not in {"yes", "true", "included", "✅", "✓", "✔"}:
+        if self.included_value.casefold() not in {"yes", "true", "included", "free", "✅", "✓", "✔"}:
             raise ValueError("model_plan included_value must be an explicit inclusion mark")
         return self
 
@@ -1387,6 +1387,18 @@ class Border(BaseModel):
         return self
 
 
+class ArchiveReview(BaseModel):
+    checked_on: date
+    sources: list[str] = Field(min_length=1)
+
+    @field_validator('sources')
+    @classmethod
+    def _primary_sources(cls, values: list[str]) -> list[str]:
+        if any(not valid_source_url(value) for value in values):
+            raise ValueError('archive_review.sources needs HTTPS sources without credentials')
+        return list(dict.fromkeys(values))
+
+
 class Delisting(BaseModel):
     """A row a reviewer took off the list, kept in the registry as the record of
     what the list published: a row leaves through the Archive, with the day and
@@ -1436,6 +1448,7 @@ class Entry(BaseModel):
     last_verified: date
     retired_on: date | None = None  # vendor-announced shutdown; archives the row on that day
     delisted: Delisting | None = None  # taken off the list by a reviewer; archives the row
+    archive_review: ArchiveReview | None = None  # manual judgment and its current primary sources
     # The row that holds this same service, where two rows named one: the id of
     # the row that keeps the offer, the evidence and the history, and the reason
     # this one is listed nowhere a reader counts services.
@@ -1443,6 +1456,14 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @model_validator(mode="after")
+    def _archive_review_describes_an_archived_row(self) -> Entry:
+        if self.archive_review is not None:
+            archived_on = self.delisted.on if self.delisted else self.retired_on
+            if archived_on is None or self.archive_review.checked_on < archived_on:
+                raise ValueError('archive_review needs a row archived by that review date')
+        return self
 
     @model_validator(mode="after")
     def _quota_catalog_is_bound_to_the_lane(self) -> Entry:

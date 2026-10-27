@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-26T23:47:44Z</updated>
+  <updated>2026-10-27T09:53:30Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261027T095330Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-27T09:53:30Z</updated>
+    <summary type="text">dropped laguna-xs-2.1 · free models: nemotron-3-ultra, nemotron-3-super, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, intern-s2-397b, atria-dawn, atria-dawn-preview, agents-a1, sage-a1.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261027T095330Z</id>
+    <title>Free models changed: Nous Portal (Hermes Agent)</title>
+    <link rel="alternate" href="https://portal.nousresearch.com"/>
+    <updated>2026-10-27T09:53:30Z</updated>
+    <summary type="text">dropped longcat-2.5-preview · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, solar-mini-4</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261026T234744Z</id>
     <title>Free models changed: LLMTR</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://atomcode.atomgit.com/"/>
     <updated>2026-10-12T07:32:01Z</updated>
     <summary type="text">added glm-5.2, qwen3-vl-8b-instruct · free models: deepseek-v4-flash, qwen3-vl-8b-instruct, glm-5.2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261012T073201Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-10-12T07:32:01Z</updated>
-    <summary type="text">dropped ling-3.0-flash-sante, step-3.7-flash · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261012T073201Z</id>
-    <title>Free models changed: OpenRouter (free models)</title>
-    <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-10-12T07:32:01Z</updated>
-    <summary type="text">dropped ling-3.0-flash-sante · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni</summary>
   </entry>
 </feed>
