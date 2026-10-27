@@ -22,7 +22,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, 
                      probe_frequency, watch_match)
 from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
-                     unevidenced_families)
+                     unevidenced_families, model_table_findings)
 from .page_reader import recover_page_sync
 from .words import clip
 
@@ -735,8 +735,21 @@ def probe_check_sync(entry: Entry, client: httpx.Client,
         # The run only flags a live row for this (see `unevidenced_families`); a
         # proposal or a correction has nothing live to protect and is refused.
         unevidenced = unevidenced_families(resp, entry)
-        return ("listed families the page does not name: " + ", ".join(unevidenced)
-                if unevidenced else None)
+        notes = (["listed families the page does not name: " + ", ".join(unevidenced)]
+                 if unevidenced else [])
+        notes.extend(model_table_findings(resp, entry, date.today()))
+        if entry.probe.model_exclusions:
+            from .quotes import model_exclusion_changes
+            bodies = {}
+            for source in dict.fromkeys(e.source for e in entry.probe.model_exclusions):
+                try:
+                    source_response = resp if source == entry.probe.endpoint else client.get(source, follow_redirects=True)
+                except httpx.HTTPError:
+                    continue
+                if page_response_ok(source_response):
+                    bodies[source] = source_response.text
+            notes.extend(model_exclusion_changes(entry, bodies))
+        return " | ".join(notes) or None
     # Name a bot wall in the rejection: "missing keywords" reads as a bad
     # proposal, while "bot challenge" tells the reviewer the endpoint walls off
     # everything that is not a browser.

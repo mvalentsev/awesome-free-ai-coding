@@ -1781,10 +1781,9 @@ async def test_a_free_id_the_catalog_carries_and_the_config_does_not_is_reported
 
 
 @respx.mock
-async def test_growth_is_read_with_the_row_s_own_lane_definition():
-    """An unlisted id counts as growth only inside the row's lane: it carries
-    free_marker (a zero-priced preview without `:free` is outside), is priced 0
-    and is callable."""
+async def test_unmarked_free_candidates_need_review_without_admitting_paid_or_paused_rows():
+    """A suffix cannot hide a new free coding route. Noncoding zero-priced
+    candidates require an explicit exclusion rather than silent omission."""
     entry = config_entry("qwen/qwen3-coder:free")
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
         200, json=_lane(
@@ -1795,7 +1794,10 @@ async def test_growth_is_read_with_the_row_s_own_lane_definition():
              "pricing": {"prompt": "0", "completion": "0"}})))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
-    assert result.status is ProbeStatus.PASS
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'google/lyria-3-pro-preview' in result.detail
+    assert 'vendor/metered:free' not in result.detail
+    assert 'vendor/paused:free' not in result.detail
 
 
 @respx.mock

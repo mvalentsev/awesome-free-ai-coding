@@ -2310,7 +2310,7 @@ _ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, s
                                 "out")}
 
 
-def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
+def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
     request carries, the Anthropic route, Codex's profile and the ids — every id
     the row lists on the row's own page, one model's ids on that model's page.
@@ -2322,6 +2322,8 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
         out = ["- No API endpoint to paste: this row is a tool you install or sign in to."]
         if e.client_lane is not None and ids:
             out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{i}`" for i in ids))
+        elif include_waiting and (choices := [n.table_name or n.family for n in e.newcomers]):
+            out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{name}`" for name in choices))
         return out
     out = [f"- Base URL: `{api.base_url}`" + ("" if api.openai_compatible else " (not OpenAI-shaped)")]
     if api.key_kind == "none":
@@ -2361,7 +2363,7 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
 
 def _connect_section(e: Entry) -> list[str]:
     lane = lane_ids(e)
-    out = ["## Connect", "", *_connect_lines(e, lane.model_ids if lane else [])]
+    out = ["## Connect", "", *_connect_lines(e, lane.model_ids if lane else [], include_waiting=True)]
     if e.api and e.api.base_url and e.api.note:
         out.append(f"- Note: {e.api.note}")
     return out + [""] + _try_it(e)

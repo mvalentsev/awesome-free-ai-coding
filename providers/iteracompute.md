@@ -3,7 +3,7 @@ layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-10-26'
 description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192…'
 permalink: /providers/iteracompute/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: IteraCompute
 ---
 
@@ -42,7 +42,7 @@ What you send is not used to train models. In the vendor's words: “Without you
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`
-- Note: The published no-recharge Free allowance covers Qwen. Create a key scoped to qwen/qwen3.8-27b. Other zero-priced catalog routes have no published access conditions. Use Chat Completions and the Free context/output budgets on the provider page. Authenticated generation has not been checked here.
+- Note: The documented no-recharge allowance covers only qwen/qwen3.8-27b. The catalog also marks opencode/* routes Free, but their account eligibility, allowance and capacity conditions remain unconfirmed; the public Free page still lists only Qwen. Do not apply Qwen limits to those routes. Create a key scoped to Qwen and use Chat Completions. Authenticated generation has not been checked here.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

@@ -59,8 +59,6 @@ entries:
   - family: gemma-4-26b-a4b
     tier: notable
     aa_model: gemma-4-26b-a4b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
   - family: laguna-s-2.1
@@ -83,7 +81,6 @@ entries:
     openai_compatible: true
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b:free
-    - nvidia/nemotron-3-super-120b-a12b:free
     - nvidia/nemotron-3.5-lightning:free
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     - google/gemma-4-31b-it:free
@@ -101,6 +98,8 @@ entries:
     - recursive/flint-v1.0:free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
+    - google/lyria-3-pro-preview
+    - google/lyria-3-clip-preview
     no_family_ids:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
@@ -734,18 +733,23 @@ entries:
   - family: flint-40b
     'on': '2026-10-25'
     source: https://opencode.ai/v2/docs/console/models/
+    table_name: Flint 40B Free
   - family: deepseek-v4.1-flash
     'on': '2026-10-15'
     source: https://opencode.ai/v2/docs/console/models/
+    table_name: DeepSeek V4.1 Flash Free
   - family: glm-5.3-flash
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
+    table_name: GLM-5.3-Flash Free
   - family: beam-1.0
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
+    table_name: Beam Free
   - family: nemotron-3.5-super-vl
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
+    table_name: Nemotron 3.5 Super VL Free
   data_use:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
@@ -773,6 +777,11 @@ entries:
       - Input
       - Output
       free_value: Free
+    model_exclusions:
+    - name: Jev 1.13 Free
+      source: https://docs.typesafe.ai/introduction/coding-agents
+      quote: It does not generate text, write code, or hold a conversation.
+      reviewed_on: '2026-10-27'
   first_seen: '2026-07-19'
   last_verified: '2026-10-26'
   probe_failures: 0
@@ -807,8 +816,6 @@ entries:
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
   - family: laguna-s-2.1
@@ -827,7 +834,6 @@ entries:
     - openrouter/free
     - kilo-auto/free
     - nvidia/nemotron-3-ultra-550b-a55b:free
-    - nvidia/nemotron-3-super-120b-a12b:free
     - nvidia/nemotron-3.5-lightning:free
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     - cohere/north-mini-code:free
@@ -839,6 +845,18 @@ entries:
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
     - recursive/flint-v1.0:free
+    - reflection/beam-free
+    model_bindings:
+      reflection/beam-free:
+        family: beam-1.0
+        source: https://api.kilo.ai/api/gateway/models
+        quote: Beam 1.0 (free)
+        read: catalog
+    model_limits:
+      reflection/beam-free:
+        context_tokens: 1048576
+        output_tokens: 131072
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -847,6 +865,10 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - stealth/glyph-cluster
     - recursive/flint-v1.0:free
+    free_since:
+    - id: reflection/beam-free
+      'on': '2026-10-17'
+      source: https://api.kilo.ai/api/gateway/models
     refuses_bearer: true
     codex:
       base_url: https://api.kilo.ai/api/gateway
@@ -869,7 +891,7 @@ entries:
     type: api-models
     endpoint: https://api.kilo.ai/api/gateway/models
     keywords: []
-    free_marker: :free
+    free_marker: ''
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-07-19'
@@ -2742,6 +2764,11 @@ entries:
     - reflection/beam:free
     - stealth/glyph-cluster:free
     - qwen/qwen3.7-flash:free
+    ignored_ids:
+    - beam
+    - beam-free
+    - nemotron-3.5-lightning-free
+    - glyph-cluster
     no_family_ids:
     - auto:free
     - stealth/glyph-cluster:free
@@ -2795,6 +2822,9 @@ entries:
     openai_compatible: true
     model_ids:
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+    ignored_ids:
+    - stealth/union-alpha
+    - stealth/ox-alpha
     note: Use the zero-priced free-model ID in the default group. PaleBlueDot AI runs
       tokenrouter.com; similarly named gateways on other TLDs are separate services
       and their keys do not work here.
@@ -3128,12 +3158,15 @@ entries:
     tier: strong
     aa_model: gemini-3-8-flash
   - family: claude-opus-4.6
+    table_name: Claude Opus 4.6 (thinking)*
     tier: notable
     aa_model: claude-opus-4-6
   - family: claude-sonnet-4.6
+    table_name: Claude Sonnet 4.6 (thinking)*
     tier: notable
     aa_model: claude-sonnet-4-6
   - family: gpt-oss-120b
+    table_name: GPT-OSS-120b*
     aa_model: gpt-oss-120b
   data_use:
     trains: opt-out
@@ -3890,6 +3923,7 @@ entries:
     - nemotron-3.5-content-safety-free
     - wan3.0-video-free
     - wan3.0-video-prime-free
+    - decision-model-preview
     no_family_ids:
     - k2.6-code-preview-free
     - lfm-2.5-2.6b-free
@@ -4610,6 +4644,11 @@ entries:
         note: Credit-funded at full access; a paid plan is required at limited access.
         reviewed_on: '2026-10-23'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
+      terra-full:
+        kind: wallet
+        quote: Open on full access, a paid plan on limited access. One session a day
+          on every plan.
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
     models:
     - name: Solar Pro 4
       model:
@@ -4674,6 +4713,10 @@ entries:
       model:
         family: deepseek-v4.1-flash
       condition: wallet
+    - name: GPT-6.1 Terra
+      model:
+        family: gpt-6.1-terra
+      condition: terra-full
     - name: GPT-6.1 Sol
       model:
         family: gpt-6.1-sol
@@ -9950,13 +9993,19 @@ entries:
     model_ids:
     - qwen/qwen3.8-27b
     ignored_ids:
-    - moonshotai/kimi-k3-free
-    - tencent/hy3:free
-    - deepseek/deepseek-v4.1-flash:free
-    note: The published no-recharge Free allowance covers Qwen. Create a key scoped
-      to qwen/qwen3.8-27b. Other zero-priced catalog routes have no published access
-      conditions. Use Chat Completions and the Free context/output budgets on the
-      provider page. Authenticated generation has not been checked here.
+    - opencode/mimo-v2.6-flash:free
+    - opencode/deepseek-v4.1-flash:free
+    - opencode/glm-5.3-flash:free
+    - opencode/nemotron-3.5-lightning:free
+    - opencode/nemotron-3.5-super-vl:free
+    - opencode/big-pickle:free
+    - opencode/beam:free
+    note: The documented no-recharge allowance covers only qwen/qwen3.8-27b. The catalog
+      also marks opencode/* routes Free, but their account eligibility, allowance
+      and capacity conditions remain unconfirmed; the public Free page still lists
+      only Qwen. Do not apply Qwen limits to those routes. Create a key scoped to
+      Qwen and use Chat Completions. Authenticated generation has not been checked
+      here.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call

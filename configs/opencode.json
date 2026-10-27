@@ -49,9 +49,6 @@
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
         },
-        "nvidia/nemotron-3-super-120b-a12b:free": {
-          "name": "nvidia/nemotron-3-super-120b-a12b:free"
-        },
         "nvidia/nemotron-3.5-lightning:free": {
           "name": "nvidia/nemotron-3.5-lightning:free"
         },
@@ -134,9 +131,6 @@
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
         },
-        "nvidia/nemotron-3-super-120b-a12b:free": {
-          "name": "nvidia/nemotron-3-super-120b-a12b:free"
-        },
         "nvidia/nemotron-3.5-lightning:free": {
           "name": "nvidia/nemotron-3.5-lightning:free"
         },
@@ -169,6 +163,13 @@
         },
         "recursive/flint-v1.0:free": {
           "name": "recursive/flint-v1.0:free"
+        },
+        "reflection/beam-free": {
+          "name": "reflection/beam-free",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          }
         }
       }
     },

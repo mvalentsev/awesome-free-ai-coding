@@ -573,6 +573,13 @@ the list on a row with a lane or on a sum, and `freetier-check` refuses a record
 whose family the column already names. Until 2026-09-27 these bars, too, lived in
 a maintainer's notes.
 
+Discovery checks every available catalog row marked or priced free, even when
+its ID does not match `probe.free_marker`. The marker still scopes family
+qualification; it cannot hide arrivals from review. Noncoding models, duplicate
+aliases and unresolved offers require explicit `ignored_ids` decisions with
+dated private evidence and a recheck trigger. A new zero price does not promote
+a family or establish an authenticated completion.
+
 **The configs call ids, never family names.** `configs/litellm.yaml` and
 `configs/opencode.json` are written from `api.model_ids` alone: a family names a
 model, an id is the string a request carries, and the two coincide only by
@@ -606,6 +613,23 @@ eligible only when both its input and output cells equal the declared free
 value; a free cached-input or storage cell does not qualify a paid model.
 An absent or ambiguous table asks for a model review rather than accepting
 names elsewhere on the page.
+
+Bound model tables are checked in both directions: every eligible row must be
+accounted for by a listed family, a waiting newcomer, or a sourced exclusion.
+Newcomers that lose Free eligibility are flagged before their promotion date.
+`newcomers[].table_name` binds a waiting offer to its exact table label where
+that label differs from the eventual family; it does not prove model identity.
+`models[].table_name` binds a qualified family to an exact vendor label too,
+including its variant or footnote, without making broader names cover new rows.
+For a tool without a public API, waiting choices also appear in its existing
+Connect model list without entering the qualified-family index. A waiting
+family on a prose page is checked against that current page too; its exact
+Free-plan eligibility still requires the source review.
+`probe.model_exclusions` records `name`, `source`, `quote` and `reviewed_on` for
+an exact excluded row. Its quote is checked on its own source, and an exclusion
+needs another manual review after 7 days. Missing excluded rows also require
+review. Inventory findings go to a human; they never promote models or restart
+their age automatically.
 
 For a model-by-plan table, `probe.model_plan` binds the model-name column and
 one exact plan column. Only an explicit inclusion mark in that cell qualifies

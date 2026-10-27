@@ -171,13 +171,6 @@ dismissed:
       nvidia/nemotron-3-super-120b-a12b:free and nvidia/nemotron-3.5-lightning:free
       isFree in the same read — seventeen free rows against 352 metered. All three
       are in api.model_ids, where this row keeps the ids that come and go.
-  - entry: kilo-code
-    family: nemotron-3-super
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      The same read, the same catalog: Super is free here beside Lightning, not
-      replaced by it.
   - entry: requesty
     family: nemotron-3-ultra
     superseded_by: nemotron-3.5-lightning

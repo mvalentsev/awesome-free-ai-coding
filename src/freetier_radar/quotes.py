@@ -128,10 +128,14 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     found.extend((f"quotas[{i}].reset", q.reset) for i, q in enumerate(entry.quotas) if q.reset)
     found.extend((f"quotas[{i}].condition_quote", q.condition_quote)
                  for i, q in enumerate(entry.quotas) if q.condition_quote)
+    found.extend((f"probe.model_exclusions[{i}].quote", e.quote)
+                 for i, e in enumerate(entry.probe.model_exclusions))
     return found
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if match := re.fullmatch(r"probe\.model_exclusions\[(\d+)\]\.quote", field):
+        return entry.probe.model_exclusions[int(match[1])].source
     if (match := re.fullmatch(r"(?:api|client_lane)\.model_bindings\.(.+)\.quote", field)) and (lane := entry.api or entry.client_lane):
         return lane.model_bindings[match[1]].source
     if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote|period_quote)", field):
@@ -190,6 +194,17 @@ def quote_found(quote: str, pages: list[str]) -> bool:
     return all(any(f in page for page in pages) for f in fragments)
 
 
+def model_exclusion_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
+    notes = []
+    for excluded in entry.probe.model_exclusions:
+        body = bodies.get(excluded.source)
+        if body is None:
+            notes.append("model table: exclusion source could not be checked: " + excluded.name)
+        elif not quote_found(excluded.quote, page_texts(body)):
+            notes.append("model table: exclusion reason no longer evidenced: " + excluded.name)
+    return notes
+
+
 def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     """The row's sources, its probe's page — `page` where the probe follows an
     index to it, the endpoint otherwise — its catalog, the page its word on
@@ -198,6 +213,7 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     if entry.archive_review:
         urls.extend(entry.archive_review.sources)
     urls.extend(q.source for q in entry.quotas)
+    urls.extend(e.source for e in entry.probe.model_exclusions)
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
     if entry.data_use:

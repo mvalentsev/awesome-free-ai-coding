@@ -247,6 +247,7 @@ def id_family(families: Iterable[str], model_id: str) -> str | None:
 
 class ModelFamily(BaseModel):
     family: str
+    table_name: str | None = Field(default=None, min_length=1, exclude_if=lambda v: v is None)
     # A measurement, never a reputation (CONTRIBUTING, "tier: frontier is a
     # measurement"): how close the model this lane serves scores to the top of
     # the Artificial Analysis Intelligence Index, read by `freetier-tiers`. No
@@ -257,6 +258,16 @@ class ModelFamily(BaseModel):
     # The Artificial Analysis model the tier was read from: the slug of its page
     # on artificialanalysis.ai/models/, for the variant the lane actually serves.
     aa_model: str | None = None
+
+    @field_validator("table_name")
+    @classmethod
+    def _table_label(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        value = " ".join(value.split())
+        if not value:
+            raise ValueError("model table_name must name the eligible table row")
+        return value
 
     @field_validator("family", "superseded_by", mode="before")
     @classmethod
@@ -360,6 +371,37 @@ class ModelPlanTable(BaseModel):
         return self
 
 
+class ModelTableExclusion(BaseModel):
+    """A sourced, dated decision about an exact eligible table row."""
+    model_config = ConfigDict(extra="forbid")
+    name: str = Field(min_length=1)
+    source: str
+    quote: str = Field(min_length=1)
+    reviewed_on: date
+
+    @field_validator("name", "quote")
+    @classmethod
+    def _meaningful_words(cls, value: str) -> str:
+        value = " ".join(value.split())
+        if not value:
+            raise ValueError("model table exclusion needs nonempty words")
+        return value
+
+    @field_validator("quote")
+    @classmethod
+    def _quote_explains_the_exclusion(cls, value: str) -> str:
+        if len(value.split()) < ANCHOR_PHRASE_WORDS:
+            raise ValueError("model table exclusion quote needs a complete eligibility statement")
+        return value
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_public(cls, value: str) -> str:
+        if not valid_source_url(value):
+            raise ValueError("model table exclusion needs a credential-free HTTPS source")
+        return value
+
+
 class Probe(BaseModel):
     type: ProbeType
     endpoint: str
@@ -379,6 +421,7 @@ class Probe(BaseModel):
     machinery_keywords: list[str] = []
     model_prices: ModelPriceTable | None = Field(default=None, exclude_if=lambda v: v is None)
     model_plan: ModelPlanTable | None = Field(default=None, exclude_if=lambda v: v is None)
+    model_exclusions: list[ModelTableExclusion] = Field(default_factory=list, exclude_if=lambda v: not v)
     # api-models: the key a vendor lists its free lane under, for a document
     # that publishes lanes side by side instead of flagging rows. Cline's
     # recommended-models answers `recommended`, `free`, `clinePass` and
@@ -418,6 +461,10 @@ class Probe(BaseModel):
             raise ValueError("model_plan belongs on a page-keywords probe")
         if self.model_prices is not None and self.model_plan is not None:
             raise ValueError("use one model eligibility table binding per probe")
+        if self.model_exclusions and not (self.model_prices or self.model_plan):
+            raise ValueError("model_exclusions needs a bound model eligibility table")
+        if len({_squash(e.name) for e in self.model_exclusions}) != len(self.model_exclusions):
+            raise ValueError("model_exclusions names must be distinct")
         return self
 
     @model_validator(mode="after")
@@ -538,6 +585,17 @@ class Newcomer(BaseModel):
     family: str
     on: date
     source: str  # the record itself, one a reader can open
+    table_name: str | None = Field(default=None, min_length=1, exclude_if=lambda v: v is None)
+
+    @field_validator("table_name")
+    @classmethod
+    def _table_label(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        value = " ".join(value.split())
+        if not value:
+            raise ValueError("newcomer table_name must name the eligible table row")
+        return value
 
     @field_validator("family")
     @classmethod
@@ -1626,6 +1684,20 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: newcomers wait for the Models column of a row whose free part is "
                 "models — a sum or an unnamed part names no model to join it")
+        if any(n.table_name for n in self.newcomers) and not (self.probe.model_prices or self.probe.model_plan):
+            raise ValueError("newcomer table_name needs a bound model eligibility table")
+        return self
+
+    @model_validator(mode="after")
+    def _table_exclusions_do_not_hide_recorded_models(self) -> Entry:
+        if any(m.table_name for m in self.models) and not (self.probe.model_prices or self.probe.model_plan):
+            raise ValueError("model table_name needs a bound model eligibility table")
+        for excluded in self.probe.model_exclusions:
+            if any((_squash(m.table_name) == _squash(excluded.name) if m.table_name else
+                    names_family(m.family, _squash(excluded.name), _squash)) for m in self.models) or any(
+                    (_squash(n.table_name) == _squash(excluded.name) if n.table_name else
+                     names_family(n.family, _squash(excluded.name), _squash)) for n in self.newcomers):
+                raise ValueError("model_exclusions cannot hide a listed family or newcomer")
         return self
 
     @model_validator(mode="after")

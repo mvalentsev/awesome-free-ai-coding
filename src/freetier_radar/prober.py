@@ -100,8 +100,13 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         unevidenced = unevidenced_families(resp, entry)
         if unevidenced:
             column = "listed families the page does not name: " + ", ".join(unevidenced)
+        inventory = model_table_findings(resp, entry, today or date.today())
 
         def verdict(status: ProbeStatus, note: str = "") -> ProbeResult:
+            if inventory:
+                note = " | ".join(inventory + ([note] if note else []))
+                if status is ProbeStatus.PASS:
+                    status = ProbeStatus.STALE_IDS
             # The keyless or public-key lane's note rides with whatever else
             # the read found, after it.
             if keyless is not None:
@@ -154,14 +159,19 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # border_moved) are both read, and both notes kept: one does not answer
         # the other.
         moved = []
-        if (lane := entry.api or entry.client_lane) and lane.model_bindings:
-            from .quotes import model_binding_changes
+        lane = entry.api or entry.client_lane
+        if (lane and lane.model_bindings) or entry.probe.model_exclusions:
+            from .quotes import model_binding_changes, model_exclusion_changes
             bodies = {}
-            for source in dict.fromkeys(b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids):
+            sources = ([b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids]
+                       if lane else [])
+            sources.extend(e.source for e in entry.probe.model_exclusions)
+            for source in dict.fromkeys(sources):
                 response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
                 if response is not None:
                     bodies[source] = response.text
             moved.extend(model_binding_changes(entry, bodies))
+            moved.extend(model_exclusion_changes(entry, bodies))
         if entry.quotas:
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
@@ -1753,6 +1763,61 @@ def _table_models(body: str, headers: list[str], name_column: str,
             and all(row[i].casefold() == included_value.casefold() for i in values)]
 
 
+def free_table_models(resp: httpx.Response, entry: Entry) -> list[str] | None:
+    """One eligibility extraction for family validity and complete table review."""
+    if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
+        return None
+    if binding := entry.probe.model_prices:
+        return _table_models(resp.text, binding.headers, binding.name_column,
+                             binding.price_columns, binding.free_value)
+    if binding := entry.probe.model_plan:
+        return _table_models(resp.text, binding.headers, binding.name_column,
+                             [binding.plan_column], binding.included_value)
+    return None
+
+
+def model_table_findings(resp: httpx.Response, entry: Entry, today: date) -> list[str]:
+    """Account for every eligible row without promoting a waiting family."""
+    from .quotas import UNKNOWN_RECHECK_DAYS
+    free = free_table_models(resp, entry)
+    if free is None:
+        if (entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.page_catalog is None
+                and entry.newcomers):
+            missing = [n.family for n in entry.newcomers if not family_named(resp, entry, n.family)]
+            if missing:
+                return ["model inventory: waiting models no longer named by current source: " + ", ".join(missing)]
+        return []
+    notes = []
+    names = {_squash(name) for name in free}
+    waiting_names = {_squash(n.table_name) for n in entry.newcomers if n.table_name}
+    exclusions = {_squash(e.name) for e in entry.probe.model_exclusions}
+    def key(name: str) -> str:
+        return _squash(re.sub(r'\s+free$', '', name, flags=re.I))
+    covered = {key(m.table_name or m.family) for m in entry.models}
+    covered.update(key(n.family) for n in entry.newcomers if not n.table_name)
+    lane = lane_ids(entry)
+    if lane:
+        covered.update(key(mid.rsplit('/', 1)[-1].removesuffix(':free').removesuffix('-free'))
+                       for mid in lane.model_ids)
+    unknown = [name for name in free if _squash(name) not in exclusions | waiting_names
+               and key(name) not in covered]
+    if unknown:
+        notes.append("model table: unrecorded free models: " + ", ".join(unknown))
+    missing = [n.family for n in entry.newcomers
+               if (_squash(n.table_name) not in names if n.table_name else
+                   not any(key(n.family) == key(name) for name in free))]
+    if missing:
+        notes.append("model table: newcomers no longer evidenced as free: " + ", ".join(missing))
+    for excluded in entry.probe.model_exclusions:
+        if _squash(excluded.name) not in names:
+            notes.append("model table: exclusion no longer names an eligible row: " + excluded.name)
+        elif excluded.reviewed_on > today or (today - excluded.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+            notes.append("model table: exclusion needs a dated review: " + excluded.name)
+    if not free:
+        notes.append("model table: no unambiguous eligible rows; complete inventory could not be checked")
+    return notes
+
+
 def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """Families the README publishes that the probed page does not even name.
 
@@ -1774,17 +1839,11 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """
     if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
         return []
-    if binding := entry.probe.model_prices:
-        free = _table_models(resp.text, binding.headers, binding.name_column,
-                             binding.price_columns, binding.free_value)
-    elif binding := entry.probe.model_plan:
-        free = _table_models(resp.text, binding.headers, binding.name_column,
-                             [binding.plan_column], binding.included_value)
-    else:
-        free = None
+    free = free_table_models(resp, entry)
     if free is not None:
         return [m.family for m in entry.models
-                if not any(names_family(m.family, _squash(name), _squash) for name in free)]
+                if not any((_squash(m.table_name) == _squash(name) if m.table_name else
+                            names_family(m.family, _squash(name), _squash)) for name in free)]
     squashed, text = _squash(resp.text), resp.text.lower()
     labels = {model.model.family: model.name for model in entry.page_catalog.models
               if model.model and model.listed and not model.expired} if entry.page_catalog else {}
@@ -1857,12 +1916,11 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     """Ids the catalog serves free that `api.model_ids` does not carry — the
     other direction of dead_model_ids, and the one that sees a lane grow.
 
-    The lane is the row's own definition of it, not a bare zero. An id is in
-    it when it carries `probe.free_marker` where the row sets one, is free by
-    the catalog's own account (see _is_free), and is not marked unavailable —
-    the tests the offer check and dead_model_ids already apply. The marker
-    matters: OpenRouter and Kilo both price Google's Lyria music previews at 0
-    with no :free suffix. The check is asked only where prices are read, since
+    Discovery reads the vendor's free flags/prices independently of the
+    spelling of an id. A configured free_marker still scopes qualification,
+    but must not hide a new free route with another suffix. A zero-priced
+    music or decision model needs an explicit human exclusion, not a silent
+    spelling filter. This check is asked only where prices are read, since
     on a catalog that publishes none every id would be free, or where the
     vendor lists its free lane under a key of its own (`probe.lane`): that lane
     is the vendor's whole account of what is free, so its ids count without a
@@ -1884,7 +1942,7 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     unlisted = set()
     for model in _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
-        if (mid and mid not in known and entry.probe.carries_marker(mid)
+        if (mid and mid not in known
                 and (_is_free(model) or not entry.probe.require_zero_price)
                 and not _is_withdrawn(model)):
             unlisted.add(mid)
@@ -1923,7 +1981,7 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str
 # re-reading the vendor's page can restate. Each follows a family verdict
 # after " | ".
 _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
-                "ids the free list ", "ids in the ",
+                "ids the free list ", "ids in the ", "model table: ", "model inventory: ",
                 "api.public_key ", "keyless ", "public-key ", "anthropic route ", "codex route ",
                 "data_use ", "border: ", "border could ")
 

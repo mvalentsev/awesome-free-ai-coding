@@ -84,12 +84,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/nvidia/nemotron-3-super-120b-a12b:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3-super-120b-a12b:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/nvidia/nemotron-3.5-lightning:free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-lightning:free

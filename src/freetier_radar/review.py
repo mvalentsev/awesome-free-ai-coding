@@ -296,7 +296,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
     quotes, catalogs, quotas, model_checks = [], [], [], []
     for entry in entries:
-        from .prober import check_content, join_free_list, stale_ids, unevidenced_families
+        from .prober import check_content, join_free_list, stale_ids, unevidenced_families, model_table_findings
         from .models import ProbeType
         def response(url):
             body = raw_bodies.get(url)
@@ -321,13 +321,15 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                     findings.append(content)
                 if missing := unevidenced_families(current, entry):
                     findings.append('listed families not evidenced: ' + ', '.join(missing))
+                findings.extend(model_table_findings(current, entry, datetime.now(timezone.utc).date()))
                 catalog = current if entry.probe.type is ProbeType.API_MODELS else response(entry.probe.catalog) if entry.probe.catalog else None
                 if entry.probe.catalog and catalog is None:
                     findings.append('current model catalog unreadable')
                 if catalog is not None and (ids := stale_ids(catalog, entry)):
                     findings.append(ids)
-        from .quotes import model_binding_changes
+        from .quotes import model_binding_changes, model_exclusion_changes
         findings.extend(model_binding_changes(entry, raw_bodies))
+        findings.extend(model_exclusion_changes(entry, raw_bodies))
         model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
                              'passed': not findings,
                              'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})

@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, ModelBinding, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, ModelBinding, ModelFamily, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -137,7 +137,39 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
     return ("invalid canonical catalog",)
 
 
+def _catalog_arrival_spelling(root: Path) -> tuple[str, ...]:
+    import httpx
+    from .models import Entry
+    from .prober import unlisted_free_ids
+    entry = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
+        'url': 'https://vendor.example', 'source_urls': ['https://vendor.example/models'],
+        'offering': 'Free coding models', 'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
+        'api': {'base_url': 'https://vendor.example/v1', 'model_ids': ['known:free']},
+        'probe': {'type': 'api-models', 'endpoint': 'https://vendor.example/models',
+                  'free_marker': ':free', 'require_zero_price': True}})
+    response = httpx.Response(200, json={'data': [
+        {'id': 'new-free', 'isFree': True, 'pricing': {'input': 0, 'output': 0}},
+        {'id': 'paid', 'isFree': False, 'pricing': {'input': 0, 'output': 0}}]})
+    return ('probe.free_marker',) if unlisted_free_ids(response, entry) == ['new-free'] else ()
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'Discovery checks every available catalog row marked or priced free, even when\s+its ID does not match `(probe.free_marker)`',
+          _catalog_arrival_spelling,
+          "prober.unlisted_free_ids; HTTP alternate-suffix and paid/unavailable controls in tests/test_model_table_inventory.py and tests/test_prober.py"),
+    Claim("CONTRIBUTING.md", r'`models\[\]\.(table_name)` binds',
+          lambda root: tuple(k for k in ModelFamily.model_fields if k == 'table_name'),
+          "models.ModelFamily; exact decorated-table-row and new-variant HTTP controls in tests/test_model_table_inventory.py"),
+    Claim("CONTRIBUTING.md", r'`probe.model_exclusions` records `(name)`, `(source)`, `(quote)` and `(reviewed_on)`',
+          lambda root: tuple(ModelTableExclusion.model_fields),
+          "models.ModelTableExclusion and HTTP inventory/exclusion controls in tests/test_model_table_inventory.py"),
+    Claim("CONTRIBUTING.md", r'exclusion\s+needs another manual review after (\d+) days',
+          lambda root: (str(UNKNOWN_RECHECK_DAYS),),
+          "prober.model_table_findings; dated source and exclusion controls in tests/test_model_table_inventory.py"),
+    Claim("CONTRIBUTING.md", r'`newcomers\[\]\.(table_name)` binds',
+          lambda root: tuple(k for k in Newcomer.model_fields if k == 'table_name'),
+          "models.Newcomer; exact eligible row-label check in prober.model_table_findings"),
     Claim("CONTRIBUTING.md", r'`archive_review` pairs\s+`(checked_on)` with `(sources)`',
           lambda root: tuple(ArchiveReview.model_fields),
           "models.ArchiveReview; canonical current-source and date controls in tests/test_archive_review.py"),

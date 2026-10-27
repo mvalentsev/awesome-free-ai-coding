@@ -3,7 +3,7 @@ layout: default
 title: 'opencode free tier: limits, free models, verified 2026-10-26'
 description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash. Free models work only inside OpenCode; other clients receive…'
 permalink: /providers/opencode/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: opencode
 ---
 
@@ -38,6 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In opencode's own model list: `Flint 40B Free`, `DeepSeek V4.1 Flash Free`, `GLM-5.3-Flash Free`, `Beam Free`, `Nemotron 3.5 Super VL Free`
 
 ## Evidence
 

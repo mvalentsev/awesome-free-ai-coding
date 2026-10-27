@@ -3,7 +3,7 @@ layout: default
 title: 'Cursor (Free) free tier: limits, free models, verified 2026-10-26'
 description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor's first-party models; numerical allowances are unpublished and third-party models are not included. The pricing FAQ describes weekly refreshes across tiers, while…
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-27
 crumb: Cursor (Free)
 ---
 
@@ -38,6 +38,7 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Cursor (Free)'s own model list: `grok-4.7`, `grok-4.6`, `grok-4.5`, `composer-2.5`
 
 ## Evidence
 
