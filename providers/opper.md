@@ -3,7 +3,7 @@ layout: default
 title: 'Opper free tier: limits, free models, verified 2026-10-26'
 description: 'EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability. Free models: gemma-4-31b. The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists…'
 permalink: /providers/opper/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: Opper
 ---
 
@@ -23,7 +23,7 @@ EU-hosted model gateway advertising a free route before adding a card; current d
 
 ## Limits, in the vendor's words
 
-Advertised route; free access unconfirmed: Usage allowance: amount not published (period not published); scope not published
+Advertised route; free access unconfirmed: Usage allowance: published sources disagree (period not published); scope not published
 
 The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists paid alternatives. The API catalog retains the ID without a price or availability claim. Free access remains unconfirmed. Paid credit purchases add a 3% fee. Opper Technology AB operates in Sweden on AWS Stockholm.
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

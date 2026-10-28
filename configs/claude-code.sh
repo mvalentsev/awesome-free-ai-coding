@@ -190,7 +190,7 @@ claude-routerplex() {
 }
 
 # ── abliteration.ai · get a key: https://abliteration.ai/console
-#    free ids: abliterated-model-large-v2, abliterated-model, abliterated-model-large
+#    free ids: abliterated-model-large-flash, abliterated-model-large-v2, abliterated-model, abliterated-model-large
 claude-abliteration-ai() {
   if [ -z "${ABLITERATION_AI_API_KEY:-}" ]; then
     echo "claude-abliteration-ai: set ABLITERATION_AI_API_KEY first (configs/free-llm.env.example)" >&2
@@ -199,7 +199,7 @@ claude-abliteration-ai() {
   ANTHROPIC_BASE_URL="https://api.abliteration.ai" \
   ANTHROPIC_AUTH_TOKEN="$ABLITERATION_AI_API_KEY" \
   ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="abliterated-model-large-v2" \
+  ANTHROPIC_MODEL="abliterated-model-large-flash" \
   claude "$@"
 }
 

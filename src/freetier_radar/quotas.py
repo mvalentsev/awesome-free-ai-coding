@@ -452,7 +452,8 @@ def quota_value(q: UsageQuota) -> str:
         periods = 'rolling ' + periods
     if q.amount is None:
         window = ('Rolling ' if q.rolling else '') + (f'{q.window}-{q.period}' if q.window != 1 else PERIOD_ADJECTIVES[q.period])
-        status = {'variable':'amount varies','account-specific':'see your account for values'}.get(q.state,'amount not published')
+        status = {'variable':'amount varies','account-specific':'see your account for values',
+                  'disputed':'published sources disagree'}.get(q.state,'amount not published')
         text = (window + ' ' + q.unit + ' allowance: ' + status).strip()
         if q.period is None:
             text += ' (period not published)'

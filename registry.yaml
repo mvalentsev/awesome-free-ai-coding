@@ -144,6 +144,8 @@ entries:
   - https://ai.google.dev/gemini-api/docs/rate-limits
   - https://ai.google.dev/gemini-api/docs/changelog
   - https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash
   card_required: false
   offering: Free tier on the Gemini API, priced model by model rather than as one
     account quota
@@ -166,15 +168,9 @@ entries:
   - family: gemini-3.8-flash
     tier: strong
     aa_model: gemini-3-8-flash
-  - family: gemini-3.7-flash
-    tier: strong
-    aa_model: gemini-3-7-flash
   - family: gemini-3.6-flash
     tier: strong
     aa_model: gemini-3-6-flash
-  - family: gemini-3.5-flash
-    tier: notable
-    aa_model: gemini-3-5-flash
   - family: gemini-3.5-flash-lite
     tier: notable
     aa_model: gemini-3-5-flash-lite
@@ -192,15 +188,30 @@ entries:
     openai_compatible: true
     model_ids:
     - gemini-3.8-flash
-    - gemini-3.7-flash
     - gemini-3.6-flash
-    - gemini-3.5-flash
     - gemini-3.5-flash-lite
     - gemini-3.1-flash-lite
     - gemini-3-flash-preview
     - gemma-4-31b-it
     - gemma-4-26b-a4b-it
-    note: pass the key as Bearer
+    - gemini-2.5-pro
+    - gemini-2.5-flash
+    - gemini-2.5-flash-lite
+    model_bindings:
+      gemini-2.5-pro:
+        family: gemini-2.5-pro
+        source: https://ai.google.dev/gemini-api/docs/pricing
+        quote: gemini-2.5-pro
+      gemini-2.5-flash:
+        family: gemini-2.5-flash
+        source: https://ai.google.dev/gemini-api/docs/pricing
+        quote: gemini-2.5-flash
+      gemini-2.5-flash-lite:
+        family: gemini-2.5-flash-lite
+        source: https://ai.google.dev/gemini-api/docs/pricing
+        quote: gemini-2.5-flash-lite
+    note: Pass the key as Bearer. The 2.5 IDs require projects that previously used
+      those models; new projects should choose the current Flash or Gemma IDs.
   data_use:
     trains: 'yes'
     quote: When you use Unpaid Services, including, for example, Google AI Studio
@@ -568,11 +579,10 @@ entries:
   card_required: false
   offering: Serverless model inference on Cloudflare, with an OpenAI-compatible API
     and a daily free allowance
-  limits: 'Past the free allowance "further operations will fail with an error". Some
-    models require a paid billing method even if neurons remain: Kimi K2.6, Kimi K2.7
-    Code, GLM 5.2, GLM 5.3, GLM 5.3 Flash, DeepSeek V4 Flash 0731 and DeepSeek V4
-    Pro 0813. The free text-generation rate does not apply to models requiring the
-    Workers Paid plan.'
+  limits: Past the free allowance "further operations will fail with an error". Some
+    models require a paid billing method through the Workers Paid plan or prepaid
+    AI Gateway credits even if neurons remain; the pricing page identifies them. The
+    free text-generation rate does not apply to models requiring paid access.
   quotas:
   - amount: 10000.0
     unit: neurons
@@ -1450,6 +1460,7 @@ entries:
   - https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b
   - https://build.nvidia.com/minimaxai/minimax-m3.1-flash
   - https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b
+  - https://build.nvidia.com/z-ai/glm-5-3
   card_required: false
   offering: Free endpoints for the models build.nvidia.com marks "Free Endpoint",
     open-weight models from several labs among them, called with a free NVIDIA Developer
@@ -1481,9 +1492,6 @@ entries:
     reviewed_on: '2026-10-06'
   free_part: models
   models:
-  - family: glm-5.3
-    tier: strong
-    aa_model: glm-5-3
   - family: glm-5.3-flash
     tier: strong
     aa_model: glm-5-3-flash
@@ -1515,7 +1523,6 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - z-ai/glm-5.3
     - z-ai/glm-5.3-flash
     - deepseek-ai/deepseek-v4.1-flash
     - nvidia/nemotron-3-ultra-550b-a55b
@@ -1729,7 +1736,7 @@ entries:
     label: Legacy anonymous lane
     source: https://text.pollinations.ai/models
     quote: anonymous
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-10-28'
   free_part: models
   models:
   - family: gpt-oss-20b
@@ -1740,16 +1747,8 @@ entries:
     openai_compatible: true
     model_ids:
     - gpt-oss-20b
-    note: The legacy endpoint accepts keyless requests, but current completion checks
-      fail; see the dated warning. The replacement gen.pollinations.ai requires personal
-      keys and Pollen credits, bought or earned from Quests.
-    notice:
-      since: '2026-10-27'
-      text: October 27 checks of the legacy anonymous API returned HTTP 500 for gpt-oss-20b
-        and HTTP 503/500 for openai-fast; the 503 requested a 10-second wait. No completion
-        was confirmed. The catalog still advertises anonymous GPT-OSS 20B. Error responses
-        point to the separate keyed Pollen API.
-      url: https://enter.pollinations.ai/
+    note: The legacy endpoint accepts requests without a key. The replacement gen.pollinations.ai
+      requires personal keys and Pollen credits, bought or earned from Quests.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -2388,9 +2387,9 @@ entries:
     - command-r-plus-08-2024
     - command-r-08-2024
     - command-r7b-12-2024
-    note: OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2.
-      Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0
-      is the free-on-any-key one
+    note: Use the OpenAI-compatible endpoint; the native API is https://api.cohere.com/v2.
+      The exact IDs come from the vendor's model pages. north-mini-code-1-0 is free
+      on both Trial and production keys; the other listed models use the Trial allowance.
   data_use:
     trains: 'yes'
     quote: Analyzing usage patterns and using Trial or Research User Inputs/Outputs
@@ -2419,22 +2418,33 @@ entries:
   rank: 80
 - id: qoder
   name: Qoder
-  category: trial
+  category: agent-cli
   url: https://qoder.com
   source_urls:
   - https://docs.qoder.com/account/pricing
   - https://docs.qoder.com/events/100credits
   - https://docs.qoder.com/release-notes/lite-model-tier-retirement-notice
+  - https://docs.qoder.com/events/flashoffer
+  - https://docs.qoder.com/events/deepseek-flash-free
   card_required: false
-  offering: Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and
-    CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day
-    to claim in the desktop app while that promotion runs
-  limits: 'The daily promotion must be claimed in the international desktop app and
-    is available to free and paid individual users. "End time: To be announced". The
-    former Lite fallback was removed on 2026-09-18: credit exhaustion no longer switches
-    to Lite, and Efficient is free only for paid users. Trial completions and next
-    edits are unmetered during the trial; this does not create a permanent free agent
-    budget.'
+  remaining_free:
+    source: https://docs.qoder.com/account/pricing
+    quote: If you choose to continue using the Free plan, don’t worry—we will continue
+      to serve you with basic models, subject to daily and monthly limits.
+    free_part: unnamed
+  offering: Alibaba's coding apps with an ongoing Free basic-model allowance, separate
+    free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional
+    credits to claim
+  limits: 'The Free plan continues on unnamed basic models with unpublished daily
+    and monthly limits after credits run out. Both model promotions include individual
+    Free accounts with zero Credits, require no claim, and exclude Teams and Enterprise.
+    The Qwen3.8-Flash promotion spends no Credits; its end will be announced in advance.
+    DeepSeek-Flash has an unpublished daily free-use count; when it runs out, wait
+    for the next day or continue with Credits. Paid accounts receive more uses. The
+    separate 14-day Pro trial includes 300 credits and unmetered completions and next
+    edits. Daily promotional credits require a manual claim in the international desktop
+    app; "End time: To be announced". Efficient-tier promotional usage requires a
+    paid plan.'
   quotas:
   - amount: 300.0
     unit: credits
@@ -2470,8 +2480,55 @@ entries:
     source: https://docs.qoder.com/account/pricing
     quote: Unlimited completions & next edits
     reviewed_on: '2026-10-27'
-  free_part: sum
-  models: []
+  - unit: requests
+    scope: account-model
+    label: Qwen3.8-Flash promotion
+    source: https://docs.qoder.com/events/flashoffer
+    quote: 'No claim is required: simply select the model to use it for free. Free
+      accounts and accounts with a zero Credits balance are also eligible.'
+    model_ids:
+    - Qwen3.8-Flash
+    reviewed_on: '2026-10-28'
+  - unit: requests
+    period: day
+    scope: account-model
+    label: DeepSeek-Flash promotion
+    source: https://docs.qoder.com/events/deepseek-flash-free
+    quote: Each account receives a certain number of free uses per day. Paid subscribers
+      receive more free uses than free users.
+    model_ids:
+    - DeepSeek-Flash
+    reviewed_on: '2026-10-28'
+  free_part: models
+  models:
+  - family: qwen3.8-flash
+    tier: strong
+    aa_model: qwen3-8-flash-next
+  - family: deepseek-v4.1-flash
+    tier: strong
+    aa_model: deepseek-v4-1-flash
+  client_lane:
+    model_ids:
+    - Qwen3.8-Flash
+    - DeepSeek-Flash
+    model_bindings:
+      Qwen3.8-Flash:
+        family: qwen3.8-flash
+        source: https://docs.qoder.com/events/flashoffer
+        quote: Qwen3.8-Flash is free for a limited time for all new and existing individual
+          users of Qoder International.
+      DeepSeek-Flash:
+        family: deepseek-v4.1-flash
+        source: https://docs.qoder.com/events/deepseek-flash-free
+        quote: DeepSeek-Flash (DeepSeek-V4.1-Flash-1017)
+    model_access:
+      DeepSeek-Flash:
+        source: https://docs.qoder.com/events/deepseek-flash-free
+        until: '2026-11-01T00:00:00+08:00'
+    note: Select these models in an official Qoder International app, including CLI.
+      Both promotions include individual Free accounts with zero Credits; Teams and
+      Enterprise are excluded. They require no claim. Other models used by a feature
+      can still spend Credits.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -2480,8 +2537,8 @@ entries:
     type: page-keywords
     endpoint: https://docs.qoder.com/account/pricing
     keywords:
-    - 300 credits
-    - 14-day pro trial
+    - we will continue to serve you with basic models, subject to daily and monthly
+      limits
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -3924,6 +3981,9 @@ entries:
     - wan3.0-video-free
     - wan3.0-video-prime-free
     - decision-model-preview
+    - elephant-1-free
+    - mammoth-1-free
+    - span-01-lite-free
     no_family_ids:
     - k2.6-code-preview-free
     - lfm-2.5-2.6b-free
@@ -3961,8 +4021,8 @@ entries:
   - https://docs.inceptionlabs.ai/get-started/models
   - https://docs.inceptionlabs.ai/get-started/rate-limits
   card_required: false
-  offering: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2
-    for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits
+  offering: A one-time signup token balance on Mercury diffusion models, including
+    the current Mercury 3 chat model and earlier chat and code-edit models
   limits: No payment details are required. The signup token balance is shared across
     all models, does not refill and is spent alongside the Free tier's per-minute
     traffic limits. After it, usage is pay-as-you-go at the model's current token
@@ -4051,13 +4111,11 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - mercury-2.5
-    - mercury-2
-    - mercury-edit-2
-    note: mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids
-      /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions
-      instead and is absent from that catalog by design, so an OpenAI-shaped chat
-      client cannot call it — point an autocomplete plugin at it, not a chat agent
+    - mercury-3
+    note: Mercury 3 supports Chat Completions. Check the authenticated catalog for
+      older Mercury revisions. Mercury Edit 2 uses separate FIM/edit endpoints; Mercury
+      Voice requires enterprise enablement and Mercury Decide uses a decisions endpoint.
+      The signup token balance is shared across models.
   data_use:
     trains: opt-out
     quote: we may use User Submissions to … train our models. If you do not want us
@@ -4077,6 +4135,7 @@ entries:
     - no payment details required
     free_marker: ''
     require_zero_price: false
+    catalog: https://api.inceptionlabs.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-10-26'
@@ -4209,22 +4268,18 @@ entries:
   offering: SenseTime's SenseNova API, with a $0 Free plan during public beta; registration
     and identity verification required
   limits: Free during the public beta; paid tiers are planned. The Free card covers
-    SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions.
-    The API guide calls the available model an "early preview release" and requires
-    "registration plus identity verification". The page states a five-hour allowance
-    without specifying a rolling reset. Up to 20 API keys are supported. Signup requires
-    a phone number; acceptance of non-mainland numbers is unverified.
+    SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage allowances
+    and reset times are unpublished. The API guide calls the documented model an "early
+    preview release" and requires "registration plus identity verification". Up to
+    20 API keys are supported. Signup requires a phone number; acceptance of non-mainland
+    numbers is unverified.
   quotas:
-  - amount: 60000.0
-    unit: credits
-    period: hour
-    window: 5
+  - unit: usage
     scope: account
     label: Public beta
     source: https://www.sensenova.cn/token-plan
-    quote: 60,000积分/ 5小时
-    value_phrase: 60,000积分/ 5小时
-    reviewed_on: '2026-10-06'
+    quote: 公测期完全免费开放，付费档位即将上线
+    reviewed_on: '2026-10-28'
   free_part: models
   models:
   - family: sensenova-6.8-flash-lite
@@ -4246,7 +4301,7 @@ entries:
     endpoint: https://www.sensenova.cn/token-plan
     keywords:
     - 公测期完全免费开放，付费档位即将上线
-    - 60,000 积分 / 5 小时
+    - SenseNova 6.8 Flash Lite
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -4507,7 +4562,6 @@ entries:
     - gpt-oss-120b
     - qwen3.8-27b
     - apertus-70b
-    - brick-v1-beta
     - gemma4-31b
     - gpt-oss-20b
     - mistral-small-4-119b
@@ -4515,13 +4569,12 @@ entries:
     - qwen3.5-9b
     - brick-complexity-pro
     no_family_ids:
-    - brick-v1-beta
     - brick-complexity-pro
-    note: GET /v1/models is public and needs no key, but it publishes ids only — the
-      prices and the trial terms are on the pricing page this row probes. brick-v1-beta
-      is the one id priced at zero on that page, and it is Brick's prompt-complexity
-      classifier rather than a coding model; brick-complexity-pro, Included under
-      Core, is the Brick router itself, which picks a model for you
+    note: GET /v1/models is public and publishes IDs without prices; use the pricing
+      page for trial eligibility. brick-v1-beta is separately zero-priced, but its
+      model card identifies a prompt-complexity classifier, so it is excluded from
+      coding configurations. brick-complexity-pro is the Core-included chat router
+      and picks a model for you.
   data_use:
     trains: 'no'
     quote: Zero Data Retention means Regolo does not store, log, or retain any of
@@ -5626,9 +5679,9 @@ entries:
         quote: minimax-m3
     anthropic_base_url: https://freeinference.org/anthropic
     note: Use a model marked Free in the documentation and returned for your key by
-      the authenticated /v1/models endpoint. The public catalog omits minimax-m3 although
-      the docs still mark it Free; confirm that ID for your key. Catalog prices are
-      upstream accounting values, not fees charged to Free users.
+      authenticated /v1/models. The public view omits qwen3.6-35b and minimax-m3 although
+      the docs mark both Free; confirm their availability for your key. Catalog prices
+      are upstream accounting values, not fees charged to Free users.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -5879,10 +5932,11 @@ entries:
     - deepseek-ai/DeepSeek-V4-Pro-0813
     - zai-org/GLM-5.3-Flash
     - deepseek-ai/DeepSeek-V4-Flash-0731
-    note: ids are the models page's, 2026-09-21 — the catalog answers only a key.
-      Sail's stable surface is the Responses API, and the FAQ says "Responses, Chat
-      Completions, and Messages all work as expected"; a request may name a balanced
-      or flex completion window to pay less and wait longer
+    note: Select an ID from the current models page and confirm availability with
+      authenticated /v1/models. The vendor documents Responses, Chat Completions and
+      Messages APIs. A balanced or flex completion window trades latency for lower
+      token prices; some models are flex-only. The listed examples use the default
+      window.
   data_use:
     trains: 'no'
     quote: We do not use inference request or response data to train, fine-tune, or
@@ -7145,13 +7199,13 @@ entries:
     model_limits:
       qwen/qwen3.8-27b:
         context_tokens: 168000
-        output_tokens: 4096
+        output_tokens: 32000
         source: https://gateway.vlm.run/v1/openai/models
     opencode_output_tokens:
       qwen/qwen3.8-27b: 4096
     refuses_bearer: true
     note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile
-      uses the catalog context/output limits and a matching request output budget
+      uses the catalog context/output limits and a separate 4,096-token request budget
       for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed
       IDs are ordinary-chat choices.
   border:
@@ -7674,9 +7728,8 @@ entries:
   - https://docs.abliteration.ai/api-reference/credits/get-the-credit-balance-for-the-api-keys-organization.md
   - https://docs.abliteration.ai/integrations/claude-code.md
   card_required: false
-  offering: OpenAI- and Anthropic-compatible API for three uncensored reasoning models,
-    the large one derived from GLM-5.3, that opens with a one-credit free preview
-    and no card
+  offering: OpenAI- and Anthropic-compatible API for uncensored reasoning models,
+    with a one-credit free preview and no card
   limits: Sign in to use the preview without a card. A preview credit's fiat value
     is unpublished even though the organization balance endpoint uses USD; no conversion
     is inferred. Further usage needs prepaid credit or a paid plan and is billed per
@@ -7698,6 +7751,7 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
+    - abliterated-model-large-flash
     - abliterated-model-large-v2
     - abliterated-model
     - abliterated-model-large
@@ -7706,9 +7760,10 @@ entries:
       base_url: https://api.abliteration.ai/v1
       source: https://docs.abliteration.ai/integrations/codex
       quote: To use Codex with Abliteration
-    note: Use abliterated-model-large-v2 for the newer large model. abliterated-model-large
-      is the previous GLM-5.2-based version. Use abliterated-model for image inputs;
-      both large models are text-only.
+    note: Abliterated Large Flash and abliterated-model support image inputs; Large
+      v2 and the deprecated Large model are text-only. The deprecated abliterated-model-large
+      remains documented as available for existing integrations. All listed models
+      support Chat Completions, Responses and Messages.
   data_use:
     trains: 'no'
     quote: Prompts, completions, and images are processed in memory and never stored
@@ -8636,35 +8691,34 @@ entries:
   - https://llmtech.eu/pricing/
   - https://llmtech.eu/changelog/
   card_required: false
-  offering: 'EU provider of one model whose quickstart prints a shared trial key for
-    anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included,
-    no account'
-  limits: The public trial key shares its concurrency among all callers; the daily
-    token budget is per IP and counts both prompt and completion. Its context is 131,072
-    tokens; personal paid keys have the full 262,144 and share the endpoint's separate
-    inflight ceiling. Paid keys are issued by email, per token without subscription
-    or minimum. Prompts and completions are volatile and never persisted or trained
-    on; metadata, including IP, is retained 13 months. The sole proprietor operates
-    in Poland, with GPUs in Italy behind a German edge.
+  offering: 'EU inference provider whose quickstart publishes a shared trial key:
+    20M tokens a day per IP, tools included, no account; API access ends November
+    1 at 00:00 UTC'
+  limits: The API is scheduled to stop on November 1, 2026 at 00:00 UTC. The public
+    trial key counts prompt and completion tokens per IP, resetting at 00:00 UTC.
+    Its quickstart advertises 16 concurrent requests, while the same page's limits
+    section still says 4; the effective ceiling is unconfirmed. Trial context is 131,072
+    tokens. Personal keys have 262,144 and share a separate endpoint inflight ceiling.
+    Prompts and completions are volatile and not persisted or trained on; metadata
+    including IP is retained 13 months. GPUs are in Italy behind a German edge.
   quotas:
-  - amount: 2000000.0
+  - amount: 20000000.0
     unit: tokens
     period: day
     scope: ip
     reset: reset at 00:00 UTC
     source: https://llmtech.eu/docs/
-    quote: 2M tokens per day per address
-    value_phrase: 2M tokens per day per address
-    reviewed_on: '2026-10-06'
-  - amount: 4.0
-    unit: requests
+    quote: 20M tokens per day per address
+    value_phrase: 20M tokens per day per address
+    reviewed_on: '2026-10-28'
+  - unit: requests
     period: concurrent
     scope: key
+    state: disputed
     label: Shared trial key
     source: https://llmtech.eu/docs/
-    quote: 'Shared and rate-limited: 4 concurrent requests'
-    value_phrase: 'Shared and rate-limited: 4 concurrent requests'
-    reviewed_on: '2026-10-06'
+    quote: 'Shared and rate-limited: 16 concurrent requests'
+    reviewed_on: '2026-10-28'
   - amount: 64.0
     unit: requests
     period: concurrent
@@ -8703,13 +8757,14 @@ entries:
     type: page-keywords
     endpoint: https://llmtech.eu/docs/
     keywords:
-    - 4 concurrent requests and 2M tokens per day per address
+    - 20M tokens per day per address
     free_marker: ''
     require_zero_price: false
     catalog: https://api.llmtech.eu/v1/models
     machinery_keywords: []
   first_seen: '2026-09-18'
   last_verified: '2026-10-26'
+  retired_on: '2026-11-01'
   probe_failures: 0
   provisional: false
   rank: 48
@@ -8785,6 +8840,12 @@ entries:
     machinery_keywords:
     - Qwen2.5-7B-Instruct (Free)
     - DeepSeek-R1-0528-Qwen3-8B (Free)
+    - Qwen/Qwen3-8B
+    - THUDM/GLM-4-9B-0414
+    - Qwen/Qwen2.5-7B-Instruct
+    - Qwen/Qwen3.5-4B
+    - THUDM/GLM-Z1-9B-0414
+    - deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
   first_seen: '2026-09-19'
   last_verified: '2026-10-26'
   probe_failures: 0
@@ -8990,6 +9051,12 @@ entries:
     - gemini-3-flash-preview
     - gemini-2.5-pro
     - gemini-2.5-flash
+    - gemini-2.5-flash-lite
+    model_bindings:
+      gemini-2.5-flash-lite:
+        family: gemini-2.5-flash-lite
+        source: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
+        quote: gemini-2.5-flash-lite
     note: 'the key stands in for a project and a location: `https://aiplatform.googleapis.com/v1/publishers/google/models/{model}:streamGenerateContent?key={API_KEY}`,
       Gemini''s own API rather than an OpenAI-compatible one. Clients kept the old
       name: the Google Gen AI SDK takes the key with vertexai=True, and Gemini CLI
@@ -9262,7 +9329,7 @@ entries:
   rank: 52
 - id: qoder-cn
   name: Qoder CN (formerly Lingma)
-  category: trial
+  category: agent-cli
   url: https://qoder.cn
   source_urls:
   - https://docs.qoder.cn/product-overview/billing-description
@@ -9832,7 +9899,7 @@ entries:
     label: General
     source: https://simplellm.eu/docs/limits.md
     quote: general requests-per-minute counters
-    reviewed_on: '2026-10-21'
+    reviewed_on: '2026-10-28'
   - unit: requests
     period: hour
     scope: unspecified
@@ -9840,7 +9907,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-21'
+    reviewed_on: '2026-10-28'
   - unit: requests
     period: day
     scope: unspecified
@@ -9848,7 +9915,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-21'
+    reviewed_on: '2026-10-28'
   - unit: tokens
     period: hour
     scope: unspecified
@@ -9856,7 +9923,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-21'
+    reviewed_on: '2026-10-28'
   - unit: tokens
     period: day
     scope: unspecified
@@ -9864,9 +9931,11 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-21'
+    reviewed_on: '2026-10-28'
   free_part: models
-  models: []
+  models:
+  - family: gemma-4-e4b
+  - family: llama-3.1-8b
   api:
     base_url: https://api.simplellm.eu/v1
     key_url: https://simplellm.eu/docs/
@@ -9914,6 +9983,15 @@ entries:
   - https://iteracompute.com/terms.html
   - https://iteracompute.com/privacy.html
   card_required: false
+  remaining_free:
+    source: https://iteracompute.com/free-tier-terms/
+    quote: For recharged users, lifetime benefits mean retaining the monthly token
+      allowance, TPM, context limit and queue priority of the Starter or Pro tier
+      they have reached, including after a free-model upgrade or replacement.
+    free_part: unnamed
+    access:
+      source: https://iteracompute.com/free-tier-terms/
+      initial_payment_usd: 10.0
   offering: OpenAI-compatible API with recurring free usage on a self-hosted open
     model
   limits: Register and verify an email, or sign in with Google. Input and output,
@@ -9924,7 +10002,9 @@ entries:
     $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal
     minus refunds, excluding grants and fees. Spending the balance keeps the tier;
     refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero
-    data retention requires a separate signed agreement.
+    data retention requires a separate signed agreement. The no-recharge Qwen promotion
+    has a deadline; recharged Starter and Pro users retain tier benefits, while the
+    model name, weights and precision may change.
   quotas:
   - amount: 30000000.0
     unit: tokens
@@ -9954,6 +10034,7 @@ entries:
       active_class: ''
     model_ids:
     - qwen/qwen3.8-27b
+    reviewed_on: '2026-10-28'
   - amount: 160000.0
     unit: tokens
     period: minute
@@ -9980,6 +10061,7 @@ entries:
       active_class: ''
     model_ids:
     - qwen/qwen3.8-27b
+    reviewed_on: '2026-10-28'
   free_part: models
   models:
   - family: qwen3.8-27b
@@ -9992,6 +10074,10 @@ entries:
     openai_compatible: true
     model_ids:
     - qwen/qwen3.8-27b
+    model_access:
+      qwen/qwen3.8-27b:
+        source: https://iteracompute.com/free/
+        until: '2026-11-24T00:00:00-08:00'
     ignored_ids:
     - opencode/mimo-v2.6-flash:free
     - opencode/deepseek-v4.1-flash:free
@@ -10000,12 +10086,10 @@ entries:
     - opencode/nemotron-3.5-super-vl:free
     - opencode/big-pickle:free
     - opencode/beam:free
-    note: The documented no-recharge allowance covers only qwen/qwen3.8-27b. The catalog
-      also marks opencode/* routes Free, but their account eligibility, allowance
-      and capacity conditions remain unconfirmed; the public Free page still lists
-      only Qwen. Do not apply Qwen limits to those routes. Create a key scoped to
-      Qwen and use Chat Completions. Authenticated generation has not been checked
-      here.
+    note: The documented no-recharge allowance covers qwen/qwen3.8-27b. Eligibility
+      and independent allowances for other routes are unconfirmed; do not apply Qwen
+      limits to them. Create a key scoped to Qwen and use Chat Completions. Authenticated
+      generation has not been checked here.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call

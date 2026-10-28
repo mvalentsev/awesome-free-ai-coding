@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SimpleLLM free tier: limits, free models, verified 2026-10-26'
-description: OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit. An account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports current minute, hourly and daily counters…
+description: 'OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit. Free models: gemma-4-e4b, llama-3.1-8b. An account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports…'
 permalink: /providers/simplellm/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: SimpleLLM
 ---
 
@@ -19,7 +19,7 @@ OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled 
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+`gemma-4-e4b`, `llama-3.1-8b`
 
 ## Limits, in the vendor's words
 
@@ -63,10 +63,11 @@ curl -s https://api.simplellm.eu/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-28` — Free models changed: added gemma-4-e4b, llama-3.1-8b
 - `2026-10-14` — Added: OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

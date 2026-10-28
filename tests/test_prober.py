@@ -1541,12 +1541,12 @@ async def test_a_letter_never_carries_a_bare_version_number():
 
 
 @respx.mock
-async def test_a_family_named_only_in_the_page_data_is_evidenced():
-    """The family check reads the raw page, script data included, while keywords
-    read the rendered text: a family named only in page data is served, and
-    whether it is free is the keywords' question."""
+async def test_a_family_explicitly_bound_to_page_data_is_evidenced():
+    """An explicit machinery keyword keeps a reviewed client-rendered model
+    checkable without accepting unrelated retired navigation state."""
     entry = listing_entry()
     entry.models = [ModelFamily(family="mercury-2")]
+    entry.probe.machinery_keywords = ["vendor/mercury-2"]
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
         200, text='qwen3-coder on the free tier, no credit card'
                   '<script>{"id":"vendor/mercury-2"}</script>'))

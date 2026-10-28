@@ -400,8 +400,11 @@ both directions as `api.model_ids` is against a catalog and dated for the Models
 column the same way; `client_lane.no_family_ids` keeps a stealth codename out of
 the column, with the review reason in the commit message. Nothing a reader pastes is
 written from it, and validation refuses it beside an `api` block — one lane,
-one list — or on a probe that cannot tell the lane from the rest of what it
-reads: a page, or a catalog with neither `probe.lane` nor prices read.
+one list. A catalog needs `probe.lane` or zero prices read. A prose-based client
+lane instead needs a per-model identity binding and allowance on the same source
+for every ID: `model_bindings` names the model and `quotas[].model_ids` binds its
+free allowance. Both quotes are re-read; a shared credit wallet is insufficient.
+The same `client_lane.model_access.until` expires a dated client promotion.
 
 **A catalog that prices nothing takes its free marks from the vendor's own
 list.** NVIDIA's `/v1/models` answered 82 ids on 2026-09-23 with nothing beside
@@ -433,6 +436,9 @@ vendor keeps its offer on one page and its model list on another, probe the page
 that carries both, or list fewer families: an id that belongs to the free lane but
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
+Model names in scripts need explicit `machinery_keywords`; comments cannot keep
+a family listed. A prose-based client lane uses
+its separately checked per-model identity and allowance sources.
 
 **A short gateway ID can have a sourced model identity.** Record it in
 `api.model_bindings[ID]` or `client_lane.model_bindings[ID]`, with `family`,
@@ -520,6 +526,11 @@ expired API conditions under `ignored_ids`, records the change through the
 history writer and keeps published pages. `--check` never mutates the registry.
 If the last free ID ends, the offer moves to Archive at the vendor deadline;
 the row and all its evidence remain available.
+`remaining_free` records a separately continuing mode with its `source`, `quote`,
+`free_part` (`sum` or `unnamed`) and optional payment `access`. Its eligibility
+quote is re-read by the probe. When the last promotion ends, this evidence keeps
+the provider live with that free part and payment condition, without retaining
+an expired model ID or assigning an unconfirmed replacement.
 The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
 which writes nothing before a deadline and earns no verification fields.
 It explicitly requests a Pages build before notifying IndexNow. A manual run
@@ -587,6 +598,12 @@ luck. Until 2026-09-25 a row with no ids had its family names written in their
 place — Cloudflare's config handed out `llama-4`, which Workers AI does not know,
 and Upstage's `solar-pro-3` for the id `solar-pro3` — so `freetier-check` now
 refuses a connectable row whose column names families with no ids beside them.
+
+An explicit catalog operation list must include `Chat Completions` for an ID
+used by an OpenAI-compatible chat configuration. The probe reports an
+incompatible list for review; absent operation metadata establishes no
+restriction. A shared free token balance does not turn a model for decisions,
+embeddings or code editing into a chat model.
 
 **Client token limits come from the catalog.** When a client's default exceeds
 the vendor's cap, record `api.model_limits[ID]` with positive `context_tokens`,

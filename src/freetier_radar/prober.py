@@ -176,6 +176,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
                                           today or date.today()))
+        if entry.remaining_free:
+            from .quotes import page_texts, quote_found
+            response, _ = await _page_beside(client, entry.remaining_free.source,
+                                            entry, page, attempts, backoff)
+            if response is None:
+                moved.append("remaining free offer: source could not be checked")
+            elif not quote_found(entry.remaining_free.quote, page_texts(response.text)):
+                moved.append("remaining free offer: eligibility quote no longer on its source")
         if entry.page_catalog is not None:
             from .page_catalog import check_page_catalog, check_model_eligibility, catalog_sources
             condition_bodies={}
@@ -558,6 +566,24 @@ async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts:
 CATALOG_ENDPOINT_FIELDS = ("endpoints", "supported_endpoints")
 
 
+def _catalog_endpoint_lists(model: dict) -> list[list[str]]:
+    """Explicit nonempty operation lists; absent metadata establishes no limit."""
+    paths = []
+    for field in CATALOG_ENDPOINT_FIELDS:
+        value = model.get(field)
+        if isinstance(value, list) and value and all(isinstance(p, str) and p for p in value):
+            paths.append(value)
+    return paths
+
+
+def _catalog_serves(paths: list[str], operation: str) -> bool:
+    # Inception uses "chat.completions"/"decisions":
+    # https://api.inceptionlabs.ai/v1/models, checked 2026-10-28.
+    # LLMTR and Routeway use URL paths (CATALOG_ENDPOINT_FIELDS above).
+    return any(("/" + p.rstrip("/").replace(".", "/")).endswith("/" + operation)
+               for p in paths)
+
+
 def codex_endpoint_gap(catalog: httpx.Response, entry: Entry) -> str:
     """Why the id a row's Codex profile names cannot take Codex's request by
     its own catalog's word, or "" while nothing says so.
@@ -575,10 +601,8 @@ def codex_endpoint_gap(catalog: httpx.Response, entry: Entry) -> str:
     for row in _catalog_items(catalog, entry.probe.lane) or []:
         if _model_id(row) != model:
             continue
-        for field in CATALOG_ENDPOINT_FIELDS:
-            paths = row.get(field)
-            if (isinstance(paths, list) and paths and all(isinstance(p, str) for p in paths)
-                    and not any(p.rstrip("/").endswith("/responses") for p in paths)):
+        for paths in _catalog_endpoint_lists(row):
+            if not _catalog_serves(paths, "responses"):
                 return (f"codex profile names {model}, which the catalog serves at "
                         f"{', '.join(paths)} only — put an id it serves at /responses first "
                         "in api.model_ids, or take api.codex out")
@@ -1823,9 +1847,9 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
 
     What `_check_api_models` asks of a catalog, asked of a page: the keywords
     anchor the offer, and this asks whether the models listed beside it are
-    still there. Deliberately weak. It reads the raw body, not the rendered
-    text the keywords are held to, so a name the vendor serves only inside its
-    page data counts; whether the page names the model as free is the stronger
+    still there. It reads rendered text, as the offer keywords do. A model in
+    page machinery needs an explicit machinery keyword; comments never count.
+    Whether the page names the model as free is the stronger
     question, and the one an anchor keyword answers. With model_prices, both
     prices must instead be free in the same row of one bound table. With model_plan,
     that row must mark inclusion in the named plan. A family also counts where
@@ -1844,11 +1868,20 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
         return [m.family for m in entry.models
                 if not any((_squash(m.table_name) == _squash(name) if m.table_name else
                             names_family(m.family, _squash(name), _squash)) for name in free)]
-    squashed, text = _squash(resp.text), resp.text.lower()
+    rendered = _rendered(resp.text)
+    squashed, text = _squash(rendered), rendered.lower()
+    machinery = " ".join(k for k in entry.probe.machinery_keywords
+                         if _squash(k) in _squash(_COMMENT.sub("", resp.text)))
+    # Client-only prose offers bind each ID to its own identity and allowance
+    # source. Both sources are checked below in probe_entry, including failures.
+    bound = {b.family for mid, b in entry.client_lane.model_bindings.items()
+             if mid in entry.client_lane.model_ids} if entry.client_lane else set()
     labels = {model.model.family: model.name for model in entry.page_catalog.models
               if model.model and model.listed and not model.expired} if entry.page_catalog else {}
     return [m.family for m in entry.models
             if not names_family(m.family, squashed, _squash) and not _named_in_parts(m.family, text)
+            and m.family not in bound
+            and not names_family(m.family, _squash(machinery), _squash)
             and not (m.family in labels and names_family(labels[m.family], squashed, _squash))]
 
 
@@ -1871,8 +1904,8 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
 
 def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     """Ids in `api.model_ids` that the catalog no longer answers for: not in it,
-    retired by its own date, marked unavailable, or — where the row reads
-    prices — no longer free.
+    retired by its own date, marked unavailable, explicitly served only at
+    other operations, or — where the row reads prices — no longer free.
 
     No family or keyword check reads this field, and it fills the generated
     configs a reader pastes into a client. It is never asked of a page: a name
@@ -1909,6 +1942,10 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
             dead.append(f"{wanted} is marked unavailable")
         elif entry.probe.require_zero_price and not _is_free(model):
             dead.append(_price_note(model, entry.probe.free_list is not None))
+        elif (entry.api and entry.api.openai_compatible
+              and (paths := next((p for p in _catalog_endpoint_lists(model)
+                                  if not _catalog_serves(p, "chat/completions")), None))):
+            dead.append(f"{wanted} is served at {', '.join(paths)} only, not chat completions")
     return dead
 
 

@@ -12,14 +12,8 @@
         "gemini-3.8-flash": {
           "name": "gemini-3.8-flash"
         },
-        "gemini-3.7-flash": {
-          "name": "gemini-3.7-flash"
-        },
         "gemini-3.6-flash": {
           "name": "gemini-3.6-flash"
-        },
-        "gemini-3.5-flash": {
-          "name": "gemini-3.5-flash"
         },
         "gemini-3.5-flash-lite": {
           "name": "gemini-3.5-flash-lite"
@@ -35,6 +29,15 @@
         },
         "gemma-4-26b-a4b-it": {
           "name": "gemma-4-26b-a4b-it"
+        },
+        "gemini-2.5-pro": {
+          "name": "gemini-2.5-pro"
+        },
+        "gemini-2.5-flash": {
+          "name": "gemini-2.5-flash"
+        },
+        "gemini-2.5-flash-lite": {
+          "name": "gemini-2.5-flash-lite"
         }
       }
     },
@@ -221,9 +224,6 @@
         "apiKey": "{env:NVIDIA_NIM_API_KEY}"
       },
       "models": {
-        "z-ai/glm-5.3": {
-          "name": "z-ai/glm-5.3"
-        },
         "z-ai/glm-5.3-flash": {
           "name": "z-ai/glm-5.3-flash"
         },
@@ -787,7 +787,7 @@
       },
       "models": {
         "qwen/qwen3.8-27b": {
-          "name": "qwen/qwen3.8-27b"
+          "name": "qwen/qwen3.8-27b (until 2026-11-24)"
         }
       }
     },
@@ -810,9 +810,6 @@
         },
         "apertus-70b": {
           "name": "apertus-70b"
-        },
-        "brick-v1-beta": {
-          "name": "brick-v1-beta"
         },
         "gemma4-31b": {
           "name": "gemma4-31b"
@@ -890,7 +887,7 @@
           "name": "qwen/qwen3.8-27b",
           "limit": {
             "context": 168000,
-            "output": 4096
+            "output": 32000
           },
           "options": {
             "max_completion_tokens": 4096,
@@ -1126,14 +1123,8 @@
         "apiKey": "{env:INCEPTION_LABS_API_KEY}"
       },
       "models": {
-        "mercury-2.5": {
-          "name": "mercury-2.5"
-        },
-        "mercury-2": {
-          "name": "mercury-2"
-        },
-        "mercury-edit-2": {
-          "name": "mercury-edit-2"
+        "mercury-3": {
+          "name": "mercury-3"
         }
       }
     },
@@ -1271,6 +1262,9 @@
         "apiKey": "{env:ABLITERATION_AI_API_KEY}"
       },
       "models": {
+        "abliterated-model-large-flash": {
+          "name": "abliterated-model-large-flash"
+        },
         "abliterated-model-large-v2": {
           "name": "abliterated-model-large-v2"
         },

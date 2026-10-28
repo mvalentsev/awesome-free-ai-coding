@@ -113,6 +113,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     # Quoted by construction, whatever its length: the page prints it in quotes.
     if entry.data_use:
         found.append(("data_use.quote", entry.data_use.quote))
+    if entry.remaining_free:
+        found.append(("remaining_free.quote", entry.remaining_free.quote))
     # The words a keyed lane's Codex profile rests on (see models.CodexRoute).
     if entry.api and entry.api.codex and entry.api.codex.quote:
         found.append(("api.codex.quote", entry.api.codex.quote))
@@ -134,6 +136,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if field == "remaining_free.quote" and entry.remaining_free:
+        return entry.remaining_free.source
     if match := re.fullmatch(r"probe\.model_exclusions\[(\d+)\]\.quote", field):
         return entry.probe.model_exclusions[int(match[1])].source
     if (match := re.fullmatch(r"(?:api|client_lane)\.model_bindings\.(.+)\.quote", field)) and (lane := entry.api or entry.client_lane):
@@ -222,6 +226,10 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.append(entry.api.codex.source)
     if entry.access:
         urls.append(entry.access.source)
+    if entry.remaining_free:
+        urls.append(entry.remaining_free.source)
+        if entry.remaining_free.access:
+            urls.append(entry.remaining_free.access.source)
     if lane := entry.api or entry.client_lane:
         urls.extend(a.source for a in lane.model_access.values())
         urls.extend(b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids)

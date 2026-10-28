@@ -272,16 +272,6 @@ dismissed:
       The same table's Vision section, and the same answer. A discounted price is
       still a price — and this one has an end date on it.
   - entry: google-ai-studio
-    family: gemini-3.7-flash
-    superseded_by: gemini-3.8-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      ai.google.dev/gemini-api/docs/pricing gives Gemini 3.8 Flash "Free of
-      charge" for input, output and context caching, and gives Gemini 3.7 Flash
-      exactly the same. Google adds a generation to the free column rather than
-      moving it: the row now lists both, and the bump would have traded one free
-      model for another.
-  - entry: google-ai-studio
     family: gemini-3.5-flash-lite
     superseded_by: gemini-3.8-flash
     dismissed_on: 2026-09-08

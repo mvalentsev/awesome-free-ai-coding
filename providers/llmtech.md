@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'LLM Tech free tier: limits, free models, verified 2026-10-26'
-description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The public trial key shares its concurrency among all callers; the daily token budget is per IP and…'
+description: 'EU inference provider whose quickstart publishes a shared trial key: 20M tokens a day per IP, tools included, no account; API access ends November 1 at 00:00 UTC. Free models: qwen3.8-27b. The API is scheduled to stop on November 1, 2026 at 00:00 UTC. The public trial key counts prompt and…'
 permalink: /providers/llmtech/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: LLM Tech
 ---
 
@@ -15,7 +15,7 @@ crumb: LLM Tech
 
 ## What you get
 
-EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account
+EU inference provider whose quickstart publishes a shared trial key: 20M tokens a day per IP, tools included, no account; API access ends November 1 at 00:00 UTC
 
 ## Free models
 
@@ -23,13 +23,13 @@ EU provider of one model whose quickstart prints a shared trial key for anyone: 
 
 ## Limits, in the vendor's words
 
-2,000,000 tokens/day per IP. reset at 00:00 UTC
+20,000,000 tokens/day per IP. reset at 00:00 UTC
 
-Shared trial key: 4 requests at once per key
+Shared trial key: Concurrent requests allowance: published sources disagree per key
 
 64 requests at once shared across the endpoint
 
-The public trial key shares its concurrency among all callers; the daily token budget is per IP and counts both prompt and completion. Its context is 131,072 tokens; personal paid keys have the full 262,144 and share the endpoint's separate inflight ceiling. Paid keys are issued by email, per token without subscription or minimum. Prompts and completions are volatile and never persisted or trained on; metadata, including IP, is retained 13 months. The sole proprietor operates in Poland, with GPUs in Italy behind a German edge.
+The API is scheduled to stop on November 1, 2026 at 00:00 UTC. The public trial key counts prompt and completion tokens per IP, resetting at 00:00 UTC. Its quickstart advertises 16 concurrent requests, while the same page's limits section still says 4; the effective ceiling is unconfirmed. Trial context is 131,072 tokens. Personal keys have 262,144 and share a separate endpoint inflight ceiling. Prompts and completions are volatile and not persisted or trained on; metadata including IP is retained 13 months. GPUs are in Italy behind a German edge.
 
 ## Where it is offered
 
@@ -57,7 +57,7 @@ curl -s https://api.llmtech.eu/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://llmtech.eu/docs/>, anchored on `4 concurrent requests and 2M tokens per day per address`; ids checked in <https://api.llmtech.eu/v1/models>
+- Probe: the page at <https://llmtech.eu/docs/>, anchored on `20M tokens per day per address`; ids checked in <https://api.llmtech.eu/v1/models>
 - Source: <https://llmtech.eu/docs/>
 - Source: <https://llmtech.eu/agents/>
 - Source: <https://llmtech.eu/security/>
@@ -74,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

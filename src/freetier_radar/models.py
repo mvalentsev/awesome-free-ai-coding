@@ -716,6 +716,28 @@ class FreeAccess(BaseModel):
         return self
 
 
+class RemainingFree(BaseModel):
+    """A separately sourced free mode that survives the last model promotion."""
+    model_config = ConfigDict(extra="forbid")
+    source: str
+    quote: str = Field(min_length=12, max_length=1200)
+    free_part: Literal[FreePart.SUM, FreePart.UNNAMED]
+    access: FreeAccess | None = None
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_public(cls, value):
+        return FreeAccess._source_is_https(value)
+
+    @model_validator(mode="after")
+    def _remaining_access_is_not_another_model_deadline(self):
+        if self.access and self.access.until:
+            raise ValueError("remaining_free access records payment, not a model deadline")
+        if not self.quote.strip() or "..." in self.quote or "…" in self.quote:
+            raise ValueError("remaining_free needs one complete offer quote")
+        return self
+
+
 class CatalogRead(BaseModel):
     """The named table and FAQ answers which a page catalog rechecks."""
     model_config = ConfigDict(extra="forbid", str_min_length=1)
@@ -1487,6 +1509,7 @@ class Entry(BaseModel):
     source_urls: list[str] = []
     card_required: bool = False
     access: FreeAccess | None = None
+    remaining_free: RemainingFree | None = Field(default=None, exclude_if=lambda v: v is None)
     offering: str
     limits: str = ""
     quotas: list[UsageQuota] = Field(default_factory=list, exclude_if=lambda v: not v)
@@ -1603,7 +1626,7 @@ class Entry(BaseModel):
         a month sits beside the models it prices at zero, and those are its
         column."""
         p = self.probe
-        reads_free = self.client_lane is not None or p.model_plan is not None or (
+        reads_free = bool(self.client_lane and self.client_lane.model_ids) or p.model_plan is not None or (
             p.type is ProbeType.API_MODELS
             and bool(p.require_zero_price or p.free_marker or p.lane or p.free_list))
         if reads_free and self.free_part in (FreePart.SUM, FreePart.UNNAMED):
@@ -1705,8 +1728,9 @@ class Entry(BaseModel):
         """`client_lane` records a lane no API serves, and its ids are held to what
         the probe reads, in both directions — so the probe must be able to tell
         the free lane from the rest of what it reads: the key the vendor lists
-        it under (`probe.lane`), or prices it reads at zero. On a page, or on a
-        catalog it cannot read free off, the list would be checked by nothing.
+        it under (`probe.lane`), prices it reads at zero, or a page-based identity
+        and independent allowance for every ID. An unbound page or unpriced
+        catalog would leave the list checked by nothing.
         And a lane an API serves keeps its ids in `api.model_ids`, which the
         configs are written from: two lists of one lane drift apart."""
         if self.client_lane is None:
@@ -1716,6 +1740,20 @@ class Entry(BaseModel):
                 f"{self.id}: a lane an API serves keeps its ids in api.model_ids — "
                 "client_lane is for a lane served only inside the vendor's own client")
         probe = self.probe
+        if probe.type is ProbeType.PAGE_KEYWORDS:
+            # A client promotion can be documented in prose rather than a JSON
+            # picker. Identity and the independent allowance must both be read
+            # back for each ID; a general signup wallet cannot vouch for it.
+            lane = self.client_lane
+            for mid in lane.model_ids:
+                binding = lane.model_bindings.get(mid)
+                if not binding or binding.read != "page" or not any(
+                        q.model_ids == [mid] and q.scope.endswith("-model")
+                        and q.source == binding.source
+                        for q in self.quotas):
+                    raise ValueError("a page client lane needs per-model identity and allowance "
+                                     "sources for every listed ID")
+            return self
         if probe.type is not ProbeType.API_MODELS or not (probe.lane or probe.require_zero_price):
             raise ValueError(
                 f"{self.id}: client_lane.model_ids are held to the lane an api-models probe "
@@ -1897,8 +1935,35 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
             "api" if e.api else "client_lane": current,
             "models": [m for m in e.models if m.family not in affected or m.family in kept]}
         if not surviving and e.free_part is FreePart.MODELS:
-            ended_on = max(id_access(e, i).until for i in expired).astimezone(timezone.utc).date()
-            entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
+            if e.remaining_free:
+                # The new prose probe cannot recheck undated price-catalog
+                # exclusions. Retain dated promotion evidence and its metadata;
+                # prior specialist decisions remain in the published Git history.
+                retained = {i for i in current.ignored_ids
+                            if (a := current.model_access.get(i)) and a.until}
+                metadata = {name: {i: value for i, value in getattr(current, name).items()
+                                   if i in retained}
+                            for name in ("model_access", "model_bindings", "model_limits",
+                                         "opencode_output_tokens") if hasattr(current, name)}
+                current = current.model_copy(update={
+                    "ignored_ids": [i for i in current.ignored_ids if i in retained], **metadata})
+                entry_updates["api" if e.api else "client_lane"] = current
+                entry_updates["quotas"] = [q for q in e.quotas
+                                          if not q.model_ids or set(q.model_ids) & retained]
+                entry_updates["free_part"] = e.remaining_free.free_part
+                entry_updates["access"] = e.remaining_free.access
+                entry_updates["offering"] = "A separately documented free allowance continues after the named model promotions"
+                entry_updates["limits"] = (e.remaining_free.quote +
+                    " Current model IDs and account eligibility must be confirmed with the provider.")
+                current.note = "The named model promotions have ended; check the continuing offer's current models and eligibility in your account."
+                entry_updates["probe"] = Probe(
+                    type=ProbeType.PAGE_KEYWORDS, endpoint=e.remaining_free.source,
+                    keywords=[e.remaining_free.quote],
+                    catalog=e.probe.endpoint if e.api and e.probe.type is ProbeType.API_MODELS
+                    else e.probe.catalog)
+            else:
+                ended_on = max(id_access(e, i).until for i in expired).astimezone(timezone.utc).date()
+                entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
         out.append(e.model_copy(update=entry_updates))
     return out
 

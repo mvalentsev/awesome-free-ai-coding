@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-10-26'
-description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model…'
+description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage…'
 permalink: /providers/sensenova/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: SenseNova (SenseTime 商汤)
 ---
 
@@ -23,9 +23,9 @@ SenseTime's SenseNova API, with a $0 Free plan during public beta; registration 
 
 ## Limits, in the vendor's words
 
-Public beta: 60,000 credits/5 hours per account
+Public beta: Usage allowance: amount not published (period not published) per account
 
-Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The API guide calls the available model an "early preview release" and requires "registration plus identity verification". The page states a five-hour allowance without specifying a rolling reset. Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
+Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage allowances and reset times are unpublished. The API guide calls the documented model an "early preview release" and requires "registration plus identity verification". Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
 
 ## Where it is offered
 
@@ -49,7 +49,7 @@ curl -s https://token.sensenova.cn/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://www.sensenova.cn/token-plan>, anchored on `公测期完全免费开放，付费档位即将上线`, `60,000 积分 / 5 小时`
+- Probe: the page at <https://www.sensenova.cn/token-plan>, anchored on `公测期完全免费开放，付费档位即将上线`, `SenseNova 6.8 Flash Lite`
 - Source: <https://www.sensenova.cn/token-plan>
 - Source: <https://github.com/OpenSenseNova/SenseNova6.8/blob/main/API.md>
 
@@ -62,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -30,21 +30,9 @@ model_list:
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
     use_chat_completions_api: true
-- model_name: google-ai-studio/gemini-3.7-flash
-  litellm_params:
-    model: openai/gemini-3.7-flash
-    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
-    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
-    use_chat_completions_api: true
 - model_name: google-ai-studio/gemini-3.6-flash
   litellm_params:
     model: openai/gemini-3.6-flash
-    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
-    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
-    use_chat_completions_api: true
-- model_name: google-ai-studio/gemini-3.5-flash
-  litellm_params:
-    model: openai/gemini-3.5-flash
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -75,6 +63,24 @@ model_list:
 - model_name: google-ai-studio/gemma-4-26b-a4b-it
   litellm_params:
     model: openai/gemma-4-26b-a4b-it
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+    use_chat_completions_api: true
+- model_name: google-ai-studio/gemini-2.5-pro
+  litellm_params:
+    model: openai/gemini-2.5-pro
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+    use_chat_completions_api: true
+- model_name: google-ai-studio/gemini-2.5-flash
+  litellm_params:
+    model: openai/gemini-2.5-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+    use_chat_completions_api: true
+- model_name: google-ai-studio/gemini-2.5-flash-lite
+  litellm_params:
+    model: openai/gemini-2.5-flash-lite
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
     use_chat_completions_api: true
@@ -251,12 +257,6 @@ model_list:
     model: openai/novita/ling-3.1-flash
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
-    use_chat_completions_api: true
-- model_name: nvidia-nim/z-ai/glm-5.3
-  litellm_params:
-    model: openai/z-ai/glm-5.3
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
 - model_name: nvidia-nim/z-ai/glm-5.3-flash
   litellm_params:
@@ -1058,6 +1058,9 @@ model_list:
     api_base: https://api.iteracompute.com/v1
     api_key: os.environ/ITERACOMPUTE_API_KEY
     use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-24 00:00-08:00
+    source: https://iteracompute.com/free/
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2
@@ -1079,12 +1082,6 @@ model_list:
 - model_name: regolo/apertus-70b
   litellm_params:
     model: openai/apertus-70b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-    use_chat_completions_api: true
-- model_name: regolo/brick-v1-beta
-  litellm_params:
-    model: openai/brick-v1-beta
     api_base: https://api.regolo.ai/v1
     api_key: os.environ/REGOLO_API_KEY
     use_chat_completions_api: true
@@ -1346,21 +1343,9 @@ model_list:
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
     use_chat_completions_api: true
-- model_name: inception-labs/mercury-2.5
+- model_name: inception-labs/mercury-3
   litellm_params:
-    model: openai/mercury-2.5
-    api_base: https://api.inceptionlabs.ai/v1
-    api_key: os.environ/INCEPTION_LABS_API_KEY
-    use_chat_completions_api: true
-- model_name: inception-labs/mercury-2
-  litellm_params:
-    model: openai/mercury-2
-    api_base: https://api.inceptionlabs.ai/v1
-    api_key: os.environ/INCEPTION_LABS_API_KEY
-    use_chat_completions_api: true
-- model_name: inception-labs/mercury-edit-2
-  litellm_params:
-    model: openai/mercury-edit-2
+    model: openai/mercury-3
     api_base: https://api.inceptionlabs.ai/v1
     api_key: os.environ/INCEPTION_LABS_API_KEY
     use_chat_completions_api: true
@@ -1477,6 +1462,12 @@ model_list:
     model: openai/kimi-k3
     api_base: https://api.wallabytoken.com/v1
     api_key: os.environ/WALLABY_API_KEY
+    use_chat_completions_api: true
+- model_name: abliteration-ai/abliterated-model-large-flash
+  litellm_params:
+    model: openai/abliterated-model-large-flash
+    api_base: https://api.abliteration.ai/v1
+    api_key: os.environ/ABLITERATION_AI_API_KEY
     use_chat_completions_api: true
 - model_name: abliteration-ai/abliterated-model-large-v2
   litellm_params:
@@ -1797,17 +1788,6 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
-    model: openai/gemini-3.7-flash
-    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
-    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
     model: openai/gemini-3.6-flash
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
@@ -1833,17 +1813,6 @@ model_list:
     model: openai/novita/ling-3.1-flash
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/z-ai/glm-5.3
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

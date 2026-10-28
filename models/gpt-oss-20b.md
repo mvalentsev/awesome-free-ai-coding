@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-20b free: 4 providers, limits and ids, provider probes 2026-10-26'
 description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-20b/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-28
 crumb: gpt-oss-20b
 ---
 
@@ -83,8 +83,6 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model
 
-> ⚠️ **Does not work as published since [2026-10-27](https://enter.pollinations.ai/).** October 27 checks of the legacy anonymous API returned HTTP 500 for gpt-oss-20b and HTTP 503/500 for openai-fast; the 503 requested a 10-second wait. No completion was confirmed. The catalog still advertises anonymous GPT-OSS 20B. Error responses point to the separate keyed Pollen API.
-
 - Limits, in the vendor's words: Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published
 
 The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.
@@ -99,6 +97,6 @@ The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

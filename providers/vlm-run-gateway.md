@@ -3,7 +3,7 @@ layout: default
 title: 'VLM Run Gateway free tier: limits, free models, verified 2026-10-26'
 description: 'OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta. Free models: qwen3.8-27b, diffusiongemma, qwen3.5-0.8b. GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together…'
 permalink: /providers/vlm-run-gateway/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: VLM Run Gateway
 ---
 
@@ -36,7 +36,7 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
-- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a matching request output budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
+- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate 4,096-token request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
 
 Try it from your terminal — the lane takes no key:
 
@@ -64,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

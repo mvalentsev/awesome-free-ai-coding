@@ -3,7 +3,7 @@ layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-10-26'
 description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192…'
 permalink: /providers/iteracompute/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-28
 crumb: IteraCompute
 ---
 
@@ -19,7 +19,7 @@ OpenAI-compatible API with recurring free usage on a self-hosted open model
 
 ## Free models
 
-[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) (until 2026-11-24)
 
 ## Limits, in the vendor's words
 
@@ -27,7 +27,7 @@ Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. All
 
 Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
 
-Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
+Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement. The no-recharge Qwen promotion has a deadline; recharged Starter and Pro users retain tier benefits, while the model name, weights and precision may change.
 
 ## Where it is offered
 
@@ -42,7 +42,8 @@ What you send is not used to train models. In the vendor's words: “Without you
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`
-- Note: The documented no-recharge allowance covers only qwen/qwen3.8-27b. The catalog also marks opencode/* routes Free, but their account eligibility, allowance and capacity conditions remain unconfirmed; the public Free page still lists only Qwen. Do not apply Qwen limits to those routes. Create a key scoped to Qwen and use Chat Completions. Authenticated generation has not been checked here.
+- `qwen/qwen3.8-27b`: free until 2026-11-24 00:00-08:00 ([conditions](https://iteracompute.com/free/))
+- Note: The documented no-recharge allowance covers qwen/qwen3.8-27b. Eligibility and independent allowances for other routes are unconfirmed; do not apply Qwen limits to them. Create a key scoped to Qwen and use Chat Completions. Authenticated generation has not been checked here.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -76,6 +77,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-10-26'
-description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, provider probes 2026-10-26'
+description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-28
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**4 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
+**5 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -83,6 +83,32 @@ Free grants apply in Singapore (international) only, independently per model and
 - Callable ids: `deepseek-v4.1-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
+### [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/)
+
+🤖 Coding agents & CLIs · no card · free until 2026-11-01 00:00+08:00 · last probe 2026-10-26 · listed since 2026-10-28
+
+Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
+
+Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+
+Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
+
+Qwen3.8-Flash promotion: Requests allowance: amount not published (period not published) per account per model; for `Qwen3.8-Flash`
+
+DeepSeek-Flash promotion: Daily requests allowance: amount not published per account per model; for `DeepSeek-Flash`
+
+The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. Both model promotions include individual Free accounts with zero Credits, require no claim, and exclude Teams and Enterprise. The Qwen3.8-Flash promotion spends no Credits; its end will be announced in advance. DeepSeek-Flash has an unpublished daily free-use count; when it runs out, wait for the next day or continue with Credits. Paid accounts receive more uses. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In Qoder's own model list: `DeepSeek-Flash`
+
 ### [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/)
 
 🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-16
@@ -122,6 +148,6 @@ Enable explicit :free routes in the dashboard before calling them; the rotating 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

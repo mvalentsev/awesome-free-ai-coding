@@ -11,6 +11,15 @@ BASE = {'id':'vendor','name':'Vendor','url':'https://vendor.example','category':
 QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
+
+def test_conflicting_published_ceilings_are_distinct_from_an_unpublished_allowance():
+    from freetier_radar.quotas import UsageQuota, quota_words
+    quota = UsageQuota.model_validate({**QUOTA, 'amount': None, 'period': 'concurrent',
+                                      'state': 'disputed', 'scope': 'key', 'reviewed_on': '2026-10-28'})
+    text = quota_words(quota)
+    assert 'published sources disagree' in text
+    assert 'not published' not in text
+
 @pytest.mark.parametrize('phrase', ['günde 500.000 token', 'günde 500 bin token'])
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock

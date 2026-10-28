@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-10-26'
-description: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's…
+description: A one-time signup token balance on Mercury diffusion models, including the current Mercury 3 chat model and earlier chat and code-edit models. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute…
 permalink: /providers/inception-labs/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: Inception Labs (Mercury)
 ---
 
@@ -15,7 +15,7 @@ crumb: Inception Labs (Mercury)
 
 ## What you get
 
-A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits
+A one-time signup token balance on Mercury diffusion models, including the current Mercury 3 chat model and earlier chat and code-edit models
 
 ## Free models
 
@@ -39,8 +39,8 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://api.inceptionlabs.ai/v1`
 - Key: `INCEPTION_LABS_API_KEY` — get one at <https://platform.inceptionlabs.ai>
-- Callable ids: `mercury-2.5`, `mercury-2`, `mercury-edit-2`
-- Note: mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions instead and is absent from that catalog by design, so an OpenAI-shaped chat client cannot call it — point an autocomplete plugin at it, not a chat agent
+- Callable ids: `mercury-3`
+- Note: Mercury 3 supports Chat Completions. Check the authenticated catalog for older Mercury revisions. Mercury Edit 2 uses separate FIM/edit endpoints; Mercury Voice requires enterprise enablement and Mercury Decide uses a decisions endpoint. The signup token balance is shared across models.
 
 Try it from your terminal with your key in `INCEPTION_LABS_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -48,12 +48,12 @@ Try it from your terminal with your key in `INCEPTION_LABS_API_KEY` — it goes 
 curl -s https://api.inceptionlabs.ai/v1/chat/completions \
   -H "Authorization: Bearer $INCEPTION_LABS_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"mercury-2.5","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"mercury-3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the page at <https://docs.inceptionlabs.ai/get-started>, anchored on `100 million free tokens`, `no payment details required`
+- Probe: the page at <https://docs.inceptionlabs.ai/get-started>, anchored on `100 million free tokens`, `no payment details required`; ids checked in <https://api.inceptionlabs.ai/v1/models>
 - Source: <https://docs.inceptionlabs.ai/get-started>
 - Source: <https://docs.inceptionlabs.ai/resources/faq>
 - Source: <https://docs.inceptionlabs.ai/get-started/models>
@@ -69,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

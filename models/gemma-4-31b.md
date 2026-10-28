@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-31b free: 5 providers, limits and ids, provider probes 2026-10-26'
 description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: gemma-4-31b
 ---
 
@@ -102,7 +102,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability
 
-- Limits, in the vendor's words: Advertised route; free access unconfirmed: Usage allowance: amount not published (period not published); scope not published
+- Limits, in the vendor's words: Advertised route; free access unconfirmed: Usage allowance: published sources disagree (period not published); scope not published
 
 The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists paid alternatives. The API catalog retains the ID without a price or availability claim. Free access remains unconfirmed. Paid credit purchases add a 3% fee. Opper Technology AB operates in Sweden on AWS Stockholm.
 - Base URL: `https://api.opper.ai/v3/compat`
@@ -118,6 +118,6 @@ The signup guide advertises a free US-hosted Gemma route before adding a card, b
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

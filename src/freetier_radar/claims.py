@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, ModelBinding, ModelFamily, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -154,7 +154,54 @@ def _catalog_arrival_spelling(root: Path) -> tuple[str, ...]:
     return ('probe.free_marker',) if unlisted_free_ids(response, entry) == ['new-free'] else ()
 
 
+def _catalog_chat_operations(root: Path) -> tuple[str, ...]:
+    import httpx
+    from .models import Entry
+    from .prober import dead_model_ids
+    entry = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'trial',
+        'url': 'https://vendor.example', 'offering': 'A shared token balance',
+        'first_seen': '2026-07-19', 'last_verified': '2026-07-19', 'free_part': 'sum',
+        'api': {'base_url': 'https://vendor.example/v1', 'model_ids': ['candidate']},
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['100 million free tokens']}})
+    def notes(paths):
+        row = {'id': 'candidate', **({'supported_endpoints': paths} if paths is not None else {})}
+        return dead_model_ids(httpx.Response(200, json={'data': [row]}), entry)
+    return ('Chat Completions',) if (notes(['decisions']) and not notes(['chat.completions'])
+                                     and not notes(None)) else ()
+
+
+def _page_family_text(root: Path) -> tuple[str, ...]:
+    import httpx
+    from .models import Entry
+    from .prober import unevidenced_families
+    entry = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
+        'url': 'https://vendor.example', 'offering': 'Free models',
+        'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
+        'models': [{'family': 'science-flash'}],
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['100 free requests per day']}})
+    bodies = ['<script>science-flash</script>', '<!-- science-flash -->', '<p>science-flash</p>']
+    missing = [bool(unevidenced_families(httpx.Response(200, text=b), entry)) for b in bodies]
+    return ('machinery_keywords', 'comments') if missing == [True, True, False] else ()
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'`remaining_free` records a separately continuing mode with its `(source)`, `(quote)`,\s+`(free_part)` \(`sum` or `unnamed`\) and optional payment `(access)`',
+          lambda root: tuple(RemainingFree.model_fields),
+          "models.RemainingFree and expire_entries; HTTP current/changed/unreadable offer controls and exact payment-preserving expiry in tests/test_remaining_free.py"),
+    Claim("CONTRIBUTING.md", r'`(model_bindings)` names the model and `quotas\[\]\.(model_ids)` binds its',
+          lambda root: tuple(k for cls, k in ((ClientLane, 'model_bindings'), (UsageQuota, 'model_ids'))
+                             if k in cls.model_fields),
+          "models.Entry._a_client_lane_is_a_lane_its_probe_reads; HTTP identity/allowance failures, unbound-wallet controls and shared expiry in tests/test_page_client_lane.py"),
+    Claim("CONTRIBUTING.md", r'Model names in scripts need explicit `(machinery_keywords)`; (comments) cannot keep\s+a family listed',
+          _page_family_text,
+          "prober.unevidenced_families; HTTP machinery/comment regression and rendered-text control in tests/test_page_family_machinery.py"),
+    Claim("CONTRIBUTING.md", r'An explicit catalog operation list must include `(Chat Completions)`',
+          _catalog_chat_operations,
+          "prober.dead_model_ids; actual page/catalog HTTP boundary and valid/absent metadata controls in tests/test_catalog_operations.py"),
     Claim("CONTRIBUTING.md", r'Discovery checks every available catalog row marked or priced free, even when\s+its ID does not match `(probe.free_marker)`',
           _catalog_arrival_spelling,
           "prober.unlisted_free_ids; HTTP alternate-suffix and paid/unavailable controls in tests/test_model_table_inventory.py and tests/test_prober.py"),

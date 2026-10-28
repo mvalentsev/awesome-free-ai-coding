@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-flash free: 2 providers, limits and ids, provider probes 2026-10-26'
-description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-10-26'
+description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-28
 crumb: qwen3.8-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-flash
 
 # Where qwen3.8-flash is free
 
-**2 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-flash-next).
+**3 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-flash-next).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -37,9 +37,35 @@ Free grants apply in Singapore (international) only, independently per model and
 - Callable ids: `qwen3.8-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
+### [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/)
+
+🤖 Coding agents & CLIs · no card · last probe 2026-10-26 · listed since 2026-10-28
+
+Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
+
+Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+
+Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
+
+Qwen3.8-Flash promotion: Requests allowance: amount not published (period not published) per account per model; for `Qwen3.8-Flash`
+
+DeepSeek-Flash promotion: Daily requests allowance: amount not published per account per model; for `DeepSeek-Flash`
+
+The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. Both model promotions include individual Free accounts with zero Credits, require no claim, and exclude Teams and Enterprise. The Qwen3.8-Flash promotion spends no Credits; its end will be announced in advance. DeepSeek-Flash has an unpublished daily free-use count; when it runs out, wait for the next day or continue with Credits. Paid accounts receive more uses. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In Qoder's own model list: `Qwen3.8-Flash`
+
 ### [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-10-26 · listed since 2026-10-12
+🤖 Coding agents & CLIs · no card · last probe 2026-10-26 · listed since 2026-10-12
 
 Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app
 
@@ -60,12 +86,12 @@ The model promotion is open to personal users, including free accounts with zero
 
 ## Related models
 
-- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (until 2026-11-24), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
 - [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-27 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
