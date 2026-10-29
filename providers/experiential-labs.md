@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-26'
-description: Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet. The gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card…
+description: Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits. The pricing page advertises Luna and DeepSeek chat in the Free core pool, but their current model catalog applies zero-price plan discounts only on paid…
 permalink: /providers/experiential-labs/
 last_modified_at: 2026-10-29
 crumb: Experiential Labs
@@ -11,11 +11,11 @@ crumb: Experiential Labs
 
 # Experiential Labs free tier
 
-🧭 Aggregators (one key, many providers) · card required · requires $1 one-time charge · **live** — last verified by a probe on 2026-10-26 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · **live** — last verified by a probe on 2026-10-26 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet
+Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits
 
 ## Free models
 
@@ -23,17 +23,9 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`
-
-Astra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`
-
-Fable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`
-
-Fable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`
-
 Free core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC
 
-The gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.
+The pricing page advertises Luna and DeepSeek chat in the Free core pool, but their current model catalog applies zero-price plan discounts only on paid plans. This eligibility conflict remains unresolved. The earlier Astra and Fable promotional free tiers have ended. Free has no general monthly credits. A temporary $1 card verification is refunded rather than credited to the wallet. Clef and Luna Decisions use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.
 
 ## Where it is offered
 
@@ -43,23 +35,19 @@ The vendor names no country it keeps the offer from ([source](https://www.experi
 
 - Base URL: `https://api.experientiallabs.ai/v1`
 - Key: `EXPERIENTIAL_LABS_API_KEY` — get one at <https://platform.experientiallabs.ai>
-- Callable ids: `gpt-6-astra:free`, `claude-fable-5.1:free`
-- `gpt-6-astra:free`: requires $1 one-time charge ([conditions](https://platform.experientiallabs.ai/llms.txt))
-- `claude-fable-5.1:free`: requires $1 one-time charge ([conditions](https://platform.experientiallabs.ai/llms.txt))
-- Note: An API key is required. These documented promotional :free aliases stop without charging when their allowance is spent. Do not remove the suffix: plain model IDs can switch to paid credit. The separate pricing-page Luna and DeepSeek chat offers have conflicting Free catalog prices.
+- Callable ids: none listed — Current pricing advertises Free core chat, but the model catalog discounts it only on paid plans; confirm eligible IDs in your account.
+- Note: An API key is required. There is no ready-to-use free chat ID listed while the pricing-page core offers conflict with the model catalog. The earlier Astra and Fable :free promotions have ended; plain model IDs can spend paid credit. Confirm account-specific eligibility before calling a model.
 
-Try it from your terminal with your key in `EXPERIENTIAL_LABS_API_KEY` — it goes from your machine to the vendor and nowhere else:
+Check your key from your terminal — with it in `EXPERIENTIAL_LABS_API_KEY`, the vendor's catalog lists the models it can call:
 
 ```sh
-curl -s https://api.experientiallabs.ai/v1/chat/completions \
-  -H "Authorization: Bearer $EXPERIENTIAL_LABS_API_KEY" \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"gpt-6-astra:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+curl -s https://api.experientiallabs.ai/v1/models \
+  -H "Authorization: Bearer $EXPERIENTIAL_LABS_API_KEY"
 ```
 
 ## Evidence
 
-- Probe: the page at <https://platform.experientiallabs.ai/llms.txt>, anchored on `some platform-funded models carry a promotional free daily tier`
+- Probe: the page at <https://www.experientiallabs.ai/pricing>, anchored on `Free core models share one pool`, `1M input and output tokens a day`
 - Source: <https://www.experientiallabs.ai/pricing>
 - Source: <https://www.experientiallabs.ai/>
 - Source: <https://platform.experientiallabs.ai/models>

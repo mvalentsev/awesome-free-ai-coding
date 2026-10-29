@@ -74,13 +74,16 @@ async def test_catalog_explicit_free_price_label_and_withdrawal_controls(fields,
 @pytest.mark.parametrize('free_remains', [True, False])
 @respx.mock
 async def test_experiential_partial_promotion_change_does_not_end_the_whole_offer(free_remains):
-    from pathlib import Path
-    from freetier_radar.models import load_registry
-    current = next(e for e in load_registry(Path(__file__).resolve().parent.parent / 'registry.yaml')
-                   if e.id == 'experiential-labs')
     source = 'https://platform.experientiallabs.ai/llms.txt'
-    quota = next(q for q in current.quotas if q.label == 'Fable 5.1 promotional output')
-    current = current.model_copy(update={'border': None, 'quotas': [quota], 'source_urls': [source]})
+    current = Entry.model_validate({
+        **BASE, 'id': 'experiential-labs', 'source_urls': [source],
+        'probe': {'type': 'page-keywords', 'endpoint': source,
+                  'keywords': ['some platform-funded models carry a promotional free daily tier']},
+        'quotas': [{'amount': 30000, 'unit': 'tokens', 'period': 'hour',
+                    'scope': 'organization-model', 'label': 'Fable 5.1 promotional output',
+                    'source': source, 'quote': 'Fable 5.1: 30k output tokens per hour',
+                    'value_phrase': '30k output tokens', 'period_quote': 'per hour',
+                    'reviewed_on': '2026-10-26'}]})
     # The independent Free tiers documented here are separate from plan discounts:
     # https://platform.experientiallabs.ai/llms.txt, captured 2026-10-26.
     body = ('Free tiers: some platform-funded models carry a promotional free daily tier '

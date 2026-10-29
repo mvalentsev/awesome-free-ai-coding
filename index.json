@@ -4148,133 +4148,13 @@
       ],
       "card_required": true,
       "access": {
-        "source": "https://platform.experientiallabs.ai/llms.txt",
+        "source": "https://www.experientiallabs.ai/pricing",
         "initial_payment_usd": 1.0,
-        "payment_kind": "charge"
+        "payment_kind": "card verification"
       },
-      "offering": "Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet",
-      "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+      "offering": "Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits",
+      "limits": "Free core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe pricing page advertises Luna and DeepSeek chat in the Free core pool, but their current model catalog applies zero-price plan discounts only on paid plans. This eligibility conflict remains unresolved. The earlier Astra and Fable promotional free tiers have ended. Free has no general monthly credits. A temporary $1 card verification is refunded rather than credited to the wallet. Clef and Luna Decisions use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
       "quotas": [
-        {
-          "amount": 500000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "organization-model",
-          "label": "Astra promotional input",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "day",
-          "model_ids": [
-            "gpt-6-astra:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 100000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "organization-model",
-          "label": "Astra promotional output",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "day",
-          "model_ids": [
-            "gpt-6-astra:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 200000.0,
-          "unit": "tokens",
-          "period": "hour",
-          "scope": "organization-model",
-          "label": "Astra promotional input",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "per hour",
-          "model_ids": [
-            "gpt-6-astra:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 40000.0,
-          "unit": "tokens",
-          "period": "hour",
-          "scope": "organization-model",
-          "label": "Astra promotional output",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "per hour",
-          "model_ids": [
-            "gpt-6-astra:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 375000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "organization-model",
-          "label": "Fable 5.1 promotional input",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "day",
-          "model_ids": [
-            "claude-fable-5.1:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 75000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "organization-model",
-          "label": "Fable 5.1 promotional output",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "day",
-          "model_ids": [
-            "claude-fable-5.1:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 100000.0,
-          "unit": "tokens",
-          "period": "hour",
-          "scope": "organization-model",
-          "label": "Fable 5.1 promotional input",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "per hour",
-          "model_ids": [
-            "claude-fable-5.1:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
-        {
-          "amount": 30000.0,
-          "unit": "tokens",
-          "period": "hour",
-          "scope": "organization-model",
-          "label": "Fable 5.1 promotional output",
-          "source": "https://platform.experientiallabs.ai/llms.txt",
-          "quote": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "value_phrase": "Each tier has per-org daily and hourly token allowances (Astra: 500k input / 100k output per UTC day and 200k / 40k per hour; Fable 5.1: 375k / 75k per day and 100k / 30k per hour); cached input tokens do not count.",
-          "period_quote": "per hour",
-          "model_ids": [
-            "claude-fable-5.1:free"
-          ],
-          "reviewed_on": "2026-10-29"
-        },
         {
           "amount": 10.0,
           "unit": "requests",
@@ -4319,11 +4199,9 @@
         "key_url": "https://platform.experientiallabs.ai",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [
-          "gpt-6-astra:free",
-          "claude-fable-5.1:free"
-        ],
-        "note": "An API key is required. These documented promotional :free aliases stop without charging when their allowance is spent. Do not remove the suffix: plain model IDs can switch to paid credit. The separate pricing-page Luna and DeepSeek chat offers have conflicting Free catalog prices."
+        "model_ids": [],
+        "no_ids": "Current pricing advertises Free core chat, but the model catalog discounts it only on paid plans; confirm eligible IDs in your account.",
+        "note": "An API key is required. There is no ready-to-use free chat ID listed while the pricing-page core offers conflict with the model catalog. The earlier Astra and Fable :free promotions have ended; plain model IDs can spend paid credit. Confirm account-specific eligibility before calling a model."
       },
       "border": {
         "left_out": [],
@@ -4335,9 +4213,10 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://platform.experientiallabs.ai/llms.txt",
+        "endpoint": "https://www.experientiallabs.ai/pricing",
         "keywords": [
-          "some platform-funded models carry a promotional free daily tier"
+          "Free core models share one pool",
+          "1M input and output tokens a day"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -4353,14 +4232,11 @@
       "search": {
         "name": "Experiential Labs",
         "models": [],
-        "ids": [
-          "gpt-6-astra:free",
-          "claude-fable-5.1:free"
-        ],
-        "what": "Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet",
-        "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+        "ids": [],
+        "what": "Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits",
+        "limits": "Free core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe pricing page advertises Luna and DeepSeek chat in the Free core pool, but their current model catalog applies zero-price plan discounts only on paid plans. This eligibility conflict remains unresolved. The earlier Astra and Fable promotional free tiers have ended. Free has no general monthly credits. A temporary $1 card verification is refunded rather than credited to the wallet. Clef and Luna Decisions use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
         "why": "",
-        "access": "requires $1 charge",
+        "access": "requires $1 card verification",
         "modelAccess": {},
         "section": {
           "id": "aggregator"
@@ -4368,12 +4244,9 @@
         "flags": []
       },
       "access_labels": {
-        "offer": "requires $1 charge",
+        "offer": "requires $1 card verification",
         "models": {},
-        "ids": {
-          "gpt-6-astra:free": "requires $1 one-time charge",
-          "claude-fable-5.1:free": "requires $1 one-time charge"
-        }
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
     },
@@ -17630,7 +17503,6 @@
       "standardcompute",
       "novita",
       "poolside",
-      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17690,7 +17562,6 @@
       "standardcompute",
       "novita",
       "poolside",
-      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17770,7 +17641,6 @@
       "standardcompute",
       "novita",
       "poolside",
-      "experiential-labs",
       "sail-research",
       "pollinations",
       "aion-labs",

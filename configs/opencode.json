@@ -1362,14 +1362,7 @@
         "baseURL": "https://api.experientiallabs.ai/v1",
         "apiKey": "{env:EXPERIENTIAL_LABS_API_KEY}"
       },
-      "models": {
-        "gpt-6-astra:free": {
-          "name": "gpt-6-astra:free (requires $1 charge)"
-        },
-        "claude-fable-5.1:free": {
-          "name": "claude-fable-5.1:free (requires $1 charge)"
-        }
-      }
+      "models": {}
     },
     "sail-research": {
       "npm": "@ai-sdk/openai-compatible",

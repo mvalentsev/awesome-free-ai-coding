@@ -1527,24 +1527,6 @@ model_list:
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
     use_chat_completions_api: true
-- model_name: experiential-labs/gpt-6-astra:free
-  litellm_params:
-    model: openai/gpt-6-astra:free
-    api_base: https://api.experientiallabs.ai/v1
-    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: requires $1 one-time charge
-    source: https://platform.experientiallabs.ai/llms.txt
-- model_name: experiential-labs/claude-fable-5.1:free
-  litellm_params:
-    model: openai/claude-fable-5.1:free
-    api_base: https://api.experientiallabs.ai/v1
-    api_key: os.environ/EXPERIENTIAL_LABS_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: requires $1 one-time charge
-    source: https://platform.experientiallabs.ai/llms.txt
 - model_name: sail-research/moonshotai/Kimi-K3
   litellm_params:
     model: openai/moonshotai/Kimi-K3
