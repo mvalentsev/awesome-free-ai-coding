@@ -1769,23 +1769,25 @@ entries:
   - https://www.alibabacloud.com/help/en/model-studio/model-pricing
   - https://www.alibabacloud.com/help/en/model-studio/new-free-quota
   card_required: false
-  offering: A million free tokens on each of its chat models in the Singapore region
-    — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's
-    release; OpenAI-compatible
-  limits: 'Free grants apply in Singapore (international) only, independently per
-    model and dated snapshot. The model pricing tables decide eligibility: Kimi has
-    no free-quota column and glm-5.2-fast-preview has none. Account information must
-    be completed before activation. After the grant, usage is automatically billed
-    pay-as-you-go unless Free Quota Only is enabled separately for the model; that
-    switch is disabled by default.'
+  offering: Model-specific free token grants in Singapore, typically one million tokens
+    valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
+  limits: Free token grants apply in Singapore (international), independently per
+    model and dated snapshot. Current pricing tables decide new-grant eligibility.
+    Some older models and snapshots no longer receive new grants; previously issued
+    quotas remain usable until expiry or exhaustion. Check the console for each model's
+    remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account
+    information must be completed before activation. After the grant, usage is automatically
+    billed pay-as-you-go unless Free Quota Only is enabled separately for the model;
+    that switch is disabled by default. OAuth has a separate allowance; its eligible
+    models and reset time are not established here.
   quotas:
   - amount: 1000000.0
     unit: tokens
     period: one-time
     scope: account-model
-    label: Typical signup grant
-    condition: Valid for 90 days from activation, model release or approval, whichever
-      is later
+    label: Typical model token grant
+    condition: Where granted; valid for 90 days from activation, model release or
+      approval, whichever is later
     condition_quote: The free quota is valid for 90 days, starting from the date you
       activate Alibaba Cloud Model Studio, the model is released, or your model request
       is approved (whichever is later).
@@ -1795,7 +1797,33 @@ entries:
       tokens)
     period_quote: The first time you activate Alibaba Cloud Model Studio, the system
       automatically grants your free quota
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-29'
+  - unit: usage
+    scope: account-model
+    state: account-specific
+    label: Removed model-grant campaigns
+    condition: only previously issued quotas, until expiry or exhaustion; no new grants
+    condition_quote: After removal, new users will no longer receive a free quota
+      for the model; quotas already issued to existing users remain available until
+      they expire or are exhausted.
+    source: https://www.alibabacloud.com/help/en/model-studio/new-free-quota
+    quote: After removal, new users will no longer receive a free quota for the model;
+      quotas already issued to existing users remain available until they expire or
+      are exhausted.
+    reviewed_on: '2026-10-29'
+  - amount: 2000.0
+    unit: requests
+    period: day
+    scope: unspecified
+    label: Separate OAuth allowance
+    condition: separate from API-key token grants
+    condition_quote: which is separate from the API Key free quota system in the Alibaba
+      Cloud Model Studio console
+    source: https://www.alibabacloud.com/help/en/model-studio/new-free-quota
+    quote: OAuth authentication provides an independent free quota for model inference
+      (2,000 calls per day)
+    value_phrase: 2,000 calls per day
+    reviewed_on: '2026-10-29'
   free_part: models
   models:
   - family: qwen3.8-max
@@ -1884,7 +1912,9 @@ entries:
     note: Singapore (international) endpoint; use a region-specific general-purpose
       pay-as-you-go key, not a Token Plan or Coding Plan key. Call the exact IDs listed
       here. Enable Free Quota Only per model and wait for the setting to take effect
-      before calling.
+      before calling. Check each ID's remaining free token quota before use; removed
+      grants survive only for existing recipients. These API-key profiles do not use
+      the separate OAuth allowance.
   data_use:
     trains: 'no'
     quote: Alibaba Cloud strictly protects your data privacy and will never use your

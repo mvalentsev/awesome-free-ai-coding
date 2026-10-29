@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-10-26'
-description: 'A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model''s release; OpenAI-compatible. Free models: qwen3.8-max, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b, deepseek-v4-pro, deepseek-v4-flash…'
+description: 'Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible. Free models: qwen3.8-max, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b, deepseek-v4-pro, deepseek-v4-flash, deepseek-v4.1-flash…'
 permalink: /providers/alibaba-model-studio/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: Alibaba Cloud Model Studio (DashScope, international)
 ---
 
@@ -15,7 +15,7 @@ crumb: Alibaba Cloud Model Studio (DashScope, international)
 
 ## What you get
 
-A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
+Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
 ## Free models
 
@@ -23,9 +23,13 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ## Limits, in the vendor's words
 
-Typical signup grant: 1,000,000 tokens once per account per model (Valid for 90 days from activation, model release or approval, whichever is later)
+Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)
 
-Free grants apply in Singapore (international) only, independently per model and dated snapshot. The model pricing tables decide eligibility: Kimi has no free-quota column and glm-5.2-fast-preview has none. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default.
+Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; no new grants)
+
+Separate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)
+
+Free token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. Some older models and snapshots no longer receive new grants; previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.
 
 ## Where it is offered
 
@@ -40,7 +44,7 @@ What you send is not used to train models. In the vendor's words: “Alibaba Clo
 - Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
 - Callable ids: `qwen3.8-max`, `qwen3.8-flash`, `qwen3.8-2.4t-a95b`, `qwen3.8-27b`, `deepseek-v4-pro`, `deepseek-v4-flash-0731`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.2`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.7-flash`, `qwen3.6-plus`, `qwen3.6-flash`, `qwen3.6-35b-a3b`, `qwen3.6-27b`, `qwen3.5-plus`, `qwen3.5-flash`, `qwen3.5-397b-a17b`, `qwen3.5-122b-a10b`, `qwen3.5-35b-a3b`, `qwen3.5-27b`, `qwen3-coder-flash`, `qwen-max`, `qwen-plus`, `qwen-flash`, `qwen3-vl-plus`, `glm-5.1`
-- Note: Singapore (international) endpoint; use a region-specific general-purpose pay-as-you-go key, not a Token Plan or Coding Plan key. Call the exact IDs listed here. Enable Free Quota Only per model and wait for the setting to take effect before calling.
+- Note: Singapore (international) endpoint; use a region-specific general-purpose pay-as-you-go key, not a Token Plan or Coding Plan key. Call the exact IDs listed here. Enable Free Quota Only per model and wait for the setting to take effect before calling. Check each ID's remaining free token quota before use; removed grants survive only for existing recipients. These API-key profiles do not use the separate OAuth allowance.
 
 Try it from your terminal with your key in `ALIBABA_MODEL_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
