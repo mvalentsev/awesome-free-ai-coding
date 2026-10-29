@@ -3,7 +3,7 @@ layout: default
 title: 'muse-glimmer-30b free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: muse-glimmer-30b
 ---
 
@@ -11,7 +11,7 @@ crumb: muse-glimmer-30b
 
 # Where muse-glimmer-30b is free
 
-**3 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-glimmer), below its strong bar.
+**3 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -78,6 +78,6 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

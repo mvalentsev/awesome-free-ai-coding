@@ -240,12 +240,86 @@ def test_a_vendor_public_key_is_available_without_an_environment_variable():
     assert _foreign_keys(records, {0: lane})
 
 
-def test_the_committed_config_has_the_groups_the_checks_use():
-    got = lanes(yaml.safe_load((ROOT / "configs/litellm.yaml").read_text(encoding="utf-8")))
-    strong = [lane for lane in got if lane.name == "free/strong"]
-    nokey = [lane for lane in got if lane.name == "free/nokey"]
-    assert len(strong) >= 3 and any(lane.key is None for lane in nokey)
-    assert any(lane.key and sum(x.name == lane.name for x in got) == 1 for lane in got)
+def test_bridge_requests_an_existing_pool_when_no_strong_pool_is_generated(tmp_path, monkeypatch):
+    import freetier_radar.conformance as conformance
+    got = lanes({"model_list": [
+        {"model_name": "named", "litellm_params": {"model": "openai/model", "api_key": "os.environ/TEST_KEY"}},
+        {"model_name": "free/nokey", "litellm_params": {"model": "openai/one", "api_key": "none"}},
+        {"model_name": "free/nokey", "litellm_params": {"model": "openai/two", "api_key": "none"}},
+    ]})
+    requests, records = [], []
+
+    class Proxy(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+            requests.append(body["model"])
+            ok = body["model"] in {lane.name for lane in got}
+            self.send_response(200 if ok else 404)
+            self.send_header("Content-Type", "text/event-stream" if ok else "application/json")
+            self.end_headers()
+            if ok:
+                lane = next(lane for lane in got if lane.name == body["model"])
+                records.append(_Record(str(lane.index), "/v1/chat/completions", "", body))
+                answer = {"type": "response.completed", "response": {"status": "completed"}}
+                self.wfile.write(("data: " + json.dumps(answer, separators=(",", ":")) + "\n\n").encode())
+            else:
+                self.wfile.write(b'{"error":"model is not configured"}')
+
+    class Served:
+        status = {}
+
+        def mark(self):
+            return len(records)
+
+        def since(self, mark):
+            return records[mark:]
+
+        def failing(self, statuses):
+            self.status = statuses
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Proxy)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    monkeypatch.setattr(conformance, "PROXY_PORT", server.server_port)
+    run = conformance._Run(tmp_path, tmp_path, {}, {})
+    try:
+        conformance._check_bridge(run, "test", Served(), got)
+        conformance._check_fallback(run, "test", Served(), got)
+        assert all(f.verdict == "ok" for f in run.findings)
+        assert requests == ["named", "free/nokey", "free/nokey"]
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+
+@pytest.mark.parametrize("claimed", [False, True])
+def test_absent_groups_are_not_reported_as_successful_fallbacks(tmp_path, monkeypatch, claimed):
+    import freetier_radar.conformance as conformance
+    from freetier_radar.render import _litellm_groups_note
+    config = tmp_path / "configs/litellm.yaml"
+    config.parent.mkdir()
+    config.write_text((_litellm_groups_note(["free/nokey"]) if claimed else "") + "model_list: []\n")
+    monkeypatch.setattr(conformance, "_chat", lambda *args: pytest.fail("no configured pool"))
+    run = conformance._Run(tmp_path, tmp_path, {}, {})
+    conformance._check_fallback(run, "test", None, [])
+    assert run.findings[0].verdict == ("violation" if claimed else "not-applicable")
+    assert conformance.missing_sentences(tmp_path, {"groups": conformance.SENTENCES["groups"]}) == []
+
+
+def test_cooldown_benchmark_reports_when_no_pool_can_supply_two_routes(tmp_path, monkeypatch):
+    import freetier_radar.conformance as conformance
+    got = lanes({"model_list": [{"model_name": "free/nokey", "litellm_params": {
+        "model": "openai/one", "api_key": "none"}}]})
+    monkeypatch.setattr(conformance.subprocess, "run", lambda *args, **kwargs: pytest.fail("no routing pair"))
+    run = conformance._Run(tmp_path, tmp_path, {}, {})
+    conformance._check_policy(run, "test", "unused", tmp_path / "unused.json", got, None)
+    assert run.findings[0].verdict == "not-applicable"
+    text = summary(run.findings, ["test"], ["test"])
+    assert "0 checks held; 1 not applicable" in text and "All 1 checks held" not in text
 
 
 def test_the_request_codex_sends_is_held_to_the_runs_whole():

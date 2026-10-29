@@ -47,7 +47,7 @@ import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
 from .models import OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
-from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE, litellm_command
+from .render import CODEX_SINCE, FREE_GROUPS, LITELLM_BRIDGE_SINCE, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
@@ -73,6 +73,7 @@ LANE_KEY = "canary-{var}"
 # The file a Codex turn is asked to read, and what it says.
 NOTE = "the note says forty-two"
 VERDICTS = ("violation", "drift", "infra", "reworded")
+SUCCESS_VERDICTS = ("ok", "not-applicable")
 
 
 @dataclass(frozen=True)
@@ -97,8 +98,8 @@ SENTENCES: dict[str, Sentence] = {
                                      + re.escape(LITELLM_BRIDGE_SINCE) + r" on\."),
     "bridge": Sentence(LITELLM_YAML, r"The flag makes the proxy's /v1/responses — the only API "
                                      r"Codex CLI speaks — call each lane's chat completions"),
-    "groups": Sentence(LITELLM_YAML, r"a call falls back down that order when a lane runs out of "
-                                     r"quota or has no key set here — set only the keys you "
+    "groups": Sentence(LITELLM_YAML, r"(?:a call falls back down that order when a lane runs out of "
+                                     r"quota or has no key set here|pools its eligible lanes) — set only the keys you "
                                      r"have, and a lane without one is skipped\."),
     "authorization": Sentence(LITELLM_YAML, r"its keyless lane answers only a call with no "
                                             r"Authorization header, and LiteLLM sends one on "
@@ -137,7 +138,7 @@ SENTENCES: dict[str, Sentence] = {
 @dataclass(frozen=True)
 class Finding:
     sentence: str
-    verdict: str          # "ok" or one of VERDICTS
+    verdict: str          # one of SUCCESS_VERDICTS or VERDICTS
     versions: str
     detail: str
 
@@ -327,6 +328,8 @@ def missing_sentences(root: Path, sentences: dict[str, Sentence] = SENTENCES) ->
         if file not in texts:
             texts[file] = comment_text((root / file).read_text(encoding="utf-8"))
         if not re.search(s.pattern, texts[file]):
+            if key == "groups" and not _groups(lanes(yaml.safe_load((root / LITELLM_YAML).read_text()))):
+                continue
             gone.append(key)
     return gone
 
@@ -384,6 +387,17 @@ def lanes(config: dict) -> list[Lane]:
                         key.removeprefix("os.environ/") if key.startswith("os.environ/") else None,
                         key if key and key != "none" and not key.startswith("os.environ/") else None))
     return out
+
+
+def _groups(lanes_: list[Lane]) -> list[str]:
+    names = {lane.name for lane in lanes_}
+    return [name for name in FREE_GROUPS if name in names]
+
+
+def _group_for_check(lanes_: list[Lane], minimum: int = 1) -> str | None:
+    counts = Counter(lane.name for lane in lanes_)
+    return next((name for name in dict.fromkeys(("free/strong", *FREE_GROUPS))
+                 if counts[name] >= minimum), None)
 
 
 def point_lanes(config: dict, base: str) -> dict:
@@ -811,14 +825,19 @@ def _check_keys_set(run: _Run, version: str, binary: str, config: Path, lanes_: 
             run.note("authorization", "drift" if bare_ or not keyless else "ok", v,
                      f"{len(keyless)} calls to keyless lanes, {len(bare_)} without "
                      f"Authorization{which}")
-            _check_bridge(run, v, served, singles)
+            _check_bridge(run, v, served, lanes_)
             _check_fallback(run, v, served, lanes_)
     except _Unstarted as exc:
         run.note("run", "violation", v, f"the printed command did not start the proxy: {exc}")
 
 
-def _check_bridge(run: _Run, v: str, served: _Lanes, singles: list[Lane]) -> None:
-    for model in (next(lane.name for lane in singles if lane.key), "free/strong"):
+def _check_bridge(run: _Run, v: str, served: _Lanes, lanes_: list[Lane]) -> None:
+    counts = Counter(lane.name for lane in lanes_)
+    singles = [lane for lane in lanes_ if counts[lane.name] == 1]
+    named = next((lane.name for lane in singles if lane.key),
+                 singles[0].name if singles else None)
+    models = dict.fromkeys(model for model in (named, _group_for_check(lanes_)) if model)
+    for model in models:
         mark = served.mark()
         body = codex_probe_body(model)
         try:
@@ -838,17 +857,29 @@ def _check_bridge(run: _Run, v: str, served: _Lanes, singles: list[Lane]) -> Non
 
 
 def _check_fallback(run: _Run, v: str, served: _Lanes, lanes_: list[Lane]) -> None:
-    """Every free/strong lane out of quota: the call falls back to free/nokey."""
-    strong = [lane for lane in lanes_ if lane.name == "free/strong"]
-    served.failing({lane.index: 429 for lane in strong})
+    """Exercise an existing fallback edge, or the sole pool when there is one."""
+    groups = _groups(lanes_)
+    if not groups:
+        claimed = re.search(SENTENCES["groups"].pattern,
+                            comment_text((run.root / LITELLM_YAML).read_text()))
+        run.note("groups", "violation" if claimed else "not-applicable", v,
+                 "the config defines no group" + (" but still claims one" if claimed else " or group claim"))
+        return
+    source, target = (groups[-2], groups[-1]) if len(groups) > 1 else (groups[0], groups[0])
+    if source != target:
+        served.failing({lane.index: 429 for lane in lanes_ if lane.name == source})
     mark = served.mark()
-    resp = _chat("free/strong")
-    answered_by = [lanes_[int(r.lane)].name for r in served.since(mark)
-                   if r.lane.isdigit() and served.status.get(int(r.lane), 200) == 200]
-    served.failing({})
-    ok = resp.status_code == 200 and answered_by and set(answered_by) == {"free/nokey"}
+    try:
+        resp = _chat(source)
+        answered_by = [lanes_[int(r.lane)].name for r in served.since(mark)
+                       if r.lane.isdigit() and served.status.get(int(r.lane), 200) == 200]
+    finally:
+        served.failing({})
+    ok = resp.status_code == 200 and answered_by and set(answered_by) == {target}
+    situation = (f"every {source} lane answering 429" if source != target else
+                 f"the sole pool {source}, with no fallback group configured")
     run.note("groups", "ok" if ok else "violation", v,
-             f"every free/strong lane answering 429: the call answered {resp.status_code}, "
+             f"{situation}: the call answered {resp.status_code}, "
              f"from {sorted(set(answered_by)) or 'no lane'}")
 
 
@@ -881,7 +912,7 @@ BENCH_SECONDS = 5
 
 def _check_policy(run: _Run, version: str, binary: str, config_json: Path, lanes_: list[Lane],
                   served: _Lanes) -> None:
-    """All but one of free/strong's lanes answer 500 and twenty calls go out
+    """All but one lane of an available pool answer 500 and twenty calls go out
     back to back: a router that reads each deployment's allowed_fails_policy
     asks every failing lane once a bench (BENCH_SECONDS) and sends the rest to
     the lane left, where 1.89's asked each five times in two seconds. The
@@ -889,18 +920,20 @@ def _check_policy(run: _Run, version: str, binary: str, config_json: Path, lanes
     through the proxy, 1.98 and 1.103 recorded one failure a request on
     2026-09-28, so a burst there benches the lanes a request at a time."""
     v = f"LiteLLM {version}"
-    strong = [lane for lane in lanes_ if lane.name == "free/strong"]
-    if len(strong) < 3:
-        run.note("policy", "infra", v, f"free/strong has {len(strong)} lanes; the check needs 3")
+    group = _group_for_check(lanes_, minimum=2)
+    if group is None:
+        run.note("policy", "not-applicable", v,
+                 "no pool has two deployments for a failing and a healthy route")
         return
-    healthy, failing = strong[0], strong[1:]
+    members = [lane for lane in lanes_ if lane.name == group]
+    healthy, failing = members[0], members[1:]
     home = run.work / f"home-router-{version}"
     home.mkdir(parents=True, exist_ok=True)
     served.failing({lane.index: 500 for lane in failing})
     mark = served.mark()
     try:
         done = subprocess.run([str(Path(binary).parent / "python"), "-c", _ROUTER_CALLS,
-                               str(config_json), "free/strong", "20", "0.05"],
+                               str(config_json), group, "20", "0.05"],
                               env={**_base_env(home), **_key_env(lanes_, keys=True)},
                               capture_output=True, text=True, timeout=600)
     except subprocess.TimeoutExpired:
@@ -925,7 +958,7 @@ def _check_policy(run: _Run, version: str, binary: str, config_json: Path, lanes
     allowed = 1 + int(took // BENCH_SECONDS)
     ok = most <= allowed and held >= 10
     run.note("policy", "ok" if ok else "violation", v,
-             f"LiteLLM's router, {len(failing)} of {len(strong)} free/strong lanes answering 500, "
+             f"LiteLLM's router, {len(failing)} of {len(members)} {group} lanes answering 500, "
              f"20 calls in {took:.1f} s: a failing lane asked at most {most} "
              f"time{'s' if most != 1 else ''} ({allowed} allowed), the other lane {held} times")
 
@@ -941,17 +974,22 @@ def _check_no_keys(run: _Run, version: str, binary: str, config: Path, lanes_: l
     home.mkdir(parents=True, exist_ok=True)
     env = {**_base_env(home), **_key_env(lanes_, keys=False)}
     mark = served.mark()
+    group = _group_for_check(lanes_)
+    if group is None or not any(lane.name == "free/nokey" for lane in lanes_):
+        run.note("no-keys", "not-applicable", v,
+                 "the config has no anonymous pool for a turn with no keys set")
+        return
     run.say(f"LiteLLM {version}, no key set: starting the proxy as the Codex profile prints it")
     try:
         with _proxy(as_run(argv, binary, str(config)), env,
                     run.work / f"proxy-nokeys-{version}.log"):
             run.say("the proxy answers")
-            resp = _chat("free/strong")
+            resp = _chat(group)
             asked = [by_index[int(r.lane)] for r in served.since(mark) if r.lane.isdigit()]
             ok = resp.status_code == 200 and asked and all(lane.key is None for lane in asked)
             named = sorted({lane.name + (" (keyed)" if lane.key else "") for lane in asked})
             run.note("no-keys", "ok" if ok else "violation", v,
-                     f"free/strong with no key set answered {resp.status_code}, from "
+                     f"{group} with no key set answered {resp.status_code}, from "
                      f"{named or 'no lane'}")
             for c in codex_versions:
                 _check_codex_turn(run, version, c, served, newest=c == codex_versions[-1])
@@ -1248,9 +1286,11 @@ def run_checks(root: Path, litellm: dict[str, str], codex: dict[str, str],
 
 
 def summary(findings: list[Finding], litellm: list[str], codex: list[str]) -> str:
-    marks = {"ok": "✓", "violation": "✗ violation", "drift": "✗ drift", "infra": "✗ infra",
+    marks = {"ok": "✓", "not-applicable": "— not applicable", "violation": "✗ violation", "drift": "✗ drift", "infra": "✗ infra",
              "reworded": "✗ reworded"}
-    failed = [f for f in findings if f.verdict != "ok"]
+    failed = [f for f in findings if f.verdict not in SUCCESS_VERDICTS]
+    skipped = sum(f.verdict == "not-applicable" for f in findings)
+    passed = sum(f.verdict == "ok" for f in findings)
     head = [f"## What the configs say LiteLLM and Codex CLI do, run",
             "",
             f"LiteLLM {', '.join(litellm)} and Codex CLI {', '.join(codex)} — the oldest release "
@@ -1258,6 +1298,7 @@ def summary(findings: list[Finding], litellm: list[str], codex: list[str]) -> st
             "one served by the check.",
             "",
             (f"**{len(failed)} of {len(findings)} checks failed.**" if failed else
+             f"**{passed} checks held; {skipped} not applicable.**" if skipped else
              f"**All {len(findings)} checks held.**"),
             "",
             "| | Sentence | Run on | What happened |",
@@ -1310,7 +1351,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.summary:
         with args.summary.open("a", encoding="utf-8") as fh:
             fh.write(text)
-    return 1 if any(f.verdict != "ok" for f in findings) else 0
+    return 1 if any(f.verdict not in SUCCESS_VERDICTS for f in findings) else 0
 
 
 if __name__ == "__main__":

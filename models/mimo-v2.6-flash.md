@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-10-26'
 description: mimo-v2.6-flash is served free by opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-flash/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-29
 crumb: mimo-v2.6-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.6-flash
 
 # Where mimo-v2.6-flash is free
 
-**4 rows on the list serve `mimo-v2.6-flash` free:** opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-6-flash).
+**4 rows on the list serve `mimo-v2.6-flash` free:** opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -125,6 +125,6 @@ Enable explicit :free routes in the dashboard before calling them; the rotating 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

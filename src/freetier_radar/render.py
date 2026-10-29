@@ -714,12 +714,11 @@ def _chart(strong: list[dict], scores: dict | None) -> Chart | None:
 
 
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
-    """Every picture the README names, by its path beside the README, in each
+    """The README pictures and their retained URLs, in each
     of its VARIANTS: the wide pair one palette each, the narrow one with both —
     and the site's mark, the hero's radar alone (SITE_RADAR)."""
-    drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow)}
-    if chart is not None:
-        drawers["strong"] = lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)
+    drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow),
+               "strong": lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)}
     palettes = {"light": (LIGHT, False), "dark": (DARK, False), "narrow": (None, True)}
     pictures = {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
                 for name, draw in drawers.items() for variant in VARIANTS}
@@ -1933,7 +1932,7 @@ def _litellm_groups_note(groups: list[str]) -> str:
     """The header's paragraph on the groups, for the ones the file defines."""
     if not groups:
         return ""
-    how = (" pools every lane of that tier" if len(groups) == 1 else
+    how = (" pools its eligible lanes" if len(groups) == 1 else
            " pool every lane of that tier, and a call falls back down that order when a "
            "lane runs out of quota or has no key set here")
     sentence = (f"Or ask for a group instead of a model: {series(groups, 'or')}{how} — set only "

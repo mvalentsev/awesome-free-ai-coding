@@ -9,14 +9,13 @@
 #   cp configs/codex/litellm.config.toml ~/.codex/
 #   codex -p litellm
 #
-# The model is free/strong: LiteLLM spreads the calls over every strong lane
-# and falls back to free/nokey. A lane whose key is not set is skipped, and
-# free/nokey needs none, so the profile answers before you set any. Any
-# model_name in litellm.yaml works too — codex -p litellm -m <model_name> — as
-# long as the model calls tools, since every Codex turn offers them. Codex
-# warns that it has no metadata for the name, as it does for any model outside
-# OpenAI's.
-model = "free/strong"
+# The model is free/nokey: LiteLLM spreads the calls over the lanes that need
+# no account. A lane whose key is not set is skipped, and free/nokey needs
+# none, so the profile answers before you set any. Any model_name in
+# litellm.yaml works too — codex -p litellm -m <model_name> — as long as the
+# model calls tools, since every Codex turn offers them. Codex warns that it
+# has no metadata for the name, as it does for any model outside OpenAI's.
+model = "free/nokey"
 model_provider = "litellm"
 # The same three settings in every Codex profile here, so the request Codex
 # sends is the one the list's run checks; each is off for lanes that refuse it

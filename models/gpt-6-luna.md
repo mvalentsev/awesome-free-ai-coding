@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-6-luna free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: gpt-6-luna is served free by Codex (ChatGPT Free). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-6-luna/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: gpt-6-luna
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-6-luna
 
 # Where gpt-6-luna is free
 
-**One row on the list serves `gpt-6-luna` free:** Codex (ChatGPT Free). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gpt-6-luna).
+**One row on the list serves `gpt-6-luna` free:** Codex (ChatGPT Free). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -39,6 +39,6 @@ The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

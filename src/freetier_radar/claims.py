@@ -188,7 +188,30 @@ def _page_family_text(root: Path) -> tuple[str, ...]:
     return ('machinery_keywords', 'comments') if missing == [True, True, False] else ()
 
 
+def _unscored_tier_policy(root: Path) -> tuple[str, ...]:
+    from .models import Entry
+    from .tiers import Scored, review
+    entry = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
+        'url': 'https://vendor.example', 'offering': 'Free models',
+        'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
+        'models': [{'family': family, 'aa_model': family, 'tier': 'strong'}
+                   for family in ('known', 'missing')],
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['100 free requests per day']}})
+    _, marks = review([entry], {
+        'top': Scored('top', 'Top', 50, False, False),
+        'known': Scored('known', 'Known', None, False, False)})
+    known, missing = (next(m for m in marks if m.family == f) for f in ('known', 'missing'))
+    return ('clears' if known.moved and known.measured is None else 'invalid',
+            'preserves' if missing.unknown and not missing.moved else 'invalid')
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md",
+          r'An explicit `null` score in\s+a readable current leaderboard (clears) the old tier; a missing model or unreadable\s+source (preserves) it for review',
+          _unscored_tier_policy,
+          "tiers.review; full-table HTTP null/zero/missing/malformed/duplicate controls and unreadable-source preservation in tests/test_tiers.py"),
     Claim("CONTRIBUTING.md", r'`remaining_free` records a separately continuing mode with its `(source)`, `(quote)`,\s+`(free_part)` \(`sum` or `unnamed`\) and optional payment `(access)`',
           lambda root: tuple(RemainingFree.model_fields),
           "models.RemainingFree and expire_entries; HTTP current/changed/unreadable offer controls and exact payment-preserving expiry in tests/test_remaining_free.py"),

@@ -180,7 +180,9 @@ the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leade
 of the index, counting current models only, `strong` within 25, `notable` below
 that but at or above the median of the current models the index scores — its
 upper half, which earns the model a page of its own and no strong mark — and no
-tier below the median or where nothing was measured. `notable` exists because
+tier below the median or where nothing was measured. An explicit `null` score in
+a readable current leaderboard clears the old tier; a missing model or unreadable
+source preserves it for review. `notable` exists because
 the top moves: on 2026-09-26 Claude Opus 5.5 set it at 57.6, and Claude Opus 4.6
 (26.4), Claude Sonnet 4.6 (24.7) and Gemini 3.5 Flash (32.6, a hair under the
 strong bar) were models readers still look for, free on the list and with no

@@ -2201,7 +2201,32 @@ def test_without_a_measurement_the_strong_models_stay_a_list(tmp_path: Path):
     strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
     assert "strong-light.svg" not in strong and "<details>" not in strong
     assert "- [`glm-5.3`]" in strong
-    assert not (tmp_path / "assets" / "readme" / "strong-light.svg").exists()
+    chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text()
+    assert "no current qualifying scores" in chart and 'class="bar ' not in chart
+
+
+@pytest.mark.parametrize("keep_tiers", [False, True])
+def test_render_replaces_old_chart_scores_when_none_can_be_drawn(tmp_path, monkeypatch, keep_tiers):
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import check_rendered, render_repository
+    import freetier_radar.render as renderer
+    reg = tmp_path / "registry.yaml"
+    rows = _strong_rows()
+    save_registry(reg, rows)
+    render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY, scores=SCORES)
+    if not keep_tiers:
+        for row in rows:
+            for model in row.models:
+                model.tier = None
+        save_registry(reg, rows)
+    monkeypatch.setattr(renderer, "load_scores", lambda: {**SCORES, "families": {}})
+    render_repository(reg, Path("templates"), tmp_path, today=TODAY)
+    assert check_rendered(reg, Path("templates"), tmp_path, today=TODAY) == []
+    for variant in ("light", "dark", "narrow"):
+        svg = (tmp_path / "assets/readme" / f"strong-{variant}.svg").read_text()
+        assert "glm-5.3" not in svg and "kimi-k3" not in svg
+        assert "<title" in svg and 'role="img"' in svg
+    assert "strong-light.svg" not in (tmp_path / "README.md").read_text()
 
 
 def test_a_picture_is_described_once_for_the_readme_and_for_itself(tmp_path: Path):

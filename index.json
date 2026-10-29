@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28",
+  "generated": "2026-10-29",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -257,17 +257,14 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "gemma-4-31b",
-          "tier": "notable",
           "aa_model": "gemma-4-31b"
         },
         {
           "family": "gemma-4-26b-a4b",
-          "tier": "notable",
           "aa_model": "gemma-4-26b-a4b"
         },
         {
@@ -286,12 +283,10 @@
         },
         {
           "family": "inkling",
-          "tier": "notable",
           "aa_model": "inkling"
         },
         {
           "family": "inkling-small",
-          "tier": "notable",
           "aa_model": "inkling-small"
         },
         {
@@ -300,6 +295,10 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "api": {
@@ -325,6 +324,13 @@
           "xingchen-agi/xing4.0-29b-a4b:free",
           "recursive/flint-v1.0:free"
         ],
+        "model_bindings": {
+          "nvidia/nemotron-3.5-super-vl:free": {
+            "family": "nemotron-3.5-super-vl-120b-a12b",
+            "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
+            "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
+          }
+        },
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free",
           "google/lyria-3-pro-preview",
@@ -384,7 +390,8 @@
           "inkling",
           "inkling-small",
           "dots-3-note",
-          "nemotron-3-nano-omni"
+          "nemotron-3-nano-omni",
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -419,7 +426,8 @@
           "inkling": "",
           "inkling-small": "",
           "dots-3-note": "",
-          "nemotron-3-nano-omni": ""
+          "nemotron-3-nano-omni": "",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "aggregator"
@@ -463,27 +471,22 @@
       "models": [
         {
           "family": "gemini-3.8-flash",
-          "tier": "strong",
           "aa_model": "gemini-3-8-flash"
         },
         {
           "family": "gemini-3.6-flash",
-          "tier": "strong",
           "aa_model": "gemini-3-6-flash"
         },
         {
           "family": "gemini-3.5-flash-lite",
-          "tier": "notable",
           "aa_model": "gemini-3-5-flash-lite"
         },
         {
           "family": "gemini-3.1-flash-lite",
-          "tier": "notable",
           "aa_model": "gemini-3-1-flash-lite-preview"
         },
         {
           "family": "gemini-3-flash",
-          "tier": "notable",
           "aa_model": "gemini-3-flash"
         },
         {
@@ -826,8 +829,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/"
@@ -1010,7 +1012,6 @@
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -1082,8 +1083,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
@@ -1110,7 +1110,7 @@
           "label": "Shared Studio, API and Vibe allowance",
           "source": "https://docs.mistral.ai/admin/billing-usage/subscriptions",
           "quote": "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code.",
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -1121,7 +1121,7 @@
           "label": "API rate limits",
           "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
           "quote": "Requests per second: The request throughput limit for the model.",
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -1132,7 +1132,7 @@
           "label": "API rate limits",
           "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
           "quote": "Tokens per minute: The token throughput limit for the model.",
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null
         }
       ],
@@ -1516,7 +1516,6 @@
         },
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
@@ -1525,8 +1524,12 @@
         },
         {
           "family": "mimo-v2.6-flash",
-          "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "table_name": "DeepSeek V4.1 Flash Free",
+          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "newcomers": [
@@ -1535,12 +1538,6 @@
           "on": "2026-10-25",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "table_name": "Flint 40B Free"
-        },
-        {
-          "family": "deepseek-v4.1-flash",
-          "on": "2026-10-15",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "DeepSeek V4.1 Flash Free"
         },
         {
           "family": "glm-5.3-flash",
@@ -1555,7 +1552,7 @@
           "table_name": "Beam Free"
         },
         {
-          "family": "nemotron-3.5-super-vl",
+          "family": "nemotron-3.5-super-vl-120b-a12b",
           "on": "2026-10-19",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "table_name": "Nemotron 3.5 Super VL Free"
@@ -1619,7 +1616,8 @@
           "big-pickle",
           "nemotron-3-ultra",
           "nemotron-3.5-lightning",
-          "mimo-v2.6-flash"
+          "mimo-v2.6-flash",
+          "deepseek-v4.1-flash"
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
@@ -1630,14 +1628,14 @@
           "big-pickle": "",
           "nemotron-3-ultra": "",
           "nemotron-3.5-lightning": "",
-          "mimo-v2.6-flash": ""
+          "mimo-v2.6-flash": "",
+          "deepseek-v4.1-flash": ""
         },
         "section": {
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/"
@@ -1670,7 +1668,6 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
@@ -1693,6 +1690,10 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "api": {
@@ -1723,6 +1724,11 @@
             "source": "https://api.kilo.ai/api/gateway/models",
             "quote": "Beam 1.0 (free)",
             "read": "catalog"
+          },
+          "nvidia/nemotron-3.5-super-vl:free": {
+            "family": "nemotron-3.5-super-vl-120b-a12b",
+            "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
+            "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
           }
         },
         "model_limits": {
@@ -1803,7 +1809,8 @@
           "laguna-xs-2.1",
           "nemotron-3.5-lightning",
           "dots-3-note",
-          "nemotron-3-nano-omni"
+          "nemotron-3-nano-omni",
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "openrouter/free",
@@ -1833,7 +1840,8 @@
           "laguna-xs-2.1": "",
           "nemotron-3.5-lightning": "",
           "dots-3-note": "",
-          "nemotron-3-nano-omni": ""
+          "nemotron-3-nano-omni": "",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "agent-cli"
@@ -2314,7 +2322,6 @@
       "models": [
         {
           "family": "mimo-v2.5",
-          "tier": "notable",
           "aa_model": "mimo-v2-5-0424"
         }
       ],
@@ -2618,27 +2625,22 @@
       "models": [
         {
           "family": "claude-sonnet-4.5",
-          "tier": "notable",
           "aa_model": "claude-4-5-sonnet"
         },
         {
           "family": "claude-sonnet-4",
-          "tier": "notable",
           "aa_model": "claude-4-sonnet"
         },
         {
           "family": "glm-5",
-          "tier": "notable",
           "aa_model": "glm-5"
         },
         {
           "family": "minimax-m2.5",
-          "tier": "notable",
           "aa_model": "minimax-m2-5"
         },
         {
           "family": "deepseek-v3.2",
-          "tier": "notable",
           "aa_model": "deepseek-v3-2"
         },
         {
@@ -2647,7 +2649,6 @@
         },
         {
           "family": "minimax-m2.1",
-          "tier": "notable",
           "aa_model": "minimax-m2-1"
         }
       ],
@@ -2844,7 +2845,6 @@
       "models": [
         {
           "family": "gpt-6-luna",
-          "tier": "strong",
           "aa_model": "gpt-6-luna"
         }
       ],
@@ -3100,8 +3100,7 @@
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/"
@@ -3135,7 +3134,7 @@
           "source": "https://build.nvidia.com/explore/discover",
           "quote": "Up to 40 RPM",
           "value_phrase": "Up to 40 RPM",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 10000.0,
@@ -3146,19 +3145,17 @@
           "source": "https://build.nvidia.com/explore/discover",
           "quote": "10,000 requests per day",
           "value_phrase": "10,000 requests per day",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "models",
       "models": [
         {
           "family": "glm-5.3-flash",
-          "tier": "strong",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
@@ -3166,7 +3163,6 @@
         },
         {
           "family": "muse-glimmer-30b",
-          "tier": "notable",
           "aa_model": "muse-glimmer"
         },
         {
@@ -3175,7 +3171,6 @@
         },
         {
           "family": "gemma-4-31b",
-          "tier": "notable",
           "aa_model": "gemma-4-31b"
         },
         {
@@ -3197,8 +3192,15 @@
         },
         {
           "family": "deepseek-v4.1-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "step-5-preview-600b-a27b",
+          "aa_model": "step-5"
         }
       ],
       "api": {
@@ -3224,6 +3226,13 @@
           "minimaxai/minimax-m3.1-flash",
           "nvidia/nemotron-3.5-bolt-e4b"
         ],
+        "model_bindings": {
+          "stepfun-ai/step-5-preview": {
+            "family": "step-5-preview-600b-a27b",
+            "source": "https://build.nvidia.com/stepfun-ai/step-5-preview",
+            "quote": "Preview of StepFun's Step 5: ~600B-total / 27B-active multimodal MoE (text and image in, text out) with 1M context, reasoning and tool calling, served in NVFP4."
+          }
+        },
         "ignored_ids": [
           "nvidia/nemotron-3-embed-1b",
           "nvidia/nemotron-3.5-content-safety",
@@ -3295,7 +3304,9 @@
           "diffusiongemma",
           "llama-3.2-90b-vision",
           "llama-3.2-11b-vision",
-          "deepseek-v4.1-flash"
+          "deepseek-v4.1-flash",
+          "nemotron-3.5-super-vl-120b-a12b",
+          "step-5-preview-600b-a27b"
         ],
         "ids": [
           "z-ai/glm-5.3-flash",
@@ -3331,14 +3342,15 @@
           "diffusiongemma": "",
           "llama-3.2-90b-vision": "",
           "llama-3.2-11b-vision": "",
-          "deepseek-v4.1-flash": ""
+          "deepseek-v4.1-flash": "",
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "step-5-preview-600b-a27b": ""
         },
         "section": {
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/"
@@ -3372,7 +3384,6 @@
       "models": [
         {
           "family": "glm-4.7-flash",
-          "tier": "notable",
           "aa_model": "glm-4-7-flash"
         },
         {
@@ -3504,7 +3515,6 @@
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -3574,8 +3584,7 @@
         },
         "flags": [
           "nocard",
-          "nokey",
-          "strong"
+          "nokey"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"
@@ -3703,57 +3712,48 @@
       "models": [
         {
           "family": "qwen3.8-max",
-          "tier": "strong",
+          "tier": "notable",
           "aa_model": "qwen3-8-max"
         },
         {
           "family": "qwen3.8-flash",
-          "tier": "strong",
           "aa_model": "qwen3-8-flash-next"
         },
         {
           "family": "qwen3.8-2.4t-a95b",
-          "tier": "strong",
           "aa_model": "qwen3-8-2-4t-a95b"
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         },
         {
           "family": "deepseek-v4-pro",
-          "tier": "strong",
           "aa_model": "deepseek-v4-pro"
         },
         {
           "family": "deepseek-v4-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "deepseek-v4.1-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
         },
         {
           "family": "glm-5.3",
-          "tier": "strong",
+          "tier": "notable",
           "aa_model": "glm-5-3"
         },
         {
           "family": "glm-5.2",
-          "tier": "strong",
           "aa_model": "glm-5-2"
         },
         {
           "family": "qwen3.7-max",
-          "tier": "notable",
           "aa_model": "qwen3-7-max"
         },
         {
           "family": "qwen3.7-plus",
-          "tier": "notable",
           "aa_model": "qwen3-7-plus"
         },
         {
@@ -3761,7 +3761,6 @@
         },
         {
           "family": "qwen3.6-plus",
-          "tier": "notable",
           "aa_model": "qwen3-6-plus"
         },
         {
@@ -3769,12 +3768,10 @@
         },
         {
           "family": "qwen3.6-35b-a3b",
-          "tier": "notable",
           "aa_model": "qwen3-6-35b-a3b"
         },
         {
           "family": "qwen3.6-27b",
-          "tier": "notable",
           "aa_model": "qwen3-6-27b"
         },
         {
@@ -3785,22 +3782,18 @@
         },
         {
           "family": "qwen3.5-397b-a17b",
-          "tier": "notable",
           "aa_model": "qwen3-5-397b-a17b"
         },
         {
           "family": "qwen3.5-122b-a10b",
-          "tier": "notable",
           "aa_model": "qwen3-5-122b-a10b"
         },
         {
           "family": "qwen3.5-35b-a3b",
-          "tier": "notable",
           "aa_model": "qwen3-5-35b-a3b"
         },
         {
           "family": "qwen3.5-27b",
-          "tier": "notable",
           "aa_model": "qwen3-5-27b"
         },
         {
@@ -3820,7 +3813,6 @@
         },
         {
           "family": "glm-5.1",
-          "tier": "notable",
           "aa_model": "glm-5-1"
         }
       ],
@@ -3997,8 +3989,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/"
@@ -4130,8 +4121,8 @@
         "initial_payment_usd": 1.0,
         "payment_kind": "charge"
       },
-      "offering": "Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet",
-      "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan\n\nThe documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop at their quota instead of switching to paid credit. Cached input does not count toward these promotional quotas. The separate pricing-page Free core caps apply to its advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases. That page has no general monthly credits; its Free card speed conflicts with its detailed table and FAQ, and its chat claims conflict with positive Free-selected catalog prices. Jev uses a decision API rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+      "offering": "Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet",
+      "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
       "quotas": [
         {
           "amount": 500000.0,
@@ -4146,7 +4137,7 @@
           "model_ids": [
             "gpt-6-astra:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 100000.0,
@@ -4161,7 +4152,7 @@
           "model_ids": [
             "gpt-6-astra:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 200000.0,
@@ -4176,7 +4167,7 @@
           "model_ids": [
             "gpt-6-astra:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 40000.0,
@@ -4191,7 +4182,7 @@
           "model_ids": [
             "gpt-6-astra:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 375000.0,
@@ -4206,7 +4197,7 @@
           "model_ids": [
             "claude-fable-5.1:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 75000.0,
@@ -4221,7 +4212,7 @@
           "model_ids": [
             "claude-fable-5.1:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 100000.0,
@@ -4236,7 +4227,7 @@
           "model_ids": [
             "claude-fable-5.1:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 30000.0,
@@ -4251,7 +4242,7 @@
           "model_ids": [
             "claude-fable-5.1:free"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 10.0,
@@ -4259,10 +4250,11 @@
           "period": "minute",
           "scope": "plan",
           "label": "Free core models",
+          "reset": "reset at 00:00 UTC",
           "source": "https://www.experientiallabs.ai/pricing",
-          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
-          "value_phrase": "10 shared requests/min",
-          "reviewed_on": "2026-10-26"
+          "quote": "Free core models share one pool of 10 RPM, 250K TPM and 1M input and output tokens a day, reset at 00:00 UTC.",
+          "value_phrase": "10 RPM",
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 250000.0,
@@ -4270,10 +4262,11 @@
           "period": "minute",
           "scope": "plan",
           "label": "Free core models",
+          "reset": "reset at 00:00 UTC",
           "source": "https://www.experientiallabs.ai/pricing",
-          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
-          "value_phrase": "250K shared tokens/min",
-          "reviewed_on": "2026-10-26"
+          "quote": "Free core models share one pool of 10 RPM, 250K TPM and 1M input and output tokens a day, reset at 00:00 UTC.",
+          "value_phrase": "250K TPM",
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 1000000.0,
@@ -4281,10 +4274,11 @@
           "period": "day",
           "scope": "plan",
           "label": "Free core models",
+          "reset": "reset at 00:00 UTC",
           "source": "https://www.experientiallabs.ai/pricing",
-          "quote": "Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day across DeepSeek, Luna and Clef. No general credits.",
-          "value_phrase": "1M tokens/day",
-          "reviewed_on": "2026-10-26"
+          "quote": "Free core models share one pool of 10 RPM, 250K TPM and 1M input and output tokens a day, reset at 00:00 UTC.",
+          "value_phrase": "1M input and output tokens a day",
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "models",
@@ -4332,8 +4326,8 @@
           "gpt-6-astra:free",
           "claude-fable-5.1:free"
         ],
-        "what": "Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet",
-        "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan\n\nThe documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop at their quota instead of switching to paid credit. Cached input does not count toward these promotional quotas. The separate pricing-page Free core caps apply to its advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases. That page has no general monthly credits; its Free card speed conflicts with its detailed table and FAQ, and its chat claims conflict with positive Free-selected catalog prices. Jev uses a decision API rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
+        "what": "Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet",
+        "limits": "Astra promotional input: 500,000 tokens/day; 200,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nAstra promotional output: 100,000 tokens/day; 40,000 tokens/hour per organization per model; for `gpt-6-astra:free`\n\nFable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`\n\nFree core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC\n\nThe gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.",
         "why": "",
         "access": "requires $1 charge",
         "modelAccess": {},
@@ -4756,12 +4750,10 @@
       "models": [
         {
           "family": "qwen3.8-flash",
-          "tier": "strong",
           "aa_model": "qwen3-8-flash-next"
         },
         {
           "family": "deepseek-v4.1-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
         }
       ],
@@ -4837,8 +4829,7 @@
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "access_labels": {
@@ -5012,6 +5003,10 @@
       "models": [
         {
           "family": "laguna-s-2.1"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
         }
       ],
       "api": {
@@ -5083,7 +5078,8 @@
       "search": {
         "name": "Vercel AI Gateway",
         "models": [
-          "laguna-s-2.1"
+          "laguna-s-2.1",
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "poolside/laguna-s-2.1-free",
@@ -5096,7 +5092,8 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "laguna-s-2.1": ""
+          "laguna-s-2.1": "",
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "aggregator"
@@ -5205,7 +5202,6 @@
       "models": [
         {
           "family": "deepseek-v4-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-flash"
         }
       ],
@@ -5284,8 +5280,7 @@
           "id": "aggregator"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/"
@@ -5562,17 +5557,14 @@
       "models": [
         {
           "family": "deepseek-v4-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "minimax-m2.7",
-          "tier": "notable",
           "aa_model": "minimax-m2-7"
         },
         {
           "family": "muse-glimmer-30b",
-          "tier": "notable",
           "aa_model": "muse-glimmer"
         }
       ],
@@ -5649,8 +5641,7 @@
           "id": "aggregator"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/"
@@ -5685,7 +5676,6 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
@@ -5694,7 +5684,6 @@
         },
         {
           "family": "gemma-4-31b",
-          "tier": "notable",
           "aa_model": "gemma-4-31b"
         },
         {
@@ -5703,7 +5692,6 @@
         },
         {
           "family": "muse-glimmer-30b",
-          "tier": "notable",
           "aa_model": "muse-glimmer"
         },
         {
@@ -5722,7 +5710,6 @@
         },
         {
           "family": "ling-3.1-flash",
-          "tier": "strong",
           "aa_model": "ling-3-1-flash"
         }
       ],
@@ -5824,8 +5811,7 @@
         },
         "flags": [
           "nocard",
-          "claude",
-          "strong"
+          "claude"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/"
@@ -5892,19 +5878,16 @@
       "models": [
         {
           "family": "gemini-3.8-flash",
-          "tier": "strong",
           "aa_model": "gemini-3-8-flash"
         },
         {
           "family": "claude-opus-4.6",
           "table_name": "Claude Opus 4.6 (thinking)*",
-          "tier": "notable",
           "aa_model": "claude-opus-4-6"
         },
         {
           "family": "claude-sonnet-4.6",
           "table_name": "Claude Sonnet 4.6 (thinking)*",
-          "tier": "notable",
           "aa_model": "claude-sonnet-4-6"
         },
         {
@@ -6202,8 +6185,7 @@
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/"
@@ -6921,37 +6903,31 @@
       "models": [
         {
           "family": "glm-5.3",
-          "tier": "strong",
+          "tier": "notable",
           "aa_model": "glm-5-3"
         },
         {
           "family": "glm-5.3-flash",
-          "tier": "strong",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "kimi-k3",
-          "tier": "strong",
           "aa_model": "kimi-k3"
         },
         {
           "family": "glm-5.2",
-          "tier": "strong",
           "aa_model": "glm-5-2"
         },
         {
           "family": "glm-5.1",
-          "tier": "notable",
           "aa_model": "glm-5-1"
         },
         {
           "family": "glm-5",
-          "tier": "notable",
           "aa_model": "glm-5"
         },
         {
           "family": "glm-5-turbo",
-          "tier": "notable",
           "aa_model": "glm-5-turbo"
         },
         {
@@ -6960,17 +6936,14 @@
         },
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "minimax-m3",
-          "tier": "notable",
           "aa_model": "minimax-m3"
         },
         {
           "family": "minimax-m2.7",
-          "tier": "notable",
           "aa_model": "minimax-m2-7"
         },
         {
@@ -6984,37 +6957,30 @@
         },
         {
           "family": "glm-4.7",
-          "tier": "notable",
           "aa_model": "glm-4-7"
         },
         {
           "family": "glm-4.7-flash",
-          "tier": "notable",
           "aa_model": "glm-4-7-flash"
         },
         {
           "family": "glm-4.6",
-          "tier": "notable",
           "aa_model": "glm-4-6"
         },
         {
           "family": "minimax-m2.5",
-          "tier": "notable",
           "aa_model": "minimax-m2-5"
         },
         {
           "family": "minimax-m2.1",
-          "tier": "notable",
           "aa_model": "minimax-m2-1"
         },
         {
           "family": "minimax-m2",
-          "tier": "notable",
           "aa_model": "minimax-m2"
         },
         {
           "family": "mimo-v2-flash",
-          "tier": "notable",
           "aa_model": "mimo-v2-flash"
         },
         {
@@ -7036,12 +7002,10 @@
         },
         {
           "family": "mimo-v2.6-flash",
-          "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
         },
         {
           "family": "mimo-v2.6-pro",
-          "tier": "strong",
           "aa_model": "mimo-v2-6-pro"
         }
       ],
@@ -7251,8 +7215,7 @@
         },
         "flags": [
           "nocard",
-          "claude",
-          "strong"
+          "claude"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/"
@@ -7797,7 +7760,6 @@
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -7865,8 +7827,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/"
@@ -8000,7 +7961,6 @@
       "models": [
         {
           "family": "glm-5.2",
-          "tier": "strong",
           "aa_model": "glm-5-2"
         },
         {
@@ -8009,7 +7969,6 @@
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         },
         {
@@ -8018,7 +7977,6 @@
         },
         {
           "family": "gemma-4-31b",
-          "tier": "notable",
           "aa_model": "gemma-4-31b"
         },
         {
@@ -8034,7 +7992,6 @@
         },
         {
           "family": "qwen3.5-122b-a10b",
-          "tier": "notable",
           "aa_model": "qwen3-5-122b-a10b"
         }
       ],
@@ -8136,8 +8093,7 @@
           "id": "trial"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/"
@@ -8170,17 +8126,14 @@
         },
         {
           "family": "mimo-v2.6-flash",
-          "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
         },
         {
           "family": "glm-5.3-flash",
-          "tier": "strong",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "deepseek-v4.1-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
         }
       ],
@@ -8307,7 +8260,6 @@
             "name": "MiMo V2.6 Flash Fast",
             "model": {
               "family": "mimo-v2.6-flash",
-              "tier": "strong",
               "aa_model": "mimo-v2-6-flash"
             },
             "limited": true,
@@ -8322,7 +8274,6 @@
             "name": "GLM 5.3 Flash",
             "model": {
               "family": "glm-5.3-flash",
-              "tier": "strong",
               "aa_model": "glm-5-3-flash"
             },
             "limited": true,
@@ -8337,7 +8288,6 @@
             "name": "DeepSeek V4.1 Flash 10/17",
             "model": {
               "family": "deepseek-v4.1-flash",
-              "tier": "strong",
               "aa_model": "deepseek-v4-1-flash"
             },
             "limited": true,
@@ -8484,8 +8434,7 @@
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "access_labels": {
@@ -8670,7 +8619,6 @@
         },
         {
           "family": "glm-4.7-flash",
-          "tier": "notable",
           "aa_model": "glm-4-7-flash"
         }
       ],
@@ -9017,26 +8965,26 @@
         "https://llmtr.com/blog/arapca-dil-modeli-api-jais-3",
         "https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens",
         "https://llmtr.com/blog/jais-3-vs-k2-horizon",
-        "https://llmtr.com/models/poolside/laguna-xs-2.1"
+        "https://llmtr.com/models/poolside/laguna-xs-2.1",
+        "https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
       "quotas": [
         {
           "unit": "usage",
           "period": "day",
           "scope": "unspecified",
-          "label": "Nemotron Ultra/Super and Qwen3.8 27B",
+          "label": "Nemotron Ultra and Qwen3.8 27B",
           "source": "https://llmtr.com/v1/models",
           "quote": "günlük kotayla ücretsiz",
           "read": "catalog",
           "model_ids": [
             "nvidia/nemotron-3-ultra-550b-a55b",
-            "nvidia/nemotron-3-super-120b-a12b",
             "qwen/qwen3.8-27b-free"
           ],
-          "reviewed_on": "2026-10-27",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -9049,7 +8997,7 @@
           "model_ids": [
             "heabsy/qwen3.8-27b-heabsy-free"
           ],
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -9062,7 +9010,7 @@
           "model_ids": [
             "nvidia/nemotron-3.5-super-vl-free"
           ],
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -9140,12 +9088,7 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
-          "family": "nemotron-3-super",
-          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "agnes-3.0-flash"
@@ -9155,7 +9098,6 @@
         },
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         },
         {
@@ -9163,12 +9105,10 @@
         },
         {
           "family": "k2-horizon-375b-a23b",
-          "tier": "notable",
           "aa_model": "k2-horizon-375b-a23b"
         },
         {
           "family": "minimax-m3.1-flash",
-          "tier": "strong",
           "aa_model": "minimax-m3-1-flash"
         },
         {
@@ -9185,6 +9125,10 @@
         },
         {
           "family": "sage-a1.5"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "api": {
@@ -9194,7 +9138,6 @@
         "openai_compatible": true,
         "model_ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
-          "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.8-27b-free",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
@@ -9215,6 +9158,11 @@
             "source": "https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage",
             "quote": "internlm/intern-s2-free",
             "target": "https://huggingface.co/internlm/Intern-S2-397B"
+          },
+          "nvidia/nemotron-3.5-super-vl-free": {
+            "family": "nemotron-3.5-super-vl-120b-a12b",
+            "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
+            "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
           }
         },
         "model_access": {
@@ -9423,7 +9371,6 @@
         "name": "LLMTR",
         "models": [
           "nemotron-3-ultra",
-          "nemotron-3-super",
           "agnes-3.0-flash",
           "agnes-2.5-flash",
           "qwen3.8-27b",
@@ -9434,11 +9381,11 @@
           "atria-dawn",
           "atria-dawn-preview",
           "agents-a1",
-          "sage-a1.5"
+          "sage-a1.5",
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
-          "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.8-27b-free",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
@@ -9454,12 +9401,11 @@
           "internlm/sage-a1.5-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nHeabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nShanghai AI Lab models: 500,000 tokens/day sharing scope disputed (Per model; model pages say per person, the guide says per account. Input, output and reasoning count; new accounts have a lower first-day allowance.); for `internlm/intern-s2-free`, `internlm/atria-dawn-free`, `internlm/atria-dawn-preview-free`, `internlm/agents-a1-free`, `internlm/sage-a1.5-free`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
         "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
-          "nemotron-3-super": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
@@ -9470,21 +9416,20 @@
           "atria-dawn": "until 2026-10-31",
           "atria-dawn-preview": "until 2026-10-31",
           "agents-a1": "until 2026-10-31",
-          "sage-a1.5": "until 2026-10-31"
+          "sage-a1.5": "until 2026-10-31",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "aggregator"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "access_labels": {
         "offer": "",
         "models": {
           "nemotron-3-ultra": "",
-          "nemotron-3-super": "",
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
@@ -9495,11 +9440,11 @@
           "atria-dawn": "until 2026-10-31",
           "atria-dawn-preview": "until 2026-10-31",
           "agents-a1": "until 2026-10-31",
-          "sage-a1.5": "until 2026-10-31"
+          "sage-a1.5": "until 2026-10-31",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "ids": {
           "nvidia/nemotron-3-ultra-550b-a55b": "",
-          "nvidia/nemotron-3-super-120b-a12b": "",
           "qwen/qwen3.8-27b-free": "",
           "agnes/agnes-3.0-flash": "",
           "agnes/agnes-2.5-flash": "",
@@ -9773,17 +9718,14 @@
       "models": [
         {
           "family": "deepseek-v4-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "glm-5.3-flash",
-          "tier": "strong",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "minimax-m3",
-          "tier": "notable",
           "aa_model": "minimax-m3"
         },
         {
@@ -9893,8 +9835,7 @@
         },
         "flags": [
           "nocard",
-          "claude",
-          "strong"
+          "claude"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/"
@@ -10631,6 +10572,10 @@
       "models": [
         {
           "family": "solar-mini-4"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "client_lane": {
@@ -10640,7 +10585,14 @@
           "reflection/beam-free",
           "nvidia/nemotron-3.5-lightning-free",
           "poolside/laguna-s-2.1-free"
-        ]
+        ],
+        "model_bindings": {
+          "cline-free/nemotron-3.5-super-vl": {
+            "family": "nemotron-3.5-super-vl-120b-a12b",
+            "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
+            "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
+          }
+        }
       },
       "data_use": {
         "trains": "yes",
@@ -10674,7 +10626,8 @@
       "search": {
         "name": "Cline",
         "models": [
-          "solar-mini-4"
+          "solar-mini-4",
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "cline-free/solar-mini4",
@@ -10688,7 +10641,8 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "solar-mini-4": ""
+          "solar-mini-4": "",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "agent-cli"
@@ -10890,7 +10844,6 @@
       "models": [
         {
           "family": "qwen3.8-flash",
-          "tier": "strong",
           "aa_model": "qwen3-8-flash-next"
         }
       ],
@@ -10971,8 +10924,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "archived_because": "delisted on 2026-10-15: free accounts now include 0 requests/week and API inference requires a paid plan",
@@ -11476,12 +11428,10 @@
       "models": [
         {
           "family": "deepseek-v4.1-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-1-flash"
         },
         {
           "family": "mimo-v2.6-flash",
-          "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
         }
       ],
@@ -11565,8 +11515,7 @@
         },
         "flags": [
           "nocard",
-          "claude",
-          "strong"
+          "claude"
         ]
       },
       "access_labels": {
@@ -11611,7 +11560,6 @@
       "models": [
         {
           "family": "step-3.7-flash",
-          "tier": "notable",
           "aa_model": "step-3-7-flash"
         },
         {
@@ -11622,7 +11570,6 @@
         },
         {
           "family": "longcat-2.0",
-          "tier": "notable",
           "aa_model": "longcat-2-0"
         },
         {
@@ -11814,7 +11761,7 @@
           "source": "https://docs.llm7.io/limits.md",
           "quote": "100,000 tokens per 24 hours",
           "value_phrase": "100,000 tokens per 24 hours",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 1.0,
@@ -11841,7 +11788,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 60.0,
@@ -11868,7 +11815,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 250.0,
@@ -11895,7 +11842,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "models",
@@ -11991,7 +11938,7 @@
           "source": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
           "quote": "$1 credit",
           "value_phrase": "$1 credit",
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "period": null
         },
         {
@@ -12002,7 +11949,7 @@
           "source": "https://docs.fireworks.ai/guides/quotas_usage/account-quotas",
           "quote": "No payment method or no credits 10 RPM",
           "value_phrase": "No payment method or no credits 10 RPM",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "sum",
@@ -12190,7 +12137,6 @@
       "models": [
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         },
         {
@@ -12275,8 +12221,7 @@
         },
         "flags": [
           "nocard",
-          "nokey",
-          "strong"
+          "nokey"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/"
@@ -12619,7 +12564,6 @@
       "models": [
         {
           "family": "gemma-4-31b",
-          "tier": "notable",
           "aa_model": "gemma-4-31b"
         }
       ],
@@ -13728,7 +13672,6 @@
       "models": [
         {
           "family": "minimax-m2",
-          "tier": "notable",
           "aa_model": "minimax-m2"
         },
         {
@@ -14059,7 +14002,6 @@
       "models": [
         {
           "family": "longcat-2.0",
-          "tier": "notable",
           "aa_model": "longcat-2-0"
         },
         {
@@ -14306,7 +14248,6 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
@@ -14315,7 +14256,6 @@
         },
         {
           "family": "step-3.7-flash",
-          "tier": "notable",
           "aa_model": "step-3-7-flash"
         },
         {
@@ -14464,7 +14404,7 @@
           "source": "https://llmtech.eu/docs/",
           "quote": "20M tokens per day per address",
           "value_phrase": "20M tokens per day per address",
-          "reviewed_on": "2026-10-28"
+          "reviewed_on": "2026-10-29"
         },
         {
           "unit": "requests",
@@ -14474,7 +14414,7 @@
           "label": "Shared trial key",
           "source": "https://llmtech.eu/docs/",
           "quote": "Shared and rate-limited: 16 concurrent requests",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-10-29",
           "amount": null
         },
         {
@@ -14485,14 +14425,13 @@
           "source": "https://llmtech.eu/docs/",
           "quote": "it shares the endpoint's 64 requests in flight with other keys",
           "value_phrase": "it shares the endpoint's 64 requests in flight with other keys",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "models",
       "models": [
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -14559,8 +14498,7 @@
         },
         "flags": [
           "nocard",
-          "nokey",
-          "strong"
+          "nokey"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/"
@@ -14959,17 +14897,14 @@
       "models": [
         {
           "family": "gemini-3.1-pro",
-          "tier": "notable",
           "aa_model": "gemini-3-1-pro-preview"
         },
         {
           "family": "gemini-3-flash",
-          "tier": "notable",
           "aa_model": "gemini-3-flash"
         },
         {
           "family": "gemini-2.5-pro",
-          "tier": "notable",
           "aa_model": "gemini-2-5-pro"
         },
         {
@@ -15133,17 +15068,15 @@
       "models": [
         {
           "family": "glm-5.3",
-          "tier": "strong",
+          "tier": "notable",
           "aa_model": "glm-5-3"
         },
         {
           "family": "glm-5-turbo",
-          "tier": "notable",
           "aa_model": "glm-5-turbo"
         },
         {
           "family": "glm-5.3-flash",
-          "tier": "strong",
           "aa_model": "glm-5-3-flash"
         }
       ],
@@ -15206,8 +15139,7 @@
           "id": "trial"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/"
@@ -15474,7 +15406,6 @@
       "models": [
         {
           "family": "qwen3.8-flash",
-          "tier": "strong",
           "aa_model": "qwen3-8-flash-next"
         }
       ],
@@ -15523,8 +15454,7 @@
           "id": "agent-cli"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/"
@@ -15641,7 +15571,6 @@
       "models": [
         {
           "family": "deepseek-v4-flash",
-          "tier": "strong",
           "aa_model": "deepseek-v4-flash"
         },
         {
@@ -15649,7 +15578,6 @@
         },
         {
           "family": "glm-5.2",
-          "tier": "strong",
           "aa_model": "glm-5-2"
         }
       ],
@@ -15700,8 +15628,7 @@
           "id": "trial"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/"
@@ -15735,7 +15662,7 @@
           "source": "https://agent.minimax.io/docs/code/account/usage",
           "quote": "Daily check-ins earn 400 points",
           "value_phrase": "Daily check-ins earn 400 points",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 1000.0,
@@ -15748,7 +15675,7 @@
           "source": "https://agent.minimax.io/docs/code/account/usage",
           "quote": "Check-ins on day 4 and day 7 award 1,000 points per day",
           "value_phrase": "Check-ins on day 4 and day 7 award 1,000 points per day",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         }
       ],
       "free_part": "sum",
@@ -15825,7 +15752,7 @@
           "condition_quote": "No card, no top-up, no sales call.",
           "source": "https://wallabytoken.com/blog/p/kimi-k3-free-trial",
           "quote": "every new Wallaby Token account starts with $0.50 of free trial credit for the Kimi K3 API",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "unit": "requests",
@@ -15833,7 +15760,7 @@
           "label": "Trial rate limit",
           "source": "https://wallabytoken.com/terms",
           "quote": "may be restricted to specific models and lower rate limits",
-          "reviewed_on": "2026-10-22",
+          "reviewed_on": "2026-10-29",
           "amount": null,
           "period": null
         }
@@ -16445,7 +16372,6 @@
       "models": [
         {
           "family": "qwen3.8-27b",
-          "tier": "strong",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -16523,8 +16449,7 @@
           "id": "api-free-tier"
         },
         "flags": [
-          "nocard",
-          "strong"
+          "nocard"
         ]
       },
       "access_labels": {
@@ -16555,7 +16480,7 @@
       ],
       "card_required": false,
       "offering": "Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit",
-      "limits": "Shared free-model calls: 10 requests/day per account. 00:00 UTC+8\n\n5 requests/minute per account\n\nSeparate signup credit: $2 once per account (Valid for 14 days)\n\nThe daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
+      "limits": "Shared free-model calls: 10 requests/day per account (before the first completed top-up). 00:00 UTC+8\n\n5 requests/minute per account (before the first completed top-up)\n\nSeparate signup credit: $2 once per account (valid for 14 days)\n\nFree chat calls: Unmetered requests per account (after any completed top-up; upstream provider limits still apply)\n\nThe daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
       "quotas": [
         {
           "amount": 10.0,
@@ -16563,21 +16488,25 @@
           "period": "day",
           "scope": "account",
           "label": "Shared free-model calls",
+          "condition": "before the first completed top-up",
+          "condition_quote": "a one-time top-up removes the free-tier cap and removes NovAI's request rate limits entirely",
           "reset": "00:00 UTC+8",
           "source": "https://aiapi-pro.com/free/index.html",
           "quote": "10 free-model calls per day and 5 requests per minute on the free tier, resetting at 00:00 UTC+8.",
           "value_phrase": "10 free-model calls per day",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 5.0,
           "unit": "requests",
           "period": "minute",
           "scope": "account",
+          "condition": "before the first completed top-up",
+          "condition_quote": "a one-time top-up removes the free-tier cap and removes NovAI's request rate limits entirely",
           "source": "https://aiapi-pro.com/free/index.html",
           "quote": "10 free-model calls per day and 5 requests per minute on the free tier, resetting at 00:00 UTC+8.",
           "value_phrase": "5 requests per minute",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
         },
         {
           "amount": 2.0,
@@ -16585,12 +16514,25 @@
           "period": "one-time",
           "scope": "account",
           "label": "Separate signup credit",
-          "condition": "Valid for 14 days",
+          "condition": "valid for 14 days",
           "condition_quote": "valid 14 days",
           "source": "https://aiapi-pro.com/register.html",
           "quote": "$2.00 welcome credit (valid 14 days)",
           "value_phrase": "$2.00 welcome credit",
-          "reviewed_on": "2026-10-22"
+          "reviewed_on": "2026-10-29"
+        },
+        {
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "state": "unmetered",
+          "label": "Free chat calls",
+          "condition": "after any completed top-up; upstream provider limits still apply",
+          "condition_quote": "none on accounts with any completed top-up; 5 requests/min before the first top-up (model providers may still throttle at peak hours, and those 429s name the provider)",
+          "source": "https://aiapi-pro.com/transparency.html",
+          "quote": "unlimited free-model calls after the first top-up",
+          "reviewed_on": "2026-10-29",
+          "amount": null
         }
       ],
       "free_part": "models",
@@ -16648,7 +16590,7 @@
           "glm-4.1v-thinking-flash"
         ],
         "what": "Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit",
-        "limits": "Shared free-model calls: 10 requests/day per account. 00:00 UTC+8\n\n5 requests/minute per account\n\nSeparate signup credit: $2 once per account (Valid for 14 days)\n\nThe daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
+        "limits": "Shared free-model calls: 10 requests/day per account (before the first completed top-up). 00:00 UTC+8\n\n5 requests/minute per account (before the first completed top-up)\n\nSeparate signup credit: $2 once per account (valid for 14 days)\n\nFree chat calls: Unmetered requests per account (after any completed top-up; upstream provider limits still apply)\n\nThe daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -17882,7 +17824,6 @@
         "vlm-run-gateway",
         "ovh-ai-endpoints"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
     {
@@ -17896,8 +17837,32 @@
         "aihubmix",
         "llmtr"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
+    },
+    {
+      "family": "nemotron-3.5-lightning",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "opencode",
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "qoder",
+        "token-harbor"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "nemotron-3-nano-omni",
@@ -17912,18 +17877,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
     },
     {
-      "family": "nemotron-3.5-lightning",
-      "rows": [
-        "opencode",
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
-        "nvidia-nim",
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
-    },
-    {
       "family": "deepseek-v4-flash",
       "rows": [
         "routeway",
@@ -17932,20 +17885,7 @@
         "atomcode",
         "freeinference"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "qoder",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "gemma-4-31b",
@@ -17956,7 +17896,6 @@
         "regolo",
         "opper"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
     },
     {
@@ -17968,7 +17907,6 @@
         "zcode",
         "freeinference"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
@@ -17994,6 +17932,17 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
     },
     {
+      "family": "nemotron-3.5-super-vl-120b-a12b",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "cline",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
+    },
+    {
       "family": "glm-5.2",
       "rows": [
         "aihubmix",
@@ -18001,7 +17950,6 @@
         "regolo",
         "atomcode"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
@@ -18032,7 +17980,6 @@
         "aihubmix",
         "token-harbor"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
     },
     {
@@ -18061,7 +18008,6 @@
         "zai-glm",
         "meganova"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
     },
     {
@@ -18071,7 +18017,7 @@
         "alibaba-model-studio",
         "zcode"
       ],
-      "tier": "strong",
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
     },
     {
@@ -18081,7 +18027,6 @@
         "nvidia-nim",
         "routeway"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
     },
     {
@@ -18100,7 +18045,6 @@
         "qoder",
         "qoder-cn"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
@@ -18150,7 +18094,6 @@
         "google-ai-studio",
         "vertex-ai-express"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/"
     },
     {
@@ -18159,7 +18102,6 @@
         "google-ai-studio",
         "antigravity"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
     },
     {
@@ -18168,7 +18110,6 @@
         "kiro",
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/"
     },
     {
@@ -18177,7 +18118,6 @@
         "aihubmix",
         "zcode"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
     },
     {
@@ -18186,7 +18126,6 @@
         "aihubmix",
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
     },
     {
@@ -18195,7 +18134,6 @@
         "kiro",
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/"
     },
     {
@@ -18204,7 +18142,6 @@
         "kiro",
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
     },
     {
@@ -18213,7 +18150,6 @@
         "aihubmix",
         "routeway"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
@@ -18222,16 +18158,7 @@
         "aihubmix",
         "freeinference"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
-    },
-    {
-      "family": "nemotron-3-super",
-      "rows": [
-        "requesty",
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
       "family": "qwen3.5-122b-a10b",
@@ -18239,7 +18166,6 @@
         "alibaba-model-studio",
         "regolo"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"
     },
     {
@@ -18281,7 +18207,6 @@
       "rows": [
         "antigravity"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/"
     },
     {
@@ -18289,7 +18214,6 @@
       "rows": [
         "kiro"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/"
     },
     {
@@ -18297,7 +18221,6 @@
       "rows": [
         "kiro"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/"
     },
     {
@@ -18305,7 +18228,6 @@
       "rows": [
         "antigravity"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/"
     },
     {
@@ -18362,7 +18284,6 @@
       "rows": [
         "kiro"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
     },
     {
@@ -18370,7 +18291,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
     },
     {
@@ -18396,7 +18316,6 @@
       "rows": [
         "vertex-ai-express"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/"
     },
     {
@@ -18404,7 +18323,6 @@
       "rows": [
         "google-ai-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/"
     },
     {
@@ -18412,7 +18330,6 @@
       "rows": [
         "vertex-ai-express"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/"
     },
     {
@@ -18420,7 +18337,6 @@
       "rows": [
         "google-ai-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/"
     },
     {
@@ -18428,7 +18344,6 @@
       "rows": [
         "google-ai-studio"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/"
     },
     {
@@ -18442,7 +18357,6 @@
       "rows": [
         "openrouter-free"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
     },
     {
@@ -18468,7 +18382,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/"
     },
     {
@@ -18482,7 +18395,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/"
     },
     {
@@ -18496,7 +18408,6 @@
       "rows": [
         "openai-codex-cli"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
     },
     {
@@ -18504,7 +18415,6 @@
       "rows": [
         "openrouter-free"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
     },
     {
@@ -18512,7 +18422,6 @@
       "rows": [
         "openrouter-free"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
     },
     {
@@ -18540,7 +18449,6 @@
       "rows": [
         "llmtr"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/"
     },
     {
@@ -18554,7 +18462,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
@@ -18575,7 +18482,6 @@
       "rows": [
         "requesty"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
     },
     {
@@ -18601,7 +18507,6 @@
       "rows": [
         "nous-portal"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
     },
     {
@@ -18615,7 +18520,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/"
     },
     {
@@ -18623,7 +18527,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/"
     },
     {
@@ -18631,7 +18534,6 @@
       "rows": [
         "aihubmix"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"
     },
     {
@@ -18639,7 +18541,6 @@
       "rows": [
         "llmtr"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/"
     },
     {
@@ -18660,6 +18561,13 @@
         "requesty"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/"
+    },
+    {
+      "family": "nemotron-3-super",
+      "rows": [
+        "requesty"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
       "family": "qwen-flash",
@@ -18728,7 +18636,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/"
     },
     {
@@ -18736,7 +18643,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-35b-a3b/"
     },
     {
@@ -18744,7 +18650,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/"
     },
     {
@@ -18771,7 +18676,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-27b/"
     },
     {
@@ -18779,7 +18683,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/"
     },
     {
@@ -18793,7 +18696,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/"
     },
     {
@@ -18808,7 +18710,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/"
     },
     {
@@ -18816,7 +18717,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/"
     },
     {
@@ -18824,7 +18724,6 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/"
     },
     {
@@ -18832,7 +18731,7 @@
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "strong",
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
     },
     {
@@ -18859,8 +18758,13 @@
       "rows": [
         "nous-portal"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
+    },
+    {
+      "family": "step-5-preview-600b-a27b",
+      "rows": [
+        "nvidia-nim"
+      ]
     },
     {
       "family": "swe-1.6",

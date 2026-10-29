@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-10-26'
-description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash. Free models work only inside OpenCode; other clients receive…'
+description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, deepseek-v4.1-flash. Free models work only inside OpenCode…'
 permalink: /providers/opencode/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-29
 crumb: opencode
 ---
 
@@ -19,7 +19,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Free models
 
-`big-pickle`, [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
+`big-pickle`, [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 
@@ -38,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `Flint 40B Free`, `DeepSeek V4.1 Flash Free`, `GLM-5.3-Flash Free`, `Beam Free`, `Nemotron 3.5 Super VL Free`
+- In opencode's own model list: `Flint 40B Free`, `GLM-5.3-Flash Free`, `Beam Free`, `Nemotron 3.5 Super VL Free`
 
 ## Evidence
 
@@ -52,6 +52,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-29` — Free models changed: added deepseek-v4.1-flash
 - `2026-10-25` — Free models changed: dropped longcat-2.5-preview, mimo-v2.5
 - `2026-10-19` — Free models changed: dropped muse-spark-1.3-contributor
 - `2026-10-15` — Free models changed: dropped ling-3.0-flash-fin
@@ -67,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

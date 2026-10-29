@@ -55,7 +55,7 @@ def test_the_scores_are_read_from_the_table_the_page_ships():
     models = parse_leaderboard(page())
     assert models["glm-5-3"].index == 44.9 and not models["glm-5-3"].deprecated
     assert models["agnes-3-0-flash"].estimated
-    assert "no-score-yet" not in models
+    assert models["no-score-yet"].index is None
 
 
 def test_a_page_with_no_scored_table_is_an_error_not_an_empty_index():
@@ -125,9 +125,10 @@ async def test_writer_reads_the_complete_manifest_including_older_models(tmp_pat
 async def test_failed_manifest_read_preserves_the_registry_and_scores(tmp_path, failure):
     key = bytes(range(32))
     body = AESGCM(key).encrypt(hashlib.sha256(key).digest()[:12], gzip.compress(json.dumps(SCORED).encode()), None)
+    tampered = body[:-1] + bytes([body[-1] ^ 1])
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=manifest_page(key)))
     respx.get("https://artificialanalysis.ai/data/0123456789abcdef.txt").mock(
-        return_value=httpx.Response(403 if failure == "unreadable" else 200, content=body[:-1] + b"x"))
+        return_value=httpx.Response(403 if failure == "unreadable" else 200, content=tampered))
     registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
     save_registry(registry, [entry("a", {"family": "glm-5.3", "aa_model": "glm-5-3", "tier": "strong"})])
     previous = registry.read_bytes()
@@ -163,6 +164,61 @@ async def test_unknown_manifest_shape_cannot_fall_back_to_a_partial_table(tmp_pa
     previous = registry.read_bytes()
     scores.write_text("previous scores")
     with pytest.raises(ValueError, match="manifest"):
+        await _amain(registry, write=True, scores=scores)
+    assert registry.read_bytes() == previous
+    assert scores.read_text() == "previous scores"
+
+
+@pytest.mark.parametrize("value", [None, 0, "N/A", False, "missing-field"])
+@respx.mock
+async def test_current_null_score_clears_a_tier_without_guessing_missing_scores(tmp_path, value):
+    # AA's complete v5 table explicitly uses null for N/A, while a missing or
+    # malformed measurement remains inconclusive (leaderboard/model cards, 2026-10-29).
+    rows = [dict(m) for m in SCORED]
+    target = next(m for m in rows if m["slug"] == "no-score-yet")
+    if value == "missing-field":
+        del target["intelligenceIndex"]
+    else:
+        target["intelligenceIndex"] = value
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=manifest_page(None)))
+    route = respx.get("https://artificialanalysis.ai/data/0123456789abcdef.txt").mock(
+        return_value=httpx.Response(200, json=rows))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {
+        "family": "unscored", "aa_model": "no-score-yet", "tier": "strong",
+    })])
+    known = value is None or type(value) is int
+    assert await _amain(registry, write=True, scores=scores) == (0 if known else 1)
+    assert route.called
+    model = load_registry(registry)[0].models[0]
+    assert model.family == "unscored" and model.aa_model == "no-score-yet"
+    assert model.tier is (None if known else Tier.STRONG)
+    measured = json.loads(scores.read_text())["families"]
+    if type(value) is int:
+        assert measured["unscored"]["index"] == 0
+    else:
+        assert "unscored" not in measured
+
+
+@pytest.mark.parametrize("rows", [
+    [SCORED[-1]],
+    [SCORED[1], SCORED[-1]],
+    SCORED + [{**SCORED[-1], "intelligenceIndex": 42}],
+    SCORED + [{"slug": "no-score-yet"}],
+    SCORED + [{**SCORED[-1], "intelligenceIndex": "N/A"}],
+])
+@respx.mock
+async def test_unusable_or_ambiguous_table_cannot_clear_existing_tiers(tmp_path, rows):
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=manifest_page(None)))
+    respx.get("https://artificialanalysis.ai/data/0123456789abcdef.txt").mock(
+        return_value=httpx.Response(200, json=rows))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {
+        "family": "unscored", "aa_model": "no-score-yet", "tier": "strong",
+    })])
+    previous = registry.read_bytes()
+    scores.write_text("previous scores")
+    with pytest.raises(ValueError):
         await _amain(registry, write=True, scores=scores)
     assert registry.read_bytes() == previous
     assert scores.read_text() == "previous scores"

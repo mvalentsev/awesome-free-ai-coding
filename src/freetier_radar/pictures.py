@@ -360,8 +360,10 @@ class Chart:
         return sorted(self.bars, key=lambda b: (-b.score, b.family))
 
 
-def chart_words(chart: Chart) -> str:
+def chart_words(chart: Chart | None) -> str:
     """The chart in one sentence, for its <title> and the README's alt text."""
+    if chart is None or not chart.bars:
+        return "Strong models, free: no current qualifying scores to chart"
     best = chart.ranked()[0]
     return (f"Bar chart of the {len(chart.bars)} strong models live offers here serve free, by "
             f"Artificial Analysis Intelligence Index score read {chart.read_on.isoformat()}: the "
@@ -386,11 +388,34 @@ def _value(bar: Bar) -> str:
             f'</tspan><tspan class="m"> · {_offers(bar.offers)}</tspan>')
 
 
-def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> str:
+def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
+    width, height = (600, 190) if narrow else (1160, 180)
+    x = 30 if narrow else 40
+    heading = "Strong models, free" if narrow else "Strong models you can use for $0"
+    size = 21 if narrow else 18
+    return "\n".join([
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
+        f'<title id="title">{escape(chart_words(None))}</title>',
+        "<style>" + _colours(palette, _chart_rules) + "</style>",
+        f'<rect class="card" x="1" y="1" width="{width - 2}" height="{height - 2}" '
+        'rx="18" stroke-width="2"/>',
+        f'<text class="t" x="{x}" y="58" font-family="{SANS}" font-size="30" '
+        f'font-weight="700">{heading}</text>',
+        f'<text class="m" x="{x}" y="105" font-family="{SANS}" font-size="{size}">'
+        'No current qualifying scores</text>',
+        f'<text class="m" x="{x}" y="136" font-family="{SANS}" font-size="{size}">'
+        'are available for this chart.</text>',
+        '</svg>'])
+
+
+def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False) -> str:
     """The strong models the list serves free, each as long as its score on
     the Artificial Analysis Intelligence Index, on an axis from zero to the top
     of the index: the gap to the frontier drawn as it is, not stretched. The
     frontier band and the strong bar are the tiers' own thresholds."""
+    if chart is None or not chart.bars:
+        return _empty_chart_svg(palette, narrow)
     ranked = chart.ranked()
     shown = ranked[:NARROW_BARS] if narrow else ranked
     width = 600 if narrow else 1160

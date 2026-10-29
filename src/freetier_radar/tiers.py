@@ -20,8 +20,9 @@ bar anything can be expected to reach, nor one of the models a score is
 measured among. Run it with `--write` and the marks that moved are re-written
 on every row that carries the family, since a family carries one tier, and a
 bare family the board scores by its own name is measured (see `unmeasured`). A
-slug the leaderboard no longer knows keeps its mark and fails the run: a guess
-is not a measurement.
+model explicitly published without a current score loses its tier. A slug the
+leaderboard no longer knows keeps its mark and fails the run: a guess is not
+a measurement.
 """
 from __future__ import annotations
 
@@ -67,7 +68,7 @@ TABLE_BYTES = 8 * 1024 * 1024
 class Scored:
     slug: str
     name: str
-    index: float
+    index: float | None
     deprecated: bool
     estimated: bool
 
@@ -79,30 +80,48 @@ def _flight_payload(page: str) -> str:
 def _scored_models(rows: object) -> dict[str, Scored]:
     if not isinstance(rows, list):
         return {}
-    return {r["slug"]: Scored(slug=r["slug"], name=r.get("name") or r["slug"],
-                              index=float(r["intelligenceIndex"]),
-                              deprecated=bool(r.get("deprecated")),
-                              estimated=bool(r.get("intelligenceIndexIsEstimated")))
-            for r in rows if isinstance(r, dict) and isinstance(r.get("slug"), str)
-            and r["slug"] and type(r.get("intelligenceIndex")) in (int, float)}
+    models = {}
+    seen = set()
+    for row in rows:
+        if (not isinstance(row, dict) or not isinstance(row.get("slug"), str)
+                or not row["slug"]):
+            continue
+        if row["slug"] in seen:
+            raise ValueError("leaderboard carries duplicate model scores")
+        seen.add(row["slug"])
+        if "intelligenceIndex" not in row:
+            continue
+        score = row["intelligenceIndex"]
+        if score is not None and type(score) not in (int, float):
+            continue
+        # AA's complete table and model cards publish null/N/A for a missing
+        # current measurement (leaderboard/model cards, checked 2026-10-29).
+        models[row["slug"]] = Scored(
+            slug=row["slug"], name=row.get("name") or row["slug"],
+            index=float(score) if score is not None else None,
+            deprecated=bool(row.get("deprecated")),
+            estimated=bool(row.get("intelligenceIndexIsEstimated")))
+    return models
 
 
 def parse_leaderboard(page: str) -> dict[str, Scored]:
-    """Every scored model on the leaderboard page, by slug.
+    """The scored table, including models explicitly without a current score.
 
     The page also carries unscored picker arrays. Read the supported table
     property with the most scored rows, regardless of its position in props."""
     payload = _flight_payload(page)
     decoder = json.JSONDecoder()
     best: dict[str, Scored] = {}
+    best_scored = 0
     for match in _MODELS_ARRAY.finditer(payload):
         try:
             data, _ = decoder.raw_decode(payload, match.start(1))
         except ValueError:
             continue
         rows = _scored_models(data)
-        if len(rows) > len(best):
-            best = rows
+        scored = sum(m.index is not None for m in rows.values())
+        if scored > best_scored:
+            best, best_scored = rows, scored
     if not best:
         raise ValueError(f"{LEADERBOARD_URL} carries no scored models — the page changed shape, "
                          "and no tier can be read from it")
@@ -144,17 +163,20 @@ async def read_leaderboard(client: httpx.AsyncClient, page: str) -> dict[str, Sc
         if len(body) > TABLE_BYTES:
             raise ValueError("decoded leaderboard data exceeds the read budget")
     board = _scored_models(json.loads(body))
-    if not board:
+    if not any(m.index is not None and not m.deprecated for m in board.values()):
         raise ValueError("leaderboard manifest carries no scored models")
     return board
 
 
 def index_top(models: dict[str, Scored]) -> Scored:
-    return max((m for m in models.values() if not m.deprecated), key=lambda m: m.index)
+    current = [m for m in models.values() if not m.deprecated and m.index is not None]
+    if not current:
+        raise ValueError("leaderboard carries no current scored models")
+    return max(current, key=lambda m: m.index)
 
 
 def _current(models: dict[str, Scored]) -> list[float]:
-    return [m.index for m in models.values() if not m.deprecated]
+    return [m.index for m in models.values() if not m.deprecated and m.index is not None]
 
 
 def index_median(models: dict[str, Scored]) -> float:
@@ -163,7 +185,9 @@ def index_median(models: dict[str, Scored]) -> float:
     return statistics.median(_current(models))
 
 
-def measured_tier(score: float, top: float, median: float) -> Tier | None:
+def measured_tier(score: float | None, top: float, median: float) -> Tier | None:
+    if score is None:
+        return None
     if score >= top - FRONTIER_WITHIN:
         return Tier.FRONTIER
     if score >= top - STRONG_WITHIN:
@@ -245,7 +269,7 @@ def keep_scores(path: Path, entries: list[Entry], board: dict[str, Scored], toda
     board no longer lists keeps its mark in the registry and has no score here."""
     top = index_top(board)
     measured = {m.family: board[m.aa_model] for e in entries for m in e.models
-                if m.aa_model and m.aa_model in board}
+                if m.aa_model and m.aa_model in board and board[m.aa_model].index is not None}
     # To the tenth the pictures print: the board recomputes its decimals, and a
     # file that changed on every run would bury the day a score really moved.
     data = {"read_on": today.isoformat(), "source": LEADERBOARD_URL,
@@ -277,8 +301,9 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     unknown = [m for m in marks if m.unknown]
     for m in moved:
         estimated = ", estimated" if m.score.estimated else ""
+        score = f"{m.score.index:.1f}" if m.score.index is not None else "no current score"
         print(f"  {m.family}: {_tier_name(m.registered)} → {_tier_name(m.measured)} "
-              f"({m.score.index:.1f} on {m.aa_model}{estimated})")
+              f"({score} on {m.aa_model}{estimated})")
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
@@ -308,8 +333,9 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     # that measures a registry of its own never writes over the list's scores.
     if write and scores is not None:
         keep_scores(scores, entries, board, date.today())
-    print(f"{len(marks)} families measured, {len(moved)} marks "
+    print(f"{len(marks)} family bindings checked, {len(moved)} marks "
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
+          f"{sum(m.score is not None and m.score.index is None for m in marks)} without a current score, "
           f"{len(bare)} unmeasured that would reach a tier"
           f"{' — measured now' if write and bare else ''}")
     return 1 if unknown or (moved and not write) else 0

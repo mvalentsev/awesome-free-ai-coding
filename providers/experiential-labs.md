@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-26'
-description: Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet. The documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop…
+description: Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet. The gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card…
 permalink: /providers/experiential-labs/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: Experiential Labs
 ---
 
@@ -15,7 +15,7 @@ crumb: Experiential Labs
 
 ## What you get
 
-Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet
+Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet
 
 ## Free models
 
@@ -31,9 +31,9 @@ Fable 5.1 promotional input: 375,000 tokens/day; 100,000 tokens/hour per organiz
 
 Fable 5.1 promotional output: 75,000 tokens/day; 30,000 tokens/hour per organization per model; for `claude-fable-5.1:free`
 
-Free core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan
+Free core models: 10 requests/minute; 250,000 tokens/minute; 1,000,000 tokens/day per service plan. reset at 00:00 UTC
 
-The documented promotional free tiers require a saved card and one settled $1+ charge; adding a card alone is insufficient. The :free aliases stop at their quota instead of switching to paid credit. Cached input does not count toward these promotional quotas. The separate pricing-page Free core caps apply to its advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases. That page has no general monthly credits; its Free card speed conflicts with its detailed table and FAQ, and its chat claims conflict with positive Free-selected catalog prices. Jev uses a decision API rather than chat. Free prompt and response storage cannot be disabled without a paid plan.
+The gateway docs require a saved card and one settled $1+ charge for promotional :free aliases; the pricing FAQ instead describes a refunded $1 card verification charge. Eligibility remains disputed. The aliases stop at their per-model quotas instead of spending paid credit; cached input is excluded. The pricing-page core pool is separate from these promotional allowances. Its Luna and DeepSeek chat offers conflict with positive Free-selected catalog prices. Free has no general monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt and response storage cannot be disabled without a paid plan.
 
 ## Where it is offered
 
@@ -80,6 +80,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

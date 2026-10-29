@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5-turbo free: 2 providers, limits and ids, provider probes 2026-10-26'
 description: glm-5-turbo is served free by AIHubMix (free models) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5-turbo/
-last_modified_at: 2026-10-28
+last_modified_at: 2026-10-29
 crumb: glm-5-turbo
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5-turbo
 
 # Where glm-5-turbo is free
 
-**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-turbo), below its strong bar.
+**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -81,6 +81,6 @@ Global and mainland BigModel accounts have different per-model daily trial grant
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

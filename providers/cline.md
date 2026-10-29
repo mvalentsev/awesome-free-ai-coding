@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Cline free tier: limits, free models, verified 2026-10-26'
-description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: solar-mini-4. Free promotions require a Cline…'
+description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b…'
 permalink: /providers/cline/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: Cline
 ---
 
@@ -19,7 +19,7 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ## Free models
 
-[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)
+[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)
 
 ## Limits, in the vendor's words
 
@@ -51,6 +51,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-29` — Free models changed: added nemotron-3.5-super-vl-120b-a12b
 - `2026-10-21` — Free models changed: added solar-mini-4; dropped mimo-v2.6-flash, muse-spark-1.3-contributor
 - `2026-10-07` — Free models changed: added mimo-v2.6-flash
 - `2026-10-05` — Free models changed: dropped deepseek-v4.1-flash
@@ -64,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.5-122b-a10b free: 2 providers, limits and ids, provider probes 2026-10-26'
 description: qwen3.5-122b-a10b is served free by Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.5-122b-a10b/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: qwen3.5-122b-a10b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.5-122b-a10b
 
 # Where qwen3.5-122b-a10b is free
 
-**2 rows on the list serve `qwen3.5-122b-a10b` free:** Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-122b-a10b), below its strong bar.
+**2 rows on the list serve `qwen3.5-122b-a10b` free:** Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -67,6 +67,6 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

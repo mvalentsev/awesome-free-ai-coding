@@ -51,13 +51,10 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: gemma-4-31b
-    tier: notable
     aa_model: gemma-4-31b
   - family: gemma-4-26b-a4b
-    tier: notable
     aa_model: gemma-4-26b-a4b
   - family: north-mini-code
     aa_model: north-mini-code
@@ -66,14 +63,14 @@ entries:
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: inkling
-    tier: notable
     aa_model: inkling
   - family: inkling-small
-    tier: notable
     aa_model: inkling-small
   - family: dots-3-note
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: nemotron-3.5-super-vl-120b-a12b
+    aa_model: nemotron-3-5-super-vl
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -96,6 +93,11 @@ entries:
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
     - recursive/flint-v1.0:free
+    model_bindings:
+      nvidia/nemotron-3.5-super-vl:free:
+        family: nemotron-3.5-super-vl-120b-a12b
+        source: https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard
+        quote: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - google/lyria-3-pro-preview
@@ -166,19 +168,14 @@ entries:
   free_part: models
   models:
   - family: gemini-3.8-flash
-    tier: strong
     aa_model: gemini-3-8-flash
   - family: gemini-3.6-flash
-    tier: strong
     aa_model: gemini-3-6-flash
   - family: gemini-3.5-flash-lite
-    tier: notable
     aa_model: gemini-3-5-flash-lite
   - family: gemini-3.1-flash-lite
-    tier: notable
     aa_model: gemini-3-1-flash-lite-preview
   - family: gemini-3-flash
-    tier: notable
     aa_model: gemini-3-flash
   - family: gemma-4
   api:
@@ -402,7 +399,6 @@ entries:
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   api:
     base_url: https://api.groq.com/openai/v1
@@ -466,7 +462,7 @@ entries:
     source: https://docs.mistral.ai/admin/billing-usage/subscriptions
     quote: Each Mistral plan includes monthly usage that is shared across Studio,
       the API, and Vibe Code.
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - unit: requests
     period: second
     scope: organization-model
@@ -474,7 +470,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Requests per second: The request throughput limit for the model.'
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - unit: tokens
     period: minute
     scope: organization-model
@@ -482,7 +478,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Tokens per minute: The token throughput limit for the model.'
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: sum
   models: []
   api:
@@ -732,22 +728,19 @@ entries:
   models:
   - family: big-pickle
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: mimo-v2.6-flash
-    tier: strong
     aa_model: mimo-v2-6-flash
+  - family: deepseek-v4.1-flash
+    table_name: DeepSeek V4.1 Flash Free
+    aa_model: deepseek-v4-1-flash
   newcomers:
   - family: flint-40b
     'on': '2026-10-25'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Flint 40B Free
-  - family: deepseek-v4.1-flash
-    'on': '2026-10-15'
-    source: https://opencode.ai/v2/docs/console/models/
-    table_name: DeepSeek V4.1 Flash Free
   - family: glm-5.3-flash
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
@@ -756,7 +749,7 @@ entries:
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Beam Free
-  - family: nemotron-3.5-super-vl
+  - family: nemotron-3.5-super-vl-120b-a12b
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Nemotron 3.5 Super VL Free
@@ -824,7 +817,6 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: north-mini-code
     aa_model: north-mini-code
@@ -835,6 +827,8 @@ entries:
   - family: dots-3-note
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: nemotron-3.5-super-vl-120b-a12b
+    aa_model: nemotron-3-5-super-vl
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -862,6 +856,10 @@ entries:
         source: https://api.kilo.ai/api/gateway/models
         quote: Beam 1.0 (free)
         read: catalog
+      nvidia/nemotron-3.5-super-vl:free:
+        family: nemotron-3.5-super-vl-120b-a12b
+        source: https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard
+        quote: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4
     model_limits:
       reflection/beam-free:
         context_tokens: 1048576
@@ -1087,7 +1085,6 @@ entries:
     read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17'
   models:
   - family: mimo-v2.5
-    tier: notable
     aa_model: mimo-v2-5-0424
   probe:
     type: page-keywords
@@ -1285,24 +1282,18 @@ entries:
   free_part: models
   models:
   - family: claude-sonnet-4.5
-    tier: notable
     aa_model: claude-4-5-sonnet
   - family: claude-sonnet-4
-    tier: notable
     aa_model: claude-4-sonnet
   - family: glm-5
-    tier: notable
     aa_model: glm-5
   - family: minimax-m2.5
-    tier: notable
     aa_model: minimax-m2-5
   - family: deepseek-v3.2
-    tier: notable
     aa_model: deepseek-v3-2
   - family: qwen3-coder-next
     aa_model: qwen3-coder-next
   - family: minimax-m2.1
-    tier: notable
     aa_model: minimax-m2-1
   data_use:
     trains: opt-out
@@ -1414,7 +1405,6 @@ entries:
   free_part: models
   models:
   - family: gpt-6-luna
-    tier: strong
     aa_model: gpt-6-luna
   border:
     served: [AD, AE, AF, AG, AL, AM, AO, AR, AT, AU, AW, AX, AZ, BA, BB, BD, BE, BF,
@@ -1480,7 +1470,7 @@ entries:
     source: https://build.nvidia.com/explore/discover
     quote: Up to 40 RPM
     value_phrase: Up to 40 RPM
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-29'
   - amount: 10000.0
     unit: requests
     period: day
@@ -1489,23 +1479,19 @@ entries:
     source: https://build.nvidia.com/explore/discover
     quote: 10,000 requests per day
     value_phrase: 10,000 requests per day
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-29'
   free_part: models
   models:
   - family: glm-5.3-flash
-    tier: strong
     aa_model: glm-5-3-flash
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: laguna-xs-2.1
   - family: muse-glimmer-30b
-    tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
-    tier: notable
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
@@ -1515,8 +1501,11 @@ entries:
   - family: llama-3.2-90b-vision
   - family: llama-3.2-11b-vision
   - family: deepseek-v4.1-flash
-    tier: strong
     aa_model: deepseek-v4-1-flash
+  - family: nemotron-3.5-super-vl-120b-a12b
+    aa_model: nemotron-3-5-super-vl
+  - family: step-5-preview-600b-a27b
+    aa_model: step-5
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -1539,6 +1528,13 @@ entries:
     - stepfun-ai/step-5-preview
     - minimaxai/minimax-m3.1-flash
     - nvidia/nemotron-3.5-bolt-e4b
+    model_bindings:
+      stepfun-ai/step-5-preview:
+        family: step-5-preview-600b-a27b
+        source: https://build.nvidia.com/stepfun-ai/step-5-preview
+        quote: 'Preview of StepFun''s Step 5: ~600B-total / 27B-active multimodal
+          MoE (text and image in, text out) with 1M context, reasoning and tool calling,
+          served in NVFP4.'
     ignored_ids:
     - nvidia/nemotron-3-embed-1b
     - nvidia/nemotron-3.5-content-safety
@@ -1599,7 +1595,6 @@ entries:
   free_part: models
   models:
   - family: glm-4.7-flash
-    tier: notable
     aa_model: glm-4-7-flash
   - family: glm-4.5-flash
   - family: glm-4.6v-flash
@@ -1681,7 +1676,6 @@ entries:
     aa_model: gpt-oss-120b
   - family: qwen3.6
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   api:
     base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
@@ -1805,62 +1799,46 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-max
-    tier: strong
+    tier: notable
     aa_model: qwen3-8-max
   - family: qwen3.8-flash
-    tier: strong
     aa_model: qwen3-8-flash-next
   - family: qwen3.8-2.4t-a95b
-    tier: strong
     aa_model: qwen3-8-2-4t-a95b
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   - family: deepseek-v4-pro
-    tier: strong
     aa_model: deepseek-v4-pro
   - family: deepseek-v4-flash
-    tier: strong
     aa_model: deepseek-v4-flash
   - family: deepseek-v4.1-flash
-    tier: strong
     aa_model: deepseek-v4-1-flash
   - family: glm-5.3
-    tier: strong
+    tier: notable
     aa_model: glm-5-3
   - family: glm-5.2
-    tier: strong
     aa_model: glm-5-2
   - family: qwen3.7-max
-    tier: notable
     aa_model: qwen3-7-max
   - family: qwen3.7-plus
-    tier: notable
     aa_model: qwen3-7-plus
   - family: qwen3.7-flash
   - family: qwen3.6-plus
-    tier: notable
     aa_model: qwen3-6-plus
   - family: qwen3.6-flash
   - family: qwen3.6-35b-a3b
-    tier: notable
     aa_model: qwen3-6-35b-a3b
   - family: qwen3.6-27b
-    tier: notable
     aa_model: qwen3-6-27b
   - family: qwen3.5-plus
   - family: qwen3.5-flash
   - family: qwen3.5-397b-a17b
-    tier: notable
     aa_model: qwen3-5-397b-a17b
   - family: qwen3.5-122b-a10b
-    tier: notable
     aa_model: qwen3-5-122b-a10b
   - family: qwen3.5-35b-a3b
-    tier: notable
     aa_model: qwen3-5-35b-a3b
   - family: qwen3.5-27b
-    tier: notable
     aa_model: qwen3-5-27b
   - family: qwen3-coder-flash
   - family: qwen-max
@@ -1868,7 +1846,6 @@ entries:
   - family: qwen-flash
   - family: qwen3-vl-plus
   - family: glm-5.1
-    tier: notable
     aa_model: glm-5-1
   api:
     base_url: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
@@ -2025,16 +2002,15 @@ entries:
     initial_payment_usd: 1.0
     payment_kind: charge
   offering: Open-source AI gateway backed by Y Combinator with recurring model-specific
-    free quotas after a settled payment, separate from its paid credit wallet
-  limits: The documented promotional free tiers require a saved card and one settled
-    $1+ charge; adding a card alone is insufficient. The :free aliases stop at their
-    quota instead of switching to paid credit. Cached input does not count toward
-    these promotional quotas. The separate pricing-page Free core caps apply to its
-    advertised DeepSeek V4.1 Flash and GPT-6 Luna routes, not these promotional aliases.
-    That page has no general monthly credits; its Free card speed conflicts with its
-    detailed table and FAQ, and its chat claims conflict with positive Free-selected
-    catalog prices. Jev uses a decision API rather than chat. Free prompt and response
-    storage cannot be disabled without a paid plan.
+    promotional free quotas, separate from its paid credit wallet
+  limits: The gateway docs require a saved card and one settled $1+ charge for promotional
+    :free aliases; the pricing FAQ instead describes a refunded $1 card verification
+    charge. Eligibility remains disputed. The aliases stop at their per-model quotas
+    instead of spending paid credit; cached input is excluded. The pricing-page core
+    pool is separate from these promotional allowances. Its Luna and DeepSeek chat
+    offers conflict with positive Free-selected catalog prices. Free has no general
+    monthly credits. Jev and Clef use decision APIs rather than chat. Free prompt
+    and response storage cannot be disabled without a paid plan.
   quotas:
   - amount: 500000.0
     unit: tokens
@@ -2051,7 +2027,7 @@ entries:
     period_quote: day
     model_ids:
     - gpt-6-astra:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 100000.0
     unit: tokens
     period: day
@@ -2067,7 +2043,7 @@ entries:
     period_quote: day
     model_ids:
     - gpt-6-astra:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 200000.0
     unit: tokens
     period: hour
@@ -2083,7 +2059,7 @@ entries:
     period_quote: per hour
     model_ids:
     - gpt-6-astra:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 40000.0
     unit: tokens
     period: hour
@@ -2099,7 +2075,7 @@ entries:
     period_quote: per hour
     model_ids:
     - gpt-6-astra:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 375000.0
     unit: tokens
     period: day
@@ -2115,7 +2091,7 @@ entries:
     period_quote: day
     model_ids:
     - claude-fable-5.1:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 75000.0
     unit: tokens
     period: day
@@ -2131,7 +2107,7 @@ entries:
     period_quote: day
     model_ids:
     - claude-fable-5.1:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 100000.0
     unit: tokens
     period: hour
@@ -2147,7 +2123,7 @@ entries:
     period_quote: per hour
     model_ids:
     - claude-fable-5.1:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 30000.0
     unit: tokens
     period: hour
@@ -2163,37 +2139,40 @@ entries:
     period_quote: per hour
     model_ids:
     - claude-fable-5.1:free
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-10-29'
   - amount: 10.0
     unit: requests
     period: minute
     scope: plan
     label: Free core models
+    reset: reset at 00:00 UTC
     source: https://www.experientiallabs.ai/pricing
-    quote: Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day
-      across DeepSeek, Luna and Clef. No general credits.
-    value_phrase: 10 shared requests/min
-    reviewed_on: '2026-10-26'
+    quote: Free core models share one pool of 10 RPM, 250K TPM and 1M input and output
+      tokens a day, reset at 00:00 UTC.
+    value_phrase: 10 RPM
+    reviewed_on: '2026-10-29'
   - amount: 250000.0
     unit: tokens
     period: minute
     scope: plan
     label: Free core models
+    reset: reset at 00:00 UTC
     source: https://www.experientiallabs.ai/pricing
-    quote: Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day
-      across DeepSeek, Luna and Clef. No general credits.
-    value_phrase: 250K shared tokens/min
-    reviewed_on: '2026-10-26'
+    quote: Free core models share one pool of 10 RPM, 250K TPM and 1M input and output
+      tokens a day, reset at 00:00 UTC.
+    value_phrase: 250K TPM
+    reviewed_on: '2026-10-29'
   - amount: 1000000.0
     unit: tokens
     period: day
     scope: plan
     label: Free core models
+    reset: reset at 00:00 UTC
     source: https://www.experientiallabs.ai/pricing
-    quote: Free limits 10 shared requests/min, 250K shared tokens/min and 1M tokens/day
-      across DeepSeek, Luna and Clef. No general credits.
-    value_phrase: 1M tokens/day
-    reviewed_on: '2026-10-26'
+    quote: Free core models share one pool of 10 RPM, 250K TPM and 1M input and output
+      tokens a day, reset at 00:00 UTC.
+    value_phrase: 1M input and output tokens a day
+    reviewed_on: '2026-10-29'
   free_part: models
   models: []
   api:
@@ -2502,10 +2481,8 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-flash
-    tier: strong
     aa_model: qwen3-8-flash-next
   - family: deepseek-v4.1-flash
-    tier: strong
     aa_model: deepseek-v4-1-flash
   client_lane:
     model_ids:
@@ -2668,6 +2645,8 @@ entries:
   free_part: models
   models:
   - family: laguna-s-2.1
+  - family: nemotron-3.5-lightning
+    aa_model: nemotron-3-5-lightning
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -2806,7 +2785,6 @@ entries:
   free_part: models
   models:
   - family: deepseek-v4-flash
-    tier: strong
     aa_model: deepseek-v4-flash
   api:
     base_url: https://api.bazaarlink.ai/v1
@@ -3020,13 +2998,10 @@ entries:
   free_part: models
   models:
   - family: deepseek-v4-flash
-    tier: strong
     aa_model: deepseek-v4-flash
   - family: minimax-m2.7
-    tier: notable
     aa_model: minimax-m2-7
   - family: muse-glimmer-30b
-    tier: notable
     aa_model: muse-glimmer
   api:
     base_url: https://api.routeway.ai/v1
@@ -3094,17 +3069,14 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
-    tier: notable
     aa_model: gemma-4-31b
   - family: ling-3.0-tiny
     aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
-    tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
@@ -3113,7 +3085,6 @@ entries:
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: ling-3.1-flash
-    tier: strong
     aa_model: ling-3-1-flash
   api:
     base_url: https://router.requesty.ai/v1
@@ -3212,15 +3183,12 @@ entries:
   free_part: models
   models:
   - family: gemini-3.8-flash
-    tier: strong
     aa_model: gemini-3-8-flash
   - family: claude-opus-4.6
     table_name: Claude Opus 4.6 (thinking)*
-    tier: notable
     aa_model: claude-opus-4-6
   - family: claude-sonnet-4.6
     table_name: Claude Sonnet 4.6 (thinking)*
-    tier: notable
     aa_model: claude-sonnet-4-6
   - family: gpt-oss-120b
     table_name: GPT-OSS-120b*
@@ -3856,60 +3824,44 @@ entries:
   free_part: models
   models:
   - family: glm-5.3
-    tier: strong
+    tier: notable
     aa_model: glm-5-3
   - family: glm-5.3-flash
-    tier: strong
     aa_model: glm-5-3-flash
   - family: kimi-k3
-    tier: strong
     aa_model: kimi-k3
   - family: glm-5.2
-    tier: strong
     aa_model: glm-5-2
   - family: glm-5.1
-    tier: notable
     aa_model: glm-5-1
   - family: glm-5
-    tier: notable
     aa_model: glm-5
   - family: glm-5-turbo
-    tier: notable
     aa_model: glm-5-turbo
   - family: north-mini-code
     aa_model: north-mini-code
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: minimax-m3
-    tier: notable
     aa_model: minimax-m3
   - family: minimax-m2.7
-    tier: notable
     aa_model: minimax-m2-7
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: kimi-for-coding
   - family: glm-4.7
-    tier: notable
     aa_model: glm-4-7
   - family: glm-4.7-flash
-    tier: notable
     aa_model: glm-4-7-flash
   - family: glm-4.6
-    tier: notable
     aa_model: glm-4-6
   - family: minimax-m2.5
-    tier: notable
     aa_model: minimax-m2-5
   - family: minimax-m2.1
-    tier: notable
     aa_model: minimax-m2-1
   - family: minimax-m2
-    tier: notable
     aa_model: minimax-m2
   - family: mimo-v2-flash
-    tier: notable
     aa_model: mimo-v2-flash
   - family: dots-3-note
   - family: nemotron-3.5-lightning
@@ -3919,10 +3871,8 @@ entries:
   - family: agents-a1
   - family: intern-s2-preview-35b
   - family: mimo-v2.6-flash
-    tier: strong
     aa_model: mimo-v2-6-flash
   - family: mimo-v2.6-pro
-    tier: strong
     aa_model: mimo-v2-6-pro
   api:
     base_url: https://aihubmix.com/v1
@@ -4396,7 +4346,6 @@ entries:
   models:
   - family: qwen3.6
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   api:
     base_url: https://inference.hetzner.com/api/v1
@@ -4532,17 +4481,14 @@ entries:
   free_part: models
   models:
   - family: glm-5.2
-    tier: strong
     aa_model: glm-5-2
   - family: gpt-oss-120b
     aa_model: gpt-oss-120b
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   - family: apertus-70b
     aa_model: apertus-70b-instruct
   - family: gemma-4-31b
-    tier: notable
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
@@ -4550,7 +4496,6 @@ entries:
   - family: qwen3.5-9b
     aa_model: qwen3-5-9b
   - family: qwen3.5-122b-a10b
-    tier: notable
     aa_model: qwen3-5-122b-a10b
   api:
     base_url: https://api.regolo.ai/v1
@@ -4724,7 +4669,6 @@ entries:
     - name: MiMo V2.6 Flash Fast
       model:
         family: mimo-v2.6-flash
-        tier: strong
         aa_model: mimo-v2-6-flash
       limited: true
       condition: wallet
@@ -4735,7 +4679,6 @@ entries:
     - name: GLM 5.3 Flash
       model:
         family: glm-5.3-flash
-        tier: strong
         aa_model: glm-5-3-flash
       limited: true
       condition: wallet
@@ -4746,7 +4689,6 @@ entries:
     - name: DeepSeek V4.1 Flash 10/17
       model:
         family: deepseek-v4.1-flash
-        tier: strong
         aa_model: deepseek-v4-1-flash
       limited: true
       condition: wallet
@@ -4957,7 +4899,6 @@ entries:
   - family: mistral-small-3.2
     aa_model: mistral-small-3-2
   - family: glm-4.7-flash
-    tier: notable
     aa_model: glm-4-7-flash
   api:
     base_url: https://api.meganova.ai/v1
@@ -5070,6 +5011,7 @@ entries:
   - https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens
   - https://llmtr.com/blog/jais-3-vs-k2-horizon
   - https://llmtr.com/models/poolside/laguna-xs-2.1
+  - https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -5086,15 +5028,14 @@ entries:
   - unit: usage
     period: day
     scope: unspecified
-    label: Nemotron Ultra/Super and Qwen3.8 27B
+    label: Nemotron Ultra and Qwen3.8 27B
     source: https://llmtr.com/v1/models
     quote: günlük kotayla ücretsiz
     read: catalog
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b
-    - nvidia/nemotron-3-super-120b-a12b
     - qwen/qwen3.8-27b-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-10-29'
   - unit: usage
     period: day
     scope: account-model
@@ -5130,7 +5071,7 @@ entries:
     quote: with a daily usage limit per account
     model_ids:
     - heabsy/qwen3.8-27b-heabsy-free
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - unit: usage
     period: day
     scope: unspecified
@@ -5139,7 +5080,7 @@ entries:
     quote: free of charge with a daily quota
     model_ids:
     - nvidia/nemotron-3.5-super-vl-free
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - unit: usage
     period: day
     scope: unspecified
@@ -5238,27 +5179,23 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   - family: jais-3-mova-36b-a4b
   - family: k2-horizon-375b-a23b
-    tier: notable
     aa_model: k2-horizon-375b-a23b
   - family: minimax-m3.1-flash
-    tier: strong
     aa_model: minimax-m3-1-flash
   - family: intern-s2-397b
   - family: atria-dawn
   - family: atria-dawn-preview
   - family: agents-a1
   - family: sage-a1.5
+  - family: nemotron-3.5-super-vl-120b-a12b
+    aa_model: nemotron-3-5-super-vl
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5266,7 +5203,6 @@ entries:
     openai_compatible: true
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b
-    - nvidia/nemotron-3-super-120b-a12b
     - qwen/qwen3.8-27b-free
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
@@ -5286,6 +5222,10 @@ entries:
         source: https://llmtr.com/blog/shanghai-ai-lab-modelleri-intern-s2-atria-dawn-agents-a1-sage
         quote: internlm/intern-s2-free
         target: https://huggingface.co/internlm/Intern-S2-397B
+      nvidia/nemotron-3.5-super-vl-free:
+        family: nemotron-3.5-super-vl-120b-a12b
+        source: https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard
+        quote: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -5641,13 +5581,10 @@ entries:
   free_part: models
   models:
   - family: deepseek-v4-flash
-    tier: strong
     aa_model: deepseek-v4-flash
   - family: glm-5.3-flash
-    tier: strong
     aa_model: glm-5-3-flash
   - family: minimax-m3
-    tier: notable
     aa_model: minimax-m3
   - family: qwen3.6
   api:
@@ -6234,6 +6171,8 @@ entries:
   free_part: models
   models:
   - family: solar-mini-4
+  - family: nemotron-3.5-super-vl-120b-a12b
+    aa_model: nemotron-3-5-super-vl
   client_lane:
     model_ids:
     - cline-free/solar-mini4
@@ -6241,6 +6180,11 @@ entries:
     - reflection/beam-free
     - nvidia/nemotron-3.5-lightning-free
     - poolside/laguna-s-2.1-free
+    model_bindings:
+      cline-free/nemotron-3.5-super-vl:
+        family: nemotron-3.5-super-vl-120b-a12b
+        source: https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard
+        quote: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.
@@ -6405,7 +6349,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-flash
-    tier: strong
     aa_model: qwen3-8-flash-next
   api:
     base_url: https://yolo-auto.com/v1
@@ -6696,10 +6639,8 @@ entries:
   free_part: models
   models:
   - family: deepseek-v4.1-flash
-    tier: strong
     aa_model: deepseek-v4-1-flash
   - family: mimo-v2.6-flash
-    tier: strong
     aa_model: mimo-v2-6-flash
   api:
     base_url: https://tokenharbor.ai/v1
@@ -6774,12 +6715,10 @@ entries:
   free_part: models
   models:
   - family: step-3.7-flash
-    tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: longcat-2.0
-    tier: notable
     aa_model: longcat-2-0
   - family: solar-mini-4
   api:
@@ -6908,7 +6847,7 @@ entries:
     source: https://docs.llm7.io/limits.md
     quote: 100,000 tokens per 24 hours
     value_phrase: 100,000 tokens per 24 hours
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 1.0
     unit: requests
     period: second
@@ -6930,7 +6869,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 60.0
     unit: requests
     period: minute
@@ -6952,7 +6891,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 250.0
     unit: requests
     period: hour
@@ -6974,7 +6913,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: models
   models: []
   api:
@@ -7040,7 +6979,7 @@ entries:
     source: https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit
     quote: $1 credit
     value_phrase: $1 credit
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 10.0
     unit: requests
     period: minute
@@ -7048,7 +6987,7 @@ entries:
     source: https://docs.fireworks.ai/guides/quotas_usage/account-quotas
     quote: No payment method or no credits 10 RPM
     value_phrase: No payment method or no credits 10 RPM
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: sum
   models: []
   api:
@@ -7183,7 +7122,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   - family: diffusiongemma
   - family: qwen3.5-0.8b
@@ -7477,7 +7415,6 @@ entries:
   free_part: models
   models:
   - family: gemma-4-31b
-    tier: notable
     aa_model: gemma-4-31b
   api:
     base_url: https://api.opper.ai/v3/compat
@@ -8233,7 +8170,6 @@ entries:
     crypto
   models:
   - family: minimax-m2
-    tier: notable
     aa_model: minimax-m2
   - family: kimi-k2
   probe:
@@ -8417,7 +8353,6 @@ entries:
     is announced and the model is uncapped during rollout
   models:
   - family: longcat-2.0
-    tier: notable
     aa_model: longcat-2-0
   - family: longcat-flash
   api:
@@ -8606,12 +8541,10 @@ entries:
     mirror under /en/docs'
   models:
   - family: nemotron-3-ultra
-    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: step-3.7-flash
-    tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   probe:
@@ -8710,7 +8643,7 @@ entries:
     source: https://llmtech.eu/docs/
     quote: 20M tokens per day per address
     value_phrase: 20M tokens per day per address
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-10-29'
   - unit: requests
     period: concurrent
     scope: key
@@ -8718,7 +8651,7 @@ entries:
     label: Shared trial key
     source: https://llmtech.eu/docs/
     quote: 'Shared and rate-limited: 16 concurrent requests'
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-10-29'
   - amount: 64.0
     unit: requests
     period: concurrent
@@ -8726,11 +8659,10 @@ entries:
     source: https://llmtech.eu/docs/
     quote: it shares the endpoint's 64 requests in flight with other keys
     value_phrase: it shares the endpoint's 64 requests in flight with other keys
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-29'
   free_part: models
   models:
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   api:
     base_url: https://api.llmtech.eu/v1
@@ -9032,13 +8964,10 @@ entries:
   free_part: models
   models:
   - family: gemini-3.1-pro
-    tier: notable
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3-flash
-    tier: notable
     aa_model: gemini-3-flash
   - family: gemini-2.5-pro
-    tier: notable
     aa_model: gemini-2-5-pro
   - family: gemini-2.5-flash
   api:
@@ -9150,13 +9079,11 @@ entries:
   free_part: models
   models:
   - family: glm-5.3
-    tier: strong
+    tier: notable
     aa_model: glm-5-3
   - family: glm-5-turbo
-    tier: notable
     aa_model: glm-5-turbo
   - family: glm-5.3-flash
-    tier: strong
     aa_model: glm-5-3-flash
   data_use:
     trains: 'no'
@@ -9388,7 +9315,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-flash
-    tier: strong
     aa_model: qwen3-8-flash-next
   border:
     left_out: []
@@ -9491,11 +9417,9 @@ entries:
   free_part: models
   models:
   - family: deepseek-v4-flash
-    tier: strong
     aa_model: deepseek-v4-flash
   - family: qwen3-vl-8b-instruct
   - family: glm-5.2
-    tier: strong
     aa_model: glm-5-2
   border:
     left_out: []
@@ -9548,7 +9472,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Daily check-ins earn 400 points
     value_phrase: Daily check-ins earn 400 points
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 1000.0
     unit: points
     period: day
@@ -9559,7 +9483,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Check-ins on day 4 and day 7 award 1,000 points per day
     value_phrase: Check-ins on day 4 and day 7 award 1,000 points per day
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: sum
   models: []
   border:
@@ -9614,13 +9538,13 @@ entries:
     source: https://wallabytoken.com/blog/p/kimi-k3-free-trial
     quote: every new Wallaby Token account starts with $0.50 of free trial credit
       for the Kimi K3 API
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - unit: requests
     scope: account
     label: Trial rate limit
     source: https://wallabytoken.com/terms
     quote: may be restricted to specific models and lower rate limits
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: sum
   models: []
   api:
@@ -10065,7 +9989,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.8-27b
-    tier: strong
     aa_model: qwen3-8-27b
   api:
     base_url: https://api.iteracompute.com/v1
@@ -10129,43 +10052,62 @@ entries:
   card_required: false
   offering: Hong Kong OpenAI-compatible gateway with a recurring free allowance on
     selected text and vision models, separate from its signup credit
-  limits: The daily call allowance is shared across free chat, image and video models;
-    calls at the cap return 429 until reset. An email account and API key are required.
-    Signup accepts selected email providers and is screened for abuse. Paid models
-    and top-ups are optional. The gateway says it does not store or train on prompts;
-    upstream providers apply their own policies. Users must be at least 18.
+  limits: The daily allowance is shared across free chat, image and video models;
+    media keep separate caps after a top-up. Calls at a cap return 429 until reset.
+    An email account and API key are required. Signup accepts selected email providers
+    and is screened for abuse. Paid models and top-ups are optional. The gateway says
+    it does not store or train on prompts; upstream providers apply their own policies.
+    Users must be at least 18.
   quotas:
   - amount: 10.0
     unit: requests
     period: day
     scope: account
     label: Shared free-model calls
+    condition: before the first completed top-up
+    condition_quote: a one-time top-up removes the free-tier cap and removes NovAI's
+      request rate limits entirely
     reset: 00:00 UTC+8
     source: https://aiapi-pro.com/free/index.html
     quote: 10 free-model calls per day and 5 requests per minute on the free tier,
       resetting at 00:00 UTC+8.
     value_phrase: 10 free-model calls per day
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 5.0
     unit: requests
     period: minute
     scope: account
+    condition: before the first completed top-up
+    condition_quote: a one-time top-up removes the free-tier cap and removes NovAI's
+      request rate limits entirely
     source: https://aiapi-pro.com/free/index.html
     quote: 10 free-model calls per day and 5 requests per minute on the free tier,
       resetting at 00:00 UTC+8.
     value_phrase: 5 requests per minute
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   - amount: 2.0
     unit: USD
     period: one-time
     scope: account
     label: Separate signup credit
-    condition: Valid for 14 days
+    condition: valid for 14 days
     condition_quote: valid 14 days
     source: https://aiapi-pro.com/register.html
     quote: $2.00 welcome credit (valid 14 days)
     value_phrase: $2.00 welcome credit
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
+  - unit: requests
+    period: day
+    scope: account
+    state: unmetered
+    label: Free chat calls
+    condition: after any completed top-up; upstream provider limits still apply
+    condition_quote: none on accounts with any completed top-up; 5 requests/min before
+      the first top-up (model providers may still throttle at peak hours, and those
+      429s name the provider)
+    source: https://aiapi-pro.com/transparency.html
+    quote: unlimited free-model calls after the first top-up
+    reviewed_on: '2026-10-29'
   free_part: models
   models: []
   api:

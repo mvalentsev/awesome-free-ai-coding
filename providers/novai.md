@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'NovAI free tier: limits, free models, verified 2026-10-26'
-description: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. The daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required…
+description: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. The daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email…
 permalink: /providers/novai/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: NovAI
 ---
 
@@ -23,13 +23,15 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-Shared free-model calls: 10 requests/day per account. 00:00 UTC+8
+Shared free-model calls: 10 requests/day per account (before the first completed top-up). 00:00 UTC+8
 
-5 requests/minute per account
+5 requests/minute per account (before the first completed top-up)
 
-Separate signup credit: $2 once per account (Valid for 14 days)
+Separate signup credit: $2 once per account (valid for 14 days)
 
-The daily call allowance is shared across free chat, image and video models; calls at the cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.
+Free chat calls: Unmetered requests per account (after any completed top-up; upstream provider limits still apply)
+
+The daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.
 
 ## Where it is offered
 
@@ -71,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

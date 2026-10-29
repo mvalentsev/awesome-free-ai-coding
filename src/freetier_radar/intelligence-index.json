@@ -1,392 +1,107 @@
 {
-  "read_on": "2026-10-26",
+  "read_on": "2026-10-29",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
-    "slug": "claude-opus-5-5",
-    "name": "Claude Opus 5.5 (Max, Default Fallback)",
-    "index": 57.6
+    "slug": "gemini-4-carbon",
+    "name": "Gemini 4 Carbon (High)",
+    "index": 59.4
   },
-  "median": 13.2,
+  "median": 31.7,
   "families": {
-    "apertus-70b": {
-      "slug": "apertus-70b-instruct",
-      "index": 5.1,
-      "estimated": true
-    },
-    "claude-opus-4.6": {
-      "slug": "claude-opus-4-6",
-      "index": 26.4,
-      "estimated": true
-    },
-    "claude-sonnet-4": {
-      "slug": "claude-4-sonnet",
-      "index": 16.6,
-      "estimated": true
-    },
-    "claude-sonnet-4.5": {
-      "slug": "claude-4-5-sonnet",
-      "index": 19.3,
-      "estimated": true
-    },
-    "claude-sonnet-4.6": {
-      "slug": "claude-sonnet-4-6",
-      "index": 24.7,
-      "estimated": true
-    },
-    "command-a": {
-      "slug": "command-a",
-      "index": 7.0,
-      "estimated": true
-    },
     "command-a-plus": {
       "slug": "command-a-plus",
-      "index": 13.1,
-      "estimated": false
-    },
-    "deepseek-v3.2": {
-      "slug": "deepseek-v3-2",
-      "index": 16.0,
-      "estimated": true
-    },
-    "deepseek-v4-flash": {
-      "slug": "deepseek-v4-flash",
-      "index": 34.3,
+      "index": 6.2,
       "estimated": false
     },
     "deepseek-v4-pro": {
       "slug": "deepseek-v4-pro",
-      "index": 36.0,
-      "estimated": false
-    },
-    "deepseek-v4.1-flash": {
-      "slug": "deepseek-v4-1-flash",
-      "index": 39.5,
-      "estimated": false
-    },
-    "gemini-2.5-pro": {
-      "slug": "gemini-2-5-pro",
-      "index": 16.1,
-      "estimated": false
-    },
-    "gemini-3-flash": {
-      "slug": "gemini-3-flash",
-      "index": 17.9,
-      "estimated": true
-    },
-    "gemini-3.1-flash-lite": {
-      "slug": "gemini-3-1-flash-lite-preview",
-      "index": 15.6,
-      "estimated": false
-    },
-    "gemini-3.1-pro": {
-      "slug": "gemini-3-1-pro-preview",
-      "index": 29.7,
-      "estimated": false
-    },
-    "gemini-3.5-flash": {
-      "slug": "gemini-3-5-flash",
-      "index": 32.6,
+      "index": 23.1,
       "estimated": false
     },
     "gemini-3.5-flash-lite": {
       "slug": "gemini-3-5-flash-lite",
-      "index": 22.2,
-      "estimated": false
-    },
-    "gemini-3.6-flash": {
-      "slug": "gemini-3-6-flash",
-      "index": 34.0,
-      "estimated": false
-    },
-    "gemini-3.7-flash": {
-      "slug": "gemini-3-7-flash",
-      "index": 39.1,
+      "index": 11.7,
       "estimated": false
     },
     "gemini-3.8-flash": {
       "slug": "gemini-3-8-flash",
-      "index": 40.9,
-      "estimated": false
-    },
-    "gemma-4-26b-a4b": {
-      "slug": "gemma-4-26b-a4b",
-      "index": 16.7,
-      "estimated": true
-    },
-    "gemma-4-31b": {
-      "slug": "gemma-4-31b",
-      "index": 14.7,
-      "estimated": false
-    },
-    "glm-4.6": {
-      "slug": "glm-4-6",
-      "index": 14.9,
-      "estimated": true
-    },
-    "glm-4.7": {
-      "slug": "glm-4-7",
-      "index": 22.2,
-      "estimated": true
-    },
-    "glm-4.7-flash": {
-      "slug": "glm-4-7-flash",
-      "index": 14.9,
-      "estimated": true
-    },
-    "glm-5": {
-      "slug": "glm-5",
-      "index": 27.9,
-      "estimated": true
-    },
-    "glm-5-turbo": {
-      "slug": "glm-5-turbo",
-      "index": 26.6,
-      "estimated": true
-    },
-    "glm-5.1": {
-      "slug": "glm-5-1",
-      "index": 26.1,
-      "estimated": false
-    },
-    "glm-5.2": {
-      "slug": "glm-5-2",
-      "index": 33.7,
+      "index": 30.5,
       "estimated": false
     },
     "glm-5.3": {
       "slug": "glm-5-3",
-      "index": 44.8,
+      "index": 31.7,
       "estimated": false
-    },
-    "glm-5.3-flash": {
-      "slug": "glm-5-3-flash",
-      "index": 41.8,
-      "estimated": false
-    },
-    "gpt-4.1": {
-      "slug": "gpt-4-1",
-      "index": 12.7,
-      "estimated": true
     },
     "gpt-6-luna": {
       "slug": "gpt-6-luna",
-      "index": 38.1,
-      "estimated": false
-    },
-    "gpt-oss-120b": {
-      "slug": "gpt-oss-120b",
-      "index": 11.6,
-      "estimated": false
-    },
-    "gpt-oss-20b": {
-      "slug": "gpt-oss-20b",
-      "index": 9.0,
+      "index": 27.8,
       "estimated": false
     },
     "inkling": {
       "slug": "inkling",
-      "index": 25.0,
+      "index": 12.5,
       "estimated": false
     },
     "inkling-small": {
       "slug": "inkling-small",
-      "index": 25.7,
+      "index": 12.9,
       "estimated": false
     },
     "k2-horizon-375b-a23b": {
       "slug": "k2-horizon-375b-a23b",
-      "index": 30.5,
-      "estimated": false
-    },
-    "kimi-k3": {
-      "slug": "kimi-k3",
-      "index": 43.6,
-      "estimated": false
-    },
-    "ling-3.0-tiny": {
-      "slug": "ling-3-0-tiny",
-      "index": 11.1,
-      "estimated": false
-    },
-    "ling-3.1-flash": {
-      "slug": "ling-3-1-flash",
-      "index": 41.1,
-      "estimated": false
-    },
-    "longcat-2.0": {
-      "slug": "longcat-2-0",
-      "index": 19.1,
-      "estimated": false
-    },
-    "mimo-v2-flash": {
-      "slug": "mimo-v2-flash",
-      "index": 16.0,
-      "estimated": true
-    },
-    "mimo-v2.5": {
-      "slug": "mimo-v2-5-0424",
-      "index": 21.8,
+      "index": 17.8,
       "estimated": false
     },
     "mimo-v2.6-flash": {
       "slug": "mimo-v2-6-flash",
-      "index": 37.9,
+      "index": 26.7,
       "estimated": false
     },
     "mimo-v2.6-pro": {
       "slug": "mimo-v2-6-pro",
-      "index": 46.3,
-      "estimated": false
-    },
-    "minimax-m2": {
-      "slug": "minimax-m2",
-      "index": 18.6,
-      "estimated": true
-    },
-    "minimax-m2.1": {
-      "slug": "minimax-m2-1",
-      "index": 20.9,
-      "estimated": true
-    },
-    "minimax-m2.5": {
-      "slug": "minimax-m2-5",
-      "index": 22.8,
-      "estimated": true
-    },
-    "minimax-m2.7": {
-      "slug": "minimax-m2-7",
-      "index": 22.8,
+      "index": 29.9,
       "estimated": false
     },
     "minimax-m3": {
       "slug": "minimax-m3",
-      "index": 29.2,
+      "index": 18.7,
       "estimated": false
     },
     "minimax-m3.1-flash": {
       "slug": "minimax-m3-1-flash",
-      "index": 42.7,
-      "estimated": false
-    },
-    "mistral-small-3.2": {
-      "slug": "mistral-small-3-2",
-      "index": 7.0,
+      "index": 28.9,
       "estimated": false
     },
     "muse-glimmer-30b": {
       "slug": "muse-glimmer",
-      "index": 17.5,
-      "estimated": false
-    },
-    "nemotron-3-nano-omni": {
-      "slug": "nemotron-3-nano-omni-30b-a3b",
-      "index": 10.3,
-      "estimated": true
-    },
-    "nemotron-3-super": {
-      "slug": "nvidia-nemotron-3-super-120b-a12b",
-      "index": 12.8,
+      "index": 6.3,
       "estimated": false
     },
     "nemotron-3-ultra": {
       "slug": "nvidia-nemotron-3-ultra-550b-a55b",
-      "index": 22.9,
+      "index": 11.8,
       "estimated": false
     },
-    "nemotron-3.5-lightning": {
-      "slug": "nemotron-3-5-lightning",
-      "index": 12.9,
-      "estimated": false
-    },
-    "north-mini-code": {
-      "slug": "north-mini-code",
-      "index": 9.9,
-      "estimated": false
-    },
-    "qwen3-coder-next": {
-      "slug": "qwen3-coder-next",
-      "index": 9.2,
-      "estimated": false
-    },
-    "qwen3.5-122b-a10b": {
-      "slug": "qwen3-5-122b-a10b",
-      "index": 15.6,
-      "estimated": false
-    },
-    "qwen3.5-27b": {
-      "slug": "qwen3-5-27b",
-      "index": 22.9,
-      "estimated": true
-    },
-    "qwen3.5-35b-a3b": {
-      "slug": "qwen3-5-35b-a3b",
-      "index": 19.3,
-      "estimated": true
-    },
-    "qwen3.5-397b-a17b": {
-      "slug": "qwen3-5-397b-a17b",
-      "index": 18.4,
-      "estimated": false
-    },
-    "qwen3.5-4b": {
-      "slug": "qwen3-5-4b",
-      "index": 13.1,
-      "estimated": true
-    },
-    "qwen3.5-9b": {
-      "slug": "qwen3-5-9b",
-      "index": 11.2,
-      "estimated": false
-    },
-    "qwen3.6-27b": {
-      "slug": "qwen3-6-27b",
-      "index": 21.4,
-      "estimated": false
-    },
-    "qwen3.6-35b-a3b": {
-      "slug": "qwen3-6-35b-a3b",
-      "index": 18.2,
-      "estimated": false
-    },
-    "qwen3.6-plus": {
-      "slug": "qwen3-6-plus",
-      "index": 27.0,
-      "estimated": true
-    },
-    "qwen3.7-max": {
-      "slug": "qwen3-7-max",
-      "index": 29.5,
-      "estimated": false
-    },
-    "qwen3.7-plus": {
-      "slug": "qwen3-7-plus",
-      "index": 25.2,
-      "estimated": false
-    },
-    "qwen3.8-2.4t-a95b": {
-      "slug": "qwen3-8-2-4t-a95b",
-      "index": 39.9,
+    "nemotron-3.5-super-vl-120b-a12b": {
+      "slug": "nemotron-3-5-super-vl",
+      "index": 13.6,
       "estimated": false
     },
     "qwen3.8-27b": {
       "slug": "qwen3-8-27b",
-      "index": 33.7,
-      "estimated": false
-    },
-    "qwen3.8-flash": {
-      "slug": "qwen3-8-flash-next",
-      "index": 39.8,
+      "index": 20.1,
       "estimated": false
     },
     "qwen3.8-max": {
       "slug": "qwen3-8-max",
-      "index": 45.4,
+      "index": 33.6,
       "estimated": false
     },
-    "step-3.7-flash": {
-      "slug": "step-3-7-flash",
-      "index": 19.5,
-      "estimated": true
+    "step-5-preview-600b-a27b": {
+      "slug": "step-5",
+      "index": 28.5,
+      "estimated": false
     }
   }
 }
