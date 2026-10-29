@@ -3,7 +3,7 @@ layout: default
 title: 'Agnes AI free tier: limits, free models, verified 2026-10-26'
 description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. The Flash models'' input, cached input and output are currently zero-priced; Pro remains metered. Zero…'
 permalink: /providers/agnes-ai/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: Agnes AI
 ---
 
@@ -23,11 +23,9 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ## Limits, in the vendor's words
 
-Published allowed rate: 30 requests/minute per account
+Allowed and effective text rates for default users: Per-minute requests allowance: see your account for values per account
 
-Effective rate: 10 requests/minute per account
-
-The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM are separate ceilings for the default user class; the account's keys share them. Image rates are separate. No daily budget is published.
+The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM for the default user class are dynamic; check the console for current limits. Keys of the same type share a pool; enterprise and Token Plan keys use separate pools. Image rates are separate. No daily budget is published.
 
 ## Where it is offered
 

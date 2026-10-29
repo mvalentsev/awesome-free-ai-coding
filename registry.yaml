@@ -1125,26 +1125,25 @@ entries:
     unit: completions
     period: month
     scope: account
-    source: https://github.com/features/copilot
-    quote: 2,000 code completions per month
-    value_phrase: 2,000 code completions per month
-    reviewed_on: '2026-10-06'
+    source: https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
+    quote: Copilot Free includes 2000 code completions per month
+    value_phrase: Copilot Free includes 2000 code completions per month
+    reviewed_on: '2026-10-29'
   - unit: credits
     period: month
     scope: account
     label: Chat and agent usage
-    source: https://github.com/features/copilot
-    quote: a limited monthly allowance of GitHub AI Credits for chat and agent features
-    reviewed_on: '2026-10-27'
+    source: https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
+    quote: Copilot Free and Copilot Student both have an allowance of AI credits
+    period_quote: monthly GitHub AI Credits allowance that varies by plan
+    reviewed_on: '2026-10-29'
   free_part: unnamed
   models: []
   data_use:
     trains: opt-out
-    quote: GitHub may also use interactions from users with a Copilot Free, Copilot
-      Pro, and Copilot Pro+ subscription - including inputs, outputs, code snippets,
-      and associated context - to train and improve our AI models unless they have
-      opted out.
-    url: https://github.com/features/copilot
+    quote: You can opt-out from allowing your data to be used for training in your
+      personal settings for GitHub Copilot.
+    url: https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies
   border:
     left_out: [BY, CU, IR, KP, RU]
     'on': '2026-09-26'
@@ -1591,7 +1590,7 @@ entries:
     label: Free Flash models
     source: https://docs.z.ai/guides/overview/pricing.md
     quote: GLM-4.7-Flash | Free
-    reviewed_on: '2026-10-22'
+    reviewed_on: '2026-10-29'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -6251,59 +6250,18 @@ entries:
   limits: 'The Flash models'' input, cached input and output are currently zero-priced;
     Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject
     to Agnes AI platform announcements and your account bill". Allowed and effective
-    text RPM are separate ceilings for the default user class; the account''s keys
-    share them. Image rates are separate. No daily budget is published.'
+    text RPM for the default user class are dynamic; check the console for current
+    limits. Keys of the same type share a pool; enterprise and Token Plan keys use
+    separate pools. Image rates are separate. No daily budget is published.'
   quotas:
-  - amount: 30.0
-    unit: requests
+  - unit: requests
     period: minute
     scope: account
-    label: Published allowed rate
+    state: account-specific
+    label: Allowed and effective text rates for default users
     source: https://wiki.agnes-ai.com/en/docs/tokenplan
-    quote: Allowed RPM Effective RPM
-    read: table
-    table:
-      headers:
-      - Model Type
-      - User Type
-      - Resolution / Spec
-      - Allowed RPM
-      - Effective RPM
-      column: Allowed RPM
-      rows:
-      - default
-      row_column: 1
-      where:
-        Model Type: Text Model
-      cell_part: ''
-      active_tab: ''
-      active_class: ''
-    reviewed_on: '2026-10-06'
-  - amount: 10.0
-    unit: requests
-    period: minute
-    scope: account
-    label: Effective rate
-    source: https://wiki.agnes-ai.com/en/docs/tokenplan
-    quote: Allowed RPM Effective RPM
-    read: table
-    table:
-      headers:
-      - Model Type
-      - User Type
-      - Resolution / Spec
-      - Allowed RPM
-      - Effective RPM
-      column: Effective RPM
-      rows:
-      - default
-      row_column: 1
-      where:
-        Model Type: Text Model
-      cell_part: ''
-      active_tab: ''
-      active_class: ''
-    reviewed_on: '2026-10-06'
+    quote: adjusted dynamically based on platform capacity and service conditions
+    reviewed_on: '2026-10-29'
   free_part: models
   models:
   - family: agnes-3.0-flash

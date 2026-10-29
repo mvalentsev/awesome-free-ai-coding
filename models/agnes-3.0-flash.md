@@ -58,11 +58,9 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Published allowed rate: 30 requests/minute per account
+- Limits, in the vendor's words: Allowed and effective text rates for default users: Per-minute requests allowance: see your account for values per account
 
-Effective rate: 10 requests/minute per account
-
-The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM are separate ceilings for the default user class; the account's keys share them. Image rates are separate. No daily budget is published.
+The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM for the default user class are dynamic; check the console for current limits. Keys of the same type share a pool; enterprise and Token Plan keys use separate pools. Image rates are separate. No daily budget is published.
 
 </details>
 

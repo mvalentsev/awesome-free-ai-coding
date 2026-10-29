@@ -3,7 +3,7 @@ layout: default
 title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-10-26'
 description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. Chat and agent features spend GitHub AI Credits, whose Free amount is unpublished. Model selection is automatic on Copilot Free and Student. Free is available only…
 permalink: /providers/github-copilot-free/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-10-29
 crumb: GitHub Copilot Free
 ---
 
@@ -35,7 +35,7 @@ Not offered in Russia, Iran, Belarus, Cuba and North Korea ([source](https://doc
 
 ## What happens to what you send
 
-What you send may be used to train or improve models unless you turn that off. In the vendor's words: “GitHub may also use interactions from users with a Copilot Free, Copilot Pro, and Copilot Pro+ subscription - including inputs, outputs, code snippets, and associated context - to train and improve our AI models unless they have opted out.” ([source](https://github.com/features/copilot)).
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “You can opt-out from allowing your data to be used for training in your personal settings for GitHub Copilot.” ([source](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies)).
 
 ## Connect
 
