@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 87 live offers, 83 need no card, 130 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 87 live offers, 83 need no card, 129 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -147,7 +147,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Vercel AI Gateway](https://vercel.com/ai-gateway)** 💳 👁 — OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) · [🔑 key](https://vercel.com/dashboard/ai-gateway/api-keys) · [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</sub>
 - **[BazaarLink](https://bazaarlink.ai)** — OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) · [🔑 key](https://bazaarlink.ai/keys) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)</sub>
 - **[Inferbase](https://inferbase.ai)** 🧪 — OpenAI-compatible managed inference on a permanent $0 Free plan, with a shared daily usage budget and no card required<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inferbase/) · [🔑 key](https://inferbase.ai/docs/getting-started/quickstart)</sub>
-- **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** 👁 — Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) · [🔑 key](https://portal.nousresearch.com) · [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/) · [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</sub>
+- **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** 👁 — Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) · [🔑 key](https://portal.nousresearch.com) · [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</sub>
 - **[Token Harbor](https://tokenharbor.ai)** 👁 — OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) · [🔑 key](https://tokenharbor.ai/dashboard/api-keys) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</sub>
 - **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** — OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) · [🔑 key](https://www.tokenrouter.com/console/token) · [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</sub>
 - **[Opper](https://opper.ai)** — EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) · [🔑 key](https://platform.opper.ai/settings/api-keys) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</sub>
@@ -156,7 +156,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[NovAI](https://aiapi-pro.com)** 🧪 — Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) · [🔑 key](https://aiapi-pro.com/register.html)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 charge) — Open-source AI gateway backed by Y Combinator with recurring model-specific promotional free quotas, separate from its paid credit wallet<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 130 model families on the list and everyone who serves each one free. A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 129 model families on the list and everyone who serves each one free. A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -164,6 +164,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-29` | 🔄 Free models changed **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** | <sub>dropped longcat-2.0</sub> |
 | `2026-10-29` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added nemotron-3.5-super-vl-120b-a12b</sub> |
 | `2026-10-29` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added nemotron-3.5-super-vl-120b-a12b</sub> |
 | `2026-10-29` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added nemotron-3.5-super-vl-120b-a12b; dropped nemotron-3-super</sub> |
@@ -173,7 +174,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-29` | 🔄 Free models changed **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | <sub>added nemotron-3.5-lightning</sub> |
 | `2026-10-28` | 🔄 Free models changed **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>dropped gemini-3.5-flash, gemini-3.7-flash</sub> |
 | `2026-10-28` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>dropped glm-5.3</sub> |
-| `2026-10-28` | 🔄 Free models changed **[Qoder](https://qoder.com)** | <sub>added deepseek-v4.1-flash, qwen3.8-flash</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

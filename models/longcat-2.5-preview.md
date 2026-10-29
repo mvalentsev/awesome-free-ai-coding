@@ -3,7 +3,7 @@ layout: default
 title: 'longcat-2.5-preview free: no current listing, last listed 2026-10-27'
 description: No row currently lists longcat-2.5-preview under Free models. The list carried it at Nous Portal (Hermes Agent) and opencode until 2026-10-27. Each row's page gives its current offer.
 permalink: /models/longcat-2.5-preview/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-29
 crumb: longcat-2.5-preview
 ---
 
@@ -19,10 +19,6 @@ crumb: longcat-2.5-preview
 
 - [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) — listed 2026-10-13 to 2026-10-27
 - [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-10-11 to 2026-10-25
-
-## Related models
-
-- [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/) — free at Nous Portal (Hermes Agent)
 
 ---
 

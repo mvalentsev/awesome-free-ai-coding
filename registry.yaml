@@ -6582,10 +6582,12 @@ entries:
     Exhausted free routes stop instead of charging the wallet. Request-rate caps apply
     to Free accounts across models and API keys. "There is no limit on concurrent
     requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized
-    requests return `413 request_too_large`. Enabling free routes permits retaining
-    prompts and responses for model or product improvement; upstream providers also
-    process content under their own terms. The operator is Token Harbor PTE. LTD.,
-    Singapore.'
+    requests return `413 request_too_large`. Permanent free routes require data sharing:
+    staff and third-party AI tools may analyze retained prompts and responses for
+    diagnostics and model or product improvement. Token Harbor says it does not train
+    models itself; upstream providers may train under their own terms. Limited-time
+    campaigns may expressly use the paid-route data policy instead. The operator is
+    Token Harbor PTE. LTD., Singapore.'
   quotas:
   - unit: list-price value
     period: day
@@ -6667,9 +6669,9 @@ entries:
       gateway model works on both endpoints".
   data_use:
     trains: 'yes'
-    quote: After you explicitly enable free models, Token Harbor may retain, log,
-      and analyze prompts and responses … Token Harbor may use this data for service
-      diagnostics, safety, optimization, and model or product improvement.
+    quote: Token Harbor does not train models on it itself. The providers that serve
+      free models may also use these conversations under their own terms, including
+      to train their own models.
     url: https://tokenharbor.ai/terms
   border:
     left_out: []
@@ -6718,8 +6720,6 @@ entries:
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
-  - family: longcat-2.0
-    aa_model: longcat-2-0
   - family: solar-mini-4
   api:
     base_url: https://inference-api.nousresearch.com/v1
@@ -6730,7 +6730,6 @@ entries:
     - stepfun/step-3.7-flash:free
     - poolside/laguna-s-2.1:free
     - poolside/laguna-xs-2.1:free
-    - meituan/longcat-2.0:free
     - upstage/solar-mini4:free
     - reflection/beam-1.0-501b-a23b:free
     - ornith/ornith-1.5-122b:free

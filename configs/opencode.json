@@ -757,9 +757,6 @@
         "poolside/laguna-xs-2.1:free": {
           "name": "poolside/laguna-xs-2.1:free"
         },
-        "meituan/longcat-2.0:free": {
-          "name": "meituan/longcat-2.0:free"
-        },
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
         },

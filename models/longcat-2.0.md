@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'longcat-2.0 free: 1 provider, limits and ids, provider probes 2026-10-26'
-description: longcat-2.0 is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'longcat-2.0 free: no current listing, last listed 2026-10-29'
+description: No row currently lists longcat-2.0 under Free models. The list carried it at Nous Portal (Hermes Agent) and LongCat API Platform until 2026-10-29. Each row's page gives its current offer.
 permalink: /models/longcat-2.0/
 last_modified_at: 2026-10-29
 crumb: longcat-2.0
@@ -9,36 +9,15 @@ crumb: longcat-2.0
 
 {% raw %}
 
-# Where longcat-2.0 is free
+# longcat-2.0: no current free listing
 
-**One row on the list serves `longcat-2.0` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
+**No row currently lists `longcat-2.0` under Free models.** The list carried it at Nous Portal (Hermes Agent) and LongCat API Platform until 2026-10-29. Each row's page says what it offers now.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## Who serves it free
+## Rows that listed it
 
-### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-30
-
-Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free models: Usage allowance: amount not published (period not published) per account
-
-Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key with ordinary API clients; the catalog itself is public. The Free plan publishes no card requirement or numerical rate cap.
-
-</details>
-
-- Base URL: `https://inference-api.nousresearch.com/v1`
-- Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `meituan/longcat-2.0:free`
-- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
-
-## Rows that listed it before
-
+- [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) — listed 2026-09-30 to 2026-10-29
 - [LongCat API Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/) — listed 2026-07-22 to 2026-08-14; the row itself is archived
 
 ---

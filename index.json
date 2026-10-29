@@ -11365,7 +11365,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
-      "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.",
+      "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Permanent free routes require data sharing: staff and third-party AI tools may analyze retained prompts and responses for diagnostics and model or product improvement. Token Harbor says it does not train models itself; upstream providers may train under their own terms. Limited-time campaigns may expressly use the paid-route data policy instead. The operator is Token Harbor PTE. LTD., Singapore.",
       "quotas": [
         {
           "unit": "list-price value",
@@ -11463,7 +11463,7 @@
       },
       "data_use": {
         "trains": "yes",
-        "quote": "After you explicitly enable free models, Token Harbor may retain, log, and analyze prompts and responses … Token Harbor may use this data for service diagnostics, safety, optimization, and model or product improvement.",
+        "quote": "Token Harbor does not train models on it itself. The providers that serve free models may also use these conversations under their own terms, including to train their own models.",
         "url": "https://tokenharbor.ai/terms"
       },
       "border": {
@@ -11503,7 +11503,7 @@
           "mimo-v2.6-flash:free"
         ],
         "what": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
-        "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.",
+        "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\nFree accounts: 60 requests/minute; 1,800 requests/hour per account\n\nFree accounts: 100 requests/minute; 3,000 requests/hour per IP\n\nEnable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. \"There is no limit on concurrent requests, on any plan.\" \"Free accounts: up to 4 MB (4,000,000 bytes).\" Oversized requests return `413 request_too_large`. Permanent free routes require data sharing: staff and third-party AI tools may analyze retained prompts and responses for diagnostics and model or product improvement. Token Harbor says it does not train models itself; upstream providers may train under their own terms. Limited-time campaigns may expressly use the paid-route data policy instead. The operator is Token Harbor PTE. LTD., Singapore.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -11569,10 +11569,6 @@
           "family": "laguna-xs-2.1"
         },
         {
-          "family": "longcat-2.0",
-          "aa_model": "longcat-2-0"
-        },
-        {
           "family": "solar-mini-4"
         }
       ],
@@ -11585,7 +11581,6 @@
           "stepfun/step-3.7-flash:free",
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
-          "meituan/longcat-2.0:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11633,14 +11628,12 @@
           "step-3.7-flash",
           "laguna-s-2.1",
           "laguna-xs-2.1",
-          "longcat-2.0",
           "solar-mini-4"
         ],
         "ids": [
           "stepfun/step-3.7-flash:free",
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
-          "meituan/longcat-2.0:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11653,7 +11646,6 @@
           "step-3.7-flash": "",
           "laguna-s-2.1": "",
           "laguna-xs-2.1": "",
-          "longcat-2.0": "",
           "solar-mini-4": ""
         },
         "section": {
@@ -18503,13 +18495,6 @@
       ]
     },
     {
-      "family": "longcat-2.0",
-      "rows": [
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
-    },
-    {
       "family": "mellum",
       "rows": [
         "jetbrains-ai"
@@ -18837,6 +18822,11 @@
       "family": "ling-3.0-flash-sante",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "longcat-2.0",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
     },
     {
       "family": "longcat-2.5-preview",

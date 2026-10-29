@@ -3,7 +3,7 @@ layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-10-26'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash, mimo-v2.6-flash. Enable explicit :free routes in the dashboard before calling them; the rotating model…'
 permalink: /providers/token-harbor/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-29
 crumb: Token Harbor
 ---
 
@@ -29,7 +29,7 @@ Free accounts: 60 requests/minute; 1,800 requests/hour per account
 
 Free accounts: 100 requests/minute; 3,000 requests/hour per IP
 
-Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.
+Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Permanent free routes require data sharing: staff and third-party AI tools may analyze retained prompts and responses for diagnostics and model or product improvement. Token Harbor says it does not train models itself; upstream providers may train under their own terms. Limited-time campaigns may expressly use the paid-route data policy instead. The operator is Token Harbor PTE. LTD., Singapore.
 
 ## Where it is offered
 
@@ -37,7 +37,7 @@ The vendor names no country it keeps the offer from ([source](https://tokenharbo
 
 ## What happens to what you send
 
-What you send may be used to train or improve models. In the vendor's words: “After you explicitly enable free models, Token Harbor may retain, log, and analyze prompts and responses … Token Harbor may use this data for service diagnostics, safety, optimization, and model or product improvement.” ([source](https://tokenharbor.ai/terms)).
+What you send may be used to train or improve models. In the vendor's words: “Token Harbor does not train models on it itself. The providers that serve free models may also use these conversations under their own terms, including to train their own models.” ([source](https://tokenharbor.ai/terms)).
 
 ## Connect
 

@@ -142,7 +142,7 @@ Free accounts: 60 requests/minute; 1,800 requests/hour per account
 
 Free accounts: 100 requests/minute; 3,000 requests/hour per IP
 
-Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Enabling free routes permits retaining prompts and responses for model or product improvement; upstream providers also process content under their own terms. The operator is Token Harbor PTE. LTD., Singapore.
+Enable explicit :free routes in the dashboard before calling them; the rotating model set is listed under Free. The dashboard shows usage as a percentage. Exhausted free routes stop instead of charging the wallet. Request-rate caps apply to Free accounts across models and API keys. "There is no limit on concurrent requests, on any plan." "Free accounts: up to 4 MB (4,000,000 bytes)." Oversized requests return `413 request_too_large`. Permanent free routes require data sharing: staff and third-party AI tools may analyze retained prompts and responses for diagnostics and model or product improvement. Token Harbor says it does not train models itself; upstream providers may train under their own terms. Limited-time campaigns may expressly use the paid-route data policy instead. The operator is Token Harbor PTE. LTD., Singapore.
 
 </details>
 

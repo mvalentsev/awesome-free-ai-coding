@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-26'
-description: 130 model families the list's 87 live rows serve free, and every row that serves each one; 87 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 129 model families the list's 87 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-10-29
 ---
@@ -10,7 +10,7 @@ last_modified_at: 2026-10-29
 
 # Every free model on the list
 
-130 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+129 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -104,7 +104,6 @@ last_modified_at: 2026-10-29
 | `llama-3.1-8b` | [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) |
 | `llama-3.2-11b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `llama-3.2-90b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
-| [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/) | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `mellum` | [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
 | [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
@@ -151,6 +150,7 @@ last_modified_at: 2026-10-29
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
+| [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/) | 2026-10-29 | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/), [LongCat API Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/) |
 | [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) | 2026-10-28 | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/), [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | [`gemini-3.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash/) | 2026-10-28 | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/), [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | [`longcat-2.5-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.5-preview/) | 2026-10-27 | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/), [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
