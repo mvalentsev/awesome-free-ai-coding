@@ -15,9 +15,9 @@ from freetier_radar import review
 def repo_at(tmp_path):
     repo = tmp_path / 'repo'
     repo.mkdir()
-    env = {**os.environ, 'GIT_AUTHOR_NAME': 'a reviewer', 'GIT_AUTHOR_EMAIL': 't@example.com',
-           'GIT_COMMITTER_NAME': 'a reviewer', 'GIT_COMMITTER_EMAIL': 't@example.com'}
-    subprocess.run(['git', 'init', '-q', str(repo)], check=True, env=env)
+    subprocess.run(['git', 'init', '-q', str(repo)], check=True)
+    for key, value in (('user.name', 'a reviewer'), ('user.email', 't@example.com')):
+        subprocess.run(['git', '-C', str(repo), 'config', key, value], check=True)
     (repo / '.gitignore').write_text('.evidence/\n')
     before = {'entries': [{'id': 'vendor', 'models': [{'family': 'alpha', 'tier': 'strong'}]}],
               'models': [{'family': 'alpha', 'tier': 'strong', 'page': 'https://site.example/models/alpha/'}]}
@@ -27,8 +27,8 @@ def repo_at(tmp_path):
                                          'page': 'https://site.example/models/beta/'}]}):
         (repo / 'index.json').write_text(json.dumps(index))
         (repo / 'registry.yaml').write_text('entries: []\n')
-        subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True, env=env)
-        subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture'], check=True, env=env)
+        subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+        subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture'], check=True)
     return repo
 
 
