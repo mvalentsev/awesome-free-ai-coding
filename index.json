@@ -3120,7 +3120,9 @@
         "https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b",
         "https://build.nvidia.com/minimaxai/minimax-m3.1-flash",
         "https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b",
-        "https://build.nvidia.com/z-ai/glm-5-3"
+        "https://build.nvidia.com/z-ai/glm-5-3",
+        "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b",
+        "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b/modelcard"
       ],
       "card_required": false,
       "offering": "Free endpoints for the models build.nvidia.com marks \"Free Endpoint\", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)",
@@ -3225,7 +3227,8 @@
           "nvidia/nemotron-3.5-super-vl-120b-a12b",
           "stepfun-ai/step-5-preview",
           "minimaxai/minimax-m3.1-flash",
-          "nvidia/nemotron-3.5-bolt-e4b"
+          "nvidia/nemotron-3.5-bolt-e4b",
+          "mistralai/mistral-large-4-1t-a52b"
         ],
         "model_bindings": {
           "stepfun-ai/step-5-preview": {
@@ -3325,7 +3328,8 @@
           "nvidia/nemotron-3.5-super-vl-120b-a12b",
           "stepfun-ai/step-5-preview",
           "minimaxai/minimax-m3.1-flash",
-          "nvidia/nemotron-3.5-bolt-e4b"
+          "nvidia/nemotron-3.5-bolt-e4b",
+          "mistralai/mistral-large-4-1t-a52b"
         ],
         "what": "Free endpoints for the models build.nvidia.com marks \"Free Endpoint\", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)",
         "limits": "Published ceiling: 40 requests/minute; 10,000 requests/day per account\n\nNo card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.",

@@ -352,6 +352,12 @@ model_list:
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
+- model_name: nvidia-nim/mistralai/mistral-large-4-1t-a52b
+  litellm_params:
+    model: openai/mistralai/mistral-large-4-1t-a52b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+    use_chat_completions_api: true
 - model_name: aihubmix/coding-glm-5.2-free
   litellm_params:
     model: openai/coding-glm-5.2-free

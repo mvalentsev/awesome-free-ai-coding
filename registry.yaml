@@ -1450,6 +1450,8 @@ entries:
   - https://build.nvidia.com/minimaxai/minimax-m3.1-flash
   - https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b
   - https://build.nvidia.com/z-ai/glm-5-3
+  - https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b
+  - https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b/modelcard
   card_required: false
   offering: Free endpoints for the models build.nvidia.com marks "Free Endpoint",
     open-weight models from several labs among them, called with a free NVIDIA Developer
@@ -1527,6 +1529,7 @@ entries:
     - stepfun-ai/step-5-preview
     - minimaxai/minimax-m3.1-flash
     - nvidia/nemotron-3.5-bolt-e4b
+    - mistralai/mistral-large-4-1t-a52b
     model_bindings:
       stepfun-ai/step-5-preview:
         family: step-5-preview-600b-a27b

@@ -271,6 +271,9 @@
         },
         "nvidia/nemotron-3.5-bolt-e4b": {
           "name": "nvidia/nemotron-3.5-bolt-e4b"
+        },
+        "mistralai/mistral-large-4-1t-a52b": {
+          "name": "mistralai/mistral-large-4-1t-a52b"
         }
       }
     },

@@ -39,7 +39,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://integrate.api.nvidia.com/v1`
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`, `nvidia/nemotron-3.5-super-vl-120b-a12b`, `stepfun-ai/step-5-preview`, `minimaxai/minimax-m3.1-flash`, `nvidia/nemotron-3.5-bolt-e4b`
+- Callable ids: `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`, `nvidia/nemotron-3.5-super-vl-120b-a12b`, `stepfun-ai/step-5-preview`, `minimaxai/minimax-m3.1-flash`, `nvidia/nemotron-3.5-bolt-e4b`, `mistralai/mistral-large-4-1t-a52b`
 - Note: Use available chat endpoints marked Free Endpoint. /v1/models also lists older IDs without a free mark, so catalog membership alone does not establish free access.
 
 Try it from your terminal with your key in `NVIDIA_NIM_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -63,6 +63,8 @@ curl -s https://integrate.api.nvidia.com/v1/chat/completions \
 - Source: <https://build.nvidia.com/minimaxai/minimax-m3.1-flash>
 - Source: <https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b>
 - Source: <https://build.nvidia.com/z-ai/glm-5-3>
+- Source: <https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b>
+- Source: <https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b/modelcard>
 
 ## History
 
