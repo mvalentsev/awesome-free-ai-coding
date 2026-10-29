@@ -1,5 +1,6 @@
 """One parameterized browser suite; its result is bound to a commit and coverage plan."""
 import json
+import html as html_text
 import re
 from pathlib import Path
 
@@ -38,6 +39,10 @@ def browser_plan(bundle: Bundle) -> dict:
                     and e.get('page') and re.fullmatch(r'[A-Za-z][A-Za-z0-9]+', e.get('name', ''))
                     and e['name'].lower() not in words
                     and e['name'].lower() not in current), key=lambda e: (len(e['name']), e['name']))[:2]
+    readme = git.show(bundle.repo, scope['sha'], 'README.md') or ''
+    readme_model_list = 'Where each one is free' in readme
+    readme_images = [html_text.unescape(alt) for alt in re.findall(
+        r'<picture>.*?<img\s[^>]*alt="([^"]+)"', readme, re.S)]
     cases = []
     for width in widths:
         for scheme in schemes:
@@ -49,12 +54,14 @@ def browser_plan(bundle: Bundle) -> dict:
                 cases.append(prefix + 'search-flow')
             if width != 320:
                 cases.append(prefix + 'readme')
+                cases += [prefix + 'readme-image/' + str(i) for i in range(len(readme_images))]
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
             'chart_date': json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['read_on']
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
             'models': models, 'rows': rows, 'folded_targets': folded_targets,
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
             'clients': clients,
+            'readme_model_list': readme_model_list, 'readme_images': readme_images,
             'search_rows': [{'name': e['name'], 'page': e['page']} for e in named],
             'output': str(bundle.out / 'browser-execution.json')}
 
@@ -67,7 +74,8 @@ def browser_script(bundle: Bundle, *, cases: list[str] | None = None) -> str:
             raise ValueError('selected browser cases must be a unique subset of the full plan')
         plan = {**plan, 'selected_cases': cases}
     template = Path(__file__).resolve().parents[2] / 'templates/review-browser.js.j2'
-    return Environment(autoescape=False).from_string(template.read_text()).render(plan=json.dumps(plan))
+    return Environment(autoescape=False).from_string(template.read_text()).render(
+        plan=json.dumps(plan), readme_model_list=plan['readme_model_list'])
 
 
 def accept_browser(bundle: Bundle, result: dict, plan: dict) -> dict:

@@ -230,11 +230,12 @@ async (page) => {
           }
           await record(prefix+'provider/'+row.id);
         }
-        if(width!==320&&selected.has(prefix+'readme')) {
+        if(width!==320&&(selected.has(prefix+'readme')||plan.readme_images.some((_,i)=>selected.has(prefix+'readme-image/'+i)))) {
           await go(plan.repository+'?review='+plan.sha);
           await page.locator('react-app[app-name="code-view"].loaded').waitFor();
           const body=page.locator('article.markdown-body').first();await body.waitFor();
           const list=body.locator('details').filter({has:page.locator('summary',{hasText:'Where each one is free'})});
+{% if readme_model_list %}
           await list.waitFor();
           // GitHub replaced this README node after code-view.loaded and a native
           // click at f85e0f6 (2026-10-26). Wait for node and layout to settle first.
@@ -267,10 +268,16 @@ async (page) => {
             }
           }
           await list.locator('summary').click();
-          const chart=body.locator('img[alt^="Bar chart of the"]').first();
+{% else %}
+          if(await list.count()!==0) throw Error('Unexpected README model list');
+{% endif %}
+          if(await body.locator('picture img').count()!==plan.readme_images.length) throw Error('Unexpected README picture count');
+          for(const [i,alt] of plan.readme_images.entries()) {
+          if(!selected.has(prefix+'readme-image/'+i)) continue;
+          const chart=body.getByAltText(alt,{exact:true});
           await chart.scrollIntoViewIfNeeded();await chart.evaluate(img=>img.decode());
           if(!await chart.evaluate(img=>img.naturalWidth>0&&img.clientWidth>0)) throw Error('README image failed');
-          if(plan.chart_date&&!(await chart.getAttribute('alt')).includes(plan.chart_date)) throw Error('README chart date');
+          if(alt.startsWith('Bar chart of the')&&plan.chart_date&&!alt.includes(plan.chart_date)) throw Error('README chart date');
           const image=await chart.evaluate(img=>{
             const selected=Array.from(img.parentElement.querySelectorAll('source')).find(s=>matchMedia(s.media).matches);
             const url=selected?.srcset||img.src;
@@ -278,8 +285,10 @@ async (page) => {
             if(!match) throw Error('Cannot identify selected README image');
             return {image_url:img.currentSrc,image_path:match[0]};
           });
+          await record(prefix+'readme-image/'+i,image);
+          }
           if(width===1440&&scheme==='light') await page.screenshot({path:plan.output.replace('.json','-desktop.png'),fullPage:false});
-          await record(prefix+'readme',image);
+          if(selected.has(prefix+'readme')) await record(prefix+'readme');
         }
       }
     }

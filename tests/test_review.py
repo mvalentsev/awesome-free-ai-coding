@@ -800,6 +800,44 @@ def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_pat
     assert assertions(whole) == assertions(selected)
 
 
+@pytest.mark.parametrize('mode', ['no-strong', 'measured', 'unmeasured'])
+def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, mode):
+    from datetime import date
+    from freetier_radar.models import Entry, save_registry
+    from freetier_radar.render import render_readme
+    from freetier_radar.review_browser import browser_plan, browser_script
+    repo = repo_at(tmp_path)
+    row = Entry.model_validate({
+        'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier',
+        'url': 'https://vendor.example', 'offering': 'Free models',
+        'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
+        'models': [{'family': 'alpha', 'tier': None if mode == 'no-strong' else 'strong'}],
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['100 free requests per day']}})
+    save_registry(repo / 'registry.yaml', [row])
+    scores = {'read_on': '2026-07-19', 'source': 'https://artificialanalysis.ai/leaderboards/models',
+              'top': {'slug': 'top', 'name': 'Top', 'index': 50}, 'median': 25,
+              'families': {'alpha': {'slug': 'alpha', 'index': 40, 'estimated': False}}}
+    render_readme(repo / 'registry.yaml', Path(__file__).resolve().parents[1] / 'templates',
+                  repo / 'README.md', today=date(2026, 7, 19),
+                  scores=scores if mode == 'measured' else None)
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: render fixture'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    plan = browser_plan(bundle)
+    assert plan['readme_model_list'] == (mode == 'measured')
+    assert len(plan['readme_images']) == (2 if mode == 'measured' else 1)
+    assert any(alt.startswith('awesome-free-ai-coding') for alt in plan['readme_images'])
+    assert sum('/readme-image/' in case for case in plan['cases']) == 4 * len(plan['readme_images'])
+    script = browser_script(bundle)
+    assert ('await list.waitFor()' in script) == (mode == 'measured')
+    assert 'getByAltText' in script and 'Unexpected README picture count' in script
+    # A dirty worktree cannot hide the committed measured fold or invent one.
+    (repo / 'README.md').write_text('uncommitted unrelated content')
+    assert browser_plan(bundle)['readme_images'] == plan['readme_images']
+
+
 def test_browser_plan_keeps_folded_targets_outside_the_changed_rows(tmp_path):
     repo = repo_at(tmp_path)
     index = json.loads((repo / 'index.json').read_text())
