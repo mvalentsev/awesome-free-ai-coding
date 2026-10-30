@@ -3,7 +3,7 @@ layout: default
 title: 'dots-3-note free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: dots-3-note is served free by OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/dots-3-note/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-30
 crumb: dots-3-note
 ---
 
@@ -78,13 +78,13 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 </details>
 
 - Base URL: `https://aihubmix.com/v1`
-- Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
+- Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m dots-3-note-preview-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `dots-3-note-preview-free`
 
 ---
 
-Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

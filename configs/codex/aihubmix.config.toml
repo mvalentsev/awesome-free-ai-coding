@@ -10,10 +10,10 @@
 #   codex -p aihubmix
 #
 # The key comes from $AIHUBMIX_API_KEY, the variable free-llm.env.example
-# exports; get one at https://aihubmix.com/token. With $AIHUBMIX_API_KEY unset
-# or empty, Codex stops before it sends anything, so no other key of yours
-# reaches the lane. The default prefers an unfunded, undated free id; the
-# quota and every free id are on the row's page,
+# exports; get one at https://console.aihubmix.com/workspaces/default/keys.
+# With $AIHUBMIX_API_KEY unset or empty, Codex stops before it sends anything,
+# so no other key of yours reaches the lane. The default prefers an unfunded,
+# undated free id; the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/ —
 # codex -p aihubmix -m <id> takes another.
 model = "coding-glm-5.2-free"

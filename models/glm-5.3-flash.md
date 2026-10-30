@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5.3-flash free: 5 providers, limits and ids, provider probes 2026-10-26'
 description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: glm-5.3-flash
 ---
 
@@ -85,7 +85,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 </details>
 
 - Base URL: `https://aihubmix.com/v1`
-- Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
+- Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m coding-glm-5.3-flash-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `coding-glm-5.3-flash-free`
@@ -153,6 +153,6 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ---
 
-Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

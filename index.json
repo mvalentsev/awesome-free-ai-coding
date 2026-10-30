@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29",
+  "generated": "2026-10-30",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -1773,7 +1773,7 @@
           "KP",
           "SY"
         ],
-        "on": "2026-10-26",
+        "on": "2026-10-30",
         "source": "https://kilo.ai/terms",
         "quote": "including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine",
         "read": "page",
@@ -4898,7 +4898,7 @@
           "model_ids": [
             "reflection/beam-free"
           ],
-          "reviewed_on": "2026-10-24",
+          "reviewed_on": "2026-10-30",
           "amount": null,
           "period": null
         }
@@ -4911,6 +4911,9 @@
         {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "beam-1.0"
         }
       ],
       "api": {
@@ -4924,6 +4927,14 @@
           "nvidia/nemotron-3.5-lightning-free",
           "reflection/beam-free"
         ],
+        "model_bindings": {
+          "reflection/beam-free": {
+            "family": "beam-1.0",
+            "source": "https://ai-gateway.vercel.sh/v1/models",
+            "quote": "Beam 1.0 (Free)",
+            "read": "catalog"
+          }
+        },
         "ignored_ids": [
           "liquid/d1",
           "convaiinnovations/laya",
@@ -4935,13 +4946,6 @@
         ],
         "no_family_ids": [
           "stealth/glyph-cluster"
-        ],
-        "free_since": [
-          {
-            "id": "reflection/beam-free",
-            "on": "2026-10-16",
-            "source": "https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free"
-          }
         ],
         "anthropic_base_url": "https://ai-gateway.vercel.sh",
         "codex": {
@@ -4983,7 +4987,8 @@
         "name": "Vercel AI Gateway",
         "models": [
           "laguna-s-2.1",
-          "nemotron-3.5-lightning"
+          "nemotron-3.5-lightning",
+          "beam-1.0"
         ],
         "ids": [
           "poolside/laguna-s-2.1-free",
@@ -4997,7 +5002,8 @@
         "access": "",
         "modelAccess": {
           "laguna-s-2.1": "",
-          "nemotron-3.5-lightning": ""
+          "nemotron-3.5-lightning": "",
+          "beam-1.0": ""
         },
         "section": {
           "id": "aggregator"
@@ -6784,7 +6790,7 @@
           "model_ids": [
             "gemma-4-26b-a4b-it-free"
           ],
-          "reviewed_on": "2026-10-23",
+          "reviewed_on": "2026-10-30",
           "amount": null,
           "period": null
         },
@@ -6798,7 +6804,7 @@
           "model_ids": [
             "gemma-4-31b-it-free"
           ],
-          "reviewed_on": "2026-10-23",
+          "reviewed_on": "2026-10-30",
           "amount": null,
           "period": null
         }
@@ -6915,7 +6921,7 @@
       ],
       "api": {
         "base_url": "https://aihubmix.com/v1",
-        "key_url": "https://aihubmix.com/token",
+        "key_url": "https://console.aihubmix.com/workspaces/default/keys",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
@@ -8985,7 +8991,7 @@
             "internlm/agents-a1-free",
             "internlm/sage-a1.5-free"
           ],
-          "reviewed_on": "2026-10-23"
+          "reviewed_on": "2026-10-30"
         }
       ],
       "free_part": "models",
@@ -18039,6 +18045,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/"
     },
     {
+      "family": "beam-1.0",
+      "rows": [
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
+    },
+    {
       "family": "big-pickle",
       "rows": [
         "opencode"
@@ -18617,11 +18630,6 @@
       "family": "apodex-1.1-mini",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
-    },
-    {
-      "family": "beam-1.0",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "claude-haiku-5.5",

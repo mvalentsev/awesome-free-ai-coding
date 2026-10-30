@@ -890,7 +890,7 @@ entries:
     url: https://api.kilo.ai/api/gateway/models
   border:
     left_out: [CU, IR, KP, SY]
-    'on': '2026-10-26'
+    'on': '2026-10-30'
     source: https://kilo.ai/terms
     quote: including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk
       People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine
@@ -2545,12 +2545,13 @@ entries:
     quote: Beam is free to use for a limited time
     model_ids:
     - reflection/beam-free
-    reviewed_on: '2026-10-24'
+    reviewed_on: '2026-10-30'
   free_part: models
   models:
   - family: laguna-s-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
+  - family: beam-1.0
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -2561,6 +2562,12 @@ entries:
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-lightning-free
     - reflection/beam-free
+    model_bindings:
+      reflection/beam-free:
+        family: beam-1.0
+        source: https://ai-gateway.vercel.sh/v1/models
+        quote: Beam 1.0 (Free)
+        read: catalog
     ignored_ids:
     - liquid/d1
     - convaiinnovations/laya
@@ -2571,10 +2578,6 @@ entries:
     - baseten/mammoth-1
     no_family_ids:
     - stealth/glyph-cluster
-    free_since:
-    - id: reflection/beam-free
-      'on': '2026-10-16'
-      source: https://vercel.com/changelog/reflection-ai-beam-now-available-on-ai-gateway-for-free
     anthropic_base_url: https://ai-gateway.vercel.sh
     codex:
       base_url: https://ai-gateway.vercel.sh/codex/v1
@@ -3711,7 +3714,7 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-26b-a4b-it-free
-    reviewed_on: '2026-10-23'
+    reviewed_on: '2026-10-30'
   - unit: usage
     scope: unspecified
     label: Gemma 4 free routes
@@ -3724,7 +3727,7 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-31b-it-free
-    reviewed_on: '2026-10-23'
+    reviewed_on: '2026-10-30'
   free_part: models
   models:
   - family: glm-5.3
@@ -3780,7 +3783,7 @@ entries:
     aa_model: mimo-v2-6-pro
   api:
     base_url: https://aihubmix.com/v1
-    key_url: https://aihubmix.com/token
+    key_url: https://console.aihubmix.com/workspaces/default/keys
     auth: api-key
     openai_compatible: true
     model_ids:
@@ -5079,7 +5082,7 @@ entries:
     - internlm/atria-dawn-preview-free
     - internlm/agents-a1-free
     - internlm/sage-a1.5-free
-    reviewed_on: '2026-10-23'
+    reviewed_on: '2026-10-30'
   free_part: models
   models:
   - family: nemotron-3-ultra

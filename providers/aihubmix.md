@@ -3,7 +3,7 @@ layout: default
 title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-10-26'
 description: 'OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients. Free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, north-mini-code and 20 more. Free IDs end in -free; paid twins are metered at list prices. The daily…'
 permalink: /providers/aihubmix/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-10-30
 crumb: AIHubMix (free models)
 ---
 
@@ -40,7 +40,7 @@ The vendor names no country it keeps the offer from ([source](https://aihubmix.c
 ## Connect
 
 - Base URL: `https://aihubmix.com/v1`
-- Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
+- Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `coding-glm-5.2-free`, `coding-glm-5.1-free`, `coding-kimi-k3-free`, `kimi-for-coding-free`, `north-mini-code-free`, `nemotron-3-ultra-550b-a55b-free`, `agents-a1-free`, `coding-glm-4.6-free`, `coding-glm-4.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-minimax-m2-free`, `coding-minimax-m2.1-free`, `coding-minimax-m2.5-free`, `coding-minimax-m2.7-free`, `coding-minimax-m3-free`, `dots-3-note-preview-free`, `glm-4.7-flash-free`, `intern-s2-free`, `k2.6-code-preview-free`, `laguna-s-2.1-free`, `laguna-xs-2.1-free`, `lfm-2.5-2.6b-free`, `mimo-v2-flash-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3.5-lightning-free`, `xiaomi-mimo-v2.6-flash-free`, `xiaomi-mimo-v2.6-pro-free`, `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`, `flint-v1.0-free`, `nemotron-3.5-super-vl-free`, `xing4.0-29b-a4b-free`
@@ -87,6 +87,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

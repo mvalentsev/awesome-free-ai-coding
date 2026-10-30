@@ -3,7 +3,7 @@ layout: default
 title: 'kimi-k3 free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: kimi-k3 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/kimi-k3/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: kimi-k3
 ---
 
@@ -39,7 +39,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 </details>
 
 - Base URL: `https://aihubmix.com/v1`
-- Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
+- Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m coding-kimi-k3-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `coding-kimi-k3-free`
@@ -52,6 +52,6 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
