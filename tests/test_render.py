@@ -203,7 +203,7 @@ def test_a_free_access_condition_does_not_imply_a_card_in_the_strong_model_capti
                             card_required=card_required,
                             access={"source": "https://x.ai/terms", "initial_payment_usd": 1})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    caption = next(line for line in text.splitlines() if line.startswith("**Strong models, free.**"))
+    caption = next(line for line in text.splitlines() if line.startswith("**Free models, compared.**"))
     assert ("💳" in caption) is card_required
     assert "requires $1" in text
 
@@ -794,7 +794,7 @@ def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path
                                                                        monkeypatch):
     import freetier_radar.render as render
     from freetier_radar.models import save_registry
-    monkeypatch.setattr(render, "README_STRONG", 1)
+    monkeypatch.setattr(render, "README_COMPARISON", 1)
     entries = [make(id="a", name="A", models=[
         {"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"},
         {"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"}])]
@@ -804,7 +804,7 @@ def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
     shown = [line for line in start.splitlines() if line.startswith("- [`")]
     assert shown == [f"- [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) — [A](https://x.ai)"]
-    assert "the other strong one is in [the website's model index]" in start
+    assert f"[All 2 free model families]({PAGES_URL}/#model-index)" in start
 
 
 def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_path: Path):
@@ -945,7 +945,8 @@ def test_starters_answer_what_to_code_with_before_the_reference_table(tmp_path: 
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
     assert "`m-1`" in hero and "`m-2`" in hero
-    assert "Paid" not in hero and "Modelless" not in hero
+    starters = hero.split("**Free models, compared.**")[0]
+    assert "Paid" not in starters and "Modelless" not in starters
 
 
 def test_starters_are_capped_and_ordered_by_rank():
@@ -2184,6 +2185,23 @@ def _strong_rows() -> list[Entry]:
                                            {"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"}])]
 
 
+def test_current_free_measurements_keep_the_comparison_and_provider_path_without_strong_tiers(tmp_path):
+    from freetier_radar.models import save_registry
+    rows=_strong_rows()
+    for row in rows:
+        for model in row.models:
+            model.tier=None
+    registry=tmp_path/'registry.yaml'
+    save_registry(registry,rows)
+    text=render_readme(registry,Path('templates'),tmp_path/'README.md',today=TODAY,scores=SCORES)
+    assert 'src="assets/readme/strong-light.svg"' in text
+    assert 'Where each one is free' in text
+    assert '[A](https://x.ai)' in text and '[B](https://x.ai)' in text
+    svg=(tmp_path/'assets/readme/strong-light.svg').read_text()
+    assert 'glm-5.3' in svg and 'kimi-k3' in svg
+    assert '## 📦 Archive' in text and '## 🔧 Plug it into your agent' in text
+
+
 def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path):
     """The strong models are a chart, a bar per model as long as its score,
     drawn from the scores the tiers were read off — and the list of who serves
@@ -2192,7 +2210,7 @@ def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path
     reg = tmp_path / "registry.yaml"
     save_registry(reg, _strong_rows())
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY, scores=SCORES)
-    strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
+    strong = text.split("**Free models, compared.**")[1].split("**Or pick by what you need:**")[0]
     assert '<source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">' in strong
     # a line that opens on <a><picture> is a paragraph to GitHub, which empties the
     # <picture> and serves every reader its fallback: the picture sits in an HTML
@@ -2213,11 +2231,11 @@ def test_without_a_measurement_the_strong_models_stay_a_list(tmp_path: Path):
     save_registry(reg, _strong_rows())
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY,
                          scores={**SCORES, "families": {}})
-    strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
+    strong = text.split("**Free models, compared.**")[1].split("**Or pick by what you need:**")[0]
     assert "strong-light.svg" not in strong and "<details>" not in strong
     assert "- [`glm-5.3`]" in strong
     chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text()
-    assert "no current qualifying scores" in chart and 'class="bar ' not in chart
+    assert "no current measurements" in chart and 'class="bar ' not in chart
 
 
 @pytest.mark.parametrize("keep_tiers", [False, True])

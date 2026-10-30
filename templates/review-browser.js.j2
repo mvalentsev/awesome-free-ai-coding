@@ -259,11 +259,12 @@ async (page) => {
           if(await list.count()!==1) throw Error('Missing shared model list');
           if(await list.getAttribute('open')!==null) throw Error('README list initially open');
           await list.locator('summary').click();
-          for(const model of plan.models.filter(m=>['strong','frontier'].includes(m.tier))) {
-            const row=list.locator('a[href="'+model.page+'"]').first().locator('xpath=ancestor::li[1]');
+          for(const model of plan.readme_models) {
+            const row=list.getByText(model.family,{exact:true}).first().locator('xpath=ancestor::li[1]');
             if(!await row.isVisible()) throw Error('README list did not open');
-            for(const id of model.rows.filter(id=>plan.rows.some(e=>e.id===id))) {
-              const name=plan.rows.find(e=>e.id===id).name;
+            for(const id of model.rows) {
+              const name=plan.readme_providers[id];
+              if(!name) throw Error('Missing README provider identity: '+id);
               if(!(await row.innerText()).includes(name)) throw Error('README provider: '+name);
             }
           }

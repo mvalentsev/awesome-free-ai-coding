@@ -41,6 +41,9 @@ def browser_plan(bundle: Bundle) -> dict:
                     and e['name'].lower() not in current), key=lambda e: (len(e['name']), e['name']))[:2]
     readme = git.show(bundle.repo, scope['sha'], 'README.md') or ''
     readme_model_list = 'Where each one is free' in readme
+    comparison = re.search(r'<summary><b>Where each one is free</b>.*?</details>', readme, re.S)
+    comparison_families = re.findall(r'^- (?:\[)?`([^`]+)`', comparison.group() if comparison else '', re.M)
+    readme_models = [current[family] for family in comparison_families if family in current]
     readme_images = [html_text.unescape(alt) for alt in re.findall(
         r'<picture>.*?<img\s[^>]*alt="([^"]+)"', readme, re.S)]
     cases = []
@@ -62,6 +65,8 @@ def browser_plan(bundle: Bundle) -> dict:
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
             'clients': clients,
             'readme_model_list': readme_model_list, 'readme_images': readme_images,
+            'readme_models': readme_models,
+            'readme_providers': {row['id']: row['name'] for row in index['entries'] if row.get('name')},
             'search_rows': [{'name': e['name'], 'page': e['page']} for e in named],
             'output': str(bundle.out / 'browser-execution.json')}
 

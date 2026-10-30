@@ -48,7 +48,7 @@ from .page_dates import PageDates
 
 __all__ = ["FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS",
-           "README_STARTER_MODELS", "README_STRONG",
+           "README_STARTER_MODELS", "README_COMPARISON",
            "badge_colour",
            "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
@@ -152,11 +152,9 @@ README_MODELS = 8
 # The separator between names on a line. The no-break space keeps the dot with the
 # name before it, so a wrapped line never starts with one.
 DOT = "\u00a0· "
-# How many strong models the README names in its Start here, frontier first and
-# then the most widely served (`_strong_models`). The tier bar keeps the set
-# short and the cap keeps it short whatever the bar lets through; the rest are
-# one click away in the site's model index.
-README_STRONG = 20
+# How many measured free models Start here compares, highest score first.
+# Without measurements it keeps the most widely served models as a list.
+README_COMPARISON = 20
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
 # name/version shape the vendors' own example uses.
@@ -697,20 +695,21 @@ def _plain_model(name: str) -> str:
     return re.sub(r"\s*\(.*\)\s*$", "", name)
 
 
-def _chart(strong: list[dict], scores: dict | None) -> Chart | None:
-    """The strong models the README names, each with the score its tier was read
-    off; None where no score is kept for any of them, and the page stays a list."""
+def _chart(models: list[dict], scores: dict | None) -> Chart | None:
+    """Measured free models, or None so the comparison remains a plain list."""
     if not scores:
         return None
     kept = scores.get("families") or {}
     bars = tuple(Bar(m["family"], kept[m["family"]]["index"], len(m["providers"]),
-                     m["frontier"], bool(kept[m["family"]].get("estimated")))
-                 for m in strong if m["family"] in kept)
+                     m["frontier"], bool(kept[m["family"]].get("estimated")),
+                     m.get("tier") == "strong")
+                 for m in models if m["family"] in kept)
     if not bars:
         return None
     return Chart(bars=bars, top_name=_plain_model(scores["top"]["name"]),
                  top_score=scores["top"]["index"], read_on=date.fromisoformat(scores["read_on"]),
-                 frontier_within=FRONTIER_WITHIN, strong_within=STRONG_WITHIN)
+                 frontier_within=FRONTIER_WITHIN, strong_within=STRONG_WITHIN,
+                 version=scores.get("version", ""))
 
 
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
@@ -727,7 +726,7 @@ def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
 
 
 def _in_chart_order(strong: list[dict], scores: dict | None) -> list[dict]:
-    """The strong models as the chart ranks them (Chart.ranked) — the highest
+    """Models as the chart ranks them (Chart.ranked) — the highest
     score first, each with its `score` — and a model no score is kept for after
     them, in its own order: one ranking for the README's chart, the list under
     it and the site."""
@@ -1169,10 +1168,15 @@ def build_context(entries: list[Entry], today: date,
     shared = _shared_facts(entries, today, watchlist, pages)
     hero = _hero(active, shared)
     scores = load_scores() if scores is None else scores
-    # The list folded under the chart answers "where" for the same bars, in
-    # the same order.
-    strong = _in_chart_order(shared["strong_models"][:README_STRONG], scores)
-    chart = _chart(strong, scores)
+    # Reuse the full model index grouping: eligibility and provider conditions
+    # do not depend on whether a measurement earns a Strong label.
+    candidates = [{**model, "frontier": model["tier"] == "frontier"}
+                  for model in shared["model_index"]]
+    measured = [model for model in candidates
+                if model["family"] in (scores or {}).get("families", {})
+                or model["tier"] in ("strong", "frontier")]
+    comparison = _in_chart_order(measured or candidates, scores)[:README_COMPARISON]
+    chart = _chart(comparison, scores)
     return {**shared,
             "dot": DOT,
             "hero": hero,
@@ -1183,10 +1187,11 @@ def build_context(entries: list[Entry], today: date,
             "pictures_dir": README_PICTURES,
             "narrow_until": NARROW_UNTIL,
             "picture_width": PICTURE_WIDTH,
-            # The README names the first README_STRONG strong models and links
-            # the rest; the site has no budget and names them all.
-            "readme_strong": strong,
-            "strong_more": max(0, len(shared["strong_models"]) - README_STRONG),
+            "readme_models": comparison,
+            "comparison_has_card": any("💳" in provider["card_flag"]
+                                       for model in comparison for provider in model["providers"]),
+            "score_version": (scores or {}).get("version", ""),
+            "score_date": (scores or {}).get("read_on", ""),
             "sections": sections,
             "new_rows": _new_rows(active, history or [], today),
             "archived": _archived_rows(entries, today),

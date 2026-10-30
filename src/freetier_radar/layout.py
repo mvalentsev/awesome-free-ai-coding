@@ -117,7 +117,7 @@ MAP: tuple[Node, ...] = (
     Node("llms.txt", Kind.GENERATED, "the whole list as one text file",
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("assets/readme/*.svg", Kind.GENERATED,
-         "the README's pictures: the radar at the top, a dot per live row, and the strong models "
+         "the README's pictures: the radar at the top, a dot per live row, and measured free models "
          "drawn against the top of the index, in each width and theme the README serves — and "
          "the radar alone, the site's mark beside its name",
          made_from=("registry.yaml", _SCORES), written_by=("freetier-render",), published=True),

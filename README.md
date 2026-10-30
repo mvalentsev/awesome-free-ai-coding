@@ -28,6 +28,45 @@
 - **[Kiro](https://kiro.dev/)** — `claude-sonnet-4.5` · `claude-sonnet-4` · `glm-5` · `minimax-m2.5` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 - **[Google Antigravity](https://antigravity.google)** — `gemini-3.8-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss-120b`
 
+**Free models, compared.** Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) v5.0 scores, read 2026-10-31, highest first. Each linked provider offers the model free under the conditions beside its name.
+
+<div align="center">
+<a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
+  <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
+  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0 score read 2026-10-31: the strongest, qwen3.8-max, scores 33.6 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 59.4" src="assets/readme/strong-light.svg" width="860">
+</picture></a>
+</div>
+
+<details>
+<summary><b>Where each one is free</b> — every live offer beside its model, in the chart's order</summary>
+<br>
+
+- [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — [AIHubMix (free models)](https://aihubmix.com) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [ZCode (Z.ai)](https://zcode.z.ai/en) · [Haimaker](https://haimaker.ai/free/) (until 2026-11-01)
+- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — [AIHubMix (free models)](https://aihubmix.com)
+- [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — [LLMTR](https://llmtr.com) (until 2026-11-02)
+- `step-5-preview-600b-a27b` — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
+- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [ZCode (Z.ai)](https://zcode.z.ai/en) · [FreeInference (Harvard SEAS)](https://freeinference.org)
+- [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — [Codex (ChatGPT Free)](https://learn.chatgpt.com/docs/pricing)
+- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — [opencode](https://opencode.ai) · [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [Token Harbor](https://tokenharbor.ai)
+- [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — [Groq](https://groq.com) · [LLMTR](https://llmtr.com) · [LLM Tech](https://llmtech.eu) · [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [IteraCompute](https://iteracompute.com/free/) (until 2026-11-24) · [Regolo AI](https://regolo.ai/pricing/) · [VLM Run Gateway](https://vlm.run) · [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)
+- [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — [AIHubMix (free models)](https://aihubmix.com) · [FreeInference (Harvard SEAS)](https://freeinference.org) · [Haimaker](https://haimaker.ai/free/) (until 2026-11-01)
+- [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) — [LLMTR](https://llmtr.com) (until 2026-11-05)
+- [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/) — [OpenRouter (free models)](https://openrouter.ai) · [Kilo Code](https://kilo.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [Cline](https://cline.bot) · [LLMTR](https://llmtr.com)
+- [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) — [OpenRouter (free models)](https://openrouter.ai)
+- [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) — [OpenRouter (free models)](https://openrouter.ai)
+- [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — [opencode](https://opencode.ai) · [OpenRouter (free models)](https://openrouter.ai) · [Kilo Code](https://kilo.ai) · [Requesty](https://www.requesty.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [AIHubMix (free models)](https://aihubmix.com) · [LLMTR](https://llmtr.com)
+- [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) — [Google AI Studio (Gemini API)](https://aistudio.google.com)
+- [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — [Requesty](https://www.requesty.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [Routeway](https://routeway.ai)
+- [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) — [Cohere (trial keys)](https://cohere.com)
+
+</details>
+
+Frontier scores are within 10 points of the leader; Strong scores are within 25 points. [All 130 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
+
 **Or pick by what you need:**
 
 - **Free API access** — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Groq](https://groq.com) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
@@ -159,7 +198,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 - **[Haimaker](https://haimaker.ai/free/)** 🧪 — OpenAI-compatible API gateway with a limited-time free model promotion, no card required<br><sub>[verified 2026-10-30](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) · [🔑 key](https://app.haimaker.ai/sign-up) · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) (until 2026-11-01) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (until 2026-11-01) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) (until 2026-11-01)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 130 model families on the list and everyone who serves each one free. A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 130 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>

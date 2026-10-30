@@ -168,6 +168,7 @@ entries:
   free_part: models
   models:
   - family: gemini-3.8-flash
+    tier: notable
     aa_model: gemini-3-8-flash
   - family: gemini-3.6-flash
     aa_model: gemini-3-6-flash
@@ -3090,6 +3091,7 @@ entries:
   free_part: models
   models:
   - family: gemini-3.8-flash
+    tier: notable
     aa_model: gemini-3-8-flash
   - family: claude-opus-4.6
     table_name: Claude Opus 4.6 (thinking)*
@@ -4400,6 +4402,7 @@ entries:
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
   - family: mistral-small-4
+    aa_model: mistral-small-4
   - family: qwen3.5-9b
     aa_model: qwen3-5-9b
   - family: qwen3.5-122b-a10b

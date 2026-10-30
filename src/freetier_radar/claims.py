@@ -35,8 +35,8 @@ from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
-                     README_STARTERS, README_STRONG, _site_client_configs)
-from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
+                     README_STARTERS, README_COMPARISON, _site_client_configs)
+from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
 from .validate import PROSE_LIMITS
 # The render's own words for a figure (see words.py).
 from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
@@ -371,6 +371,8 @@ CLAIMS: tuple[Claim, ...] = (
           r"\s+`strong` within (\d+)",
           lambda root: (f"{FRONTIER_WITHIN:g}", f"{STRONG_WITHIN:g}"),
           "tiers.FRONTIER_WITHIN and STRONG_WITHIN"),
+    Claim("CONTRIBUTING.md", r"index version `([\d.]+)`; a missing",
+          lambda root: (INDEX_VERSION,), "tiers.INDEX_VERSION and HTTP writer revision regressions"),
     Claim("CONTRIBUTING.md", r"vendor output in backticks, (\d+) characters\s+at most",
           lambda root: (str(PROSE_LIMITS["api.notice"]),), "validate.PROSE_LIMITS['api.notice']"),
     Claim("CONTRIBUTING.md", r"holds a refusal off the failure count for (\d+) days from `since`",
@@ -395,8 +397,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_MODELS),), "render.README_MODELS"),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",
           lambda root: (_ordinal(README_MODELS),), "render.README_MODELS"),
-    Claim("CONTRIBUTING.md", r"the most widely served first and at most (\w+);",
-          lambda root: (_word(README_STRONG),), "render.README_STRONG"),
+    Claim("CONTRIBUTING.md", r"The comparison shows at most (\w+) families;",
+          lambda root: (_word(README_COMPARISON),), "render.README_COMPARISON"),
     Claim("CONTRIBUTING.md", r"a page for every model (\w+) rows or more serve",
           lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS"),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",

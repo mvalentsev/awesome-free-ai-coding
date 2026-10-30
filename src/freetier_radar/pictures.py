@@ -344,6 +344,7 @@ class Bar:
     offers: int
     frontier: bool
     estimated: bool
+    strong: bool | None = None
 
 
 @dataclass(frozen=True)
@@ -354,6 +355,7 @@ class Chart:
     read_on: date
     frontier_within: float
     strong_within: float
+    version: str = ""
 
     def ranked(self) -> list[Bar]:
         """The bars as the chart draws them: the highest score first."""
@@ -363,10 +365,11 @@ class Chart:
 def chart_words(chart: Chart | None) -> str:
     """The chart in one sentence, for its <title> and the README's alt text."""
     if chart is None or not chart.bars:
-        return "Strong models, free: no current qualifying scores to chart"
+        return "Free models, compared: no current measurements to chart"
     best = chart.ranked()[0]
-    return (f"Bar chart of the {len(chart.bars)} strong models live offers here serve free, by "
-            f"Artificial Analysis Intelligence Index score read {chart.read_on.isoformat()}: the "
+    version = f" v{chart.version}" if chart.version else ""
+    return (f"Bar chart of the {len(chart.bars)} models live offers here serve free, by "
+            f"Artificial Analysis Intelligence Index{version} score read {chart.read_on.isoformat()}: the "
             f"strongest, {best.family}, scores {best.score:.1f} and is free on "
             f"{_offers(best.offers)}; the top of the index, {chart.top_name}, "
             f"{chart.top_score:.1f}")
@@ -375,6 +378,8 @@ def chart_words(chart: Chart | None) -> str:
 def _chart_rules(p: Palette) -> str:
     return (f".card{{fill:{p.canvas};stroke:{p.border}}}.t{{fill:{p.text}}}.m{{fill:{p.muted}}}"
             f".bar.strong{{fill:{p.blue}}}.bar.frontier{{fill:{p.green}}}"
+            f".bar.measured{{fill:{p.blue};fill-opacity:.6}}"
+            f".value-bg{{fill:{p.canvas}}}"
             f".band{{fill:{p.green};fill-opacity:.12}}"
             f".guide{{stroke:{p.muted};stroke-dasharray:4 5}}.top{{stroke:{p.text}}}")
 
@@ -391,7 +396,7 @@ def _value(bar: Bar) -> str:
 def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
     width, height = (600, 190) if narrow else (1160, 180)
     x = 30 if narrow else 40
-    heading = "Strong models, free" if narrow else "Strong models you can use for $0"
+    heading = "Free models, compared"
     size = 21 if narrow else 18
     return "\n".join([
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
@@ -403,14 +408,14 @@ def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
         f'<text class="t" x="{x}" y="58" font-family="{SANS}" font-size="30" '
         f'font-weight="700">{heading}</text>',
         f'<text class="m" x="{x}" y="105" font-family="{SANS}" font-size="{size}">'
-        'No current qualifying scores</text>',
+        'No current measurements</text>',
         f'<text class="m" x="{x}" y="136" font-family="{SANS}" font-size="{size}">'
         'are available for this chart.</text>',
         '</svg>'])
 
 
 def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False) -> str:
-    """The strong models the list serves free, each as long as its score on
+    """The measured models the list serves free, each as long as its score on
     the Artificial Analysis Intelligence Index, on an axis from zero to the top
     of the index: the gap to the frontier drawn as it is, not stretched. The
     frontier band and the strong bar are the tiers' own thresholds."""
@@ -420,7 +425,8 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
     shown = ranked[:NARROW_BARS] if narrow else ranked
     width = 600 if narrow else 1160
     # The phone chart keeps the right edge for the figures, clear of the guides.
-    x0, x1 = (30.0, 380.0) if narrow else (370.0, 1000.0)
+    label_end = max(350.0, min(520.0, 40.0 + max(len(bar.family) for bar in shown) * 11.5))
+    x0, x1 = (30.0, 380.0) if narrow else (label_end + 20.0, 1000.0)
     top = chart.top_score or 1.0
     scale = (x1 - x0) / top
 
@@ -448,17 +454,17 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
              f'stroke-width="2"/>']
     if narrow:
         parts += [f'<text class="t" x="30" y="56" font-family="{SANS}" font-size="30" '
-                  f'font-weight="700">Strong models, free</text>',
-                  f'<text class="m" x="30" y="92" font-family="{SANS}" font-size="21">scored on the '
-                  f'Artificial Analysis Intelligence Index,</text>',
+                  f'font-weight="700">Free models, compared</text>',
+                  f'<text class="m" x="30" y="92" font-family="{SANS}" font-size="21">AA Intelligence Index'
+                  f'{" v" + chart.version if chart.version else ""}</text>',
                   f'<text class="m" x="30" y="120" font-family="{SANS}" font-size="21">read '
                   f'{chart.read_on.isoformat()} · top: {escape(chart.top_name)}, '
                   f'{chart.top_score:.1f}</text>']
     else:
         parts += [f'<text class="t" x="40" y="58" font-family="{SANS}" font-size="30" '
-                  f'font-weight="700">Strong models you can use for $0</text>',
-                  f'<text class="m" x="40" y="90" font-family="{SANS}" font-size="18">scored on the '
-                  f'Artificial Analysis Intelligence Index, read {chart.read_on.isoformat()} · the '
+                  f'font-weight="700">Free models, compared</text>',
+                  f'<text class="m" x="40" y="90" font-family="{SANS}" font-size="18">AA Intelligence Index'
+                  f'{" v" + chart.version if chart.version else ""}, read {chart.read_on.isoformat()} · '
                   f'top: {escape(chart.top_name)}, {chart.top_score:.1f}</text>']
     frontier, strong = at(top - chart.frontier_within), at(top - chart.strong_within)
     parts += [f'<rect class="band" x="{_num(frontier)}" y="{guide_top}" '
@@ -477,7 +483,9 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
     parts.append(f'<text class="m" x="{_num(x1 + 6)}" y="{top_y}" font-family="{SANS}" '
                  f'font-size="{size}">top</text>')
     for i, bar in enumerate(shown):
-        tier = "frontier" if bar.frontier else "strong"
+        strong = (bar.strong if bar.strong is not None else
+                  bar.score >= top - chart.strong_within)
+        tier = "frontier" if bar.frontier else "strong" if strong else "measured"
         if narrow:
             y = first + i * row
             parts += [f'<text class="t label" x="30" y="{y}" font-family="{MONO}" '
@@ -488,10 +496,12 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
                       f'font-size="21">{_value(bar)}</text>']
         else:
             y = first + i * row
-            parts += [f'<text class="t label" x="350" y="{y + 6}" text-anchor="end" '
+            parts += [f'<text class="t label" x="{_num(label_end)}" y="{y + 6}" text-anchor="end" '
                       f'font-family="{MONO}" font-size="19">{escape(bar.family)}</text>',
                       f'<rect class="bar {tier}" x="{_num(x0)}" y="{y - 9}" '
                       f'width="{_num(at(bar.score) - x0)}" height="18" rx="4"/>',
+                      f'<rect class="value-bg" x="{_num(at(bar.score) + 4)}" y="{y - 12}" '
+                      'width="155" height="25" rx="3"/>',
                       f'<text x="{_num(at(bar.score) + 8)}" y="{y + 6}" font-family="{SANS}" '
                       f'font-size="17">{_value(bar)}</text>']
     for i, note in enumerate(notes):

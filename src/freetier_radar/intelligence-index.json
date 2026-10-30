@@ -1,12 +1,13 @@
 {
-  "read_on": "2026-10-29",
+  "read_on": "2026-10-31",
   "source": "https://artificialanalysis.ai/leaderboards/models",
+  "version": "5.0",
   "top": {
     "slug": "gemini-4-carbon",
     "name": "Gemini 4 Carbon (High)",
     "index": 59.4
   },
-  "median": 31.7,
+  "median": 30.1,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -31,6 +32,11 @@
     "glm-5.3": {
       "slug": "glm-5-3",
       "index": 31.7,
+      "estimated": false
+    },
+    "glm-5.3-flash": {
+      "slug": "glm-5-3-flash",
+      "index": 27.8,
       "estimated": false
     },
     "gpt-6-luna": {
@@ -73,6 +79,11 @@
       "index": 28.9,
       "estimated": false
     },
+    "mistral-small-4": {
+      "slug": "mistral-small-4",
+      "index": 4.3,
+      "estimated": false
+    },
     "muse-glimmer-30b": {
       "slug": "muse-glimmer",
       "index": 6.3,
@@ -81,6 +92,11 @@
     "nemotron-3-ultra": {
       "slug": "nvidia-nemotron-3-ultra-550b-a55b",
       "index": 11.8,
+      "estimated": false
+    },
+    "nemotron-3.5-lightning": {
+      "slug": "nemotron-3-5-lightning",
+      "index": 5.5,
       "estimated": false
     },
     "nemotron-3.5-super-vl-120b-a12b": {
@@ -102,6 +118,228 @@
       "slug": "step-5",
       "index": 28.5,
       "estimated": false
+    }
+  },
+  "unscored": {
+    "apertus-70b": {
+      "slug": "apertus-70b-instruct",
+      "reason": "unscored"
+    },
+    "claude-opus-4.6": {
+      "slug": "claude-opus-4-6",
+      "reason": "deprecated"
+    },
+    "claude-sonnet-4": {
+      "slug": "claude-4-sonnet",
+      "reason": "deprecated"
+    },
+    "claude-sonnet-4.5": {
+      "slug": "claude-4-5-sonnet",
+      "reason": "deprecated"
+    },
+    "claude-sonnet-4.6": {
+      "slug": "claude-sonnet-4-6",
+      "reason": "deprecated"
+    },
+    "command-a": {
+      "slug": "command-a",
+      "reason": "unscored"
+    },
+    "deepseek-v3.2": {
+      "slug": "deepseek-v3-2",
+      "reason": "deprecated"
+    },
+    "deepseek-v4-flash": {
+      "slug": "deepseek-v4-flash",
+      "reason": "deprecated"
+    },
+    "deepseek-v4.1-flash": {
+      "slug": "deepseek-v4-1-flash",
+      "reason": "deprecated"
+    },
+    "gemini-2.5-pro": {
+      "slug": "gemini-2-5-pro",
+      "reason": "deprecated"
+    },
+    "gemini-3-flash": {
+      "slug": "gemini-3-flash",
+      "reason": "deprecated"
+    },
+    "gemini-3.1-flash-lite": {
+      "slug": "gemini-3-1-flash-lite-preview",
+      "reason": "deprecated"
+    },
+    "gemini-3.1-pro": {
+      "slug": "gemini-3-1-pro-preview",
+      "reason": "unscored"
+    },
+    "gemini-3.6-flash": {
+      "slug": "gemini-3-6-flash",
+      "reason": "deprecated"
+    },
+    "gemma-4-26b-a4b": {
+      "slug": "gemma-4-26b-a4b",
+      "reason": "unscored"
+    },
+    "gemma-4-31b": {
+      "slug": "gemma-4-31b",
+      "reason": "unscored"
+    },
+    "glm-4.6": {
+      "slug": "glm-4-6",
+      "reason": "deprecated"
+    },
+    "glm-4.7": {
+      "slug": "glm-4-7",
+      "reason": "deprecated"
+    },
+    "glm-4.7-flash": {
+      "slug": "glm-4-7-flash",
+      "reason": "deprecated"
+    },
+    "glm-5": {
+      "slug": "glm-5",
+      "reason": "deprecated"
+    },
+    "glm-5-turbo": {
+      "slug": "glm-5-turbo",
+      "reason": "deprecated"
+    },
+    "glm-5.1": {
+      "slug": "glm-5-1",
+      "reason": "deprecated"
+    },
+    "glm-5.2": {
+      "slug": "glm-5-2",
+      "reason": "deprecated"
+    },
+    "gpt-4.1": {
+      "slug": "gpt-4-1",
+      "reason": "deprecated"
+    },
+    "gpt-oss-120b": {
+      "slug": "gpt-oss-120b",
+      "reason": "unscored"
+    },
+    "gpt-oss-20b": {
+      "slug": "gpt-oss-20b",
+      "reason": "unscored"
+    },
+    "kimi-k3": {
+      "slug": "kimi-k3",
+      "reason": "deprecated"
+    },
+    "ling-3.0-tiny": {
+      "slug": "ling-3-0-tiny",
+      "reason": "unscored"
+    },
+    "ling-3.1-flash": {
+      "slug": "ling-3-1-flash",
+      "reason": "unscored"
+    },
+    "longcat-2.0": {
+      "slug": "longcat-2-0",
+      "reason": "unscored"
+    },
+    "mimo-v2-flash": {
+      "slug": "mimo-v2-flash",
+      "reason": "deprecated"
+    },
+    "mimo-v2.5": {
+      "slug": "mimo-v2-5-0424",
+      "reason": "deprecated"
+    },
+    "minimax-m2": {
+      "slug": "minimax-m2",
+      "reason": "deprecated"
+    },
+    "minimax-m2.1": {
+      "slug": "minimax-m2-1",
+      "reason": "deprecated"
+    },
+    "minimax-m2.5": {
+      "slug": "minimax-m2-5",
+      "reason": "deprecated"
+    },
+    "minimax-m2.7": {
+      "slug": "minimax-m2-7",
+      "reason": "deprecated"
+    },
+    "mistral-small-3.2": {
+      "slug": "mistral-small-3-2",
+      "reason": "deprecated"
+    },
+    "nemotron-3-nano-omni": {
+      "slug": "nemotron-3-nano-omni-30b-a3b",
+      "reason": "unscored"
+    },
+    "nemotron-3-super": {
+      "slug": "nvidia-nemotron-3-super-120b-a12b",
+      "reason": "deprecated"
+    },
+    "north-mini-code": {
+      "slug": "north-mini-code",
+      "reason": "unscored"
+    },
+    "qwen3-coder-next": {
+      "slug": "qwen3-coder-next",
+      "reason": "unscored"
+    },
+    "qwen3.5-122b-a10b": {
+      "slug": "qwen3-5-122b-a10b",
+      "reason": "unscored"
+    },
+    "qwen3.5-27b": {
+      "slug": "qwen3-5-27b",
+      "reason": "deprecated"
+    },
+    "qwen3.5-35b-a3b": {
+      "slug": "qwen3-5-35b-a3b",
+      "reason": "deprecated"
+    },
+    "qwen3.5-397b-a17b": {
+      "slug": "qwen3-5-397b-a17b",
+      "reason": "unscored"
+    },
+    "qwen3.5-4b": {
+      "slug": "qwen3-5-4b",
+      "reason": "unscored"
+    },
+    "qwen3.5-9b": {
+      "slug": "qwen3-5-9b",
+      "reason": "unscored"
+    },
+    "qwen3.6-27b": {
+      "slug": "qwen3-6-27b",
+      "reason": "deprecated"
+    },
+    "qwen3.6-35b-a3b": {
+      "slug": "qwen3-6-35b-a3b",
+      "reason": "unscored"
+    },
+    "qwen3.6-plus": {
+      "slug": "qwen3-6-plus",
+      "reason": "deprecated"
+    },
+    "qwen3.7-max": {
+      "slug": "qwen3-7-max",
+      "reason": "deprecated"
+    },
+    "qwen3.7-plus": {
+      "slug": "qwen3-7-plus",
+      "reason": "unscored"
+    },
+    "qwen3.8-2.4t-a95b": {
+      "slug": "qwen3-8-2-4t-a95b",
+      "reason": "unscored"
+    },
+    "qwen3.8-flash": {
+      "slug": "qwen3-8-flash-next",
+      "reason": "unscored"
+    },
+    "step-3.7-flash": {
+      "slug": "step-3-7-flash",
+      "reason": "deprecated"
     }
   }
 }

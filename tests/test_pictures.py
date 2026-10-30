@@ -188,6 +188,25 @@ def test_the_phone_chart_names_what_it_leaves_for_the_list():
     assert "more in the list below" not in chart_svg(CHART, LIGHT)
 
 
+def test_a_comparison_below_strong_keeps_its_measurement_and_room_for_the_full_identity():
+    chart=Chart(bars=(Bar('nemotron-3.5-super-vl-120b-a12b',13.6,5,False,False),),
+                top_name='Leader',top_score=59.4,read_on=date(2026,10,31),
+                frontier_within=10,strong_within=25,version='5.0')
+    svg=chart_svg(chart,LIGHT)
+    assert 'bar measured' in svg and 'bar strong' not in svg
+    label=re.search(r'<text class="t label" x="([\d.]+)"',svg)
+    assert float(label[1]) >= 40 + len(chart.bars[0].family)*11.5
+    assert 'Index v5.0' in svg and '13.6' in svg
+
+
+def test_display_rounding_cannot_promote_a_model_to_strong():
+    chart = Chart(bars=(Bar('below-the-raw-boundary', 34.4, 1, False, False, False),),
+                  top_name='Leader', top_score=59.4, read_on=date(2026, 10, 31),
+                  frontier_within=10, strong_within=25, version='5.0')
+    svg = chart_svg(chart, LIGHT)
+    assert 'class="bar measured"' in svg and 'class="bar strong"' not in svg
+
+
 @pytest.mark.parametrize("narrow", [False, True])
 def test_each_bar_says_its_score_and_how_many_offers_serve_it_free(narrow):
     svg = chart_svg(CHART, DARK, narrow=narrow)

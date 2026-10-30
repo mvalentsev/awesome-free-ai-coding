@@ -182,7 +182,12 @@ that but at or above the median of the current models the index scores — its
 upper half, which earns the model a page of its own and no strong mark — and no
 tier below the median or where nothing was measured. An explicit `null` score in
 a readable current leaderboard clears the old tier; a missing model or unreadable
-source preserves it for review. `notable` exists because
+source preserves it for review. The measurement writer accepts only the reviewed
+index version `5.0`; a missing, ambiguous or different revision stops it before
+registry or snapshot writes. The snapshot records its version and keeps missing
+measurements, unscored records and deprecated variants distinct. Scores from
+different index revisions must not be combined in one current comparison.
+`notable` exists because
 the top moves: on 2026-09-26 Claude Opus 5.5 set it at 57.6, and Claude Opus 4.6
 (26.4), Claude Sonnet 4.6 (24.7) and Gemini 3.5 Flash (32.6, a hair under the
 strong bar) were models readers still look for, free on the list and with no
@@ -963,7 +968,7 @@ via pull request. Humans review the PR; robots do everything else.
 The README is the landing page, and the site is the reference. A visitor scrolls
 the README on GitHub, under the file list, so it carries the hero — a picture of the
 list the render draws, a dot per live row — the rows added this week, the picks, the
-strong models, the quickstart and one list item per live row — the name, `offering`, the first eight
+measured model comparison, the quickstart and one list item per live row — the name, `offering`, the first eight
 model families and the date, with where to get a key beside it for a lane that takes
 one — and folds nothing in the list; the quota
 in the vendor's words is on the row's own page and on `index.html`, one click
@@ -972,11 +977,12 @@ grown to 161 KB, 83 KB of it inside folded cells, thirty-one desktop screens and
 fifty-one on a phone. The list was four tables until 2026-09-25, and they measured
 thirty-one phone screens: GitHub gives a table the screen's width and no more, so
 the offer got a column a word or two wide and the models and the dates sat off the
-right edge. The same rows as list items measured eighteen. The strong models are
-the families the tier bar reaches, frontier first, then the most widely served first and at most 20;
-the README draws them as a chart, each as long as its score on the Artificial
-Analysis index from the snapshot `freetier-tiers` keeps, and folds who serves each
-under it in the chart's order; every family and everyone who serves it free is the site's model index, which grows
+right edge. The same rows as list items measured eighteen. The comparison shows at most 20 families;
+current measured scores come first, highest first, independently of a Strong mark.
+The README draws them against the index leader and folds who serves each under
+it in the chart's order. Without measurements it lists the most widely served
+families. The graph names the index revision and read date; unavailable scores
+do not become zeros. Every family and everyone who serves it free is in the site's model index, which grows
 with the families rather than the rows — 70 in 7 KB on 2026-09-20, 149 in 18.7 KB on
 09-25 — and left the README that day. `README_BUDGET` in `render.py` is the ceiling, and a test
 renders the committed registry against it, so the reference job cannot creep back
@@ -1132,7 +1138,7 @@ cannot print two versions of it.
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
-| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
+| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and measured free models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js` | `hand` |

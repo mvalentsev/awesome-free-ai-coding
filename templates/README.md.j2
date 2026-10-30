@@ -35,9 +35,8 @@
 {% endfor %}
 
 {% endif %}
-{% if readme_strong %}
-{% set strong_card = readme_strong | map(attribute='providers') | sum(start=[]) | selectattr('card_required') | list %}
-**Strong models, free.** Scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), checked {{ schedule }}. Each linked provider offers the model free{% if strong_card %}; 💳 means a card is required{% endif %}:
+{% if readme_models %}
+**Free models, compared.** {% if chart %}Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models){% if score_version %} v{{ score_version }}{% endif %} scores, read {{ score_date }}, highest first.{% else %}Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) scores are unavailable; the most widely served models are listed below.{% endif %} Each linked provider offers the model free under the conditions beside its name{% if comparison_has_card %}; 💳 means a card is required{% endif %}.
 
 {% if chart %}
 {# Inside a <div> block, or the line opening on <a><picture> is a paragraph and GitHub
@@ -52,16 +51,14 @@
 
 {% endif %}
 {# The '' keeps the line's newline, which trim_blocks takes from a line that ends in a block tag. #}
-{% for m in readme_strong %}- [`{{ m.family }}`]({{ m.page }}){% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ dot if not loop.last }}{% endfor %}{{ '' }}
+{% for m in readme_models %}- {% if m.page %}[`{{ m.family }}`]({{ m.page }}){% else %}`{{ m.family }}`{% endif %}{% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ dot if not loop.last }}{% endfor %}{{ '' }}
 {% endfor %}
 {% if chart %}
 
 </details>
 {% endif %}
-{% if strong_more %}
 
-<sub>The {{ readme_strong | length }} most widely served; the other {% if strong_more == 1 %}strong one is{% else %}{{ strong_more }} strong ones are{% endif %} in [the website's model index]({{ pages_url }}/#model-index).</sub>
-{% endif %}
+Frontier scores are within {{ frontier_within }} points of the leader; Strong scores are within {{ strong_within }} points. [All {{ family_count }} free model families]({{ pages_url }}/#model-index), including those without current scores, remain in the model index.
 
 {% endif %}
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
@@ -113,7 +110,7 @@ _Nothing verified right now._
 {% endfor %}
 
 {% if model_index %}
-**🧠 Looking for one model in particular?** [The website's model index]({{ pages_url }}/#model-index) names all {{ family_count }} model famil{{ 'y' if family_count == 1 else 'ies' }} on the list and everyone who serves each one free{% if readme_strong %}; the strong ones are [under Start here](#-start-here){% endif %}. A model gets [a page of its own]({{ models_url }}) once {{ model_page_rule }}.
+**🧠 Looking for one model in particular?** [The website's model index]({{ pages_url }}/#model-index) names all {{ family_count }} model famil{{ 'y' if family_count == 1 else 'ies' }} on the list and everyone who serves each one free{% if readme_models %}; the comparison is [under Start here](#-start-here){% endif %}. A model gets [a page of its own]({{ models_url }}) once {{ model_page_rule }}.
 {% endif %}
 
 {% if changes %}

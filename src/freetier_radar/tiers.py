@@ -55,12 +55,18 @@ SCORES_PATH = Path(__file__).with_name("intelligence-index.json")
 TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 FRONTIER_WITHIN = 10.0
 STRONG_WITHIN = 25.0
+# AA's methodology and complete leaderboard, reviewed 2026-10-31:
+# https://artificialanalysis.ai/methodology/intelligence-benchmarking
+# A new revision needs a review before it can replace the measured series.
+INDEX_VERSION = "5.0"
 
 # Artificial Analysis /leaderboards/models, checked 2026-10-19: Next.js ships
 # string chunks; scored rows use initialModels, older pages used models.
 _FLIGHT_CHUNK = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
 _MODELS_ARRAY = re.compile(r'"(?:models|initialModels)"\s*:\s*(\[)')
 _MANIFEST = re.compile(r'"manifest"\s*:\s*')
+_INDEX_VERSION = re.compile(
+    r'"name"\s*:\s*"Artificial Analysis Intelligence Index v(\d+(?:\.\d+)+)"')
 TABLE_BYTES = 8 * 1024 * 1024
 
 
@@ -75,6 +81,15 @@ class Scored:
 
 def _flight_payload(page: str) -> str:
     return "".join(json.loads(chunk) for chunk in _FLIGHT_CHUNK.findall(page))
+
+
+def index_version(page: str) -> str:
+    versions = set(_INDEX_VERSION.findall(_flight_payload(page)))
+    if versions != {INDEX_VERSION}:
+        found = ", ".join(sorted(versions)) or "missing"
+        raise ValueError(f"Intelligence Index version {found}; reviewed version is "
+                         f"{INDEX_VERSION}. Review the methodology before updating measurements.")
+    return INDEX_VERSION
 
 
 def _scored_models(rows: object) -> dict[str, Scored]:
@@ -232,7 +247,8 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
                 scored = models.get(m.aa_model)
                 marks[m.family] = Mark(
                     family=m.family, aa_model=m.aa_model, registered=m.tier,
-                    measured=measured_tier(scored.index, top.index, median) if scored else None,
+                    measured=(measured_tier(scored.index, top.index, median)
+                              if scored and not scored.deprecated else None),
                     score=scored)
             elif not mark.moved and m.tier is not mark.registered:
                 marks[m.family] = replace(mark, registered=m.tier)
@@ -242,42 +258,51 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
 def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[str, Scored]]:
     """Unsuperseded families no row measures (no row names an aa_model for them)
     whose name, read the way the board spells a slug — a hyphen for a dot,
-    GLM-5.3 as glm-5-3 — is a model the board scores into a tier.
+    GLM-5.3 as glm-5-3 — is a model the board currently measures.
 
-    Only a slug the board lists is offered, never a guess, and only a score that
-    reaches a tier, `notable` included, since that one decides whether the
-    model has a page; below the median, measuring changes nothing a page says.
+    Only a current numeric measurement for a slug the board lists is offered,
+    never a guess. Models below a tier still belong in a measured comparison.
     `--write` measures each as the slug found — the model's own page, which
     CONTRIBUTING reads where the lane names no variant — and a reviewer whose
     lane serves another variant names that one instead."""
-    top, median = index_top(models), index_median(models)
     measured = {m.family for e in entries for m in e.models if m.aa_model}
     found: dict[str, Scored] = {}
     for e in entries:
         for m in e.models:
             if m.superseded_by is None and m.family not in measured and m.family not in found:
                 scored = models.get(m.family.replace(".", "-"))
-                if scored is not None and measured_tier(scored.index, top.index, median) is not None:
+                if scored is not None and scored.index is not None and not scored.deprecated:
                     found[m.family] = scored
     return sorted(found.items())
 
 
-def keep_scores(path: Path, entries: list[Entry], board: dict[str, Scored], today: date) -> None:
+def keep_scores(path: Path, entries: list[Entry], board: dict[str, Scored], today: date,
+                version: str) -> None:
     """The scores the render draws, kept on every --write run whether or not a
     mark moved: a score moves inside its tier as the index re-measures, and the
     picture should say what the board says today. A family whose aa_model the
     board no longer lists keeps its mark in the registry and has no score here."""
     top = index_top(board)
     measured = {m.family: board[m.aa_model] for e in entries for m in e.models
-                if m.aa_model and m.aa_model in board and board[m.aa_model].index is not None}
+                if m.aa_model and m.aa_model in board and board[m.aa_model].index is not None
+                and not board[m.aa_model].deprecated}
+    unscored = {}
+    for entry in entries:
+        for model in entry.models:
+            if model.aa_model and model.family not in measured:
+                score = board.get(model.aa_model)
+                reason = ("missing" if score is None else
+                          "deprecated" if score.deprecated else "unscored")
+                unscored[model.family] = {"slug": model.aa_model, "reason": reason}
     # To the tenth the pictures print: the board recomputes its decimals, and a
     # file that changed on every run would bury the day a score really moved.
-    data = {"read_on": today.isoformat(), "source": LEADERBOARD_URL,
+    data = {"read_on": today.isoformat(), "source": LEADERBOARD_URL, "version": version,
             "top": {"slug": top.slug, "name": top.name, "index": round(top.index, 1)},
             "median": round(index_median(board), 1),
             "families": {family: {"slug": s.slug, "index": round(s.index, 1),
                                   "estimated": s.estimated}
-                         for family, s in sorted(measured.items())}}
+                         for family, s in sorted(measured.items())},
+            "unscored": dict(sorted(unscored.items()))}
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
@@ -291,10 +316,11 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
         resp = await client.get(LEADERBOARD_URL)
         resp.raise_for_status()
         board = await read_leaderboard(client, resp.text)
+        version = index_version(resp.text)
     top, marks = review(entries, board)
     live = [e for e in entries if not is_archived(e, date.today())]
     median = index_median(board)
-    print(f"top of the index: {top.name}, {top.index:.1f} — frontier from "
+    print(f"Intelligence Index v{version}; top: {top.name}, {top.index:.1f} — frontier from "
           f"{top.index - FRONTIER_WITHIN:.1f}, strong from {top.index - STRONG_WITHIN:.1f}, "
           f"notable from {median:.1f}, the median of its {len(_current(board))} current models")
     moved = [m for m in marks if m.moved]
@@ -332,11 +358,11 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     # Only where the caller names the file: the command always does, and a test
     # that measures a registry of its own never writes over the list's scores.
     if write and scores is not None:
-        keep_scores(scores, entries, board, date.today())
+        keep_scores(scores, entries, board, date.today(), version)
     print(f"{len(marks)} family bindings checked, {len(moved)} marks "
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
           f"{sum(m.score is not None and m.score.index is None for m in marks)} without a current score, "
-          f"{len(bare)} unmeasured that would reach a tier"
+          f"{len(bare)} newly measured model identities"
           f"{' — measured now' if write and bare else ''}")
     return 1 if unknown or (moved and not write) else 0
 

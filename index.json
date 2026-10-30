@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-30",
+  "generated": "2026-10-31",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -472,6 +472,7 @@
       "models": [
         {
           "family": "gemini-3.8-flash",
+          "tier": "notable",
           "aa_model": "gemini-3-8-flash"
         },
         {
@@ -5789,6 +5790,7 @@
       "models": [
         {
           "family": "gemini-3.8-flash",
+          "tier": "notable",
           "aa_model": "gemini-3-8-flash"
         },
         {
@@ -7895,7 +7897,8 @@
           "aa_model": "gpt-oss-20b"
         },
         {
-          "family": "mistral-small-4"
+          "family": "mistral-small-4",
+          "aa_model": "mistral-small-4"
         },
         {
           "family": "qwen3.5-9b",
@@ -18107,6 +18110,7 @@
         "google-ai-studio",
         "antigravity"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
     },
     {

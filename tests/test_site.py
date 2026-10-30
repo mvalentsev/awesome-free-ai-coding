@@ -387,7 +387,8 @@ def test_a_readme_row_names_eight_families_and_links_the_rest(tmp_path):
     row = _readme_row(pages["README.md"])
     assert "`m-8`" in row and "`m-9`" not in row
     assert "[+2\u00a0more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gw/)" in row
-    assert "`m-10`" not in pages["README.md"]
+    reference = pages["README.md"].split("## 📋 The list")[1]
+    assert "`m-10`" not in reference
     assert ">m-10<" in pages[SITE_PAGE]
     assert "`m-10`" in pages["providers/gw.md"]
 
@@ -405,7 +406,7 @@ def test_an_agent_in_the_start_block_names_the_same_families_on_both_pages(tmp_p
     last, first_left = f"m-{README_STARTER_MODELS}", f"m-{README_STARTER_MODELS + 1}"
     more = f"+{len(TEN) - README_STARTER_MODELS} more"
     pages = _render_everything([make(id="ag", category="agent-cli", models=TEN)], tmp_path)
-    start = pages["README.md"].split("## 🚀 Start here")[1].split("## ")[0]
+    start = pages["README.md"].split("## 🚀 Start here")[1].split("**Free models, compared.**")[0]
     assert f"`{last}`" in start and f"`{first_left}`" not in start
     readme_more = more.replace(" ", "&nbsp;")
     assert f"[{readme_more}](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/)" in start
