@@ -102,15 +102,16 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/): Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought; no card; what you send is not used to train models; key from https://moark.com/dashboard/tokens; OpenAI-compatible at https://api.moark.com/v1; Anthropic Messages at https://moark.com/anthropic; Codex CLI profile at https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/moark.config.toml
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/): Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit; no card; key from https://aiapi-pro.com/register.html; OpenAI-compatible at https://aiapi-pro.com/v1; provisional since 2026-10-22
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/): Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits; card required; requires $1 one-time card verification; key from https://platform.experientiallabs.ai; OpenAI-compatible at https://api.experientiallabs.ai/v1
+- [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/): OpenAI-compatible API gateway with a limited-time free model promotion, no card required; no card; training policy not established; key from https://app.haimaker.ai/sign-up; OpenAI-compatible at https://api.haimaker.ai/v1; free models: `glm-5.3` (free until 2026-11-01 14:00+00:00), `deepseek-v4.1-flash` (free until 2026-11-01 14:00+00:00), `minimax-m3` (free until 2026-11-01 14:00+00:00); provisional since 2026-10-30
 
 ## Free models by name
 
 A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. Every other model is named on the one row above that serves it.
 
 - [qwen3.8-27b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/): Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (free until 2026-11-24 00:00-08:00), Regolo AI, VLM Run Gateway, OVHcloud AI Endpoints
+- [deepseek-v4.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/): opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (free until 2026-11-01 00:00+08:00), Token Harbor, Haimaker (free until 2026-11-01 14:00+00:00)
 - [nemotron-3-ultra](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/): opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR
 - [nemotron-3.5-lightning](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/): opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway (card required)
-- [deepseek-v4.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/): opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (free until 2026-11-01 00:00+08:00), Token Harbor
 - [nemotron-3-nano-omni](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/): OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), TokenRouter (PaleBlueDot)
 - [deepseek-v4-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/): Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode, FreeInference (Harvard SEAS)
 - [gemma-4-31b](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/): OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI, Opper
@@ -119,13 +120,14 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [laguna-xs-2.1](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/): OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Nous Portal (Hermes Agent)
 - [nemotron-3.5-super-vl-120b-a12b](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/): OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline, LLMTR
 - [glm-5.2](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/): AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI, AtomCode
+- [glm-5.3](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/): notable; AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), ZCode (Z.ai), Haimaker (free until 2026-11-01 14:00+00:00)
 - [gpt-oss-120b](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/): Groq, Google Antigravity, Regolo AI, OVHcloud AI Endpoints
 - [gpt-oss-20b](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/): Groq, NVIDIA NIM (build.nvidia.com), Regolo AI, Pollinations.AI
 - [mimo-v2.6-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/): opencode, Freebuff, AIHubMix (free models), Token Harbor
 - [north-mini-code](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/): OpenRouter (free models), Kilo Code, AIHubMix (free models), Cohere (trial keys)
 - [dots-3-note](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/): OpenRouter (free models), Kilo Code, AIHubMix (free models)
 - [glm-4.7-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/): AIHubMix (free models), Z.ai (Zhipu GLM), MegaNova (requires $1 one-time top-up)
-- [glm-5.3](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/): notable; AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), ZCode (Z.ai)
+- [minimax-m3](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/): AIHubMix (free models), FreeInference (Harvard SEAS), Haimaker (free until 2026-11-01 14:00+00:00)
 - [muse-glimmer-30b](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/): Requesty, NVIDIA NIM (build.nvidia.com), Routeway
 - [qwen3.6](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/): Hetzner Inference API, FreeInference (Harvard SEAS), OVHcloud AI Endpoints
 - [qwen3.8-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/): Alibaba Cloud Model Studio (DashScope, international), Qoder, Qoder CN (formerly Lingma)
@@ -142,7 +144,6 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [minimax-m2.1](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/): Kiro, AIHubMix (free models)
 - [minimax-m2.5](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/): Kiro, AIHubMix (free models)
 - [minimax-m2.7](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/): AIHubMix (free models), Routeway
-- [minimax-m3](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/): AIHubMix (free models), FreeInference (Harvard SEAS)
 - [qwen3.5-122b-a10b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/): Alibaba Cloud Model Studio (DashScope, international), Regolo AI
 - [qwen3.5-4b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/): Mixlayer, SiliconFlow (China)
 - [atria-dawn](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn/): LLMTR (free until 2026-10-31 23:59+03:00)

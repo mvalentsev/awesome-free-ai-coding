@@ -110,6 +110,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-10-26
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-10-26
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-10-26
+- [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) — verified 2026-10-30 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) (until 2026-11-01) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (until 2026-11-01) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) (until 2026-11-01)
 
 ## Archived
 

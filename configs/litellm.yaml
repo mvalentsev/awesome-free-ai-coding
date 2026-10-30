@@ -1605,6 +1605,33 @@ model_list:
     api_base: https://api.bytez.com/models/v2/openai/v1
     api_key: os.environ/BYTEZ_API_KEY
     use_chat_completions_api: true
+- model_name: haimaker/z-ai/glm-5.3
+  litellm_params:
+    model: openai/z-ai/glm-5.3
+    api_base: https://api.haimaker.ai/v1
+    api_key: os.environ/HAIMAKER_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-01 14:00+00:00
+    source: https://haimaker.ai/free/
+- model_name: haimaker/deepseek/deepseek-v4.1-flash
+  litellm_params:
+    model: openai/deepseek/deepseek-v4.1-flash
+    api_base: https://api.haimaker.ai/v1
+    api_key: os.environ/HAIMAKER_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-01 14:00+00:00
+    source: https://haimaker.ai/free/
+- model_name: haimaker/minimax/minimax-m3
+  litellm_params:
+    model: openai/minimax/minimax-m3
+    api_base: https://api.haimaker.ai/v1
+    api_key: os.environ/HAIMAKER_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-01 14:00+00:00
+    source: https://haimaker.ai/free/
 - model_name: mixlayer/qwen/qwen3.5-4b-free
   litellm_params:
     model: openai/qwen/qwen3.5-4b-free

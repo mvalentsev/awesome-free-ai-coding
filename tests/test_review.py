@@ -44,6 +44,21 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     assert json.loads((bundle.out / 'scope.json').read_text())['sha'] == scope['sha']
 
 
+@respx.mock
+async def test_source_collection_retains_unanswered_same_site_provider_comparisons(tmp_path):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/leads', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    source = 'https://vendor.example/models'
+    respx.get(source).respond(200, text='<a href="/haimaker-ai-alternative">Haimaker alternative</a>')
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert [(r['url'], r['sources'], r['kind']) for r in result['lead_inventory']] == [
+        ('https://vendor.example/haimaker-ai-alternative', [source], 'comparison')]
+    assert len(respx.calls) == 1
+    assert 'haimaker-ai-alternative' in (bundle.out / result['checks'][0]['file']).read_text()
+
+
 @pytest.mark.parametrize('path,rows,families', [
     ('providers/vendor.md', ['vendor'], []),
     ('models/beta.md', [], ['beta']),

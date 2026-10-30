@@ -1451,6 +1451,25 @@
         }
       }
     },
+    "haimaker": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Haimaker",
+      "options": {
+        "baseURL": "https://api.haimaker.ai/v1",
+        "apiKey": "{env:HAIMAKER_API_KEY}"
+      },
+      "models": {
+        "z-ai/glm-5.3": {
+          "name": "z-ai/glm-5.3 (until 2026-11-01)"
+        },
+        "deepseek/deepseek-v4.1-flash": {
+          "name": "deepseek/deepseek-v4.1-flash (until 2026-11-01)"
+        },
+        "minimax/minimax-m3": {
+          "name": "minimax/minimax-m3 (until 2026-11-01)"
+        }
+      }
+    },
     "mixlayer": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Mixlayer",

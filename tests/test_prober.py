@@ -71,6 +71,35 @@ async def test_catalog_explicit_free_price_label_and_withdrawal_controls(fields,
     assert (result.status is ProbeStatus.PASS) is free
 
 
+@pytest.mark.parametrize(('promo', 'price', 'free'), [
+    ({'status': 'active', 'is_free': True}, 0.000001, True),
+    ({'status': 'ended', 'is_free': True}, 0.000001, False),
+    ({'status': 'scheduled', 'is_free': True}, 0.000001, False),
+    ({'is_free': True}, 0.000001, False),
+    ({'status': 'active', 'is_free': 'true'}, 0.000001, False),
+    ({'status': 'active', 'is_free': False}, 0.000001, False),
+    ({'status': 'active', 'is_free': False}, 0, True),
+    (None, 0.000001, False),
+    (None, 0, True),
+])
+@respx.mock
+async def test_catalog_model_group_active_promotion_and_paid_controls(promo, price, free):
+    # Haimaker's public/model_hub, checked 2026-10-30, keeps ordinary token
+    # prices beside promo.status/is_free: https://api.haimaker.ai/public/model_hub.
+    endpoint = 'https://api.x.ai/public/model_hub'
+    row = Entry.model_validate({
+        **BASE, 'models': [{'family': 'glm-5.3'}],
+        'api': {'base_url': 'https://api.x.ai/v1', 'key_url': 'https://x.ai/keys',
+                'auth': 'api-key', 'model_ids': ['z-ai/glm-5.3']},
+        'probe': {'type': 'api-models', 'endpoint': endpoint, 'require_zero_price': True}})
+    model = {'model_group': 'z-ai/glm-5.3', 'model_name': 'GLM 5.3 display title', 'input_cost_per_token': price,
+             'output_cost_per_token': price, 'promo': promo}
+    respx.get(endpoint).respond(200, json=[model])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, row, backoff=0)
+    assert (result.status is ProbeStatus.PASS) is free
+
+
 @pytest.mark.parametrize('free_remains', [True, False])
 @respx.mock
 async def test_experiential_partial_promotion_change_does_not_end_the_whole_offer(free_remains):

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 6 providers, limits and ids, provider probes 2026-10-26'
-description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4.1-flash free: 7 providers, limits and ids, provider probes 2026-10-26 or later'
+description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder, Token Harbor and Haimaker. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**6 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
+**7 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder, Token Harbor and Haimaker. None asks for a card. The providers' last scheduled probes were on 2026-10-26 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -156,6 +156,27 @@ Enable explicit :free routes in the dashboard before calling them; the rotating 
 - Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
 - Callable ids: `deepseek-v4.1-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://tokenharbor.ai/terms)).
+
+### [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-10-30 · last probe 2026-10-30 · listed since 2026-10-30
+
+OpenAI-compatible API gateway with a limited-time free model promotion, no card required
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Usage allowance: amount not published (period not published); scope not published
+
+Create an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is published. After the promotion, the same IDs and key return to paid token pricing. Prompts and responses are logged by default; opt out in API key settings. Logged contents are deleted after 30 days. Haimaker says "We do not use the content of your API requests to train AI models." Upstream providers apply their own data policies; their training practices are not established here. Its terms restrict competing-product development and comparative benchmarking without permission.
+
+</details>
+
+- Base URL: `https://api.haimaker.ai/v1`
+- Key: `HAIMAKER_API_KEY` — get one at <https://app.haimaker.ai/sign-up>
+- Callable ids: `deepseek/deepseek-v4.1-flash`
+- `deepseek/deepseek-v4.1-flash`: free until 2026-11-01 14:00+00:00 ([conditions](https://haimaker.ai/free/))
+- Training policy not established ([the vendor's words](https://haimaker.ai/terms-and-conditions/)).
 
 ## Rows that listed it before
 

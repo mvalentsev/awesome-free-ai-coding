@@ -1353,12 +1353,13 @@ class DataUse(BaseModel):
     split tiers: the Gemini API's free tier lists "Content used to improve our
     products" and its paid tier "Content not used to improve our products".
     `trains` is `yes` (it may train or improve models on it), `opt-out` (it does
-    until the reader turns it off) or `no` (it says it does not). A row whose
+    until the reader turns it off), `no` (it says it does not), or `unknown`
+    (the source leaves relevant upstream training unestablished). A row whose
     vendor says nothing either way carries none. The README marks yes and
     opt-out with one glyph beside the name; the row's page quotes the sentence,
     and the run reads `url` back for it.
     """
-    trains: Literal["yes", "opt-out", "no"]
+    trains: Literal["yes", "opt-out", "no", "unknown"]
     quote: str  # verbatim; the page prints it inside quotation marks
     url: str
 

@@ -370,7 +370,10 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     quotes, quotas = current['quotes'], current['quotas']
     catalogs, model_checks = current['page_catalogs'], current['model_checks']
     historical_checks['sources'] = [record for record in checks if record['url'] in historical_urls]
+    from .review_leads import answered_sites, collect_leads
+    leads = collect_leads(raw_bodies, answered_sites(bundle.repo, scope['sha']))
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
+                                  'lead_inventory': leads,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
                                   'page_catalogs': catalogs,
                                   'quotas': quotas,

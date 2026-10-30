@@ -1247,6 +1247,18 @@ asserting current free eligibility. A URL used by a current row or explicitly
 requested still requires a successful read. Source reads and a dated withdrawal
 judgment are still required when an offer is withdrawn.
 
+The sources phase records unmatched hyperlinks and same-site provider comparison
+links in `lead_inventory`; it does not infer a vendor domain from a comparison
+slug or fetch the linked page. Each captured lead needs a `lead_dispositions`
+record in the judgment, with its ID, concrete finding and private evidence.
+Its verdict is `canonical`, `task`, or `irrelevant`: name an existing committed
+registry/watchlist/blocklist/source decision, retain an unresolved task with its
+register file and ID, or explain why the link is neither a provider nor a source.
+Task dispositions require a next action and keep a frozen register receipt.
+Signoff and pre-push reject missing dispositions. This link inventory does not
+replace reviewing prose-only leads or earlier custom source collections; retain
+those in the same persistent task register until individually reconciled.
+
 Before pushing, record that independent review with `judgment --result <file>`.
 The JSON names `base`, `sha`, every changed file in sorted `paths`,
 `decision: "approve"`, and these `criteria`: `existing_behavior`, `reuse`,

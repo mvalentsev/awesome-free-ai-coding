@@ -49,6 +49,21 @@ def test_every_provider_uses_the_shared_section_contract():
         assert headings == required + [h for h in optional if h in headings] + ending, e.id
 
 
+def test_unestablished_upstream_training_does_not_become_a_blanket_no_training_promise():
+    from freetier_radar.render import build_provider_page
+    source = 'https://gateway.example/terms'
+    entry = make(data_use={'trains': 'unknown', 'url': source,
+        'quote': 'Upstream providers determine their own training and retention policies.'})
+    page = build_provider_page(entry, [], TODAY)
+    assert '## What happens to what you send' in page
+    assert 'Training policy not established.' in page
+    assert 'What you send is not used to train models.' not in page
+    assert source in page
+    control = make(data_use={'trains': 'no', 'url': source,
+        'quote': 'We do not train any model on your API requests.'})
+    assert 'What you send is not used to train models.' in build_provider_page(control, [], TODAY)
+
+
 def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
     """The Evidence section says what the probe reads, and on a catalog that
     prices nothing "each listed family checked for a zero price" would be

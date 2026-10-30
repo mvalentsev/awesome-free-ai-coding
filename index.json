@@ -117,7 +117,8 @@
       "Inferbase",
       "SimpleLLM",
       "IteraCompute",
-      "NovAI"
+      "NovAI",
+      "Haimaker"
     ],
     "sections": [
       {
@@ -16453,6 +16454,148 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/"
+    },
+    {
+      "id": "haimaker",
+      "name": "Haimaker",
+      "category": "aggregator",
+      "url": "https://haimaker.ai/free/",
+      "source_urls": [
+        "https://api.haimaker.ai/public/model_hub",
+        "https://haimaker.ai/llms.txt",
+        "https://haimaker.ai/privacy-policy/",
+        "https://haimaker.ai/terms-and-conditions/"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible API gateway with a limited-time free model promotion, no card required",
+      "limits": "Usage allowance: amount not published (period not published); scope not published\n\nCreate an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is published. After the promotion, the same IDs and key return to paid token pricing. Prompts and responses are logged by default; opt out in API key settings. Logged contents are deleted after 30 days. Haimaker says \"We do not use the content of your API requests to train AI models.\" Upstream providers apply their own data policies; their training practices are not established here. Its terms restrict competing-product development and comparative benchmarking without permission.",
+      "quotas": [
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "source": "https://haimaker.ai/free/",
+          "quote": "Free capacity is offered on a best-effort basis and is shared fairly across everyone in the wave.",
+          "reviewed_on": "2026-10-30",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "models",
+      "models": [
+        {
+          "family": "glm-5.3",
+          "tier": "notable",
+          "aa_model": "glm-5-3"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "aa_model": "deepseek-v4-1-flash"
+        },
+        {
+          "family": "minimax-m3",
+          "aa_model": "minimax-m3"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.haimaker.ai/v1",
+        "key_url": "https://app.haimaker.ai/sign-up",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "z-ai/glm-5.3",
+          "deepseek/deepseek-v4.1-flash",
+          "minimax/minimax-m3"
+        ],
+        "model_access": {
+          "z-ai/glm-5.3": {
+            "source": "https://haimaker.ai/free/",
+            "until": "2026-11-01T14:00:00Z"
+          },
+          "deepseek/deepseek-v4.1-flash": {
+            "source": "https://haimaker.ai/free/",
+            "until": "2026-11-01T14:00:00Z"
+          },
+          "minimax/minimax-m3": {
+            "source": "https://haimaker.ai/free/",
+            "until": "2026-11-01T14:00:00Z"
+          }
+        },
+        "ignored_ids": [
+          "zai/glm-5.3",
+          "respan/span-01-lite"
+        ],
+        "note": "Use an API key as a bearer token with Chat Completions. The advertised free window ends November 1 at 14:00 UTC; these same IDs are metered afterward."
+      },
+      "data_use": {
+        "trains": "unknown",
+        "quote": "haimaker does not control and is not responsible for how Third-Party Model providers collect, use, store, process, retain, disclose, or train on data you submit when routing to their models.",
+        "url": "https://haimaker.ai/terms-and-conditions/"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-30",
+        "source": "https://haimaker.ai/terms-and-conditions/",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://api.haimaker.ai/public/model_hub",
+        "keywords": [],
+        "free_marker": "",
+        "require_zero_price": true,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-30",
+      "last_verified": "2026-10-30",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 99,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Haimaker",
+        "models": [
+          "glm-5.3",
+          "deepseek-v4.1-flash",
+          "minimax-m3"
+        ],
+        "ids": [
+          "z-ai/glm-5.3",
+          "deepseek/deepseek-v4.1-flash",
+          "minimax/minimax-m3"
+        ],
+        "what": "OpenAI-compatible API gateway with a limited-time free model promotion, no card required",
+        "limits": "Usage allowance: amount not published (period not published); scope not published\n\nCreate an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is published. After the promotion, the same IDs and key return to paid token pricing. Prompts and responses are logged by default; opt out in API key settings. Logged contents are deleted after 30 days. Haimaker says \"We do not use the content of your API requests to train AI models.\" Upstream providers apply their own data policies; their training practices are not established here. Its terms restrict competing-product development and comparative benchmarking without permission.",
+        "why": "",
+        "access": "",
+        "modelAccess": {
+          "glm-5.3": "until 2026-11-01",
+          "deepseek-v4.1-flash": "until 2026-11-01",
+          "minimax-m3": "until 2026-11-01"
+        },
+        "section": {
+          "id": "aggregator"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "glm-5.3": "until 2026-11-01",
+          "deepseek-v4.1-flash": "until 2026-11-01",
+          "minimax-m3": "until 2026-11-01"
+        },
+        "ids": {
+          "z-ai/glm-5.3": "free until 2026-11-01 14:00+00:00",
+          "deepseek/deepseek-v4.1-flash": "free until 2026-11-01 14:00+00:00",
+          "minimax/minimax-m3": "free until 2026-11-01 14:00+00:00"
+        }
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"
     }
   ],
   "countries": [
@@ -17513,6 +17656,7 @@
       "pollinations",
       "aion-labs",
       "bytez",
+      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -17572,6 +17716,7 @@
       "pollinations",
       "aion-labs",
       "bytez",
+      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -17651,6 +17796,7 @@
       "pollinations",
       "aion-labs",
       "bytez",
+      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -17673,6 +17819,19 @@
         "ovh-ai-endpoints"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "opencode",
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "qoder",
+        "token-harbor",
+        "haimaker"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "nemotron-3-ultra",
@@ -17699,18 +17858,6 @@
         "vercel-ai-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "opencode",
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "qoder",
-        "token-harbor"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "nemotron-3-nano-omni",
@@ -17801,6 +17948,17 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
+      "family": "glm-5.3",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio",
+        "zcode",
+        "haimaker"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+    },
+    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -17859,14 +18017,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
     },
     {
-      "family": "glm-5.3",
+      "family": "minimax-m3",
       "rows": [
         "aihubmix",
-        "alibaba-model-studio",
-        "zcode"
+        "freeinference",
+        "haimaker"
       ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
     },
     {
       "family": "muse-glimmer-30b",
@@ -17999,14 +18156,6 @@
         "routeway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
-    },
-    {
-      "family": "minimax-m3",
-      "rows": [
-        "aihubmix",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
     },
     {
       "family": "qwen3.5-122b-a10b",
@@ -20937,9 +21086,9 @@
         "openference.com"
       ],
       "name": "Openference",
-      "checked_on": "2026-09-21",
-      "reason": "The site's comparison copy still says \"Free forever, no credit card\", and OmniRoute's README lists it under \"Free Forever — $0, no card\", but the plans the site serves (api.openference.com/api/public/plans) start at Promo — priceMonthly 1 through Stripe, \"2-day trial on all models, then Qwen3.8 & Llama 3.2\", 420 requests a week — and then Lite at 15. No plan is priced at zero.",
-      "reopen_if": "The public plans API lists a plan priced at 0.",
+      "checked_on": "2026-10-30",
+      "reason": "Deyin Code's current pricing page (https://deyin.ai/pricing) advertises an Openference Free plan with 100 requests every five hours and 350 requests a week, no card required. The current public plans catalog (https://api.openference.com/api/public/plans) instead returns only paid Minion and Boss subscriptions. That catalog does not establish whether a separate default Free entitlement exists. The advertised no-card API or bundled CLI access remains unconfirmed; the older Promo plan and its prices no longer describe the current catalog.",
+      "reopen_if": "Current primary documentation or a no-card account establishes the advertised Free entitlement, its eligible API or Deyin CLI access, and its limits and payment conditions. A separate paid plan does not disqualify a demonstrated Free mode.",
       "current": true
     },
     {

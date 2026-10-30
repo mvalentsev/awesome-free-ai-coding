@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v4-flash free: 5 providers, limits and ids, provider probes 2026-10-26'
 description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: deepseek-v4-flash
 ---
 
@@ -134,7 +134,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ## Related models
 
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (until 2026-11-01) and Token Harbor
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (until 2026-11-01), Token Harbor and Haimaker (until 2026-11-01)
 - [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) — free at Kiro
 - [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — free at Alibaba Cloud Model Studio (DashScope, international)
 

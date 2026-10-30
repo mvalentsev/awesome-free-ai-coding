@@ -175,6 +175,8 @@ def accept_judgment(bundle, value: dict) -> dict:
         raise ValueError('review evidence is missing or changed')
     fresh_eligibility(value.get('model_eligibility', []))
     current_eligibility_sources(bundle, value.get('model_eligibility', []))
+    from .review_leads import validate_dispositions
+    validate_dispositions(bundle, value)
     # Import evidence rather than leave references to mutable external files.
     criteria = {}
     for name, check in value['criteria'].items():
@@ -194,7 +196,25 @@ def accept_judgment(bundle, value: dict) -> dict:
                 raise ValueError(record['row'] + ': eligibility evidence does not exist: ' + source)
             paths.append(bundle.write(f"judgment/eligibility-{record['row']}/{index}-{path.name}", path.read_bytes()))
         records.append({**record, 'evidence': paths})
+    leads = []
+    for record in value.get('lead_dispositions', []):
+        paths = []
+        for index, source in enumerate(record['evidence']):
+            path = Path(source)
+            if not path.is_file():
+                raise ValueError('lead disposition evidence does not exist: ' + source)
+            paths.append(bundle.write(f"judgment/lead-{record['id']}/{index}-{path.name}", path.read_bytes()))
+        current = {**record, 'evidence': paths}
+        if record['verdict'] == 'task':
+            path = Path(record['task']['file'])
+            if not path.is_absolute():
+                path = bundle.repo / path
+            body = path.read_bytes()
+            target = bundle.write('judgment/task-registers/' + digest(body) + '.json', body)
+            current['task'] = {**record['task'], 'file': target}
+        leads.append(current)
     result = bundle.save('judgment', {**value, 'criteria': criteria, 'model_eligibility': records,
+                                    'lead_dispositions': leads,
                                     'passed': True, 'at': now()})
     receipt = bundle.repo / SIGNOFFS / (scope['sha'] + '.json')
     if git.run(bundle.repo, 'check-ignore', '--no-index', '-q', str(receipt)).returncode:
@@ -210,6 +230,8 @@ def check_judgment(bundle, scope: dict) -> None:
     if not value or value.get('passed') is not True:
         raise ValueError('independent review is missing or failed')
     validate_judgment(value, scope)
+    from .review_leads import validate_dispositions
+    validate_dispositions(bundle, value, imported=True)
     for check in [*value['criteria'].values(), *value.get('model_eligibility', [])]:
         if any(path not in bundle.files for path in check['evidence']):
             raise ValueError('review evidence is not registered')

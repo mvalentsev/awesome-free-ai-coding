@@ -45,6 +45,7 @@ from .countries import country_name
 from .quotas import UNKNOWN_RECHECK_DAYS, UsageQuota
 from .quality import (CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS,
                       CONFLICT_STATES, WITHDRAWAL_VERDICTS)
+from .review_leads import LEAD_VERDICTS
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -208,6 +209,9 @@ def _unscored_tier_policy(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'Its verdict is `(canonical)`, `(task)`, or `(irrelevant)`',
+          lambda _: LEAD_VERDICTS,
+          "review.sources and review_leads.validate_dispositions; captured comparison, missing decision, canonical pointer and unresolved task controls in tests/test_review.py, tests/test_review_leads.py and tests/test_quality.py"),
     Claim("CONTRIBUTING.md",
           r'An explicit `null` score in\s+a readable current leaderboard (clears) the old tier; a missing model or unreadable\s+source (preserves) it for review',
           _unscored_tier_policy,

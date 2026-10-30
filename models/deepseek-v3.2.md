@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v3.2 free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: deepseek-v3.2 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v3.2/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: deepseek-v3.2
 ---
 
@@ -41,7 +41,7 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ## Related models
 
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (until 2026-11-01) and Token Harbor
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international), Qoder (until 2026-11-01), Token Harbor and Haimaker (until 2026-11-01)
 - [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — free at Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS)
 - [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — free at Alibaba Cloud Model Studio (DashScope, international)
 

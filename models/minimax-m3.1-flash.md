@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m3.1-flash free: 1 provider, limits and ids, provider probes 2026-10-26'
 description: minimax-m3.1-flash is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3.1-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-30
 crumb: minimax-m3.1-flash
 ---
 
@@ -52,10 +52,10 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ## Related models
 
+- [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker (until 2026-11-01)
 - [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) — free at Kiro and AIHubMix (free models)
 - [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro and AIHubMix (free models)
 - [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
-- [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
 
 ---

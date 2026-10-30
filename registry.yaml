@@ -10010,3 +10010,85 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: haimaker
+  name: Haimaker
+  category: aggregator
+  url: https://haimaker.ai/free/
+  source_urls:
+  - https://api.haimaker.ai/public/model_hub
+  - https://haimaker.ai/llms.txt
+  - https://haimaker.ai/privacy-policy/
+  - https://haimaker.ai/terms-and-conditions/
+  card_required: false
+  offering: OpenAI-compatible API gateway with a limited-time free model promotion,
+    no card required
+  limits: Create an account and an API key. Free capacity is best effort and shared
+    across the wave; paid requests have priority. No numerical allowance is published.
+    After the promotion, the same IDs and key return to paid token pricing. Prompts
+    and responses are logged by default; opt out in API key settings. Logged contents
+    are deleted after 30 days. Haimaker says "We do not use the content of your API
+    requests to train AI models." Upstream providers apply their own data policies;
+    their training practices are not established here. Its terms restrict competing-product
+    development and comparative benchmarking without permission.
+  quotas:
+  - unit: usage
+    scope: unspecified
+    source: https://haimaker.ai/free/
+    quote: Free capacity is offered on a best-effort basis and is shared fairly across
+      everyone in the wave.
+    reviewed_on: '2026-10-30'
+  free_part: models
+  models:
+  - family: glm-5.3
+    tier: notable
+    aa_model: glm-5-3
+  - family: deepseek-v4.1-flash
+    aa_model: deepseek-v4-1-flash
+  - family: minimax-m3
+    aa_model: minimax-m3
+  api:
+    base_url: https://api.haimaker.ai/v1
+    key_url: https://app.haimaker.ai/sign-up
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - z-ai/glm-5.3
+    - deepseek/deepseek-v4.1-flash
+    - minimax/minimax-m3
+    model_access:
+      z-ai/glm-5.3:
+        source: https://haimaker.ai/free/
+        until: '2026-11-01T14:00:00Z'
+      deepseek/deepseek-v4.1-flash:
+        source: https://haimaker.ai/free/
+        until: '2026-11-01T14:00:00Z'
+      minimax/minimax-m3:
+        source: https://haimaker.ai/free/
+        until: '2026-11-01T14:00:00Z'
+    ignored_ids:
+    - zai/glm-5.3
+    - respan/span-01-lite
+    note: Use an API key as a bearer token with Chat Completions. The advertised free
+      window ends November 1 at 14:00 UTC; these same IDs are metered afterward.
+  data_use:
+    trains: unknown
+    quote: haimaker does not control and is not responsible for how Third-Party Model
+      providers collect, use, store, process, retain, disclose, or train on data you
+      submit when routing to their models.
+    url: https://haimaker.ai/terms-and-conditions/
+  border:
+    left_out: []
+    'on': '2026-10-30'
+    source: https://haimaker.ai/terms-and-conditions/
+  probe:
+    type: api-models
+    endpoint: https://api.haimaker.ai/public/model_hub
+    keywords: []
+    free_marker: ''
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-10-30'
+  last_verified: '2026-10-30'
+  probe_failures: 0
+  provisional: true
+  rank: 99

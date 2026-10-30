@@ -1168,7 +1168,9 @@ def _model_id(model: dict) -> str:
     means the second one as a title — AIHubMix ships `"model_id":
     "coding-glm-5.1-free"` next to `"model_name": "Coding GLM 5.1 (free)"`, and
     a family matched against the title misses every hyphen."""
-    for key in ("id", "model_id", "model_name"):
+    # Haimaker's public/model_hub calls the request ID model_group:
+    # https://api.haimaker.ai/public/model_hub, checked 2026-10-30.
+    for key in ("id", "model_id", "model_group", "model_name"):
         value = model.get(key)
         if isinstance(value, str) and value:
             return value
@@ -1230,6 +1232,12 @@ def _price_of(model: dict) -> list[float] | None:
     # https://simplellm.eu/docs/models.md, checked 2026-10-14.
     if any(key in model for key in _FLAT_TOKEN_PRICES):
         prices = [_number(model.get(key)) for key in _FLAT_TOKEN_PRICES]
+        return prices if all(p is not None for p in prices) else None
+    # The public Haimaker catalog publishes both ordinary token sides flat:
+    # https://api.haimaker.ai/public/model_hub, checked 2026-10-30.
+    token_fields = ("input_cost_per_token", "output_cost_per_token")
+    if any(key in model for key in token_fields):
+        prices = [_number(model.get(key)) for key in token_fields]
         return prices if all(p is not None for p in prices) else None
     pricing = model.get("pricing")
     if isinstance(pricing, list):
@@ -1612,6 +1620,13 @@ def _free_flag(model: dict) -> bool | None:
     whether a row is free, that is the answer, and the prices are read only
     where it does not. A boolean only: a string or a number under one of these
     keys is not a verdict."""
+    # An active promotion is a separate free mode beside ordinary paid prices.
+    # Haimaker's public/model_hub uses this exact state/boolean contract:
+    # https://api.haimaker.ai/public/model_hub, checked 2026-10-30.
+    promo = model.get("promo")
+    if isinstance(promo, dict) and promo.get("status") == "active":
+        if promo.get("is_free") is True:
+            return True
     for holder in (model, model.get("pricing")):
         if isinstance(holder, dict):
             for key in _FREE_FLAGS:

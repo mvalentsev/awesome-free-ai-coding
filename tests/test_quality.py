@@ -62,6 +62,52 @@ def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
     assert push(tmp_path, base, head) == []
 
 
+def test_unanswered_captured_provider_lead_cannot_receive_a_review_signoff(tmp_path):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    source = 'https://vendor.example/models'
+    raw = bundle.write('http/source.html', b'<a href="/haimaker-ai-alternative">Haimaker alternative</a>')
+    bundle.save('sources', {'checks': [{'url': source, 'passed': True, 'file': raw}],
+        'lead_inventory': [{'id': 'captured-haimaker', 'url': 'https://vendor.example/haimaker-ai-alternative',
+                            'sources': [source], 'kind': 'comparison'}]})
+    with pytest.raises(ValueError, match='lead.*disposition'):
+        accept_judgment(bundle, value)
+    assert push(tmp_path, base, head)
+
+
+@pytest.mark.parametrize('status', ['open', 'scheduled', 'done', 'cancelled', None])
+def test_captured_lead_needs_a_real_unresolved_task_and_freezes_its_evidence(tmp_path, status):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    bundle.save('sources', {'lead_inventory': [{'id': 'candidate', 'url': 'https://candidate.example/'}]})
+    ledger = tmp_path / '.remember/task-ledger.json'
+    ledger.write_text(json.dumps({'tasks': [{'id': 'review-candidate', 'status': status,
+        'next_action': 'Read primary eligibility, catalog and terms before deciding.'}]}))
+    value['lead_dispositions'] = [{'id': 'candidate', 'verdict': 'task',
+        'finding': 'Provider remains unreviewed; a persistent task preserves the lead.',
+        'task': {'file': str(ledger), 'id': 'review-candidate'},
+        'evidence': [str(tmp_path / '.remember/finding.txt')]}]
+    if status in ('open', 'scheduled'):
+        accept_judgment(bundle, value)
+        ledger.write_text('later register contents')
+        assert push(tmp_path, base, head) == []
+    else:
+        with pytest.raises(ValueError, match='unresolved task'):
+            accept_judgment(bundle, value)
+
+
+def test_claimed_canonical_lead_decision_must_exist_at_the_exact_commit(tmp_path):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    bundle.save('sources', {'lead_inventory': [{'id': 'candidate', 'url': 'https://candidate.example/'}]})
+    value['lead_dispositions'] = [{'id': 'candidate', 'verdict': 'canonical',
+        'finding': 'Claims a registry decision that does not exist.',
+        'target': {'file': 'registry.yaml', 'key': 'unrecorded-vendor'},
+        'evidence': [str(tmp_path / '.remember/finding.txt')]}]
+    with pytest.raises(ValueError, match='does not exist'):
+        accept_judgment(bundle, value)
+
+
 def withdrawal_proposal(repo):
     base, head = proposal(repo)
     row = {'id': 'vendor', 'models': [], 'free_part': 'unnamed', 'archived': False}
