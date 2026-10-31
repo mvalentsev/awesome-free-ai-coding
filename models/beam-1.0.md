@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'beam-1.0 free: 1 provider, limits and ids, provider probes 2026-10-26'
-description: beam-1.0 is served free by Vercel AI Gateway. It asks for a card on file. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'beam-1.0 free: 2 providers, limits and ids, provider probes 2026-10-26'
+description: beam-1.0 is served free by Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-10-30
+last_modified_at: 2026-10-31
 crumb: beam-1.0
 ---
 
@@ -11,11 +11,26 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**One row on the list serves `beam-1.0` free:** Vercel AI Gateway. It asks for a card on file. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
+**2 rows on the list serve `beam-1.0` free:** Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
+
+### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
+
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-10-26 · listed since 2026-10-31
+
+Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
+
+- Limits, in the vendor's words: 200 requests/hour per IP
+
+The free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.
+- Base URL: `https://api.kilo.ai/api/gateway`
+- Key: none — the lane is anonymous
+- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m reflection/beam-free`
+- Callable ids: `reflection/beam-free`
+- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 

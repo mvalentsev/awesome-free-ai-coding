@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-10-26'
-description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b. Free models are zero-priced but…'
+description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: xing4.0-29b-a4b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b. Free models are zero-priced but…'
 permalink: /providers/siliconflow-cn/
-last_modified_at: 2026-10-28
+last_modified_at: 2026-10-31
 crumb: SiliconFlow (China)
 ---
 
@@ -19,7 +19,7 @@ Zero-priced small chat models on SiliconFlow China, after real-name verification
 
 ## Free models
 
-`xing4.0-29b`, [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`, `qwen2.5-7b`, [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/), `glm-z1-9b-0414`, `deepseek-r1-0528-qwen3-8b`
+[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/), [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`, `qwen2.5-7b`, [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/), `glm-z1-9b-0414`, `deepseek-r1-0528-qwen3-8b`
 
 ## Limits, in the vendor's words
 
@@ -65,6 +65,7 @@ curl -s https://api.siliconflow.cn/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-31` — Free models changed: added xing4.0-29b-a4b; dropped xing4.0-29b
 - `2026-10-03` — Free models changed: added deepseek-r1-0528-qwen3-8b, glm-z1-9b-0414, qwen2.5-7b, qwen3.5-4b
 - `2026-09-19` — Added: China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
 

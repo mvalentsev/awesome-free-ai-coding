@@ -300,6 +300,9 @@
         {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "xing4.0-29b-a4b"
         }
       ],
       "api": {
@@ -392,7 +395,8 @@
           "inkling-small",
           "dots-3-note",
           "nemotron-3-nano-omni",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "xing4.0-29b-a4b"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -428,7 +432,8 @@
           "inkling-small": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "xing4.0-29b-a4b": ""
         },
         "section": {
           "id": "aggregator"
@@ -1696,6 +1701,12 @@
         {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "xing4.0-29b-a4b"
+        },
+        {
+          "family": "beam-1.0"
         }
       ],
       "api": {
@@ -1749,13 +1760,6 @@
           "liquid/lfm-2.5-2.6b:free",
           "stealth/glyph-cluster",
           "recursive/flint-v1.0:free"
-        ],
-        "free_since": [
-          {
-            "id": "reflection/beam-free",
-            "on": "2026-10-17",
-            "source": "https://api.kilo.ai/api/gateway/models"
-          }
         ],
         "refuses_bearer": true,
         "codex": {
@@ -1812,7 +1816,9 @@
           "nemotron-3.5-lightning",
           "dots-3-note",
           "nemotron-3-nano-omni",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "xing4.0-29b-a4b",
+          "beam-1.0"
         ],
         "ids": [
           "openrouter/free",
@@ -1843,7 +1849,9 @@
           "nemotron-3.5-lightning": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "xing4.0-29b-a4b": "",
+          "beam-1.0": ""
         },
         "section": {
           "id": "agent-cli"
@@ -14389,7 +14397,11 @@
       "free_part": "models",
       "models": [
         {
-          "family": "xing4.0-29b"
+          "family": "xing4.0-29b",
+          "superseded_by": "xing4.0-29b-a4b"
+        },
+        {
+          "family": "xing4.0-29b-a4b"
         },
         {
           "family": "qwen3-8b"
@@ -14473,7 +14485,7 @@
       "search": {
         "name": "SiliconFlow (China)",
         "models": [
-          "xing4.0-29b",
+          "xing4.0-29b-a4b",
           "qwen3-8b",
           "glm-4-9b-0414",
           "qwen2.5-7b",
@@ -14495,7 +14507,7 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "xing4.0-29b": "",
+          "xing4.0-29b-a4b": "",
           "qwen3-8b": "",
           "glm-4-9b-0414": "",
           "qwen2.5-7b": "",
@@ -18065,6 +18077,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/"
     },
     {
+      "family": "xing4.0-29b-a4b",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"
+    },
+    {
       "family": "agents-a1",
       "rows": [
         "aihubmix",
@@ -18087,6 +18108,14 @@
         "agnes-ai"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/"
+    },
+    {
+      "family": "beam-1.0",
+      "rows": [
+        "kilo-code",
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "diffusiongemma",
@@ -18196,13 +18225,6 @@
         "llmtr"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/"
-    },
-    {
-      "family": "beam-1.0",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "big-pickle",
@@ -18771,12 +18793,6 @@
       "family": "swe-1.6",
       "rows": [
         "windsurf"
-      ]
-    },
-    {
-      "family": "xing4.0-29b",
-      "rows": [
-        "siliconflow-cn"
       ]
     },
     {

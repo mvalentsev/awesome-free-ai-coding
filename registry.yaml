@@ -71,6 +71,7 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
+  - family: xing4.0-29b-a4b
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -830,6 +831,8 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
+  - family: xing4.0-29b-a4b
+  - family: beam-1.0
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -874,10 +877,6 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - stealth/glyph-cluster
     - recursive/flint-v1.0:free
-    free_since:
-    - id: reflection/beam-free
-      'on': '2026-10-17'
-      source: https://api.kilo.ai/api/gateway/models
     refuses_bearer: true
     codex:
       base_url: https://api.kilo.ai/api/gateway
@@ -8597,6 +8596,8 @@ entries:
   free_part: models
   models:
   - family: xing4.0-29b
+    superseded_by: xing4.0-29b-a4b
+  - family: xing4.0-29b-a4b
   - family: qwen3-8b
   - family: glm-4-9b-0414
   - family: qwen2.5-7b
