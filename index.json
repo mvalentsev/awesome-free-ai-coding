@@ -7406,12 +7406,13 @@
       "category": "api-free-tier",
       "url": "https://poolside.ai",
       "source_urls": [
+        "https://platform.poolside.ai/",
         "https://docs.poolside.ai/get-started/quickstart",
         "https://docs.poolside.ai/api/overview"
       ],
       "card_required": false,
       "offering": "Free self-serve developer access to Poolside's own Laguna coding models",
-      "limits": "Usage allowance: amount not published (period not published) per organization\n\nThe quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited capacity or a withdrawn offer.",
+      "limits": "Usage allowance: amount not published (period not published) per organization\n\nPlatform inference shuts down on 31 October 2026. Model weights remain available for self-hosting; enterprise deployments are a separate access path. No usage quota or rate is published for the former self-serve offer.",
       "quotas": [
         {
           "unit": "usage",
@@ -7462,11 +7463,21 @@
       },
       "first_seen": "2026-08-14",
       "last_verified": "2026-10-26",
+      "retired_on": "2026-10-31",
+      "archive_review": {
+        "checked_on": "2026-10-31",
+        "sources": [
+          "https://platform.poolside.ai/",
+          "https://poolside.ai",
+          "https://docs.poolside.ai/get-started/quickstart",
+          "https://docs.poolside.ai/api/overview"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
       "no_account": false,
-      "archived": false,
+      "archived": true,
       "search": {
         "name": "Poolside Platform",
         "models": [],
@@ -7475,8 +7486,8 @@
           "poolside/laguna-xs-2.1"
         ],
         "what": "Free self-serve developer access to Poolside's own Laguna coding models",
-        "limits": "Usage allowance: amount not published (period not published) per organization\n\nThe quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited capacity or a withdrawn offer.",
-        "why": "",
+        "limits": "Usage allowance: amount not published (period not published) per organization\n\nPlatform inference shuts down on 31 October 2026. Model weights remain available for self-hosting; enterprise deployments are a separate access path. No usage quota or rate is published for the former self-serve offer.",
+        "why": "vendor-announced shutdown on 2026-10-31",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -7486,6 +7497,7 @@
           "nocard"
         ]
       },
+      "archived_because": "vendor-announced shutdown on 2026-10-31",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"
     },
     {
@@ -17666,7 +17678,6 @@
       "ovh-ai-endpoints",
       "standardcompute",
       "novita",
-      "poolside",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17726,7 +17737,6 @@
       "impossibl",
       "standardcompute",
       "novita",
-      "poolside",
       "sail-research",
       "pollinations",
       "aion-labs",
@@ -17806,7 +17816,6 @@
       "impossibl",
       "standardcompute",
       "novita",
-      "poolside",
       "sail-research",
       "pollinations",
       "aion-labs",

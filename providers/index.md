@@ -58,7 +58,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-10-26
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-10-26 · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 - [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-10-26
-- [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) — verified 2026-10-26
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-10-26
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-10-26 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
 - [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-10-26
@@ -114,6 +113,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 
 ## Archived
 
+- [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) — vendor-announced shutdown on 2026-10-31
 - [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) — delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) — delisted on 2026-10-22: public beta closed; the endpoint requires a key and key registration is closed
 - [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) — delisted on 2026-10-15: free accounts now include 0 requests/week and API inference requires a paid plan

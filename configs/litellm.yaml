@@ -1515,18 +1515,6 @@ model_list:
     api_base: https://api.novita.ai/openai
     api_key: os.environ/NOVITA_API_KEY
     use_chat_completions_api: true
-- model_name: poolside/poolside/laguna-s-2.1
-  litellm_params:
-    model: openai/poolside/laguna-s-2.1
-    api_base: https://inference.poolside.ai/v1
-    api_key: os.environ/POOLSIDE_API_KEY
-    use_chat_completions_api: true
-- model_name: poolside/poolside/laguna-xs-2.1
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1
-    api_base: https://inference.poolside.ai/v1
-    api_key: os.environ/POOLSIDE_API_KEY
-    use_chat_completions_api: true
 - model_name: sail-research/moonshotai/Kimi-K3
   litellm_params:
     model: openai/moonshotai/Kimi-K3

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-31T00:57:42Z</updated>
+  <updated>2026-10-31T13:37:58Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/poolside/20261031T133758Z</id>
+    <title>Archived: Poolside Platform</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"/>
+    <updated>2026-10-31T13:37:58Z</updated>
+    <summary type="text">vendor-announced shutdown on 2026-10-31</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261031T005742Z</id>
     <title>Free models changed: Kilo Code</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-10-16T22:46:12Z</updated>
     <summary type="text">dropped deepseek-v4.1-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/blue-claw/20261015T221429Z</id>
-    <title>Archived: Blue Claw Network</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/"/>
-    <updated>2026-10-15T22:14:29Z</updated>
-    <summary type="text">delisted on 2026-10-15: Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart).</summary>
   </entry>
 </feed>
