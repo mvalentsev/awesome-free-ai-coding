@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qoder free tier: limits, free models, verified 2026-10-26'
-description: 'Alibaba''s coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim. Free models: qwen3.8-flash. The Free plan continues on unnamed basic models with unpublished daily and monthly limits after…'
+description: 'Alibaba''s coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim. Free models: qwen3.8-flash. The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The…'
 permalink: /providers/qoder/
 last_modified_at: 2026-10-31
 crumb: Qoder
@@ -15,7 +15,7 @@ crumb: Qoder
 
 ## What you get
 
-Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim
+Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim
 
 ## Free models
 
@@ -29,9 +29,9 @@ Claimed promotional credit: 100 credits/day per account (Each claim valid for 30
 
 Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
 
-Qwen3.8-Flash promotion: Requests allowance: amount not published (period not published) per account per model; for `Qwen3.8-Flash`
+Qwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
 
-The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. Both model promotions include individual Free accounts with zero Credits, require no claim, and exclude Teams and Enterprise. The Qwen3.8-Flash promotion spends no Credits; its end will be announced in advance. DeepSeek-Flash has an unpublished daily free-use count; when it runs out, wait for the next day or continue with Credits. Paid accounts receive more uses. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
+The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The Qwen3.8-Flash promotion includes individual Free accounts with zero Credits, requires no claim, and excludes Teams and Enterprise. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Free uses spend no Credits; its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01 at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
 
 ## Where it is offered
 
