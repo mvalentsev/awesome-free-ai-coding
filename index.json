@@ -121,7 +121,8 @@
       "Haimaker",
       "CodeRabbit",
       "Greptile",
-      "cubic"
+      "cubic",
+      "CodeAnt AI"
     ],
     "sections": [
       {
@@ -16937,6 +16938,85 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/"
+    },
+    {
+      "id": "codeant",
+      "name": "CodeAnt AI",
+      "category": "trial",
+      "url": "https://codeant.ai",
+      "source_urls": [
+        "https://codeant.ai/cli",
+        "https://docs.codeant.ai/cli/setup",
+        "https://codeant.ai/pricing",
+        "https://codeant.ai/terms-and-conditions",
+        "https://codeant.ai/privacy-policy",
+        "https://codeantai.trust.site/faq"
+      ],
+      "card_required": false,
+      "offering": "Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial",
+      "limits": "One-time usage allowance: amount not published per account\n\nThe \"14-day free trial\" requires no card. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The Trust Center says LLM requests are \"not logged or retained by CodeAnt AI or the model provider\"; personal information can be retained while your account is active.",
+      "quotas": [
+        {
+          "unit": "usage",
+          "period": "one-time",
+          "scope": "account",
+          "source": "https://codeant.ai/cli",
+          "quote": "Start Free Trial",
+          "reviewed_on": "2026-10-31",
+          "amount": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "Source code is not used for training.",
+        "url": "https://codeantai.trust.site/faq"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-31",
+        "source": "https://codeant.ai/terms-and-conditions",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://codeant.ai/cli",
+        "keywords": [
+          "One Command, Full PR Review",
+          "Start Free Trial",
+          "NO CC REQUIRED"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-31",
+      "last_verified": "2026-10-31",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "CodeAnt AI",
+        "models": [],
+        "ids": [],
+        "what": "Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial",
+        "limits": "One-time usage allowance: amount not published per account\n\nThe \"14-day free trial\" requires no card. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The Trust Center says LLM requests are \"not logged or retained by CodeAnt AI or the model provider\"; personal information can be retained while your account is active.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "trial"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/"
     }
   ],
   "countries": [

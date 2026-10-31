@@ -93,6 +93,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [abliteration.ai](https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/) — verified 2026-10-26
 - [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) — verified 2026-10-26
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-10-26
+- [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-10-31
 
 ## 🧭 Aggregators (one key, many providers)
 

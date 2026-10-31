@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-31T14:01:31Z</updated>
+  <updated>2026-10-31T14:15:50Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codeant/20261031T141550Z</id>
+    <title>Added: CodeAnt AI</title>
+    <link rel="alternate" href="https://codeant.ai"/>
+    <updated>2026-10-31T14:15:50Z</updated>
+    <summary type="text">Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/coderabbit/20261031T140131Z</id>
     <title>Added: CodeRabbit</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://opencode.ai"/>
     <updated>2026-10-19T14:55:40Z</updated>
     <summary type="text">dropped muse-spark-1.3-contributor · free models: big-pickle, mimo-v2.5, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, longcat-2.5-preview</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20261019T145540Z</id>
-    <title>Free models changed: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-10-19T14:55:40Z</updated>
-    <summary type="text">added ling-3.1-flash · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni, ling-3.1-flash</summary>
   </entry>
 </feed>

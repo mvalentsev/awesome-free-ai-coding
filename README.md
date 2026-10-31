@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 90 live offers, 86 need no card, 130 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 91 live offers, 87 need no card, 130 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -17,7 +17,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) · [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) · [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) · [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
+🆕 **New this week:** [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) · [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) · [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) · [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) · [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
 
 ## 🚀 Start here
 
@@ -92,7 +92,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 90, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, 4 of 91, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**23** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -158,7 +158,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[SiliconFlow (China)](https://siliconflow.cn)** — Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) · [🔑 key](https://cloud.siliconflow.cn/account/ak) · [`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/) · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414` · `qwen2.5-7b` · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · `glm-z1-9b-0414` · `deepseek-r1-0528-qwen3-8b`</sub>
 
 ### 🎁 Trials (no card when possible)
-<sub>**18** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**19** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 - **[Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview)** — Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) · [🔑 key](https://console.cloud.google.com/expressmode) · [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) · [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) · `gemini-2.5-flash`</sub>
 - **[Regolo AI](https://regolo.ai/pricing/)** — EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) · [🔑 key](https://dashboard.regolo.ai) · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · `apertus-70b` · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · `mistral-small-4` · [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/) · [+1 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)</sub>
@@ -178,6 +178,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[abliteration.ai](https://abliteration.ai)** — OpenAI- and Anthropic-compatible API for uncensored reasoning models, with a one-credit free preview and no card<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/) · [🔑 key](https://abliteration.ai/console)</sub>
 - **[Impossibl](https://impossibl.com)** — Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) · [🔑 key](https://impossibl.com/dashboard)</sub>
 - **[Standard Compute](https://standardcompute.com)** — A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) · [🔑 key](https://standardcompute.com/signup)</sub>
+- **[CodeAnt AI](https://codeant.ai)** 🧪 — Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial<br><sub>[verified 2026-10-31](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/)</sub>
 
 ### 🧭 Aggregators (one key, many providers)
 <sub>**17** live · **15** of them ask for no card · sorted by how much work you can get done for free</sub>
@@ -208,6 +209,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-31` | ➕ Added **[CodeAnt AI](https://codeant.ai)** | <sub>Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial</sub> |
 | `2026-10-31` | ➕ Added **[CodeRabbit](https://www.coderabbit.ai)** | <sub>Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</sub> |
 | `2026-10-31` | ➕ Added **[cubic](https://cubic.dev)** | <sub>AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha</sub> |
 | `2026-10-31` | ➕ Added **[Greptile](https://www.greptile.com)** | <sub>AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan</sub> |
@@ -217,7 +219,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-31` | 🔄 Free models changed **[SiliconFlow (China)](https://siliconflow.cn)** | <sub>added xing4.0-29b-a4b; dropped xing4.0-29b</sub> |
 | `2026-10-30` | ➕ Added **[Haimaker](https://haimaker.ai/free/)** | <sub>OpenAI-compatible API gateway with a limited-time free model promotion, no card required</sub> |
 | `2026-10-30` | 🔄 Free models changed **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | <sub>added beam-1.0</sub> |
-| `2026-10-29` | 🔄 Free models changed **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** | <sub>dropped longcat-2.0</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
