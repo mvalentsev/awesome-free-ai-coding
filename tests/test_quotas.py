@@ -12,6 +12,39 @@ QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
 
+@pytest.mark.parametrize(('free_cli', 'free_ide', 'paid_cli', 'changed'), [
+    (3, 3, 5, False),
+    (4, 3, 5, True),
+    (3, 4, 9, False),
+])
+@respx.mock
+async def test_review_quota_tracks_the_free_cli_cell_at_http_boundary(free_cli, free_ide, paid_cli, changed):
+    # CodeRabbit's Free CLI and IDE allowances are distinct cells (2026-10-31):
+    # https://docs.coderabbit.ai/management/plans
+    q = {**QUOTA, 'amount': 3, 'unit': 'reviews', 'scope': 'person', 'rolling': True,
+         'read': 'table', 'quote': 'Reviews per developer per hour',
+         'table': {'headers': ['Plan', 'PR', 'IDE', 'CLI'], 'column': 'CLI', 'rows': ['Free']}}
+    e = Entry.model_validate({**BASE, 'quotas': [q]})
+    respx.get(e.probe.endpoint).respond(200, text='Recurring free quota for chat')
+    body = ('<h2>Reviews per developer per hour</h2>'
+            '<table><tr><th>Plan</th><th>PR</th><th>IDE</th><th>CLI</th></tr>'
+            f'<tr><td>Free</td><td>1</td><td>{free_ide}</td><td>{free_cli}</td></tr>'
+            f'<tr><td>Paid</td><td>5</td><td>5</td><td>{paid_cli}</td></tr></table>')
+    respx.get(q['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, e, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+
+
+def test_single_review_quote_keeps_its_unit_and_amount():
+    from freetier_radar.quotas import UsageQuota, quota_words
+    quota = UsageQuota.model_validate({**QUOTA, 'amount': 1, 'unit': 'reviews', 'scope': 'person',
+                                      'quote': 'One review per developer per hour',
+                                      'value_phrase': 'One review per developer per hour'})
+    assert quota.amount == 1
+    assert quota_words(quota) == '1 review/hour per person'
+
+
 def test_conflicting_published_ceilings_are_distinct_from_an_unpublished_allowance():
     from freetier_radar.quotas import UsageQuota, quota_words
     quota = UsageQuota.model_validate({**QUOTA, 'amount': None, 'period': 'concurrent',

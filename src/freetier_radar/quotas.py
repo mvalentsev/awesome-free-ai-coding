@@ -179,7 +179,7 @@ def _numbers(text: str) -> set[float]:
         values.add(float(m[1].replace(',',''))*scale)
     words = {'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,
              'nine':9,'ten':10,'eleven':11,'twelve':12,'fifteen':15,'twenty':20}
-    for m in re.finditer(r'\b('+'|'.join(words)+r')[ -]+(?:(?:concurrent|free)\s+)?(requests?|calls?|credits?|tasks?|days?|weeks?|months?|hours?|dollars?|tokens?)\b',text,re.I):
+    for m in re.finditer(r'\b('+'|'.join(words)+r')[ -]+(?:(?:concurrent|free)\s+)?(requests?|calls?|credits?|tasks?|reviews?|days?|weeks?|months?|hours?|dollars?|tokens?)\b',text,re.I):
         values.add(words[m[1].lower()])
     return values
 
@@ -189,7 +189,7 @@ class UsageQuota(BaseModel):
     amount: float | None = Field(default=None, gt=0, allow_inf_nan=False)
     unit: Literal['requests','tokens','neurons','credits','USD','tasks','one-hour sessions','list-price value','usage',
                   'messages','completions','edit predictions','points','CUH','input tokens','output tokens',
-                  'Hypercredits','weighted units','interactions','INR']
+                  'Hypercredits','weighted units','interactions','INR','reviews']
     period: Literal['second','minute','hour','day','week','month','one-time','concurrent'] | None = None
     window: int = Field(default=1, gt=0, exclude_if=lambda v: v == 1)
     rolling: bool = Field(default=False, exclude_if=lambda v: not v)
@@ -264,7 +264,7 @@ class UsageQuota(BaseModel):
                      'Hypercredits':r'\bhypercredits?\b',
                      'completions':r'\b(?:completions?|autocompletion)\b',
                      'tokens':r'\btokens?\b|(?<![a-z])(?:tpm|tpd)(?![a-z])',
-                     'tasks':r'\btasks?\b','messages':r'\bmessages?\b', 'points':r'\bpoints?\b|积分',
+                     'tasks':r'\btasks?\b','reviews':r'\breviews?\b','messages':r'\bmessages?\b', 'points':r'\bpoints?\b|积分',
                      'one-hour sessions':r'\bone.hour sessions?\b',
                      'list-price value':r'\b(?:list.price|value.based)\b'}.get(self.unit, r'\b' + self.unit + r'\b')
             periods = {'second':r'\b(?:seconds?|secs?|rps)\b',
@@ -438,7 +438,7 @@ SCOPE_WORDS = {'account':'per account','person':'per person','ip':'per IP','acco
 PERIOD_ADJECTIVES = {'second':'Per-second','minute':'Per-minute','hour':'Hourly','day':'Daily','week':'Weekly',
                      'month':'Monthly','one-time':'One-time','concurrent':'Concurrent',None:''}
 _SINGULAR_UNITS = {'requests':'request', 'tokens':'token', 'neurons':'neuron', 'credits':'credit',
-                   'tasks':'task', 'one-hour sessions':'one-hour session', 'messages':'message',
+                   'tasks':'task', 'reviews':'review', 'one-hour sessions':'one-hour session', 'messages':'message',
                    'completions':'completion', 'edit predictions':'edit prediction', 'points':'point',
                    'input tokens':'input token', 'output tokens':'output token',
                    'Hypercredits':'Hypercredit', 'weighted units':'weighted unit', 'interactions':'interaction'}

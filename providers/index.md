@@ -34,6 +34,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-10-26
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-10-26
 - [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) — verified 2026-10-26 · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)
+- [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) — verified 2026-10-31
+- [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) — verified 2026-10-31
+- [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-10-31
 
 ## 🔌 LLM APIs with free tier
 

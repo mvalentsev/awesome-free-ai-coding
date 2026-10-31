@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 87 live offers, 83 need no card, 130 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 90 live offers, 86 need no card, 130 free models, 0 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -17,7 +17,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
+🆕 **New this week:** [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) · [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) · [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) · [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
 
 ## 🚀 Start here
 
@@ -92,10 +92,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 87, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, 4 of 90, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
-<sub>**20** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**23** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 - **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 — Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/)</sub>
 - **[opencode](https://opencode.ai)** 👁 — Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) · `big-pickle` · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</sub>
@@ -117,6 +117,9 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[TRAE (TraeCode)](https://www.trae.ai)** 👁 — Free plan of TRAE's AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/)</sub>
 - **[CodeBuddy (Tencent)](https://www.codebuddy.ai)** — Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/)</sub>
 - **[Qoder CN (formerly Lingma)](https://qoder.cn)** — Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)</sub>
+- **[CodeRabbit](https://www.coderabbit.ai)** 👁 🧪 — Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial<br><sub>[verified 2026-10-31](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/)</sub>
+- **[cubic](https://cubic.dev)** 👁 🧪 — AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha<br><sub>[verified 2026-10-31](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/)</sub>
+- **[Greptile](https://www.greptile.com)** 👁 🧪 — AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan<br><sub>[verified 2026-10-31](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/)</sub>
 
 ### 🔌 LLM APIs with free tier
 <sub>**32** live · **30** of them ask for no card · sorted by how much work you can get done for free</sub>
@@ -205,6 +208,9 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-31` | ➕ Added **[CodeRabbit](https://www.coderabbit.ai)** | <sub>Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</sub> |
+| `2026-10-31` | ➕ Added **[cubic](https://cubic.dev)** | <sub>AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha</sub> |
+| `2026-10-31` | ➕ Added **[Greptile](https://www.greptile.com)** | <sub>AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan</sub> |
 | `2026-10-31` | 📦 Archived **[Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/)** | <sub>vendor-announced shutdown on 2026-10-31</sub> |
 | `2026-10-31` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added beam-1.0, xing4.0-29b-a4b</sub> |
 | `2026-10-31` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added xing4.0-29b-a4b</sub> |
@@ -212,9 +218,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-30` | ➕ Added **[Haimaker](https://haimaker.ai/free/)** | <sub>OpenAI-compatible API gateway with a limited-time free model promotion, no card required</sub> |
 | `2026-10-30` | 🔄 Free models changed **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | <sub>added beam-1.0</sub> |
 | `2026-10-29` | 🔄 Free models changed **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** | <sub>dropped longcat-2.0</sub> |
-| `2026-10-29` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added nemotron-3.5-super-vl-120b-a12b</sub> |
-| `2026-10-29` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added nemotron-3.5-super-vl-120b-a12b</sub> |
-| `2026-10-29` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added nemotron-3.5-super-vl-120b-a12b; dropped nemotron-3-super</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-31T13:37:58Z</updated>
+  <updated>2026-10-31T14:01:31Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/coderabbit/20261031T140131Z</id>
+    <title>Added: CodeRabbit</title>
+    <link rel="alternate" href="https://www.coderabbit.ai"/>
+    <updated>2026-10-31T14:01:31Z</updated>
+    <summary type="text">Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cubic/20261031T140131Z</id>
+    <title>Added: cubic</title>
+    <link rel="alternate" href="https://cubic.dev"/>
+    <updated>2026-10-31T14:01:31Z</updated>
+    <summary type="text">AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/greptile/20261031T140131Z</id>
+    <title>Added: Greptile</title>
+    <link rel="alternate" href="https://www.greptile.com"/>
+    <updated>2026-10-31T14:01:31Z</updated>
+    <summary type="text">AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/poolside/20261031T133758Z</id>
     <title>Archived: Poolside Platform</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://www.requesty.ai"/>
     <updated>2026-10-19T14:55:40Z</updated>
     <summary type="text">added ling-3.1-flash · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni, ling-3.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/iteracompute/20261018T171635Z</id>
-    <title>Added: IteraCompute</title>
-    <link rel="alternate" href="https://iteracompute.com/free/"/>
-    <updated>2026-10-18T17:16:35Z</updated>
-    <summary type="text">OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261017T124915Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-17T12:49:15Z</updated>
-    <summary type="text">added beam-1.0 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, beam-1.0</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261016T224612Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-16T22:46:12Z</updated>
-    <summary type="text">dropped deepseek-v4.1-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b</summary>
   </entry>
 </feed>

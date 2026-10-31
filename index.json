@@ -118,7 +118,10 @@
       "SimpleLLM",
       "IteraCompute",
       "NovAI",
-      "Haimaker"
+      "Haimaker",
+      "CodeRabbit",
+      "Greptile",
+      "cubic"
     ],
     "sections": [
       {
@@ -16623,6 +16626,317 @@
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"
+    },
+    {
+      "id": "coderabbit",
+      "name": "CodeRabbit",
+      "category": "agent-cli",
+      "url": "https://www.coderabbit.ai",
+      "source_urls": [
+        "https://docs.coderabbit.ai/management/plans",
+        "https://docs.coderabbit.ai/cli",
+        "https://www.coderabbit.ai/terms-of-service",
+        "https://www.coderabbit.ai/privacy-policy"
+      ],
+      "card_required": false,
+      "offering": "Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial",
+      "limits": "Free CLI reviews: 3 reviews/rolling hour per person\n\nFree IDE reviews: 3 reviews/rolling hour per person\n\nSign-in is required. New organizations start with a separate \"14-day Advanced trial\". Free PR access provides summaries; open-source PR reviews have a separate allowance. Proprietary code is not used for model training, but open-source code may train the service. Review-personalization data is stored unless you opt out of storage.",
+      "quotas": [
+        {
+          "amount": 3.0,
+          "unit": "reviews",
+          "period": "hour",
+          "rolling": true,
+          "scope": "person",
+          "label": "Free CLI reviews",
+          "source": "https://docs.coderabbit.ai/management/plans",
+          "quote": "Reviews* per developer per hour",
+          "period_quote": "Unless otherwise noted, PR, IDE, and CLI review limits are shown per developer, per hour, as rolling allowances rather than one-time quotas.",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Plan",
+              "PR",
+              "IDE",
+              "CLI",
+              "Files/review",
+              "Chat"
+            ],
+            "column": "CLI",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        },
+        {
+          "amount": 3.0,
+          "unit": "reviews",
+          "period": "hour",
+          "rolling": true,
+          "scope": "person",
+          "label": "Free IDE reviews",
+          "source": "https://docs.coderabbit.ai/management/plans",
+          "quote": "Reviews* per developer per hour",
+          "period_quote": "Unless otherwise noted, PR, IDE, and CLI review limits are shown per developer, per hour, as rolling allowances rather than one-time quotas.",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Plan",
+              "PR",
+              "IDE",
+              "CLI",
+              "Files/review",
+              "Chat"
+            ],
+            "column": "IDE",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "yes",
+        "quote": "The above representation does not apply to open-source projects (OSS). We use OSS to train our systems.",
+        "url": "https://www.coderabbit.ai/privacy-policy"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-31",
+        "source": "https://www.coderabbit.ai/terms-of-service",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.coderabbit.ai/management/plans",
+        "keywords": [
+          "Unlimited public and private repositories, no credit card required.",
+          "code reviews are available through the VS Code extension and CLI"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-31",
+      "last_verified": "2026-10-31",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 85,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "CodeRabbit",
+        "models": [],
+        "ids": [],
+        "what": "Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial",
+        "limits": "Free CLI reviews: 3 reviews/rolling hour per person\n\nFree IDE reviews: 3 reviews/rolling hour per person\n\nSign-in is required. New organizations start with a separate \"14-day Advanced trial\". Free PR access provides summaries; open-source PR reviews have a separate allowance. Proprietary code is not used for model training, but open-source code may train the service. Review-personalization data is stored unless you opt out of storage.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/"
+    },
+    {
+      "id": "greptile",
+      "name": "Greptile",
+      "category": "agent-cli",
+      "url": "https://www.greptile.com",
+      "source_urls": [
+        "https://www.greptile.com/pricing",
+        "https://www.greptile.com/docs/account/billing-seats",
+        "https://www.greptile.com/docs/code-review/cli-onboarding",
+        "https://www.greptile.com/terms-of-service",
+        "https://www.greptile.com/security/privacy"
+      ],
+      "card_required": false,
+      "offering": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
+      "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+      "quotas": [
+        {
+          "amount": 50.0,
+          "unit": "credits",
+          "period": "month",
+          "scope": "unspecified",
+          "label": "Starter",
+          "source": "https://www.greptile.com/pricing",
+          "quote": "50 free credits per month",
+          "reviewed_on": "2026-10-31"
+        },
+        {
+          "amount": 500.0,
+          "unit": "credits",
+          "period": "month",
+          "scope": "unspecified",
+          "label": "Startup grant on approval",
+          "condition": "Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months",
+          "condition_quote": "Pre-Series A startups with under $2M revenue in the past 12 months get 500 free credits a month for 6 months.",
+          "source": "https://www.greptile.com/pricing",
+          "quote": "Pre-Series A startups with under $2M revenue in the past 12 months get 500 free credits a month for 6 months.",
+          "value_phrase": "500 free credits a month",
+          "reviewed_on": "2026-10-31"
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "use such data to train and improve artificial intelligence algorithms and models … turn off Help us improve Greptile",
+        "url": "https://www.greptile.com/terms-of-service"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-31",
+        "source": "https://www.greptile.com/terms-of-service",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.greptile.com/pricing",
+        "keywords": [
+          "Starter",
+          "50 free credits per month",
+          "1 active developer"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-31",
+      "last_verified": "2026-10-31",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 87,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Greptile",
+        "models": [],
+        "ids": [],
+        "what": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
+        "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/"
+    },
+    {
+      "id": "cubic",
+      "name": "cubic",
+      "category": "agent-cli",
+      "url": "https://cubic.dev",
+      "source_urls": [
+        "https://docs.cubic.dev/account/subscription",
+        "https://docs.cubic.dev/ide/cli-review",
+        "https://docs.cubic.dev/account/privacy-security",
+        "https://cubic.dev/terms",
+        "https://cubic.dev/privacy"
+      ],
+      "card_required": false,
+      "offering": "AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha",
+      "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it.",
+      "quotas": [
+        {
+          "amount": 20.0,
+          "unit": "reviews",
+          "period": "month",
+          "scope": "organization",
+          "label": "Free PR reviews",
+          "source": "https://docs.cubic.dev/account/subscription",
+          "quote": "The free plan includes 20 AI reviews per month, shared across repositories in your GitHub organization.",
+          "value_phrase": "20 AI reviews per month",
+          "reviewed_on": "2026-10-31"
+        },
+        {
+          "unit": "reviews",
+          "scope": "unspecified",
+          "state": "unmetered",
+          "label": "Interactive CLI during alpha",
+          "source": "https://docs.cubic.dev/ide/cli-review",
+          "quote": "CLI usage is unlimited during alpha, subject to rate limits that ensure fair access.",
+          "reviewed_on": "2026-10-31",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "yes",
+        "quote": "to operate, protect, evaluate, train, fine-tune, and improve cubic and related developer products and services",
+        "url": "https://cubic.dev/terms"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-31",
+        "source": "https://cubic.dev/terms",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.cubic.dev/account/subscription",
+        "keywords": [
+          "The free plan includes 20 AI reviews per month",
+          "with no credit card required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-31",
+      "last_verified": "2026-10-31",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 86,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "cubic",
+        "models": [],
+        "ids": [],
+        "what": "AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha",
+        "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/"
     }
   ],
   "countries": [
