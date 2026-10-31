@@ -28,7 +28,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) — verified 2026-10-26
 - [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-10-26 · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) — verified 2026-10-26
-- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-10-26 · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (until 2026-11-01)
+- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-10-26 · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)
 - [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) — verified 2026-10-26 · `mellum`
 - [Baidu Comate (文心快码)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) — verified 2026-10-26
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-10-26

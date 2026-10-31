@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-10-31
 crumb: qwen3.8-flash
 ---
 
@@ -47,9 +47,6 @@ Free token grants apply in Singapore (international), independently per model an
 
 Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim
 
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
 - Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
 
 Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
@@ -58,12 +55,7 @@ Pro trial completion and next edits: Unmetered completions per account (Valid fo
 
 Qwen3.8-Flash promotion: Requests allowance: amount not published (period not published) per account per model; for `Qwen3.8-Flash`
 
-DeepSeek-Flash promotion: Daily requests allowance: amount not published per account per model; for `DeepSeek-Flash`
-
 The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. Both model promotions include individual Free accounts with zero Credits, require no claim, and exclude Teams and Enterprise. The Qwen3.8-Flash promotion spends no Credits; its end will be announced in advance. DeepSeek-Flash has an unpublished daily free-use count; when it runs out, wait for the next day or continue with Credits. Paid accounts receive more uses. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
-
-</details>
-
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - In Qoder's own model list: `Qwen3.8-Flash`
 

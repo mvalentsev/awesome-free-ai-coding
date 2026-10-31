@@ -111,7 +111,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[MiniMax Code](https://agent.minimax.io/download)** — MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/)</sub>
 - **[Codex (ChatGPT Free)](https://learn.chatgpt.com/docs/pricing)** — Codex desktop access on a $0 ChatGPT Free plan, subject to rollout<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)</sub>
 - **[CodeGPT](https://www.codegpt.co)** — VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/)</sub>
-- **[Qoder](https://qoder.com)** — Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (until 2026-11-01)</sub>
+- **[Qoder](https://qoder.com)** — Alibaba's coding apps with an ongoing Free basic-model allowance, separate free Qwen and DeepSeek promotions, a 300-credit Pro trial, and daily promotional credits to claim<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)</sub>
 - **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** 👁 — AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) · `mellum`</sub>
 - **[Baidu Comate (文心快码)](https://comate.baidu.com)** — Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/)</sub>
 - **[TRAE (TraeCode)](https://www.trae.ai)** 👁 — Free plan of TRAE's AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion<br><sub>[verified 2026-10-26](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/)</sub>
@@ -209,6 +209,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-31` | 🔄 Free models changed **[Qoder](https://qoder.com)** | <sub>dropped deepseek-v4.1-flash</sub> |
 | `2026-10-31` | ➕ Added **[CodeAnt AI](https://codeant.ai)** | <sub>Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial</sub> |
 | `2026-10-31` | ➕ Added **[CodeRabbit](https://www.coderabbit.ai)** | <sub>Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</sub> |
 | `2026-10-31` | ➕ Added **[cubic](https://cubic.dev)** | <sub>AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha</sub> |
@@ -218,7 +219,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-31` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added xing4.0-29b-a4b</sub> |
 | `2026-10-31` | 🔄 Free models changed **[SiliconFlow (China)](https://siliconflow.cn)** | <sub>added xing4.0-29b-a4b; dropped xing4.0-29b</sub> |
 | `2026-10-30` | ➕ Added **[Haimaker](https://haimaker.ai/free/)** | <sub>OpenAI-compatible API gateway with a limited-time free model promotion, no card required</sub> |
-| `2026-10-30` | 🔄 Free models changed **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | <sub>added beam-1.0</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
