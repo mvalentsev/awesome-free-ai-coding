@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.8-flash free: 2 providers, limits and ids, provider probes 2026-10-26'
 description: gemini-3.8-flash is served free by Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.8-flash/
-last_modified_at: 2026-10-31
+last_modified_at: 2026-10-30
 crumb: gemini-3.8-flash
 ---
 

@@ -7929,7 +7929,7 @@
         "no_family_ids": [
           "brick-complexity-pro"
         ],
-        "note": "GET /v1/models is public and publishes IDs without prices; use the pricing page for trial eligibility. brick-v1-beta is separately zero-priced, but its model card identifies a prompt-complexity classifier, so it is excluded from coding configurations. brick-complexity-pro is the Core-included chat router and picks a model for you."
+        "note": "GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. brick-v1-beta is a zero-priced prompt classifier and is excluded from coding configs. Pricing lists brick-complexity-pro as Core-included, but the public catalog omitted it on 2026-10-31; confirm this router with your account before using it."
       },
       "data_use": {
         "trains": "no",

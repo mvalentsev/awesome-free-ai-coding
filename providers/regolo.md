@@ -3,7 +3,7 @@ layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-10-26'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
 permalink: /providers/regolo/
-last_modified_at: 2026-10-28
+last_modified_at: 2026-10-31
 crumb: Regolo AI
 ---
 
@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
 - Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `gemma4-31b`, `gpt-oss-20b`, `mistral-small-4-119b`, `qwen3.5-122b`, `qwen3.5-9b`, `brick-complexity-pro`
-- Note: GET /v1/models is public and publishes IDs without prices; use the pricing page for trial eligibility. brick-v1-beta is separately zero-priced, but its model card identifies a prompt-complexity classifier, so it is excluded from coding configurations. brick-complexity-pro is the Core-included chat router and picks a model for you.
+- Note: GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. brick-v1-beta is a zero-priced prompt classifier and is excluded from coding configs. Pricing lists brick-complexity-pro as Core-included, but the public catalog omitted it on 2026-10-31; confirm this router with your account before using it.
 
 Try it from your terminal with your key in `REGOLO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
