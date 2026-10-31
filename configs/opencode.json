@@ -516,41 +516,6 @@
             "context": 1000000,
             "output": 524288
           }
-        },
-        "internlm/intern-s2-free": {
-          "name": "internlm/intern-s2-free (until 2026-10-31)",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
-        },
-        "internlm/atria-dawn-free": {
-          "name": "internlm/atria-dawn-free (until 2026-10-31)",
-          "limit": {
-            "context": 524288,
-            "output": 524288
-          }
-        },
-        "internlm/atria-dawn-preview-free": {
-          "name": "internlm/atria-dawn-preview-free (until 2026-10-31)",
-          "limit": {
-            "context": 524288,
-            "output": 524288
-          }
-        },
-        "internlm/agents-a1-free": {
-          "name": "internlm/agents-a1-free (until 2026-10-31)",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
-        },
-        "internlm/sage-a1.5-free": {
-          "name": "internlm/sage-a1.5-free (until 2026-10-31)",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
         }
       }
     },
