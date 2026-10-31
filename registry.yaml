@@ -10217,7 +10217,8 @@ entries:
   limits: Starter permits one active developer and unlimited repositories. Its credits
     do not cover CLI reviews; new CLI organizations receive a separate "14-day free
     trial" with no payment method required. De-identified customer data can be used
-    for AI training; organization admins can turn this off in Data & Privacy.
+    for AI training; organization admins can turn this off in Data & Privacy. Startup-grant
+    activation and payment requirements are not specified on the pricing page.
   quotas:
   - amount: 50.0
     unit: credits
@@ -10285,7 +10286,8 @@ entries:
     CLI usage is unlimited during alpha, subject to fair-access rate limits; its end
     is not published. CI/API-key reviews require a seat on an active subscription.
     Terms permit cubic to train and improve its own AI systems using submitted content;
-    third-party model providers may not train their own models on it.
+    third-party model providers may not train their own models on it. The CLI docs
+    say "Attribution tracking is enabled by default" and document how to disable it.
   quotas:
   - amount: 20.0
     unit: reviews

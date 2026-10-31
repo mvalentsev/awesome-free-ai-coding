@@ -16771,7 +16771,7 @@
       ],
       "card_required": false,
       "offering": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
-      "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+      "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy. Startup-grant activation and payment requirements are not specified on the pricing page.",
       "quotas": [
         {
           "amount": 50.0,
@@ -16836,7 +16836,7 @@
         "models": [],
         "ids": [],
         "what": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
-        "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+        "limits": "Starter: 50 credits/month; scope not published\n\nStartup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy. Startup-grant activation and payment requirements are not specified on the pricing page.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -16863,7 +16863,7 @@
       ],
       "card_required": false,
       "offering": "AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha",
-      "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it.",
+      "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it. The CLI docs say \"Attribution tracking is enabled by default\" and document how to disable it.",
       "quotas": [
         {
           "amount": 20.0,
@@ -16926,7 +16926,7 @@
         "models": [],
         "ids": [],
         "what": "AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha",
-        "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it.",
+        "limits": "Free PR reviews: 20 reviews/month per organization\n\nInteractive CLI during alpha: Unmetered reviews; scope not published\n\nSign in with a cubic account. A separate \"7-day free trial\" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it. The CLI docs say \"Attribution tracking is enabled by default\" and document how to disable it.",
         "why": "",
         "access": "",
         "modelAccess": {},

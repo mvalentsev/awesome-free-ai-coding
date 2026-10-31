@@ -27,7 +27,7 @@ Starter: 50 credits/month; scope not published
 
 Startup grant on approval: 500 credits/month; scope not published (Application required; pre-Series A, under $2M revenue in the past 12 months; grant lasts 6 months)
 
-Starter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate "14-day free trial" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.
+Starter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate "14-day free trial" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy. Startup-grant activation and payment requirements are not specified on the pricing page.
 
 ## Where it is offered
 

@@ -27,7 +27,7 @@ Free PR reviews: 20 reviews/month per organization
 
 Interactive CLI during alpha: Unmetered reviews; scope not published
 
-Sign in with a cubic account. A separate "7-day free trial" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it.
+Sign in with a cubic account. A separate "7-day free trial" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive CLI usage is unlimited during alpha, subject to fair-access rate limits; its end is not published. CI/API-key reviews require a seat on an active subscription. Terms permit cubic to train and improve its own AI systems using submitted content; third-party model providers may not train their own models on it. The CLI docs say "Attribution tracking is enabled by default" and document how to disable it.
 
 ## Where it is offered
 
