@@ -1198,19 +1198,6 @@ watched:
       A server-rendered page states a free quota for the Nova API, or
       /v1/models answers.
 
-  - domains: [llama.developer.meta.com, api.llama.com]
-    name: Meta Llama API
-    checked_on: '2026-09-16'
-    reason: >-
-      llama.developer.meta.com now redirects to ai.developer.meta.com, which
-      renders nine characters of text to an ordinary client, and
-      api.llama.com/compat/v1/models answered 401 to a keyless GET (2026-09-02).
-      Meta may serve these models at no charge; nothing it publishes to an
-      ordinary client says so.
-    reopen_if: >-
-      A readable pricing or rate-limits page for the Llama API states the free
-      allowance.
-
   - domains: [inferx.net]
     name: InferX
     checked_on: '2026-09-02'
@@ -2203,29 +2190,27 @@ watched:
       OpenHands Cloud includes model credits or a free model on its Individual
       tier.
 
-  - domains: [dev.meta.ai, api.meta.ai, developer.meta.com]
+  - domains: [dev.meta.ai, api.meta.ai, developer.meta.com, llama.developer.meta.com, api.llama.com]
     name: Meta Model API (Muse Spark, Muse Code)
-    checked_on: '2026-09-14'
+    checked_on: '2026-11-01'
     reason: >-
-      Pay-as-you-go behind a card. dev.meta.ai/docs/pricing-rate-limits.md
-      prices muse-spark-1.3 at $1.25/$4.25 per 1M and its Contributor tier —
-      the model Cline's free lane carries as
-      cline-free/muse-spark-1.3-contributor — at $0.10/$0.20, "Heavily
-      discounted token pricing in exchange for permission to use your prompts
-      and completions to train future Meta models". The help center's sign-up
-      article: "To start making
-      requests, set up two more things: Add a payment method ... Create an API
-      key." The docs mention "platform free-tier credits" with no figure; the
-      only figure is in the site config shipped with every docs page for the
-      dashboard's welcome dialog, "You have $20 in free credits to start
-      building right away" — a one-off grant on the far side of that card.
-      Meta's own cookbook README still says "the preview is free", the pricing
-      page being the later word. Muse Code, the terminal agent on the same
-      account, is billed per token or sold as monthly subscriptions. The help
-      center renders only in a browser; the docs are readable as Markdown.
+      The legacy Meta Llama API portal at llama.developer.meta.com redirects
+      to dev.meta.ai; both names are retained in this single decision. Current
+      signup and billing help require adding a card before requests. Standard
+      and Contributor API modes have positive token prices; Contributor mode
+      permits training on submitted content. Muse Code uses the same billing
+      account, with metered keys or paid monthly subscriptions. The previously
+      observed $20 welcome-credit message does not establish a current no-card
+      grant. Downloadable Llama and Muse model weights are separate from hosted
+      inference. Primary sources: dev.meta.ai/help/accounts-and-login/sign-up,
+      dev.meta.ai/help/billing/set-up-billing,
+      dev.meta.ai/docs/pricing-rate-limits.md and
+      dev.meta.ai/docs/muse-code/subscriptions.md. No account was created to
+      check introductory-credit activation.
     reopen_if: >-
-      An account can make requests without a payment method, or a docs page
-      states the free-tier credit as a figure.
+      Current primary terms establish an obtainable no-card hosted API or
+      Muse Code grant, or a recurring free-model allowance. Review all modes
+      independently of paid token prices; retain the legacy portal aliases.
 
   - domains: [qwenlm.github.io]
     name: Qwen Code (Qwen OAuth)
@@ -3867,3 +3852,29 @@ watched:
     reopen_if: Readable Terms and plan documents establish the permanent free API and its
       supply/activation conditions; an authorized tool-loop request verifies the free alias
       and fallback constraints.
+  - domains:
+    - hilinkup.com
+    name: HiLinkUP
+    checked_on: '2026-10-31'
+    reason: The public announcements and linked campaign page describe a $1 one-day trial and
+      a 200M-token benefit for a $10 recharge during October 15–21, 2026; that dated campaign
+      has ended. A separate October 30 first-deposit matching bonus expires 30 days after crediting.
+      Current public model prices and API billing docs do not establish a continuing free coding
+      allowance or a new no-payment trial outside that campaign. The signup console and API
+      require an account; activation was not tested.
+    reopen_if: Current primary terms or an existing authorized account establish an obtainable
+      no-card API trial, a new free-model campaign, or recurring free API usage. Re-read the
+      campaign and announcements; a paid price does not negate a separately documented free
+      mode.
+  - domains:
+    - yeta.ai
+    name: Yeta Labs / Yeta Platform
+    checked_on: '2026-10-31'
+    reason: The current platform offers $10 promotional credit after a $1 card top-up, once
+      per person and card. This is a one-time card-required bonus. The homepage and public API
+      pricing meter the text models; no recurring free-model allowance is advertised. Terms
+      mention sign-up credit generically but do not establish a current obtainable no-card grant.
+      Public status disables check-in. No new account, key or payment was created to test activation.
+    reopen_if: Current primary offer or an existing authorized account establishes an obtainable
+      no-card signup grant or recurring free model quota. Review all access modes independently
+      of positive per-token prices and the card-funded promotional bonus.

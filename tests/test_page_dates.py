@@ -67,6 +67,16 @@ def test_source_archive_preserves_a_stamped_page_without_git(tmp_path):
     assert fields(result)["last_modified_at"] == date(2026, 10, 21)
 
 
+@pytest.mark.parametrize('inherited, expected', [
+    ('2026-10-25', date(2026, 10, 24)),
+    ('2026-10-20', date(2026, 10, 20)),
+])
+def test_uncommitted_and_archive_dates_do_not_point_into_the_future(tmp_path, inherited, expected):
+    write(tmp_path, page(modified=inherited))
+    result = PageDates(tmp_path, date(2026, 10, 24)).stamp('providers/a.md', page())
+    assert fields(result)['last_modified_at'] == expected
+
+
 def test_legacy_migration_finds_real_correction_and_ignores_daily_commits(tmp_path):
     def git(*args, day=None):
         env = dict(os.environ)

@@ -954,7 +954,7 @@ def _change_rows(events: list[Event], entries: list[Entry] | None = None,
     perfectly good sentence that only this one table would trip over.
     """
     return [{**row, "detail": row["detail"].replace("|", r"\|") or "—"}
-            for row in _site_changes(events, entries, today or date.today(), limit)]
+            for row in _site_changes(events, entries, today or datetime.now(timezone.utc).date(), limit)]
 
 
 def _rfc3339(stamp: datetime) -> str:
@@ -2358,8 +2358,8 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False) -
         out.append(line)
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
-        out += [f"- `{i}`: {words} ([conditions]({id_access(e, i).source}))"
-                for i in ids if (words := access_words(id_access(e, i)))]
+        out += [f"- `{i}`: {words} ([conditions]({api.model_access[i].source}))"
+                for i in ids if (words := access_words(api.model_access.get(i)))]
     elif api.no_ids:
         out.append(f"- Callable ids: none listed — {api.no_ids}")
     return out
@@ -3053,7 +3053,7 @@ def _github_page_context(registry_path: Path, today: date,
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
                   today: date | None = None, watchlist_path: Path | None = None,
                   scores: dict | None = None) -> str:
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
@@ -3075,7 +3075,7 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     every link in it is written from there. It is rendered from the README's own
     context, so the two pages cannot disagree about a lane.
     """
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     context = _github_page_context(registry_path, today, watchlist_path)
     text = _markdown_env(template_dir).get_template(CONFIGS_TEMPLATE).render(**context)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -3094,7 +3094,7 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     Liquid off with `{% raw %}`, and freetier-check refuses a tag outside
     backticks in the prose they print.
     """
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     env = _env(template_dir, autoescape=True)
     entries, history = load_registry(registry_path), _history_beside(registry_path)
     refuse_deleted_rows(entries, history)
@@ -3127,7 +3127,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     """Everything the render writes besides the README, the site's front page and
     configs/README.md: the feed, the provider and model pages, index.json,
     llms.txt, and the configs with the Codex profiles."""
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
     history = _history_beside(registry_path)
@@ -3238,6 +3238,7 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
     check can never compare fewer files than the render writes.
     `contributing_from` is the directory whose CONTRIBUTING.md the map is
     printed into — the repository itself, when the output is not."""
+    today = today or datetime.now(timezone.utc).date()
     render_readme(registry_path, template_dir, root / readme_name, today=today,
                   watchlist_path=watchlist_path)
     render_site(registry_path, template_dir, root / SITE_PAGE, today=today,
@@ -3257,8 +3258,8 @@ def render_repository(registry_path: Path, template_dir: Path, root: Path,
     change carries its line, and the pages it publishes already show it.
     `committed` is the log the commit will be made on (`gate.committed_log`);
     the lines recorded are the ones it will add."""
-    today = today or date.today()
     now = now or datetime.now(timezone.utc)
+    today = today or now.astimezone(timezone.utc).date()
     entries = load_registry(registry_path)
     current = expire_entries(entries, now)
     if current != entries:
@@ -3297,7 +3298,7 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     page, in the JSON an LLM reads, in the config a reader pastes — a registry
     that has moved on, until the next scheduled run renders.
     """
-    today = today or date.today()
+    today = today or datetime.now(timezone.utc).date()
     with tempfile.TemporaryDirectory() as tmp_name:
         tmp = Path(tmp_name)
         pinned = _generated_on(root, today)

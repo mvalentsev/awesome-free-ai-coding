@@ -74,7 +74,7 @@ class PageDates:
             historical = (_committed_date(self.repo, self.head,
                           path.relative_to(self.repo).as_posix(), fingerprint)
                           if self.repo is not None and self.head else None)
-            modified = min(historical, self.today) if historical else date.fromisoformat(str(inherited))
+            modified = min(historical or date.fromisoformat(str(inherited)), self.today)
         else:
             modified = self.today
         fields[MODIFIED] = modified

@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-10-26'
 description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-10-31
+last_modified_at: 2026-11-01
 crumb: qwen3.8-flash
 ---
 
@@ -71,10 +71,11 @@ Claimed promotional credit: 100 credits/day per account (Each claim valid for 30
 
 Basic-model fallback: Completions allowance: amount not published (period not published) per account
 
-Qwen3.8 Flash promotion: Requests allowance: amount not published (period not published) per account per model
+Qwen3.8 Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
 
-The model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. International Qoder has a separate account and price list.
+The model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are "separate product systems"; their accounts, tasks and data are not interoperable.
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Qoder CN (formerly Lingma)'s own model list: `Qwen3.8-Flash`
 
 ## Rows that listed it before
 
@@ -82,12 +83,12 @@ The model promotion is open to personal users, including free accounts with zero
 
 ## Related models
 
-- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (until 2026-11-24), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (until 2026-11-24), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
 - [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 
-Generated from `registry.yaml` on 2026-10-31 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

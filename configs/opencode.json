@@ -519,19 +519,6 @@
         }
       }
     },
-    "llmtech": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LLM Tech",
-      "options": {
-        "baseURL": "https://api.llmtech.eu/v1",
-        "apiKey": "{env:LLMTECH_API_KEY}"
-      },
-      "models": {
-        "nvidia/Qwen3.8-27B-NVFP4": {
-          "name": "nvidia/Qwen3.8-27B-NVFP4"
-        }
-      }
-    },
     "vercel-ai-gateway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Vercel AI Gateway",
@@ -1077,6 +1064,22 @@
         }
       }
     },
+    "zro": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Zro (MoonMath)",
+      "options": {
+        "baseURL": "https://zro.moonmath.ai/v1",
+        "apiKey": "{env:ZRO_API_KEY}"
+      },
+      "models": {
+        "glm-5.3-flash": {
+          "name": "glm-5.3-flash"
+        },
+        "deepseek-v4.1-flash": {
+          "name": "deepseek-v4.1-flash"
+        }
+      }
+    },
     "inception-labs": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Inception Labs (Mercury)",
@@ -1106,6 +1109,28 @@
         },
         "glm-4.1v-thinking-flash": {
           "name": "glm-4.1v-thinking-flash"
+        }
+      }
+    },
+    "infron": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Infron",
+      "options": {
+        "baseURL": "https://llm.onerouter.pro/v1",
+        "apiKey": "{env:INFRON_API_KEY}"
+      },
+      "models": {
+        "qwen/qwen3.8-27b:free": {
+          "name": "qwen/qwen3.8-27b:free (requires $5 top-up + 5% fee)"
+        },
+        "qwen/qwen3.8-27b-abliterated-cyber:free": {
+          "name": "qwen/qwen3.8-27b-abliterated-cyber:free (requires $5 top-up + 5% fee)"
+        },
+        "internlm/atria-dawn-preview:free": {
+          "name": "internlm/atria-dawn-preview:free (requires $5 top-up + 5% fee)"
+        },
+        "apodex/apodex-1.1-mini:free": {
+          "name": "apodex/apodex-1.1-mini:free (requires $5 top-up + 5% fee)"
         }
       }
     },

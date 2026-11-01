@@ -226,6 +226,33 @@ FREE_QWEN = {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completi
 
 
 @pytest.mark.parametrize("fields, expected", [
+    ({"min_prompt_price": 0, "min_completion_price": 0}, ProbeStatus.PASS),
+    ({"min_prompt_price": "0", "min_completion_price": "0"}, ProbeStatus.PASS),
+    ({"min_prompt_price": 0.1, "min_completion_price": 0}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "min_completion_price": 0.1}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "min_completion_price": None}, ProbeStatus.FAIL),
+    ({"min_prompt_price": False, "min_completion_price": 0}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0.1, "min_completion_price": 0, "is_free": True}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "is_free": True}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "min_completion_price": 0, "min_request_price": 0.14}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "min_completion_price": 0, "is_display_only": True}, ProbeStatus.FAIL),
+    ({"pricing": {"prompt": 0, "completion": 0}, "is_display_only": "true"}, ProbeStatus.FAIL),
+    ({"min_prompt_price": 0, "min_completion_price": 0, "is_display_only": False}, ProbeStatus.PASS),
+])
+@respx.mock
+async def test_catalog_minimum_token_prices_and_display_only_at_http_boundary(fields, expected):
+    # Infron's public catalog includes zero token prices on paid video rows
+    # and display-only cards: https://llm.onerouter.pro/v1/models, 2026-10-31.
+    entry = zero_price_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1", model_ids=[FREE_QWEN["id"]])
+    respx.get(entry.probe.endpoint).respond(200, json={"data": [{"id": FREE_QWEN["id"], **fields}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is expected, result.detail
+
+
+@pytest.mark.parametrize("fields, expected", [
     ({"enabled": True, "status": "available"}, ProbeStatus.PASS),
     ({"enabled": False, "status": "planned"}, ProbeStatus.FAIL),
     ({"enabled": "false"}, ProbeStatus.FAIL),

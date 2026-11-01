@@ -49,6 +49,21 @@ def test_every_provider_uses_the_shared_section_contract():
         assert headings == required + [h for h in optional if h in headings] + ending, e.id
 
 
+def test_connect_labels_keep_account_conditions_once_and_model_conditions_on_the_model():
+    from freetier_radar.render import build_provider_page
+
+    row = make(access={'source': 'https://x.ai/free', 'initial_payment_usd': 5},
+        api={'base_url': 'https://api.x.ai/v1', 'model_ids': ['general', 'special'],
+             'model_access': {'special': {'source': 'https://x.ai/special',
+                                           'until': '2026-07-30T00:00:00Z'}}})
+    page = build_provider_page(row, [], TODAY)
+    connect = page.split('## Connect\n', 1)[1].split('## Evidence\n', 1)[0]
+    assert 'requires $5 one-time top-up' in page.split('## What you get', 1)[0]
+    assert '- `general`:' not in connect
+    assert '- `special`: free until 2026-07-30' in connect
+    assert 'https://x.ai/special' in connect
+
+
 def test_unestablished_upstream_training_does_not_become_a_blanket_no_training_promise():
     from freetier_radar.render import build_provider_page
     source = 'https://gateway.example/terms'
@@ -1602,6 +1617,27 @@ def test_the_render_records_a_change_before_it_writes_the_pages(tmp_path: Path):
     assert _history_lines(page) == ["- `2026-07-19` — Added: free models, no card"]
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "| `2026-07-19` | ➕ Added **[New]" in readme
+
+
+def test_repository_render_uses_the_utc_day_before_a_local_midnight_retirement(tmp_path, monkeypatch):
+    import freetier_radar.render as render_module
+    from freetier_radar.models import save_registry
+
+    class LocalDate(date):
+        @classmethod
+        def today(cls):
+            return cls(2026, 7, 20)
+
+    monkeypatch.setattr(render_module, 'date', LocalDate)
+    reg = tmp_path / 'registry.yaml'
+    save_registry(reg, [make(retired_on=date(2026, 7, 20))])
+    render_module.render_repository(reg, Path('templates'), tmp_path,
+        now=datetime(2026, 7, 19, 21, tzinfo=timezone.utc), committed='')
+    page = (tmp_path / 'providers/x.md').read_text()
+    assert '## What you get' in page
+    assert '## Connect' in page
+    assert 'Generated from `registry.yaml` on 2026-07-19' in page
+    assert '"event": "archived"' not in (tmp_path / 'history.jsonl').read_text()
 
 
 def test_the_check_finds_a_history_the_registry_has_moved_past(tmp_path: Path):

@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-31T21:00:44Z</updated>
+  <updated>2026-11-01T01:01:49Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/infron/20261101T010149Z</id>
+    <title>Added: Infron</title>
+    <link rel="alternate" href="https://infron.ai"/>
+    <updated>2026-11-01T01:01:49Z</updated>
+    <summary type="text">OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/llmtech/20261101T010149Z</id>
+    <title>Archived: LLM Tech</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/"/>
+    <updated>2026-11-01T01:01:49Z</updated>
+    <summary type="text">vendor-announced shutdown on 2026-11-01</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/zro/20261101T010149Z</id>
+    <title>Added: Zro (MoonMath)</title>
+    <link rel="alternate" href="https://zro.moonmath.ai"/>
+    <updated>2026-11-01T01:01:49Z</updated>
+    <summary type="text">OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261031T210044Z</id>
     <title>Free models changed: LLMTR</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://learn.chatgpt.com/docs/pricing"/>
     <updated>2026-10-21T08:58:17Z</updated>
     <summary type="text">added gpt-6-luna · free models: gpt-6-luna</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/antigravity/20261020T175127Z</id>
-    <title>Free models changed: Google Antigravity</title>
-    <link rel="alternate" href="https://antigravity.google"/>
-    <updated>2026-10-20T17:51:27Z</updated>
-    <summary type="text">dropped gemini-3.1-pro, gemini-3.6-flash, gemini-3.7-flash · free models: gemini-3.8-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261020T175127Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-10-20T17:51:27Z</updated>
-    <summary type="text">dropped nemotron-3-super · free models: glm-5.3, glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20261019T145540Z</id>
-    <title>Free models changed: BazaarLink</title>
-    <link rel="alternate" href="https://bazaarlink.ai"/>
-    <updated>2026-10-19T14:55:40Z</updated>
-    <summary type="text">dropped qwen3.7-flash · free models: deepseek-v4-flash</summary>
   </entry>
 </feed>

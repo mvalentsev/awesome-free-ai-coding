@@ -699,12 +699,6 @@ model_list:
   model_info:
     access: free until 2026-11-02 23:59+03:00
     source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
-- model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
-  litellm_params:
-    model: openai/nvidia/Qwen3.8-27B-NVFP4
-    api_base: https://api.llmtech.eu/v1
-    api_key: lt-trial-ba1ef28c6d32ed6980678d8d
-    use_chat_completions_api: true
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
@@ -1285,6 +1279,18 @@ model_list:
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
     use_chat_completions_api: true
+- model_name: zro/glm-5.3-flash
+  litellm_params:
+    model: openai/glm-5.3-flash
+    api_base: https://zro.moonmath.ai/v1
+    api_key: os.environ/ZRO_API_KEY
+    use_chat_completions_api: true
+- model_name: zro/deepseek-v4.1-flash
+  litellm_params:
+    model: openai/deepseek-v4.1-flash
+    api_base: https://zro.moonmath.ai/v1
+    api_key: os.environ/ZRO_API_KEY
+    use_chat_completions_api: true
 - model_name: inception-labs/mercury-3
   litellm_params:
     model: openai/mercury-3
@@ -1309,6 +1315,42 @@ model_list:
     api_base: https://aiapi-pro.com/v1
     api_key: os.environ/NOVAI_API_KEY
     use_chat_completions_api: true
+- model_name: infron/qwen/qwen3.8-27b:free
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b:free
+    api_base: https://llm.onerouter.pro/v1
+    api_key: os.environ/INFRON_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $5 one-time top-up + 5% fee
+    source: https://infronai.gitbook.io/docs/overview/free-models
+- model_name: infron/qwen/qwen3.8-27b-abliterated-cyber:free
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b-abliterated-cyber:free
+    api_base: https://llm.onerouter.pro/v1
+    api_key: os.environ/INFRON_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $5 one-time top-up + 5% fee
+    source: https://infronai.gitbook.io/docs/overview/free-models
+- model_name: infron/internlm/atria-dawn-preview:free
+  litellm_params:
+    model: openai/internlm/atria-dawn-preview:free
+    api_base: https://llm.onerouter.pro/v1
+    api_key: os.environ/INFRON_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $5 one-time top-up + 5% fee
+    source: https://infronai.gitbook.io/docs/overview/free-models
+- model_name: infron/apodex/apodex-1.1-mini:free
+  litellm_params:
+    model: openai/apodex/apodex-1.1-mini:free
+    api_base: https://llm.onerouter.pro/v1
+    api_key: os.environ/INFRON_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $5 one-time top-up + 5% fee
+    source: https://infronai.gitbook.io/docs/overview/free-models
 - model_name: freeinference/glm-5.3-flash
   litellm_params:
     model: openai/glm-5.3-flash
@@ -1714,17 +1756,6 @@ model_list:
     api_base: https://api.siliconflow.cn/v1
     api_key: os.environ/SILICONFLOW_CN_API_KEY
     use_chat_completions_api: true
-- model_name: free/nokey
-  litellm_params:
-    model: openai/nvidia/Qwen3.8-27B-NVFP4
-    api_base: https://api.llmtech.eu/v1
-    api_key: lt-trial-ba1ef28c6d32ed6980678d8d
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
     model: openai/gpt-oss-20b

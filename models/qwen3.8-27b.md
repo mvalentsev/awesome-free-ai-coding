@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-27b free: 9 providers, limits and ids, provider probes 2026-10-26'
-description: qwen3.8-27b is served free by Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at…
+title: 'qwen3.8-27b free: 8 providers, limits and ids, provider probes 2026-10-26'
+description: qwen3.8-27b is served free by Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-10-31
+last_modified_at: 2026-11-01
 crumb: qwen3.8-27b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-27b
 
 # Where qwen3.8-27b is free
 
-**9 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
+**8 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-10-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -52,9 +52,9 @@ Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
-Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
+Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
 
-K2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
+K2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
 
 MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
 
@@ -67,24 +67,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 - Callable ids: `qwen/qwen3.8-27b-free`, `heabsy/qwen3.8-27b-heabsy-free`
 - `heabsy/qwen3.8-27b-heabsy-free`: free until 2026-11-02 00:00+03:00 ([conditions](https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free))
 - What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
-
-### [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/)
-
-🔌 LLM APIs with free tier · no card · last probe 2026-10-26 · listed since 2026-09-18
-
-EU inference provider whose quickstart publishes a shared trial key: 20M tokens a day per IP, tools included, no account; API access ends November 1 at 00:00 UTC
-
-- Limits, in the vendor's words: 20,000,000 tokens/day per IP. reset at 00:00 UTC
-
-Shared trial key: Concurrent requests allowance: published sources disagree per key
-
-64 requests at once shared across the endpoint
-
-The API is scheduled to stop on November 1, 2026 at 00:00 UTC. The public trial key counts prompt and completion tokens per IP, resetting at 00:00 UTC. Its quickstart advertises 16 concurrent requests, while the same page's limits section still says 4; the effective ceiling is unconfirmed. Trial context is 131,072 tokens. Personal keys have 262,144 and share a separate endpoint inflight ceiling. Prompts and completions are volatile and not persisted or trained on; metadata including IP is retained 13 months. GPUs are in Italy behind a German edge.
-- Base URL: `https://api.llmtech.eu/v1`
-- Key: `LLMTECH_API_KEY` — no account needed: the vendor prints one for anyone at <https://llmtech.eu/docs/>, `lt-trial-ba1ef28c6d32ed6980678d8d`
-- Callable ids: `nvidia/Qwen3.8-27B-NVFP4`
-- What you send is not used to train models ([the vendor's words](https://llmtech.eu/privacy)).
 
 ### [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/)
 
@@ -208,6 +190,7 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ## Rows that listed it before
 
+- [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) — listed 2026-09-18 to 2026-11-01; the row itself is archived
 - [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) — listed 2026-10-02 to 2026-10-06
 - [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-10-02 to 2026-10-05
 
@@ -219,6 +202,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ---
 
-Generated from `registry.yaml` on 2026-10-31 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

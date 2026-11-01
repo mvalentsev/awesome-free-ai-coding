@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-super-vl-120b-a12b free: 5 providers, limits and ids, provider probes 2026-10-26'
 description: nemotron-3.5-super-vl-120b-a12b is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/nemotron-3.5-super-vl-120b-a12b/
-last_modified_at: 2026-10-31
+last_modified_at: 2026-11-01
 crumb: nemotron-3.5-super-vl-120b-a12b
 ---
 
@@ -110,9 +110,9 @@ Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
-Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together; lower first-day allowance for new accounts); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
+Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
 
-K2 Horizon: 200,000 tokens/day per account per model (Input, output and reasoning count together; lower first-day allowance for new accounts); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
+K2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
 
 MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
 
@@ -135,6 +135,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-31 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -73,7 +73,7 @@ def _source_key(url: str) -> str:
     host = domain_of(url)
     parts = [p for p in parsed.path.split("/") if p]
     if host in _GITHUB_HOSTS and len(parts) >= 2:
-        return f"github:{parts[0].lower()}/{parts[1].lower()}"
+        return f"github:{parts[0].lower()}/{parts[1].lower().removesuffix('.git')}"
     return f"{host}{parsed.path.rstrip('/')}".lower()
 
 

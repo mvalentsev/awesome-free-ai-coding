@@ -46,7 +46,7 @@ CURATED_FEEDS = [
     # provider with a free type, a monthly figure and a ToS flag, and notes on what
     # it has just removed as well as added. Read from its per-provider table up to
     # the glossary; the head is methodology.
-    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier:glossary",
+    "https://raw.githubusercontent.com/cheaper-inference/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier:glossary",
     # A directory rather than a router: one table of providers with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
     # Leads only. Read from its provider directory up to its per-model catalog: the

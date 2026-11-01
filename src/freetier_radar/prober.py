@@ -1230,9 +1230,13 @@ def _price_of(model: dict) -> list[float] | None:
     # SC is a currency, not a free-tier flag. Both ordinary token sides must
     # be published; cached-input pricing is optional. Public contract:
     # https://simplellm.eu/docs/models.md, checked 2026-10-14.
-    if any(key in model for key in _FLAT_TOKEN_PRICES):
-        prices = [_number(model.get(key)) for key in _FLAT_TOKEN_PRICES]
-        return prices if all(p is not None for p in prices) else None
+    # Infron's catalog publishes minimum ordinary token rates flat; its
+    # display-only cards and per-request prices are checked separately below.
+    # https://llm.onerouter.pro/v1/models, checked 2026-10-31.
+    for fields in (_FLAT_TOKEN_PRICES, ("min_prompt_price", "min_completion_price")):
+        if any(key in model for key in fields):
+            prices = [_number(model.get(key)) for key in fields]
+            return prices if all(p is not None for p in prices) else None
     # The public Haimaker catalog publishes both ordinary token sides flat:
     # https://api.haimaker.ai/public/model_hub, checked 2026-10-30.
     token_fields = ("input_cost_per_token", "output_cost_per_token")
@@ -1290,6 +1294,11 @@ def _is_withdrawn(model: dict) -> bool:
     question.
     """
     if _retired_on(model) is not None:
+        return True
+    # A display-only Infron card can publish zero prices without serving the
+    # model: https://llm.onerouter.pro/v1/models, checked 2026-10-31.
+    display_only = model.get("is_display_only")
+    if display_only is True or str(display_only).strip().lower() in ("true", "yes", "on", "1"):
         return True
     # SimpleLLM publishes enabled/status alongside prices and explicitly asks
     # clients to exclude disabled/planned entries: /docs/models.md, 2026-10-14.
@@ -1650,6 +1659,11 @@ def _charges_elsewhere(model: dict) -> bool:
     text lane is still free without it. The list is deliberately narrow — a
     stricter reading fails the offer check, and three failed probes archive a
     live row, so an unknown add-on key must not be able to do that."""
+    # Infron's video rows publish zero token rates beside a mandatory flat
+    # request rate: https://llm.onerouter.pro/v1/models, checked 2026-10-31.
+    request_price = _number(model.get("min_request_price"))
+    if request_price is not None and request_price != 0:
+        return True
     pricing = model.get("pricing")
     if not isinstance(pricing, dict):
         return False
@@ -1668,7 +1682,7 @@ def _is_free(model: dict) -> bool:
     flag = _free_flag(model)
     # The SC catalog's tier label is not its billing contract: its two prices
     # are. Do not let a stale free label hide a newly metered input or output.
-    if any(key in model for key in _FLAT_TOKEN_PRICES):
+    if any(key in model for key in (*_FLAT_TOKEN_PRICES, "min_prompt_price", "min_completion_price")):
         prices = _price_of(model)
         return (flag is not False and prices is not None and all(p == 0 for p in prices)
                 and not _charges_elsewhere(model))

@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-10-31
+last_modified_at: 2026-11-01
 ---
 
 {% raw %}
@@ -46,7 +46,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) — verified 2026-10-26 · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · `glm-4.5-flash` · `glm-4.6v-flash`
 - [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) — verified 2026-10-26
 - [LLM7.io](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) — verified 2026-10-26
-- [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) — verified 2026-10-26 · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 - [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) — verified 2026-10-26 · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 - [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) — verified 2026-10-26 · [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [+20 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 - [IteraCompute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/) — verified 2026-10-26 · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) (until 2026-11-24)
@@ -57,6 +56,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-10-26
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-10-26
 - [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) — verified 2026-10-26 · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)
+- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-01
+- [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) — verified 2026-11-01
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-10-26 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-10-26
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-10-26 · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
@@ -117,6 +118,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 
 ## Archived
 
+- [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) — vendor-announced shutdown on 2026-11-01
 - [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) — vendor-announced shutdown on 2026-10-31
 - [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) — delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) — delisted on 2026-10-22: public beta closed; the endpoint requires a key and key registration is closed

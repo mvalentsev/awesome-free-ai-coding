@@ -5011,39 +5011,30 @@ entries:
     period: day
     scope: account-model
     label: Jais 3 MoVA
-    condition: Input and output count together; lower first-day allowance for new
-      accounts
-    condition_quote: Bu dönemde her hesabın bu model için günde 200.000 token hakkı
-      vardır; girdi ve çıktı birlikte sayılır ve hak her gün 00:00'da (TSİ) yenilenir.
-      Yeni açılan hesaplar ilk gün daha düşük bir hakla başlar.
+    condition: Input and output count together
+    condition_quote: girdi ve çıktı birlikte sayılır
     reset: 00:00'da (TSİ)
     source: https://llmtr.com/blog/arapca-dil-modeli-api-jais-3
-    quote: Bu dönemde her hesabın bu model için günde 200.000 token hakkı vardır;
-      girdi ve çıktı birlikte sayılır ve hak her gün 00:00'da (TSİ) yenilenir. Yeni
-      açılan hesaplar ilk gün daha düşük bir hakla başlar.
+    quote: her hesabın bu model için günde 200.000 token hakkı vardır
     value_phrase: günde 200.000 token
     model_ids:
     - ifm/jais-3-mova-36b-a4b
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-11-01'
   - amount: 200000.0
     unit: tokens
     period: day
     scope: account-model
     label: K2 Horizon
-    condition: Input, output and reasoning count together; lower first-day allowance
-      for new accounts
-    condition_quote: her hesabın bu model için günde 200.000 token hakkı vardır, yeni
-      açılan hesaplar ilk gün daha düşük bir hakla başlar; girdi ve çıktı birlikte
-      sayılır ve düşünme token'ları çıktıya dahildir.
+    condition: Input and output count together; reasoning counts as output
+    condition_quote: girdi ve çıktı birlikte sayılır ve düşünme token'ları çıktıya
+      dahildir
     reset: 00:00'da (TSİ)
     source: https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens
-    quote: her hesabın bu model için günde 200.000 token hakkı vardır, yeni açılan
-      hesaplar ilk gün daha düşük bir hakla başlar; girdi ve çıktı birlikte sayılır
-      ve düşünme token'ları çıktıya dahildir.
+    quote: her hesabın bu model için günde 200.000 token hakkı vardır
     value_phrase: günde 200.000 token
     model_ids:
     - ifm/k2-horizon-375b-a23b
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-11-01'
   - amount: 5000000.0
     unit: tokens
     period: day
@@ -9135,19 +9126,22 @@ entries:
   - https://docs.qoder.cn/events/100credits
   - https://docs.qoder.cn/product-overview/account-and-subscription
   - https://docs.qoder.cn/events/flashoffer
+  - https://docs.qoder.com/product-series/quick-start
   card_required: false
   offering: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a
     free personal-model promotion alongside a two-week 300-credit trial and 100 credits
     a day to claim in the desktop app
   limits: The model promotion is open to personal users, including free accounts with
     zero credits; it needs no paid subscription or claim and works across the CN apps,
-    including CLI. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate
-    daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告"
-    (to be announced). Each claim window runs from 10:00 to the next day at 10:00
-    Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit
-    runs out, a basic model still provides limited completion. Signup requires an
-    Alibaba Cloud account bound to a phone number; real-name verification is needed
-    for purchases. International Qoder has a separate account and price list.
+    including CLI. Daily free uses are limited, with more for paid accounts; after
+    the allowance, wait until the next day or spend Credits. Its end is "结束时间将提前在本页公告"
+    (to be announced in advance). The separate daily credit promotion must be claimed
+    in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window
+    runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit
+    does not accumulate. After trial credit runs out, a basic model still provides
+    limited completion. Signup requires an Alibaba Cloud account bound to a phone
+    number; real-name verification is needed for purchases. Qoder and Qoder CN are
+    "separate product systems"; their accounts, tasks and data are not interoperable.
   quotas:
   - amount: 300.0
     unit: credits
@@ -9178,15 +9172,29 @@ entries:
     quote: 有限次数的补全
     reviewed_on: '2026-10-27'
   - unit: requests
+    period: day
     scope: account-model
     label: Qwen3.8 Flash promotion
     source: https://docs.qoder.cn/events/flashoffer
-    quote: 调用该模型不消耗 Credits
-    reviewed_on: '2026-10-26'
+    quote: 每个账号每日享有一定次数的免费使用额度，付费订阅用户的免费使用次数高于免费用户。
+    model_ids:
+    - Qwen3.8-Flash
+    reviewed_on: '2026-10-31'
   free_part: models
   models:
   - family: qwen3.8-flash
     aa_model: qwen3-8-flash-next
+  client_lane:
+    model_ids:
+    - Qwen3.8-Flash
+    model_bindings:
+      Qwen3.8-Flash:
+        family: qwen3.8-flash
+        source: https://docs.qoder.cn/events/flashoffer
+        quote: Qwen3.8-Flash 是千问系列中兼顾响应速度与使用成本的多模态模型
+    note: Select Qwen3.8-Flash in an official Qoder CN app, including CLI. The daily
+      no-credit allowance includes Free personal accounts; other model calls can consume
+      Credits.
   border:
     left_out: []
     'on': '2026-09-27'
@@ -10376,3 +10384,155 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 100
+- id: zro
+  name: Zro (MoonMath)
+  category: api-free-tier
+  url: https://zro.moonmath.ai
+  source_urls:
+  - https://zro.moonmath.ai/pricing
+  - https://zro.moonmath.ai/docs/models
+  - https://zro.moonmath.ai/docs/quickstart
+  - https://zro.moonmath.ai/docs/api
+  - https://zro.moonmath.ai/privacy
+  - https://zro.moonmath.ai/terms
+  - https://zro.moonmath.ai/docs/regions
+  card_required: false
+  offering: OpenAI-compatible inference for coding agents from MoonMath, with a recurring
+    Free plan on selected Flash models
+  limits: The Free plan covers the two named Flash models with a daily allowance;
+    its amount, pooling scope, reset time and rate limits are not published. An account
+    and API key are required. The pricing page offers Free separately from paid plans
+    and usage packs; the general quickstart still asks for a subscription or usage
+    pack. Inference passes through an EU gateway and runs in Europe, the US, or both
+    as selected per key; unavailable allowed regions fail rather than falling back
+    elsewhere. Zro says it retains no request bodies and uses no requests or logs
+    for training without separate explicit consent; account, billing and operational
+    metadata are retained. Inference providers follow their own operational logging
+    terms. Optional agent tools have separate prices.
+  quotas:
+  - unit: usage
+    period: day
+    scope: unspecified
+    label: Free plan
+    source: https://zro.moonmath.ai/pricing
+    quote: Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash. Resets every
+      day.
+    reviewed_on: '2026-10-31'
+  free_part: models
+  models: []
+  api:
+    base_url: https://zro.moonmath.ai/v1
+    key_url: https://zro.moonmath.ai/get-started?plan=free
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - glm-5.3-flash
+    - deepseek-v4.1-flash
+    note: Create an account and API key for the Free plan and select either listed
+      Flash ID. Other models and auto routing use metered rates. The vendor documents
+      Chat Completions, Responses and Messages; these configurations use Chat Completions.
+      Authenticated generation and Free activation have not been checked here.
+  data_use:
+    trains: 'no'
+    quote: We do not use customer requests or logs for training, fine-tuning, evaluations,
+      analytics, or other secondary purposes unless you separately and explicitly
+      agree
+    url: https://zro.moonmath.ai/privacy
+  border:
+    left_out: []
+    'on': '2026-10-31'
+    source: https://zro.moonmath.ai/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://zro.moonmath.ai/pricing
+    keywords:
+    - Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash.
+    - Resets every day.
+    - OpenAI-compatible API
+    - Free plan for Flash models. $0 per month
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-01'
+  last_verified: '2026-11-01'
+  probe_failures: 0
+  provisional: true
+  rank: 88
+- id: infron
+  name: Infron
+  category: api-free-tier
+  url: https://infron.ai
+  source_urls:
+  - https://infronai.gitbook.io/docs/overview/free-models
+  - https://infronai.gitbook.io/docs/overview/pricing-and-fee-structure
+  - https://infronai.gitbook.io/docs/support/privacy-logging
+  - https://infronai.gitbook.io/docs/llm-apis
+  - https://infron.ai/terms-of-use
+  - https://infron.ai/privacy-policy
+  - https://llm.onerouter.pro/v1/models
+  card_required: false
+  access:
+    source: https://infronai.gitbook.io/docs/overview/free-models
+    initial_payment_usd: 5.0
+    topup_fee_percent: 5.0
+  offering: OpenAI-compatible model gateway with a shared recurring Free request allowance,
+    unlocked by a retained prepaid balance
+  limits: Keep at least $5 in account credit to use standard :free models. Free requests
+    do not consume that balance. New accounts start at $0. Top-ups add a 5% platform
+    fee plus $0.35 per transaction; payment methods include cards and Alipay. Ordinary
+    per-account rate limits also apply. Free routes can use different providers from
+    paid variants, share capacity and have no SLA. The separate Qwen Max Preview promotion
+    ended on July 28, 2026. Unused purchased credit may expire after 365 days. Infron
+    does not store prompts or responses by default; upstream retention varies and
+    an account setting excludes providers that train on prompts.
+  quotas:
+  - amount: 1000.0
+    unit: requests
+    period: day
+    scope: account
+    label: Standard free models
+    reset: 00:00 UTC
+    source: https://infronai.gitbook.io/docs/overview/free-models
+    quote: 1000 requests per day per account
+    value_phrase: 1000 requests
+    period_quote: per day
+    reviewed_on: '2026-10-31'
+  free_part: models
+  models: []
+  api:
+    base_url: https://llm.onerouter.pro/v1
+    key_url: https://infron.ai/dashboard/apiKeys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen/qwen3.8-27b:free
+    - qwen/qwen3.8-27b-abliterated-cyber:free
+    - internlm/atria-dawn-preview:free
+    - apodex/apodex-1.1-mini:free
+    note: Use exact :free IDs with an Infron account key; the OneRouter API domain
+      is documented by Infron. Their daily request pool is shared, and the required
+      balance is held rather than spent on free calls. Catalog availability is public;
+      authenticated generation and account eligibility have not been checked here.
+  data_use:
+    trains: opt-out
+    quote: If you opt out of training in your account settings, Infron AI will not
+      route to providers that train.
+    url: https://infronai.gitbook.io/docs/support/privacy-logging
+  border:
+    left_out: []
+    'on': '2026-10-31'
+    source: https://infron.ai/terms-of-use
+    read: none
+  probe:
+    type: api-models
+    endpoint: https://llm.onerouter.pro/v1/models
+    keywords: []
+    free_marker: ''
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-11-01'
+  last_verified: '2026-11-01'
+  probe_failures: 0
+  provisional: true
+  rank: 90

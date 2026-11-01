@@ -343,6 +343,11 @@ def test_the_same_source_may_not_be_read_and_declined_twice(tmp_path: Path):
     assert any("duplicate source" in p for p in check(root, TODAY))
 
 
+def test_a_github_clone_url_is_the_same_source_as_its_repository(tmp_path: Path):
+    root = build(tmp_path, sources=[SOURCE, {**SOURCE, "url": SOURCE["url"] + ".git"}])
+    assert any("duplicate source" in p for p in check(root, TODAY))
+
+
 def test_a_missing_sources_file_is_not_a_problem(tmp_path: Path):
     root = build(tmp_path, watched=[WATCHED])
     (root / "sources.yaml").unlink()
