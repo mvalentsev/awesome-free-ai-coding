@@ -9845,7 +9845,7 @@
       "category": "api-free-tier",
       "url": "https://www.ibm.com/products/watsonx-ai",
       "source_urls": [
-        "https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans",
+        "https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx",
         "https://www.ibm.com/docs/en/watsonx/saas?topic=tutorials-signing-up-watsonx",
         "https://www.ibm.com/products/watsonx-ai/pricing"
       ],
@@ -9859,10 +9859,10 @@
           "period": "month",
           "scope": "plan",
           "label": "Lite",
-          "source": "https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans",
+          "source": "https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx",
           "quote": "300,000 tokens per month",
           "value_phrase": "300,000 tokens per month",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-01"
         },
         {
           "amount": 20.0,
@@ -9870,10 +9870,10 @@
           "period": "month",
           "scope": "plan",
           "label": "Lite compute",
-          "source": "https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans",
+          "source": "https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx",
           "quote": "20 CUH per month",
           "value_phrase": "20 CUH per month",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-01"
         },
         {
           "amount": 2.0,
@@ -9881,10 +9881,10 @@
           "period": "second",
           "scope": "plan",
           "label": "Lite",
-          "source": "https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans",
+          "source": "https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx",
           "quote": "2 inference requests per second",
           "value_phrase": "2 inference requests per second",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-01"
         }
       ],
       "free_part": "models",
@@ -9940,14 +9940,18 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans",
+        "endpoint": "https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx",
         "keywords": [
-          "300,000 tokens per month",
-          "2 inference requests per second"
+          "watsonx.ai Runtime"
         ],
         "free_marker": "",
         "require_zero_price": false,
-        "machinery_keywords": []
+        "machinery_keywords": [
+          "A free plan with limited capacity.",
+          "300,000 tokens per month",
+          "20 CUH per month",
+          "2 inference requests per second"
+        ]
       },
       "first_seen": "2026-09-05",
       "last_verified": "2026-10-26",

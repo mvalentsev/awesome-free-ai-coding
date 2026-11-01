@@ -3,7 +3,7 @@ layout: default
 title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-10-26'
 description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. The Lite service plan has limited capacity and no published expiry. IBM Cloud signup…
 permalink: /providers/ibm-watsonx-ai/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-11-01
 crumb: IBM watsonx.ai (Lite plan)
 ---
 
@@ -45,8 +45,8 @@ What you send is not used to train models. In the vendor's words: “IBM does no
 
 ## Evidence
 
-- Probe: the page at <https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans>, anchored on `300,000 tokens per month`, `2 inference requests per second`
-- Source: <https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans>
+- Probe: the page at <https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx>, anchored on `watsonx.ai Runtime` and `A free plan with limited capacity.`, `300,000 tokens per month`, `20 CUH per month`, `2 inference requests per second` in the page's own data
+- Source: <https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx>
 - Source: <https://www.ibm.com/docs/en/watsonx/saas?topic=tutorials-signing-up-watsonx>
 - Source: <https://www.ibm.com/products/watsonx-ai/pricing>
 

@@ -48,6 +48,36 @@ def page_entry() -> Entry:
     })
 
 
+@pytest.mark.parametrize(("change", "expected"), [
+    (None, ProbeStatus.PASS),
+    (("300,000 tokens per month", "100,000 tokens per month"), ProbeStatus.FAIL),
+    (("20 CUH per month", "10 CUH per month"), ProbeStatus.FAIL),
+    (("2 inference requests per second", "1 inference request per second"), ProbeStatus.FAIL),
+    (("A free plan with limited capacity.", "A paid plan with limited capacity."), ProbeStatus.FAIL),
+])
+@respx.mock
+async def test_ibm_lite_uses_the_reachable_official_article_and_keeps_its_limits(change, expected):
+    # IBM's official Cloud docs embed the same Lite article as page data:
+    # https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx
+    # Checked 2026-11-01: the www.ibm.com alias returns 403 from Actions.
+    entry = next(e for e in load_registry(Path("registry.yaml")) if e.id == "ibm-watsonx-ai")
+    entry = entry.model_copy(update={"data_use": None, "border": None})
+    article = ("<h1>watsonx.ai Runtime plans</h1><dl><dt>Lite plan</dt>"
+               "<dd>A free plan with limited capacity.</dd></dl>"
+               "<table><tr><th>Resource</th><th>Lite</th></tr>"
+               "<tr><td>Foundation model inferencing</td><td>300,000 tokens per month</td></tr>"
+               "<tr><td>Runtime usage</td><td>20 CUH per month</td></tr>"
+               "<tr><td>Rate limit per plan ID</td><td>2 inference requests per second</td></tr></table>")
+    if change:
+        article = article.replace(*change)
+    body = '<h1>watsonx.ai Runtime service plans</h1><script>window.page=' + json.dumps({"content": article}) + '</script>'
+    respx.get("https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans").respond(403)
+    respx.get("https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx").respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is expected, result.detail
+
+
 @pytest.mark.parametrize(("fields", "free"), [
     ({"pricing": "free"}, True),
     ({"pricing": "paid"}, False),
