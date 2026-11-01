@@ -67,12 +67,6 @@
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
-        "poolside/laguna-s-2.1:free": {
-          "name": "poolside/laguna-s-2.1:free"
-        },
-        "poolside/laguna-xs-2.1:free": {
-          "name": "poolside/laguna-xs-2.1:free"
-        },
         "thinkingmachines/inkling:free": {
           "name": "thinkingmachines/inkling:free"
         },
@@ -142,12 +136,6 @@
         },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
-        },
-        "poolside/laguna-s-2.1:free": {
-          "name": "poolside/laguna-s-2.1:free"
-        },
-        "poolside/laguna-xs-2.1:free": {
-          "name": "poolside/laguna-xs-2.1:free"
         },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
@@ -351,12 +339,6 @@
         "k2.6-code-preview-free": {
           "name": "k2.6-code-preview-free"
         },
-        "laguna-s-2.1-free": {
-          "name": "laguna-s-2.1-free"
-        },
-        "laguna-xs-2.1-free": {
-          "name": "laguna-xs-2.1-free"
-        },
         "lfm-2.5-2.6b-free": {
           "name": "lfm-2.5-2.6b-free"
         },
@@ -435,14 +417,14 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "deepseek-v4-flash:free": {
-          "name": "deepseek-v4-flash:free"
+        "deepseek-v4.1-flash:free": {
+          "name": "deepseek-v4.1-flash:free"
+        },
+        "minimax-m3.1-flash:free": {
+          "name": "minimax-m3.1-flash:free"
         },
         "muse-glimmer-30b:free": {
           "name": "muse-glimmer-30b:free"
-        },
-        "minimax-m2.7:free": {
-          "name": "minimax-m2.7:free"
         }
       }
     },
@@ -671,9 +653,6 @@
         "reflection/beam-free:free": {
           "name": "reflection/beam-free:free"
         },
-        "reflection/beam:free": {
-          "name": "reflection/beam:free"
-        },
         "stealth/glyph-cluster:free": {
           "name": "stealth/glyph-cluster:free"
         },
@@ -705,12 +684,6 @@
       "models": {
         "stepfun/step-3.7-flash:free": {
           "name": "stepfun/step-3.7-flash:free"
-        },
-        "poolside/laguna-s-2.1:free": {
-          "name": "poolside/laguna-s-2.1:free"
-        },
-        "poolside/laguna-xs-2.1:free": {
-          "name": "poolside/laguna-xs-2.1:free"
         },
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"

@@ -16,7 +16,7 @@
 # undated free id; the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/ —
 # codex -p routeway -m <id> takes another.
-model = "deepseek-v4-flash:free"
+model = "deepseek-v4.1-flash:free"
 model_provider = "routeway"
 # The same three settings in every Codex profile here, so the request Codex
 # sends is the one the list's run checks; each is off for lanes that refuse it

@@ -1,4 +1,6 @@
 import httpx
+import json
+from pathlib import Path
 import pytest
 import respx
 from freetier_radar.models import Entry
@@ -10,6 +12,74 @@ BASE = {'id':'vendor','name':'Vendor','url':'https://vendor.example','category':
                  'keywords':['Recurring free quota for chat']}}
 QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
+
+
+@pytest.mark.parametrize(('change', 'changed'), [
+    ('current', False), ('paid-only-changed', False),
+    ('completion', True), ('tasks', True), ('price', True),
+    ('duplicate', True), ('missing-free', True), ('boolean', True),
+    ('missing-script', True), ('duplicate-script', True), ('invalid-json', True),
+])
+@respx.mock
+async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(change, changed):
+    from freetier_radar.models import load_registry
+    # TRAE serves these same Free-SKU values in regional page variants whose
+    # numeric comparison is not rendered (https://www.trae.ai/pricing, 2026-11-01).
+    original = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'trae')
+    entry = original.model_copy(update={'quotas': original.quotas[1:], 'data_use': None, 'border': None})
+    free = {'display_price': '$0', 'id': '1', 'name': 'Free', 'product_extra': {'subscription_extra': {
+        'quota': {'advanced_model_request_limit': 1000, 'auto_completion_limit': 5000,
+                  'solo_agent_parallel_limit': 2}}}}
+    paid = {'display_price': '$20', 'id': '2', 'name': 'ProMonthly', 'product_extra': {'subscription_extra': {
+        'quota': {'auto_completion_limit': 5000, 'solo_agent_parallel_limit': 2}}}}
+    quota = free['product_extra']['subscription_extra']['quota']
+    if change == 'completion': quota['auto_completion_limit'] = 4000
+    if change == 'tasks': quota['solo_agent_parallel_limit'] = 1
+    if change == 'boolean': quota['solo_agent_parallel_limit'] = True
+    if change == 'price': free['display_price'] = '$5'
+    if change == 'paid-only-changed': paid['product_extra']['subscription_extra']['quota'] = {'auto_completion_limit': -1, 'solo_agent_parallel_limit': 20}
+    products = [free, paid]
+    if change == 'duplicate': products.append(free)
+    if change == 'missing-free': products = [paid]
+    payload = json.dumps({'loaderData': {'__header-footer-layout/pricing/page': {'productList': {'products': products}}}}, separators=(',', ':'))
+    if change == 'invalid-json': payload = '{'
+    script = '<script type="application/json" id="__MODERN_ROUTER_DATA__">' + payload + '</script>'
+    if change == 'missing-script': script = ''
+    if change == 'duplicate-script': script += script
+    respx.get(entry.probe.endpoint).respond(200, text='<p>Free plan with limited usage</p>' + script)
+    # This control isolates the quotas from the independent current page anchors.
+    entry.probe = entry.probe.model_copy(update={'keywords': [], 'machinery_keywords': []})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS), result.detail
+
+
+def test_script_quota_requires_a_review_and_its_explicit_reader():
+    from freetier_radar.quotas import UsageQuota
+    from pydantic import ValidationError
+    q = {**QUOTA, 'read': 'script-field', 'script_field': {
+        'script_id': 'plans', 'collection': 'products', 'where': {'name': 'Free'}, 'field': 'cap'}}
+    with pytest.raises(ValidationError, match='dated unit/period review'):
+        UsageQuota.model_validate(q)
+    q['reviewed_on'] = '2026-11-01'
+    assert UsageQuota.model_validate(q).read == 'script-field'
+    q['read'] = 'page'
+    with pytest.raises(ValidationError, match='requires read=script-field'):
+        UsageQuota.model_validate(q)
+
+
+@respx.mock
+async def test_json_quota_unit_and_period_review_expires_after_a_week():
+    from datetime import date
+    from freetier_radar.quotas import quota_moved
+    q = {**QUOTA, 'read': 'script-field', 'reviewed_on': '2026-11-01', 'script_field': {
+        'script_id': 'plans', 'collection': 'products', 'where': {'name': 'Free'}, 'field': 'cap'}}
+    body = '<p>200 requests per hour per IP</p><script type="application/json" id="plans">{"products":[{"name":"Free","cap":200}]}</script>'
+    entry = Entry.model_validate({**BASE, 'quotas': [q]})
+    respx.get(q['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        assert await quota_moved(client, entry, None, 1, 0, date(2026, 11, 7)) == []
+        assert 'fresh dated review' in ' '.join(await quota_moved(client, entry, None, 1, 0, date(2026, 11, 8)))
 
 
 @pytest.mark.parametrize(('free_cli', 'free_ide', 'paid_cli', 'changed'), [

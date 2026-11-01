@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'deepseek-v4-flash free: 5 providers, limits and ids, provider probes 2026-11-01'
-description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4-flash free: 4 providers, limits and ids, provider probes 2026-11-01'
+description: deepseek-v4-flash is served free by Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-flash/
 last_modified_at: 2026-11-01
 crumb: deepseek-v4-flash
@@ -11,35 +11,11 @@ crumb: deepseek-v4-flash
 
 # Where deepseek-v4-flash is free
 
-**5 rows on the list serve `deepseek-v4-flash` free:** Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**4 rows on the list serve `deepseek-v4-flash` free:** Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-16
-
-OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Rate-limits documentation: 5 requests/minute (published sources disagree) per account
-
-FAQ: 20 requests/minute (published sources disagree) per account
-
-Free models: 200 requests/day per account
-
-The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.
-
-</details>
-
-- Base URL: `https://api.routeway.ai/v1`
-- Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
-- Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
-- Callable ids: `deepseek-v4-flash:free`
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
@@ -125,6 +101,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ## Rows that listed it before
 
+- [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-09-16 to 2026-11-01
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
 - [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) — listed 2026-09-18 to 2026-09-22

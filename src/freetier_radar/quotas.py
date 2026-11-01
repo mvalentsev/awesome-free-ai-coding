@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+import json
 from html.parser import HTMLParser
 from datetime import date
 from typing import TYPE_CHECKING, Literal
@@ -20,6 +21,61 @@ class QuotaCatalogField(BaseModel):
     collection: str = Field(pattern=r'^[A-Za-z_][\w]*$')
     where: dict[str,str] = Field(min_length=1)
     field: Literal['rpm','rpd','tpm','tpd','rps']
+
+
+class QuotaScriptField(BaseModel):
+    """A numeric allowance in one explicitly selected JSON plan record."""
+    model_config = ConfigDict(extra='forbid')
+    script_id: str = Field(min_length=1)
+    collection: str = Field(pattern=r'^[\w./-]+$')
+    where: dict[str, str] = Field(min_length=1)
+    field: str = Field(pattern=r'^[\w./-]+$')
+
+
+def _script_value(body: str, binding: QuotaScriptField):
+    class Scripts(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.values, self.current, self.matches = [], None, 0
+
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            if tag == 'script' and attrs.get('id') == binding.script_id:
+                self.matches += 1
+                self.current = [] if attrs.get('type', '').casefold() == 'application/json' else None
+
+        def handle_data(self, data):
+            if self.current is not None:
+                self.current.append(data)
+
+        def handle_endtag(self, tag):
+            if tag == 'script' and self.current is not None:
+                self.values.append(''.join(self.current))
+                self.current = None
+
+    def field(value, path):
+        for key in path.split('.'):
+            if not isinstance(value, dict):
+                return None
+            value = value.get(key)
+        return value
+
+    parser = Scripts()
+    parser.feed(body)
+    if parser.matches != 1 or len(parser.values) != 1:
+        return None
+    try:
+        rows = field(json.loads(parser.values[0]), binding.collection)
+    except (ValueError, TypeError):
+        return None
+    if not isinstance(rows, list):
+        return None
+    selected = [row for row in rows if isinstance(row, dict)
+                and all(field(row, key) == value for key, value in binding.where.items())]
+    if len(selected) != 1:
+        return None
+    value = field(selected[0], binding.field)
+    return value if type(value) in (int, float) else None
 
 
 class QuotaTable(BaseModel):
@@ -204,10 +260,11 @@ class UsageQuota(BaseModel):
     quote: str = Field(min_length=3)
     value_phrase: str = Field(default='', exclude_if=lambda v: not v)
     period_quote: str = Field(default='', exclude_if=lambda v: not v)
-    read: Literal['page','catalog','constant','table','catalog-field'] = Field(default='page', exclude_if=lambda v: v == 'page')
+    read: Literal['page','catalog','constant','table','catalog-field','script-field'] = Field(default='page', exclude_if=lambda v: v == 'page')
     constant: str | None = None
     table: QuotaTable | None = None
     catalog_field: QuotaCatalogField | None = None
+    script_field: QuotaScriptField | None = None
     follow: dict[str,str] | None = None
     model_ids: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     reviewed_on: date | None = None
@@ -239,7 +296,7 @@ class UsageQuota(BaseModel):
     def _evidence(self):
         if '…' in self.quote or '...' in self.quote:
             raise ValueError('quota.quote needs one complete source fragment')
-        if self.amount is not None and self.read not in ('table','catalog-field') and self.amount not in _numbers(self.quote):
+        if self.amount is not None and self.read not in ('table','catalog-field','script-field') and self.amount not in _numbers(self.quote):
             raise ValueError('quota.amount is not a number in its source quote')
         if self.window > 1 and self.window not in _numbers(self.quote):
             raise ValueError('quota.window is not a number in its source quote')
@@ -247,7 +304,7 @@ class UsageQuota(BaseModel):
             raise ValueError('quota.condition needs its condition_quote')
         if not _numbers(self.condition).issubset(_numbers(self.quote + ' ' + self.condition_quote)):
             raise ValueError('quota condition numbers need source evidence')
-        if self.amount is not None and self.read not in ('constant','table','catalog-field'):
+        if self.amount is not None and self.read not in ('constant','table','catalog-field','script-field'):
             phrase = self.value_phrase
             if not phrase:
                 numbers = re.findall(r'(?<![\w.])[0-9][0-9,]*(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?', self.quote, re.I)
@@ -325,6 +382,11 @@ class UsageQuota(BaseModel):
                 raise ValueError('quota unit and period must match the catalog field')
         elif self.catalog_field is not None:
             raise ValueError('quota.catalog_field requires read=catalog-field')
+        if self.read == 'script-field':
+            if self.script_field is None or self.amount is None or self.reviewed_on is None:
+                raise ValueError('script fields need a numeric amount, plan selector and dated unit/period review')
+        elif self.script_field is not None:
+            raise ValueError('quota.script_field requires read=script-field')
         if self.period in ('one-time','concurrent',None) and (self.window != 1 or self.rolling):
             raise ValueError('a grant, concurrent ceiling or unknown period has no recurring or rolling window')
         return self
@@ -385,6 +447,8 @@ def quota_changes(body: str, quota: UsageQuota) -> list[str]:
             except (ValueError,TypeError):equal = False
             if len(models) != 1 or not equal:
                 notes.append(f'quota catalog {mid} / {binding.field}: changed, ambiguous or unreadable tier value')
+    if quota.read == 'script-field' and _script_value(body, quota.script_field) != quota.amount:
+        notes.append('quota JSON plan field: changed, ambiguous or unreadable value')
     return notes
 
 
@@ -425,7 +489,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
             notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')
         else:
             notes.extend(f'quotas[{i}]: {n}' for n in quota_changes(page.text, q))
-        if q.reviewed_on and (q.amount is None or q.period is None or q.state or q.scope in ('unspecified','disputed')) and (today - q.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+        if q.reviewed_on and (q.read == 'script-field' or q.amount is None or q.period is None or q.state or q.scope in ('unspecified','disputed')) and (today - q.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
             notes.append(f'quotas[{i}]: unresolved quota needs a fresh dated review')
     return notes
 

@@ -307,8 +307,11 @@ its source and exact quote; optional conditions and reset words need evidence
 on that same source. The scheduled probe flags changed or unreadable quotas
 beside a still-live offer. Catalog checks bind the quote to each named model
 ID; constant checks compare the numeric JavaScript value. Read modes are `page`,
-`catalog`, `constant`, `table`, and `catalog-field`. Table bindings identify the
+`catalog`, `constant`, `table`, `catalog-field`, and `script-field`. Table bindings identify the
 plan, model row and value column; catalog fields identify the model and tier.
+Script fields select exactly one JSON script and one plan record, including its
+price, before comparing a nested numeric allowance. Their unit and renewal
+semantics require a dated review every 7 days, even while the value still matches.
 An unpublished `amount` or `period` stays null. Unresolved allowances require a
 dated manual review after 7 days. Re-read the complete
 vendor terms at that review: a matching old phrase cannot prove that no new

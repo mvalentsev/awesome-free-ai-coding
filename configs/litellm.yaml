@@ -118,18 +118,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/poolside/laguna-s-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-s-2.1:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
-- model_name: openrouter-free/poolside/laguna-xs-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/thinkingmachines/inkling:free
   litellm_params:
     model: openai/thinkingmachines/inkling:free
@@ -490,18 +478,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/laguna-s-2.1-free
-  litellm_params:
-    model: openai/laguna-s-2.1-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/laguna-xs-2.1-free
-  litellm_params:
-    model: openai/laguna-xs-2.1-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: aihubmix/lfm-2.5-2.6b-free
   litellm_params:
     model: openai/lfm-2.5-2.6b-free
@@ -598,21 +574,21 @@ model_list:
     api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
     use_chat_completions_api: true
-- model_name: routeway/deepseek-v4-flash:free
+- model_name: routeway/deepseek-v4.1-flash:free
   litellm_params:
-    model: openai/deepseek-v4-flash:free
+    model: openai/deepseek-v4.1-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: routeway/minimax-m3.1-flash:free
+  litellm_params:
+    model: openai/minimax-m3.1-flash:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
     use_chat_completions_api: true
 - model_name: routeway/muse-glimmer-30b:free
   litellm_params:
     model: openai/muse-glimmer-30b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-    use_chat_completions_api: true
-- model_name: routeway/minimax-m2.7:free
-  litellm_params:
-    model: openai/minimax-m2.7:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
     use_chat_completions_api: true
@@ -927,12 +903,6 @@ model_list:
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
     use_chat_completions_api: true
-- model_name: bazaarlink/reflection/beam:free
-  litellm_params:
-    model: openai/reflection/beam:free
-    api_base: https://api.bazaarlink.ai/v1
-    api_key: os.environ/BAZAARLINK_API_KEY
-    use_chat_completions_api: true
 - model_name: bazaarlink/stealth/glyph-cluster:free
   litellm_params:
     model: openai/stealth/glyph-cluster:free
@@ -954,18 +924,6 @@ model_list:
 - model_name: nous-portal/stepfun/step-3.7-flash:free
   litellm_params:
     model: openai/stepfun/step-3.7-flash:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
-- model_name: nous-portal/poolside/laguna-s-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-s-2.1:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
-- model_name: nous-portal/poolside/laguna-xs-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true

@@ -58,8 +58,6 @@ entries:
     aa_model: gemma-4-26b-a4b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: inkling
@@ -84,8 +82,6 @@ entries:
     - google/gemma-4-31b-it:free
     - google/gemma-4-26b-a4b-it:free
     - cohere/north-mini-code:free
-    - poolside/laguna-s-2.1:free
-    - poolside/laguna-xs-2.1:free
     - thinkingmachines/inkling:free
     - thinkingmachines/inkling-small:free
     - dots-studio/dots-3-note-preview:free
@@ -725,7 +721,7 @@ entries:
     label: Free model usage
     source: https://opencode.ai/v2/docs/console/models/
     quote: Big Pickle
-    reviewed_on: '2026-10-25'
+    reviewed_on: '2026-11-01'
   free_part: models
   models:
   - family: big-pickle
@@ -822,8 +818,6 @@ entries:
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: dots-3-note
@@ -845,8 +839,6 @@ entries:
     - nvidia/nemotron-3.5-lightning:free
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     - cohere/north-mini-code:free
-    - poolside/laguna-s-2.1:free
-    - poolside/laguna-xs-2.1:free
     - liquid/lfm-2.5-2.6b:free
     - dots-studio/dots-3-note-preview:free
     - stealth/glyph-cluster
@@ -931,25 +923,41 @@ entries:
     label: Basic usage
     source: https://www.trae.ai/pricing
     quote: For free users, it's a one-time allowance and doesn't reset monthly.
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-01'
   - amount: 5000.0
     unit: completions
     period: month
     scope: account
     label: Autocompletion (where listed for Free)
     source: https://www.trae.ai/pricing
-    quote: Autocompletion 5000 / month
-    value_phrase: Autocompletion 5000 / month
-    reviewed_on: '2026-10-27'
+    quote: '"auto_completion_limit":5000'
+    read: script-field
+    script_field:
+      script_id: __MODERN_ROUTER_DATA__
+      collection: loaderData.__header-footer-layout/pricing/page.productList.products
+      where:
+        id: '1'
+        name: Free
+        display_price: $0
+      field: product_extra.subscription_extra.quota.auto_completion_limit
+    reviewed_on: '2026-11-01'
   - amount: 2.0
     unit: tasks
     period: concurrent
     scope: account
     label: TRAEWORK (where listed for Free)
     source: https://www.trae.ai/pricing
-    quote: Concurrent cloud tasks 2
-    value_phrase: Concurrent cloud tasks 2
-    reviewed_on: '2026-10-27'
+    quote: '"solo_agent_parallel_limit":2'
+    read: script-field
+    script_field:
+      script_id: __MODERN_ROUTER_DATA__
+      collection: loaderData.__header-footer-layout/pricing/page.productList.products
+      where:
+        id: '1'
+        name: Free
+        display_price: $0
+      field: product_extra.subscription_extra.quota.solo_agent_parallel_limit
+    reviewed_on: '2026-11-01'
   free_part: unnamed
   models: []
   data_use:
@@ -2702,7 +2710,6 @@ entries:
     - auto:free
     - nvidia/nemotron-3.5-lightning-free:free
     - reflection/beam-free:free
-    - reflection/beam:free
     - stealth/glyph-cluster:free
     - qwen/qwen3.7-flash:free
     ignored_ids:
@@ -2903,10 +2910,6 @@ entries:
     reviewed_on: '2026-10-06'
   free_part: models
   models:
-  - family: deepseek-v4-flash
-    aa_model: deepseek-v4-flash
-  - family: minimax-m2.7
-    aa_model: minimax-m2-7
   - family: muse-glimmer-30b
     aa_model: muse-glimmer
   api:
@@ -2915,9 +2918,9 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - deepseek-v4-flash:free
+    - deepseek-v4.1-flash:free
+    - minimax-m3.1-flash:free
     - muse-glimmer-30b:free
-    - minimax-m2.7:free
     ignored_ids:
     - gemma-4-26b-a4b-it-meromero:free
     - gemma-4-26b-a4b-it-chimerax:free
@@ -3337,6 +3340,8 @@ entries:
   - https://aihubmix.com/models/flint-v1.0-free
   - https://aihubmix.com/models/nemotron-3.5-super-vl-free
   - https://aihubmix.com/models/xing4.0-29b-a4b-free
+  - https://aihubmix.com/models/laguna-s-2.1-free
+  - https://aihubmix.com/models/laguna-xs-2.1-free
   card_required: false
   offering: OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format
     endpoint for coding clients
@@ -3666,30 +3671,6 @@ entries:
   - unit: usage
     scope: unspecified
     label: Other free routes
-    source: https://aihubmix.com/models/laguna-xs-2.1-free
-    quote: Laguna XS 2.1 is the latest coding agent model in the 33B-A3B category
-      from Poolside, representing a step forward from the Laguna XS.2 model released
-      in April 2026. It features an extensive context length of 262,144 tokens, allowing
-      it to process large amounts of code and developer inputs. This model provides
-      a robust solution for a wide range of coding agent tasks.
-    model_ids:
-    - laguna-xs-2.1-free
-    reviewed_on: '2026-10-27'
-  - unit: usage
-    scope: unspecified
-    label: Other free routes
-    source: https://aihubmix.com/models/laguna-s-2.1-free
-    quote: Laguna S 2.1 is the latest coding agent model from Poolside, featuring
-      an impressive context length of 262,144 tokens. This model is built with 118B
-      total parameters and 8B active parameters, balancing efficiency with high performance.
-      It delivers strong capabilities for developer tasks, scoring 70.2% on the Terminal-Bench
-      2.1 benchmark.
-    model_ids:
-    - laguna-s-2.1-free
-    reviewed_on: '2026-10-27'
-  - unit: usage
-    scope: unspecified
-    label: Other free routes
     source: https://aihubmix.com/models/mimo-v2-flash-free
     quote: 'MiMo-V2-Flash is an open-source foundation language model developed by
       Xiaomi. It adopts a MoE architecture with 309B total parameters and 15B active
@@ -3753,8 +3734,6 @@ entries:
     aa_model: minimax-m3
   - family: minimax-m2.7
     aa_model: minimax-m2-7
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: kimi-for-coding
   - family: glm-4.7
     aa_model: glm-4-7
@@ -3809,8 +3788,6 @@ entries:
     - glm-4.7-flash-free
     - intern-s2-free
     - k2.6-code-preview-free
-    - laguna-s-2.1-free
-    - laguna-xs-2.1-free
     - lfm-2.5-2.6b-free
     - mimo-v2-flash-free
     - nemotron-3-nano-omni-30b-a3b-reasoning-free
@@ -6085,7 +6062,6 @@ entries:
     - cline-free/nemotron-3.5-super-vl
     - reflection/beam-free
     - nvidia/nemotron-3.5-lightning-free
-    - poolside/laguna-s-2.1-free
     model_bindings:
       cline-free/nemotron-3.5-super-vl:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -6583,8 +6559,6 @@ entries:
   models:
   - family: step-3.7-flash
     aa_model: step-3-7-flash
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: solar-mini-4
   api:
     base_url: https://inference-api.nousresearch.com/v1
@@ -6593,8 +6567,6 @@ entries:
     openai_compatible: true
     model_ids:
     - stepfun/step-3.7-flash:free
-    - poolside/laguna-s-2.1:free
-    - poolside/laguna-xs-2.1:free
     - upstage/solar-mini4:free
     - reflection/beam-1.0-501b-a23b:free
     - ornith/ornith-1.5-122b:free
@@ -9484,7 +9456,7 @@ entries:
     source: https://www.aionlabs.ai/pricing/
     quote: A daily credit allowance to try agent jobs, the API, and browser chat.
       No card required.
-    reviewed_on: '2026-10-24'
+    reviewed_on: '2026-11-01'
   - amount: 15.0
     unit: requests
     period: minute

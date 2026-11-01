@@ -344,9 +344,12 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"probe requests a fresh review\s+after (\d+) days",
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
           "page_catalog.check_page_catalog and UNKNOWN_RECHECK_DAYS; Markdown HTTP-boundary expiry regression"),
-    Claim("CONTRIBUTING.md", r"Read modes are `(page)`,\s+`(catalog)`, `(constant)`, `(table)`, and `(catalog-field)`",
+    Claim("CONTRIBUTING.md", r"Read modes are `(page)`,\s+`(catalog)`, `(constant)`, `(table)`, `(catalog-field)`, and `(script-field)`",
           lambda root: get_args(UsageQuota.model_fields['read'].annotation),
           "quotas.UsageQuota and quota_changes; HTTP-boundary regressions in tests/test_quotas.py"),
+    Claim("CONTRIBUTING.md", r"semantics require a dated review every (\d+) days",
+          lambda root: (str(UNKNOWN_RECHECK_DAYS),),
+          "quotas.quota_moved; JSON plan-field review expiry regression in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"An unpublished `(amount)` or `(period)` stays null",
           lambda root: tuple(field for field in ('amount','period')
                              if type(None) in get_args(UsageQuota.model_fields[field].annotation)),

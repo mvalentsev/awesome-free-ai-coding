@@ -279,12 +279,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
@@ -323,8 +317,6 @@
           "google/gemma-4-31b-it:free",
           "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "thinkingmachines/inkling:free",
           "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
@@ -394,8 +386,6 @@
           "gemma-4-31b",
           "gemma-4-26b-a4b",
           "north-mini-code",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "nemotron-3.5-lightning",
           "inkling",
           "inkling-small",
@@ -411,8 +401,6 @@
           "google/gemma-4-31b-it:free",
           "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "thinkingmachines/inkling:free",
           "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
@@ -431,8 +419,6 @@
           "gemma-4-31b": "",
           "gemma-4-26b-a4b": "",
           "north-mini-code": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "nemotron-3.5-lightning": "",
           "inkling": "",
           "inkling-small": "",
@@ -1517,7 +1503,7 @@
           "label": "Free model usage",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "quote": "Big Pickle",
-          "reviewed_on": "2026-10-25",
+          "reviewed_on": "2026-11-01",
           "amount": null,
           "period": null
         }
@@ -1688,12 +1674,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
@@ -1727,8 +1707,6 @@
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "cohere/north-mini-code:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "liquid/lfm-2.5-2.6b:free",
           "dots-studio/dots-3-note-preview:free",
           "stealth/glyph-cluster",
@@ -1817,8 +1795,6 @@
         "models": [
           "nemotron-3-ultra",
           "north-mini-code",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "nemotron-3.5-lightning",
           "dots-3-note",
           "nemotron-3-nano-omni",
@@ -1833,8 +1809,6 @@
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "cohere/north-mini-code:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "liquid/lfm-2.5-2.6b:free",
           "dots-studio/dots-3-note-preview:free",
           "stealth/glyph-cluster",
@@ -1850,8 +1824,6 @@
         "modelAccess": {
           "nemotron-3-ultra": "",
           "north-mini-code": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "nemotron-3.5-lightning": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
@@ -1889,7 +1861,7 @@
           "label": "Basic usage",
           "source": "https://www.trae.ai/pricing",
           "quote": "For free users, it's a one-time allowance and doesn't reset monthly.",
-          "reviewed_on": "2026-10-27",
+          "reviewed_on": "2026-11-01",
           "amount": null
         },
         {
@@ -1899,9 +1871,19 @@
           "scope": "account",
           "label": "Autocompletion (where listed for Free)",
           "source": "https://www.trae.ai/pricing",
-          "quote": "Autocompletion 5000 / month",
-          "value_phrase": "Autocompletion 5000 / month",
-          "reviewed_on": "2026-10-27"
+          "quote": "\"auto_completion_limit\":5000",
+          "read": "script-field",
+          "script_field": {
+            "script_id": "__MODERN_ROUTER_DATA__",
+            "collection": "loaderData.__header-footer-layout/pricing/page.productList.products",
+            "where": {
+              "id": "1",
+              "name": "Free",
+              "display_price": "$0"
+            },
+            "field": "product_extra.subscription_extra.quota.auto_completion_limit"
+          },
+          "reviewed_on": "2026-11-01"
         },
         {
           "amount": 2.0,
@@ -1910,9 +1892,19 @@
           "scope": "account",
           "label": "TRAEWORK (where listed for Free)",
           "source": "https://www.trae.ai/pricing",
-          "quote": "Concurrent cloud tasks 2",
-          "value_phrase": "Concurrent cloud tasks 2",
-          "reviewed_on": "2026-10-27"
+          "quote": "\"solo_agent_parallel_limit\":2",
+          "read": "script-field",
+          "script_field": {
+            "script_id": "__MODERN_ROUTER_DATA__",
+            "collection": "loaderData.__header-footer-layout/pricing/page.productList.products",
+            "where": {
+              "id": "1",
+              "name": "Free",
+              "display_price": "$0"
+            },
+            "field": "product_extra.subscription_extra.quota.solo_agent_parallel_limit"
+          },
+          "reviewed_on": "2026-11-01"
         }
       ],
       "free_part": "unnamed",
@@ -5121,7 +5113,6 @@
           "auto:free",
           "nvidia/nemotron-3.5-lightning-free:free",
           "reflection/beam-free:free",
-          "reflection/beam:free",
           "stealth/glyph-cluster:free",
           "qwen/qwen3.7-flash:free"
         ],
@@ -5171,7 +5162,6 @@
           "auto:free",
           "nvidia/nemotron-3.5-lightning-free:free",
           "reflection/beam-free:free",
-          "reflection/beam:free",
           "stealth/glyph-cluster:free",
           "qwen/qwen3.7-flash:free"
         ],
@@ -5462,14 +5452,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "deepseek-v4-flash",
-          "aa_model": "deepseek-v4-flash"
-        },
-        {
-          "family": "minimax-m2.7",
-          "aa_model": "minimax-m2-7"
-        },
-        {
           "family": "muse-glimmer-30b",
           "aa_model": "muse-glimmer"
         }
@@ -5480,9 +5462,9 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "deepseek-v4-flash:free",
-          "muse-glimmer-30b:free",
-          "minimax-m2.7:free"
+          "deepseek-v4.1-flash:free",
+          "minimax-m3.1-flash:free",
+          "muse-glimmer-30b:free"
         ],
         "ignored_ids": [
           "gemma-4-26b-a4b-it-meromero:free",
@@ -5525,22 +5507,18 @@
       "search": {
         "name": "Routeway",
         "models": [
-          "deepseek-v4-flash",
-          "minimax-m2.7",
           "muse-glimmer-30b"
         ],
         "ids": [
-          "deepseek-v4-flash:free",
-          "muse-glimmer-30b:free",
-          "minimax-m2.7:free"
+          "deepseek-v4.1-flash:free",
+          "minimax-m3.1-flash:free",
+          "muse-glimmer-30b:free"
         ],
         "what": "OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models",
         "limits": "Rate-limits documentation: 5 requests/minute (published sources disagree) per account\n\nFAQ: 20 requests/minute (published sources disagree) per account\n\nFree models: 200 requests/day per account\n\nThe FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.",
         "why": "",
         "access": "",
         "modelAccess": {
-          "deepseek-v4-flash": "",
-          "minimax-m2.7": "",
           "muse-glimmer-30b": ""
         },
         "section": {
@@ -6376,11 +6354,13 @@
         "https://aihubmix.com/models/intern-s2-free",
         "https://aihubmix.com/models/flint-v1.0-free",
         "https://aihubmix.com/models/nemotron-3.5-super-vl-free",
-        "https://aihubmix.com/models/xing4.0-29b-a4b-free"
+        "https://aihubmix.com/models/xing4.0-29b-a4b-free",
+        "https://aihubmix.com/models/laguna-s-2.1-free",
+        "https://aihubmix.com/models/laguna-xs-2.1-free"
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
       "quotas": [
         {
           "amount": 5.0,
@@ -6742,32 +6722,6 @@
           "unit": "usage",
           "scope": "unspecified",
           "label": "Other free routes",
-          "source": "https://aihubmix.com/models/laguna-xs-2.1-free",
-          "quote": "Laguna XS 2.1 is the latest coding agent model in the 33B-A3B category from Poolside, representing a step forward from the Laguna XS.2 model released in April 2026. It features an extensive context length of 262,144 tokens, allowing it to process large amounts of code and developer inputs. This model provides a robust solution for a wide range of coding agent tasks.",
-          "model_ids": [
-            "laguna-xs-2.1-free"
-          ],
-          "reviewed_on": "2026-10-27",
-          "amount": null,
-          "period": null
-        },
-        {
-          "unit": "usage",
-          "scope": "unspecified",
-          "label": "Other free routes",
-          "source": "https://aihubmix.com/models/laguna-s-2.1-free",
-          "quote": "Laguna S 2.1 is the latest coding agent model from Poolside, featuring an impressive context length of 262,144 tokens. This model is built with 118B total parameters and 8B active parameters, balancing efficiency with high performance. It delivers strong capabilities for developer tasks, scoring 70.2% on the Terminal-Bench 2.1 benchmark.",
-          "model_ids": [
-            "laguna-s-2.1-free"
-          ],
-          "reviewed_on": "2026-10-27",
-          "amount": null,
-          "period": null
-        },
-        {
-          "unit": "usage",
-          "scope": "unspecified",
-          "label": "Other free routes",
           "source": "https://aihubmix.com/models/mimo-v2-flash-free",
           "quote": "MiMo-V2-Flash is an open-source foundation language model developed by Xiaomi. It adopts a MoE architecture with 309B total parameters and 15B active parameters per inference, balancing performance and efficiency. The model features a hybrid attention architecture, supports a hybrid-thinking toggle, and offers a 256K context window, enabling strong capabilities in complex reasoning, code generation, and agent-based scenarios. On SWE-bench Verified and SWE-bench Multilingual, MiMo-V2-Flash ranks #1 among open-source models globally, delivering performance comparable to Claude Sonnet 4.5 while costing only about 3.5% as much.",
           "model_ids": [
@@ -6854,12 +6808,6 @@
           "aa_model": "minimax-m2-7"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "kimi-for-coding"
         },
         {
@@ -6944,8 +6892,6 @@
           "glm-4.7-flash-free",
           "intern-s2-free",
           "k2.6-code-preview-free",
-          "laguna-s-2.1-free",
-          "laguna-xs-2.1-free",
           "lfm-2.5-2.6b-free",
           "mimo-v2-flash-free",
           "nemotron-3-nano-omni-30b-a3b-reasoning-free",
@@ -7028,8 +6974,6 @@
           "nemotron-3-ultra",
           "minimax-m3",
           "minimax-m2.7",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "kimi-for-coding",
           "glm-4.7",
           "glm-4.7-flash",
@@ -7069,8 +7013,6 @@
           "glm-4.7-flash-free",
           "intern-s2-free",
           "k2.6-code-preview-free",
-          "laguna-s-2.1-free",
-          "laguna-xs-2.1-free",
           "lfm-2.5-2.6b-free",
           "mimo-v2-flash-free",
           "nemotron-3-nano-omni-30b-a3b-reasoning-free",
@@ -7084,7 +7026,7 @@
           "xing4.0-29b-a4b-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `laguna-xs-2.1-free`, `laguna-s-2.1-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -7099,8 +7041,6 @@
           "nemotron-3-ultra": "",
           "minimax-m3": "",
           "minimax-m2.7": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "kimi-for-coding": "",
           "glm-4.7": "",
           "glm-4.7-flash": "",
@@ -10447,8 +10387,7 @@
           "cline-free/solar-mini4",
           "cline-free/nemotron-3.5-super-vl",
           "reflection/beam-free",
-          "nvidia/nemotron-3.5-lightning-free",
-          "poolside/laguna-s-2.1-free"
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "model_bindings": {
           "cline-free/nemotron-3.5-super-vl": {
@@ -10497,8 +10436,7 @@
           "cline-free/solar-mini4",
           "cline-free/nemotron-3.5-super-vl",
           "reflection/beam-free",
-          "nvidia/nemotron-3.5-lightning-free",
-          "poolside/laguna-s-2.1-free"
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "what": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
         "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. These models work only in the Cline IDE extension and CLI, not through the Cline API. Free usage may improve model performance and quality.",
@@ -11376,12 +11314,6 @@
           "aa_model": "step-3-7-flash"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "solar-mini-4"
         }
       ],
@@ -11392,8 +11324,6 @@
         "openai_compatible": true,
         "model_ids": [
           "stepfun/step-3.7-flash:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11439,14 +11369,10 @@
         "name": "Nous Portal (Hermes Agent)",
         "models": [
           "step-3.7-flash",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "solar-mini-4"
         ],
         "ids": [
           "stepfun/step-3.7-flash:free",
-          "poolside/laguna-s-2.1:free",
-          "poolside/laguna-xs-2.1:free",
           "upstage/solar-mini4:free",
           "reflection/beam-1.0-501b-a23b:free",
           "ornith/ornith-1.5-122b:free"
@@ -11457,8 +11383,6 @@
         "access": "",
         "modelAccess": {
           "step-3.7-flash": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "solar-mini-4": ""
         },
         "section": {
@@ -15675,7 +15599,7 @@
           "scope": "account",
           "source": "https://www.aionlabs.ai/pricing/",
           "quote": "A daily credit allowance to try agent jobs, the API, and browser chat. No card required.",
-          "reviewed_on": "2026-10-24",
+          "reviewed_on": "2026-11-01",
           "amount": null
         },
         {
@@ -18399,17 +18323,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
     },
     {
-      "family": "deepseek-v4-flash",
-      "rows": [
-        "routeway",
-        "alibaba-model-studio",
-        "bazaarlink",
-        "atomcode",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
-    },
-    {
       "family": "deepseek-v4.1-flash",
       "rows": [
         "opencode",
@@ -18443,28 +18356,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
-      "family": "laguna-s-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "aihubmix",
-        "vercel-ai-gateway",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
-      "family": "laguna-xs-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "aihubmix",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
-    },
-    {
       "family": "nemotron-3.5-super-vl-120b-a12b",
       "rows": [
         "openrouter-free",
@@ -18474,6 +18365,16 @@
         "llmtr"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
+    },
+    {
+      "family": "deepseek-v4-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "bazaarlink",
+        "atomcode",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
       "family": "glm-5.2",
@@ -18686,14 +18587,6 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
-    },
-    {
-      "family": "minimax-m2.7",
-      "rows": [
-        "aihubmix",
-        "routeway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
       "family": "minimax-m3",
@@ -18994,6 +18887,20 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
+      "family": "laguna-s-2.1",
+      "rows": [
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
+    },
+    {
+      "family": "laguna-xs-2.1",
+      "rows": [
+        "nvidia-nim"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
+    },
+    {
       "family": "leanstral-1.5",
       "rows": [
         "requesty"
@@ -19057,6 +18964,13 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"
+    },
+    {
+      "family": "minimax-m2.7",
+      "rows": [
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
       "family": "minimax-m3.1-flash",

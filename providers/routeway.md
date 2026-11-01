@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-11-01'
-description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at…'
+description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: muse-glimmer-30b. The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429…'
 permalink: /providers/routeway/
 last_modified_at: 2026-11-01
 crumb: Routeway
@@ -19,7 +19,7 @@ OpenAI-compatible gateway with a rotating :free chat-model lane beside metered m
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)
+[`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,7 @@ The vendor names no country it keeps the offer from ([source](https://routeway.a
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
-- Callable ids: `deepseek-v4-flash:free`, `muse-glimmer-30b:free`, `minimax-m2.7:free`
+- Callable ids: `deepseek-v4.1-flash:free`, `minimax-m3.1-flash:free`, `muse-glimmer-30b:free`
 - Note: Only IDs ending :free are free; the same catalog meters Claude, GPT and other paid models. Some zero-priced community fine-tunes are intended for expressive writing and roleplay.
 
 Try it from your terminal with your key in `ROUTEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -49,7 +49,7 @@ Try it from your terminal with your key in `ROUTEWAY_API_KEY` — it goes from y
 curl -s https://api.routeway.ai/v1/chat/completions \
   -H "Authorization: Bearer $ROUTEWAY_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"deepseek-v4-flash:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"deepseek-v4.1-flash:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
@@ -64,6 +64,7 @@ curl -s https://api.routeway.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-01` — Free models changed: dropped deepseek-v4-flash, minimax-m2.7
 - `2026-09-16` — Free models changed: added deepseek-v4-flash, minimax-m2.7
 - `2026-09-14` — Free models changed: added muse-glimmer-30b
 - `2026-09-05` — Free models changed: dropped gemma-4, gpt-oss
