@@ -39,7 +39,7 @@ jobs:
       # `@v10` is a ref that does not exist and the step fails outright. The
       # pin is watched by .github/dependabot.yml, which is the only reason it
       # can be this specific without going stale.
-      - uses: astral-sh/setup-uv@v10.2.0
+      - uses: astral-sh/setup-uv@v10.3.3
         with:
           python-version: ${{ matrix.python }}
 
@@ -97,7 +97,7 @@ jobs:
       - uses: actions/checkout@v7
 
       # Exact by necessity — see the note above.
-      - uses: astral-sh/setup-uv@v10.2.0
+      - uses: astral-sh/setup-uv@v10.3.3
         with:
           python-version: "3.12"
 
