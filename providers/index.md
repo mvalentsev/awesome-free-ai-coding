@@ -64,7 +64,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-11-01
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-11-01
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-11-01 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
-- [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-10-26
+- [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-11-01
 - [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) — verified 2026-11-01
 - [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) — verified 2026-11-01
 - [Bytez](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) — verified 2026-11-01
@@ -85,7 +85,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-11-01
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-01
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-11-01
-- [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-10-26
+- [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-11-01
 - [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) — verified 2026-11-01
 - [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) — verified 2026-11-01
 - [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) — verified 2026-11-01

@@ -5732,7 +5732,7 @@ entries:
     - 20 CUH per month
     - 2 inference requests per second
   first_seen: '2026-09-05'
-  last_verified: '2026-10-26'
+  last_verified: '2026-11-01'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -5882,8 +5882,8 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-05'
-  last_verified: '2026-10-26'
-  probe_failures: 1
+  last_verified: '2026-11-01'
+  probe_failures: 0
   provisional: false
   rank: 88
 - id: standardcompute
