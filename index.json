@@ -10097,7 +10097,7 @@
           "quote": "Sarvam offers ₹100 worth of free credits for every verified user on signup.",
           "value_phrase": "₹100 worth of free credits",
           "period_quote": "on signup",
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-11-01"
         },
         {
           "amount": 60.0,
@@ -10106,14 +10106,14 @@
           "scope": "account",
           "label": "Pay-as-you-go Sarvam-105B",
           "condition": "Shared by all API keys under the account",
-          "condition_quote": "Rate limits are measured per account, not per API key. All keys under an account share the same limit pool.",
+          "condition_quote": "limits apply to your account as a whole, not individual API keys. All keys share the same rate limit pool.",
           "source": "https://docs.sarvam.ai/api/getting-started/ratelimits.md",
           "quote": "| **Rate Limit** | 60 req/min | 200 req/min | 300 req/min |",
           "value_phrase": "60 req/min",
           "model_ids": [
             "sarvam-105b"
           ],
-          "reviewed_on": "2026-10-26"
+          "reviewed_on": "2026-11-01"
         }
       ],
       "free_part": "sum",
@@ -10145,7 +10145,8 @@
         "type": "page-keywords",
         "endpoint": "https://docs.sarvam.ai/api/getting-started/pricing.md",
         "keywords": [
-          "Every verified user receives ₹100 in credits"
+          "₹100 worth of free credits",
+          "every verified user on signup"
         ],
         "free_marker": "",
         "require_zero_price": false,

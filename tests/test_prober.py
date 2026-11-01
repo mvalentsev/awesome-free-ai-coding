@@ -1,12 +1,13 @@
 import json
 import uuid
 from datetime import date
+from pathlib import Path
 
 import httpx
 import pytest
 import respx
 
-from freetier_radar.models import ApiInfo, CodexRoute, DataUse, Entry, ModelFamily, save_registry
+from freetier_radar.models import ApiInfo, CodexRoute, DataUse, Entry, ModelFamily, load_registry, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
     free_list_dates, is_model_stale, probe_entry,
@@ -2890,6 +2891,28 @@ async def test_a_retry_after_stops_inference_before_trying_another_model(retry_a
     assert result.status is ProbeStatus.INCONCLUSIVE
     assert '429' in result.detail and retry_after in result.detail
     assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b"]
+
+
+@respx.mock
+@pytest.mark.parametrize('amount,kind,eligibility,expected', [
+    ('100', 'free', 'verified', ProbeStatus.PASS),
+    ('1000', 'free', 'verified', ProbeStatus.FAIL),
+    ('100', 'paid', 'verified', ProbeStatus.FAIL),
+    ('100', 'free', 'paid', ProbeStatus.FAIL),
+])
+async def test_sarvam_current_signup_grant_keeps_amount_and_eligibility(
+        amount, kind, eligibility, expected):
+    # https://docs.sarvam.ai/api/getting-started/pricing.md, checked 2026-11-01:
+    # the current grant still exists after rewording.
+    registered = next(e for e in load_registry(Path(__file__).resolve().parents[1] / 'registry.yaml')
+                      if e.id == 'sarvam')
+    entry = registered.model_copy(update={'api': None, 'quotas': [], 'border': None, 'data_use': None})
+    body = (f'Sarvam offers **₹{amount} worth of {kind} credits** '
+            f'for every {eligibility} user on signup.')
+    respx.get(entry.probe.endpoint).mock(return_value=httpx.Response(200, text=body))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is expected
 
 
 @respx.mock

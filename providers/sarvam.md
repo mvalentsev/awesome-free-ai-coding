@@ -55,7 +55,7 @@ curl -s https://api.sarvam.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every verified user receives ₹100 in credits`
+- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `₹100 worth of free credits`, `every verified user on signup`
 - Source: <https://docs.sarvam.ai/api/getting-started/pricing.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/models.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/ratelimits.md>
