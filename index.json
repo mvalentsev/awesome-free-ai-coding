@@ -1736,7 +1736,8 @@
           }
         },
         "ignored_ids": [
-          "nvidia/nemotron-3.5-content-safety:free"
+          "nvidia/nemotron-3.5-content-safety:free",
+          "inclusionai/ling-3.1-flash-1019-free"
         ],
         "no_family_ids": [
           "kilo-auto/free",
@@ -4930,7 +4931,8 @@
           "reflection/beam",
           "minimax/minimax-m3.1-flash",
           "baseten/elephant-1",
-          "baseten/mammoth-1"
+          "baseten/mammoth-1",
+          "inclusionai/ling-3.1-flash-1019"
         ],
         "no_family_ids": [
           "stealth/glyph-cluster"
@@ -5120,7 +5122,9 @@
           "beam",
           "beam-free",
           "nemotron-3.5-lightning-free",
-          "glyph-cluster"
+          "glyph-cluster",
+          "inclusionai/ling-3.1-flash-1019:free",
+          "ling-3.1-flash-1019"
         ],
         "no_family_ids": [
           "auto:free",
@@ -8070,7 +8074,7 @@
           "paid-sol": {
             "kind": "paid",
             "note": "The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day.",
-            "reviewed_on": "2026-10-23",
+            "reviewed_on": "2026-11-01",
             "source": "https://freebuff.com/plans"
           },
           "specialist": {
@@ -8080,7 +8084,7 @@
           "muse-full": {
             "kind": "wallet",
             "note": "Credit-funded at full access; a paid plan is required at limited access.",
-            "reviewed_on": "2026-10-23",
+            "reviewed_on": "2026-11-01",
             "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           },
           "terra-full": {
@@ -8225,7 +8229,7 @@
           "Daily hours refill at midnight in your local timezone and unused daily hours do not carry over.",
           "Older app versions show the same balance as Freebucks, five to an hour."
         ],
-        "reviewed_on": "2026-10-23"
+        "reviewed_on": "2026-11-01"
       },
       "data_use": {
         "trains": "yes",
