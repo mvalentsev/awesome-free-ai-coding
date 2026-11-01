@@ -25,8 +25,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`
 
-Heabsy Qwen3.8 27B: Daily usage allowance: amount not published per account; for `heabsy/qwen3.8-27b-heabsy-free`
-
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
 Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
@@ -49,8 +47,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `heabsy/qwen3.8-27b-heabsy-free`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`, `minimax/minimax-m3.1-flash-free`
-- `heabsy/qwen3.8-27b-heabsy-free`: free until 2026-11-02 00:00+03:00 ([conditions](https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free))
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`, `minimax/minimax-m3.1-flash-free`
 - `ifm/jais-3-mova-36b-a4b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/jais-3-mova-36b-a4b))
 - `ifm/k2-horizon-375b-a23b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/k2-horizon-375b-a23b))
 - `minimax/minimax-m3.1-flash-free`: free until 2026-11-02 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))

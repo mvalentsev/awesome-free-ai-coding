@@ -629,16 +629,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/heabsy/qwen3.8-27b-heabsy-free
-  litellm_params:
-    model: openai/heabsy/qwen3.8-27b-heabsy-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 32768
-  model_info:
-    access: free until 2026-11-02 00:00+03:00
-    source: https://llmtr.com/models/heabsy/qwen3.8-27b-heabsy-free
 - model_name: llmtr/nvidia/nemotron-3.5-super-vl-free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-super-vl-free

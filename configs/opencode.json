@@ -468,13 +468,6 @@
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
         },
-        "heabsy/qwen3.8-27b-heabsy-free": {
-          "name": "heabsy/qwen3.8-27b-heabsy-free (until 2026-11-02)",
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
         },

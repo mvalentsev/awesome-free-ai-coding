@@ -5089,7 +5089,6 @@ entries:
     - qwen/qwen3.8-27b-free
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
-    - heabsy/qwen3.8-27b-heabsy-free
     - nvidia/nemotron-3.5-super-vl-free
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
@@ -5247,6 +5246,7 @@ entries:
     - internlm/atria-dawn-preview-free
     - internlm/intern-s2-free
     - internlm/sage-a1.5-free
+    - heabsy/qwen3.8-27b-heabsy-free
     note: 'New accounts have a lower free allowance for 24 hours. Heabsy needs Settings
       → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5
       VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high
