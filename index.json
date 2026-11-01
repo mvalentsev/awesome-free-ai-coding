@@ -279,12 +279,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
@@ -394,8 +388,6 @@
           "gemma-4-31b",
           "gemma-4-26b-a4b",
           "north-mini-code",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "nemotron-3.5-lightning",
           "inkling",
           "inkling-small",
@@ -431,8 +423,6 @@
           "gemma-4-31b": "",
           "gemma-4-26b-a4b": "",
           "north-mini-code": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "nemotron-3.5-lightning": "",
           "inkling": "",
           "inkling-small": "",
@@ -1688,12 +1678,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
@@ -1817,8 +1801,6 @@
         "models": [
           "nemotron-3-ultra",
           "north-mini-code",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "nemotron-3.5-lightning",
           "dots-3-note",
           "nemotron-3-nano-omni",
@@ -1850,8 +1832,6 @@
         "modelAccess": {
           "nemotron-3-ultra": "",
           "north-mini-code": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "nemotron-3.5-lightning": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
@@ -4902,9 +4882,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "laguna-s-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
@@ -4982,7 +4959,6 @@
       "search": {
         "name": "Vercel AI Gateway",
         "models": [
-          "laguna-s-2.1",
           "nemotron-3.5-lightning",
           "beam-1.0"
         ],
@@ -4997,7 +4973,6 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "laguna-s-2.1": "",
           "nemotron-3.5-lightning": "",
           "beam-1.0": ""
         },
@@ -5462,14 +5437,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "deepseek-v4-flash",
-          "aa_model": "deepseek-v4-flash"
-        },
-        {
-          "family": "minimax-m2.7",
-          "aa_model": "minimax-m2-7"
-        },
-        {
           "family": "muse-glimmer-30b",
           "aa_model": "muse-glimmer"
         }
@@ -5525,8 +5492,6 @@
       "search": {
         "name": "Routeway",
         "models": [
-          "deepseek-v4-flash",
-          "minimax-m2.7",
           "muse-glimmer-30b"
         ],
         "ids": [
@@ -5539,8 +5504,6 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "deepseek-v4-flash": "",
-          "minimax-m2.7": "",
           "muse-glimmer-30b": ""
         },
         "section": {
@@ -6854,12 +6817,6 @@
           "aa_model": "minimax-m2-7"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "kimi-for-coding"
         },
         {
@@ -7028,8 +6985,6 @@
           "nemotron-3-ultra",
           "minimax-m3",
           "minimax-m2.7",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "kimi-for-coding",
           "glm-4.7",
           "glm-4.7-flash",
@@ -7099,8 +7054,6 @@
           "nemotron-3-ultra": "",
           "minimax-m3": "",
           "minimax-m2.7": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "kimi-for-coding": "",
           "glm-4.7": "",
           "glm-4.7-flash": "",
@@ -11371,12 +11324,6 @@
           "aa_model": "step-3-7-flash"
         },
         {
-          "family": "laguna-s-2.1"
-        },
-        {
-          "family": "laguna-xs-2.1"
-        },
-        {
           "family": "solar-mini-4"
         }
       ],
@@ -11434,8 +11381,6 @@
         "name": "Nous Portal (Hermes Agent)",
         "models": [
           "step-3.7-flash",
-          "laguna-s-2.1",
-          "laguna-xs-2.1",
           "solar-mini-4"
         ],
         "ids": [
@@ -11452,8 +11397,6 @@
         "access": "",
         "modelAccess": {
           "step-3.7-flash": "",
-          "laguna-s-2.1": "",
-          "laguna-xs-2.1": "",
           "solar-mini-4": ""
         },
         "section": {
@@ -18441,17 +18384,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
     },
     {
-      "family": "deepseek-v4-flash",
-      "rows": [
-        "routeway",
-        "alibaba-model-studio",
-        "bazaarlink",
-        "atomcode",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
-    },
-    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -18474,28 +18406,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
-      "family": "laguna-s-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "aihubmix",
-        "vercel-ai-gateway",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
-      "family": "laguna-xs-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "aihubmix",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
-    },
-    {
       "family": "nemotron-3.5-super-vl-120b-a12b",
       "rows": [
         "openrouter-free",
@@ -18505,6 +18415,16 @@
         "llmtr"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
+    },
+    {
+      "family": "deepseek-v4-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "bazaarlink",
+        "atomcode",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
       "family": "glm-5.2",
@@ -18727,14 +18647,6 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
-    },
-    {
-      "family": "minimax-m2.7",
-      "rows": [
-        "aihubmix",
-        "routeway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
       "family": "qwen3.5-122b-a10b",
@@ -19027,6 +18939,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
+      "family": "laguna-xs-2.1",
+      "rows": [
+        "nvidia-nim"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
+    },
+    {
       "family": "leanstral-1.5",
       "rows": [
         "requesty"
@@ -19090,6 +19009,13 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"
+    },
+    {
+      "family": "minimax-m2.7",
+      "rows": [
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
       "family": "minimax-m3.1-flash",
@@ -19374,6 +19300,11 @@
       "family": "kolibri-1",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
+    },
+    {
+      "family": "laguna-s-2.1",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
       "family": "ling-3.0-flash",

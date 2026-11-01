@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-11-01'
-description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, solar-mini-4. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are…'
+description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, solar-mini-4. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a portal key…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-11-01
 crumb: Nous Portal (Hermes Agent)
@@ -19,7 +19,7 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ## Free models
 
-[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)
+[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)
 
 ## Limits, in the vendor's words
 
@@ -62,6 +62,7 @@ curl -s https://inference-api.nousresearch.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-01` — Free models changed: dropped laguna-s-2.1, laguna-xs-2.1
 - `2026-10-29` — Free models changed: dropped longcat-2.0
 - `2026-10-27` — Free models changed: dropped longcat-2.5-preview
 - `2026-10-21` — Free models changed: added solar-mini-4

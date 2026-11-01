@@ -58,9 +58,6 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models
 
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
 - Limits, in the vendor's words: Rate-limits documentation: 5 requests/minute (published sources disagree) per account
 
 FAQ: 20 requests/minute (published sources disagree) per account
@@ -68,9 +65,6 @@ FAQ: 20 requests/minute (published sources disagree) per account
 Free models: 200 requests/day per account
 
 The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.
-
-</details>
-
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway -m muse-glimmer-30b:free`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"

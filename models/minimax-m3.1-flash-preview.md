@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m3.1-flash-preview free: no current listing, last listed 2026-10-06'
 description: No row currently lists minimax-m3.1-flash-preview under Free models. The list carried it at LLMTR until 2026-10-06. Each row's page gives its current offer.
 permalink: /models/minimax-m3.1-flash-preview/
-last_modified_at: 2026-10-30
+last_modified_at: 2026-11-01
 crumb: minimax-m3.1-flash-preview
 ---
 
@@ -24,8 +24,8 @@ crumb: minimax-m3.1-flash-preview
 - [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker (until 2026-11-01)
 - [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) — free at Kiro and AIHubMix (free models)
 - [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro and AIHubMix (free models)
-- [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
+- [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models)
 - [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — free at LLMTR (until 2026-11-02)
 
 ---

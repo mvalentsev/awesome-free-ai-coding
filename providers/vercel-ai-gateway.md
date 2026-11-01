@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-11-01'
-description: 'OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes. Free models: laguna-s-2.1, nemotron-3.5-lightning, beam-1.0. A team must add a valid payment method before using free credit; otherwise requests return `403…'
+description: 'OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes. Free models: nemotron-3.5-lightning, beam-1.0. A team must add a valid payment method before using free credit; otherwise requests return `403…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-11-01
 crumb: Vercel AI Gateway
@@ -19,7 +19,7 @@ OpenAI-compatible model gateway with $5 of monthly credit after adding a payment
 
 ## Free models
 
-[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)
+[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)
 
 ## Limits, in the vendor's words
 
@@ -76,6 +76,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-01` — Free models changed: dropped laguna-s-2.1
 - `2026-10-30` — Free models changed: added beam-1.0
 - `2026-10-29` — Free models changed: added nemotron-3.5-lightning
 - `2026-10-15` — Free models changed: dropped ling-3.1-flash

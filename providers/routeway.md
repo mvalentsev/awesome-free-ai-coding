@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-11-01'
-description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at…'
+description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: muse-glimmer-30b. The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429…'
 permalink: /providers/routeway/
 last_modified_at: 2026-11-01
 crumb: Routeway
@@ -19,7 +19,7 @@ OpenAI-compatible gateway with a rotating :free chat-model lane beside metered m
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)
+[`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)
 
 ## Limits, in the vendor's words
 
@@ -64,6 +64,7 @@ curl -s https://api.routeway.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-01` — Free models changed: dropped deepseek-v4-flash, minimax-m2.7
 - `2026-09-16` — Free models changed: added deepseek-v4-flash, minimax-m2.7
 - `2026-09-14` — Free models changed: added muse-glimmer-30b
 - `2026-09-05` — Free models changed: dropped gemma-4, gpt-oss

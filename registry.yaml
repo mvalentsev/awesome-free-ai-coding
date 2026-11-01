@@ -58,8 +58,6 @@ entries:
     aa_model: gemma-4-26b-a4b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: inkling
@@ -822,8 +820,6 @@ entries:
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: north-mini-code
     aa_model: north-mini-code
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: dots-3-note
@@ -2547,7 +2543,6 @@ entries:
     reviewed_on: '2026-10-30'
   free_part: models
   models:
-  - family: laguna-s-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: beam-1.0
@@ -2903,10 +2898,6 @@ entries:
     reviewed_on: '2026-10-06'
   free_part: models
   models:
-  - family: deepseek-v4-flash
-    aa_model: deepseek-v4-flash
-  - family: minimax-m2.7
-    aa_model: minimax-m2-7
   - family: muse-glimmer-30b
     aa_model: muse-glimmer
   api:
@@ -3753,8 +3744,6 @@ entries:
     aa_model: minimax-m3
   - family: minimax-m2.7
     aa_model: minimax-m2-7
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: kimi-for-coding
   - family: glm-4.7
     aa_model: glm-4-7
@@ -6579,8 +6568,6 @@ entries:
   models:
   - family: step-3.7-flash
     aa_model: step-3-7-flash
-  - family: laguna-s-2.1
-  - family: laguna-xs-2.1
   - family: solar-mini-4
   api:
     base_url: https://inference-api.nousresearch.com/v1

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'minimax-m2.7 free: 2 providers, limits and ids, provider probes 2026-11-01'
-description: minimax-m2.7 is served free by AIHubMix (free models) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'minimax-m2.7 free: 1 provider, limits and ids, provider probes 2026-11-01'
+description: minimax-m2.7 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2.7/
 last_modified_at: 2026-11-01
 crumb: minimax-m2.7
@@ -11,7 +11,7 @@ crumb: minimax-m2.7
 
 # Where minimax-m2.7 is free
 
-**2 rows on the list serve `minimax-m2.7` free:** AIHubMix (free models) and Routeway. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**One row on the list serves `minimax-m2.7` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -44,32 +44,9 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m coding-minimax-m2.7-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `coding-minimax-m2.7-free`
 
-### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-16
-
-OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Rate-limits documentation: 5 requests/minute (published sources disagree) per account
-
-FAQ: 20 requests/minute (published sources disagree) per account
-
-Free models: 200 requests/day per account
-
-The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method. No legal entity is named; support is email and Discord.
-
-</details>
-
-- Base URL: `https://api.routeway.ai/v1`
-- Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
-- Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway -m minimax-m2.7:free`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
-- Callable ids: `minimax-m2.7:free`
-
 ## Rows that listed it before
 
+- [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-09-16 to 2026-11-01
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
 
 ## Related models
