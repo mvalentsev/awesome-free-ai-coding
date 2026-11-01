@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-10-26'
+title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-11-01'
 description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia. The current…
 permalink: /providers/codebuddy/
-last_modified_at: 2026-10-26
+last_modified_at: 2026-11-01
 crumb: CodeBuddy (Tencent)
 ---
 
@@ -11,7 +11,7 @@ crumb: CodeBuddy (Tencent)
 
 # CodeBuddy (Tencent) free tier
 
-🤖 Coding agents & CLIs · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-10-26 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-11-01 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

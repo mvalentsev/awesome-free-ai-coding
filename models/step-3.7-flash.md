@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'step-3.7-flash free: 1 provider, limits and ids, provider probes 2026-10-26'
+title: 'step-3.7-flash free: 1 provider, limits and ids, provider probes 2026-11-01'
 description: step-3.7-flash is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/step-3.7-flash/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-11-01
 crumb: step-3.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: step-3.7-flash
 
 # Where step-3.7-flash is free
 
-**One row on the list serves `step-3.7-flash` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
+**One row on the list serves `step-3.7-flash` free:** Nous Portal (Hermes Agent). It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: step-3.7-flash
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-16
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 

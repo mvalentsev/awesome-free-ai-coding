@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, provider probes 2026-10-26'
+title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, provider probes 2026-11-01'
 description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-sonnet-4.5/
-last_modified_at: 2026-10-29
+last_modified_at: 2026-11-01
 crumb: claude-sonnet-4.5
 ---
 
@@ -11,7 +11,7 @@ crumb: claude-sonnet-4.5
 
 # Where claude-sonnet-4.5 is free
 
-**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
+**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-10-26 · listed since 2026-07-19
+🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-07-19
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'minimax-m3.1-flash free: 1 provider, limits and ids, provider probes 2026-10-26'
+title: 'minimax-m3.1-flash free: 1 provider, limits and ids, provider probes 2026-11-01'
 description: minimax-m3.1-flash is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3.1-flash/
 last_modified_at: 2026-11-01
@@ -11,7 +11,7 @@ crumb: minimax-m3.1-flash
 
 # Where minimax-m3.1-flash is free
 
-**One row on the list serves `minimax-m3.1-flash` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-10-26; its offer is rechecked twice a week.
+**One row on the list serves `minimax-m3.1-flash` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m3.1-flash
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-10-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-10-22
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

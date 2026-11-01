@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m3 free: 3 providers, limits and ids, provider probes 2026-10-26 or later'
+title: 'minimax-m3 free: 3 providers, limits and ids, provider probes 2026-11-01'
 description: minimax-m3 is served free by AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3/
-last_modified_at: 2026-10-30
+last_modified_at: 2026-11-01
 crumb: minimax-m3
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m3
 
 # Where minimax-m3 is free
 
-**3 rows on the list serve `minimax-m3` free:** AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker. None asks for a card. The providers' last scheduled probes were on 2026-10-26 or later; their offers are rechecked twice a week.
+**3 rows on the list serve `minimax-m3` free:** AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-26 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -46,7 +46,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-10-26 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · last probe 2026-11-01 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 
@@ -66,7 +66,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ### [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-10-30 · last probe 2026-10-30 · listed since 2026-10-30
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-10-30 · last probe 2026-11-01 · listed since 2026-10-30
 
 OpenAI-compatible API gateway with a limited-time free model promotion, no card required
 

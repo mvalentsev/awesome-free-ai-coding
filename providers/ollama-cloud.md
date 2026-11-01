@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Ollama Cloud free tier: limits, free models, verified 2026-10-26'
+title: 'Ollama Cloud free tier: limits, free models, verified 2026-11-01'
 description: Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage. The August 31 announcement still advertises monthly starter usage for a starter subset, but current pricing and download guidance describe paid…
 permalink: /providers/ollama-cloud/
-last_modified_at: 2026-10-27
+last_modified_at: 2026-11-01
 crumb: Ollama Cloud
 ---
 
@@ -11,7 +11,7 @@ crumb: Ollama Cloud
 
 # Ollama Cloud free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-26 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-01 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

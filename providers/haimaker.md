@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Haimaker free tier: limits, free models, verified 2026-10-30'
+title: 'Haimaker free tier: limits, free models, verified 2026-11-01'
 description: 'OpenAI-compatible API gateway with a limited-time free model promotion, no card required. Free models: glm-5.3, deepseek-v4.1-flash, minimax-m3. Create an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is…'
 permalink: /providers/haimaker/
-last_modified_at: 2026-10-30
+last_modified_at: 2026-11-01
 crumb: Haimaker
 ---
 
@@ -11,7 +11,7 @@ crumb: Haimaker
 
 # Haimaker free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-30, a regular row from the first probe it passes on or after 2026-11-13 · **live** — last verified by a probe on 2026-10-30 · [haimaker.ai](https://haimaker.ai/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-30, a regular row from the first probe it passes on or after 2026-11-13 · **live** — last verified by a probe on 2026-11-01 · [haimaker.ai](https://haimaker.ai/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
