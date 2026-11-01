@@ -114,11 +114,11 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-11-01
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-11-01
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-11-01
-- [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) — verified 2026-11-01 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) (until 2026-11-01) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (until 2026-11-01) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) (until 2026-11-01)
 
 ## Archived
 
 - [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) — vendor-announced shutdown on 2026-11-01
+- [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) — documented free promotions ended on 2026-11-01
 - [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) — vendor-announced shutdown on 2026-10-31
 - [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) — delisted on 2026-10-26: closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) — delisted on 2026-10-22: public beta closed; the endpoint requires a key and key registration is closed

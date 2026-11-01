@@ -377,3 +377,4 @@
 {"ts": "2026-11-01T01:01:49.896947Z", "event": "added", "id": "infron", "name": "Infron", "url": "https://infron.ai", "models": [], "detail": "OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance"}
 {"ts": "2026-11-01T01:01:49.896947Z", "event": "archived", "id": "llmtech", "name": "LLM Tech", "url": "https://llmtech.eu", "models": ["qwen3.8-27b"], "detail": "vendor-announced shutdown on 2026-11-01"}
 {"ts": "2026-11-01T01:01:49.896947Z", "event": "added", "id": "zro", "name": "Zro (MoonMath)", "url": "https://zro.moonmath.ai", "models": [], "detail": "OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models"}
+{"ts": "2026-11-01T14:02:54.455331Z", "event": "archived", "id": "haimaker", "name": "Haimaker", "url": "https://haimaker.ai/free/", "models": [], "detail": "documented free promotions ended on 2026-11-01"}

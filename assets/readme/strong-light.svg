@@ -17,7 +17,7 @@
 <text class="t label" x="396.5" y="188" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">glm-5.3</text>
 <rect class="bar measured" x="416.5" y="173" width="311.4" height="18" rx="4"/>
 <rect class="value-bg" x="731.9" y="170" width="155" height="25" rx="3"/>
-<text x="735.9" y="188" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">31.7</tspan><tspan class="m"> · 4 offers</tspan></text>
+<text x="735.9" y="188" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">31.7</tspan><tspan class="m"> · 3 offers</tspan></text>
 <text class="t label" x="396.5" y="220" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.8-flash</text>
 <rect class="bar measured" x="416.5" y="205" width="299.6" height="18" rx="4"/>
 <rect class="value-bg" x="720.1" y="202" width="155" height="25" rx="3"/>
@@ -57,7 +57,7 @@
 <text class="t label" x="396.5" y="508" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">minimax-m3</text>
 <rect class="bar measured" x="416.5" y="493" width="183.7" height="18" rx="4"/>
 <rect class="value-bg" x="604.2" y="490" width="155" height="25" rx="3"/>
-<text x="608.2" y="508" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">18.7</tspan><tspan class="m"> · 3 offers</tspan></text>
+<text x="608.2" y="508" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">18.7</tspan><tspan class="m"> · 2 offers</tspan></text>
 <text class="t label" x="396.5" y="540" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">k2-horizon-375b-a23b</text>
 <rect class="bar measured" x="416.5" y="525" width="174.9" height="18" rx="4"/>
 <rect class="value-bg" x="595.4" y="522" width="155" height="25" rx="3"/>

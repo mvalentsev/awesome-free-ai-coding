@@ -10052,23 +10052,13 @@ entries:
       everyone in the wave.
     reviewed_on: '2026-10-30'
   free_part: models
-  models:
-  - family: glm-5.3
-    tier: notable
-    aa_model: glm-5-3
-  - family: deepseek-v4.1-flash
-    aa_model: deepseek-v4-1-flash
-  - family: minimax-m3
-    aa_model: minimax-m3
+  models: []
   api:
     base_url: https://api.haimaker.ai/v1
     key_url: https://app.haimaker.ai/sign-up
     auth: api-key
     openai_compatible: true
-    model_ids:
-    - z-ai/glm-5.3
-    - deepseek/deepseek-v4.1-flash
-    - minimax/minimax-m3
+    model_ids: []
     model_access:
       z-ai/glm-5.3:
         source: https://haimaker.ai/free/
@@ -10082,6 +10072,10 @@ entries:
     ignored_ids:
     - zai/glm-5.3
     - respan/span-01-lite
+    - deepseek/deepseek-v4.1-flash
+    - minimax/minimax-m3
+    - z-ai/glm-5.3
+    no_ids: the documented free promotions have ended; no current free ID is listed
     note: Use an API key as a bearer token with Chat Completions. The advertised free
       window ends November 1 at 14:00 UTC; these same IDs are metered afterward.
   data_use:
@@ -10103,6 +10097,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-10-30'
   last_verified: '2026-11-01'
+  retired_on: '2026-11-01'
   probe_failures: 0
   provisional: true
   rank: 99

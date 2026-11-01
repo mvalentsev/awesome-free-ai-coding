@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-01T01:01:49Z</updated>
+  <updated>2026-11-01T14:02:54Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/haimaker/20261101T140254Z</id>
+    <title>Archived: Haimaker</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"/>
+    <updated>2026-11-01T14:02:54Z</updated>
+    <summary type="text">documented free promotions ended on 2026-11-01</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/infron/20261101T010149Z</id>
     <title>Added: Infron</title>
@@ -101,7 +108,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/haimaker/20261030T103014Z</id>
     <title>Added: Haimaker</title>
-    <link rel="alternate" href="https://haimaker.ai/free/"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"/>
     <updated>2026-10-30T10:30:14Z</updated>
     <summary type="text">OpenAI-compatible API gateway with a limited-time free model promotion, no card required · free models: glm-5.3, deepseek-v4.1-flash, minimax-m3</summary>
   </entry>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://portal.nousresearch.com"/>
     <updated>2026-10-21T08:58:17Z</updated>
     <summary type="text">added solar-mini-4 · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, longcat-2.5-preview, solar-mini-4</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openai-codex-cli/20261021T085817Z</id>
-    <title>Free models changed: Codex (ChatGPT Free)</title>
-    <link rel="alternate" href="https://learn.chatgpt.com/docs/pricing"/>
-    <updated>2026-10-21T08:58:17Z</updated>
-    <summary type="text">added gpt-6-luna · free models: gpt-6-luna</summary>
   </entry>
 </feed>

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'minimax-m3 free: 3 providers, limits and ids, provider probes 2026-11-01'
-description: minimax-m3 is served free by AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'minimax-m3 free: 2 providers, limits and ids, provider probes 2026-11-01'
+description: minimax-m3 is served free by AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3/
 last_modified_at: 2026-11-01
 crumb: minimax-m3
@@ -11,7 +11,7 @@ crumb: minimax-m3
 
 # Where minimax-m3 is free
 
-**3 rows on the list serve `minimax-m3` free:** AIHubMix (free models), FreeInference (Harvard SEAS) and Haimaker. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**2 rows on the list serve `minimax-m3` free:** AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -64,29 +64,9 @@ No card. This is an experimental research service with capacity-dependent limits
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
 - Callable ids: `minimax-m3`
 
-### [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/)
-
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-10-30 · last probe 2026-11-01 · listed since 2026-10-30
-
-OpenAI-compatible API gateway with a limited-time free model promotion, no card required
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Usage allowance: amount not published (period not published); scope not published
-
-Create an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is published. After the promotion, the same IDs and key return to paid token pricing. Prompts and responses are logged by default; opt out in API key settings. Logged contents are deleted after 30 days. Haimaker says "We do not use the content of your API requests to train AI models." Upstream providers apply their own data policies; their training practices are not established here. Its terms restrict competing-product development and comparative benchmarking without permission.
-
-</details>
-
-- Base URL: `https://api.haimaker.ai/v1`
-- Key: `HAIMAKER_API_KEY` — get one at <https://app.haimaker.ai/sign-up>
-- Callable ids: `minimax/minimax-m3`
-- `minimax/minimax-m3`: free until 2026-11-01 14:00+00:00 ([conditions](https://haimaker.ai/free/))
-- Training policy not established ([the vendor's words](https://haimaker.ai/terms-and-conditions/)).
-
 ## Rows that listed it before
 
+- [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) — listed 2026-10-30 to 2026-11-01; the row itself is archived
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-09-02 to 2026-09-07
 
 ## Related models

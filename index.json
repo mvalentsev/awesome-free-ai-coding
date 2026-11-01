@@ -16453,31 +16453,13 @@
         }
       ],
       "free_part": "models",
-      "models": [
-        {
-          "family": "glm-5.3",
-          "tier": "notable",
-          "aa_model": "glm-5-3"
-        },
-        {
-          "family": "deepseek-v4.1-flash",
-          "aa_model": "deepseek-v4-1-flash"
-        },
-        {
-          "family": "minimax-m3",
-          "aa_model": "minimax-m3"
-        }
-      ],
+      "models": [],
       "api": {
         "base_url": "https://api.haimaker.ai/v1",
         "key_url": "https://app.haimaker.ai/sign-up",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [
-          "z-ai/glm-5.3",
-          "deepseek/deepseek-v4.1-flash",
-          "minimax/minimax-m3"
-        ],
+        "model_ids": [],
         "model_access": {
           "z-ai/glm-5.3": {
             "source": "https://haimaker.ai/free/",
@@ -16494,8 +16476,12 @@
         },
         "ignored_ids": [
           "zai/glm-5.3",
-          "respan/span-01-lite"
+          "respan/span-01-lite",
+          "deepseek/deepseek-v4.1-flash",
+          "minimax/minimax-m3",
+          "z-ai/glm-5.3"
         ],
+        "no_ids": "the documented free promotions have ended; no current free ID is listed",
         "note": "Use an API key as a bearer token with Chat Completions. The advertised free window ends November 1 at 14:00 UTC; these same IDs are metered afterward."
       },
       "data_use": {
@@ -16521,32 +16507,21 @@
       },
       "first_seen": "2026-10-30",
       "last_verified": "2026-11-01",
+      "retired_on": "2026-11-01",
       "probe_failures": 0,
       "provisional": true,
       "rank": 99,
       "no_account": false,
-      "archived": false,
+      "archived": true,
       "search": {
         "name": "Haimaker",
-        "models": [
-          "glm-5.3",
-          "deepseek-v4.1-flash",
-          "minimax-m3"
-        ],
-        "ids": [
-          "z-ai/glm-5.3",
-          "deepseek/deepseek-v4.1-flash",
-          "minimax/minimax-m3"
-        ],
+        "models": [],
+        "ids": [],
         "what": "OpenAI-compatible API gateway with a limited-time free model promotion, no card required",
         "limits": "Usage allowance: amount not published (period not published); scope not published\n\nCreate an account and an API key. Free capacity is best effort and shared across the wave; paid requests have priority. No numerical allowance is published. After the promotion, the same IDs and key return to paid token pricing. Prompts and responses are logged by default; opt out in API key settings. Logged contents are deleted after 30 days. Haimaker says \"We do not use the content of your API requests to train AI models.\" Upstream providers apply their own data policies; their training practices are not established here. Its terms restrict competing-product development and comparative benchmarking without permission.",
-        "why": "",
+        "why": "documented free promotions ended on 2026-11-01",
         "access": "",
-        "modelAccess": {
-          "glm-5.3": "until 2026-11-01",
-          "deepseek-v4.1-flash": "until 2026-11-01",
-          "minimax-m3": "until 2026-11-01"
-        },
+        "modelAccess": {},
         "section": {
           "id": "aggregator"
         },
@@ -16556,17 +16531,10 @@
       },
       "access_labels": {
         "offer": "",
-        "models": {
-          "glm-5.3": "until 2026-11-01",
-          "deepseek-v4.1-flash": "until 2026-11-01",
-          "minimax-m3": "until 2026-11-01"
-        },
-        "ids": {
-          "z-ai/glm-5.3": "free until 2026-11-01 14:00+00:00",
-          "deepseek/deepseek-v4.1-flash": "free until 2026-11-01 14:00+00:00",
-          "minimax/minimax-m3": "free until 2026-11-01 14:00+00:00"
-        }
+        "models": {},
+        "ids": {}
       },
+      "archived_because": "documented free promotions ended on 2026-11-01",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"
     },
     {
@@ -18227,7 +18195,6 @@
       "pollinations",
       "aion-labs",
       "bytez",
-      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -18287,7 +18254,6 @@
       "pollinations",
       "aion-labs",
       "bytez",
-      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -18367,7 +18333,6 @@
       "pollinations",
       "aion-labs",
       "bytez",
-      "haimaker",
       "mixlayer",
       "modelscope",
       "sensenova",
@@ -18417,18 +18382,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
     },
     {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "opencode",
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "token-harbor",
-        "haimaker"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
       "family": "nemotron-3-nano-omni",
       "rows": [
         "openrouter-free",
@@ -18450,6 +18403,17 @@
         "freeinference"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "opencode",
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "gemma-4-31b",
@@ -18517,17 +18481,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
-      "family": "glm-5.3",
-      "rows": [
-        "aihubmix",
-        "alibaba-model-studio",
-        "zcode",
-        "haimaker"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
-    },
-    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -18586,13 +18539,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
     },
     {
-      "family": "minimax-m3",
+      "family": "glm-5.3",
       "rows": [
         "aihubmix",
-        "freeinference",
-        "haimaker"
+        "alibaba-model-studio",
+        "zcode"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
     },
     {
       "family": "muse-glimmer-30b",
@@ -18735,6 +18689,14 @@
         "routeway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
+    },
+    {
+      "family": "minimax-m3",
+      "rows": [
+        "aihubmix",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
     },
     {
       "family": "qwen3.5-122b-a10b",
