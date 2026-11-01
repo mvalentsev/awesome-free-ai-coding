@@ -6,7 +6,7 @@ import httpx
 import pytest
 import respx
 
-from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
+from freetier_radar.models import ApiInfo, CodexRoute, DataUse, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
     free_list_dates, is_model_stale, probe_entry,
@@ -2880,18 +2880,83 @@ async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_anothe
 
 
 @respx.mock
-async def test_a_rate_limit_that_names_a_long_wait_is_not_asked_again():
-    """A Retry-After longer than the probe's pause is not waited out: asking again
-    inside it only spends an anonymous lane's allowance (two a minute per IP on
-    OVHcloud)."""
+@pytest.mark.parametrize('retry_after', ['60', 'Sun, 01 Nov 2026 23:59:59 GMT', 'later'])
+async def test_a_retry_after_stops_inference_before_trying_another_model(retry_after):
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
-    call = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=[
-        httpx.Response(429, headers={"Retry-After": "60"}, json={}),
-        httpx.Response(200, json=completion("qwen3-coder-30b"))])
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(429, headers={"Retry-After": retry_after}, json={}))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
-    assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
-    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b", "qwen3-coder-30b"]
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert '429' in result.detail and retry_after in result.detail
+    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b"]
+
+
+@respx.mock
+async def test_a_bearer_control_retry_after_prevents_the_next_protocol_request():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    def answer(request):
+        if 'authorization' in request.headers:
+            return httpx.Response(429, headers={'Retry-After': '3600'}, json={})
+        return httpx.Response(200, json=completion('gpt-oss-120b'))
+    chat=respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=answer)
+    responses=respx.post("https://open.x.ai/v1/responses").mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result=await probe_entry(client,keyless_entry(),backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert chat.call_count == 2
+    assert responses.call_count == 0
+
+
+@respx.mock
+async def test_a_stream_retry_after_is_inconclusive_instead_of_a_client_change():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200,json=completion('gpt-oss-120b')))
+    responses=respx.post("https://open.x.ai/v1/responses").mock(return_value=httpx.Response(429,headers={'Retry-After':'3600'}))
+    entry=keyless_entry()
+    entry.api.codex=CodexRoute(base_url='https://open.x.ai/v1')
+    async with httpx.AsyncClient() as client:
+        result=await probe_entry(client,entry,backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert responses.call_count == 1
+
+
+@respx.mock
+@pytest.mark.parametrize('retry_after', ['0', '1'])
+async def test_a_short_retry_after_is_waited_out_before_the_next_request(monkeypatch, retry_after):
+    import freetier_radar.prober as prober
+    events = []
+    async def pause(seconds):
+        events.append(('sleep', seconds))
+    monkeypatch.setattr(prober.asyncio, 'sleep', pause)
+    respx.get('https://open.x.ai/v1/models').mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+    def answer(request):
+        events.append(('request', 'authorization' in request.headers))
+        if len(events) == 1:
+            return httpx.Response(429, headers={'Retry-After': retry_after}, json={})
+        return httpx.Response(200, json=completion('gpt-oss-120b'))
+    respx.post('https://open.x.ai/v1/chat/completions').mock(side_effect=answer)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=2)
+    assert result.status is ProbeStatus.PASS
+    assert events[:3] == [('request', False), ('sleep', 2), ('request', False)]
+
+
+@respx.mock
+async def test_an_anthropic_retry_after_stops_the_following_keyed_client_check():
+    respx.get('https://open.x.ai/v1/models').mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    entry = keyless_entry()
+    entry.api.auth = 'bearer'
+    entry.api.anthropic_base_url = 'https://open.x.ai/anthropic'
+    entry.api.codex = CodexRoute(base_url='https://open.x.ai/v1')
+    messages = respx.post('https://open.x.ai/anthropic/v1/messages').mock(
+        return_value=httpx.Response(429, headers={'Retry-After': '3600'}))
+    responses = respx.post('https://open.x.ai/v1/responses').mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert messages.call_count == 1 and responses.call_count == 0
 
 
 @respx.mock

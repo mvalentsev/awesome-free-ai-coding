@@ -53,9 +53,27 @@ class ProbeResult:
     detail: str = ""
 
 
+class _InferenceCooldown(Exception):
+    """End this entry's inference checks on an unresolved advertised wait."""
+
+
+def _defer_inference(response: httpx.Response) -> None:
+    if response.status_code == 429 and not _asks_to_wait_at_most(response, 0):
+        wait = response.headers.get('retry-after', '')[:160]
+        raise _InferenceCooldown(f'HTTP 429; Retry-After: {wait}; remaining requests deferred')
+
+
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                       attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS,
                       today: date | None = None) -> ProbeResult:
+    try:
+        return await _probe_entry(client, entry, attempts, backoff, today)
+    except _InferenceCooldown as exc:
+        return ProbeResult(ProbeStatus.INCONCLUSIVE, str(exc))
+
+
+async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
+                       attempts: int, backoff: float, today: date | None) -> ProbeResult:
     resp, stop = await _read(client, entry.probe.endpoint, attempts, backoff,
         page=entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.follow is None)
     if stop is not None:
@@ -410,6 +428,7 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
                             attempts, backoff)
     if resp is None:
         return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
+    _defer_inference(resp)
     if resp.status_code in ROUTE_GONE:
         return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
     return None
@@ -518,6 +537,7 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
                 model, legacy_instructions=legacy_instructions),
                                  headers={**headers, "Accept": "text/event-stream"},
                                  timeout=TIMEOUT, follow_redirects=True) as resp:
+            _defer_inference(resp)
             text = ""
             if resp.status_code < 500:
                 async for chunk in resp.aiter_text():
@@ -650,6 +670,8 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
                                                 headers=headers, timeout=TIMEOUT,
                                                 follow_redirects=True),
                             attempts, backoff, again=again)
+    if resp is not None:
+        _defer_inference(resp)
     return resp if resp is not None else (last or "did not answer")
 
 
@@ -760,6 +782,9 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     When the first id answers, a keyless lane is asked the same call again with
     the bearer token LiteLLM sends (see `_bearer_drift`), and either kind is
     asked the request Codex CLI sends (see `_codex_drift`).
+
+    A Retry-After that is not waited out ends the entire entry's probe as
+    inconclusive, including alternate models and protocol controls.
 
     A refusal the list has already owned up to is the one exception: where the
     row carries an `api.notice` that still holds, the maintainer has chosen to
