@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-11-01'
+title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-11-01 or later'
 description: mimo-v2.6-flash is served free by opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-flash/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: mimo-v2.6-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.6-flash
 
 # Where mimo-v2.6-flash is free
 
-**4 rows on the list serve `mimo-v2.6-flash` free:** opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**4 rows on the list serve `mimo-v2.6-flash` free:** opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.6-flash
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-10-06
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-10-06
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 

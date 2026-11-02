@@ -1603,7 +1603,7 @@
         ]
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-01",
+      "last_verified": "2026-11-02",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -5158,7 +5158,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-11-01",
+      "last_verified": "2026-11-02",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -9186,7 +9186,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-01",
+      "last_verified": "2026-11-02",
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
@@ -11361,7 +11361,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-16",
-      "last_verified": "2026-11-01",
+      "last_verified": "2026-11-02",
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,

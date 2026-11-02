@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-01'
+title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-01 or later'
 description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-2.5-flash/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: agnes-2.5-flash
 
 # Where agnes-2.5-flash is free
 
-**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: agnes-2.5-flash
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-28
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-28
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

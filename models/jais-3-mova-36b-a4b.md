@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'jais-3-mova-36b-a4b free: 1 provider, limits and ids, provider probes 2026-11-01'
+title: 'jais-3-mova-36b-a4b free: 1 provider, limits and ids, provider probes 2026-11-02'
 description: jais-3-mova-36b-a4b is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/jais-3-mova-36b-a4b/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: jais-3-mova-36b-a4b
 
 # Where jais-3-mova-36b-a4b is free
 
-**One row on the list serves `jais-3-mova-36b-a4b` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
+**One row on the list serves `jais-3-mova-36b-a4b` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: jais-3-mova-36b-a4b
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-10-19
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-19
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

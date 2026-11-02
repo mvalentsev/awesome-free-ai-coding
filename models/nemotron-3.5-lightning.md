@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'nemotron-3.5-lightning free: 8 providers, limits and ids, provider probes 2026-11-01'
+title: 'nemotron-3.5-lightning free: 8 providers, limits and ids, provider probes 2026-11-01 or later'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each…
 permalink: /models/nemotron-3.5-lightning/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: nemotron-3.5-lightning
 
 # Where nemotron-3.5-lightning is free
 
-**8 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**8 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3.5-lightning
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-08-14
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-08-14
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -164,7 +164,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-11-02
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-11-02
 
 OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
 

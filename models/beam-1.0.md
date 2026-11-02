@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-01'
+title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-01 or later'
 description: beam-1.0 is served free by Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**3 rows on the list serve `beam-1.0` free:** Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**3 rows on the list serve `beam-1.0` free:** Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -60,7 +60,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-11-02
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-11-02
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 

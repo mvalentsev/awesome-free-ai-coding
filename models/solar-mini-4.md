@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-11-01'
+title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-11-01 or later'
 description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: solar-mini-4
 ---
 
@@ -11,7 +11,7 @@ crumb: solar-mini-4
 
 # Where solar-mini-4 is free
 
-**3 rows on the list serve `solar-mini-4` free:** Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**3 rows on the list serve `solar-mini-4` free:** Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -64,7 +64,7 @@ Free promotions require a Cline account, with Google, GitHub or email signup and
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-10-21
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-21
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 

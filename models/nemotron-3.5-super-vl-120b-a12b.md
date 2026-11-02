@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'nemotron-3.5-super-vl-120b-a12b free: 6 providers, limits and ids, provider probes 2026-11-01'
+title: 'nemotron-3.5-super-vl-120b-a12b free: 6 providers, limits and ids, provider probes 2026-11-01 or later'
 description: nemotron-3.5-super-vl-120b-a12b is served free by opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe…
 permalink: /models/nemotron-3.5-super-vl-120b-a12b/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: nemotron-3.5-super-vl-120b-a12b
 
 # Where nemotron-3.5-super-vl-120b-a12b is free
 
-**6 rows on the list serve `nemotron-3.5-super-vl-120b-a12b` free:** opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**6 rows on the list serve `nemotron-3.5-super-vl-120b-a12b` free:** opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3.5-super-vl-120b-a12b
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-11-02
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-11-02
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -115,7 +115,7 @@ Free promotions require a Cline account, with Google, GitHub or email signup and
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-10-29
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-29
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

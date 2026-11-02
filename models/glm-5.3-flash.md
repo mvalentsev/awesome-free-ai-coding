@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 6 providers, limits and ids, provider probes 2026-11-01'
+title: 'glm-5.3-flash free: 6 providers, limits and ids, provider probes 2026-11-01 or later'
 description: glm-5.3-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**6 rows on the list serve `glm-5.3-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**6 rows on the list serve `glm-5.3-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.3-flash
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-11-02
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-11-02
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
