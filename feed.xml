@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-02T12:42:50Z</updated>
+  <updated>2026-11-02T13:48:54Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20261102T134854Z</id>
+    <title>Free models changed: Vercel AI Gateway</title>
+    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
+    <updated>2026-11-02T13:48:54Z</updated>
+    <summary type="text">dropped laguna-s-2.1 · free models: beam-1.0, nemotron-3.5-lightning</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/notrack-ai/20261102T124250Z</id>
     <title>Added: NoTrack API</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://freeinference.org"/>
     <updated>2026-10-26T08:27:25Z</updated>
     <summary type="text">dropped diffusiongemma, glm-5.1, minimax-m2.5 · free models: deepseek-v4-flash, glm-5.3-flash, minimax-m3, qwen3.6</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261025T085037Z</id>
-    <title>Free models changed: opencode</title>
-    <link rel="alternate" href="https://opencode.ai"/>
-    <updated>2026-10-25T08:50:37Z</updated>
-    <summary type="text">dropped longcat-2.5-preview, mimo-v2.5 · free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash</summary>
   </entry>
 </feed>

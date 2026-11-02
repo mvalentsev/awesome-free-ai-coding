@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-02'
-description: 126 model families the list's 94 live rows serve free, and every row that serves each one; 84 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 125 model families the list's 94 live rows serve free, and every row that serves each one; 83 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-11-02
 ---
@@ -10,7 +10,7 @@ last_modified_at: 2026-11-02
 
 # Every free model on the list
 
-126 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+125 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -94,7 +94,6 @@ last_modified_at: 2026-11-02
 | [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-11-05) |
 | `kimi-for-coding` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
-| [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳 |
 | [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `leanstral-1.5` | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
 | [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
@@ -147,6 +146,7 @@ last_modified_at: 2026-11-02
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
+| [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) | 2026-11-02 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/), [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/), [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | [`sage-a1.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/sage-a1.5/) | 2026-10-31 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | [`intern-s2-397b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/intern-s2-397b/) | 2026-10-31 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | [`atria-dawn-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/atria-dawn-preview/) | 2026-10-31 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |

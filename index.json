@@ -4900,14 +4900,11 @@
       "free_part": "models",
       "models": [
         {
-          "family": "laguna-s-2.1"
+          "family": "beam-1.0"
         },
         {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
-        },
-        {
-          "family": "beam-1.0"
         }
       ],
       "api": {
@@ -4981,9 +4978,8 @@
       "search": {
         "name": "Vercel AI Gateway",
         "models": [
-          "laguna-s-2.1",
-          "nemotron-3.5-lightning",
-          "beam-1.0"
+          "beam-1.0",
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "poolside/laguna-s-2.1-free",
@@ -4996,9 +4992,8 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "laguna-s-2.1": "",
-          "nemotron-3.5-lightning": "",
-          "beam-1.0": ""
+          "beam-1.0": "",
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "aggregator"
@@ -19229,13 +19224,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
-      "family": "laguna-s-2.1",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
       "family": "laguna-xs-2.1",
       "rows": [
         "nvidia-nim"
@@ -19597,6 +19585,11 @@
       "family": "kolibri-1",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
+    },
+    {
+      "family": "laguna-s-2.1",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
       "family": "ling-3.0-flash",

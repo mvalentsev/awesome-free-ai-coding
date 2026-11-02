@@ -2554,10 +2554,9 @@ entries:
     reviewed_on: '2026-11-02'
   free_part: models
   models:
-  - family: laguna-s-2.1
+  - family: beam-1.0
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
-  - family: beam-1.0
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
