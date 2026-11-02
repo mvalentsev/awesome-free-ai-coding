@@ -989,8 +989,10 @@ thirty-one phone screens: GitHub gives a table the screen's width and no more, s
 the offer got a column a word or two wide and the models and the dates sat off the
 right edge. The same rows as list items measured eighteen. The comparison shows at most 20 families;
 current measured scores come first, highest first, independently of a Strong mark.
-The README draws them against the index leader and folds who serves each under
-it in the chart's order. Without measurements it lists the most widely served
+The comparison axis starts at 0 and scales to the free models, with labelled,
+equally spaced ticks and a round upper bound. Both widths use the same scale;
+the global index leader is named separately as a reference. The README folds
+who serves each model under it in the chart's order. Without measurements it lists the most widely served
 families. The graph names the index revision and read date; unavailable scores
 do not become zeros. Every family and everyone who serves it free is in the site's model index, which grows
 with the families rather than the rows — 70 in 7 KB on 2026-09-20, 149 in 18.7 KB on
@@ -1148,7 +1150,7 @@ cannot print two versions of it.
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
-| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and measured free models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
+| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and measured free models on a zero-based score axis with the index leader named separately, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js` | `hand` |

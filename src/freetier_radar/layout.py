@@ -118,7 +118,7 @@ MAP: tuple[Node, ...] = (
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("assets/readme/*.svg", Kind.GENERATED,
          "the README's pictures: the radar at the top, a dot per live row, and measured free models "
-         "drawn against the top of the index, in each width and theme the README serves — and "
+         "on a zero-based score axis with the index leader named separately, in each width and theme the README serves — and "
          "the radar alone, the site's mark beside its name",
          made_from=("registry.yaml", _SCORES), written_by=("freetier-render",), published=True),
     Node("providers/*.md", Kind.GENERATED,

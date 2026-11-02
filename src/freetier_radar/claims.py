@@ -37,6 +37,7 @@ from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_P
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
+from .pictures import _chart_ticks
 from .validate import PROSE_LIMITS
 # The render's own words for a figure (see words.py).
 from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
@@ -410,6 +411,9 @@ CLAIMS: tuple[Claim, ...] = (
           "tiers.FRONTIER_WITHIN and STRONG_WITHIN"),
     Claim("CONTRIBUTING.md", r"index version `([\d.]+)`; a missing",
           lambda root: (INDEX_VERSION,), "tiers.INDEX_VERSION and HTTP writer revision regressions"),
+    Claim("CONTRIBUTING.md", r"The comparison axis starts at (\d+) and scales to the free models",
+          lambda root: (f"{_chart_ticks(33.6)[0]:g}",),
+          "pictures._chart_ticks; zero baseline, real score ratios and common-width axis controls in tests/test_pictures.py"),
     Claim("CONTRIBUTING.md", r"vendor output in backticks, (\d+) characters\s+at most",
           lambda root: (str(PROSE_LIMITS["api.notice"]),), "validate.PROSE_LIMITS['api.notice']"),
     Claim("CONTRIBUTING.md", r"holds a refusal off the failure count for (\d+) days from `since`",

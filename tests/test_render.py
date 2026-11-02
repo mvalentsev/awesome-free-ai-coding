@@ -2238,8 +2238,8 @@ def test_current_free_measurements_keep_the_comparison_and_provider_path_without
     assert '## 📦 Archive' in text and '## 🔧 Plug it into your agent' in text
 
 
-def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path):
-    """The strong models are a chart, a bar per model as long as its score,
+def test_the_free_models_are_compared_with_the_index_leader_named_separately(tmp_path: Path):
+    """The free models are a chart, a bar per model as long as its score,
     drawn from the scores the tiers were read off — and the list of who serves
     each is folded under it, in the chart's order, so the two are one answer."""
     from freetier_radar.models import save_registry
@@ -2257,7 +2257,9 @@ def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path
     # the chart's order: the higher score first
     assert strong.index("[`kimi-k3`]") < strong.index("[`glm-5.3`]")
     chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text(encoding="utf-8")
-    assert ">45.9*<" in chart and " · 1 offer<" in chart and " · 2 offers<" in chart
+    assert ">45.9*<" in chart
+    assert re.search(r'class="m offers"[^>]*>1</text>', chart)
+    assert re.search(r'class="m offers"[^>]*>2</text>', chart)
     assert "Claude Opus 5.5, 57.6" in chart and "(Adaptive" not in chart
 
 

@@ -58,7 +58,7 @@
 </details>
 {% endif %}
 
-Frontier scores are within {{ frontier_within }} points of the leader; Strong scores are within {{ strong_within }} points. [All {{ family_count }} free model families]({{ pages_url }}/#model-index), including those without current scores, remain in the model index.
+{% if readme_models | selectattr('frontier') | list %}Frontier scores are within {{ frontier_within }} points of the index leader. {% endif %}[All {{ family_count }} free model families]({{ pages_url }}/#model-index), including those without current scores, remain in the model index.
 
 {% endif %}
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}

@@ -343,7 +343,7 @@ def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
 
 @pytest.mark.parametrize("name, value, readme_says, site_says, unsaid", [
     ("FRONTIER_WITHIN", 12.0, "within 12 points", "within 12 points", "within 10 points"),
-    ("STRONG_WITHIN", 30.0, "within 30 points", "within 30 points", "within 25 points"),
+    ("STRONG_WITHIN", 30.0, None, "within 30 points", "within 25 points"),
     ("PROVISIONAL_PROMOTE_DAYS", 21, "three weeks", "three weeks", "two weeks"),
     ("ARCHIVE_AFTER_FAILURES", 4, "fail ×4", "fails 4 probes", "fail ×3"),
     ("ARCHIVE_AFTER_DAYS", 45, "stale 45d", "goes 45\n          days", "stale 60d"),
@@ -366,7 +366,12 @@ def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name
                                                                 "aa_model": "big"}]),
     ]
     pages = _render_everything(entries, tmp_path)
-    assert readme_says in pages["README.md"]
+    # The README compares measured scores and does not label Strong; the site
+    # still explains that classification and must track its actual constant.
+    if readme_says is not None:
+        assert readme_says in pages["README.md"]
+    else:
+        assert "Strong scores" not in pages["README.md"]
     assert site_says in pages[SITE_PAGE]
     assert not [path for path, text in pages.items() if unsaid in text]
 

@@ -674,7 +674,7 @@ def _hero(active: list[Entry], shared: dict) -> Hero:
     states, and a dot per live row in its section. No date: the badge under it
     carries the list's one date, its floor (`_floor`)."""
     return Hero(live=shared["active_count"], no_card=shared["no_card_count"],
-                models=shared["family_count"], strong=len(shared["strong_models"]),
+                models=shared["family_count"], endpoints=shared["endpoint_count"],
                 schedule=shared["schedule"],
                 arcs=tuple(Arc(label, tone, sum(1 for e in active if e.category is cat))
                            for cat, (label, tone) in HERO_ARCS.items()))
@@ -701,14 +701,12 @@ def _chart(models: list[dict], scores: dict | None) -> Chart | None:
         return None
     kept = scores.get("families") or {}
     bars = tuple(Bar(m["family"], kept[m["family"]]["index"], len(m["providers"]),
-                     m["frontier"], bool(kept[m["family"]].get("estimated")),
-                     m.get("tier") == "strong")
+                     bool(kept[m["family"]].get("estimated")))
                  for m in models if m["family"] in kept)
     if not bars:
         return None
     return Chart(bars=bars, top_name=_plain_model(scores["top"]["name"]),
                  top_score=scores["top"]["index"], read_on=date.fromisoformat(scores["read_on"]),
-                 frontier_within=FRONTIER_WITHIN, strong_within=STRONG_WITHIN,
                  version=scores.get("version", ""))
 
 

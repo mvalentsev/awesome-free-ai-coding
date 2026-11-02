@@ -1,5 +1,5 @@
 """The README's pictures, drawn as SVG from figures the render already has:
-the hero at the top of the page (`hero_svg`) and the strong models' chart
+the hero at the top of the page (`hero_svg`) and the free models' chart
 (`chart_svg`).
 
 Every mark in the hero is a fact the registry backs. The radar is the list: one
@@ -85,7 +85,7 @@ class Hero:
     live: int
     no_card: int
     models: int
-    strong: int
+    endpoints: int
     schedule: str
     # In the list's own order: the sections go round the radar from north, and
     # the legend names them, in it.
@@ -246,7 +246,7 @@ def _legend(arcs: tuple[Arc, ...]) -> str:
 
 def _counters(hero: Hero) -> list[tuple[str, str]]:
     return [(str(hero.live), "live offers"), (str(hero.no_card), "need no card"),
-            (str(hero.models), "free models"), (str(hero.strong), "strong models")]
+            (str(hero.models), "free models"), (str(hero.endpoints), "OpenAI-compatible")]
 
 
 def hero_words(hero: Hero) -> str:
@@ -342,9 +342,7 @@ class Bar:
     family: str
     score: float
     offers: int
-    frontier: bool
     estimated: bool
-    strong: bool | None = None
 
 
 @dataclass(frozen=True)
@@ -353,8 +351,6 @@ class Chart:
     top_name: str
     top_score: float
     read_on: date
-    frontier_within: float
-    strong_within: float
     version: str = ""
 
     def ranked(self) -> list[Bar]:
@@ -377,20 +373,26 @@ def chart_words(chart: Chart | None) -> str:
 
 def _chart_rules(p: Palette) -> str:
     return (f".card{{fill:{p.canvas};stroke:{p.border}}}.t{{fill:{p.text}}}.m{{fill:{p.muted}}}"
-            f".bar.strong{{fill:{p.blue}}}.bar.frontier{{fill:{p.green}}}"
-            f".bar.measured{{fill:{p.blue};fill-opacity:.6}}"
-            f".value-bg{{fill:{p.canvas}}}"
-            f".band{{fill:{p.green};fill-opacity:.12}}"
-            f".guide{{stroke:{p.muted};stroke-dasharray:4 5}}.top{{stroke:{p.text}}}")
+            f".bar{{fill:{p.blue}}}"
+            f".grid{{stroke:{p.muted};stroke-opacity:.18}}"
+            f".axis{{stroke:{p.muted};stroke-opacity:.5}}")
 
 
 def _offers(n: int) -> str:
     return f"{n} offer" if n == 1 else f"{n} offers"
 
 
-def _value(bar: Bar) -> str:
-    return (f'<tspan class="t" font-weight="700">{bar.score:.1f}{"*" if bar.estimated else ""}'
-            f'</tspan><tspan class="m"> · {_offers(bar.offers)}</tspan>')
+def _chart_ticks(highest: float) -> tuple[float, ...]:
+    """A zero-based score axis with a round ceiling and at most five intervals.
+
+    Only the free scores set its extent; a new global leader cannot shrink an
+    unchanged free model. All-zero scores still have an honest, nonzero axis.
+    """
+    highest = max(highest, 1.0)
+    magnitude = 10 ** math.floor(math.log10(highest / 4))
+    step = next(n * magnitude for n in (1, 2, 5, 10) if n * magnitude >= highest / 4)
+    intervals = math.ceil(highest / step)
+    return tuple(i * step for i in range(intervals + 1))
 
 
 def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
@@ -415,25 +417,29 @@ def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
 
 
 def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False) -> str:
-    """The measured models the list serves free, each as long as its score on
-    the Artificial Analysis Intelligence Index, on an axis from zero to the top
-    of the index: the gap to the frontier drawn as it is, not stretched. The
-    frontier band and the strong bar are the tiers' own thresholds."""
+    """Compare actual free-model scores on a labelled, zero-based scale.
+
+    The global leader is a named reference, independent of the free models'
+    axis. Scores and offer counts have their own aligned columns. On a phone,
+    names sit above their bars so a full model identity keeps the whole width.
+    """
     if chart is None or not chart.bars:
         return _empty_chart_svg(palette, narrow)
     ranked = chart.ranked()
     shown = ranked[:NARROW_BARS] if narrow else ranked
     width = 600 if narrow else 1160
-    # The phone chart keeps the right edge for the figures, clear of the guides.
     label_end = max(350.0, min(520.0, 40.0 + max(len(bar.family) for bar in shown) * 11.5))
-    x0, x1 = (30.0, 380.0) if narrow else (label_end + 20.0, 1000.0)
-    top = chart.top_score or 1.0
-    scale = (x1 - x0) / top
+    x0, x1 = (30.0, 360.0) if narrow else (label_end + 20.0, 900.0)
+    score_x, offers_x = (445, 570) if narrow else (1000, 1120)
+    # Use the full comparison in both widths: hiding rows on a phone must not
+    # change the scale. The zero tick and equal intervals make it explicit.
+    ticks = _chart_ticks(max(bar.score for bar in ranked))
+    scale = (x1 - x0) / ticks[-1]
 
     def at(score: float) -> float:
         return x0 + max(0.0, score) * scale
 
-    first, row = (196, 62) if narrow else (150, 32)
+    first, row = (203, 64) if narrow else (182, 32)
     end = first + len(shown) * row - (row - 24 if narrow else 14)
     notes = []
     if narrow and len(ranked) > len(shown):
@@ -444,7 +450,7 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
         notes.append("each bar: a model a live offer on this list serves free — where, in the "
                      "list below")
     height = end + 30 * len(notes) + 36
-    guide_top, label_y = (156, 148) if narrow else (112, 124)
+    axis_y, label_y = (170, 156) if narrow else (156, 146)
     size = 21 if narrow else 16
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
              f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
@@ -456,54 +462,45 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
         parts += [f'<text class="t" x="30" y="56" font-family="{SANS}" font-size="30" '
                   f'font-weight="700">Free models, compared</text>',
                   f'<text class="m" x="30" y="92" font-family="{SANS}" font-size="21">AA Intelligence Index'
-                  f'{" v" + chart.version if chart.version else ""}</text>',
-                  f'<text class="m" x="30" y="120" font-family="{SANS}" font-size="21">read '
-                  f'{chart.read_on.isoformat()} · top: {escape(chart.top_name)}, '
-                  f'{chart.top_score:.1f}</text>']
+                  f'{" v" + chart.version if chart.version else ""} · read {chart.read_on.isoformat()}</text>',
+                  f'<text class="m" x="30" y="120" font-family="{SANS}" font-size="21">'
+                  f'Index leader: {escape(chart.top_name)}, {chart.top_score:.1f}</text>']
     else:
         parts += [f'<text class="t" x="40" y="58" font-family="{SANS}" font-size="30" '
                   f'font-weight="700">Free models, compared</text>',
                   f'<text class="m" x="40" y="90" font-family="{SANS}" font-size="18">AA Intelligence Index'
-                  f'{" v" + chart.version if chart.version else ""}, read {chart.read_on.isoformat()} · '
-                  f'top: {escape(chart.top_name)}, {chart.top_score:.1f}</text>']
-    frontier, strong = at(top - chart.frontier_within), at(top - chart.strong_within)
-    parts += [f'<rect class="band" x="{_num(frontier)}" y="{guide_top}" '
-              f'width="{_num(x1 - frontier)}" height="{end - guide_top}"/>',
-              f'<line class="guide" x1="{_num(strong)}" y1="{guide_top}" x2="{_num(strong)}" '
-              f'y2="{end}" stroke-width="1.5"/>',
-              f'<line class="top" x1="{_num(x1)}" y1="{guide_top}" x2="{_num(x1)}" y2="{end}" '
-              f'stroke-width="2"/>',
-              f'<text class="m" x="{_num(strong + 5)}" y="{label_y}" font-family="{SANS}" '
-              f'font-size="{size}">strong</text>',
-              f'<text class="m" x="{_num(frontier + 5)}" y="{label_y}" font-family="{SANS}" '
-              f'font-size="{size}">frontier</text>']
-    # On the phone "frontier" runs past the top line, so "top" takes the line
-    # below, inside the guides and clear of the first row.
-    top_y = label_y + 28 if narrow else label_y
-    parts.append(f'<text class="m" x="{_num(x1 + 6)}" y="{top_y}" font-family="{SANS}" '
-                 f'font-size="{size}">top</text>')
+                  f'{" v" + chart.version if chart.version else ""}, read {chart.read_on.isoformat()}</text>',
+                  f'<text class="m" x="40" y="116" font-family="{SANS}" font-size="18">'
+                  f'Index leader: {escape(chart.top_name)}, {chart.top_score:.1f}</text>']
+    for tick in ticks:
+        x = at(tick)
+        parts.append(f'<text class="m tick" x="{_num(x)}" y="{label_y}" '
+                     f'text-anchor="middle" font-family="{SANS}" font-size="{size}">{tick:g}</text>')
+        parts.append(f'<line class="{"axis" if narrow else "grid"}" x1="{_num(x)}" '
+                     f'y1="{axis_y}" x2="{_num(x)}" y2="{axis_y + 5 if narrow else end}"/>')
+    parts.append(f'<line class="axis" x1="{_num(x0)}" y1="{axis_y}" '
+                 f'x2="{_num(x1)}" y2="{axis_y}"/>')
+    for x, label in ((score_x, "Score"), (offers_x, "Offers")):
+        parts.append(f'<text class="m" x="{x}" y="{label_y}" text-anchor="end" '
+                     f'font-family="{SANS}" font-size="{size}">{label}</text>')
     for i, bar in enumerate(shown):
-        strong = (bar.strong if bar.strong is not None else
-                  bar.score >= top - chart.strong_within)
-        tier = "frontier" if bar.frontier else "strong" if strong else "measured"
+        y = first + i * row
         if narrow:
-            y = first + i * row
             parts += [f'<text class="t label" x="30" y="{y}" font-family="{MONO}" '
                       f'font-size="21">{escape(bar.family)}</text>',
-                      f'<rect class="bar {tier}" x="{_num(x0)}" y="{y + 12}" '
-                      f'width="{_num(at(bar.score) - x0)}" height="16" rx="4"/>',
-                      f'<text x="570" y="{y + 27}" text-anchor="end" font-family="{SANS}" '
-                      f'font-size="21">{_value(bar)}</text>']
+                      f'<rect class="bar" x="{_num(x0)}" y="{y + 12}" '
+                      f'width="{_num(at(bar.score) - x0)}" height="16" rx="4"/>']
         else:
-            y = first + i * row
             parts += [f'<text class="t label" x="{_num(label_end)}" y="{y + 6}" text-anchor="end" '
                       f'font-family="{MONO}" font-size="19">{escape(bar.family)}</text>',
-                      f'<rect class="bar {tier}" x="{_num(x0)}" y="{y - 9}" '
-                      f'width="{_num(at(bar.score) - x0)}" height="18" rx="4"/>',
-                      f'<rect class="value-bg" x="{_num(at(bar.score) + 4)}" y="{y - 12}" '
-                      'width="155" height="25" rx="3"/>',
-                      f'<text x="{_num(at(bar.score) + 8)}" y="{y + 6}" font-family="{SANS}" '
-                      f'font-size="17">{_value(bar)}</text>']
+                      f'<rect class="bar" x="{_num(x0)}" y="{y - 9}" '
+                      f'width="{_num(at(bar.score) - x0)}" height="18" rx="4"/>']
+        value_y = y + (27 if narrow else 6)
+        for x, cls, value in ((score_x, "t score", f'{bar.score:.1f}{"*" if bar.estimated else ""}'),
+                              (offers_x, "m offers", str(bar.offers))):
+            parts.append(f'<text class="{cls}" x="{x}" y="{value_y}" text-anchor="end" '
+                         f'font-family="{SANS}" font-size="{21 if narrow else 19}" '
+                         f'font-weight="{"700" if x == score_x else "400"}">{value}</text>')
     for i, note in enumerate(notes):
         x = 30 if narrow else 40
         parts.append(f'<text class="m" x="{x}" y="{end + 40 + i * 30}" font-family="{SANS}" '
