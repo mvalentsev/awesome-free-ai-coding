@@ -1,4 +1,4 @@
-"""Recover anonymous public HTML after a confirmed browser challenge."""
+"""Recover anonymous public HTML after a challenge or an empty Framer shell."""
 from __future__ import annotations
 
 import asyncio
@@ -13,6 +13,7 @@ import uuid
 from contextlib import contextmanager
 from contextvars import ContextVar
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
@@ -84,6 +85,56 @@ def browser_challenge(response: httpx.Response) -> bool:
             or any(m in raw for m in ("cf-browser-verification", "window._cf_chl_opt", "vercel security checkpoint")))
 
 
+class _FramerShell(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.indexes = []
+        self.body = False
+        self.seen_body = False
+        self.hidden = 0
+        self.text = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "meta" and attrs.get("name") == "framer-search-index":
+            self.indexes.append(attrs.get("content", ""))
+        if tag == "body":
+            self.body = self.seen_body = True
+        if tag in ("script", "style", "noscript"):
+            self.hidden += 1
+
+    def handle_endtag(self, tag):
+        if tag in ("script", "style", "noscript"):
+            self.hidden = max(0, self.hidden - 1)
+        if tag == "body":
+            self.body = False
+
+    def handle_data(self, data):
+        if self.body and not self.hidden:
+            self.text.append(data)
+
+
+def empty_framer_page(response: httpx.Response) -> bool:
+    """Only an empty body with one explicitly declared public Framer index.
+
+    CodeAnt's https://codeant.ai/cli returned an empty HTTP200 body on
+    2026-11-02; the same URL with the existing Chrome profile returned its
+    rendered CLI offer. Its site-wide search index is not page evidence.
+    """
+    if (response.status_code != 200
+            or "html" not in response.headers.get("content-type", "").lower()
+            or "framer-search-index" not in response.text):
+        return False
+    parsed = _FramerShell()
+    parsed.feed(response.text)
+    if not parsed.seen_body or "".join(parsed.text).strip() or len(parsed.indexes) != 1:
+        return False
+    index = parsed.indexes[0]
+    if not re.fullmatch(r"https://framerusercontent\.com/sites/[A-Za-z0-9_-]+/searchIndex-[A-Za-z0-9_-]+\.json", index):
+        return False
+    return True
+
+
 def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient) -> bool:
     if (any(os.environ.get(k) for k in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY", "all_proxy"))
             or response.status_code not in (200, 403) or response.headers.get("retry-after")
@@ -97,7 +148,7 @@ def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient
         if (not public_page_url(str(hop.request.url)) or not public_page_url(str(hop.url))
                 or any(h in hop.request.headers or h in client.headers for h in credentials)):
             return False
-    return browser_challenge(response)
+    return browser_challenge(response) or empty_framer_page(response)
 
 
 def _receipt(response: httpx.Response, backend: str) -> dict:
@@ -178,20 +229,23 @@ def _profile_read(url: str, deadline: float, attempts: list[dict]) -> httpx.Resp
 
 def recover_page_sync(client: httpx.Client | httpx.AsyncClient, response: httpx.Response,
                       *, time_left: float | None = None) -> httpx.Response:
-    """Keep the direct answer unless a fresh anonymous HTML read succeeds.
+    """Keep the direct answer unless a bounded anonymous page read succeeds.
 
     Callers opt in for page reads only. A reachable page missing a claim, an
     authentication refusal, a rate limit, or a gone page never starts recovery.
+    An empty Framer shell is retried only at the same page URL.
     """
     if not _eligible(response, client) or (time_left is not None and time_left <= 0):
         return response
     attempts = [_receipt(response, "httpx")]
     seconds = min(RECOVERY_SECONDS, time_left) if time_left is not None else RECOVERY_SECONDS
     result = response
+    framer = empty_framer_page(response)
     try:
         recovered = _profile_read(str(response.url), time.monotonic() + seconds, attempts)
         if (recovered.is_success and "html" in recovered.headers.get("content-type", "").lower()
-                and not browser_challenge(recovered)):
+                and not browser_challenge(recovered) and not empty_framer_page(recovered)
+                and (not framer or recovered.url == response.url)):
             result = recovered
     except (RequestException, OSError, ValueError, TimeoutError) as exc:
         attempts.append({"backend": "curl_cffi", "at": datetime.now(timezone.utc).isoformat(),

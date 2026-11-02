@@ -1263,12 +1263,11 @@
       "last_verified": "2026-07-30",
       "retired_on": "2026-07-30",
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://docs.github.com/en/github-models",
           "https://github.blog/changelog/2026-06-16-github-models-is-no-longer-available-to-new-customers/",
           "https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/",
-          "https://models.inference.ai.azure.com",
           "https://models.github.ai/catalog/models"
         ]
       },
@@ -4109,7 +4108,7 @@
         "reason": "free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://huggingface.co/docs/inference-providers/pricing",
           "https://router.huggingface.co/v1/models",
@@ -4802,7 +4801,7 @@
         "reason": "The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq)."
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://hyper.charm.land/faq",
           "https://github.com/charmbracelet/crush",
@@ -4842,6 +4841,7 @@
       "category": "aggregator",
       "url": "https://vercel.com/ai-gateway",
       "source_urls": [
+        "https://vercel.com/ai-gateway/models/laguna-s-2.1-free",
         "https://vercel.com/docs/ai-gateway/pricing",
         "https://vercel.com/docs/ai-gateway/rate-limits",
         "https://vercel.com/docs/ai-gateway/faq",
@@ -7772,7 +7772,7 @@
         "reason": "public beta closed; the endpoint requires a key and key registration is closed"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://uncloseai.com/",
           "https://uncloseai.com/inference.html",
@@ -10639,7 +10639,7 @@
         "reason": "free accounts now include 0 requests/week and API inference requires a paid plan"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://yolo-auto.com/",
           "https://yolo-auto.com/pricing",
@@ -10647,8 +10647,7 @@
           "https://yolo-auto.com/docs",
           "https://yolo-auto.com/free-llm-api",
           "https://yolo-auto.com/about",
-          "https://yolo-auto.com/terms",
-          "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+          "https://yolo-auto.com/terms"
         ]
       },
       "probe_failures": 2,
@@ -11437,7 +11436,7 @@
         "reason": "closed to new Free accounts and new subscriptions; existing IDE users retain access until the announced end of support"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/",
           "https://aws.amazon.com/q/developer/pricing/",
@@ -12638,7 +12637,7 @@
         "reason": "Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart)."
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://blueclaw.network/",
           "https://blueclaw.network/quickstart",
@@ -13302,7 +13301,7 @@
         "reason": "BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://aider.chat/",
           "https://aider.chat/docs/faq.html"
@@ -13506,7 +13505,7 @@
         "reason": "the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://api-docs.deepseek.com/quick_start/pricing/"
         ]
@@ -13859,7 +13858,7 @@
         "reason": "its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://inference-docs.cerebras.ai/support/rate-limits",
           "https://www.cerebras.ai/pricing",
@@ -13936,11 +13935,10 @@
         "reason": "a one-month wallet of a million credits, and \"A credit card is required to start using the API\" — a one-off credit behind a card, which CONTRIBUTING does not admit"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-02",
         "sources": [
           "https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services",
-          "https://www.infomaniak.com/en/hosting/ai-services/prices",
-          "https://www.infomaniak.com/en/support/faq/2802/understanding-invoicing-for-ai-services"
+          "https://www.infomaniak.com/en/hosting/ai-services/prices"
         ]
       },
       "probe_failures": 0,
@@ -14207,6 +14205,18 @@
       "first_seen": "2026-09-18",
       "last_verified": "2026-10-26",
       "retired_on": "2026-11-01",
+      "archive_review": {
+        "checked_on": "2026-11-02",
+        "sources": [
+          "https://llmtech.eu/docs/",
+          "https://llmtech.eu/agents/",
+          "https://llmtech.eu/security/",
+          "https://llmtech.eu/about/",
+          "https://llmtech.eu/pricing/",
+          "https://llmtech.eu/changelog/",
+          "https://llmtech.eu/privacy"
+        ]
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 48,
@@ -16442,6 +16452,16 @@
       "first_seen": "2026-10-30",
       "last_verified": "2026-11-01",
       "retired_on": "2026-11-01",
+      "archive_review": {
+        "checked_on": "2026-11-02",
+        "sources": [
+          "https://api.haimaker.ai/public/model_hub",
+          "https://haimaker.ai/llms.txt",
+          "https://haimaker.ai/privacy-policy/",
+          "https://haimaker.ai/terms-and-conditions/",
+          "https://haimaker.ai/free/"
+        ]
+      },
       "probe_failures": 0,
       "provisional": true,
       "rank": 99,

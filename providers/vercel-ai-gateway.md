@@ -60,6 +60,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 ## Evidence
 
 - Probe: the models catalog at <https://ai-gateway.vercel.sh/v1/models>, each listed family checked for a zero price
+- Source: <https://vercel.com/ai-gateway/models/laguna-s-2.1-free>
 - Source: <https://vercel.com/docs/ai-gateway/pricing>
 - Source: <https://vercel.com/docs/ai-gateway/rate-limits>
 - Source: <https://vercel.com/docs/ai-gateway/faq>

@@ -15,7 +15,7 @@ from pathlib import Path
 
 import httpx
 
-from .page_reader import browser_challenge, page_evidence, recover_page, recover_page_sync
+from .page_reader import browser_challenge, empty_framer_page, page_evidence, recover_page, recover_page_sync
 
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
@@ -275,7 +275,8 @@ def page_response_ok(response: httpx.Response) -> bool:
     Callers keep their own retries, deadlines and failure verdicts. Error and
     unfinished redirect bodies must never confirm a quote, model or retirement.
     """
-    return response.is_success and not browser_challenge(response)
+    return (response.is_success and not browser_challenge(response)
+            and not empty_framer_page(response))
 
 
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
