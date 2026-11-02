@@ -20332,7 +20332,8 @@
     },
     {
       "domains": [
-        "unorouter.com"
+        "unorouter.com",
+        "unorouter.ai"
       ],
       "name": "UnoRouter",
       "checked_on": "2026-11-02",

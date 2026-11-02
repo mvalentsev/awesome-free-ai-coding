@@ -78,6 +78,12 @@ CURATED_FEEDS = [
     # (ChatGPT, GitHub Copilot, Kimi Code) beside the free ones. Read from its
     # provider catalog up to the part about connecting clients.
     "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/HEAD/README.md#choose-a-provider:connect-your-client",
+    # Coding-tool vendor sections, reviewed 2026-11-02. Keep clients and code
+    # review agents in scope without reading entire framework/resource lists.
+    # Entries are leads; bundled free usage still needs primary vendor proof.
+    "https://raw.githubusercontent.com/alihesari/awesome-ai-coding-agents/HEAD/README.md#cli-agents:agent-harnesses",
+    "https://raw.githubusercontent.com/bradagi/awesome-cli-coding-agents/HEAD/README.md#closed-source:harnesses",
+    "https://raw.githubusercontent.com/tomgranot/awesome-ai-coding/HEAD/README.md#ide-based:learning-resources",
 ]
 
 # A machine catalog rather than a list: one object per model with a published

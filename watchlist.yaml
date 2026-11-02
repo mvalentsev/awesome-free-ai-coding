@@ -1076,7 +1076,7 @@ watched:
       xKiro names where its free models are served from, or a provider confirms
       the arrangement.
 
-  - domains: [unorouter.com]
+  - domains: [unorouter.com, unorouter.ai]
     name: UnoRouter
     checked_on: '2026-11-02'
     reason: >-

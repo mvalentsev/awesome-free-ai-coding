@@ -2178,3 +2178,173 @@ read:
       behavior. No distinct provider inventory justifies another recurring feed.
     reopen_if: It adds an uncovered in-scope provider or current primary evidence of an offer
       change that existing probes do not detect.
+
+  - url: https://github.com/alihesari/awesome-agent-skills
+    name: alihesari/awesome-agent-skills
+    checked_on: '2026-11-02'
+    reason: A collection of skills, instructions, plugins and client infrastructure; its current
+      declared purpose and provider/runtime material do not allocate hosted model usage.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-3d-prompts
+    name: beatapi/awesome-3d-prompts
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-codex-themes
+    name: beatapi/awesome-codex-themes
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-jev
+    name: beatapi/awesome-jev
+    checked_on: '2026-11-02'
+    reason: A project/SDK/integration gallery marketed around BeatAPI JEV, not a provider Free-plan
+      directory.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-minimax-h3-prompts
+    name: beatapi/awesome-minimax-h3-prompts
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-opus-5-5-videos
+    name: beatapi/awesome-opus-5-5-videos
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-seedance-2-5-prompts
+    name: beatapi/awesome-seedance-2-5-prompts
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/beatapi/awesome-wan-3-0-prompts
+    name: beatapi/awesome-wan-3-0-prompts
+    checked_on: '2026-11-02'
+    reason: A prompt, media-case or visual-theme collection, with vendor marketing links; model
+      access is not bundled by the collection.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/cheahjs/free-llm-api-resources
+    name: cheahjs/free-llm-api-resources
+    checked_on: '2026-11-02'
+    reason: The exact repository metadata and HEAD README both return HTTP 404. The source is
+      currently unreadable; historical vendor leads still require their individual primary-source
+      reviews.
+    reopen_if: The exact repository becomes public/readable or a verifiable renamed repository
+      is found.
+  - url: https://github.com/deepseek-ai/awesome-deepseek-agent
+    name: deepseek-ai/awesome-deepseek-agent
+    checked_on: '2026-11-02'
+    reason: Integration recipes for an already known model vendor, including clients that use
+      the developer's own vendor key; client availability does not establish a new bundled grant.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/deepseek-ai/awesome-deepseek-integration
+    name: deepseek-ai/awesome-deepseek-integration
+    checked_on: '2026-11-02'
+    reason: Integration recipes for an already known model vendor, including clients that use
+      the developer's own vendor key; client availability does not establish a new bundled grant.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/e2b-dev/awesome-ai-agents
+    name: e2b-dev/awesome-ai-agents
+    checked_on: '2026-11-02'
+    reason: A broad agent-project/framework directory with stacks and repositories, rather than
+      a coding-tool Free-plan or provider-allowance table.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/github/awesome-copilot
+    name: github/awesome-copilot
+    checked_on: '2026-11-02'
+    reason: A collection of skills, instructions, plugins and client infrastructure; its current
+      declared purpose and provider/runtime material do not allocate hosted model usage.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/hesreallyhim/awesome-claude-code
+    name: hesreallyhim/awesome-claude-code
+    checked_on: '2026-11-02'
+    reason: A collection of skills, instructions, plugins and client infrastructure; its current
+      declared purpose and provider/runtime material do not allocate hosted model usage.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/open-free-llm-api/awesome-free-llm-apis
+    name: open-free-llm-api/awesome-free-llm-apis
+    checked_on: '2026-11-02'
+    reason: GitHub resolves this old repository name to open-free-llm-api/awesome-freellm-apis,
+      which is already a recurring feed here. A second feed would duplicate the same provider
+      directory.
+    reopen_if: The repository resolves to a distinct maintained directory, or the existing recurring
+      feed no longer covers its provider data.
+  - url: https://github.com/open-free-llm-api/free-llm-models-python
+    name: open-free-llm-api/free-llm-models-python
+    checked_on: '2026-11-02'
+    reason: A Python/CLI wrapper for the same freellm.net provider population already read via
+      its canonical recurring directory. Its README is not an independent provider source.
+    reopen_if: It adds an independent data source or in-scope provider absent from the directory
+      feed.
+  - url: https://github.com/punkpeye/awesome-mcp-servers
+    name: punkpeye/awesome-mcp-servers
+    checked_on: '2026-11-02'
+    reason: A general MCP-server implementation directory. Tool/data-server access is not a
+      Free LLM model offer, and community server code is not bundled inference.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/regolo-ai/awesome-regolo-ai
+    name: regolo-ai/awesome-regolo-ai
+    checked_on: '2026-11-02'
+    reason: The available repository uses lower-case readme.md. It is an integration and SDK
+      list for the already listed Regolo offer, including its own 30-day trial link, rather
+      than a directory of independent provider allowances.
+    reopen_if: The list adds a distinct provider endpoint or coding-tool bundled offer with
+      no current decision.
+  - url: https://github.com/richbrianx/free-llm-listing
+    name: richbrianx/free-llm-listing
+    checked_on: '2026-11-02'
+    reason: Its 22-provider table is dated 2026-05-22. Twenty vendor identities already have
+      registry or qualification decisions here. The historical Avian and Targon trial claims
+      still need current primary eligibility evidence. The dated inventory is not a maintained
+      feed of current offer changes.
+    reopen_if: The source becomes maintained with current primary offer links or adds a distinct
+      provider without a current decision. Recheck Avian and Targon against their own current
+      trial and payment terms.
+  - url: https://github.com/tldrsec/awesome-secure-defaults
+    name: tldrsec/awesome-secure-defaults
+    checked_on: '2026-11-02'
+    reason: Security-default libraries and infrastructure references, not model access or coding-agent
+      grants.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
+  - url: https://github.com/xiaomimimo/awesome-mimo-agent
+    name: xiaomimimo/awesome-mimo-agent
+    checked_on: '2026-11-02'
+    reason: Integration recipes for an already known model vendor, including clients that use
+      the developer's own vendor key; client availability does not establish a new bundled grant.
+    reopen_if: It adds a provider Free-tier or coding-tool bundled-access section, or an exact
+      in-scope vendor lead without a current decision. Individual vendor links still need primary
+      eligibility checks.
