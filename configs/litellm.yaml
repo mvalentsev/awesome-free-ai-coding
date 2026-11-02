@@ -1239,6 +1239,36 @@ model_list:
     api_base: https://zro.moonmath.ai/v1
     api_key: os.environ/ZRO_API_KEY
     use_chat_completions_api: true
+- model_name: kiosapi-id/zai/glm-4.7-flash
+  litellm_params:
+    model: openai/zai/glm-4.7-flash
+    api_base: https://api.kiosapi.id/v1
+    api_key: os.environ/KIOSAPI_ID_API_KEY
+    use_chat_completions_api: true
+- model_name: kiosapi-id/qwen/qwen3-30b
+  litellm_params:
+    model: openai/qwen/qwen3-30b
+    api_base: https://api.kiosapi.id/v1
+    api_key: os.environ/KIOSAPI_ID_API_KEY
+    use_chat_completions_api: true
+- model_name: kiosapi-id/google/gemma-4-26b
+  litellm_params:
+    model: openai/google/gemma-4-26b
+    api_base: https://api.kiosapi.id/v1
+    api_key: os.environ/KIOSAPI_ID_API_KEY
+    use_chat_completions_api: true
+- model_name: kiosapi-id/meta/llama-3.1-8b
+  litellm_params:
+    model: openai/meta/llama-3.1-8b
+    api_base: https://api.kiosapi.id/v1
+    api_key: os.environ/KIOSAPI_ID_API_KEY
+    use_chat_completions_api: true
+- model_name: kiosapi-id/aisingapore/sea-lion-27b
+  litellm_params:
+    model: openai/aisingapore/sea-lion-27b
+    api_base: https://api.kiosapi.id/v1
+    api_key: os.environ/KIOSAPI_ID_API_KEY
+    use_chat_completions_api: true
 - model_name: inception-labs/mercury-3
   litellm_params:
     model: openai/mercury-3
@@ -1436,6 +1466,12 @@ model_list:
     model: openai/qwen/qwen3.8-27b
     api_base: https://api.impossibl.com/v1
     api_key: os.environ/IMPOSSIBL_API_KEY
+    use_chat_completions_api: true
+- model_name: onemin-ai/gpt-4.1-mini
+  litellm_params:
+    model: openai/gpt-4.1-mini
+    api_base: https://api.1min.ai/openai/v1
+    api_key: os.environ/ONEMIN_AI_API_KEY
     use_chat_completions_api: true
 - model_name: standardcompute/anthropic/claude-standardcompute
   litellm_params:

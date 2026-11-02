@@ -1046,6 +1046,31 @@
         }
       }
     },
+    "kiosapi-id": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kiosapi.id",
+      "options": {
+        "baseURL": "https://api.kiosapi.id/v1",
+        "apiKey": "{env:KIOSAPI_ID_API_KEY}"
+      },
+      "models": {
+        "zai/glm-4.7-flash": {
+          "name": "zai/glm-4.7-flash"
+        },
+        "qwen/qwen3-30b": {
+          "name": "qwen/qwen3-30b"
+        },
+        "google/gemma-4-26b": {
+          "name": "google/gemma-4-26b"
+        },
+        "meta/llama-3.1-8b": {
+          "name": "meta/llama-3.1-8b"
+        },
+        "aisingapore/sea-lion-27b": {
+          "name": "aisingapore/sea-lion-27b"
+        }
+      }
+    },
     "inception-labs": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Inception Labs (Mercury)",
@@ -1245,6 +1270,19 @@
         },
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
+        }
+      }
+    },
+    "onemin-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "1min.AI",
+      "options": {
+        "baseURL": "https://api.1min.ai/openai/v1",
+        "apiKey": "{env:ONEMIN_AI_API_KEY}"
+      },
+      "models": {
+        "gpt-4.1-mini": {
+          "name": "gpt-4.1-mini"
         }
       }
     },

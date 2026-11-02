@@ -13,6 +13,11 @@ on:
   schedule:
     - cron: "37 6 * * 3"   # Wednesday 06:37 UTC, between the list's runs
   workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: "Full commit SHA required by an automatic publisher"
+        type: string
+        default: ""
   push:
     branches: [main]
     paths:
@@ -31,6 +36,17 @@ jobs:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     timeout-minutes: 45
     steps:
+      - name: Require the requested commit
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          ACTUAL_SHA: ${{ github.sha }}
+        run: |
+          if [ -n "$EXPECTED_SHA" ]; then
+            if ! [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]] || [ "$EXPECTED_SHA" != "$ACTUAL_SHA" ]; then
+              echo "::error::conformance dispatch does not name this commit"
+              exit 1
+            fi
+          fi
       - uses: actions/checkout@v7
 
       # Exact by necessity — see the note in ci.yml.

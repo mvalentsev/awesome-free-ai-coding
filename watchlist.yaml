@@ -18,6 +18,24 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [privatemode.ai]
+    name: Privatemode
+    checked_on: '2026-11-02'
+    reason: >-
+      Current pricing advertises a one-time 5-million-token organization quota,
+      but billing and rate-limit documentation say a payment card may be needed
+      to unlock it. An obtainable no-card API grant is not established; this is
+      not a claim that every account requires a card or that the quota ended.
+      No recurring free API allowance is documented. API clients use the SDK
+      or proxy for attestation and encryption. Sources:
+      https://docs.privatemode.ai/pricing/,
+      https://docs.privatemode.ai/portal/billing/ and
+      https://docs.privatemode.ai/rate-limits/.
+    reopen_if: >-
+      Current primary documentation or an existing authorized account establishes
+      usable no-card API credits, or a recurring free API mode becomes available.
+      Recheck activation, every advertised free mode and client requirements;
+      paid model prices alone do not negate the shared introductory quota.
   - domains: [aws.amazon.com]
     name: Amazon Q Developer
     checked_on: '2026-10-26'

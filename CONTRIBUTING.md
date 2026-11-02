@@ -389,6 +389,9 @@ it too, with no setting to turn on: a row the vendor marks uncallable is not a
 free lane whatever its price says, and it fails the probe as `marked
 unavailable`.
 
+An unpriced catalog may use `tier: free`. Published prices take precedence over
+that tier label; an unreadable price does not become free.
+
 **A vendor can list its free lane under a key of its own.** Cline's
 recommended-models document carries no price and no free flag: it lists
 `recommended`, `free`, `clinePass` and `clineCloud` side by side, and one model
@@ -724,6 +727,10 @@ serves and records, Codex on the profile copied where the profile says. A
 sentence the programs stop bearing out is a red run that names it and the
 release; so is a sentence reworded with its check left behind, and a program
 that could not be run as printed.
+
+The verification and expiry writers explicitly dispatch this workflow when
+their pushed commit changes watched paths. An automatic dispatch names the
+commit, which the run checks before downloading clients.
 
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —

@@ -325,8 +325,8 @@ class UsageQuota(BaseModel):
                      'one-hour sessions':r'\bone.hour sessions?\b',
                      'list-price value':r'\b(?:list.price|value.based)\b'}.get(self.unit, r'\b' + self.unit + r'\b')
             periods = {'second':r'\b(?:seconds?|secs?|rps)\b',
-                       'minute':r'\b(?:minutes?|min|rpm|tpm)\b', 'hour':r'\b(?:hours?|rph)\b|小时',
-                       'day':r'\b(?:days?|daily|rpd|günde|günlük)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
+                       'minute':r'\b(?:minutes?|min|menit|rpm|tpm)\b', 'hour':r'\b(?:hours?|rph)\b|小时',
+                       'day':r'\b(?:days?|daily|hari|rpd|günde|günlük)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
                        'month':r'\b(?:months?|monthly|mo)\b|每月|月',
                        'one-time':r'\b(?:one.time|sign.?up|welcome|initial|new accounts?|new users?|registration|trials?|preview|once|first time)\b|注册|首次|试用|仅可领取一次',
                        'concurrent':r'\b(?:concurrent|simultaneous|simultaneously|in flight|at a time)\b|并发',

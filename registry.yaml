@@ -734,23 +734,21 @@ entries:
   - family: deepseek-v4.1-flash
     table_name: DeepSeek V4.1 Flash Free
     aa_model: deepseek-v4-1-flash
+  - family: glm-5.3-flash
+    table_name: GLM-5.3-Flash Free
+    aa_model: glm-5-3-flash
+  - family: nemotron-3.5-super-vl-120b-a12b
+    table_name: Nemotron 3.5 Super VL Free
+    aa_model: nemotron-3-5-super-vl
   newcomers:
   - family: flint-40b
     'on': '2026-10-25'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Flint 40B Free
-  - family: glm-5.3-flash
-    'on': '2026-10-19'
-    source: https://opencode.ai/v2/docs/console/models/
-    table_name: GLM-5.3-Flash Free
   - family: beam-1.0
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Beam Free
-  - family: nemotron-3.5-super-vl-120b-a12b
-    'on': '2026-10-19'
-    source: https://opencode.ai/v2/docs/console/models/
-    table_name: Nemotron 3.5 Super VL Free
   data_use:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
@@ -2697,11 +2695,13 @@ entries:
     label: Additional IP guard
     source: https://bazaarlink.ai/free
     quote: with an additional IP guard
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: deepseek-v4-flash
     aa_model: deepseek-v4-flash
+  - family: nemotron-3.5-lightning
+    aa_model: nemotron-3-5-lightning
   api:
     base_url: https://api.bazaarlink.ai/v1
     key_url: https://bazaarlink.ai/keys
@@ -4912,15 +4912,11 @@ entries:
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
-  limits: 'Free chat rows can be called on a new account with zero balance before
-    any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model
+  limits: Free chat rows can be called on a new account with zero balance before any
+    top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model
     prices. Prompt and response bodies are not permanently written to the usage and
-    billing database. Heabsy requires provider-specific data-transfer consent: "Heabsy
-    models cannot be called until your account has granted the data-transfer consent
-    for Heabsy". Its stream is buffered until completion, and reasoning_effort is
-    unsupported. For free Nemotron3.5 Super VL, inputs "may be retained by the provider
-    and used to improve the model". Shanghai AI Lab prompts and completions may be
-    logged by the provider and used to improve models.'
+    billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the
+    provider and used to improve the model".
   quotas:
   - unit: usage
     period: day
@@ -5247,13 +5243,10 @@ entries:
     - internlm/intern-s2-free
     - internlm/sage-a1.5-free
     - heabsy/qwen3.8-27b-heabsy-free
-    note: 'New accounts have a lower free allowance for 24 hours. Heabsy needs Settings
-      → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5
-      VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high
+    note: 'New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL:
+      omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high
       (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory.
-      Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B)
-      requires tool_choice: auto and has no response_format. Include reasoning in
-      max_tokens.'
+      Include reasoning in max_tokens.'
   data_use:
     trains: 'yes'
     quote: Text, images and videos sent to the free row may be retained by the provider
@@ -6564,6 +6557,7 @@ entries:
   - family: step-3.7-flash
     aa_model: step-3-7-flash
   - family: solar-mini-4
+  - family: beam-1.0
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -10511,3 +10505,157 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: kiosapi-id
+  name: Kiosapi.id
+  category: aggregator
+  url: https://kiosapi.id
+  source_urls:
+  - https://kiosapi.id/docs
+  - https://kiosapi.id/pricing
+  - https://kiosapi.id/docs/agents
+  - https://kiosapi.id/terms
+  - https://kiosapi.id/privacy
+  card_required: false
+  offering: Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a
+    daily free allowance on selected open models, independent of its prepaid models
+  limits: A verified email is required. Free requests do not spend prepaid credit
+    and need no top-up. The daily allowance is shared across Free models. Free requests
+    have approximately 24k input characters and 2,048 output tokens. Paid models spend
+    the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream
+    data policies apply. Encrypted web-chat storage does not encrypt inference processing.
+  quotas:
+  - amount: 50.0
+    unit: requests
+    period: day
+    scope: account
+    label: Free models
+    reset: 07:00 WIB
+    source: https://kiosapi.id/docs
+    quote: 'Free tier: 50 request/hari per akun (reset 07:00 WIB), wajib email terverifikasi.'
+    value_phrase: 50 request/hari
+    model_ids:
+    - zai/glm-4.7-flash
+    - qwen/qwen3-30b
+    - google/gemma-4-26b
+    - meta/llama-3.1-8b
+    - aisingapore/sea-lion-27b
+  - amount: 5.0
+    unit: requests
+    period: minute
+    scope: unspecified
+    label: Free rate limit
+    source: https://kiosapi.id/docs
+    quote: 'Rate limit free: 5 req/menit'
+    value_phrase: 5 req/menit
+    reviewed_on: '2026-11-02'
+  free_part: models
+  models: []
+  api:
+    base_url: https://api.kiosapi.id/v1
+    key_url: https://kiosapi.id/dashboard/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - zai/glm-4.7-flash
+    - qwen/qwen3-30b
+    - google/gemma-4-26b
+    - meta/llama-3.1-8b
+    - aisingapore/sea-lion-27b
+    note: Use a live key. Test keys return fixed mock responses without calling a
+      model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions
+      is separate. The public catalog marks function tools available on GLM, Qwen
+      and Gemma, but not Llama or SEA-LION.
+  border:
+    left_out: []
+    'on': '2026-11-02'
+    source: https://kiosapi.id/terms
+    read: none
+  probe:
+    type: api-models
+    endpoint: https://api.kiosapi.id/v1/models
+    keywords: []
+    free_marker: ''
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-11-02'
+  last_verified: '2026-11-02'
+  probe_failures: 0
+  provisional: true
+  rank: 89
+- id: onemin-ai
+  name: 1min.AI
+  category: aggregator
+  url: https://1min.ai
+  source_urls:
+  - https://1min.ai/pricing
+  - https://1min.ai/free-credits
+  - https://docs.1min.ai/docs/api/create-api-key
+  - https://docs.1min.ai/docs/api/specifications/credits-limits
+  - https://docs.1min.ai/docs/api/specifications/rate-limits
+  - https://docs.1min.ai/docs/api/openai-compatible
+  - https://1min.ai/terms
+  - https://1min.ai/privacy
+  card_required: false
+  offering: Multi-provider AI platform with a no-card Free plan, credits obtainable
+    without purchase, and an OpenAI-compatible API that spends the same credit balance
+  limits: Free credits never expire and can be obtained through daily visits and other
+    published activities; their amount is not published. API use draws from the key
+    owner team balance and member allowance. Credits are reserved for estimated input
+    and maximum output before generation. The compatible endpoint is text-only, supports
+    function tools on its documented models, and has a 32,768-token output ceiling
+    (16,384 for GPT-4o). Inputs, tool data, outputs and usage evidence are retained
+    under the existing retention policy. Text is also sent to OpenAI for moderation,
+    regardless of the generation provider. The generic 180-RPM specification is separate
+    from the compatible endpoint limit.
+  quotas:
+  - unit: credits
+    scope: account
+    label: Free credits
+    source: https://1min.ai/free-credits
+    quote: 1min.AI offers numerous ways for users to obtain free credits without making
+      a purchase, and these credits never expire.
+    reviewed_on: '2026-11-02'
+  - amount: 60.0
+    unit: requests
+    period: minute
+    scope: person
+    label: Compatible API
+    condition: Shared across API keys
+    condition_quote: Generation shares the existing API limit of 60 requests/minute
+      per user across API keys.
+    source: https://docs.1min.ai/docs/api/openai-compatible
+    quote: Generation shares the existing API limit of 60 requests/minute per user
+      across API keys.
+    value_phrase: 60 requests/minute
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.1min.ai/openai/v1
+    key_url: https://app.1min.ai/
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - gpt-4.1-mini
+    note: Use a 1min.AI key as a bearer token. gpt-4.1-mini is the documented SDK
+      example; inspect the authenticated /models catalog for current access. This
+      endpoint supports Chat Completions, not Responses; the application has models
+      and features outside this adapter.
+  border:
+    left_out: []
+    'on': '2026-11-02'
+    source: https://1min.ai/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://1min.ai/free-credits
+    keywords:
+    - obtain free credits without making a purchase
+    - these credits never expire
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-02'
+  last_verified: '2026-11-02'
+  probe_failures: 0
+  provisional: true
+  rank: 95

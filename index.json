@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01",
+  "generated": "2026-11-02",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -124,7 +124,9 @@
       "cubic",
       "CodeAnt AI",
       "Zro (MoonMath)",
-      "Infron"
+      "Infron",
+      "Kiosapi.id",
+      "1min.AI"
     ],
     "sections": [
       {
@@ -1529,6 +1531,16 @@
           "family": "deepseek-v4.1-flash",
           "table_name": "DeepSeek V4.1 Flash Free",
           "aa_model": "deepseek-v4-1-flash"
+        },
+        {
+          "family": "glm-5.3-flash",
+          "table_name": "GLM-5.3-Flash Free",
+          "aa_model": "glm-5-3-flash"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "table_name": "Nemotron 3.5 Super VL Free",
+          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "newcomers": [
@@ -1539,22 +1551,10 @@
           "table_name": "Flint 40B Free"
         },
         {
-          "family": "glm-5.3-flash",
-          "on": "2026-10-19",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "GLM-5.3-Flash Free"
-        },
-        {
           "family": "beam-1.0",
           "on": "2026-10-19",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "table_name": "Beam Free"
-        },
-        {
-          "family": "nemotron-3.5-super-vl-120b-a12b",
-          "on": "2026-10-19",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "Nemotron 3.5 Super VL Free"
         }
       ],
       "data_use": {
@@ -1616,7 +1616,9 @@
           "nemotron-3-ultra",
           "nemotron-3.5-lightning",
           "mimo-v2.6-flash",
-          "deepseek-v4.1-flash"
+          "deepseek-v4.1-flash",
+          "glm-5.3-flash",
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
@@ -1628,7 +1630,9 @@
           "nemotron-3-ultra": "",
           "nemotron-3.5-lightning": "",
           "mimo-v2.6-flash": "",
-          "deepseek-v4.1-flash": ""
+          "deepseek-v4.1-flash": "",
+          "glm-5.3-flash": "",
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "agent-cli"
@@ -5093,7 +5097,7 @@
           "label": "Additional IP guard",
           "source": "https://bazaarlink.ai/free",
           "quote": "with an additional IP guard",
-          "reviewed_on": "2026-10-26",
+          "reviewed_on": "2026-11-02",
           "amount": null,
           "period": null
         }
@@ -5103,6 +5107,10 @@
         {
           "family": "deepseek-v4-flash",
           "aa_model": "deepseek-v4-flash"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
         }
       ],
       "api": {
@@ -5159,7 +5167,8 @@
       "search": {
         "name": "BazaarLink",
         "models": [
-          "deepseek-v4-flash"
+          "deepseek-v4-flash",
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "deepseek/deepseek-v4-flash-0731free:free",
@@ -5174,7 +5183,8 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "deepseek-v4-flash": ""
+          "deepseek-v4-flash": "",
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "aggregator"
@@ -8834,7 +8844,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -9152,7 +9162,7 @@
           "internlm/sage-a1.5-free",
           "heabsy/qwen3.8-27b-heabsy-free"
         ],
-        "note": "New accounts have a lower free allowance for 24 hours. Heabsy needs Settings → Data-transfer consents, buffers streams and rejects reasoning_effort. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Shanghai AI Lab: use reasoning: false; omit reasoning_effort. Intern-S2 (397B) requires tool_choice: auto and has no response_format. Include reasoning in max_tokens."
+        "note": "New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Include reasoning in max_tokens."
       },
       "data_use": {
         "trains": "yes",
@@ -9205,7 +9215,7 @@
           "minimax/minimax-m3.1-flash-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Heabsy requires provider-specific data-transfer consent: \"Heabsy models cannot be called until your account has granted the data-transfer consent for Heabsy\". Its stream is buffered until completion, and reasoning_effort is unsupported. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\". Shanghai AI Lab prompts and completions may be logged by the provider and used to improve models.",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nMiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -11304,6 +11314,9 @@
         },
         {
           "family": "solar-mini-4"
+        },
+        {
+          "family": "beam-1.0"
         }
       ],
       "api": {
@@ -11358,7 +11371,8 @@
         "name": "Nous Portal (Hermes Agent)",
         "models": [
           "step-3.7-flash",
-          "solar-mini-4"
+          "solar-mini-4",
+          "beam-1.0"
         ],
         "ids": [
           "stepfun/step-3.7-flash:free",
@@ -11372,7 +11386,8 @@
         "access": "",
         "modelAccess": {
           "step-3.7-flash": "",
-          "solar-mini-4": ""
+          "solar-mini-4": "",
+          "beam-1.0": ""
         },
         "section": {
           "id": "aggregator"
@@ -17053,6 +17068,215 @@
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/"
+    },
+    {
+      "id": "kiosapi-id",
+      "name": "Kiosapi.id",
+      "category": "aggregator",
+      "url": "https://kiosapi.id",
+      "source_urls": [
+        "https://kiosapi.id/docs",
+        "https://kiosapi.id/pricing",
+        "https://kiosapi.id/docs/agents",
+        "https://kiosapi.id/terms",
+        "https://kiosapi.id/privacy"
+      ],
+      "card_required": false,
+      "offering": "Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models",
+      "limits": "Free models: 50 requests/day per account; for `zai/glm-4.7-flash`, `qwen/qwen3-30b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `aisingapore/sea-lion-27b`. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
+      "quotas": [
+        {
+          "amount": 50.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "label": "Free models",
+          "reset": "07:00 WIB",
+          "source": "https://kiosapi.id/docs",
+          "quote": "Free tier: 50 request/hari per akun (reset 07:00 WIB), wajib email terverifikasi.",
+          "value_phrase": "50 request/hari",
+          "model_ids": [
+            "zai/glm-4.7-flash",
+            "qwen/qwen3-30b",
+            "google/gemma-4-26b",
+            "meta/llama-3.1-8b",
+            "aisingapore/sea-lion-27b"
+          ]
+        },
+        {
+          "amount": 5.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "unspecified",
+          "label": "Free rate limit",
+          "source": "https://kiosapi.id/docs",
+          "quote": "Rate limit free: 5 req/menit",
+          "value_phrase": "5 req/menit",
+          "reviewed_on": "2026-11-02"
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://api.kiosapi.id/v1",
+        "key_url": "https://kiosapi.id/dashboard/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "zai/glm-4.7-flash",
+          "qwen/qwen3-30b",
+          "google/gemma-4-26b",
+          "meta/llama-3.1-8b",
+          "aisingapore/sea-lion-27b"
+        ],
+        "note": "Use a live key. Test keys return fixed mock responses without calling a model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions is separate. The public catalog marks function tools available on GLM, Qwen and Gemma, but not Llama or SEA-LION."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-02",
+        "source": "https://kiosapi.id/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://api.kiosapi.id/v1/models",
+        "keywords": [],
+        "free_marker": "",
+        "require_zero_price": true,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-02",
+      "last_verified": "2026-11-02",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 89,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Kiosapi.id",
+        "models": [],
+        "ids": [
+          "zai/glm-4.7-flash",
+          "qwen/qwen3-30b",
+          "google/gemma-4-26b",
+          "meta/llama-3.1-8b",
+          "aisingapore/sea-lion-27b"
+        ],
+        "what": "Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models",
+        "limits": "Free models: 50 requests/day per account; for `zai/glm-4.7-flash`, `qwen/qwen3-30b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `aisingapore/sea-lion-27b`. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "aggregator"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/"
+    },
+    {
+      "id": "onemin-ai",
+      "name": "1min.AI",
+      "category": "aggregator",
+      "url": "https://1min.ai",
+      "source_urls": [
+        "https://1min.ai/pricing",
+        "https://1min.ai/free-credits",
+        "https://docs.1min.ai/docs/api/create-api-key",
+        "https://docs.1min.ai/docs/api/specifications/credits-limits",
+        "https://docs.1min.ai/docs/api/specifications/rate-limits",
+        "https://docs.1min.ai/docs/api/openai-compatible",
+        "https://1min.ai/terms",
+        "https://1min.ai/privacy"
+      ],
+      "card_required": false,
+      "offering": "Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance",
+      "limits": "Free credits: Credits allowance: amount not published (period not published) per account\n\nCompatible API: 60 requests/minute per person (Shared across API keys)\n\nFree credits never expire and can be obtained through daily visits and other published activities; their amount is not published. API use draws from the key owner team balance and member allowance. Credits are reserved for estimated input and maximum output before generation. The compatible endpoint is text-only, supports function tools on its documented models, and has a 32,768-token output ceiling (16,384 for GPT-4o). Inputs, tool data, outputs and usage evidence are retained under the existing retention policy. Text is also sent to OpenAI for moderation, regardless of the generation provider. The generic 180-RPM specification is separate from the compatible endpoint limit.",
+      "quotas": [
+        {
+          "unit": "credits",
+          "scope": "account",
+          "label": "Free credits",
+          "source": "https://1min.ai/free-credits",
+          "quote": "1min.AI offers numerous ways for users to obtain free credits without making a purchase, and these credits never expire.",
+          "reviewed_on": "2026-11-02",
+          "amount": null,
+          "period": null
+        },
+        {
+          "amount": 60.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "person",
+          "label": "Compatible API",
+          "condition": "Shared across API keys",
+          "condition_quote": "Generation shares the existing API limit of 60 requests/minute per user across API keys.",
+          "source": "https://docs.1min.ai/docs/api/openai-compatible",
+          "quote": "Generation shares the existing API limit of 60 requests/minute per user across API keys.",
+          "value_phrase": "60 requests/minute"
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://api.1min.ai/openai/v1",
+        "key_url": "https://app.1min.ai/",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "gpt-4.1-mini"
+        ],
+        "note": "Use a 1min.AI key as a bearer token. gpt-4.1-mini is the documented SDK example; inspect the authenticated /models catalog for current access. This endpoint supports Chat Completions, not Responses; the application has models and features outside this adapter."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-02",
+        "source": "https://1min.ai/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://1min.ai/free-credits",
+        "keywords": [
+          "obtain free credits without making a purchase",
+          "these credits never expire"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-02",
+      "last_verified": "2026-11-02",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 95,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "1min.AI",
+        "models": [],
+        "ids": [
+          "gpt-4.1-mini"
+        ],
+        "what": "Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance",
+        "limits": "Free credits: Credits allowance: amount not published (period not published) per account\n\nCompatible API: 60 requests/minute per person (Shared across API keys)\n\nFree credits never expire and can be obtained through daily visits and other published activities; their amount is not published. API use draws from the key owner team balance and member allowance. Credits are reserved for estimated input and maximum output before generation. The compatible endpoint is text-only, supports function tools on its documented models, and has a 32,768-token output ceiling (16,384 for GPT-4o). Inputs, tool data, outputs and usage evidence are retained under the existing retention policy. Text is also sent to OpenAI for moderation, regardless of the generation provider. The generic 180-RPM specification is separate from the compatible endpoint limit.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "aggregator"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/"
     }
   ],
   "countries": [
@@ -18096,6 +18320,7 @@
       "moark",
       "sarvam",
       "zro",
+      "kiosapi-id",
       "inception-labs",
       "novai",
       "infron",
@@ -18106,6 +18331,7 @@
       "wallaby",
       "abliteration-ai",
       "impossibl",
+      "onemin-ai",
       "ovh-ai-endpoints",
       "standardcompute",
       "novita",
@@ -18156,6 +18382,7 @@
       "moark",
       "sarvam",
       "zro",
+      "kiosapi-id",
       "inception-labs",
       "novai",
       "infron",
@@ -18166,6 +18393,7 @@
       "wallaby",
       "abliteration-ai",
       "impossibl",
+      "onemin-ai",
       "standardcompute",
       "novita",
       "sail-research",
@@ -18235,6 +18463,7 @@
       "moark",
       "sarvam",
       "zro",
+      "kiosapi-id",
       "inception-labs",
       "novai",
       "infron",
@@ -18245,6 +18474,7 @@
       "wallaby",
       "abliteration-ai",
       "impossibl",
+      "onemin-ai",
       "standardcompute",
       "novita",
       "sail-research",
@@ -18259,6 +18489,20 @@
     ]
   },
   "models": [
+    {
+      "family": "nemotron-3.5-lightning",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "vercel-ai-gateway",
+        "bazaarlink"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+    },
     {
       "family": "qwen3.8-27b",
       "rows": [
@@ -18287,17 +18531,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
     },
     {
-      "family": "nemotron-3.5-lightning",
+      "family": "glm-5.3-flash",
       "rows": [
         "opencode",
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
         "nvidia-nim",
+        "freebuff",
         "aihubmix",
-        "vercel-ai-gateway"
+        "zcode",
+        "freeinference"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
       "family": "nemotron-3-nano-omni",
@@ -18310,6 +18553,18 @@
         "tokenrouter"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
+    },
+    {
+      "family": "nemotron-3.5-super-vl-120b-a12b",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "cline",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
       "family": "deepseek-v4.1-flash",
@@ -18332,28 +18587,6 @@
         "opper"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
-    },
-    {
-      "family": "glm-5.3-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "aihubmix",
-        "zcode",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
-    },
-    {
-      "family": "nemotron-3.5-super-vl-120b-a12b",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "cline",
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
       "family": "deepseek-v4-flash",
@@ -18414,6 +18647,15 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
+    },
+    {
+      "family": "beam-1.0",
+      "rows": [
+        "kilo-code",
+        "vercel-ai-gateway",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "dots-3-note",
@@ -18503,14 +18745,6 @@
         "agnes-ai"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/"
-    },
-    {
-      "family": "beam-1.0",
-      "rows": [
-        "kilo-code",
-        "vercel-ai-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "diffusiongemma",
@@ -19332,6 +19566,16 @@
     }
   ],
   "watchlist": [
+    {
+      "domains": [
+        "privatemode.ai"
+      ],
+      "name": "Privatemode",
+      "checked_on": "2026-11-02",
+      "reason": "Current pricing advertises a one-time 5-million-token organization quota, but billing and rate-limit documentation say a payment card may be needed to unlock it. An obtainable no-card API grant is not established; this is not a claim that every account requires a card or that the quota ended. No recurring free API allowance is documented. API clients use the SDK or proxy for attestation and encryption. Sources: https://docs.privatemode.ai/pricing/, https://docs.privatemode.ai/portal/billing/ and https://docs.privatemode.ai/rate-limits/.",
+      "reopen_if": "Current primary documentation or an existing authorized account establishes usable no-card API credits, or a recurring free API mode becomes available. Recheck activation, every advertised free mode and client requirements; paid model prices alone do not negate the shared introductory quota.",
+      "current": true
+    },
     {
       "domains": [
         "aws.amazon.com"

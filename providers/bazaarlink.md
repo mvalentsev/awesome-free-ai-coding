@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-11-01'
-description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: deepseek-v4-flash. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate…'
+description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: deepseek-v4-flash, nemotron-3.5-lightning. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency…'
 permalink: /providers/bazaarlink/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: BazaarLink
 ---
 
@@ -19,7 +19,7 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)
+[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)
 
 ## Limits, in the vendor's words
 
@@ -65,6 +65,7 @@ curl -s https://api.bazaarlink.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-02` — Free models changed: added nemotron-3.5-lightning
 - `2026-10-19` — Free models changed: dropped qwen3.7-flash
 - `2026-09-28` — Free models changed: added deepseek-v4-flash
 - `2026-08-19` — Free models changed: dropped deepseek-v4-flash
@@ -72,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

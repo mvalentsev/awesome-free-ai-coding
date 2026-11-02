@@ -26,6 +26,7 @@ on:
         default: ""
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
   # Publication requests a missing Pages build before notifying IndexNow.
@@ -145,8 +146,9 @@ jobs:
       - name: Record what changed and render every page
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
-      # CI never runs on this workflow's own push (GITHUB_TOKEN starts no
-      # workflow), so what CI would check is checked here, before the commit:
+      # GITHUB_TOKEN does not start ordinary push workflows (GitHub trigger-a-workflow
+      # docs, checked 2026-11-02). Conformance is explicitly dispatched below;
+      # what CI would check is checked here, before the commit:
       # the curated files, the map and the hand-written claims, every generated
       # file against the registry, history.jsonl grown by exactly what the
       # render recorded, the announcer's ledger left alone, and the tests —
@@ -180,6 +182,12 @@ jobs:
             echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Check clients after a changed configuration
+        if: ${{ !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run freetier-conformance dispatch --before "$(git rev-parse HEAD^)" --sha "$(git rev-parse HEAD)"
+
       # Without a ping, Bing, Yandex and the engines sharing their index can
       # take days to weeks to notice a change; a ping after a push names the
       # pages that changed — once Pages has built the commit, or an
@@ -188,7 +196,7 @@ jobs:
       # engine being down is not a reason to fail a run that has already
       # published.
       - name: Tell search engines what changed (IndexNow)
-        if: ${{ !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
+        if: ${{ always() && !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}

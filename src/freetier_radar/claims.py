@@ -128,6 +128,40 @@ def _review_producer_workflows(root: Path) -> tuple[str, ...]:
     return tuple(PRODUCER_WORKFLOWS)
 
 
+def _bot_conformance_dispatch(root: Path) -> tuple[str, ...]:
+    for filename, job, condition in (
+            ('update.yml', 'update', "!inputs.dry_run && steps.commit.outputs.pushed == 'true'"),
+            ('expire.yml', 'expire', "steps.publish.outputs.changed == 'true'")):
+        data = yaml.safe_load((root / '.github/workflows' / filename).read_text())
+        steps = [step for step in data['jobs'][job]['steps']
+                 if 'freetier-conformance dispatch' in step.get('run', '')]
+        if (len(steps) != 1 or condition not in steps[0].get('if', '')
+                or steps[0].get('continue-on-error')
+                or steps[0].get('env', {}).get('GH_TOKEN') != '${{ github.token }}'
+                or data.get('permissions', {}).get('actions') != 'write'):
+            return ()
+    data = yaml.safe_load((root / '.github/workflows/conformance.yml').read_text())
+    trigger = data.get('on', data.get(True))
+    if 'expected_sha' not in (trigger.get('workflow_dispatch') or {}).get('inputs', {}):
+        return ()
+    guards = [step for step in data['jobs']['conformance']['steps']
+              if step.get('name') == 'Require the requested commit']
+    if (len(guards) != 1 or guards[0].get('env') != {
+            'EXPECTED_SHA': '${{ inputs.expected_sha }}', 'ACTUAL_SHA': '${{ github.sha }}'}):
+        return ()
+    return ('verification', 'expiry')
+
+
+def _unpriced_catalog_tier(root: Path) -> tuple[str, ...]:
+    from .prober import _is_free
+    if (_is_free({'tier': 'free'})
+            and not _is_free({'tier': 'free', 'pricing': {'prompt': 1, 'completion': 1}})
+            and not _is_free({'tier': 'free', 'pricing': {'prompt': 'unknown'}})
+            and not _is_free({'tier': 'paid'})):
+        return ('free',)
+    return ()
+
+
 def _page_catalog_views(root: Path) -> tuple[str, ...]:
     from .models import _row_payload
     rows = [e for e in load_registry(root / "registry.yaml") if e.page_catalog]
@@ -440,6 +474,12 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"`conformance` workflow runs them every (\w+)",
           _cron_day(".github/workflows/conformance.yml"),
           ".github/workflows/conformance.yml's cron"),
+    Claim("CONTRIBUTING.md", r"The (verification) and (expiry) writers explicitly dispatch this workflow",
+          _bot_conformance_dispatch,
+          "conformance.dispatch and both bot writers; path, dispatch and exact-commit controls in tests/test_conformance_dispatch.py"),
+    Claim("CONTRIBUTING.md", r"An unpriced catalog may use `tier: (free)`",
+          _unpriced_catalog_tier,
+          "prober._is_free; current HTTP and stale-price controls in tests/test_prober.py"),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",

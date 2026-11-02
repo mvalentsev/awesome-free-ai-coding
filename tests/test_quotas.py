@@ -14,6 +14,32 @@ QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
 
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_indonesian_daily_and_minute_quotas_use_the_http_source(changed):
+    entry = Entry.model_validate({**BASE, 'quotas': [
+        {**QUOTA, 'amount': 50, 'period': 'day', 'quote': '50 request/hari per akun'},
+        {**QUOTA, 'amount': 5, 'period': 'minute', 'quote': '5 req/menit'},
+    ]})
+    respx.get(BASE['probe']['endpoint']).respond(200, text='Recurring free quota for chat')
+    respx.get(QUOTA['source']).respond(200, text=(
+        '40 request/hari per akun; 5 req/menit' if changed else
+        '50 request/hari per akun; 5 req/menit'))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+
+
+@pytest.mark.parametrize('period,quote', [('day', '50 request/menit'),
+                                         ('minute', '50 request/hari'),
+                                         ('day', '50 request/harimau'),
+                                         ('minute', '50 request/menitkan')])
+def test_indonesian_period_words_do_not_match_the_wrong_window(period, quote):
+    from freetier_radar.quotas import UsageQuota
+    with pytest.raises(ValueError, match='unit and period need evidence'):
+        UsageQuota.model_validate({**QUOTA, 'amount': 50, 'period': period, 'quote': quote})
+
+
 @pytest.mark.parametrize(('change', 'changed'), [
     ('current', False), ('paid-only-changed', False),
     ('completion', True), ('tasks', True), ('price', True),

@@ -38,6 +38,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from dataclasses import dataclass, field
+from fnmatch import fnmatchcase
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Iterator
@@ -46,13 +47,15 @@ import httpx
 import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
+from . import git
 from .models import OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
-from .render import CODEX_SINCE, FREE_GROUPS, LITELLM_BRIDGE_SINCE, litellm_command
+from .render import CODEX_SINCE, FREE_GROUPS, LITELLM_BRIDGE_SINCE, REPO_URL, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
            "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main",
-           "check_opencode_session_export", "check_opencode_output_budget", "record_opencode_output_budget"]
+           "check_opencode_session_export", "check_opencode_output_budget", "record_opencode_output_budget",
+           "dispatch"]
 
 LITELLM_YAML = "configs/litellm.yaml"
 LITELLM_PROFILE = "configs/codex/litellm.config.toml"
@@ -1323,11 +1326,46 @@ def _pairs(values: list[str]) -> dict[str, str]:
     return out
 
 
+def dispatch(root: Path, before: str, sha: str) -> bool:
+    """Request the existing workflow for affected files in a bot's exact push."""
+    if not all(re.fullmatch(r'[0-9a-f]{40}', ref) for ref in (before, sha)):
+        raise ValueError('conformance dispatch requires full commit SHAs')
+    head = git.run(root, 'rev-parse', 'HEAD')
+    if head.returncode or head.stdout.strip() != sha:
+        raise ValueError('conformance dispatch must use the checked-out commit')
+    if git.run(root, 'merge-base', '--is-ancestor', before, sha).returncode:
+        raise ValueError('conformance dispatch requires an ancestor before the pushed commit')
+    workflow = yaml.safe_load(git.show(root, sha, '.github/workflows/conformance.yml') or '')
+    triggers = workflow.get('on', workflow.get(True)) if isinstance(workflow, dict) else None
+    push = triggers.get('push') if isinstance(triggers, dict) else None
+    paths = push.get('paths') if isinstance(push, dict) else None
+    if (not isinstance(paths, list) or not paths
+            or any(not isinstance(p, str) or not p or p.startswith('!') for p in paths)):
+        raise ValueError('conformance dispatch requires reviewed positive workflow path filters')
+    changed = git.run(root, 'diff', '--name-only', '-z', before, sha, '--')
+    if changed.returncode:
+        raise ValueError('cannot read the pushed files for conformance dispatch')
+    if not any(fnmatchcase(path, pattern) for path in changed.stdout.split('\0') if path
+               for pattern in paths):
+        return False
+    # GITHUB_TOKEN pushes do not start push workflows; explicit dispatch does.
+    # docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow
+    # checked 2026-11-02. The receiving workflow rejects a different commit.
+    subprocess.run(['gh', 'workflow', 'run', 'conformance.yml', '--repo',
+                    REPO_URL.removeprefix('https://github.com/'), '--ref', 'main',
+                    '-f', 'expected_sha=' + sha], cwd=root, check=True, timeout=60)
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="freetier-conformance",
                                      description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("floors", help="print the oldest releases the files ask for, as KEY=VALUE lines")
+    publish = sub.add_parser('dispatch', help='request conformance for affected files in a bot push')
+    publish.add_argument('--root', type=Path, default=Path('.'))
+    publish.add_argument('--before', required=True)
+    publish.add_argument('--sha', required=True)
     go = sub.add_parser("run", help="run the checks")
     go.add_argument("--root", type=Path, default=Path("."))
     go.add_argument("--litellm", action="append", required=True, metavar="VERSION=PATH",
@@ -1340,6 +1378,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "floors":
         litellm, codex = floors()
         print(f"litellm={litellm}\ncodex={codex}")
+        return 0
+    if args.command == 'dispatch':
+        try:
+            requested = dispatch(args.root, args.before, args.sha)
+        except (ValueError, OSError, subprocess.SubprocessError) as exc:
+            print(f'conformance dispatch: {exc}', file=sys.stderr)
+            return 1
+        print('conformance requested for ' + args.sha if requested
+              else 'no watched conformance files changed')
         return 0
     litellm, codex = _pairs(args.litellm), _pairs(args.codex)
     work = args.work or Path(tempfile.mkdtemp(prefix="freetier-conformance-"))

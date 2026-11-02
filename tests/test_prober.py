@@ -102,6 +102,54 @@ async def test_catalog_explicit_free_price_label_and_withdrawal_controls(fields,
     assert (result.status is ProbeStatus.PASS) is free
 
 
+@pytest.mark.parametrize(('fields', 'free'), [
+    ({'tier': 'free'}, True),
+    ({'tier': 'paid'}, False),
+    ({'tier': True}, False),
+    ({'tier': 'free', 'isFree': False}, False),
+    ({'tier': 'free', 'available': False}, False),
+    ({'tier': 'free', 'pricing': {'prompt': '0.1', 'completion': '0.2'}}, False),
+    ({'tier': 'paid', 'pricing': {'prompt': '0', 'completion': '0'}}, True),
+    ({'tier': 'free', 'pricing': {'prompt': 'unknown', 'completion': 'unknown'}}, False),
+    ({'tier': 'free', 'input_cost_per_token': None}, False),
+    ({'tier': 'free', 'quota_type': 1, 'model_price': 'unknown'}, False),
+    ({'tier': 'free', 'min_request_price': 0.1}, False),
+    ({'tier': 'free', 'min_request_price': 'unknown'}, False),
+    ({'tier': 'free', 'price': 0.1}, False),
+    ({'tier': 'free', 'price_sc_input': 0.1, 'price_sc_output': 0}, False),
+    ({'tier': 'paid', 'price_sc_input': 0, 'price_sc_output': 0}, True),
+])
+@respx.mock
+async def test_unpriced_catalog_tier_does_not_override_published_billing(fields, free):
+    # Kiosapi's public catalog uses tier=free/paid without token prices:
+    # https://api.kiosapi.id/v1/models, checked 2026-11-02.
+    row = {**BASE, 'models': [{'family': 'glm-4.7-flash'}],
+           'probe': {'type': 'api-models', 'endpoint': 'https://api.x.ai/v1/models',
+                     'require_zero_price': True}}
+    respx.get(row['probe']['endpoint']).respond(
+        200, json={'data': [{'id': 'glm-4.7-flash', **fields}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), attempts=1, backoff=0)
+    assert (result.status is ProbeStatus.PASS) is free, result.detail
+
+
+@pytest.mark.parametrize('fields', [
+    {'tier': 'paid'}, {'tier': 'free', 'available': False},
+    {'pricing': {'prompt': '0.1', 'completion': '0.2'}},
+])
+@respx.mock
+async def test_a_catalog_without_qualified_families_still_needs_a_free_offer(fields):
+    row = {**BASE, 'models': [], 'free_part': 'models',
+           'api': {'base_url': 'https://api.x.ai/v1', 'key_url': 'https://x.ai/keys',
+                   'auth': 'api-key', 'model_ids': ['glm-4.7-flash']},
+           'probe': {'type': 'api-models', 'endpoint': 'https://api.x.ai/v1/models',
+                     'require_zero_price': True}}
+    respx.get(row['probe']['endpoint']).respond(200, json={'data': [{'id': 'glm-4.7-flash', **fields}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.FAIL, result.detail
+
+
 @pytest.mark.parametrize(('promo', 'price', 'free'), [
     ({'status': 'active', 'is_free': True}, 0.000001, True),
     ({'status': 'ended', 'is_free': True}, 0.000001, False),

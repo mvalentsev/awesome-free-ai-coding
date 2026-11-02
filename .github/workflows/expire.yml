@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pages: write
 
@@ -51,7 +52,13 @@ jobs:
           git commit -m "chore: expire model promotions $(date -u +%F)"
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Check clients after a changed configuration
+        if: ${{ steps.publish.outputs.changed == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run freetier-conformance dispatch --before "$(git rev-parse HEAD^)" --sha "$(git rev-parse HEAD)"
       - name: Ping IndexNow after Pages has built the expiry commit
+        if: ${{ always() && steps.publish.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ github.token }}
           CHANGED: ${{ steps.publish.outputs.changed }}

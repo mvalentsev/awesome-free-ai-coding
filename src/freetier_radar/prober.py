@@ -1597,7 +1597,7 @@ def _empty_lane(resp: httpx.Response, lane: str) -> str:
 
 
 def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
-    from .models import entry_id_family
+    from .models import entry_id_family, is_archived_for_good
     items = _catalog_items(resp, entry.probe.lane)
     if items is None:
         return "response is not JSON"
@@ -1605,6 +1605,11 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         if entry.probe.lane is not None:
             return _empty_lane(resp, entry.probe.lane)
         return "no model ids in response"
+    if (not entry.models and not is_archived_for_good(entry, date.today())
+            and entry.probe.require_zero_price and not any(
+            _model_id(m) and entry.probe.carries_marker(_model_id(m))
+            and not _is_withdrawn(m) and _is_free(m) for m in items)):
+        return "no available free model ids in response"
     missing, withdrawn, priced = [], [], []
     families = [f.family for f in entry.models]
     for family in entry.models:
@@ -1718,7 +1723,15 @@ def _is_free(model: dict) -> bool:
     if model.get("pricing") == "free":
         return True
     prices = _price_of(model)
-    return prices is not None and all(p == 0 for p in prices) and not _charges_elsewhere(model)
+    if prices is not None:
+        return all(p == 0 for p in prices) and not _charges_elsewhere(model)
+    # Kiosapi labels unpriced rows tier=free/paid:
+    # https://api.kiosapi.id/v1/models, checked 2026-11-02. A tier cannot
+    # override published prices or make an unreadable price free.
+    price_fields = ("pricing", "price", "prices", "cost", "input_cost_per_token", "output_cost_per_token",
+                    "min_request_price", "quota_type", "model_price", "model_ratio", "completion_ratio")
+    return (model.get("tier") == "free" and not any(key in model for key in price_fields)
+            and not _charges_elsewhere(model))
 
 
 def challenge_marker_hit(text: str) -> str | None:
