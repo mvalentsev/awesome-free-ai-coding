@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-02'
-description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash…'
+description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, nemotron-3.5-super-vl-120b-a12b. Free chat rows…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-11-02
 crumb: LLMTR
@@ -19,7 +19,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) (until 2026-11-02), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`jais-3-mova-36b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/) (until 2026-11-05), [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) (until 2026-11-05), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)
 
 ## Limits, in the vendor's words
 
@@ -30,8 +30,6 @@ Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not pub
 Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
 
 K2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
-
-MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
 
 Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
@@ -47,10 +45,9 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`, `minimax/minimax-m3.1-flash-free`
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`, `ifm/jais-3-mova-36b-a4b`, `ifm/k2-horizon-375b-a23b`
 - `ifm/jais-3-mova-36b-a4b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/jais-3-mova-36b-a4b))
 - `ifm/k2-horizon-375b-a23b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/k2-horizon-375b-a23b))
-- `minimax/minimax-m3.1-flash-free`: free until 2026-11-02 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-free))
 - Note: New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Include reasoning in max_tokens.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -114,6 +111,7 @@ curl -s https://llmtr.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-02` — Free models changed: dropped minimax-m3.1-flash
 - `2026-10-31` — Free models changed: dropped agents-a1, atria-dawn, atria-dawn-preview, intern-s2-397b, sage-a1.5
 - `2026-10-29` — Free models changed: added nemotron-3.5-super-vl-120b-a12b; dropped nemotron-3-super
 - `2026-10-27` — Free models changed: dropped laguna-xs-2.1

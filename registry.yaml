@@ -5071,8 +5071,6 @@ entries:
   - family: jais-3-mova-36b-a4b
   - family: k2-horizon-375b-a23b
     aa_model: k2-horizon-375b-a23b
-  - family: minimax-m3.1-flash
-    aa_model: minimax-m3-1-flash
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   api:
@@ -5088,7 +5086,6 @@ entries:
     - nvidia/nemotron-3.5-super-vl-free
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
-    - minimax/minimax-m3.1-flash-free
     model_bindings:
       internlm/intern-s2-free:
         family: intern-s2-397b
@@ -5243,6 +5240,7 @@ entries:
     - internlm/intern-s2-free
     - internlm/sage-a1.5-free
     - heabsy/qwen3.8-27b-heabsy-free
+    - minimax/minimax-m3.1-flash-free
     note: 'New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL:
       omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high
       (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory.

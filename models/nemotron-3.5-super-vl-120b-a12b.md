@@ -130,8 +130,6 @@ Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count to
 
 K2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
 
-MiniMax M3.1 Flash: 5,000,000 tokens/day per account per model; for `minimax/minimax-m3.1-flash-free`. 00:00’da (TSİ)
-
 Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
 </details>

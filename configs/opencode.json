@@ -484,13 +484,6 @@
             "context": 524288,
             "output": 524288
           }
-        },
-        "minimax/minimax-m3.1-flash-free": {
-          "name": "minimax/minimax-m3.1-flash-free (until 2026-11-02)",
-          "limit": {
-            "context": 1000000,
-            "output": 524288
-          }
         }
       }
     },

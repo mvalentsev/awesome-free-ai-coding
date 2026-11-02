@@ -655,16 +655,6 @@ model_list:
   model_info:
     access: free until 2026-11-05 23:59+03:00
     source: https://llmtr.com/models/ifm/k2-horizon-375b-a23b
-- model_name: llmtr/minimax/minimax-m3.1-flash-free
-  litellm_params:
-    model: openai/minimax/minimax-m3.1-flash-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 524288
-  model_info:
-    access: free until 2026-11-02 23:59+03:00
-    source: https://llmtr.com/models/minimax/minimax-m3.1-flash-free
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
