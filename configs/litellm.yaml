@@ -1473,6 +1473,12 @@ model_list:
     api_base: https://api.1min.ai/openai/v1
     api_key: os.environ/ONEMIN_AI_API_KEY
     use_chat_completions_api: true
+- model_name: notrack-ai/notrack-uncensored
+  litellm_params:
+    model: openai/notrack-uncensored
+    api_base: https://api.notrack.ai/v1
+    api_key: os.environ/NOTRACK_AI_API_KEY
+    use_chat_completions_api: true
 - model_name: standardcompute/anthropic/claude-standardcompute
   litellm_params:
     model: openai/anthropic/claude-standardcompute

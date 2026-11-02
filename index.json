@@ -126,7 +126,8 @@
       "Zro (MoonMath)",
       "Infron",
       "Kiosapi.id",
-      "1min.AI"
+      "1min.AI",
+      "NoTrack API"
     ],
     "sections": [
       {
@@ -17277,6 +17278,121 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/"
+    },
+    {
+      "id": "notrack-ai",
+      "name": "NoTrack API",
+      "category": "trial",
+      "url": "https://notrack.ai/api",
+      "source_urls": [
+        "https://notrack.ai/api/docs",
+        "https://notrack.ai/api-keys",
+        "https://notrack.ai/privacy",
+        "https://notrack.ai/terms",
+        "https://notrack.ai/acceptable-use",
+        "https://notrack.ai/refunds"
+      ],
+      "card_required": false,
+      "offering": "Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model",
+      "limits": "First-key trial: $0.5 once; scope not published (First key; expires after 7 days)\n\nTrial API: 60 requests/minute; 2 requests at once per key (Before first top-up)\n\nThe API pages describe the trial before any top-up; an account and confirmed email are required. Paid keys have separate higher rate and concurrency limits. The combined input and output window is 100,000 tokens. The model is served on the operator’s GPU servers; its underlying checkpoint is not disclosed. API documentation says prompts and replies are not written to disk; request and key identifiers, token use and price are retained. Trial activation and authenticated generation have not been checked here.",
+      "quotas": [
+        {
+          "amount": 0.5,
+          "unit": "USD",
+          "period": "one-time",
+          "scope": "unspecified",
+          "label": "First-key trial",
+          "condition": "First key; expires after 7 days",
+          "condition_quote": "Your first key comes with $0.50 of free credit, good for 7 days — enough to integrate and test.",
+          "source": "https://notrack.ai/api/docs",
+          "quote": "Your first key comes with $0.50 of free credit, good for 7 days — enough to integrate and test.",
+          "value_phrase": "$0.50 of free credit",
+          "period_quote": "Trial keys (before the first top-up)",
+          "reviewed_on": "2026-11-02"
+        },
+        {
+          "amount": 60.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "key",
+          "label": "Trial API",
+          "condition": "Before first top-up",
+          "condition_quote": "Trial keys (before the first top-up)",
+          "source": "https://notrack.ai/api/docs",
+          "quote": "Trial keys (before the first top-up): concurrent requests — 2, requests per minute — 60.",
+          "value_phrase": "requests per minute — 60"
+        },
+        {
+          "amount": 2.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "key",
+          "label": "Trial API",
+          "condition": "Before first top-up",
+          "condition_quote": "Trial keys (before the first top-up)",
+          "source": "https://notrack.ai/api/docs",
+          "quote": "Trial keys (before the first top-up): concurrent requests — 2, requests per minute — 60.",
+          "value_phrase": "concurrent requests — 2"
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://api.notrack.ai/v1",
+        "key_url": "https://notrack.ai/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "notrack-uncensored"
+        ],
+        "note": "Supports Chat Completions, function tools and json_object output. Tool-enabled streams arrive as one chunk per call. Use the published model alias; other model strings are routed to the same model."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-02",
+        "source": "https://notrack.ai/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://notrack.ai/api/docs",
+        "keywords": [
+          "your first key comes with $0.50 of free credit",
+          "good for 7 days",
+          "trial keys (before the first top-up)"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-02",
+      "last_verified": "2026-11-02",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 95,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "NoTrack API",
+        "models": [],
+        "ids": [
+          "notrack-uncensored"
+        ],
+        "what": "Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model",
+        "limits": "First-key trial: $0.5 once; scope not published (First key; expires after 7 days)\n\nTrial API: 60 requests/minute; 2 requests at once per key (Before first top-up)\n\nThe API pages describe the trial before any top-up; an account and confirmed email are required. Paid keys have separate higher rate and concurrency limits. The combined input and output window is 100,000 tokens. The model is served on the operator’s GPU servers; its underlying checkpoint is not disclosed. API documentation says prompts and replies are not written to disk; request and key identifiers, token use and price are retained. Trial activation and authenticated generation have not been checked here.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "trial"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/"
     }
   ],
   "countries": [
@@ -18332,6 +18448,7 @@
       "abliteration-ai",
       "impossibl",
       "onemin-ai",
+      "notrack-ai",
       "ovh-ai-endpoints",
       "standardcompute",
       "novita",
@@ -18394,6 +18511,7 @@
       "abliteration-ai",
       "impossibl",
       "onemin-ai",
+      "notrack-ai",
       "standardcompute",
       "novita",
       "sail-research",
@@ -18475,6 +18593,7 @@
       "abliteration-ai",
       "impossibl",
       "onemin-ai",
+      "notrack-ai",
       "standardcompute",
       "novita",
       "sail-research",
@@ -20216,9 +20335,9 @@
         "unorouter.com"
       ],
       "name": "UnoRouter",
-      "checked_on": "2026-08-30",
-      "reason": "Blocked on 2026-08-30 and un-blocked the same day for the same error as xKiro: the frontier ids that triggered it are the paid catalog, not the free lane. Of 227 `:free` ids only nine are frontier-named, and all nine are Google's cheap tier (gemini-flash-lite, gemini-3.5/3.6-flash-lite, embeddings, robotics previews) — no Claude, no GPT. What keeps it off the list is what cannot be read rather than what was found: its catalog publishes no prices at all, so no probe here can tell a free id from a metered one; its 338 rows are `owned_by: \"custom\"` on 318 of them; and 17 Claude ids are spelled in a vocabulary no public catalog uses — claude-opus-5[1m], claude-sonnet-5-thinking[1m] — which a router may well have invented for a context-and-reasoning preset, but which nothing on the site explains. Its paid plans sell $50 of credit for $25, permanently.",
-      "reopen_if": "Its catalog starts publishing per-model prices, or a page states what the free lane grants and where the `[1m]` ids come from.",
+      "checked_on": "2026-11-02",
+      "reason": "Current documentation describes no-card :free models and a separate $0.25 reward for linking Discord and claiming the connect bonus. The public structured catalog publishes prices and free/online flags; exact model pages also show zero prices. The remaining qualification gap is the supply behind the provider groups: model-developer labels and group codes do not establish the actual serving supplier and its applicable authorization and conditions. The reviewed Free routes use groups such as kl4-beam-free and ovh1-gpt-oss-120b-free, with differing published input-handling information. Reward credit spends from the ordinary wallet, so its eligible routes need the same review. Sources: https://unorouter.com/en/docs/platform/models-and-pricing, https://unorouter.com/en/docs/platform/discord-rewards, https://unorouter.com/en/docs/platform/platform-api and https://api.unorouter.com/api/pricing/catalog.",
+      "reopen_if": "Current primary provider/group information establishes authorized supply for a chosen Free or reward-credit mode, with exact callable IDs and upstream access, data and usage conditions. Review both advertised modes separately and preserve the distinction between model developers and the suppliers serving a request.",
       "current": true
     },
     {

@@ -1078,23 +1078,28 @@ watched:
 
   - domains: [unorouter.com]
     name: UnoRouter
-    checked_on: '2026-08-30'
+    checked_on: '2026-11-02'
     reason: >-
-      Blocked on 2026-08-30 and un-blocked the same day for the same error as
-      xKiro: the frontier ids that triggered it are the paid catalog, not the
-      free lane. Of 227 `:free` ids only nine are frontier-named, and all nine
-      are Google's cheap tier (gemini-flash-lite, gemini-3.5/3.6-flash-lite,
-      embeddings, robotics previews) — no Claude, no GPT. What keeps it off the
-      list is what cannot be read rather than what was found: its catalog
-      publishes no prices at all, so no probe here can tell a free id from a
-      metered one; its 338 rows are `owned_by: "custom"` on 318 of them; and 17
-      Claude ids are spelled in a vocabulary no public catalog uses —
-      claude-opus-5[1m], claude-sonnet-5-thinking[1m] — which a router may well
-      have invented for a context-and-reasoning preset, but which nothing on the
-      site explains. Its paid plans sell $50 of credit for $25, permanently.
+      Current documentation describes no-card :free models and a separate
+      $0.25 reward for linking Discord and claiming the connect bonus.
+      The public structured catalog publishes prices and free/online flags;
+      exact model pages also show zero prices. The remaining qualification
+      gap is the supply behind the provider groups: model-developer labels
+      and group codes do not establish the actual serving supplier and its
+      applicable authorization and conditions. The reviewed Free routes use
+      groups such as kl4-beam-free and ovh1-gpt-oss-120b-free, with differing
+      published input-handling information. Reward credit spends from the
+      ordinary wallet, so its eligible routes need the same review. Sources:
+      https://unorouter.com/en/docs/platform/models-and-pricing,
+      https://unorouter.com/en/docs/platform/discord-rewards,
+      https://unorouter.com/en/docs/platform/platform-api and
+      https://api.unorouter.com/api/pricing/catalog.
     reopen_if: >-
-      Its catalog starts publishing per-model prices, or a page states what the
-      free lane grants and where the `[1m]` ids come from.
+      Current primary provider/group information establishes authorized supply
+      for a chosen Free or reward-credit mode, with exact callable IDs and
+      upstream access, data and usage conditions. Review both advertised modes
+      separately and preserve the distinction between model developers and
+      the suppliers serving a request.
 
   - domains: [reka.ai]
     name: Reka AI

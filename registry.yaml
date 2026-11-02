@@ -10659,3 +10659,93 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 95
+- id: notrack-ai
+  name: NoTrack API
+  category: trial
+  url: https://notrack.ai/api
+  source_urls:
+  - https://notrack.ai/api/docs
+  - https://notrack.ai/api-keys
+  - https://notrack.ai/privacy
+  - https://notrack.ai/terms
+  - https://notrack.ai/acceptable-use
+  - https://notrack.ai/refunds
+  card_required: false
+  offering: Operator-hosted OpenAI-compatible API with a first-key trial budget for
+    its single NoTrack Uncensored model
+  limits: The API pages describe the trial before any top-up; an account and confirmed
+    email are required. Paid keys have separate higher rate and concurrency limits.
+    The combined input and output window is 100,000 tokens. The model is served on
+    the operator’s GPU servers; its underlying checkpoint is not disclosed. API documentation
+    says prompts and replies are not written to disk; request and key identifiers,
+    token use and price are retained. Trial activation and authenticated generation
+    have not been checked here.
+  quotas:
+  - amount: 0.5
+    unit: USD
+    period: one-time
+    scope: unspecified
+    label: First-key trial
+    condition: First key; expires after 7 days
+    condition_quote: Your first key comes with $0.50 of free credit, good for 7 days
+      — enough to integrate and test.
+    source: https://notrack.ai/api/docs
+    quote: Your first key comes with $0.50 of free credit, good for 7 days — enough
+      to integrate and test.
+    value_phrase: $0.50 of free credit
+    period_quote: Trial keys (before the first top-up)
+    reviewed_on: '2026-11-02'
+  - amount: 60.0
+    unit: requests
+    period: minute
+    scope: key
+    label: Trial API
+    condition: Before first top-up
+    condition_quote: Trial keys (before the first top-up)
+    source: https://notrack.ai/api/docs
+    quote: 'Trial keys (before the first top-up): concurrent requests — 2, requests
+      per minute — 60.'
+    value_phrase: requests per minute — 60
+  - amount: 2.0
+    unit: requests
+    period: concurrent
+    scope: key
+    label: Trial API
+    condition: Before first top-up
+    condition_quote: Trial keys (before the first top-up)
+    source: https://notrack.ai/api/docs
+    quote: 'Trial keys (before the first top-up): concurrent requests — 2, requests
+      per minute — 60.'
+    value_phrase: concurrent requests — 2
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.notrack.ai/v1
+    key_url: https://notrack.ai/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - notrack-uncensored
+    note: Supports Chat Completions, function tools and json_object output. Tool-enabled
+      streams arrive as one chunk per call. Use the published model alias; other model
+      strings are routed to the same model.
+  border:
+    left_out: []
+    'on': '2026-11-02'
+    source: https://notrack.ai/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://notrack.ai/api/docs
+    keywords:
+    - your first key comes with $0.50 of free credit
+    - good for 7 days
+    - trial keys (before the first top-up)
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-02'
+  last_verified: '2026-11-02'
+  probe_failures: 0
+  provisional: true
+  rank: 95

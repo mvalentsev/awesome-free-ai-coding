@@ -1286,6 +1286,19 @@
         }
       }
     },
+    "notrack-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NoTrack API",
+      "options": {
+        "baseURL": "https://api.notrack.ai/v1",
+        "apiKey": "{env:NOTRACK_AI_API_KEY}"
+      },
+      "models": {
+        "notrack-uncensored": {
+          "name": "notrack-uncensored"
+        }
+      }
+    },
     "ovh-ai-endpoints": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "OVHcloud AI Endpoints",

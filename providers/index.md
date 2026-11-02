@@ -93,6 +93,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Wallaby](https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/) — verified 2026-11-01
 - [abliteration.ai](https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/) — verified 2026-11-01
 - [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) — verified 2026-11-01
+- [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-02
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-01
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-01
 
