@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'glm-5.2 free: 4 providers, limits and ids, provider probes 2026-11-01'
+title: 'glm-5.2 free: 4 providers, limits and ids, provider probes 2026-11-02'
 description: glm-5.2 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.2/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: glm-5.2
 
 # Where glm-5.2 is free
 
-**4 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**4 rows on the list serve `glm-5.2` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), Regolo AI and AtomCode. None asks for a card. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.2
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -46,7 +46,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-01 · listed since 2026-09-30
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-02 · listed since 2026-09-30
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
@@ -70,7 +70,7 @@ Free token grants apply in Singapore (international), independently per model an
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-01 · listed since 2026-09-22
+🎁 Trials (no card when possible) · no card · last probe 2026-11-02 · listed since 2026-09-22
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -90,7 +90,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-01 · listed since 2026-10-12
+🎁 Trials (no card when possible) · no card · last probe 2026-11-02 · listed since 2026-10-12
 
 Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-11-01'
+title: 'Qoder free tier: limits, free models, verified 2026-11-02'
 description: 'Alibaba''s coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim. Free models: qwen3.8-flash. The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The…'
 permalink: /providers/qoder/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: Qoder
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder
 
 # Qoder free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-01 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-02 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

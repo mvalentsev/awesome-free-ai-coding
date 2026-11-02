@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-01 or later'
+title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-02'
 description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-2.5-flash/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: agnes-2.5-flash
 
 # Where agnes-2.5-flash is free
 
-**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
+**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -47,7 +47,7 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ### [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-01 · listed since 2026-09-14
+🔌 LLM APIs with free tier · no card · last probe 2026-11-02 · listed since 2026-09-14
 
 Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 

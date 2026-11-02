@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'glm-5.1 free: 2 providers, limits and ids, provider probes 2026-11-01'
+title: 'glm-5.1 free: 2 providers, limits and ids, provider probes 2026-11-02'
 description: glm-5.1 is served free by AIHubMix (free models) and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.1/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: glm-5.1
 
 # Where glm-5.1 is free
 
-**2 rows on the list serve `glm-5.1` free:** AIHubMix (free models) and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**2 rows on the list serve `glm-5.1` free:** AIHubMix (free models) and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.1
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -46,7 +46,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-02 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 

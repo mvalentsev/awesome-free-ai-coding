@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m2.7 free: 1 provider, limits and ids, provider probes 2026-11-01'
+title: 'minimax-m2.7 free: 1 provider, limits and ids, provider probes 2026-11-02'
 description: minimax-m2.7 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2.7/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: minimax-m2.7
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m2.7
 
 # Where minimax-m2.7 is free
 
-**One row on the list serves `minimax-m2.7` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
+**One row on the list serves `minimax-m2.7` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m2.7
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

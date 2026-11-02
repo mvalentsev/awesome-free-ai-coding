@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-11-01'
+title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-11-02'
 description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. Chat and agent features spend GitHub AI Credits, whose Free amount is unpublished. Model selection is automatic on Copilot Free and Student. Free is available only…
 permalink: /providers/github-copilot-free/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: GitHub Copilot Free
 ---
 
@@ -11,7 +11,7 @@ crumb: GitHub Copilot Free
 
 # GitHub Copilot Free free tier
 
-🤖 Coding agents & CLIs · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-11-01 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-11-02 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

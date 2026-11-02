@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-tiny free: 1 provider, limits and ids, provider probes 2026-11-01'
+title: 'ling-3.0-tiny free: 1 provider, limits and ids, provider probes 2026-11-02'
 description: ling-3.0-tiny is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-tiny/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: ling-3.0-tiny
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-tiny
 
 # Where ling-3.0-tiny is free
 
-**One row on the list serves `ling-3.0-tiny` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
+**One row on the list serves `ling-3.0-tiny` free:** Requesty. It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-tiny
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-08-11
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-08-11
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 

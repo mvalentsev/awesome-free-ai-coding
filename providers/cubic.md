@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'cubic free tier: limits, free models, verified 2026-11-01'
+title: 'cubic free tier: limits, free models, verified 2026-11-02'
 description: AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha. Sign in with a cubic account. A separate "7-day free trial" requires no card. Free PR reviews reset on the organization date shown in Billing. Interactive…
 permalink: /providers/cubic/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: cubic
 ---
 
@@ -11,7 +11,7 @@ crumb: cubic
 
 # cubic free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-01 · [cubic.dev](https://cubic.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-02 · [cubic.dev](https://cubic.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

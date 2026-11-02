@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m2.5 free: 2 providers, limits and ids, provider probes 2026-11-01'
+title: 'minimax-m2.5 free: 2 providers, limits and ids, provider probes 2026-11-02'
 description: minimax-m2.5 is served free by Kiro and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2.5/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: minimax-m2.5
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m2.5
 
 # Where minimax-m2.5 is free
 
-**2 rows on the list serve `minimax-m2.5` free:** Kiro and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-01; their offers are rechecked twice a week.
+**2 rows on the list serve `minimax-m2.5` free:** Kiro and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m2.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-09-25
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -37,7 +37,7 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

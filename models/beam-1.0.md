@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-01 or later'
+title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-02'
 description: beam-1.0 is served free by Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**3 rows on the list serve `beam-1.0` free:** Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
+**3 rows on the list serve `beam-1.0` free:** Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: beam-1.0
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-01 · listed since 2026-10-31
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-02 · listed since 2026-10-31
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -34,7 +34,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-01 · listed since 2026-10-30
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-02 · listed since 2026-10-30
 
 OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes
 

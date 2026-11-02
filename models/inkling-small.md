@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'inkling-small free: 1 provider, limits and ids, provider probes 2026-11-01'
+title: 'inkling-small free: 1 provider, limits and ids, provider probes 2026-11-02'
 description: inkling-small is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/inkling-small/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: inkling-small
 ---
 
@@ -11,7 +11,7 @@ crumb: inkling-small
 
 # Where inkling-small is free
 
-**One row on the list serves `inkling-small` free:** OpenRouter (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
+**One row on the list serves `inkling-small` free:** OpenRouter (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: inkling-small
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 

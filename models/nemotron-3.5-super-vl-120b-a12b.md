@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'nemotron-3.5-super-vl-120b-a12b free: 6 providers, limits and ids, provider probes 2026-11-01 or later'
+title: 'nemotron-3.5-super-vl-120b-a12b free: 6 providers, limits and ids, provider probes 2026-11-02'
 description: nemotron-3.5-super-vl-120b-a12b is served free by opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe…
 permalink: /models/nemotron-3.5-super-vl-120b-a12b/
 last_modified_at: 2026-11-02
@@ -11,7 +11,7 @@ crumb: nemotron-3.5-super-vl-120b-a12b
 
 # Where nemotron-3.5-super-vl-120b-a12b is free
 
-**6 rows on the list serve `nemotron-3.5-super-vl-120b-a12b` free:** opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-01 or later; their offers are rechecked twice a week.
+**6 rows on the list serve `nemotron-3.5-super-vl-120b-a12b` free:** opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -37,7 +37,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-01 · listed since 2026-10-29
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-29
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -61,7 +61,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-01 · listed since 2026-10-29
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-02 · listed since 2026-10-29
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -76,7 +76,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-01 · listed since 2026-10-29
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-02 · listed since 2026-10-29
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -96,7 +96,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-01 · listed since 2026-10-29
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-10-29
 
 Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 

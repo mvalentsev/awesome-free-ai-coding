@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gpt-6-luna free: 1 provider, limits and ids, provider probes 2026-11-01'
+title: 'gpt-6-luna free: 1 provider, limits and ids, provider probes 2026-11-02'
 description: gpt-6-luna is served free by Codex (ChatGPT Free). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-6-luna/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: gpt-6-luna
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-6-luna
 
 # Where gpt-6-luna is free
 
-**One row on the list serves `gpt-6-luna` free:** Codex (ChatGPT Free). It asks for no card. The provider's last scheduled probe was on 2026-11-01; its offer is rechecked twice a week.
+**One row on the list serves `gpt-6-luna` free:** Codex (ChatGPT Free). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gpt-6-luna
 
 ### [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · last probe 2026-11-01 · listed since 2026-10-21
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · last probe 2026-11-02 · listed since 2026-10-21
 
 Codex desktop access on a $0 ChatGPT Free plan, subject to rollout
 

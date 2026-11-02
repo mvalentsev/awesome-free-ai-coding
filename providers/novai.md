@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'NovAI free tier: limits, free models, verified 2026-11-01'
+title: 'NovAI free tier: limits, free models, verified 2026-11-02'
 description: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. The daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email…
 permalink: /providers/novai/
-last_modified_at: 2026-11-01
+last_modified_at: 2026-11-02
 crumb: NovAI
 ---
 
@@ -11,7 +11,7 @@ crumb: NovAI
 
 # NovAI free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-22, a regular row from the first probe it passes on or after 2026-11-05 · **live** — last verified by a probe on 2026-11-01 · [aiapi-pro.com](https://aiapi-pro.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-10-22, a regular row from the first probe it passes on or after 2026-11-05 · **live** — last verified by a probe on 2026-11-02 · [aiapi-pro.com](https://aiapi-pro.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
