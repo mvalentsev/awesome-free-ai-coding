@@ -721,7 +721,7 @@ entries:
     label: Free model usage
     source: https://opencode.ai/v2/docs/console/models/
     quote: Big Pickle
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: big-pickle
@@ -1819,7 +1819,7 @@ entries:
     quote: After removal, new users will no longer receive a free quota for the model;
       quotas already issued to existing users remain available until they expire or
       are exhausted.
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-02'
   - amount: 2000.0
     unit: requests
     period: day
@@ -1832,7 +1832,7 @@ entries:
     quote: OAuth authentication provides an independent free quota for model inference
       (2,000 calls per day)
     value_phrase: 2,000 calls per day
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: qwen3.8-max
@@ -2540,7 +2540,7 @@ entries:
     condition_quote: a lower limit per model
     source: https://vercel.com/docs/ai-gateway/rate-limits
     quote: this page describes behavior rather than fixed numbers
-    reviewed_on: '2026-10-24'
+    reviewed_on: '2026-11-02'
   - unit: usage
     scope: unspecified
     label: Beam launch offer
@@ -2551,7 +2551,7 @@ entries:
     quote: Beam is free to use for a limited time
     model_ids:
     - reflection/beam-free
-    reviewed_on: '2026-10-30'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: laguna-s-2.1
@@ -3071,28 +3071,28 @@ entries:
     label: Gemini agent allowance
     source: https://antigravity.google/docs/models
     quote: Gemini models Weekly limit remaining
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   - unit: usage
     period: week
     scope: account
     label: Claude and GPT agent allowance
     source: https://antigravity.google/docs/models
     quote: Claude and GPT models Weekly limit remaining
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   - unit: completions
     scope: account
     state: unmetered
     label: Tab
     source: https://antigravity.google/pricing
     quote: Unlimited Tab completions
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   - unit: requests
     scope: account
     state: unmetered
     label: Command
     source: https://antigravity.google/pricing
     quote: Unlimited Command requests
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -4928,7 +4928,7 @@ entries:
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b
     - qwen/qwen3.8-27b-free
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-02'
   - unit: usage
     period: day
     scope: account-model
@@ -4973,7 +4973,7 @@ entries:
     quote: free of charge with a daily quota
     model_ids:
     - nvidia/nemotron-3.5-super-vl-free
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-02'
   - unit: usage
     period: day
     scope: unspecified
@@ -5453,7 +5453,7 @@ entries:
     quote: Quotas, rate limits, model access, and usage limits may change based on
       usage, demand, infrastructure capacity, abuse prevention, operational needs,
       and individual or aggregate activity
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -6551,7 +6551,7 @@ entries:
     label: Free models
     source: https://portal.nousresearch.com/
     quote: Standard rate limits
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: step-3.7-flash
@@ -8142,7 +8142,7 @@ entries:
     label: Zero-priced model
     source: https://novita.ai/models/model-detail/apodex-apodex-1.1-mini
     quote: Input $0 / M Tokens Output $0 / M Tokens
-    reviewed_on: '2026-10-26'
+    reviewed_on: '2026-11-02'
   free_part: models
   models: []
   api:
@@ -9144,7 +9144,7 @@ entries:
     label: Basic-model fallback
     source: https://docs.qoder.cn/product-overview/billing-description
     quote: 有限次数的补全
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-02'
   - unit: requests
     period: day
     scope: account-model
@@ -9153,7 +9153,7 @@ entries:
     quote: 每个账号每日享有一定次数的免费使用额度，付费订阅用户的免费使用次数高于免费用户。
     model_ids:
     - Qwen3.8-Flash
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-02'
   free_part: models
   models:
   - family: qwen3.8-flash
