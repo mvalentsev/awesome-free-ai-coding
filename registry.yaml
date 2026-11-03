@@ -161,7 +161,7 @@ entries:
     state: account-specific
     source: https://ai.google.dev/gemini-api/docs/rate-limits
     quote: View your active rate limits in AI Studio
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -656,7 +656,7 @@ entries:
     label: Advertised starter usage
     source: https://ollama.com/blog/transparent-pricing
     quote: 'Free: a starter amount each month for a set of starter models'
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: unnamed
   models: []
   api:
@@ -713,7 +713,9 @@ entries:
     NVIDIA offers are trial-only and exclude personal or confidential data. Flint
     40B Free allows training and retains data for 30 days. Beam Free''s provider does
     not train on inputs and retains them for 30 days; its listed territorial exclusions
-    include Russia.'
+    include Russia. Pulse Alpha Free allows data retention for model improvement and
+    excludes the EU, Iceland, Liechtenstein, Norway, Russia, Ukraine, Venezuela, Cuba,
+    Iran and North Korea.'
   quotas:
   - unit: usage
     scope: unspecified
@@ -779,7 +781,14 @@ entries:
     - name: Jev 1.13 Free
       source: https://docs.typesafe.ai/introduction/coding-agents
       quote: It does not generate text, write code, or hold a conversation.
-      reviewed_on: '2026-10-27'
+      reviewed_on: '2026-11-03'
+    - name: Pulse Alpha Free
+      source: https://opencode.ai/v2/docs/console/models/
+      quote: Pulse Alpha Free is a stealth model that’s free on OpenCode for a limited
+        time. The team is using this time to collect feedback and improve the model.
+        It’s not available in the European Union, Iceland, Liechtenstein, Norway,
+        Cuba, Iran, North Korea, Russia, Ukraine, or Venezuela.
+      reviewed_on: '2026-11-03'
   first_seen: '2026-07-19'
   last_verified: '2026-11-02'
   probe_failures: 0
@@ -843,6 +852,7 @@ entries:
     - xingchen-agi/xing4.0-29b-a4b:free
     - recursive/flint-v1.0:free
     - reflection/beam-free
+    - google/gemma-4-31b-it:free
     model_bindings:
       reflection/beam-free:
         family: beam-1.0
@@ -858,9 +868,15 @@ entries:
         context_tokens: 1048576
         output_tokens: 131072
         source: https://api.kilo.ai/api/gateway/models
+      google/gemma-4-31b-it:free:
+        context_tokens: 262144
+        output_tokens: 32768
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free
+    - thinkingmachines/inkling-small:free
+    - thinkingmachines/inkling:free
     no_family_ids:
     - kilo-auto/free
     - openrouter/free
@@ -1025,28 +1041,28 @@ entries:
     label: Agent usage
     source: https://docs.devin.ai/desktop/accounts/quota
     quote: daily and weekly allowances
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     period: week
     scope: account
     label: Agent usage
     source: https://docs.devin.ai/desktop/accounts/quota
     quote: daily and weekly allowances
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: completions
     scope: account
     state: unmetered
     label: Tab
     source: https://devin.ai/pricing
     quote: Unlimited Tab completions
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: interactions
     scope: account
     state: unmetered
     label: Inline edits
     source: https://devin.ai/pricing
     quote: Unlimited inline edits
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: swe-1.6
@@ -1349,22 +1365,14 @@ entries:
     label: Agent usage
     source: https://cursor.com/pricing
     quote: Limited Agent requests
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
-  models: []
-  newcomers:
+  models:
   - family: grok-4.7
-    'on': '2026-10-20'
-    source: https://cursor.com/help/models-and-usage/available-models
+    aa_auto: false
   - family: grok-4.6
-    'on': '2026-10-20'
-    source: https://cursor.com/help/models-and-usage/available-models
   - family: grok-4.5
-    'on': '2026-10-20'
-    source: https://cursor.com/help/models-and-usage/available-models
   - family: composer-2.5
-    'on': '2026-10-20'
-    source: https://cursor.com/help/models-and-usage/available-models
   data_use:
     trains: opt-out
     quote: we may use and store codebase data, prompts, editor actions, code snippets,
@@ -1378,7 +1386,8 @@ entries:
     type: page-keywords
     endpoint: https://cursor.com/help/models-and-usage/available-models
     keywords:
-    - Free and Plus include only Cursor's first-party models
+    - Free and Plus include only Cursor's first-party models (Grok 4.7, Grok 4.6,
+      Grok 4.5, and Composer 2.5).
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -1406,7 +1415,7 @@ entries:
     label: Free plan
     source: https://learn.chatgpt.com/docs/pricing
     quote: Explore Codex capabilities on quick coding tasks
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: gpt-6-luna
@@ -1513,6 +1522,8 @@ entries:
     aa_model: nemotron-3-5-super-vl
   - family: step-5-preview-600b-a27b
     aa_model: step-5
+  - family: minimax-m3.1-flash
+    aa_model: minimax-m3-1-flash
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -2367,7 +2378,7 @@ entries:
     condition_quote: The 2-week Pro Trial includes 300 credits
     source: https://docs.qoder.com/account/pricing
     quote: Unlimited completions & next edits
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: requests
     period: day
     scope: account-model
@@ -2754,15 +2765,15 @@ entries:
   offering: OpenAI-compatible gateway with a zero-priced free-model route in its default
     group beside metered models
   limits: The free route belongs to the default group. Other catalog routes are metered,
-    apart from an unmarked zero-priced stealth route. No numerical free request or
-    token budget is published.
+    apart from unmarked zero-priced stealth routes. No numerical free request or token
+    budget is published.
   quotas:
   - unit: usage
     scope: account
     label: Free route
     source: https://api.tokenrouter.com/api/pricing
     quote: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: nemotron-3-nano-omni
@@ -3568,7 +3579,7 @@ entries:
       and sustained task execution.
     model_ids:
     - agents-a1-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3584,7 +3595,7 @@ entries:
       reasoning and multimodal capabilities.
     model_ids:
     - intern-s2-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3596,7 +3607,7 @@ entries:
       an accessible way to experience the capabilities of the Dots 3 architecture.
     model_ids:
     - dots-3-note-preview-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3607,7 +3618,7 @@ entries:
       However, the developer advises against using this model for agentic coding tasks.
     model_ids:
     - lfm-2.5-2.6b-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3623,7 +3634,7 @@ entries:
       and advanced reasoning.'
     model_ids:
     - nemotron-3.5-lightning-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3635,7 +3646,7 @@ entries:
       tokens to handle large-scale inputs seamlessly.
     model_ids:
     - nemotron-3-super-120b-a12b-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3647,7 +3658,7 @@ entries:
       multimodal comprehension tailored for complex enterprise workflows.
     model_ids:
     - nemotron-3-nano-omni-30b-a3b-reasoning-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3659,7 +3670,7 @@ entries:
       is designed to support sophisticated reasoning and complex task orchestration.
     model_ids:
     - nemotron-3-ultra-550b-a55b-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3671,7 +3682,7 @@ entries:
       is well-suited for handling complex developer workflows and large codebases.
     model_ids:
     - north-mini-code-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Other free routes
@@ -3686,7 +3697,7 @@ entries:
       comparable to Claude Sonnet 4.5 while costing only about 3.5% as much.'
     model_ids:
     - mimo-v2-flash-free
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: unspecified
     label: Gemma 4 free routes
@@ -5291,7 +5302,7 @@ entries:
     condition_quote: Free 14 Day Trial no credit card
     source: https://www.qodo.ai/pricing/
     quote: Unlimited credits
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - unit: usage
     scope: project
     label: Open Source program
@@ -5301,7 +5312,7 @@ entries:
     source: https://www.qodo.ai/pricing/
     quote: Qualified open source projects can apply to the Qodo for Open Source program
       for free access.
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: unnamed
   models: []
   border:
@@ -5390,7 +5401,7 @@ entries:
     label: Current promotion
     source: https://www.workbuddy.ai/docs/ide/Account/pricing
     quote: code completion is unlimited
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - amount: 250.0
     unit: credits
     period: one-time
@@ -6045,7 +6056,7 @@ entries:
     label: Free model promotions
     source: https://docs.cline.bot/getting-started/free-models
     quote: up to a limited usage quota
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: solar-mini-4
@@ -6268,7 +6279,7 @@ entries:
     state: unmetered
     source: https://lp.jetbrains.com/ai-ides-faq/
     quote: Unlimited code completion
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: mellum
@@ -6338,7 +6349,7 @@ entries:
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: Trials include $5 of GPT-6 Luna usage
     value_phrase: Trials include $5 of GPT-6 Luna usage
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-03'
   - unit: edit predictions
     period: one-time
     scope: account
@@ -6346,7 +6357,7 @@ entries:
     label: 14-day trial
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: unlimited Edit Predictions for 14 days from when you start the trial
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - amount: 10.0
     unit: USD
     period: month
@@ -6358,7 +6369,7 @@ entries:
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: $10/month in token credits
     value_phrase: $10/month in token credits
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-03'
   - unit: edit predictions
     scope: account
     state: unmetered
@@ -6368,7 +6379,7 @@ entries:
       students.
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: The Zed Student Plan includes unlimited Edit Predictions
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: sum
   models: []
   data_use:
@@ -6434,7 +6445,7 @@ entries:
     quote: Your first free request starts a personal rolling 7-day period. The allowance
       is value-based rather than a fixed request count, because different models and
       requests have different costs. Your dashboard shows usage as a percentage.
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - amount: 60.0
     unit: requests
     period: minute
@@ -6564,7 +6575,6 @@ entries:
     - stepfun/step-3.7-flash:free
     - upstage/solar-mini4:free
     - reflection/beam-1.0-501b-a23b:free
-    - ornith/ornith-1.5-122b:free
     model_limits:
       reflection/beam-1.0-501b-a23b:free:
         context_tokens: 262144
@@ -7242,7 +7252,7 @@ entries:
     source: https://opper.ai/sign-up/free.md
     quote: gemini/gemma-4-31b is a free model, so this call works before you add a
       card.
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: gemma-4-31b
@@ -7378,7 +7388,7 @@ entries:
     source: https://docs.mixlayer.com/credits-and-limits.md
     quote: Mixlayer does not publish fixed limit values because limits can differ
       by organization and model
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: qwen3.5-4b
@@ -7580,7 +7590,7 @@ entries:
     source: https://impossibl.com/llms.txt
     quote: an agent-created account has $0.05
     value_phrase: an agent-created account has $0.05
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - amount: 1.0
     unit: USD
     period: one-time
@@ -8565,7 +8575,7 @@ entries:
     label: Verified free models
     source: https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation
     quote: 免费模型的 Rate Limits 固定
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: xing4.0-29b
@@ -8683,7 +8693,7 @@ entries:
     follow:
       field: Data.TargetPrefix
       suffix: /dist/magicube/intro/intro_CN.md
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: sum
   models: []
   api:
@@ -8760,7 +8770,7 @@ entries:
     label: Preview models
     source: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
     quote: gemini-3.1-pro-preview Dynamic
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   - amount: 10.0
     unit: requests
     period: minute
@@ -8802,7 +8812,7 @@ entries:
     model_ids:
     - gemini-3.1-pro-preview
     - gemini-3-flash-preview
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: gemini-3.1-pro
@@ -9224,7 +9234,7 @@ entries:
     label: Personal Standard completion
     source: https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a
     quote: 智能补全 免费
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: unnamed
   models: []
   border:
@@ -9272,7 +9282,7 @@ entries:
     condition_quote: Lite 30 days Free claim, 1,000 slots/day
     source: https://atomcode.atomgit.com/docs/en/login.html
     quote: Quota is measured on a rolling 5-hour window
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-03'
   free_part: models
   models:
   - family: deepseek-v4-flash

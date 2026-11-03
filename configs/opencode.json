@@ -161,6 +161,13 @@
             "context": 1048576,
             "output": 131072
           }
+        },
+        "google/gemma-4-31b-it:free": {
+          "name": "google/gemma-4-31b-it:free",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
         }
       }
     },
@@ -680,9 +687,6 @@
             "context": 262144,
             "output": 131072
           }
-        },
-        "ornith/ornith-1.5-122b:free": {
-          "name": "ornith/ornith-1.5-122b:free"
         }
       }
     },

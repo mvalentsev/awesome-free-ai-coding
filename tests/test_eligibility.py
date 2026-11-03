@@ -9,6 +9,28 @@ from test_page_catalog import entry, page, session_catalog_data
 
 
 @respx.mock
+@pytest.mark.parametrize('changed', [False, True])
+async def test_cursor_free_eligibility_is_bound_to_the_exact_versions_in_the_free_clause(changed):
+    from datetime import date
+    from pathlib import Path
+    from freetier_radar.models import ModelFamily, load_registry
+    registered = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'cursor-hobby')
+    row = registered.model_copy(update={
+        'models': [ModelFamily(family=f) for f in ['grok-4.7', 'grok-4.6', 'grok-4.5', 'composer-2.5']],
+        'newcomers': [], 'quotas': [], 'border': None, 'data_use': None,
+    })
+    current = ("Free and Plus include only Cursor's first-party models "
+               '(Grok 4.7, Grok 4.6, Grok 4.5, and Composer 2.5).')
+    free_clause = current.replace('Grok 4.6', 'Grok 4.8') if changed else current
+    # A paid list can still name every old version after its Free entitlement ends.
+    body = free_clause + ' Paid models: Grok 4.7, Grok 4.6, Grok 4.5, Composer 2.5.'
+    respx.get(row.probe.endpoint).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, row, attempts=1, backoff=0, today=date(2026, 11, 3))
+    assert result.status is (ProbeStatus.FAIL if changed else ProbeStatus.PASS)
+
+
+@respx.mock
 async def test_matching_promotion_copy_without_scoped_eligibility_is_not_verified():
     data = session_catalog_data()
     quote = "Beta is free in the US, one session a day for every account."

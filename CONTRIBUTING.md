@@ -206,7 +206,10 @@ measured the same way: where the board scores a model of exactly its name, `--wr
 names that slug as its `aa_model` — the model's own page, as above — so a new
 model's mark follows the index as models come out, not as reviewers remember; a
 lane that serves another variant names that one by hand, and a hand-named
-`aa_model` is never replaced. On 2026-09-17 the top was 53.4
+`aa_model` is never replaced. Set `aa_auto: false` to hold automatic binding for
+a family while its available benchmark variant is under review; explicit
+reviewed bindings remain measured. Record the source, checked date and next
+review trigger in private evidence. On 2026-09-17 the top was 53.4
 (Claude Fable 5.1), frontier started at 43.4 and strong at 28.4. Until that day
 every family without a mark was `strong`, Apertus 70B at 5 points beside GLM 5.3
 Flash at 42, and nineteen of twenty-two frontier marks set by hand no longer met

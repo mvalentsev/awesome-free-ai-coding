@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 94 live offers, 90 need no card, 125 free models, 65 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 94 live offers, 90 need no card, 130 free models, 65 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -28,13 +28,13 @@
 - **[Kiro](https://kiro.dev/)** — `claude-sonnet-4.5` · `claude-sonnet-4` · `glm-5` · `minimax-m2.5` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 - **[Google Antigravity](https://antigravity.google)** — `gemini-3.8-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss-120b`
 
-**Free models, compared.** Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) v5.0 scores, read 2026-11-02, highest first. Each linked provider offers the model free under the conditions beside its name; 💳 means a card is required.
+**Free models, compared.** Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) v5.0 scores, read 2026-11-03, highest first. Each linked provider offers the model free under the conditions beside its name.
 
 <div align="center">
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
-  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0 score read 2026-11-02: the strongest, qwen3.8-max, scores 33.6 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 59.4" src="assets/readme/strong-light.svg" width="860">
+  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0 score read 2026-11-03: the strongest, qwen3.8-max, scores 33.6 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 59.4" src="assets/readme/strong-light.svg" width="860">
 </picture></a>
 </div>
 
@@ -46,6 +46,7 @@
 - [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — [AIHubMix (free models)](https://aihubmix.com) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [ZCode (Z.ai)](https://zcode.z.ai/en)
 - [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
 - [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — [AIHubMix (free models)](https://aihubmix.com)
+- [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
 - `step-5-preview-600b-a27b` — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
 - [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — [opencode](https://opencode.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [ZCode (Z.ai)](https://zcode.z.ai/en) · [FreeInference (Harvard SEAS)](https://freeinference.org)
 - [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — [Codex (ChatGPT Free)](https://learn.chatgpt.com/docs/pricing)
@@ -61,11 +62,10 @@
 - [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) — [Google AI Studio (Gemini API)](https://aistudio.google.com)
 - [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — [Requesty](https://www.requesty.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [Routeway](https://routeway.ai)
 - [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) — [Cohere (trial keys)](https://cohere.com)
-- [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) — [opencode](https://opencode.ai) · [OpenRouter (free models)](https://openrouter.ai) · [Kilo Code](https://kilo.ai) · [Requesty](https://www.requesty.ai) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [AIHubMix (free models)](https://aihubmix.com) · [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 · [BazaarLink](https://bazaarlink.ai)
 
 </details>
 
-[All 125 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
+[All 130 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
 
 **Or pick by what you need:**
 
@@ -105,7 +105,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Freebuff](https://freebuff.com)** 👁 — Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) · `solar-pro-4` · [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</sub>
 - **[Cline](https://cline.bot)** 👁 — Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) · [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) · [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</sub>
 - **[Google Jules](https://jules.google/)** 👁 — Free tier of Google's async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) · `gemini-2.5`</sub>
-- **[Cursor (Free)](https://cursor.com/)** 👁 — Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/)</sub>
+- **[Cursor (Free)](https://cursor.com/)** 👁 — Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) · `grok-4.7` · `grok-4.6` · `grok-4.5` · `composer-2.5`</sub>
 - **[Devin Desktop (formerly Windsurf)](https://devin.ai/desktop)** 👁 — Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) · `swe-1.6`</sub>
 - **[Autohand Code](https://www.autohand.ai/code/)** — Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, using recurring hosted-response credits<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) · `fantail`</sub>
 - **[MiniMax Code](https://agent.minimax.io/download)** — MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/)</sub>
@@ -126,7 +126,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 - **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 — Free tier on the Gemini API, priced model by model rather than as one account quota<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) · [🔑 key](https://aistudio.google.com/apikey) · [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) · [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) · [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) · [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) · [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · `gemma-4`</sub>
 - **[Groq](https://groq.com)** — Fast inference against a free plan Groq publishes as a per-model rate table<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) · [🔑 key](https://console.groq.com/keys) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</sub>
-- **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 — Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) · [🔑 key](https://build.nvidia.com) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) · [+6 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)</sub>
+- **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 — Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) · [🔑 key](https://build.nvidia.com) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) · [+7 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)</sub>
 - **[Z.ai (Zhipu GLM)](https://z.ai)** — GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) · [🔑 key](https://z.ai/manage-apikey/apikey-list) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · `glm-4.5-flash` · `glm-4.6v-flash`</sub>
 - **[Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/)** — Serverless model inference on Cloudflare, with an OpenAI-compatible API and a daily free allowance<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) · [🔑 key](https://dash.cloudflare.com/profile/api-tokens)</sub>
 - **[LLM7.io](https://llm7.io)** — OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) · [🔑 key](https://dash.llm7.io)</sub>
@@ -204,7 +204,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[1min.AI](https://1min.ai)** 🧪 — Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) · [🔑 key](https://app.1min.ai/)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 125 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 130 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -212,6 +212,8 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-03` | 🔄 Free models changed **[Cursor (Free)](https://cursor.com/)** | <sub>added composer-2.5, grok-4.5, grok-4.6, grok-4.7</sub> |
+| `2026-11-03` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added minimax-m3.1-flash</sub> |
 | `2026-11-02` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped minimax-m3.1-flash</sub> |
 | `2026-11-02` | ➕ Added **[NoTrack API](https://notrack.ai/api)** | <sub>Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model</sub> |
 | `2026-11-02` | 🔄 Free models changed **[BazaarLink](https://bazaarlink.ai)** | <sub>added nemotron-3.5-lightning</sub> |
@@ -220,8 +222,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-11-02` | ➕ Added **[1min.AI](https://1min.ai)** | <sub>Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance</sub> |
 | `2026-11-02` | 🔄 Free models changed **[opencode](https://opencode.ai)** | <sub>added glm-5.3-flash, nemotron-3.5-super-vl-120b-a12b</sub> |
 | `2026-11-01` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>dropped laguna-s-2.1, laguna-xs-2.1</sub> |
-| `2026-11-01` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>dropped laguna-s-2.1, laguna-xs-2.1</sub> |
-| `2026-11-01` | 🔄 Free models changed **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** | <sub>dropped laguna-s-2.1, laguna-xs-2.1</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

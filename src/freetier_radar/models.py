@@ -258,6 +258,9 @@ class ModelFamily(BaseModel):
     # The Artificial Analysis model the tier was read from: the slug of its page
     # on artificialanalysis.ai/models/, for the variant the lane actually serves.
     aa_model: str | None = None
+    # Keep a bare family unmeasured while the applicable benchmark variant is
+    # under review. Explicit reviewed bindings are independent of this switch.
+    aa_auto: bool = Field(default=True, strict=True, exclude_if=lambda value: value is True)
 
     @field_validator("table_name")
     @classmethod

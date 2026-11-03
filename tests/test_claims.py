@@ -71,6 +71,20 @@ def test_the_committed_files_state_what_the_code_applies():
     assert check_claims(ROOT) == []
 
 
+def test_documented_aa_hold_rejects_an_automatic_writer_that_ignores_it(tmp_path, monkeypatch):
+    from freetier_radar import tiers
+    root = _root(tmp_path, (ROOT / 'CONTRIBUTING.md').read_text())
+    claim = next(c for c in CLAIMS if 'aa_auto' in c.pattern)
+    assert check_claims(root, (claim,), scheduled=()) == []
+    original = tiers.unmeasured
+    def ignore_holds(entries, board):
+        rows = [e.model_copy(update={'models': [m.model_copy(update={'aa_auto': True})
+                                               for m in e.models]}) for e in entries]
+        return original(rows, board)
+    monkeypatch.setattr(tiers, 'unmeasured', ignore_holds)
+    assert check_claims(root, (claim,), scheduled=())
+
+
 @pytest.mark.parametrize('values', ['"agent-cli": 1, "api-free-tier": 0, "trial": 2, "aggregator": 3',
                                    '"agent-cli": 0, "api-free-tier": 1, "trial": 9, "aggregator": 3',
                                    '"agent-cli": 0, "api-free-tier": 1e9, "trial": 2, "aggregator": 3'])

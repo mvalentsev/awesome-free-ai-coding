@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Cursor (Free) free tier: limits, free models, verified 2026-11-02'
-description: Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free includes limited Agent, Chat and Tab usage with Cursor's first-party models; numerical allowances are unpublished and third-party models are not included. The pricing FAQ describes weekly refreshes across tiers, while…
+description: 'Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free models: grok-4.7, grok-4.6, grok-4.5, composer-2.5. Free includes limited Agent, Chat and Tab usage with Cursor''s first-party models; numerical allowances are unpublished and third-party models are not included. The…'
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-03
 crumb: Cursor (Free)
 ---
 
@@ -19,7 +19,7 @@ Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage
 
 ## Free models
 
-No free model family is listed yet; new offers must clear the two-week bar before entering this section.
+`grok-4.7`, `grok-4.6`, `grok-4.5`, `composer-2.5`
 
 ## Limits, in the vendor's words
 
@@ -38,11 +38,10 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cursor (Free)'s own model list: `grok-4.7`, `grok-4.6`, `grok-4.5`, `composer-2.5`
 
 ## Evidence
 
-- Probe: the page at <https://cursor.com/help/models-and-usage/available-models>, anchored on `Free and Plus include only Cursor's first-party models`
+- Probe: the page at <https://cursor.com/help/models-and-usage/available-models>, anchored on `Free and Plus include only Cursor's first-party models (Grok 4.7, Grok 4.6, Grok 4.5, and Composer 2.5).`
 - Source: <https://cursor.com/pricing>
 - Source: <https://cursor.com/help/models-and-usage/usage-limits>
 - Source: <https://cursor.com/help/account-and-billing/pricing>
@@ -53,12 +52,13 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-03` — Free models changed: added composer-2.5, grok-4.5, grok-4.6, grok-4.7
 - `2026-10-13` — Free models changed: dropped composer
 - `2026-09-25` — Free models changed: added composer
 - `2026-07-19` — Added: Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card
 
 ---
 
-Generated from `registry.yaml` on 2026-11-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-03 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

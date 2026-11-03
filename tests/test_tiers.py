@@ -417,6 +417,36 @@ async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp
 
 
 @respx.mock
+@pytest.mark.parametrize('held', [False, True])
+async def test_a_variant_review_hold_survives_the_http_writer_and_a_bare_peer(tmp_path, held):
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry, scores = tmp_path / 'registry.yaml', tmp_path / 'scores.json'
+    save_registry(registry, [entry('a', {'family': 'glm-5.3', 'aa_auto': not held}),
+                             entry('b', {'family': 'glm-5.3'})])
+    for _ in range(2):
+        assert await _amain(registry, write=True, scores=scores) == 0
+        models = [row.models[0] for row in load_registry(registry)]
+        measured = json.loads(scores.read_text())['families']
+        if held:
+            assert all(model.aa_model is None and model.tier is None for model in models)
+            assert 'glm-5.3' not in measured
+        else:
+            assert all(model.aa_model == 'glm-5-3' and model.tier is Tier.FRONTIER for model in models)
+            assert measured['glm-5.3']['index'] == 44.9
+
+
+@respx.mock
+async def test_a_variant_hold_preserves_an_explicit_reviewed_measurement(tmp_path):
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry = tmp_path / 'registry.yaml'
+    save_registry(registry, [entry('a', {'family': 'glm-5.3', 'aa_auto': False,
+                                        'aa_model': 'glm-5-3', 'tier': 'strong'})])
+    assert await _amain(registry, write=True) == 0
+    model = load_registry(registry)[0].models[0]
+    assert model.aa_model == 'glm-5-3' and model.tier is Tier.FRONTIER
+
+
+@respx.mock
 async def test_write_keeps_every_score_it_read_for_the_readme_to_draw(tmp_path: Path):
     """--write keeps what it read for the render, which reads no network: the day,
     the top, the median and every measured family's score, on every run; a report

@@ -243,7 +243,32 @@ def _unscored_tier_policy(root: Path) -> tuple[str, ...]:
             'preserves' if missing.unknown and not missing.moved else 'invalid')
 
 
+def _automatic_aa_hold(root: Path) -> tuple[str, ...]:
+    from .models import Entry
+    from .tiers import Scored, review, unmeasured
+    def row(held=False, explicit=False):
+        return Entry.model_validate({
+            'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
+            'url': 'https://vendor.example', 'offering': 'Free models',
+            'first_seen': '2026-11-03', 'last_verified': '2026-11-03',
+            'models': [{'family': 'reviewed-model', 'aa_auto': not held,
+                        **({'aa_model': 'reviewed-model'} if explicit else {})}],
+            'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                      'keywords': ['100 free requests per day']}})
+    board = {'top': Scored('top', 'Top', 50, False, False),
+             'reviewed-model': Scored('reviewed-model', 'Model (Xhigh)', 40, False, False)}
+    ordinary = unmeasured([row()], board)
+    held = unmeasured([row(held=True), row()], board)
+    _, explicit = review([row(held=True, explicit=True)], board)
+    return ('hold' if ordinary and not held else 'invalid',
+            'measured' if explicit[0].score == board['reviewed-model'] else 'invalid')
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'Set `aa_auto: false` to (hold) automatic binding for\s+a family while its available benchmark variant is under review; explicit\s+reviewed bindings remain (measured)',
+          _automatic_aa_hold,
+          'models.ModelFamily.aa_auto and tiers.unmeasured; repeated HTTP writer, bare-peer and explicit reviewed binding controls in tests/test_tiers.py'),
     Claim("CONTRIBUTING.md", r'Its verdict is `(canonical)`, `(task)`, or `(irrelevant)`',
           lambda _: LEAD_VERDICTS,
           "review.sources and review_leads.validate_dispositions; captured comparison, missing decision, canonical pointer and unresolved task controls in tests/test_review.py, tests/test_review_leads.py and tests/test_quality.py"),

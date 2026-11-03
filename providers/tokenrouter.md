@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-11-02'
-description: 'OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models. Free models: nemotron-3-nano-omni. The free route belongs to the default group. Other catalog routes are metered, apart from an unmarked zero-priced stealth route. No numerical free request or…'
+description: 'OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models. Free models: nemotron-3-nano-omni. The free route belongs to the default group. Other catalog routes are metered, apart from unmarked zero-priced stealth routes. No numerical free request or…'
 permalink: /providers/tokenrouter/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-03
 crumb: TokenRouter (PaleBlueDot)
 ---
 
@@ -25,7 +25,7 @@ OpenAI-compatible gateway with a zero-priced free-model route in its default gro
 
 Free route: Usage allowance: amount not published (period not published) per account
 
-The free route belongs to the default group. Other catalog routes are metered, apart from an unmarked zero-priced stealth route. No numerical free request or token budget is published.
+The free route belongs to the default group. Other catalog routes are metered, apart from unmarked zero-priced stealth routes. No numerical free request or token budget is published.
 
 ## Where it is offered
 
@@ -61,6 +61,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-03 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

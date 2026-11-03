@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m3.1-flash-preview free: no current listing, last listed 2026-10-06'
 description: No row currently lists minimax-m3.1-flash-preview under Free models. The list carried it at LLMTR until 2026-10-06. Each row's page gives its current offer.
 permalink: /models/minimax-m3.1-flash-preview/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-03
 crumb: minimax-m3.1-flash-preview
 ---
 
@@ -26,9 +26,10 @@ crumb: minimax-m3.1-flash-preview
 - [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
 - [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models)
+- [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — free at NVIDIA NIM (build.nvidia.com)
 
 ---
 
-Generated from `registry.yaml` on 2026-11-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-03 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -920,12 +920,6 @@ model_list:
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
     max_tokens: 131072
-- model_name: nous-portal/ornith/ornith-1.5-122b:free
-  litellm_params:
-    model: openai/ornith/ornith-1.5-122b:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
 - model_name: iteracompute/qwen/qwen3.8-27b
   litellm_params:
     model: openai/qwen/qwen3.8-27b

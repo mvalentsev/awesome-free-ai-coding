@@ -266,10 +266,11 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     CONTRIBUTING reads where the lane names no variant — and a reviewer whose
     lane serves another variant names that one instead."""
     measured = {m.family for e in entries for m in e.models if m.aa_model}
+    held = {m.family for e in entries for m in e.models if not m.aa_auto}
     found: dict[str, Scored] = {}
     for e in entries:
         for m in e.models:
-            if m.superseded_by is None and m.family not in measured and m.family not in found:
+            if m.superseded_by is None and m.family not in measured and m.family not in held and m.family not in found:
                 scored = models.get(m.family.replace(".", "-"))
                 if scored is not None and scored.index is not None and not scored.deprecated:
                     found[m.family] = scored
