@@ -759,10 +759,24 @@ def main() -> None:
         sys.exit(1 if result.get('passed') is False or result.get('complete') is False else 0)
     except (ValueError, RuntimeError, OSError, httpx.HTTPError) as exc:
         if bundle is not None and lock is not None:
-            phase = {'prepare': 'scope', 'client': 'client-error-' + uuid.uuid4().hex}.get(args.phase, args.phase)
-            scope = json.loads((bundle.out / 'scope.json').read_text()) if (bundle.out / 'scope.json').exists() else {}
-            bundle.save(phase, {'phase': args.phase, 'sha': scope.get('sha'), 'passed': False,
-                               'at': now(), 'error': str(exc)})
+            try:
+                scope = bundle.load('scope', {})
+            except (ValueError, OSError):
+                scope = {}
+            if not isinstance(scope, dict):
+                scope = {}
+            phase = args.phase
+            previous = {}
+            if args.phase == 'prepare':
+                # Preserve a prepared bundle's immutable commit binding while
+                # invalidating the failed phase. A first-attempt error is not
+                # a scope and must not prevent a later preparation.
+                phase = 'scope' if scope else 'prepare-error'
+                previous = scope
+            elif args.phase == 'client':
+                phase = 'client-error-' + uuid.uuid4().hex
+            bundle.save(phase, {**previous, 'phase': args.phase, 'sha': scope.get('sha'),
+                               'passed': False, 'at': now(), 'error': str(exc)})
         parser.exit(1, 'review: ' + str(exc) + '\n')
     finally:
         if lock is not None:

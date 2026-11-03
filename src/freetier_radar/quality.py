@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import re
 import yaml
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -60,11 +59,6 @@ def vendor_scope(repo: Path, base: str, sha: str) -> dict:
         if old and (removed or (not old.get('archived') and new.get('archived'))):
             withdrawals.append(row)
     return {'rows': sorted(rows), 'eligibility': result, 'withdrawals': withdrawals}
-
-
-def eligibility_scope(repo: Path, base: str, sha: str) -> dict[str, list[str]]:
-    """Derive mandatory offer and model coverage independently of the signoff."""
-    return vendor_scope(repo, base, sha)['eligibility']
 
 
 def validate_judgment(value: dict, scope: dict) -> None:

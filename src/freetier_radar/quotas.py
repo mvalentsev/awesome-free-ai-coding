@@ -538,17 +538,6 @@ def quota_value(q: UsageQuota) -> str:
     return value
 
 
-def quota_words(q: UsageQuota) -> str:
-    value = quota_value(q) + ('; ' if q.scope == 'unspecified' else ' ') + SCOPE_WORDS[q.scope]
-    if q.label:
-        value = q.label + ': ' + value
-    if q.condition:
-        value += ' (' + q.condition + ')'
-    if q.reset:
-        value += '. ' + q.reset
-    return value
-
-
 def structured_quotas(entry: Entry) -> list[dict]:
     rows = [{**q.model_dump(mode='json', exclude_none=True), 'amount': q.amount, 'period':q.period}
             for old in entry.quotas if (q := active_quota(entry,old)) is not None]

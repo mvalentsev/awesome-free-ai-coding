@@ -61,6 +61,19 @@ async def test_all_page_readers_agree_on_which_bodies_can_supply_evidence(status
     assert len(calls) == (8 if status == 503 else 6)
 
 
+@pytest.mark.parametrize('retry_after', ['120', 'Wed, 04 Nov 2026 00:00:00 GMT', 'invalid'])
+async def test_a_source_503_with_an_unwaited_retry_after_stays_inconclusive(retry_after):
+    calls = []
+    def answer(request):
+        calls.append(request)
+        return httpx.Response(503, headers={'Retry-After': retry_after}, text=QUOTE)
+    async with httpx.AsyncClient(transport=httpx.MockTransport(answer)) as client:
+        result = await probe_entry(client, entry(), attempts=3, backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert retry_after in result.detail
+    assert len(calls) == 1
+
+
 @pytest.mark.parametrize("final_status", [200, 403])
 async def test_redirect_evidence_comes_from_the_final_response(final_status):
     final_url = "https://vendor.example/current"

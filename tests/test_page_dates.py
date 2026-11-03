@@ -1,7 +1,6 @@
 """Modification dates follow page content, independently of probe provenance."""
 from datetime import date
 import os
-from pathlib import Path
 import subprocess
 
 import pytest

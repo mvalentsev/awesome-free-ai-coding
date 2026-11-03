@@ -2,7 +2,6 @@
 import httpx
 import pytest
 import respx
-import json
 import yaml
 
 from freetier_radar.prober import ProbeStatus, probe_entry

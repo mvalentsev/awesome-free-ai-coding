@@ -123,7 +123,7 @@ import pytest
 import respx
 from pydantic import ValidationError
 
-from freetier_radar.models import ApiInfo, Entry, load_registry
+from freetier_radar.models import ApiInfo, Entry
 from freetier_radar.prober import ProbeStatus, _codex_call, _codex_completed, probe_entry
 from test_prober import BASE, KEYLESS_CATALOG, completion
 

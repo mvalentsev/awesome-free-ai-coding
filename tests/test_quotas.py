@@ -14,6 +14,11 @@ QUOTA = {'amount':200,'unit':'requests','period':'hour','scope':'ip',
          'source':'https://vendor.example/limits','quote':'200 requests per hour per IP'}
 
 
+def quota_text(quota):
+    from freetier_radar.quotas import quota_summary
+    return quota_summary(Entry.model_validate({**BASE, 'quotas': [quota]}))
+
+
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock
 async def test_indonesian_daily_and_minute_quotas_use_the_http_source(changed):
@@ -133,19 +138,19 @@ async def test_review_quota_tracks_the_free_cli_cell_at_http_boundary(free_cli, 
 
 
 def test_single_review_quote_keeps_its_unit_and_amount():
-    from freetier_radar.quotas import UsageQuota, quota_words
+    from freetier_radar.quotas import UsageQuota
     quota = UsageQuota.model_validate({**QUOTA, 'amount': 1, 'unit': 'reviews', 'scope': 'person',
                                       'quote': 'One review per developer per hour',
                                       'value_phrase': 'One review per developer per hour'})
     assert quota.amount == 1
-    assert quota_words(quota) == '1 review/hour per person'
+    assert quota_text(quota) == '1 review/hour per person'
 
 
 def test_conflicting_published_ceilings_are_distinct_from_an_unpublished_allowance():
-    from freetier_radar.quotas import UsageQuota, quota_words
+    from freetier_radar.quotas import UsageQuota
     quota = UsageQuota.model_validate({**QUOTA, 'amount': None, 'period': 'concurrent',
                                       'state': 'disputed', 'scope': 'key', 'reviewed_on': '2026-10-28'})
-    text = quota_words(quota)
+    text = quota_text(quota)
     assert 'published sources disagree' in text
     assert 'not published' not in text
 
@@ -216,9 +221,8 @@ async def test_turkish_million_daily_tokens_bind_to_current_http_source(phrase, 
         result=await probe_entry(client,e,attempts=1,backoff=0)
     assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
     if scope=='person':
-        from freetier_radar.quotas import quota_words
-        assert 'per person' in quota_words(e.quotas[0])
-        assert 'per account' not in quota_words(e.quotas[0])
+        assert 'per person' in quota_text(e.quotas[0])
+        assert 'per account' not in quota_text(e.quotas[0])
 
 @respx.mock
 async def test_a_live_offer_does_not_hide_a_changed_numeric_quota():
@@ -325,19 +329,19 @@ def test_machine_json_keeps_an_unpublished_amount_explicitly_null():
 
 
 def test_a_hidden_allowance_does_not_invent_a_renewal_period():
-    from freetier_radar.quotas import UsageQuota,quota_words
+    from freetier_radar.quotas import UsageQuota
     q=UsageQuota.model_validate({**QUOTA,'amount':None,'unit':'usage','period':None,
         'scope':'account','quote':'Limited Agent requests','reviewed_on':'2026-10-06'})
-    text=quota_words(q)
+    text=quota_text(q)
     assert 'amount not published' in text and 'day' not in text and 'month' not in text
     assert 'period not published' in text
 
 
 def test_concurrent_work_is_not_a_recurring_request_budget():
-    from freetier_radar.quotas import UsageQuota,quota_words
+    from freetier_radar.quotas import UsageQuota
     q=UsageQuota.model_validate({**QUOTA,'amount':3,'unit':'tasks','period':'concurrent',
         'scope':'account','quote':'3 concurrent tasks'})
-    assert quota_words(q)=='3 tasks at once per account'
+    assert quota_text(q)=='3 tasks at once per account'
 
 
 @pytest.mark.parametrize('reset', ['Unused allowance does not carry over.', 'Unused allowance does not carry over'])
@@ -355,11 +359,11 @@ def test_model_scope_precedes_the_separate_reset_sentence(reset, model_bound):
 
 
 def test_explicit_unmetered_usage_stays_distinct_from_an_unpublished_amount():
-    from freetier_radar.quotas import UsageQuota,quota_words
+    from freetier_radar.quotas import UsageQuota
     q=UsageQuota.model_validate({**QUOTA,'amount':None,'unit':'completions','period':None,
         'scope':'account','state':'unmetered','quote':'Unlimited Tab completions',
         'reviewed_on':'2026-10-06'})
-    assert 'Unmetered completions' in quota_words(q) and 'not published' not in quota_words(q)
+    assert 'Unmetered completions' in quota_text(q) and 'not published' not in quota_text(q)
 
 
 @respx.mock
@@ -449,10 +453,10 @@ def test_same_label_cannot_share_different_caps_between_models():
 
 
 def test_one_time_grant_cannot_look_like_a_recurring_allowance():
-    from freetier_radar.quotas import UsageQuota, quota_words
+    from freetier_radar.quotas import UsageQuota
     quota=UsageQuota.model_validate({**QUOTA,'amount':10,'unit':'USD',
         'period':'one-time','scope':'account','quote':'$10 signup credit'})
-    assert '$10 once per account' == quota_words(quota)
+    assert '$10 once per account' == quota_text(quota)
 
 
 @pytest.mark.parametrize('amount,unit,expected', [
@@ -470,10 +474,10 @@ def test_one_time_grant_cannot_look_like_a_recurring_allowance():
     (1, 'CUH', '1 CUH/hour per IP'),
 ])
 def test_quota_display_inflects_counts_without_changing_the_recorded_unit(amount, unit, expected):
-    from freetier_radar.quotas import UsageQuota, quota_words
+    from freetier_radar.quotas import UsageQuota
     quota = UsageQuota.model_validate({**QUOTA, 'amount': amount, 'unit': unit,
                                       'quote': f'{amount} {unit} per hour per IP'})
-    assert quota_words(quota) == expected
+    assert quota_text(quota) == expected
     assert quota.model_dump()['unit'] == unit
 
 

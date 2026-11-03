@@ -1,7 +1,6 @@
 """Search the same complete provider facts on both published surfaces."""
 import json
 from html.parser import HTMLParser
-from pathlib import Path
 import shutil
 import subprocess
 

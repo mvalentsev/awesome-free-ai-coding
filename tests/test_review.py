@@ -134,11 +134,11 @@ def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(t
     subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: reconcile content'], check=True)
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
-    from freetier_radar.quality import vendor_scope, eligibility_scope
+    from freetier_radar.quality import vendor_scope
     expected = ['vendor'] if substantive else []
     assert scope['rows'] == expected
     assert vendor_scope(repo, scope['base'], scope['sha'])['rows'] == expected
-    assert scope['eligibility'] == eligibility_scope(repo, scope['base'], scope['sha'])
+    assert scope['eligibility'] == ({'vendor': ['alpha', 'beta']} if substantive else {})
     assert scope['paths'] == ['index.json', 'providers/vendor.md']
 
 
@@ -245,6 +245,21 @@ async def test_publication_retries_network_failures_but_preserves_a_wrong_body(t
     assert result['passed'] is False
     assert [a['status'] for a in result['attempts']] == [503, 200]
     assert (bundle.out / result['attempts'][-1]['file']).read_bytes() == b'old tree'
+
+
+@respx.mock
+@pytest.mark.parametrize('page', [False, True])
+async def test_review_retains_a_503_without_retrying_before_its_advertised_wait(tmp_path, page):
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    route = respx.get('https://vendor.example/pricing').respond(
+        503, headers={'Retry-After': '120'}, text='Temporarily unavailable')
+    async with httpx.AsyncClient() as client:
+        result = await review.fetch(client, 'https://vendor.example/pricing', bundle, backoff=0, page=page)
+    assert not result['passed']
+    assert route.call_count == 1
+    assert len(result['attempts']) == 1
+    assert result['attempts'][0]['retry_after'] == '120'
+    assert (bundle.out / result['file']).read_text() == 'Temporarily unavailable'
 
 
 @respx.mock
@@ -506,6 +521,58 @@ def test_real_prepare_cli_links_to_the_artifact_it_created(tmp_path):
     summary = json.loads(run.stdout)
     assert Path(summary['evidence']).is_file()
     assert summary['sha'] == json.loads((out / 'scope.json').read_text())['sha']
+
+
+def test_prepare_cli_can_retry_a_failed_first_attempt_in_the_same_directory(tmp_path):
+    import sys
+    repo = repo_at(tmp_path)
+    out = repo / '.evidence'
+    command = [sys.executable, '-c', 'from freetier_radar.review import main; main()',
+               '--root', str(repo), '--out', str(out), 'prepare', '--base']
+    failed = subprocess.run([*command, 'missing-ref'], capture_output=True, text=True)
+    assert failed.returncode == 1
+    assert 'cannot resolve commit' in failed.stderr
+    retry = subprocess.run([*command, 'HEAD~1'], capture_output=True, text=True)
+    assert retry.returncode == 0, retry.stderr
+    assert json.loads(retry.stdout)['sha'] == review.revision(repo, 'HEAD')
+
+
+def test_failed_prepare_preserves_its_existing_commit_binding_and_invalidates_the_phase(tmp_path):
+    import sys
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    original = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    command = [sys.executable, '-c', 'from freetier_radar.review import main; main()',
+               '--root', str(repo), '--out', str(bundle.out), 'prepare', '--base']
+    failed = subprocess.run([*command, 'HEAD'], capture_output=True, text=True)
+    assert failed.returncode == 1
+    current = review.Bundle(bundle.out, repo)
+    scope = current.load('scope')
+    assert (scope['base'], scope['sha']) == (original['base'], original['sha'])
+    assert scope['passed'] is False
+    with pytest.raises(ValueError, match='run prepare first'):
+        review.scoped(current)
+    retry = subprocess.run([*command, 'HEAD~1'], capture_output=True, text=True)
+    assert retry.returncode == 0, retry.stderr
+    assert review.scoped(review.Bundle(bundle.out, repo))['base'] == original['base']
+
+
+def test_prepare_error_does_not_reregister_a_tampered_scope_as_valid_evidence(tmp_path):
+    import sys
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    (bundle.out / 'scope.json').write_text('corrupt scope')
+    run = subprocess.run([sys.executable, '-c', 'from freetier_radar.review import main; main()',
+                          '--root', str(repo), '--out', str(bundle.out), 'prepare', '--base', 'HEAD~1'],
+                         capture_output=True, text=True)
+    assert run.returncode == 1
+    assert 'changed evidence: scope' in run.stderr
+    assert 'Traceback' not in run.stderr
+    current = review.Bundle(bundle.out, repo)
+    assert current.load('prepare-error')['passed'] is False
+    assert (bundle.out / 'scope.json').read_text() == 'corrupt scope'
+    assert review.integrity(current)
 
 
 def test_bundle_lock_rejects_parallel_writers_and_releases_after_close(tmp_path):

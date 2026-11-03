@@ -53,14 +53,22 @@ class ProbeResult:
     detail: str = ""
 
 
+@dataclass(frozen=True)
+class _CodexAnswer:
+    status_code: int
+    text: str
+    headers: httpx.Headers
+
+
 class _InferenceCooldown(Exception):
     """End this entry's inference checks on an unresolved advertised wait."""
 
 
-def _defer_inference(response: httpx.Response) -> None:
-    if response.status_code == 429 and not _asks_to_wait_at_most(response, 0):
+def _defer_inference(response: httpx.Response | _CodexAnswer, *, retrying: bool = False) -> None:
+    limited = retrying or response.status_code == 429 or response.status_code >= 500
+    if limited and not _asks_to_wait_at_most(response, 0):
         wait = response.headers.get('retry-after', '')[:160]
-        raise _InferenceCooldown(f'HTTP 429; Retry-After: {wait}; remaining requests deferred')
+        raise _InferenceCooldown(f'HTTP {response.status_code}; Retry-After: {wait}; remaining requests deferred')
 
 
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
@@ -241,8 +249,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
     return ProbeResult(ProbeStatus.FAIL, detail)
 
 
-async def _ask[A](send: Callable[[], Awaitable[A]], attempts: int, backoff: float,
-                  status: Callable[[A], int] = lambda answer: answer.status_code,
+async def _ask[A: httpx.Response | _CodexAnswer](send: Callable[[], Awaitable[A]], attempts: int, backoff: float,
                   again: Callable[[A, float], bool] | None = None) -> tuple[A | None, str]:
     """The first answer `send` gets that is the caller's to read, or None and
     why no try got one. Every call the probe makes is patient the same way: a
@@ -260,8 +267,15 @@ async def _ask[A](send: Callable[[], Awaitable[A]], attempts: int, backoff: floa
             # httpx raises a read timeout with no message
             last = f"network error: {str(exc) or type(exc).__name__}"
             continue
-        if status(answer) >= 500:
-            last = f"HTTP {status(answer)}"
+        # RFC 9110 section 10.2.3, checked 2026-11-03:
+        # https://www.rfc-editor.org/rfc/rfc9110.html#name-retry-after
+        # A 503 can advertise a wait too. Return its evidence instead of
+        # retrying early; the last attempt has no further scheduled pause.
+        pause = backoff * (i + 1) if i + 1 < attempts else 0
+        if isinstance(answer, (httpx.Response, _CodexAnswer)) and not _asks_to_wait_at_most(answer, pause):
+            return answer, ""
+        if answer.status_code >= 500:
+            last = f"HTTP {answer.status_code}"
             continue
         if again is not None and i + 1 < attempts and again(answer, backoff * (i + 1)):
             continue
@@ -299,8 +313,10 @@ async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: flo
     said = f"{url} answered " if named else ""
     # RFC7725 section3: 451 establishes neither existence nor nonexistence.
     # https://www.rfc-editor.org/rfc/rfc7725 — checked 2026-10-12.
-    if resp.status_code in (401, 403, 429, 451):
-        return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
+    if resp.status_code in (401, 403, 429, 451) or resp.status_code >= 500:
+        wait = resp.headers.get('retry-after', '')[:160]
+        detail = f"blocked: {said}HTTP {resp.status_code}" + (f"; Retry-After: {wait}" if wait else "")
+        return None, ProbeResult(ProbeStatus.INCONCLUSIVE, detail)
     if resp.status_code >= 400:
         return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
     return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
@@ -533,7 +549,7 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
     (openai/codex codex-rs/codex-api/src/sse/responses_error.rs, responses.rs
     and protocol/src/error.rs, read 2026-09-30) — so one broken turn is not a
     lane that stopped taking the request."""
-    async def turn() -> tuple[int, str]:
+    async def turn() -> _CodexAnswer:
         async with client.stream("POST", url, json=codex_probe_body(
                 model, legacy_instructions=legacy_instructions),
                                  headers={**headers, "Accept": "text/event-stream"},
@@ -545,13 +561,15 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
                     text += chunk
                     if len(text) > CODEX_READ_CAP or _codex_ended(text):
                         break
-            return resp.status_code, text
+            return _CodexAnswer(resp.status_code, text, resp.headers)
 
-    def broke_off(answer: tuple[int, str], _pause: float) -> bool:
-        return answer[0] < 300 and any(e in CODEX_BROKEN for e in _codex_events(answer[1]))
-    answer, last = await _ask(turn, attempts, backoff, status=lambda answer: answer[0],
-                              again=broke_off)
-    return answer if answer is not None else (last or "did not answer")
+    def broke_off(answer: _CodexAnswer, _pause: float) -> bool:
+        return answer.status_code < 300 and any(e in CODEX_BROKEN for e in _codex_events(answer.text))
+    answer, last = await _ask(turn, attempts, backoff, again=broke_off)
+    if answer is None:
+        return last or "did not answer"
+    _defer_inference(answer, retrying=broke_off(answer, 0))
+    return answer.status_code, answer.text
 
 
 def _codex_ended(text: str) -> bool:
@@ -672,7 +690,7 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
                                                 follow_redirects=True),
                             attempts, backoff, again=again)
     if resp is not None:
-        _defer_inference(resp)
+        _defer_inference(resp, retrying=again(resp, 0))
     return resp if resp is not None else (last or "did not answer")
 
 
@@ -742,17 +760,16 @@ def _answered_as(asked: str, completion: dict) -> str | None:
     return served
 
 
-def _asks_to_wait_at_most(resp: httpx.Response, seconds: float) -> bool:
-    """Whether a 429's Retry-After, if it sends one, is over by `seconds` — the
+def _asks_to_wait_at_most(resp: httpx.Response | _CodexAnswer, seconds: float) -> bool:
+    """Whether Retry-After, if sent, is over by `seconds` — the
     pause before the next try. A date, or anything else that is not a number of
     seconds, is read as a wait the run does not make."""
     value = resp.headers.get("retry-after")
     if value is None:
         return True
-    try:
-        return float(value) <= seconds
-    except ValueError:
+    if not re.fullmatch(r'[0-9]+', value.strip()):
         return False
+    return float(value) <= seconds
 
 
 async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
