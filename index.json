@@ -127,7 +127,13 @@
       "Infron",
       "Kiosapi.id",
       "1min.AI",
-      "NoTrack API"
+      "NoTrack API",
+      "Graphite",
+      "Sourcery",
+      "DeepSource",
+      "Liquid Inference",
+      "LLM.kiwi",
+      "Summer Engine"
     ],
     "sections": [
       {
@@ -2342,11 +2348,13 @@
       "source_urls": [
         "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
         "https://mimo.xiaomi.com/mimocode/start",
-        "https://github.com/XiaomiMiMo/MiMo-Code/blob/main/packages/opencode/src/util/free-api-sunset.ts"
+        "https://github.com/XiaomiMiMo/MiMo-Code/blob/main/packages/opencode/src/util/free-api-sunset.ts",
+        "https://mimo.xiaomi.com/mimocode/models-provider",
+        "https://mimo.mi.com/docs/en-US/quick-start/faq/promotions"
       ],
       "card_required": false,
       "offering": "Xiaomi's open-source (MIT) terminal coding agent; its built-in \"MiMo Auto\" channel used to run Xiaomi's MiMo models with no login, API key, or card",
-      "limits": "Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: \"The free API service has ended\"; a paid Token Plan or a third-party API key is required now. The README stopped offering the channel; the landing page at mimo.xiaomi.com/coder still read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17",
+      "limits": "The anonymous MiMo Auto channel ended on July 26, 2026 at 10:00 UTC. The current client connects through provider API keys or Xiaomi MiMo OAuth. Token Plan subscriptions and campaign-specific API bonus credits are separate from the ended anonymous channel; an obtainable replacement bundled Free coding allowance is not established.",
       "models": [
         {
           "family": "mimo-v2.5",
@@ -2386,7 +2394,7 @@
         ],
         "ids": [],
         "what": "Xiaomi's open-source (MIT) terminal coding agent; its built-in \"MiMo Auto\" channel used to run Xiaomi's MiMo models with no login, API key, or card",
-        "limits": "Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: \"The free API service has ended\"; a paid Token Plan or a third-party API key is required now. The README stopped offering the channel; the landing page at mimo.xiaomi.com/coder still read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17",
+        "limits": "The anonymous MiMo Auto channel ended on July 26, 2026 at 10:00 UTC. The current client connects through provider API keys or Xiaomi MiMo OAuth. Token Plan subscriptions and campaign-specific API bonus credits are separate from the ended anonymous channel; an obtainable replacement bundled Free coding allowance is not established.",
         "why": "vendor-announced shutdown on 2026-07-26",
         "access": "",
         "modelAccess": {
@@ -5336,7 +5344,7 @@
         "https://docs.sambanova.ai/docs/en/models/rate-limits"
       ],
       "card_required": false,
-      "offering": "Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it",
+      "offering": "Open-model inference on SambaNova hardware with an OpenAI-compatible API; public Free-tier documentation and console activation requirements disagree",
       "limits": "20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)",
       "models": [
         {
@@ -5385,7 +5393,7 @@
       "last_verified": "2026-09-21",
       "delisted": {
         "on": "2026-09-23",
-        "reason": "new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier"
+        "reason": "the console requires a payment method and purchased credits for first requests, while documentation still describes a no-card Free tier; obtainable new-account Free activation remains unconfirmed"
       },
       "archive_review": {
         "checked_on": "2026-10-26",
@@ -5417,9 +5425,9 @@
           "DeepSeek-V3.2",
           "gemma-4-31B-it"
         ],
-        "what": "Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it",
+        "what": "Open-model inference on SambaNova hardware with an OpenAI-compatible API; public Free-tier documentation and console activation requirements disagree",
         "limits": "20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)",
-        "why": "delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier",
+        "why": "delisted on 2026-09-23: the console requires a payment method and purchased credits for first requests, while documentation still describes a no-card Free tier; obtainable new-account Free activation remains unconfirmed",
         "access": "",
         "modelAccess": {
           "deepseek": "",
@@ -5433,7 +5441,7 @@
           "nocard"
         ]
       },
-      "archived_because": "delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier",
+      "archived_because": "delisted on 2026-09-23: the console requires a payment method and purchased credits for first requests, while documentation still describes a no-card Free tier; obtainable new-account Free activation remains unconfirmed",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"
     },
     {
@@ -6216,7 +6224,7 @@
       ],
       "card_required": false,
       "offering": "AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio's, and the vendor sunset Studio's Jamba API on 2026-08-09",
-      "limits": "Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: \"On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library\". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call",
+      "limits": "The Studio Jamba, Maestro and File Library APIs were retired on August 9, 2026. The old $10 trial belonged to Studio; legacy pricing and usage documentation give conflicting validity periods. The current AI21 Gateway is a separate product whose obtainable bundled no-card inference allowance remains unconfirmed.",
       "models": [
         {
           "family": "jamba-mini"
@@ -6278,7 +6286,7 @@
           "jamba-large"
         ],
         "what": "AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio's, and the vendor sunset Studio's Jamba API on 2026-08-09",
-        "limits": "Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: \"On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library\". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call",
+        "limits": "The Studio Jamba, Maestro and File Library APIs were retired on August 9, 2026. The old $10 trial belonged to Studio; legacy pricing and usage documentation give conflicting validity periods. The current AI21 Gateway is a separate product whose obtainable bundled no-card inference allowance remains unconfirmed.",
         "why": "vendor-announced shutdown on 2026-08-09",
         "access": "",
         "modelAccess": {
@@ -13334,11 +13342,13 @@
       "category": "api-free-tier",
       "url": "https://developer.puter.com/tutorials/free-llm-api/",
       "source_urls": [
-        "https://developer.puter.com/tutorials/free-llm-api/"
+        "https://developer.puter.com/tutorials/free-llm-api/",
+        "https://docs.puter.com/rate-limits-and-quotas/index.md",
+        "https://docs.puter.com/supported-platforms/index.md"
       ],
       "card_required": false,
-      "offering": "Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model",
-      "limits": "No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits",
+      "offering": "JavaScript SDK for browsers and Node.js with model usage charged to each user’s Puter account, including a recurring free account allowance",
+      "limits": "Every account receives a monthly usage allowance whose amount is shown in the dashboard. The SDK and /drivers/call can spend it. Current documentation requires a paid plan for the OpenAI- and Anthropic-compatible coding-agent endpoints; a Free account receives 402 subscription_required. API tokens and model-catalog access do not waive that plan requirement.",
       "models": [],
       "probe": {
         "type": "page-keywords",
@@ -13354,14 +13364,14 @@
       "last_verified": "2026-07-19",
       "delisted": {
         "on": "2026-07-19",
-        "reason": "a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan"
+        "reason": "the recurring Free SDK and HTTP-driver allowance is separate from the OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid plan; a supported Free coding-client integration is not established"
       },
       "archive_review": {
-        "checked_on": "2026-10-26",
+        "checked_on": "2026-11-03",
         "sources": [
-          "https://developer.puter.com/tutorials/free-llm-api/",
-          "https://docs.puter.com/rate-limits-and-quotas/",
-          "https://developer.puter.com/tutorials/openai-compatible-api/"
+          "https://docs.puter.com/rate-limits-and-quotas/index.md",
+          "https://docs.puter.com/supported-platforms/index.md",
+          "https://developer.puter.com/ai/"
         ]
       },
       "probe_failures": 0,
@@ -13373,9 +13383,9 @@
         "name": "Puter.js (free LLM API)",
         "models": [],
         "ids": [],
-        "what": "Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model",
-        "limits": "No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits",
-        "why": "delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan",
+        "what": "JavaScript SDK for browsers and Node.js with model usage charged to each user’s Puter account, including a recurring free account allowance",
+        "limits": "Every account receives a monthly usage allowance whose amount is shown in the dashboard. The SDK and /drivers/call can spend it. Current documentation requires a paid plan for the OpenAI- and Anthropic-compatible coding-agent endpoints; a Free account receives 402 subscription_required. API tokens and model-catalog access do not waive that plan requirement.",
+        "why": "delisted on 2026-07-19: the recurring Free SDK and HTTP-driver allowance is separate from the OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid plan; a supported Free coding-client integration is not established",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -13385,7 +13395,7 @@
           "nocard"
         ]
       },
-      "archived_because": "delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan",
+      "archived_because": "delisted on 2026-07-19: the recurring Free SDK and HTTP-driver allowance is separate from the OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid plan; a supported Free coding-client integration is not established",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/"
     },
     {
@@ -14045,11 +14055,15 @@
       "category": "api-free-tier",
       "url": "https://www.scaleway.com/en/generative-apis/",
       "source_urls": [
-        "https://www.scaleway.com/en/docs/generative-apis/faq/"
+        "https://www.scaleway.com/en/docs/generative-apis/faq/",
+        "https://www.scaleway.com/en/docs/generative-apis/quickstart/",
+        "https://www.scaleway.com/en/docs/generative-apis/reference-content/rate-limits/",
+        "https://www.scaleway.com/en/pricing/model-as-a-service/",
+        "https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/"
       ],
       "card_required": true,
-      "offering": "EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer",
-      "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — \"The Free Tier is applied to the most expensive tokens first\", across the whole serverless catalog, which on 2026-08-14 read glm-5.2, deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b and the Mistral line",
+      "offering": "EU-hosted OpenAI-compatible Serverless API with a documented free token allowance; obtainable new-account activation remains unconfirmed",
+      "limits": "Current documentation advertises 1,000,000 free tokens across the Serverless catalog, applied to the most expensive tokens first, with paid usage after the allowance. The renewal period and obtainable new-account Free activation remain unconfirmed. API-specific documentation assigns base Organization limits after registering a valid payment method; generic account documentation requires a card for ordering resources. Those statements do not settle whether every Free Serverless request requires a card.",
       "models": [],
       "api": {
         "base_url": "https://api.scaleway.ai/v1",
@@ -14074,7 +14088,7 @@
       "last_verified": "2026-09-14",
       "delisted": {
         "on": "2026-09-16",
-        "reason": "1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit"
+        "reason": "the documented Free token allowance has unresolved renewal and new-account activation conditions; generic resource-ordering and standard-rate payment requirements do not establish every Free Serverless mode"
       },
       "archive_review": {
         "checked_on": "2026-10-26",
@@ -14093,9 +14107,9 @@
         "name": "Scaleway Generative APIs",
         "models": [],
         "ids": [],
-        "what": "EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer",
-        "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — \"The Free Tier is applied to the most expensive tokens first\", across the whole serverless catalog, which on 2026-08-14 read glm-5.2, deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b and the Mistral line",
-        "why": "delisted on 2026-09-16: 1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
+        "what": "EU-hosted OpenAI-compatible Serverless API with a documented free token allowance; obtainable new-account activation remains unconfirmed",
+        "limits": "Current documentation advertises 1,000,000 free tokens across the Serverless catalog, applied to the most expensive tokens first, with paid usage after the allowance. The renewal period and obtainable new-account Free activation remain unconfirmed. API-specific documentation assigns base Organization limits after registering a valid payment method; generic account documentation requires a card for ordering resources. Those statements do not settle whether every Free Serverless request requires a card.",
+        "why": "delisted on 2026-09-16: the documented Free token allowance has unresolved renewal and new-account activation conditions; generic resource-ordering and standard-rate payment requirements do not establish every Free Serverless mode",
         "access": "",
         "modelAccess": {},
         "section": {
@@ -14103,7 +14117,7 @@
         },
         "flags": []
       },
-      "archived_because": "delisted on 2026-09-16: 1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
+      "archived_because": "delisted on 2026-09-16: the documented Free token allowance has unresolved renewal and new-account activation conditions; generic resource-ordering and standard-rate payment requirements do not establish every Free Serverless mode",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/"
     },
     {
@@ -17410,6 +17424,535 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/"
+    },
+    {
+      "id": "graphite",
+      "name": "Graphite",
+      "category": "agent-cli",
+      "url": "https://graphite.com",
+      "source_urls": [
+        "https://graphite.com/pricing",
+        "https://graphite.com/docs/ai-reviews",
+        "https://graphite.com/docs/privacy-and-security",
+        "https://graphite.com/terms-of-service",
+        "https://graphite.com/privacy"
+      ],
+      "card_required": false,
+      "offering": "AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial",
+      "limits": "Hobby AI reviews: Reviews allowance: amount not published (period not published); scope not published\n\nHobby chat: Messages allowance: amount not published (period not published); scope not published\n\nGitHub sign-in and repository permissions are required. Hobby covers personal-account repositories; organization repositories require a paid plan. AI reviews and chat are limited, with no numerical allowance or reset published. The separate Team trial lasts 30 days. AI features are opt-in; Graphite says they do not store or train on submitted data. Repository indexing, account metadata and operational logs have separate storage policies.",
+      "quotas": [
+        {
+          "unit": "reviews",
+          "scope": "unspecified",
+          "label": "Hobby AI reviews",
+          "source": "https://graphite.com/pricing",
+          "quote": "Limited AI Reviews",
+          "reviewed_on": "2026-11-03",
+          "amount": null,
+          "period": null
+        },
+        {
+          "unit": "messages",
+          "scope": "unspecified",
+          "label": "Hobby chat",
+          "source": "https://graphite.com/pricing",
+          "quote": "Limited access to Graphite Chat",
+          "reviewed_on": "2026-11-03",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "These features are opt-in and do not store or train on your data.",
+        "url": "https://graphite.com/docs/privacy-and-security"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-03",
+        "source": "https://graphite.com/terms-of-service",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://graphite.com/pricing",
+        "keywords": [
+          "Hobby",
+          "Personal account repos support",
+          "Limited AI Reviews"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 88,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Graphite",
+        "models": [],
+        "ids": [],
+        "what": "AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial",
+        "limits": "Hobby AI reviews: Reviews allowance: amount not published (period not published); scope not published\n\nHobby chat: Messages allowance: amount not published (period not published); scope not published\n\nGitHub sign-in and repository permissions are required. Hobby covers personal-account repositories; organization repositories require a paid plan. AI reviews and chat are limited, with no numerical allowance or reset published. The separate Team trial lasts 30 days. AI features are opt-in; Graphite says they do not store or train on submitted data. Repository indexing, account metadata and operational logs have separate storage policies.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/"
+    },
+    {
+      "id": "sourcery",
+      "name": "Sourcery",
+      "category": "agent-cli",
+      "url": "https://www.sourcery.ai",
+      "source_urls": [
+        "https://www.sourcery.ai/pricing",
+        "https://docs.sourcery.ai/Code-Review/Integrations/GitHub/",
+        "https://docs.sourcery.ai/Code-Review/Integrations/GitLab/",
+        "https://www.sourcery.ai/privacy",
+        "https://www.sourcery.ai/terms"
+      ],
+      "card_required": false,
+      "offering": "AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories",
+      "limits": "Public repositories: Reviews allowance: amount not published (period not published); scope not published\n\nInstall the GitHub or GitLab integration and grant repository access. Public repositories receive ongoing Free reviews; the numerical allowance and reset are not published. The separate organization trial provides Team features for 14 days without a card, then private-repository use requires a paid plan. Sourcery says it keeps no copy of submitted code. Its model providers do not train on code or messages and may retain them for up to 30 days; zero-retention arrangements require Pro and a separate request.",
+      "quotas": [
+        {
+          "unit": "reviews",
+          "scope": "unspecified",
+          "label": "Public repositories",
+          "source": "https://www.sourcery.ai/pricing",
+          "quote": "AI reviews on public repos",
+          "reviewed_on": "2026-11-03",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "do not use any of your code or messages to train their models",
+        "url": "https://www.sourcery.ai/privacy"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-03",
+        "source": "https://www.sourcery.ai/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.sourcery.ai/pricing",
+        "keywords": [
+          "Open Source",
+          "Free forever",
+          "AI reviews on public repos",
+          "No credit card needed"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 89,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Sourcery",
+        "models": [],
+        "ids": [],
+        "what": "AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories",
+        "limits": "Public repositories: Reviews allowance: amount not published (period not published); scope not published\n\nInstall the GitHub or GitLab integration and grant repository access. Public repositories receive ongoing Free reviews; the numerical allowance and reset are not published. The separate organization trial provides Team features for 14 days without a card, then private-repository use requires a paid plan. Sourcery says it keeps no copy of submitted code. Its model providers do not train on code or messages and may retain them for up to 30 days; zero-retention arrangements require Pro and a separate request.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/"
+    },
+    {
+      "id": "deepsource",
+      "name": "DeepSource",
+      "category": "trial",
+      "url": "https://deepsource.com",
+      "source_urls": [
+        "https://deepsource.com/pricing",
+        "https://docs.deepsource.com",
+        "https://deepsource.com/legal/privacy",
+        "https://deepsource.com/legal/terms",
+        "https://deepsource.com/legal/pilot-evaluation"
+      ],
+      "card_required": false,
+      "offering": "AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits",
+      "limits": "Trial AI Review credits: One-time USD allowance: amount not published; scope not published\n\nThe trial lasts 14 days and includes up to $50 in AI Review credits; the actual grant is not guaranteed to equal that ceiling. Repository installation and permissions are required. AI Review is separately metered by processed lines of code. The ongoing Open Source plan includes static analysis, but its AI Review is pay-as-you-go. DeepSource does not train on code or data unless you explicitly opt in; its third-party AI providers process code without retaining it. DeepSource account and service data have separate retention policies.",
+      "quotas": [
+        {
+          "unit": "USD",
+          "period": "one-time",
+          "scope": "unspecified",
+          "label": "Trial AI Review credits",
+          "source": "https://deepsource.com/pricing",
+          "quote": "up to $50 in bundled AI Review credits, no credit card required.",
+          "reviewed_on": "2026-11-03",
+          "amount": null
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "does not use your code or data to train … unless you explicitly opt in",
+        "url": "https://deepsource.com/legal/privacy"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-03",
+        "source": "https://deepsource.com/legal/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://deepsource.com/pricing",
+        "keywords": [
+          "14-day free trial",
+          "up to $50 in bundled AI Review credits",
+          "no credit card required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 101,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "DeepSource",
+        "models": [],
+        "ids": [],
+        "what": "AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits",
+        "limits": "Trial AI Review credits: One-time USD allowance: amount not published; scope not published\n\nThe trial lasts 14 days and includes up to $50 in AI Review credits; the actual grant is not guaranteed to equal that ceiling. Repository installation and permissions are required. AI Review is separately metered by processed lines of code. The ongoing Open Source plan includes static analysis, but its AI Review is pay-as-you-go. DeepSource does not train on code or data unless you explicitly opt in; its third-party AI providers process code without retaining it. DeepSource account and service data have separate retention policies.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "trial"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/"
+    },
+    {
+      "id": "liquid-inference",
+      "name": "Liquid Inference",
+      "category": "trial",
+      "url": "https://inference.ai.exchange",
+      "source_urls": [
+        "https://inference.ai.exchange/docs/quickstart.md",
+        "https://inference.ai.exchange/docs/fees.md",
+        "https://inference.ai.exchange/docs/data-handling.md",
+        "https://inference.ai.exchange/docs/availability.md",
+        "https://inference.ai.exchange/docs/provider.md",
+        "https://inference.ai.exchange/docs/keys.md"
+      ],
+      "card_required": false,
+      "offering": "Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces",
+      "limits": "New workspace credit: One-time USD allowance: amount not published; scope not published\n\nThe initial credit amount and expiry are not published. A separate first top-up of at least $10 earns $2; that purchase is not required for the starting credit. Each request reserves a price cap, then settles actual usage and the exchange fee. The winning provider sees the request under its own published terms and data policy. The exchange stores usage receipts and saved workloads; optional caches and the Auto classifier have separate handling. Four named regions of Ukraine are excluded in addition to the listed countries. Grant activation and authenticated generation have not been checked here.",
+      "quotas": [
+        {
+          "unit": "USD",
+          "period": "one-time",
+          "scope": "unspecified",
+          "label": "New workspace credit",
+          "source": "https://inference.ai.exchange/docs/quickstart.md",
+          "quote": "A new workspace gets a starting credit",
+          "reviewed_on": "2026-11-03",
+          "amount": null
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://router.inference.ai.exchange/v1",
+        "key_url": "https://inference.ai.exchange",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "gpt-oss-120b"
+        ],
+        "note": "Use a workspace API key. gpt-oss-120b is a documented example and currently advertises tools; inspect /models for current supported parameters. Provider availability and capabilities vary. An explicit retention_policy of none also prevents the Auto classifier from receiving prompts."
+      },
+      "border": {
+        "left_out": [
+          "CN",
+          "CU",
+          "IR",
+          "KP",
+          "RU",
+          "SY"
+        ],
+        "on": "2026-11-03",
+        "source": "https://inference.ai.exchange/docs/availability.md",
+        "quote": "",
+        "read": "page",
+        "also_named": [
+          "HK",
+          "MO",
+          "UA",
+          "US",
+          "VE"
+        ]
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://inference.ai.exchange/docs/quickstart.md",
+        "keywords": [
+          "A new workspace gets a starting credit",
+          "without a card",
+          "/v1/chat/completions"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 109,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Liquid Inference",
+        "models": [],
+        "ids": [
+          "gpt-oss-120b"
+        ],
+        "what": "Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces",
+        "limits": "New workspace credit: One-time USD allowance: amount not published; scope not published\n\nThe initial credit amount and expiry are not published. A separate first top-up of at least $10 earns $2; that purchase is not required for the starting credit. Each request reserves a price cap, then settles actual usage and the exchange fee. The winning provider sees the request under its own published terms and data policy. The exchange stores usage receipts and saved workloads; optional caches and the Auto classifier have separate handling. Four named regions of Ukraine are excluded in addition to the listed countries. Grant activation and authenticated generation have not been checked here.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "trial"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/"
+    },
+    {
+      "id": "llm-kiwi",
+      "name": "LLM.kiwi",
+      "category": "api-free-tier",
+      "url": "https://llm.kiwi",
+      "source_urls": [
+        "https://llm.kiwi/pricing",
+        "https://docs.llm.kiwi/quickstart.md",
+        "https://docs.llm.kiwi/limits.md",
+        "https://docs.llm.kiwi/models",
+        "https://docs.llm.kiwi/api-reference.md",
+        "https://api.llm.kiwi/v1/models",
+        "https://llm.kiwi/register",
+        "https://llm.kiwi/privacy-policy",
+        "https://llm.kiwi/terms-of-service"
+      ],
+      "card_required": false,
+      "offering": "Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router",
+      "limits": "Free API allowance: Usage allowance: amount not published (period not published); scope not published\n\nSign in with Google or GitHub and create a dashboard key. Free allows three active API keys; numerical request and token budgets and reset periods are not published. Capacity, rate limits and fair use apply. The auto router can change its underlying model. Documentation also describes hrllm, but the current public catalog does not list it. Prompts, tool inputs and outputs may be collected to deliver and secure the service; retention varies by data type. No training exclusion is established. Grant activation and authenticated generation have not been checked here.",
+      "quotas": [
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Free API allowance",
+          "source": "https://docs.llm.kiwi/limits.md",
+          "quote": "Free access does not mean unlimited capacity.",
+          "reviewed_on": "2026-11-03",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "api": {
+        "base_url": "https://api.llm.kiwi/v1",
+        "key_url": "https://llm.kiwi/login",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "auto"
+        ],
+        "no_family_ids": [
+          "auto"
+        ],
+        "note": "auto is the documented default and a router, with no fixed underlying model identity. Chat Completions and streaming are documented; function tools, Responses and a fixed context window are not established. Do not assume the account can use every public catalog ID."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-03",
+        "source": "https://llm.kiwi/terms-of-service",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.llm.kiwi/limits.md",
+        "keywords": [
+          "LLM.kiwi is currently free to use without a credit card.",
+          "Free access does not mean unlimited capacity."
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "catalog": "https://api.llm.kiwi/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 96,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "LLM.kiwi",
+        "models": [],
+        "ids": [
+          "auto"
+        ],
+        "what": "Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router",
+        "limits": "Free API allowance: Usage allowance: amount not published (period not published); scope not published\n\nSign in with Google or GitHub and create a dashboard key. Free allows three active API keys; numerical request and token budgets and reset periods are not published. Capacity, rate limits and fair use apply. The auto router can change its underlying model. Documentation also describes hrllm, but the current public catalog does not list it. Prompts, tool inputs and outputs may be collected to deliver and secure the service; retention varies by data type. No training exclusion is established. Grant activation and authenticated generation have not been checked here.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "api-free-tier"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/"
+    },
+    {
+      "id": "summer-engine",
+      "name": "Summer Engine",
+      "category": "agent-cli",
+      "url": "https://www.summerengine.com",
+      "source_urls": [
+        "https://www.summerengine.com/pricing",
+        "https://docs.summerengine.com/migration/godot.md",
+        "https://docs.summerengine.com/essentials/installation.md",
+        "https://docs.summerengine.com/security/privacy-mode.md",
+        "https://www.summerengine.com/privacy",
+        "https://www.summerengine.com/terms",
+        "https://www.summerengine.com/legal/ai-terms"
+      ],
+      "card_required": false,
+      "offering": "Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects",
+      "limits": "Hosted AI: 5 messages/day; 30 messages/month per account\n\nAn account is required for hosted AI. The editor can import an existing project and edit its GDScript and scenes; plugin and project compatibility must be checked separately. The daily message limit also has a monthly ceiling. Free MCP and agent tools use your own AI provider and do not add hosted messages. Free lacks Privacy Mode. Documentation permits retention and training by default; AI Terms separately say training requires opt-in, while Privacy lists exceptions. These policies conflict, so treat Free prompts and code as potentially retained and used for training. Paid Privacy Mode promises must not be applied to Free.",
+      "quotas": [
+        {
+          "amount": 5.0,
+          "unit": "messages",
+          "period": "day",
+          "scope": "account",
+          "label": "Hosted AI",
+          "source": "https://www.summerengine.com/pricing",
+          "quote": "5 free AI messages a day, up to 30 a month",
+          "value_phrase": "5 free AI messages a day, up to 30 a month",
+          "period_quote": "a day"
+        },
+        {
+          "amount": 30.0,
+          "unit": "messages",
+          "period": "month",
+          "scope": "account",
+          "label": "Hosted AI",
+          "source": "https://www.summerengine.com/pricing",
+          "quote": "5 free AI messages a day, up to 30 a month",
+          "value_phrase": "5 free AI messages a day, up to 30 a month",
+          "period_quote": "a month"
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "border": {
+        "left_out": [],
+        "on": "2026-11-03",
+        "source": "https://www.summerengine.com/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.summerengine.com/pricing",
+        "keywords": [
+          "Free App",
+          "No credit card needed",
+          "5 free AI messages a day, up to 30 a month"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-03",
+      "last_verified": "2026-11-03",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 87,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Summer Engine",
+        "models": [],
+        "ids": [],
+        "what": "Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects",
+        "limits": "Hosted AI: 5 messages/day; 30 messages/month per account\n\nAn account is required for hosted AI. The editor can import an existing project and edit its GDScript and scenes; plugin and project compatibility must be checked separately. The daily message limit also has a monthly ceiling. Free MCP and agent tools use your own AI provider and do not add hosted messages. Free lacks Privacy Mode. Documentation permits retention and training by default; AI Terms separately say training requires opt-in, while Privacy lists exceptions. These policies conflict, so treat Free prompts and code as potentially retained and used for training. Paid Privacy Mode promises must not be applied to Free.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/"
     }
   ],
   "countries": [
@@ -18468,6 +19011,7 @@
       "notrack-ai",
       "ovh-ai-endpoints",
       "standardcompute",
+      "llm-kiwi",
       "novita",
       "sail-research",
       "pollinations",
@@ -18477,7 +19021,8 @@
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
-      "siliconflow-cn"
+      "siliconflow-cn",
+      "liquid-inference"
     ],
     "codex": [
       "google-ai-studio",
@@ -18530,6 +19075,7 @@
       "onemin-ai",
       "notrack-ai",
       "standardcompute",
+      "llm-kiwi",
       "novita",
       "sail-research",
       "pollinations",
@@ -18539,7 +19085,8 @@
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
-      "siliconflow-cn"
+      "siliconflow-cn",
+      "liquid-inference"
     ],
     "claude": [
       "openrouter-free",
@@ -18612,6 +19159,7 @@
       "onemin-ai",
       "notrack-ai",
       "standardcompute",
+      "llm-kiwi",
       "novita",
       "sail-research",
       "pollinations",
@@ -18621,7 +19169,8 @@
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
-      "siliconflow-cn"
+      "siliconflow-cn",
+      "liquid-inference"
     ]
   },
   "models": [
@@ -19947,9 +20496,9 @@
         "token-plan-sgp.xiaomimimo.com"
       ],
       "name": "Xiaomi MiMo (API platform)",
-      "checked_on": "2026-08-14",
-      "reason": "A separate surface from the archived MiMo Code entry, and also paid. The keyless platform.xiaomimimo.com/api/v1/models publishes five models and prices all of them, the cheapest being mimo-v2.5 at $0.14 in / $0.28 out per M. The Token Plan is a paid subscription — the site advertises MiMo Claw at 14.9 yuan a month as \"stackable with Token Plan\" — and both mimo.mi.com/pricing and platform.xiaomimimo.com/pricing are client- rendered shells serving 29 characters of text, so no probe could read an offer there even if one appeared.",
-      "reopen_if": "The keyless catalog carries a zero-priced row, or a free tier appears in server-rendered HTML.",
+      "checked_on": "2026-11-03",
+      "reason": "The current Token Plan is a paid subscription. Its Welcome Bonus page describes a first-recharge bonus, while the separate promotions FAQ also mentions registration credits and recipients of a free Token Plan. Campaign eligibility, amount and obtainable no-payment access are not established by those references. Bonus credit is described as expiring after 40 days; this is an account-specific validity period. Positive model prices do not disprove a separate grant. Sources: https://mimo.mi.com/docs/en-US/quick-start/promotions/Welcome%20Bonus, https://mimo.mi.com/docs/en-US/quick-start/faq/promotions and https://mimo.mi.com/docs/en-US/quick-start/faq/token-plan/Plans&Pricing. The archived MiMo Auto channel is a separate ended offer.",
+      "reopen_if": "A current campaign or existing authorized account establishes obtainable no-payment API credits or a bundled free coding allowance, including its eligibility, amount and expiry. A free speech model alone does not establish a coding model allowance.",
       "current": true
     },
     {
@@ -20069,9 +20618,9 @@
         "longcat.chat"
       ],
       "name": "LongCat API Platform (Meituan)",
-      "checked_on": "2026-08-14",
-      "reason": "Listed here from 2026-07-22 for a recurring 100K free tokens a day, and delisted because that quota is published nowhere on Meituan's own site today. Two dated entries in its change log explain what happened. \"Version: 2026-05-29 — LongCat Model Service Sunset\" retired the whole Flash line the free quota applied to: \"Effective May 29, 2026, the platform will retire the following 6 models: LongCat-Flash-Chat, LongCat-Flash-Thinking, LongCat-Flash-Thinking-2601, LongCat-Flash-Lite, LongCat-Flash-Omni-2603, LongCat-Flash-Chat-2602-Exp\". Then \"Version: 2026-06-30 — LongCat-2.0 Release & Billing Now Available\" turned on Token Packs and pay-as-you-go. The API is alive and good, but it is now priced: \"Pay-As-You-Go currently supports LongCat-2.0\" at $0.75 uncached input and $2.95 output per 1M tokens, and its prerequisites end with \"Top up your balance at Billing → Recharge\". The words \"free\" and 免费 appear nowhere in Quick Start, Token Pack, API Pay-As-You-Go, the FAQ, the API overview or the pricing page — the one \"free\" in the change log is about chatting on the consumer LongCat Chat app, not the API. The platform page itself is a 21-character client-rendered shell. Complimentary credits exist as a concept (\"If you also have complimentary credits, those are consumed before your paid balance\") but nothing states that a new account is granted any, how many, or how often. Our probe never noticed, because it anchored on the endpoint path and the model name rather than on the offer — novita's failure, again. Where our figure came from, for whoever is tempted to re-add it: free daily quotas at LongCat belong to the era before GA. The Chinese change log grants one on 2026-04-20, to the PREVIEW model — \"初始额度5,000,000 Tokens/天 ... 每日最多可获得120,000,000 Tokens\" — and 赠送 appears nowhere in that log at all. The reference response for GET /openai/v1/models in the docs now lists exactly one entry, \"id\": \"LongCat-2.0\", \"owned_by\": \"LongCat\".",
-      "reopen_if": "LongCat publishes a free daily token quota, or a stated signup grant, on a server-rendered page of its own.",
+      "checked_on": "2026-11-03",
+      "reason": "The former daily free quota belongs to retired Flash models. Current documentation describes paid Token Packs and pay-as-you-go access, but also retains promotional-credit and referral-benefit references. Those references do not establish an obtainable signup or recurring API grant, its amount or current eligibility. Historical free quotas must not be applied to the current models, and paid pricing alone does not resolve the separate promotional modes. Sources: https://longcat.chat/platform/docs/, https://longcat.chat/platform/docs/token-pack, https://longcat.chat/platform/docs/api-pay-as-you-go, https://longcat.chat/platform/docs/faq and https://longcat.chat/platform/docs/change-log.",
+      "reopen_if": "Current primary campaign terms or an existing authorized account establishes an obtainable no-card signup grant or recurring API allowance. Check promotional and referral modes independently of paid Token Packs and the retired Flash allowance.",
       "current": true
     },
     {
@@ -20377,8 +20926,8 @@
         "unorouter.ai"
       ],
       "name": "UnoRouter",
-      "checked_on": "2026-11-02",
-      "reason": "Current documentation describes no-card :free models and a separate $0.25 reward for linking Discord and claiming the connect bonus. The public structured catalog publishes prices and free/online flags; exact model pages also show zero prices. The remaining qualification gap is the supply behind the provider groups: model-developer labels and group codes do not establish the actual serving supplier and its applicable authorization and conditions. The reviewed Free routes use groups such as kl4-beam-free and ovh1-gpt-oss-120b-free, with differing published input-handling information. Reward credit spends from the ordinary wallet, so its eligible routes need the same review. Sources: https://unorouter.com/en/docs/platform/models-and-pricing, https://unorouter.com/en/docs/platform/discord-rewards, https://unorouter.com/en/docs/platform/platform-api and https://api.unorouter.com/api/pricing/catalog.",
+      "checked_on": "2026-11-03",
+      "reason": "Current documentation and public structured catalog explicitly separate no-card :free models from the paid wallet. Discord linking also has a separately claimed one-time reward credit. Fresh per-model group responses still name opaque routing groups and data-handling flags, without establishing the actual serving supplier and applicable authorization. The public OpenAI-format catalog is readable, but catalog presence and missing/invalid-key rejection do not establish keyed Free activation. Reward credit spends from the ordinary wallet and needs its own route review. Sources: https://unorouter.com/en/docs/platform/models-and-pricing, https://unorouter.com/en/docs/platform/discord-rewards, https://unorouter.com/en/docs/platform/platform-api and https://api.unorouter.com/api/pricing/catalog.",
       "reopen_if": "Current primary provider/group information establishes authorized supply for a chosen Free or reward-credit mode, with exact callable IDs and upstream access, data and usage conditions. Review both advertised modes separately and preserve the distinction between model developers and the suppliers serving a request.",
       "current": true
     },
@@ -20387,9 +20936,9 @@
         "reka.ai"
       ],
       "name": "Reka AI",
-      "checked_on": "2026-08-30",
-      "reason": "Moved off the blocklist, where it sat since 2026-08-11 with a reason that ended \"delete this line if an account shows otherwise\" — a verdict written to expire, filed where nothing expires. The finding itself still holds and is a watchlist finding: the entry once claimed \"$10 free credits at the start of every month\" on the strength of one dated announcement post, and no live vendor page corroborates a recurring grant. platform.reka.ai/pricing today sells Pay as you go at $0/mo with \"Credits — Top up anytime\", and the only free thing it names is in the past tense, a banner reading \"Free credits used\". A legitimate vendor with no free tier a developer can reach is the definition of this file, not of the blocklist.",
-      "reopen_if": "A Reka page states a recurring free grant, or the signup credit is named with a figure.",
+      "checked_on": "2026-11-03",
+      "reason": "The dated end-of-summer announcement advertises monthly free credits. Current Gateway pricing requires adding credits, and Reka Pass is a separate $10/month subscription providing $30 of credit. The usage-and-billing page requires sign-in and does not establish current grant entitlement. The older free-grant claim remains unresolved; paid model rates and the paid Pass do not establish its withdrawal. Sources: https://reka.ai/news/end-of-summer-updates, https://docs.reka.ai/pricing, https://developer.reka.ai/reka-pass and https://developer.reka.ai/usage.",
+      "reopen_if": "A current grant policy or an existing authorized account establishes whether the separately advertised monthly grant remains obtainable, including amount, payment requirements, expiry and usable API scope.",
       "current": true
     },
     {
@@ -20498,9 +21047,9 @@
         "app.ai21.com"
       ],
       "name": "AI21 Gateway (Tokenwise)",
-      "checked_on": "2026-09-05",
-      "reason": "A separate surface from the archived AI21 Labs (Jamba) entry. The 410 that retired AI21 Studio's catalog route points here — \"The AI21 Gateway is available at https://app.ai21.com\" — and what is here is a bring-your-own-key gateway, not a model API: the app's own env file names it ai21-intelligent-gateway-webapp with a base of api.ai21.com/gateway, its code snippets pass \"your own OpenAI key\" or \"your own Anthropic key\" upstream, and the only \"Free trial\" in it is a Stigg-billed \"Tokenwise\" plan trial counted in days. api.ai21.com/gateway/v1/chat/completions answers 400 \"bad or missing authentication\" keyless, so the route exists; no page, docs entry or llms.txt line describes it, and the docs index still lists only the Jamba, Maestro and Studio pages. Studio itself — where the $10 no-card trial lived — redirects every route to the www.ai21.com homepage.",
-      "reopen_if": "AI21 documents the Gateway with a model AI21 hosts itself and a free quota or credit on it that needs no card.",
+      "checked_on": "2026-11-03",
+      "reason": "AI21 explicitly sunset the Studio Jamba, Maestro and File Library APIs on August 9, 2026. Legacy trial sources disagree on the validity of the old $10 credit. The current app identifies a separate Gateway; its public shell does not establish a newly bundled no-card inference grant. Neither the retired Studio offer nor paid or BYOK gateway operation resolves every possible current trial. Sources: https://docs.ai21.com/august-deprecation-notice, https://docs.ai21.com/docs/usage-cost.md, https://www.ai21.com/pricing/ and https://app.ai21.com/.",
+      "reopen_if": "Current Gateway documentation or an existing authorized account establishes bundled developer inference obtainable without a card, its eligible models, amount and trial conditions. Verify it separately from the retired Studio grant and BYOK-only access.",
       "current": true
     },
     {
@@ -20862,9 +21411,9 @@
         "puter.com"
       ],
       "name": "Puter",
-      "checked_on": "2026-09-14",
-      "reason": "Moved here from the blocklist, where it sat as a browser-only SDK with no HTTP endpoint a coding agent could use. That stopped being true: Puter now serves an OpenAI-compatible endpoint at api.puter.com/puterai/openai/v1 and an Anthropic-compatible one at api.puter.com/puterai/anthropic, with its own tutorials for Claude Code, Cline and Kilo Code, and \"every Puter account includes an allowance of storage, database, and AI usage at no charge\". The two do not meet. Its rate-limits page says the compatible endpoints \"additionally require a paid plan — a free account calling them gets 402 subscription_required\", while the free allowance runs through puter.ai.* and /drivers/call, which no coding agent speaks, and the size of that allowance is shown only in the dashboard. The site's \"Free, Unlimited Claude API\" tutorials are the marketing half of the same site, not what its docs describe.",
-      "reopen_if": "A free Puter account can call the OpenAI- or Anthropic-compatible endpoint without a paid plan.",
+      "checked_on": "2026-11-03",
+      "reason": "Every account receives a monthly usage allowance of unpublished amount; the JavaScript SDK supports browsers and Node.js, and /drivers/call can spend that allowance. Current documentation explicitly requires a paid plan for /puterai/openai/v1/* and /puterai/anthropic/v1/messages; a Free account receives 402 subscription_required. The SDK allowance does not establish a free compatible coding-agent endpoint. Sources: https://docs.puter.com/rate-limits-and-quotas/index.md and https://docs.puter.com/supported-platforms/index.md. The former tutorial URL returning 404 is not evidence that the SDK grant ended.",
+      "reopen_if": "Current primary documentation or an existing authorized account establishes a Free-compatible coding-agent endpoint or a supported coding-client integration using the recurring SDK allowance, without a paid plan.",
       "current": true
     },
     {
@@ -21914,12 +22463,13 @@
     },
     {
       "domains": [
-        "openference.com"
+        "openference.com",
+        "deyin.ai"
       ],
       "name": "Openference",
-      "checked_on": "2026-10-30",
-      "reason": "Deyin Code's current pricing page (https://deyin.ai/pricing) advertises an Openference Free plan with 100 requests every five hours and 350 requests a week, no card required. The current public plans catalog (https://api.openference.com/api/public/plans) instead returns only paid Minion and Boss subscriptions. That catalog does not establish whether a separate default Free entitlement exists. The advertised no-card API or bundled CLI access remains unconfirmed; the older Promo plan and its prices no longer describe the current catalog.",
-      "reopen_if": "Current primary documentation or a no-card account establishes the advertised Free entitlement, its eligible API or Deyin CLI access, and its limits and payment conditions. A separate paid plan does not disqualify a demonstrated Free mode.",
+      "checked_on": "2026-11-03",
+      "reason": "Deyin pricing advertises bundled Free requests without a card. Its terms make model entitlement subject to the separate Openference account and pricing. The current Openference pricing page explicitly describes its Free plan as on-demand only, paid per token with no subscription, while Deyin still lists recurring included requests. This is an unresolved client-versus-gateway entitlement conflict; neither the shared Free label nor the paid catalog alone establishes an obtainable free API or bundled CLI allowance. Sources: https://deyin.ai/pricing, https://deyin.ai/terms/, https://openference.com/pricing and https://api.openference.com/api/public/plans.",
+      "reopen_if": "Current primary documentation or an existing authorized account resolves the conflicting included-request and pay-per-token Free plans, with exact API/Deyin scope, model roster, payment and activation conditions. Review any client-specific entitlement separately from the gateway wallet.",
       "current": true
     },
     {
@@ -22100,9 +22650,9 @@
         "sambanova.ai"
       ],
       "name": "SambaNova Cloud (SambaCloud)",
-      "checked_on": "2026-09-23",
-      "reason": "Listed from 2026-08-06 to 2026-09-23 as a free tier that applies while no payment method is linked, and taken off because a new account gets no free usage. The console's plans page, cloud.sambanova.ai/plans, read \"Start exploring SambaNova Cloud with free API credits. No credit card required.\" in every Wayback capture up to 2026-06-20; by 2026-08-03 it read \"Start exploring SambaNova Cloud. Add a payment method and purchase credits to run your first requests.\", as it still does, and on 2026-08-12 a user on SambaNova's forum asked why, for a friend's new account, \"a payment method is needed to use it\" — unanswered. The docs' rate-limit page still describes a Free Tier \"Applied when there is no payment method linked with your account\", which is the page the row's probe read, so the probe passed through the change; the tier may hold for accounts that had free credits before it.",
-      "reopen_if": "The plans page offers free credits or free usage without a payment method again.",
+      "checked_on": "2026-11-03",
+      "reason": "Current rate-limit documentation still describes a Free tier without a linked payment method, with 20 requests and 200,000 tokens per day per listed model. The current console instead asks users to add a payment method and purchase credits before their first requests. These sources leave new-account activation unresolved; published model prices and the console text do not prove that every separately documented Free entitlement ended. Sources: https://docs.sambanova.ai/docs/en/models/rate-limits and https://cloud.sambanova.ai/plans.",
+      "reopen_if": "Current primary documentation or an existing authorized account resolves obtainable Free activation, payment requirements and the exact eligible models. Review the documented Free mode separately from purchased credits.",
       "current": true
     },
     {
@@ -22364,6 +22914,127 @@
       "checked_on": "2026-10-31",
       "reason": "The current platform offers $10 promotional credit after a $1 card top-up, once per person and card. This is a one-time card-required bonus. The homepage and public API pricing meter the text models; no recurring free-model allowance is advertised. Terms mention sign-up credit generically but do not establish a current obtainable no-card grant. Public status disables check-in. No new account, key or payment was created to test activation.",
       "reopen_if": "Current primary offer or an existing authorized account establishes an obtainable no-card signup grant or recurring free model quota. Review all access modes independently of positive per-token prices and the card-funded promotional bonus.",
+      "current": true
+    },
+    {
+      "domains": [
+        "avian.io"
+      ],
+      "name": "Avian",
+      "checked_on": "2026-11-03",
+      "reason": "Current pricing and documentation describe prepaid token-metered inference and dedicated GPU compute, alongside a Get Started Free button. The historical third-party trial amount is not current grant proof. Obtainable introductory API credit, card requirements and expiry remain unconfirmed; paid model rates do not disprove a separate grant. Sources: https://avian.io/pricing and https://avian.io/docs.",
+      "reopen_if": "A current grant policy or an existing authorized account establishes a usable no-card API allowance, including amount, expiry, eligible models and activation. Keep inference and dedicated-compute credits separate.",
+      "current": true
+    },
+    {
+      "domains": [
+        "targon.com"
+      ],
+      "name": "Targon",
+      "checked_on": "2026-11-03",
+      "reason": "Current pricing redirects to sign-in. The current terms identify Manifold Labs, but the historical third-party one-dollar trial does not establish a newly obtainable no-card inference grant. Account-gated funding, payment requirements and expiry remain unavailable, not proven ended. Sources: https://targon.com/pricing and https://targon.com/terms-of-service.",
+      "reopen_if": "Current primary documentation or an existing authorized account establishes an obtainable no-card model/API grant or recurring Free mode. Recheck it independently of GPU rental and historical directory claims.",
+      "current": true
+    },
+    {
+      "domains": [
+        "poixe.com"
+      ],
+      "name": "Poixe AI",
+      "checked_on": "2026-11-03",
+      "reason": "Current Free documentation and the rendered product page advertise separate no-payment large/small daily model pools. The :free suffix uses default routing and Chat Completions; a priced wallet exists beside it. The pricing JSON marks eligible default entries with free_group, while the model list carries base IDs. CLI2API terminal resources are a separate mode, and supplier onboarding also accepts API-key/account channels. A permitted ordinary upstream route and a current automated binding to its exact Free IDs and conditions remain unconfirmed; no terminal-resource mode is promoted. Sources: https://poixe.com/products/free, https://poixe.com/api/tool/price, https://docs.poixe.com/cn/api-reference/introduction/model-naming.md and https://docs.poixe.com/cn/docs/vendor/onboarding.md.",
+      "reopen_if": "Primary supplier/route terms establish permitted supply for an exact ordinary Free mode, and a current source binding verifies its eligible IDs, separate quotas, auth/payment and data handling. Review ordinary API and CLI2API modes independently; positive base-model prices do not negate the Free pools.",
+      "current": true
+    },
+    {
+      "domains": [
+        "atria-asi.ai"
+      ],
+      "name": "Atria ASI",
+      "checked_on": "2026-11-03",
+      "reason": "Current official API documentation describes the Atria model and supported request protocols, with account sign-in and quota/Token Plan notices. It does not establish a currently obtainable no-payment developer allowance with definite eligibility. Open weights and a Free route at another provider do not establish that upstream entitlement. Source: https://api.atria-asi.ai/docs.",
+      "reopen_if": "Current primary plan/credit terms or an existing authorized account establishes a free coding-compatible API grant, with operator, eligible model identity, auth/payment, limits, expiry and data conditions.",
+      "current": true
+    },
+    {
+      "domains": [
+        "inflection.ai",
+        "pi.ai"
+      ],
+      "name": "Inflection / Pi",
+      "checked_on": "2026-11-03",
+      "reason": "Pi is a consumer assistant, while a separately obtainable Free developer API allowance is unconfirmed in the reviewed current primary pages. Consumer chat access and a reseller catalog entry do not establish a coding-agent endpoint, and positive reseller prices do not prove withdrawal of an upstream grant. Sources: https://inflection.ai/ and https://pi.ai/.",
+      "reopen_if": "Current Inflection primary API/plan terms establish a coding-compatible endpoint with an obtainable Free allowance, its authentication/payment, eligible model identity, limits and data policy.",
+      "current": true
+    },
+    {
+      "domains": [
+        "preferredai.jp"
+      ],
+      "name": "PLaMo API (Preferred Networks)",
+      "checked_on": "2026-11-03",
+      "reason": "The current PLaMo Prime API has an explicit Free plan, separately from paid Standard/Provider. Free inputs and outputs are stored and used for training; personal data must not be submitted. Current terms and the console restrict registration to adults resident in Japan or Japanese entities. No-card API activation is unconfirmed. The dated search/Deep Research campaign is not an expiry for the underlying Free LLM plan. Sources: https://plamo.preferredai.jp/api, https://docs.plamo.preferredai.jp/en/pricing, https://docs.plamo.preferredai.jp/en/getting-started, https://plamo.preferredai.jp/info/terms and https://console.platform.preferredai.jp/.",
+      "reopen_if": "Current primary Free activation documentation or an existing authorized eligible Japanese account resolves payment/card conditions. Preserve Japan-only eligibility, training/personal-data restrictions and the distinction between model access and the search promotion.",
+      "current": true
+    },
+    {
+      "domains": [
+        "apmix.ai"
+      ],
+      "name": "apmix.ai",
+      "checked_on": "2026-11-03",
+      "reason": "Current pricing sells weighted-token subscriptions, while current Privacy still refers to a free allowance and anti-regrant records. A current obtainable allowance, eligible routes, amount, expiry and no-card activation are unconfirmed. Paid subscription prices do not settle that separate grant reference. Sources: https://apmix.ai/pricing and https://apmix.ai/privacy.",
+      "reopen_if": "Current primary grant/plan terms or an existing authorized account resolves whether the separately referenced Free allowance is obtainable, with exact payment, model, quota, expiry and permitted supply conditions.",
+      "current": true
+    },
+    {
+      "domains": [
+        "lowrouter.ai"
+      ],
+      "name": "LowRouter",
+      "checked_on": "2026-11-03",
+      "reason": "Current homepage, pricing and getting-started describe an invitation carrying trial credit while open accounts start with no balance. The FAQ still says there are no free credits or trial. This invitation-versus-FAQ conflict remains unresolved; paid per-token rates do not negate an invitation grant. Sources: https://lowrouter.ai/, https://lowrouter.ai/pricing, https://lowrouter.ai/docs/getting-started and https://lowrouter.ai/docs/faq.",
+      "reopen_if": "Current primary invitation terms or existing authorized access resolves invitation eligibility, no-card activation, amount and expiry independently of ordinary paid accounts. Do not infer automatic self-service grants from the invitation description.",
+      "current": true
+    },
+    {
+      "domains": [
+        "withhopper.com"
+      ],
+      "name": "Hopper Inference",
+      "checked_on": "2026-11-03",
+      "reason": "Current terms explicitly grant starting credits to new accounts and describe their default validity, and current documentation provides a compatible language-model API. The initial amount and no-card activation are unconfirmed. Paid token rates do not negate the separate starting grant. Sources: https://withhopper.com/terms and https://docs.withhopper.com/.",
+      "reopen_if": "Current primary signup/grant terms or an existing authorized account establishes usable no-card API credit with its amount, expiry, eligible language models, registration and data conditions.",
+      "current": true
+    },
+    {
+      "domains": [
+        "mnnai.ru"
+      ],
+      "name": "MNN API",
+      "checked_on": "2026-11-03",
+      "reason": "The rendered current site advertises a zero-price Free plan with credit and a separate Free-model restriction; current docs provide a model API and coding-client integrations. Ordinary HTTP exposes untranslated template expressions. Grant renewal, exact eligible Free IDs, payment/activation, data conditions and permitted upstream supply remain unconfirmed. Sources: https://mnnai.ru/ and https://mnnai.ru/docs?lang=en.",
+      "reopen_if": "Readable primary plan/catalog and supplier terms or existing authorized access establishes a permitted Free API mode, with exact callable IDs, card/payment, quota/reset and data handling. Do not apply the whole paid/free model catalog to the Free plan.",
+      "current": true
+    },
+    {
+      "domains": [
+        "workbuddy.cn"
+      ],
+      "name": "WorkBuddy",
+      "checked_on": "2026-11-03",
+      "reason": "Current rendered pricing advertises a limited-time Free experience with recurring credits, Auto routing and code completions, while CLI access is a separate paid feature. The ordinary HTTP page is an app shell. Existing-project desktop coding scope, registration/payment and region/data conditions and a current offer binding remain unconfirmed; the limited-time wording supplies no exact cutoff or global model family. Sources: https://www.workbuddy.cn/ and https://www.workbuddy.cn/pricing/.",
+      "reopen_if": "Primary documentation and a checkable offer establish bundled Free coding on existing local code, with auth/payment, regions, exact quota and any promotion deadline. Review desktop and CLI entitlement separately.",
+      "current": true
+    },
+    {
+      "domains": [
+        "oriper.com"
+      ],
+      "name": "Oriper AI",
+      "checked_on": "2026-11-03",
+      "reason": "The current hosting homepage explicitly advertises Chat AI plus Free API. The unrelated prepaid-hosting policy does not establish the AI payment conditions. Exact AI endpoint, eligible model identity, quota/reset, permitted supply and no-payment activation remain unconfirmed. Source: https://oriper.com/.",
+      "reopen_if": "The linked AI service publishes a usable coding-compatible Free endpoint, its model and upstream identity, no-payment/card activation, quota/reset and data policy. Keep hosting purchases separate from the advertised AI mode.",
       "current": true
     }
   ]

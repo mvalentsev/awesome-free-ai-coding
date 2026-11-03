@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Puter.js (free LLM API) free tier (archived): what it offered, and why it left the list'
-description: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model. No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits
+description: JavaScript SDK for browsers and Node.js with model usage charged to each user’s Puter account, including a recurring free account allowance. Every account receives a monthly usage allowance whose amount is shown in the dashboard. The SDK and /drivers/call can spend it. Current documentation…
 permalink: /providers/puter-free/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-11-03
 crumb: Puter.js (free LLM API)
 ---
 
@@ -11,11 +11,11 @@ crumb: Puter.js (free LLM API)
 
 # Puter.js (free LLM API) free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan · [developer.puter.com](https://developer.puter.com/tutorials/free-llm-api/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-07-19: the recurring Free SDK and HTTP-driver allowance is separate from the OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid plan; a supported Free coding-client integration is not established · [developer.puter.com](https://developer.puter.com/tutorials/free-llm-api/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 
-Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model
+JavaScript SDK for browsers and Node.js with model usage charged to each user’s Puter account, including a recurring free account allowance
 
 ## Free models it listed
 
@@ -23,12 +23,14 @@ The row named no free model.
 
 ## Limits, in the vendor's words
 
-No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits
+Every account receives a monthly usage allowance whose amount is shown in the dashboard. The SDK and /drivers/call can spend it. Current documentation requires a paid plan for the OpenAI- and Anthropic-compatible coding-agent endpoints; a Free account receives 402 subscription_required. API tokens and model-catalog access do not waive that plan requirement.
 
 ## Evidence
 
 - Probe: the page at <https://developer.puter.com/tutorials/free-llm-api/>, anchored on `free`
 - Source: <https://developer.puter.com/tutorials/free-llm-api/>
+- Source: <https://docs.puter.com/rate-limits-and-quotas/index.md>
+- Source: <https://docs.puter.com/supported-platforms/index.md>
 
 ## History
 

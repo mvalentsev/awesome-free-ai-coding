@@ -37,6 +37,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) — verified 2026-11-02
 - [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) — verified 2026-11-02
 - [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-11-02
+- [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-03
+- [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-03
+- [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-03
 
 ## 🔌 LLM APIs with free tier
 
@@ -61,6 +64,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-11-02 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-11-02
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-11-02 · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+- [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) — verified 2026-11-03
 - [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-11-02
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-11-02
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-11-02 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
@@ -96,6 +100,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-02
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-02
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-02
+- [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-03
+- [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-03
 
 ## 🧭 Aggregators (one key, many providers)
 
@@ -129,8 +135,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) — delisted on 2026-10-15: The current FAQ retires the monthly free Hypercredit allowance; access requires a paid plan or prepaid credits from $5 (https://hyper.charm.land/faq).
 - [Blue Claw Network](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/) — delisted on 2026-10-15: Current onboarding requires purchasing prepaid credits before API use; the previous $5 welcome grant is no longer advertised (https://blueclaw.network/quickstart).
 - [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) — delisted on 2026-10-08: free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription
-- [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) — delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier
-- [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) — delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit
+- [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) — delisted on 2026-09-23: the console requires a payment method and purchased credits for first requests, while documentation still describes a no-card Free tier; obtainable new-account Free activation remains unconfirmed
+- [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) — delisted on 2026-09-16: the documented Free token allowance has unresolved renewal and new-account activation conditions; generic resource-ordering and standard-rate payment requirements do not establish every Free Serverless mode
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas
 - [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit
 - [Cerebras Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/) — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit
@@ -140,7 +146,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) — vendor-announced shutdown on 2026-07-30
 - [DeepSeek Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/) — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant
 - [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) — vendor-announced shutdown on 2026-07-26
-- [Puter.js (free LLM API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/) — delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan
+- [Puter.js (free LLM API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/) — delisted on 2026-07-19: the recurring Free SDK and HTTP-driver allowance is separate from the OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid plan; a supported Free coding-client integration is not established
 - [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) — delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)
 - [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly
 

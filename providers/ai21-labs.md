@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'AI21 Labs (Jamba) free tier (archived): what it offered, and why it left the list'
-description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Free models: jamba-mini, jamba-large. Retired. The $10 no-card trial belonged to AI21 Studio, and Studio…'
+description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Free models: jamba-mini, jamba-large. The Studio Jamba, Maestro and File Library APIs were retired on…'
 permalink: /providers/ai21-labs/
-last_modified_at: 2026-09-30
+last_modified_at: 2026-11-03
 crumb: AI21 Labs (Jamba)
 ---
 
@@ -23,7 +23,7 @@ AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models 
 
 ## Limits, in the vendor's words
 
-Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: "On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call
+The Studio Jamba, Maestro and File Library APIs were retired on August 9, 2026. The old $10 trial belonged to Studio; legacy pricing and usage documentation give conflicting validity periods. The current AI21 Gateway is a separate product whose obtainable bundled no-card inference allowance remains unconfirmed.
 
 ## Evidence
 

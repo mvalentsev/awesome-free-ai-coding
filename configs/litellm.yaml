@@ -1475,6 +1475,12 @@ model_list:
     api_base: https://api.stdcmpt.com/v1
     api_key: os.environ/STANDARDCOMPUTE_API_KEY
     use_chat_completions_api: true
+- model_name: llm-kiwi/auto
+  litellm_params:
+    model: openai/auto
+    api_base: https://api.llm.kiwi/v1
+    api_key: os.environ/LLM_KIWI_API_KEY
+    use_chat_completions_api: true
 - model_name: novita/apodex/apodex-1.1-mini
   litellm_params:
     model: openai/apodex/apodex-1.1-mini
@@ -1702,6 +1708,12 @@ model_list:
     model: openai/Qwen/Qwen2.5-7B-Instruct
     api_base: https://api.siliconflow.cn/v1
     api_key: os.environ/SILICONFLOW_CN_API_KEY
+    use_chat_completions_api: true
+- model_name: liquid-inference/gpt-oss-120b
+  litellm_params:
+    model: openai/gpt-oss-120b
+    api_base: https://router.inference.ai.exchange/v1
+    api_key: os.environ/LIQUID_INFERENCE_API_KEY
     use_chat_completions_api: true
 - model_name: free/nokey
   litellm_params:

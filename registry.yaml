@@ -1097,14 +1097,16 @@ entries:
   - https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
   - https://mimo.xiaomi.com/mimocode/start
   - https://github.com/XiaomiMiMo/MiMo-Code/blob/main/packages/opencode/src/util/free-api-sunset.ts
+  - https://mimo.xiaomi.com/mimocode/models-provider
+  - https://mimo.mi.com/docs/en-US/quick-start/faq/promotions
   card_required: false
   offering: Xiaomi's open-source (MIT) terminal coding agent; its built-in "MiMo Auto"
     channel used to run Xiaomi's MiMo models with no login, API key, or card
-  limits: 'Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks
-    it past that timestamp (FREE_API_SUNSET_AT) and prompts: "The free API service
-    has ended"; a paid Token Plan or a third-party API key is required now. The README
-    stopped offering the channel; the landing page at mimo.xiaomi.com/coder still
-    read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17'
+  limits: The anonymous MiMo Auto channel ended on July 26, 2026 at 10:00 UTC. The
+    current client connects through provider API keys or Xiaomi MiMo OAuth. Token
+    Plan subscriptions and campaign-specific API bonus credits are separate from the
+    ended anonymous channel; an obtainable replacement bundled Free coding allowance
+    is not established.
   models:
   - family: mimo-v2.5
     aa_model: mimo-v2-5-0424
@@ -2818,9 +2820,8 @@ entries:
   source_urls:
   - https://docs.sambanova.ai/docs/en/models/rate-limits
   card_required: false
-  offering: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier
-    is the one that applies while no payment method is linked, so linking a card is
-    what ends it
+  offering: Open-model inference on SambaNova hardware with an OpenAI-compatible API;
+    public Free-tier documentation and console activation requirements disagree
   limits: 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier;
     five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)
   models:
@@ -2860,10 +2861,9 @@ entries:
   last_verified: '2026-09-21'
   delisted:
     'on': '2026-09-23'
-    reason: new accounts get no free usage — the console's Free plan has read "Add
-      a payment method and purchase credits to run your first requests" since 2026-08,
-      where until 2026-06-20 it read "free API credits. No credit card required";
-      only the docs still describe a free tier
+    reason: the console requires a payment method and purchased credits for first
+      requests, while documentation still describes a no-card Free tier; obtainable
+      new-account Free activation remains unconfirmed
   archive_review:
     checked_on: '2026-10-26'
     sources:
@@ -3237,14 +3237,10 @@ entries:
   offering: AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention
     models built for 256K-token context. The trial was AI21 Studio's, and the vendor
     sunset Studio's Jamba API on 2026-08-09
-  limits: 'Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone:
-    on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage,
-    and the catalog route answered 410 `This API has been retired. The AI21 Gateway
-    is available at https://app.ai21.com`. The vendor''s notice named the day: "On
-    August 9, 2026, we will officially deprecate and sunset the following APIs in
-    our platform: Jamba API, AI21 Maestro API, File library". What stands at app.ai21.com
-    is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic,
-    with nothing AI21-hosted or free to call'
+  limits: The Studio Jamba, Maestro and File Library APIs were retired on August 9,
+    2026. The old $10 trial belonged to Studio; legacy pricing and usage documentation
+    give conflicting validity periods. The current AI21 Gateway is a separate product
+    whose obtainable bundled no-card inference allowance remains unconfirmed.
   models:
   - family: jamba-mini
   - family: jamba-large
@@ -7969,11 +7965,16 @@ entries:
   url: https://developer.puter.com/tutorials/free-llm-api/
   source_urls:
   - https://developer.puter.com/tutorials/free-llm-api/
+  - https://docs.puter.com/rate-limits-and-quotas/index.md
+  - https://docs.puter.com/supported-platforms/index.md
   card_required: false
-  offering: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at
-    no developer cost via Puter's User-Pays model
-  limits: No API key or developer cost; usage billed to each end user's Puter account;
-    per-model rate limits
+  offering: JavaScript SDK for browsers and Node.js with model usage charged to each
+    user’s Puter account, including a recurring free account allowance
+  limits: Every account receives a monthly usage allowance whose amount is shown in
+    the dashboard. The SDK and /drivers/call can spend it. Current documentation requires
+    a paid plan for the OpenAI- and Anthropic-compatible coding-agent endpoints; a
+    Free account receives 402 subscription_required. API tokens and model-catalog
+    access do not waive that plan requirement.
   models: []
   probe:
     type: page-keywords
@@ -7987,15 +7988,15 @@ entries:
   last_verified: '2026-07-19'
   delisted:
     'on': '2026-07-19'
-    reason: a browser SDK billed to each end user's Puter account, with no HTTP endpoint
-      a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14
-      needs a paid plan
+    reason: the recurring Free SDK and HTTP-driver allowance is separate from the
+      OpenAI- and Anthropic-compatible coding-agent endpoints, which require a paid
+      plan; a supported Free coding-client integration is not established
   archive_review:
-    checked_on: '2026-10-26'
+    checked_on: '2026-11-03'
     sources:
-    - https://developer.puter.com/tutorials/free-llm-api/
-    - https://docs.puter.com/rate-limits-and-quotas/
-    - https://developer.puter.com/tutorials/openai-compatible-api/
+    - https://docs.puter.com/rate-limits-and-quotas/index.md
+    - https://docs.puter.com/supported-platforms/index.md
+    - https://developer.puter.com/ai/
   probe_failures: 0
   provisional: true
   rank: 100
@@ -8411,14 +8412,20 @@ entries:
   url: https://www.scaleway.com/en/generative-apis/
   source_urls:
   - https://www.scaleway.com/en/docs/generative-apis/faq/
+  - https://www.scaleway.com/en/docs/generative-apis/quickstart/
+  - https://www.scaleway.com/en/docs/generative-apis/reference-content/rate-limits/
+  - https://www.scaleway.com/en/pricing/model-as-a-service/
+  - https://www.scaleway.com/en/docs/account/setup-lifecycle/create-an-account/
   card_required: true
-  offering: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every
-    new customer
-  limits: 1,000,000 free tokens then pay-per-token; a valid payment method is required.
-    The allowance is not a model lane — "The Free Tier is applied to the most expensive
-    tokens first", across the whole serverless catalog, which on 2026-08-14 read glm-5.2,
-    deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b
-    and the Mistral line
+  offering: EU-hosted OpenAI-compatible Serverless API with a documented free token
+    allowance; obtainable new-account activation remains unconfirmed
+  limits: Current documentation advertises 1,000,000 free tokens across the Serverless
+    catalog, applied to the most expensive tokens first, with paid usage after the
+    allowance. The renewal period and obtainable new-account Free activation remain
+    unconfirmed. API-specific documentation assigns base Organization limits after
+    registering a valid payment method; generic account documentation requires a card
+    for ordering resources. Those statements do not settle whether every Free Serverless
+    request requires a card.
   models: []
   api:
     base_url: https://api.scaleway.ai/v1
@@ -8440,9 +8447,9 @@ entries:
   last_verified: '2026-09-14'
   delisted:
     'on': '2026-09-16'
-    reason: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources
-      requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING
-      does not admit
+    reason: the documented Free token allowance has unresolved renewal and new-account
+      activation conditions; generic resource-ordering and standard-rate payment requirements
+      do not establish every Free Serverless mode
   archive_review:
     checked_on: '2026-10-26'
     sources:
@@ -10774,3 +10781,363 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 95
+- id: graphite
+  name: Graphite
+  category: agent-cli
+  url: https://graphite.com
+  source_urls:
+  - https://graphite.com/pricing
+  - https://graphite.com/docs/ai-reviews
+  - https://graphite.com/docs/privacy-and-security
+  - https://graphite.com/terms-of-service
+  - https://graphite.com/privacy
+  card_required: false
+  offering: AI pull-request reviews and repository chat with an ongoing Hobby plan
+    for personal GitHub repositories, alongside a separate no-card Team trial
+  limits: GitHub sign-in and repository permissions are required. Hobby covers personal-account
+    repositories; organization repositories require a paid plan. AI reviews and chat
+    are limited, with no numerical allowance or reset published. The separate Team
+    trial lasts 30 days. AI features are opt-in; Graphite says they do not store or
+    train on submitted data. Repository indexing, account metadata and operational
+    logs have separate storage policies.
+  quotas:
+  - unit: reviews
+    scope: unspecified
+    label: Hobby AI reviews
+    source: https://graphite.com/pricing
+    quote: Limited AI Reviews
+    reviewed_on: '2026-11-03'
+  - unit: messages
+    scope: unspecified
+    label: Hobby chat
+    source: https://graphite.com/pricing
+    quote: Limited access to Graphite Chat
+    reviewed_on: '2026-11-03'
+  free_part: unnamed
+  models: []
+  data_use:
+    trains: 'no'
+    quote: These features are opt-in and do not store or train on your data.
+    url: https://graphite.com/docs/privacy-and-security
+  border:
+    left_out: []
+    'on': '2026-11-03'
+    source: https://graphite.com/terms-of-service
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://graphite.com/pricing
+    keywords:
+    - Hobby
+    - Personal account repos support
+    - Limited AI Reviews
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 88
+- id: sourcery
+  name: Sourcery
+  category: agent-cli
+  url: https://www.sourcery.ai
+  source_urls:
+  - https://www.sourcery.ai/pricing
+  - https://docs.sourcery.ai/Code-Review/Integrations/GitHub/
+  - https://docs.sourcery.ai/Code-Review/Integrations/GitLab/
+  - https://www.sourcery.ai/privacy
+  - https://www.sourcery.ai/terms
+  card_required: false
+  offering: AI pull-request reviews, security checks and suggested fixes for public
+    repositories, with a separate no-card trial for private repositories
+  limits: Install the GitHub or GitLab integration and grant repository access. Public
+    repositories receive ongoing Free reviews; the numerical allowance and reset are
+    not published. The separate organization trial provides Team features for 14 days
+    without a card, then private-repository use requires a paid plan. Sourcery says
+    it keeps no copy of submitted code. Its model providers do not train on code or
+    messages and may retain them for up to 30 days; zero-retention arrangements require
+    Pro and a separate request.
+  quotas:
+  - unit: reviews
+    scope: unspecified
+    label: Public repositories
+    source: https://www.sourcery.ai/pricing
+    quote: AI reviews on public repos
+    reviewed_on: '2026-11-03'
+  free_part: unnamed
+  models: []
+  data_use:
+    trains: 'no'
+    quote: do not use any of your code or messages to train their models
+    url: https://www.sourcery.ai/privacy
+  border:
+    left_out: []
+    'on': '2026-11-03'
+    source: https://www.sourcery.ai/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://www.sourcery.ai/pricing
+    keywords:
+    - Open Source
+    - Free forever
+    - AI reviews on public repos
+    - No credit card needed
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 89
+- id: deepsource
+  name: DeepSource
+  category: trial
+  url: https://deepsource.com
+  source_urls:
+  - https://deepsource.com/pricing
+  - https://docs.deepsource.com
+  - https://deepsource.com/legal/privacy
+  - https://deepsource.com/legal/terms
+  - https://deepsource.com/legal/pilot-evaluation
+  card_required: false
+  offering: AI code review and suggested fixes on existing repositories, with a no-card
+    introductory trial and bundled AI Review credits
+  limits: The trial lasts 14 days and includes up to $50 in AI Review credits; the
+    actual grant is not guaranteed to equal that ceiling. Repository installation
+    and permissions are required. AI Review is separately metered by processed lines
+    of code. The ongoing Open Source plan includes static analysis, but its AI Review
+    is pay-as-you-go. DeepSource does not train on code or data unless you explicitly
+    opt in; its third-party AI providers process code without retaining it. DeepSource
+    account and service data have separate retention policies.
+  quotas:
+  - unit: USD
+    period: one-time
+    scope: unspecified
+    label: Trial AI Review credits
+    source: https://deepsource.com/pricing
+    quote: up to $50 in bundled AI Review credits, no credit card required.
+    reviewed_on: '2026-11-03'
+  free_part: sum
+  models: []
+  data_use:
+    trains: 'no'
+    quote: does not use your code or data to train … unless you explicitly opt in
+    url: https://deepsource.com/legal/privacy
+  border:
+    left_out: []
+    'on': '2026-11-03'
+    source: https://deepsource.com/legal/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://deepsource.com/pricing
+    keywords:
+    - 14-day free trial
+    - up to $50 in bundled AI Review credits
+    - no credit card required
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 101
+- id: liquid-inference
+  name: Liquid Inference
+  category: trial
+  url: https://inference.ai.exchange
+  source_urls:
+  - https://inference.ai.exchange/docs/quickstart.md
+  - https://inference.ai.exchange/docs/fees.md
+  - https://inference.ai.exchange/docs/data-handling.md
+  - https://inference.ai.exchange/docs/availability.md
+  - https://inference.ai.exchange/docs/provider.md
+  - https://inference.ai.exchange/docs/keys.md
+  card_required: false
+  offering: Inference exchange where providers compete to serve API requests, with
+    a no-card starting credit for new workspaces
+  limits: The initial credit amount and expiry are not published. A separate first
+    top-up of at least $10 earns $2; that purchase is not required for the starting
+    credit. Each request reserves a price cap, then settles actual usage and the exchange
+    fee. The winning provider sees the request under its own published terms and data
+    policy. The exchange stores usage receipts and saved workloads; optional caches
+    and the Auto classifier have separate handling. Four named regions of Ukraine
+    are excluded in addition to the listed countries. Grant activation and authenticated
+    generation have not been checked here.
+  quotas:
+  - unit: USD
+    period: one-time
+    scope: unspecified
+    label: New workspace credit
+    source: https://inference.ai.exchange/docs/quickstart.md
+    quote: A new workspace gets a starting credit
+    reviewed_on: '2026-11-03'
+  free_part: sum
+  models: []
+  api:
+    base_url: https://router.inference.ai.exchange/v1
+    key_url: https://inference.ai.exchange
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - gpt-oss-120b
+    note: Use a workspace API key. gpt-oss-120b is a documented example and currently
+      advertises tools; inspect /models for current supported parameters. Provider
+      availability and capabilities vary. An explicit retention_policy of none also
+      prevents the Auto classifier from receiving prompts.
+  border:
+    left_out: [CN, CU, IR, KP, RU, SY]
+    'on': '2026-11-03'
+    source: https://inference.ai.exchange/docs/availability.md
+    also_named: [HK, MO, UA, US, VE]
+  probe:
+    type: page-keywords
+    endpoint: https://inference.ai.exchange/docs/quickstart.md
+    keywords:
+    - A new workspace gets a starting credit
+    - without a card
+    - /v1/chat/completions
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 109
+- id: llm-kiwi
+  name: LLM.kiwi
+  category: api-free-tier
+  url: https://llm.kiwi
+  source_urls:
+  - https://llm.kiwi/pricing
+  - https://docs.llm.kiwi/quickstart.md
+  - https://docs.llm.kiwi/limits.md
+  - https://docs.llm.kiwi/models
+  - https://docs.llm.kiwi/api-reference.md
+  - https://api.llm.kiwi/v1/models
+  - https://llm.kiwi/register
+  - https://llm.kiwi/privacy-policy
+  - https://llm.kiwi/terms-of-service
+  card_required: false
+  offering: Hosted OpenAI-compatible API with a no-card Free plan and an automatic
+    model router
+  limits: Sign in with Google or GitHub and create a dashboard key. Free allows three
+    active API keys; numerical request and token budgets and reset periods are not
+    published. Capacity, rate limits and fair use apply. The auto router can change
+    its underlying model. Documentation also describes hrllm, but the current public
+    catalog does not list it. Prompts, tool inputs and outputs may be collected to
+    deliver and secure the service; retention varies by data type. No training exclusion
+    is established. Grant activation and authenticated generation have not been checked
+    here.
+  quotas:
+  - unit: usage
+    scope: unspecified
+    label: Free API allowance
+    source: https://docs.llm.kiwi/limits.md
+    quote: Free access does not mean unlimited capacity.
+    reviewed_on: '2026-11-03'
+  free_part: unnamed
+  models: []
+  api:
+    base_url: https://api.llm.kiwi/v1
+    key_url: https://llm.kiwi/login
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - auto
+    no_family_ids:
+    - auto
+    note: auto is the documented default and a router, with no fixed underlying model
+      identity. Chat Completions and streaming are documented; function tools, Responses
+      and a fixed context window are not established. Do not assume the account can
+      use every public catalog ID.
+  border:
+    left_out: []
+    'on': '2026-11-03'
+    source: https://llm.kiwi/terms-of-service
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://docs.llm.kiwi/limits.md
+    keywords:
+    - LLM.kiwi is currently free to use without a credit card.
+    - Free access does not mean unlimited capacity.
+    free_marker: ''
+    require_zero_price: false
+    catalog: https://api.llm.kiwi/v1/models
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 96
+- id: summer-engine
+  name: Summer Engine
+  category: agent-cli
+  url: https://www.summerengine.com
+  source_urls:
+  - https://www.summerengine.com/pricing
+  - https://docs.summerengine.com/migration/godot.md
+  - https://docs.summerengine.com/essentials/installation.md
+  - https://docs.summerengine.com/security/privacy-mode.md
+  - https://www.summerengine.com/privacy
+  - https://www.summerengine.com/terms
+  - https://www.summerengine.com/legal/ai-terms
+  card_required: false
+  offering: Desktop game editor with bundled Free hosted AI messages that edit scripts
+    and scenes in local projects
+  limits: An account is required for hosted AI. The editor can import an existing
+    project and edit its GDScript and scenes; plugin and project compatibility must
+    be checked separately. The daily message limit also has a monthly ceiling. Free
+    MCP and agent tools use your own AI provider and do not add hosted messages. Free
+    lacks Privacy Mode. Documentation permits retention and training by default; AI
+    Terms separately say training requires opt-in, while Privacy lists exceptions.
+    These policies conflict, so treat Free prompts and code as potentially retained
+    and used for training. Paid Privacy Mode promises must not be applied to Free.
+  quotas:
+  - amount: 5.0
+    unit: messages
+    period: day
+    scope: account
+    label: Hosted AI
+    source: https://www.summerengine.com/pricing
+    quote: 5 free AI messages a day, up to 30 a month
+    value_phrase: 5 free AI messages a day, up to 30 a month
+    period_quote: a day
+  - amount: 30.0
+    unit: messages
+    period: month
+    scope: account
+    label: Hosted AI
+    source: https://www.summerengine.com/pricing
+    quote: 5 free AI messages a day, up to 30 a month
+    value_phrase: 5 free AI messages a day, up to 30 a month
+    period_quote: a month
+  free_part: unnamed
+  models: []
+  border:
+    left_out: []
+    'on': '2026-11-03'
+    source: https://www.summerengine.com/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://www.summerengine.com/pricing
+    keywords:
+    - Free App
+    - No credit card needed
+    - 5 free AI messages a day, up to 30 a month
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-03'
+  last_verified: '2026-11-03'
+  probe_failures: 0
+  provisional: true
+  rank: 87

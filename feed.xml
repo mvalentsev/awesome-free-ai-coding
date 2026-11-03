@@ -5,8 +5,50 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-03T06:54:19Z</updated>
+  <updated>2026-11-03T21:59:13Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/deepsource/20261103T215913Z</id>
+    <title>Added: DeepSource</title>
+    <link rel="alternate" href="https://deepsource.com"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/graphite/20261103T215913Z</id>
+    <title>Added: Graphite</title>
+    <link rel="alternate" href="https://graphite.com"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/liquid-inference/20261103T215913Z</id>
+    <title>Added: Liquid Inference</title>
+    <link rel="alternate" href="https://inference.ai.exchange"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llm-kiwi/20261103T215913Z</id>
+    <title>Added: LLM.kiwi</title>
+    <link rel="alternate" href="https://llm.kiwi"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sourcery/20261103T215913Z</id>
+    <title>Added: Sourcery</title>
+    <link rel="alternate" href="https://www.sourcery.ai"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/summer-engine/20261103T215913Z</id>
+    <title>Added: Summer Engine</title>
+    <link rel="alternate" href="https://www.summerengine.com"/>
+    <updated>2026-11-03T21:59:13Z</updated>
+    <summary type="text">Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cursor-hobby/20261103T065419Z</id>
     <title>Free models changed: Cursor (Free)</title>
@@ -314,47 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-10-27T14:20:23Z</updated>
     <summary type="text">dropped nemotron-3-super · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261027T095330Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-27T09:53:30Z</updated>
-    <summary type="text">dropped laguna-xs-2.1 · free models: nemotron-3-ultra, nemotron-3-super, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, intern-s2-397b, atria-dawn, atria-dawn-preview, agents-a1, sage-a1.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261027T095330Z</id>
-    <title>Free models changed: Nous Portal (Hermes Agent)</title>
-    <link rel="alternate" href="https://portal.nousresearch.com"/>
-    <updated>2026-10-27T09:53:30Z</updated>
-    <summary type="text">dropped longcat-2.5-preview · free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, longcat-2.0, solar-mini-4</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261026T234744Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-26T23:47:44Z</updated>
-    <summary type="text">dropped vast-10m-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, intern-s2-397b, atria-dawn, atria-dawn-preview, agents-a1, sage-a1.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/novita/20261026T170859Z</id>
-    <title>Restored: Novita AI</title>
-    <link rel="alternate" href="https://novita.ai/"/>
-    <updated>2026-10-26T17:08:59Z</updated>
-    <summary type="text">Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/restored/experiential-labs/20261026T144740Z</id>
-    <title>Restored: Experiential Labs</title>
-    <link rel="alternate" href="https://www.experientiallabs.ai"/>
-    <updated>2026-10-26T14:47:40Z</updated>
-    <summary type="text">Open-source AI gateway backed by Y Combinator with recurring model-specific free quotas after a settled payment, separate from its paid credit wallet</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261026T082725Z</id>
-    <title>Free models changed: AIHubMix (free models)</title>
-    <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-10-26T08:27:25Z</updated>
-    <summary type="text">dropped nemotron-3-super · free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, north-mini-code, nemotron-3-ultra, minimax-m3, minimax-m2.7, laguna-s-2.1, laguna-xs-2.1, kimi-for-coding, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-flash, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-omni, agents-a1, intern-s2-preview-35b, mimo-v2.6-flash, mimo-v2.6-pro</summary>
   </entry>
 </feed>

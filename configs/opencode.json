@@ -1330,6 +1330,19 @@
         }
       }
     },
+    "llm-kiwi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LLM.kiwi",
+      "options": {
+        "baseURL": "https://api.llm.kiwi/v1",
+        "apiKey": "{env:LLM_KIWI_API_KEY}"
+      },
+      "models": {
+        "auto": {
+          "name": "auto"
+        }
+      }
+    },
     "novita": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Novita AI",
@@ -1558,6 +1571,19 @@
         },
         "Qwen/Qwen2.5-7B-Instruct": {
           "name": "Qwen/Qwen2.5-7B-Instruct"
+        }
+      }
+    },
+    "liquid-inference": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Liquid Inference",
+      "options": {
+        "baseURL": "https://router.inference.ai.exchange/v1",
+        "apiKey": "{env:LIQUID_INFERENCE_API_KEY}"
+      },
+      "models": {
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
         }
       }
     }
