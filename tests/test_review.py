@@ -498,6 +498,35 @@ def test_client_requires_a_completed_turn_and_actual_marker_in_tool_output():
     assert not review.client_result('codex', 0, events + [{'type': 'turn.completed'}], 'marker')['passed']
 
 
+@pytest.mark.parametrize('client', ['opencode', 'codex'])
+@pytest.mark.parametrize(('answer', 'marker', 'passed'), [
+    ('fresh-marker', 'fresh-marker', True),
+    ('  fresh-marker\n', 'fresh-marker', True),
+    ('The file contains fresh-marker', 'fresh-marker', False),
+    ('fresh-marker but the read failed', 'fresh-marker', False),
+    ('fresh-marker\nfresh-marker', 'fresh-marker', False),
+    ('```\nfresh-marker\n```', 'fresh-marker', False),
+    ('another-marker', 'fresh-marker', False),
+    ('', '', False),
+])
+def test_client_cycle_requires_the_exact_nonempty_final_answer(client, answer, marker, passed):
+    if client == 'opencode':
+        events = [
+            {'type': 'tool_use', 'part': {'type': 'tool', 'state': {'status': 'completed', 'output': marker}}},
+            {'type': 'text', 'part': {'type': 'text', 'text': answer}},
+            {'type': 'step_finish', 'part': {'type': 'step-finish', 'reason': 'stop'}},
+        ]
+    else:
+        events = [
+            {'type': 'item.completed', 'item': {'type': 'command_execution', 'exit_code': 0, 'aggregated_output': marker}},
+            {'type': 'item.completed', 'item': {'type': 'agent_message', 'text': answer}},
+            {'type': 'turn.completed'},
+        ]
+    result = review.client_result(client, 0, events, marker)
+    assert result['fresh_marker_in_answer'] is passed
+    assert result['passed'] is passed
+
+
 @respx.mock
 async def test_network_errors_are_retained_before_a_successful_retry(tmp_path):
     bundle = review.Bundle(tmp_path / 'evidence', tmp_path)

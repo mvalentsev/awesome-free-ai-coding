@@ -834,6 +834,110 @@ def test_llm_chain_falls_back_to_keyless_ovh(monkeypatch):
     assert b"gpt-oss-120b" in route.calls[0].request.content
 
 
+@pytest.mark.parametrize(('status', 'wait'), [
+    (429, '120'),
+    (429, 'Wed, 04 Nov 2026 00:00:00 GMT'),
+    (429, 'not-a-wait'),
+    (429, '-1'),
+    (503, '120'),
+])
+@respx.mock
+def test_scout_honors_retry_after_across_phases_without_blocking_other_backends(monkeypatch, status, wait):
+    pauses = []
+    monkeypatch.setattr(scout.time, 'sleep', pauses.append)
+    route = respx.post('https://limited.example/v1/chat/completions').respond(
+        status, headers={'Retry-After': wait}, json={'error': 'wait'})
+    _ovh_answers('fallback')
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://limited.example/v1', custom_model='first',
+                        models_by_base_url={'https://limited.example/v1': ['first', 'second']},
+                        http=http, clock=lambda: 0)
+        assert llm.complete('first phase') == 'fallback'
+        assert llm.complete('second phase') == 'fallback'
+    assert route.call_count == 1
+    assert pauses == []
+
+
+@respx.mock
+def test_scout_can_reuse_a_backend_only_after_its_numeric_retry_after(monkeypatch):
+    clock = [0.0]
+    pauses = []
+    monkeypatch.setattr(scout.time, 'sleep', pauses.append)
+    route = respx.post('https://limited.example/v1/chat/completions').mock(side_effect=[
+        httpx.Response(429, headers={'Retry-After': '120'}),
+        httpx.Response(200, json={'choices': [{'message': {'content': 'recovered'}}]}),
+    ])
+    _ovh_answers('fallback')
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://limited.example/v1', custom_model='first',
+                        http=http, clock=lambda: clock[0])
+        assert llm.complete('first phase') == 'fallback'
+        clock[0] = 119
+        assert llm.complete('second phase') == 'fallback'
+        clock[0] = 120
+        assert llm.complete('third phase') == 'recovered'
+    assert route.call_count == 2
+    assert pauses == []
+
+
+@respx.mock
+def test_scout_keeps_short_retry_after_recovery_with_the_existing_pause(monkeypatch):
+    clock = [0.0]
+    pauses = []
+    def sleep(seconds):
+        pauses.append(seconds)
+        clock[0] += seconds
+    monkeypatch.setattr(scout.time, 'sleep', sleep)
+    route = respx.post('https://limited.example/v1/chat/completions').mock(side_effect=[
+        httpx.Response(429, headers={'Retry-After': '5'}),
+        httpx.Response(200, json={'choices': [{'message': {'content': 'recovered'}}]}),
+    ])
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://limited.example/v1', custom_model='first',
+                        http=http, force='custom', clock=lambda: clock[0])
+        assert llm.complete('fresh phase') == 'recovered'
+    assert route.call_count == 2
+    assert pauses == [scout.RETRY_429_SLEEP]
+
+
+@respx.mock
+def test_scout_retains_the_last_attempts_short_wait_for_the_next_phase(monkeypatch):
+    monkeypatch.setattr(scout, 'RETRY_429_ATTEMPTS', 1)
+    clock = [0.0]
+    route = respx.post('https://limited.example/v1/chat/completions').mock(side_effect=[
+        httpx.Response(429, headers={'Retry-After': '5'}),
+        httpx.Response(200, json={'choices': [{'message': {'content': 'recovered'}}]}),
+    ])
+    _ovh_answers('fallback')
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://limited.example/v1', custom_model='first',
+                        http=http, clock=lambda: clock[0])
+        assert llm.complete('first phase') == 'fallback'
+        assert llm.complete('second phase') == 'fallback'
+        clock[0] = 5
+        assert llm.complete('third phase') == 'recovered'
+    assert route.call_count == 2
+
+
+@respx.mock
+def test_scout_does_not_sleep_past_the_remaining_run_budget(monkeypatch):
+    clock = [0.0]
+    pauses = []
+    def sleep(seconds):
+        pauses.append(seconds)
+        clock[0] += seconds
+    monkeypatch.setattr(scout.time, 'sleep', sleep)
+    route = respx.post('https://limited.example/v1/chat/completions').respond(
+        429, headers={'Retry-After': '5'})
+    _ovh_answers('fallback')
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://limited.example/v1', custom_model='first',
+                        http=http, clock=lambda: clock[0], deadline=Deadline(10, clock=lambda: clock[0]))
+        assert llm.complete('fresh phase') == 'fallback'
+    assert route.call_count == 1
+    assert pauses == []
+
+
 @respx.mock
 def test_llm_chain_skips_backend_on_empty_content():
     respx.post("https://nim.example/v1/chat/completions").mock(
@@ -844,6 +948,45 @@ def test_llm_chain_skips_backend_on_empty_content():
         llm = LLMClient(custom_base_url="https://nim.example/v1", custom_model="m",
                         custom_key="k", http=http)
         assert llm.complete("hi") == "ok"
+
+
+@pytest.mark.parametrize('first_answer', [None, 'initial answer'])
+@respx.mock
+def test_gemini_fallback_reports_its_own_requested_model(first_answer):
+    custom = respx.post('https://primary.example/v1/chat/completions').mock(side_effect=[
+        httpx.Response(200, json={'choices': [{'message': {'content': first_answer}}]}),
+        httpx.Response(503),
+    ])
+    gemini = respx.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-test:generateContent').respond(
+        200, json={'candidates': [{'content': {'parts': [{'text': 'Gemini answer'}]}}]})
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://primary.example/v1', custom_model='primary-model',
+                        gemini_key='secret-test-key', gemini_model='gemini-test', http=http)
+        if first_answer:
+            assert llm.complete('first phase') == first_answer
+        assert llm.complete('fallback phase') == 'Gemini answer'
+    assert llm.answered_by == 'gemini'
+    assert llm.answered_model == 'gemini-test'
+    assert llm.describe().endswith('answered by gemini (gemini-test)')
+    assert custom.call_count == (2 if first_answer else 1)
+    assert gemini.call_count == 1
+
+
+@respx.mock
+def test_failed_phase_does_not_report_the_previous_phases_answerer():
+    respx.post('https://primary.example/v1/chat/completions').mock(side_effect=[
+        httpx.Response(200, json={'choices': [{'message': {'content': 'initial answer'}}]}),
+        httpx.Response(503),
+    ])
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url='https://primary.example/v1', custom_model='primary-model',
+                        http=http, force='custom')
+        assert llm.complete('first phase') == 'initial answer'
+        with pytest.raises(RuntimeError):
+            llm.complete('failed phase')
+    assert llm.answered_by is None
+    assert llm.answered_model is None
+    assert llm.describe().endswith('answered by nothing')
 
 
 @respx.mock
@@ -1108,6 +1251,21 @@ def test_a_trickling_backend_is_cut_off_at_its_wall_clock_deadline():
                         http=http, call_deadline=5.0, clock=ticking(3.0))
         with pytest.raises(RuntimeError, match="all LLM backends failed"):
             llm.complete("hi")  # no OVH mock: the chain must die having tried
+
+
+@respx.mock
+def test_gemini_stream_deadline_does_not_expose_its_query_credential(capsys):
+    secret = 'test-secret-that-must-not-reach-diagnostics'
+    route = respx.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-test:generateContent').respond(
+        200, content=iter([b'{"candidates":', b'[{"content":', b'{"parts": []}}]}']))
+    with httpx.Client() as http:
+        llm = LLMClient(gemini_key=secret, gemini_model='gemini-test', http=http,
+                        force='gemini', call_deadline=5, clock=ticking(3))
+        with pytest.raises(RuntimeError, match='still streaming after 5s') as failed:
+            llm.complete('fresh phase')
+    captured = capsys.readouterr()
+    assert secret not in str(failed.value) + captured.out + captured.err
+    assert route.call_count == 1
 
 
 def test_an_expired_run_budget_stops_a_backend_being_called_at_all():

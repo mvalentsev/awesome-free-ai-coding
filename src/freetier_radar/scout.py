@@ -22,7 +22,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, 
                      probe_frequency, watch_match)
 from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
-                     unevidenced_families, model_table_findings)
+                     unevidenced_families, model_table_findings, retry_after_seconds)
 from .page_reader import recover_page_sync
 from .words import clip
 
@@ -435,6 +435,7 @@ class LLMClient:
                 self.unlisted_pins.append(f"{name}: {model} on {base}")
         # (base url, model) pairs the endpoint has disowned during this run.
         self._dead_models: set[tuple[str, str]] = set()
+        self._retry_after: dict[str, float] = {}
         self._ovh_model: str | None = None
         self.answered_by: str | None = None
         self.answered_model: str | None = None
@@ -462,6 +463,8 @@ class LLMClient:
         return backends
 
     def complete(self, prompt: str) -> str:
+        self.answered_by = None
+        self.answered_model = None
         backends = self._backends()
         if self._force is not None:
             # Forcing exercises a backend that never gets its turn in the chain;
@@ -488,6 +491,7 @@ class LLMClient:
             # Broad on purpose: whatever a backend does wrong — a truncated
             # body, invalid JSON — all this loop can do is move to the next one.
             except Exception as exc:
+                self.answered_model = None
                 print(f"scout backend {name} failed: {type(exc).__name__}: {exc}")
                 errors.append(f"{name}: {type(exc).__name__}: {exc}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
@@ -511,8 +515,8 @@ class LLMClient:
             raise DeadlineExceeded("no wall-clock budget left for this run")
         return budget
 
-    def _post(self, url: str, headers: dict[str, str], payload: dict) -> tuple[int, bytes]:
-        """POST and read the body against the clock, returning (status, body).
+    def _post(self, url: str, headers: dict[str, str], payload: dict) -> tuple[int, bytes, float | None]:
+        """POST against the clock, returning status, body and advertised wait.
 
         httpx's timeout is per read, not per call, so a backend that answers
         HTTP 200 and then trickles bytes never trips it. Reading in chunks
@@ -520,13 +524,22 @@ class LLMClient:
         steps over. The read timeout, capped by the same budget, still catches
         a backend that says nothing at all.
         """
+        if url in self._retry_after and self._clock() < self._retry_after[url]:
+            raise RuntimeError("backend deferred by Retry-After")
         budget = self._budget()
         end = self._clock() + budget
         timeout = httpx.Timeout(min(LLM_READ_TIMEOUT, budget), connect=15.0)
         with self._http.stream("POST", url, headers=headers, json=payload,
                                timeout=timeout) as r:
+            # RFC 9110 section 10.2.3, checked 2026-11-03:
+            # https://www.rfc-editor.org/rfc/rfc9110.html#name-retry-after
+            # Keep the wait across phases and aliases of this endpoint. The
+            # shared reader conservatively defers dates/unreadable values.
+            wait = retry_after_seconds(r)
+            if wait is None or wait > 0:
+                self._retry_after[url] = (float('inf') if wait is None else self._clock() + wait)
             if r.status_code == 429:
-                return r.status_code, b""
+                return r.status_code, b"", wait
             if r.is_error:
                 raise self._refusal(r, end)
             chunks = []
@@ -534,8 +547,8 @@ class LLMClient:
                 chunks.append(chunk)
                 if self._clock() > end:
                     raise DeadlineExceeded(
-                        f"{url} was still streaming after {budget:.0f}s")
-        return r.status_code, b"".join(chunks)
+                        f"backend was still streaming after {budget:.0f}s")
+        return r.status_code, b"".join(chunks), wait
 
     def _refusal(self, r: httpx.Response, end: float) -> httpx.HTTPStatusError:
         """The error for a refused call, carrying the start of the vendor's body.
@@ -551,6 +564,8 @@ class LLMClient:
                 break
         reason = refusal_reason(body)
         kept = httpx.Response(r.status_code, content=body[:REFUSAL_BODY_LIMIT],
+                              headers={k: v for k, v in r.headers.items()
+                                       if k.lower() not in ('content-encoding', 'content-length')},
                               request=r.request)
         return httpx.HTTPStatusError(
             f"HTTP {r.status_code}" + (f": {reason}" if reason else ""),
@@ -595,7 +610,7 @@ class LLMClient:
     def _chat(self, base_url: str, model: str, key: str | None, prompt: str) -> str:
         headers = {"Authorization": f"Bearer {key}"} if key else {}
         for attempt in range(RETRY_429_ATTEMPTS):
-            status, body = self._post(
+            status, body, wait = self._post(
                 f"{base_url}/chat/completions", headers,
                 {"model": model, "messages": [{"role": "user", "content": prompt}]},
             )
@@ -606,15 +621,23 @@ class LLMClient:
                     raise NoCompletion(refusal_reason(body) or "an answer without choices")
                 self.answered_model = model
                 return choices[0]["message"]["content"]
+            if wait is None or wait > RETRY_429_SLEEP:
+                raise RuntimeError("HTTP 429; backend deferred by Retry-After")
             if attempt + 1 < RETRY_429_ATTEMPTS:
+                if self._deadline is not None and self._deadline.remaining() <= RETRY_429_SLEEP:
+                    raise DeadlineExceeded("not enough run budget for the retry pause")
                 time.sleep(RETRY_429_SLEEP)
         raise RuntimeError("rate-limited on every attempt")
 
     def _gemini(self, prompt: str) -> str:
         url = ("https://generativelanguage.googleapis.com/v1beta/models/"
                f"{self._gemini_model}:generateContent?key={self._gemini_key}")
-        _, body = self._post(url, {}, {"contents": [{"parts": [{"text": prompt}]}]})
-        return json.loads(body)["candidates"][0]["content"]["parts"][0]["text"]
+        status, body, _ = self._post(url, {}, {"contents": [{"parts": [{"text": prompt}]}]})
+        if status == 429:
+            raise RuntimeError("HTTP 429; Gemini backend rate-limited")
+        text = json.loads(body)["candidates"][0]["content"]["parts"][0]["text"]
+        self.answered_model = self._gemini_model
+        return text
 
     def _openrouter(self, prompt: str) -> str:
         if self._or_model is None:

@@ -3069,10 +3069,11 @@ entries:
   offering: Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini
     and third-party agent models
   limits: Follow the Free & Google AI Plus column of the model table; Enterprise-only
-    Gemini models are outside this offer. Older third-party models in that column
-    are scheduled for removal on November 2, 2026. Claude 5.5 and Gemini 4 Argon require
-    paid plans. The plans overview instead lists third-party access under Ultra, so
-    those sources disagree. Gemini and third-party models have separate weekly allowances.
+    Gemini models are outside this offer. Older third-party choices in that column
+    carry the notice "Will be removed on November 18, 2026." No exact cutoff time
+    is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The
+    plans overview highlights Ultra third-party access and directs model availability
+    to the model table. Gemini and third-party models have separate weekly allowances.
     Baseline limits depend on capacity and abuse prevention; no numerical weekly budget
     is published.
   quotas:

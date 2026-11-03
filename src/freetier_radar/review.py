@@ -526,7 +526,7 @@ def client_result(client: str, code: int, events: list[dict], marker: str) -> di
         outputs = [p.get('aggregated_output', '') for p in tools]
         answers = [p.get('text', '') for p in items if p.get('type') == 'agent_message']
         completed = any(e.get('type') == 'turn.completed' for e in events)
-    matched = bool(answers) and marker in answers[-1]
+    matched = bool(marker) and bool(answers) and answers[-1].strip() == marker
     error = any(e.get('type') in ('error', 'turn.failed') for e in events)
     read = any(marker in output for output in outputs)
     return {'passed': code == 0 and completed and read and matched and not error, 'exit': code,

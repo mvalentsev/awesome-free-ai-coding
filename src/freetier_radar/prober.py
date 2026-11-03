@@ -760,16 +760,22 @@ def _answered_as(asked: str, completion: dict) -> str | None:
     return served
 
 
+def retry_after_seconds(resp: httpx.Response | _CodexAnswer) -> float | None:
+    """Read a numeric wait; an unparsed advertised wait must remain deferred."""
+    value = resp.headers.get("retry-after")
+    if value is None:
+        return 0.0
+    if not re.fullmatch(r'[0-9]+', value.strip()):
+        return None
+    return float(value)
+
+
 def _asks_to_wait_at_most(resp: httpx.Response | _CodexAnswer, seconds: float) -> bool:
     """Whether Retry-After, if sent, is over by `seconds` — the
     pause before the next try. A date, or anything else that is not a number of
     seconds, is read as a wait the run does not make."""
-    value = resp.headers.get("retry-after")
-    if value is None:
-        return True
-    if not re.fullmatch(r'[0-9]+', value.strip()):
-        return False
-    return float(value) <= seconds
+    wait = retry_after_seconds(resp)
+    return wait is not None and wait <= seconds
 
 
 async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
