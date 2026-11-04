@@ -67,6 +67,59 @@ async def test_source_collection_retains_unanswered_same_site_provider_compariso
     assert path in (bundle.out / result['checks'][0]['file']).read_text()
 
 
+@pytest.mark.parametrize('body,path', [
+    ('<a href="/blog/free-other-cli-alternative-vendor">Other CLI</a>',
+     '/blog/free-other-cli-alternative-vendor'),
+    ('<a href="/blog/free-alternative-to-other">Other tool</a>',
+     '/blog/free-alternative-to-other'),
+    ('<a href="/alternatives">European AI alternatives directory</a>', '/alternatives'),
+    ('<a href="/compare">Model comparisons directory</a>', '/compare'),
+    ('<a href="/library/roundup"><span>Alternatives to Other tool</span></a>',
+     '/library/roundup'),
+    ('[Model comparisons directory](/library/models)', '/library/models'),
+    ('[European AI alternatives directory][catalog]\n\n[catalog]: /library/providers',
+     '/library/providers'),
+    ('<a href="/plans">Compare plans</a><a href="/integrations/vscode">VS Code</a>'
+     '<a href="/compare/main...release">Compare revisions</a>', None),
+])
+@respx.mock
+async def test_source_collection_retains_prose_comparisons_and_source_directories(tmp_path, body, path):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/prose-leads', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    source = 'https://vendor.example/models'
+    respx.get(source).respond(200, text=body)
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert [(r['url'], r['sources'], r['kind']) for r in result['lead_inventory']] == (
+        [('https://vendor.example'+path, [source], 'comparison')] if path else [])
+    assert len(respx.calls) == 1
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+
+
+@pytest.mark.parametrize('literal', [
+    '<script>\ncategories: {\n[CAT_NECESSARY]: {\n}\n</script>',
+    '<style>\n[CAT_NECESSARY]: {\n}\n</style>',
+    '<pre><code>\n[CAT_NECESSARY]: {\n}</code></pre>',
+    '<div data-example="[Model comparisons directory](/fake)">Example</div>',
+])
+@respx.mock
+async def test_source_collection_does_not_parse_html_literals_as_markdown_links(tmp_path, literal):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/literal-leads', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    source = 'https://vendor.example/tool-a-vs-tool-b/'
+    body = literal+'\n\n<a href="/privacy">Privacy</a>\n\n'+(
+        '[Model comparisons directory][models]\n\n[models]: /library')
+    respx.get(source).respond(200, text=body)
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert [(r['url'], r['kind']) for r in result['lead_inventory']] == [
+        ('https://vendor.example/library', 'comparison')]
+    assert len(respx.calls) == 1
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+
+
 @pytest.mark.parametrize('path,rows,families', [
     ('providers/vendor.md', ['vendor'], []),
     ('models/beta.md', [], ['beta']),

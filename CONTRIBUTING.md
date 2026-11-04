@@ -1276,7 +1276,9 @@ judgment are still required when an offer is withdrawn.
 
 The sources phase records unmatched hyperlinks and same-site provider comparison
 links in `lead_inventory`; it does not infer a vendor domain from a comparison
-slug or fetch the linked page. Each captured lead needs a `lead_dispositions`
+slug or fetch the linked page. It also reads named links to comparisons and source directories from
+HTML, inline Markdown and reference Markdown. These still need manual source and
+offer judgments. Each captured lead needs a `lead_dispositions`
 record in the judgment, with its ID, concrete finding and private evidence.
 Its verdict is `canonical`, `task`, or `irrelevant`: name an existing committed
 registry/watchlist/blocklist/source decision, retain an unresolved task with its

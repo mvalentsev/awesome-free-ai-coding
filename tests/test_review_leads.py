@@ -1,3 +1,5 @@
+import pytest
+
 from freetier_radar.review_leads import collect_leads
 
 
@@ -62,3 +64,90 @@ def test_ordinary_known_paths_and_editor_names_do_not_become_comparison_leads():
         <a href="/v1/models">Models</a>
     '''}, {'vendor.example'})
     assert result == []
+
+
+def test_named_comparisons_merge_html_and_markdown_provenance():
+    pricing = 'https://vendor.example/pricing'
+    terms = 'https://vendor.example/terms'
+    result = collect_leads({
+        pricing: '''<a href="/library/models?ref=nav" title="Model comparisons directory">Read</a>
+            [Models](/library/models#models "Alternatives")
+            <a href="/library/providers" aria-label="European AI alternatives directory"></a>
+            <a href="/library/review"><img alt="Tool A vs Tool B"></a>''',
+        terms: ('[Model comparisons directory][models]\n\n'
+                '[models]: https://vendor.example/library/models#overview\n\n'
+                '[European AI alternatives directory](/library/providers)'),
+    }, {'vendor.example'})
+    assert [(r['url'], r['kind'], r['sources']) for r in result] == [
+        ('https://vendor.example/library/models', 'comparison', [pricing, terms]),
+        ('https://vendor.example/library/providers', 'comparison', [pricing, terms]),
+        ('https://vendor.example/library/review', 'comparison', [pricing])]
+
+
+def test_navigation_hidden_code_and_boolean_attributes_do_not_create_comparisons():
+    result = collect_leads({'https://vendor.example/pricing': '''
+        <a href="/client" aria-label title><img alt>Client
+            <script>"Alternatives to Other tool"</script>
+            <style>/* Model comparisons directory */</style></a>
+        <a href="/auth">Alternative authentication</a>
+        <a href="/plans">Compare free plans</a>
+        <a href="/compare/main...release" title="Main vs Release">Diff</a>
+        <a href="/assets/roundup.svg">Model comparisons directory</a>
+    '''}, {'vendor.example'})
+    assert result == []
+
+
+def test_later_comparison_label_does_not_lose_earlier_source():
+    pricing = 'https://vendor.example/pricing'
+    terms = 'https://vendor.example/terms'
+    result = collect_leads({
+        pricing: '<a href="https://unknown.example/library">Read more</a>',
+        terms: '[Alternatives to Other tool](https://unknown.example/library)',
+    }, set())
+    assert [(r['url'], r['kind'], r['sources']) for r in result] == [
+        ('https://unknown.example/library', 'comparison', [pricing, terms])]
+
+
+@pytest.mark.parametrize('link,definition', [
+    ('[Model comparisons directory][  MODEL   LIST ]', '[model list]: /library'),
+    ('[Model comparisons directory][]', '[Model comparisons directory]: /library'),
+    ('[Model comparisons directory]', '[Model comparisons directory]: /library'),
+])
+def test_reference_comparison_labels_survive_reference_forms_and_whitespace(link, definition):
+    source = 'https://vendor.example/pricing'
+    result = collect_leads({source: '<a href="/privacy">Privacy</a>\n\n'+link+'\n\n'+definition},
+                           {'vendor.example'})
+    assert [(r['url'], r['kind'], r['sources']) for r in result] == [
+        ('https://vendor.example/library', 'comparison', [source])]
+
+
+@pytest.mark.parametrize('markdown', [
+    '[Model **comparisons** directory](<https://vendor.example/library>)',
+    '[Alternatives to `Other tool`][models]\n\n[models]: <https://vendor.example/library>',
+    '[![Model **comparisons** directory](/badge.svg)](/library)',
+])
+def test_markdown_link_names_use_visible_formatting_and_angle_destinations(markdown):
+    source = 'https://vendor.example/pricing'
+    result = collect_leads({source: '<a href="/privacy">Privacy</a>\n\n'+markdown}, {'vendor.example'})
+    assert [(r['url'], r['kind']) for r in result] == [
+        ('https://vendor.example/library', 'comparison')]
+
+
+@pytest.mark.parametrize('code', [
+    '```javascript\n[CAT_NECESSARY]: {\n[Model comparisons directory](/fake)\n```',
+    '~~~markdown\n[Model comparisons directory](/fake)\n~~~',
+    '    [Model comparisons directory](/fake)',
+    '`[Model comparisons directory](/fake)`',
+])
+def test_markdown_code_is_not_a_relative_link_or_reference(code):
+    source = 'https://vendor.example/tool-a-vs-tool-b/'
+    result = collect_leads({source: code+'\n\n[Model comparisons directory](/library)'}, {'vendor.example'})
+    assert [(r['url'], r['kind']) for r in result] == [
+        ('https://vendor.example/library', 'comparison')]
+
+
+def test_existing_literal_absolute_source_urls_survive_code_examples():
+    source = 'https://vendor.example/pricing'
+    result = collect_leads({source: '<a href="/privacy">Privacy</a>\n<pre><code>\n'
+        '[Model comparisons directory]: https://unknown.example/free\n</code></pre>'}, {'vendor.example'})
+    assert [(r['url'], r['kind']) for r in result] == [('https://unknown.example/free', 'link')]

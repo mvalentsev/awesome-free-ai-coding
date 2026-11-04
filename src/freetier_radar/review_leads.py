@@ -9,15 +9,21 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 import yaml
+from markdown_it import MarkdownIt
 
 from . import git
 from .models import is_covered, site_of, valid_source_url
 
 _ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js|mjs|mp[34]|zip|gz)$', re.I)
 _COMPARISON = re.compile(
-    r'(?:^|/)(?:comparisons?|[^/]+-(?:alternatives?|competitors?)|[^/]+-vs-[^/]+)(?:/|$)',
+    r'(?:^|/)(?:comparisons?|[^/]+-(?:alternatives?|competitors?)(?:-[^/]+)?|[^/]+-vs-[^/]+)(?:/|$)',
     re.I,
 )
+_COMPARISON_TEXT = re.compile(
+    r'\balternatives?\s+to\s+\S|\b(?:comparisons?|alternatives?)\s+directory\b'
+    r'|\ball\s+alternatives?\b|\b[\w.-]+\s+vs\.?\s+[\w.-]+\b', re.I,
+)
+_REVISION_COMPARE = re.compile(r'(?:^|/)compare/[^/]*\.{2,3}[^/]*(?:/|$)', re.I)
 _SOCIAL = {'x.com', 'twitter.com', 'linkedin.com', 'youtube.com', 'youtu.be',
            'facebook.com', 'instagram.com', 'discord.com', 'discord.gg', 't.me',
            'telegram.org', 'bsky.app', 'reddit.com'}
@@ -28,10 +34,67 @@ class _Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.links = []
+        self.labels = []
+        self.current = None
+        self.hidden = 0
 
     def handle_starttag(self, tag, attrs):
-        if tag == 'a' and (href := dict(attrs).get('href')):
+        attributes = dict(attrs)
+        if tag in ('script', 'style'):
+            self.hidden += 1
+        if tag == 'a':
+            self.current = None
+        if tag == 'a' and (href := attributes.get('href')):
             self.links.append(href)
+            self.labels.append([attributes.get('aria-label') or '', attributes.get('title') or ''])
+            self.current = len(self.links)-1
+        elif tag == 'img' and self.current is not None:
+            self.labels[self.current].append(attributes.get('alt') or '')
+
+    def handle_data(self, data):
+        if self.current is not None and not self.hidden:
+            self.labels[self.current].append(data)
+
+    def handle_endtag(self, tag):
+        if tag in ('script', 'style'):
+            self.hidden = max(0, self.hidden-1)
+        if tag == 'a':
+            self.current = None
+
+
+def _markdown_links(body: str) -> list[tuple[str, str]]:
+    def words(part):
+        if part.children:
+            return ' '.join(words(child) for child in part.children)
+        return part.content if part.type in ('text', 'code_inline') else ''
+
+    links = []
+    for block in MarkdownIt('commonmark').parse(body):
+        href, label = None, []
+        for part in block.children or []:
+            if part.type == 'link_open':
+                href, label = part.attrGet('href'), [part.attrGet('title') or '']
+            elif part.type == 'link_close':
+                if href:
+                    links.append((href, ' '.join(label)))
+                href = None
+            elif href and part.type in ('text', 'code_inline', 'image'):
+                label.append(words(part))
+    return links
+
+
+def _links(body: str) -> list[tuple[str, str]]:
+    parser = _Links()
+    parser.feed(body)
+    links = [(href, ' '.join(parser.labels[i])) for i, href in enumerate(parser.links)]
+    # Existing literal absolute-URL discovery remains available in source/code data.
+    # Relative targets and names come from parsed Markdown links, not code or HTML literals.
+    links.extend((href, '') for href in re.findall(r'\[[^\]]+\]\((https?://[^\s)]+)\)', body))
+    links.extend((href, '') for href in re.findall(r'(?m)^\s*\[[^\]]+\]:\s*<?(https?://[^\s<>]+)', body))
+    links.extend(_markdown_links(body))
+    if not parser.links:
+        links.extend((href, '') for href in re.findall(r'https?://[^\s<>"\x27`\\)\]]+', body))
+    return links
 
 
 def answered_sites(repo: Path, sha: str) -> set[str]:
@@ -71,13 +134,7 @@ def collect_leads(bodies: dict[str, str], known: set[str]) -> list[dict]:
     """
     leads = {}
     for source, body in sorted(bodies.items()):
-        parser = _Links()
-        parser.feed(body)
-        links = [*parser.links, *re.findall(r'\[[^\]]+\]\((https?://[^\s)]+)\)', body)]
-        links.extend(re.findall(r'(?m)^\s*\[[^\]]+\]:\s*<?(https?://[^\s<>]+)', body))
-        if not parser.links:
-            links.extend(re.findall(r'https?://[^\s<>"\x27`\\)\]]+', body))
-        for href in links:
+        for href, label in _links(body):
             try:
                 parts = urlsplit(urljoin(source, href))
             except ValueError:
@@ -85,7 +142,8 @@ def collect_leads(bodies: dict[str, str], known: set[str]) -> list[dict]:
             url = urlunsplit((parts.scheme, parts.netloc, parts.path, '', ''))
             if not valid_source_url(url) or _ASSET.search(parts.path):
                 continue
-            comparison = bool(_COMPARISON.search(parts.path))
+            comparison = not _REVISION_COMPARE.search(parts.path) and bool(
+                _COMPARISON.search(parts.path) or _COMPARISON_TEXT.search(' '.join(label.split())))
             if not comparison and (is_covered(url, {site_of(source)})
                     or is_covered(url, known) or url.rstrip('/') in known
                     or is_covered(url, _SOCIAL)):
@@ -93,6 +151,8 @@ def collect_leads(bodies: dict[str, str], known: set[str]) -> list[dict]:
             ident = hashlib.sha256(url.encode()).hexdigest()[:20]
             lead = leads.setdefault(ident, {'id': ident, 'url': url,
                 'kind': 'comparison' if comparison else 'link', 'sources': []})
+            if comparison:
+                lead['kind'] = 'comparison'
             if source not in lead['sources']:
                 lead['sources'].append(source)
     return sorted(leads.values(), key=lambda v: v['url'])

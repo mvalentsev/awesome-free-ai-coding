@@ -10,6 +10,7 @@ dependencies = [
   "jinja2>=3.1",
   "curl-cffi>=0.17.0,<0.18",
   "cryptography>=50.0.2",
+  "markdown-it-py>=4.0.0,<5",
 ]
 
 [dependency-groups]

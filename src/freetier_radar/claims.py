@@ -264,7 +264,24 @@ def _automatic_aa_hold(root: Path) -> tuple[str, ...]:
             'measured' if explicit[0].score == board['reviewed-model'] else 'invalid')
 
 
+def _review_link_formats(root: Path) -> tuple[str, ...]:
+    from .review_leads import collect_leads
+    source = 'https://vendor.example/pricing'
+    examples = {
+        'HTML': '<a href="/library">Model comparisons directory</a>',
+        'inline Markdown': '[Model comparisons directory](/library)',
+        'reference Markdown': '[Model comparisons directory][models]\n\n[models]: /library',
+    }
+    return tuple(name for name, body in examples.items()
+                 if [r['url'] for r in collect_leads({source: body}, {'vendor.example'})]
+                 == ['https://vendor.example/library'])
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'links to comparisons and source directories from\s+(HTML), (inline Markdown) and (reference Markdown)',
+          _review_link_formats,
+          'review_leads.collect_leads; HTTP source-boundary formats and navigation controls in tests/test_review.py, provenance and hidden-content controls in tests/test_review_leads.py'),
     Claim('CONTRIBUTING.md',
           r'Set `aa_auto: false` to (hold) automatic binding for\s+a family while its available benchmark variant is under review; explicit\s+reviewed bindings remain (measured)',
           _automatic_aa_hold,
