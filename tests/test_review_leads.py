@@ -37,3 +37,28 @@ def test_reference_links_remain_leads_beside_html_badges_and_pdf_sources():
     '''}, {'known.example'})
     assert [r['url'] for r in result] == [
         'https://new.example/free-tier.pdf', 'https://unknown.example/free']
+
+
+def test_comparison_routes_preserve_sources_and_do_not_invent_vendor_domains():
+    pricing = 'https://vendor.example/pricing'
+    terms = 'https://vendor.example/terms'
+    result = collect_leads({
+        terms: '[Other tool](https://vendor.example/tool-a-vs-tool-b#terms)',
+        pricing: '''<a href="/tool-a-vs-tool-b?ref=pricing">Vs another tool</a>
+                    <a href="/tool-a-vs-tool-b#features">Same comparison</a>''',
+    }, {'vendor.example'})
+    assert [(r['url'], r['sources'], r['kind']) for r in result] == [
+        ('https://vendor.example/tool-a-vs-tool-b', [pricing, terms], 'comparison')]
+
+
+def test_ordinary_known_paths_and_editor_names_do_not_become_comparison_leads():
+    source = 'https://vendor.example/pricing'
+    result = collect_leads({source: '''
+        <a href="/privacy">Privacy</a><a href="/plans">Compare plans</a>
+        <a href="/integrations/vscode">VS Code</a>
+        <a href="/comparison-settings">Settings</a>
+        <a href="/docs/comparison-guide">Guide</a>
+        <a href="/compare/main...release">Compare revisions</a>
+        <a href="/v1/models">Models</a>
+    '''}, {'vendor.example'})
+    assert result == []

@@ -14,7 +14,10 @@ from . import git
 from .models import is_covered, site_of, valid_source_url
 
 _ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js|mjs|mp[34]|zip|gz)$', re.I)
-_COMPARISON = re.compile(r'(?:^|/)[^/]+-(?:alternatives?|competitors?)(?:/|$)', re.I)
+_COMPARISON = re.compile(
+    r'(?:^|/)(?:comparisons?|[^/]+-(?:alternatives?|competitors?)|[^/]+-vs-[^/]+)(?:/|$)',
+    re.I,
+)
 _SOCIAL = {'x.com', 'twitter.com', 'linkedin.com', 'youtube.com', 'youtu.be',
            'facebook.com', 'instagram.com', 'discord.com', 'discord.gg', 't.me',
            'telegram.org', 'bsky.app', 'reddit.com'}
