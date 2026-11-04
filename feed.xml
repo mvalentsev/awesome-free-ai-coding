@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-04T03:27:21Z</updated>
+  <updated>2026-11-04T12:51:14Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixedbread/20261104T125114Z</id>
+    <title>Added: Mixedbread</title>
+    <link rel="alternate" href="https://www.mixedbread.com"/>
+    <updated>2026-11-04T12:51:14Z</updated>
+    <summary type="text">OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codacy/20261104T032721Z</id>
     <title>Added: Codacy</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://simplellm.eu"/>
     <updated>2026-10-28T13:17:13Z</updated>
     <summary type="text">added gemma-4-e4b, llama-3.1-8b · free models: gemma-4-e4b, llama-3.1-8b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261027T142023Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-10-27T14:20:23Z</updated>
-    <summary type="text">dropped nemotron-3-super · free models: nemotron-3-ultra, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

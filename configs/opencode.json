@@ -1390,6 +1390,23 @@
         }
       }
     },
+    "mixedbread": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Mixedbread",
+      "options": {
+        "baseURL": "https://api.mixedbread.com/v1",
+        "apiKey": "{env:MIXEDBREAD_API_KEY}"
+      },
+      "models": {
+        "toast-1": {
+          "name": "toast-1",
+          "limit": {
+            "context": 131072,
+            "output": 4096
+          }
+        }
+      }
+    },
     "pollinations": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Pollinations.AI",

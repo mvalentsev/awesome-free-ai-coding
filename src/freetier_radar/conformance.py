@@ -48,13 +48,14 @@ import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
 from . import git
-from .models import OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
+from .models import Entry, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
 from .render import CODEX_SINCE, FREE_GROUPS, LITELLM_BRIDGE_SINCE, REPO_URL, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
            "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main",
            "check_opencode_session_export", "check_opencode_output_budget", "record_opencode_output_budget",
+           "opencode_output_budget",
            "dispatch"]
 
 LITELLM_YAML = "configs/litellm.yaml"
@@ -144,6 +145,18 @@ class Finding:
     verdict: str          # one of SUCCESS_VERDICTS or VERDICTS
     versions: str
     detail: str
+
+
+def opencode_output_budget(entry: Entry, model: str) -> int | None:
+    """The canonical ceiling a real client request must respect."""
+    api = entry.api
+    if api is None or model not in api.model_ids:
+        return None
+    if model in api.opencode_output_tokens:
+        return api.opencode_output_tokens[model]
+    if model in api.model_limits:
+        return api.model_limits[model].output_tokens
+    return None
 
 
 def check_opencode_output_budget(records: list[dict], model: str, tokens: int) -> dict:

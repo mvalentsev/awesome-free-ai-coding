@@ -134,7 +134,8 @@
       "Liquid Inference",
       "LLM.kiwi",
       "Summer Engine",
-      "Codacy"
+      "Codacy",
+      "Mixedbread"
     ],
     "sections": [
       {
@@ -18035,6 +18036,115 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/"
+    },
+    {
+      "id": "mixedbread",
+      "name": "Mixedbread",
+      "category": "trial",
+      "url": "https://www.mixedbread.com",
+      "source_urls": [
+        "https://www.mixedbread.com/pricing",
+        "https://www.mixedbread.com/docs/platform/billing",
+        "https://www.mixedbread.com/docs/agent/chat-completions",
+        "https://www.mixedbread.com/docs/agent/responses",
+        "https://www.mixedbread.com/docs/agent/models",
+        "https://www.mixedbread.com/docs/agent/integrations/opencode",
+        "https://www.mixedbread.com/docs/platform/api-keys",
+        "https://www.mixedbread.com/docs/production/security",
+        "https://www.mixedbread.com/pages/terms",
+        "https://www.mixedbread.com/pages/privacy"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required",
+      "limits": "Starter credits: $5 once per service plan\n\nCreate an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the standard rates; hosted searches and data storage have separate charges against the balance. The published search and upload rate limits do not establish a Chat Completions allowance. The terms license use for internal business purposes. Privacy and security pages exclude model training, but the Free-tier terms permit it; this conflict is unresolved. Both legal policies specify indefinite retention of Free usage data. The API documents store=false for response-content retention, but its relationship to the Free-tier legal retention rule is not established.",
+      "quotas": [
+        {
+          "amount": 5.0,
+          "unit": "USD",
+          "period": "one-time",
+          "scope": "plan",
+          "label": "Starter credits",
+          "source": "https://www.mixedbread.com/docs/platform/billing",
+          "quote": "$5 in one-time credits, no card required.",
+          "value_phrase": "$5 in one-time credits",
+          "reviewed_on": "2026-11-04"
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://api.mixedbread.com/v1",
+        "key_url": "https://platform.mixedbread.com/platform?next=api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "toast-1"
+        ],
+        "model_limits": {
+          "toast-1": {
+            "context_tokens": 131072,
+            "output_tokens": 4096,
+            "source": "https://www.mixedbread.com/docs/agent/integrations/opencode",
+            "read": "opencode-config",
+            "source_provider": "mixedbread"
+          }
+        },
+        "no_family_ids": [
+          "toast-1"
+        ],
+        "note": "toast-1 is a specialized model for knowledge questions and repository investigations. The vendor documents using it as a primary model or subagent in OpenCode. It consumes the Starter credit rather than providing an individually free model."
+      },
+      "data_use": {
+        "trains": "unknown",
+        "quote": "Data collected under the Free Tier is retained indefinitely.",
+        "url": "https://www.mixedbread.com/pages/terms"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-04",
+        "source": "https://www.mixedbread.com/pages/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.mixedbread.com/docs/platform/billing",
+        "keywords": [
+          "The Starter plan is free",
+          "$5 in one-time credits",
+          "no card required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-04",
+      "last_verified": "2026-11-04",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 97,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Mixedbread",
+        "models": [],
+        "ids": [
+          "toast-1"
+        ],
+        "what": "OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required",
+        "limits": "Starter credits: $5 once per service plan\n\nCreate an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the standard rates; hosted searches and data storage have separate charges against the balance. The published search and upload rate limits do not establish a Chat Completions allowance. The terms license use for internal business purposes. Privacy and security pages exclude model training, but the Free-tier terms permit it; this conflict is unresolved. Both legal policies specify indefinite retention of Free usage data. The API documents store=false for response-content retention, but its relationship to the Free-tier legal retention rule is not established.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "trial"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/"
     }
   ],
   "countries": [
@@ -19096,6 +19206,7 @@
       "llm-kiwi",
       "novita",
       "sail-research",
+      "mixedbread",
       "pollinations",
       "aion-labs",
       "bytez",
@@ -19160,6 +19271,7 @@
       "llm-kiwi",
       "novita",
       "sail-research",
+      "mixedbread",
       "pollinations",
       "aion-labs",
       "bytez",
@@ -19244,6 +19356,7 @@
       "llm-kiwi",
       "novita",
       "sail-research",
+      "mixedbread",
       "pollinations",
       "aion-labs",
       "bytez",
@@ -20357,6 +20470,66 @@
     }
   ],
   "watchlist": [
+    {
+      "domains": [
+        "ark-labs.cloud"
+      ],
+      "name": "ARK Cloud",
+      "checked_on": "2026-11-04",
+      "reason": "The current ARK Cloud product page and quickstart promise starter credits on first Google sign-in, explicitly without a card. The amount and expiry are not published. Both the main and shop Terms, dated 1 July 2025, still require purchasing credits after registration before using inference. They define the customer as a professional or business, not a consumer. ARK runs open-weight models on its own EU servers and exposes compatible APIs; the unresolved point is activation of the advertised starting credit, not model availability or an inferred end to the offer. No new account was created to settle the contradictory payment instructions.",
+      "reopen_if": "Current terms explicitly accommodate the no-card starter credit, or existing authorized access establishes its activation, amount and expiry under those terms. Check both ark-labs.cloud/products/ark-cloud/ and ark-labs.cloud/terms/; priced prepaid packs alone do not negate a grant.",
+      "current": true
+    },
+    {
+      "domains": [
+        "gpuflow.ai"
+      ],
+      "name": "GPU Flow",
+      "checked_on": "2026-11-04",
+      "reason": "The actual free-signup checkout offers EUR 50 for the Token Factory LLM API, sandboxes and dedicated GPUs. It requires email verification, a payment card and a refundable EUR 1 verification charge. This is a one-time card-required grant, which this list excludes; it is not a recurring free-model allowance with a payment condition. The balance does not expire, according to that checkout. The API docs identify its own Spanish infrastructure and compatible chat endpoint, so this is not rejected as compute-only. No separate recurring free quota was established in the reviewed offer.",
+      "reopen_if": "A no-card starting grant or a separately documented recurring free credit or model quota. Re-read gpuflow.ai/es/recargar?tier=free_signup and the Token Factory plan; paid token prices do not establish that every free mode ended.",
+      "current": true
+    },
+    {
+      "domains": [
+        "runware.ai"
+      ],
+      "name": "Runware",
+      "checked_on": "2026-11-04",
+      "reason": "Current products include LLM inference, beyond the media APIs named by older directories. Pricing promises $2 in starting credits to new users with a business email. The separate free OpenClaw offer covers hosting; model tokens consume wallet credit. Its statement that no payment is required to deploy does not settle whether claiming inference credit needs a card. The public signup form asks for email and password or a social sign-in, but no account was created to verify activation. Credit expiry, free-account conditions and the applicable model/data terms remain to be qualified; paid model prices do not negate this credit.",
+      "reopen_if": "Establish no-card activation and the current scope and expiry of the business-email inference credit, with supported model supply and data terms. Read runware.ai/pricing, runware.ai/free-openclaw and runware.ai/llm-api separately; free hosting is not free inference.",
+      "current": true
+    },
+    {
+      "domains": [
+        "figma.com"
+      ],
+      "name": "Figma Make",
+      "checked_on": "2026-11-04",
+      "reason": "Starter AI credits alone fund workspace features and do not establish model access for an existing codebase. A distinct current help article, Make in your local codebase, does describe a Mac desktop app that opens local or GitHub repositories, edits code and creates local commits and pull requests. It is free to try in a closed beta for admitted users; the product page still labels this capability Coming soon. This is an in-scope coding capability with restricted obtainability, not a blanket design-only rejection. Its beta admission, payment, model, deadline and data conditions are not established by the ordinary Starter credit.",
+      "reopen_if": "The local-code beta becomes generally obtainable, or existing authorized access supplies its exact free entitlement and conditions. Re-read help.figma.com/hc/en-us/articles/40775535020695 and the current Make plan; do not substitute workspace-builder credits for local-code access.",
+      "current": true
+    },
+    {
+      "domains": [
+        "miapi.uk"
+      ],
+      "name": "MIAPI",
+      "checked_on": "2026-11-04",
+      "reason": "The current page offers 100 grounded-answer queries per month, one Free key and 60 requests per minute, including an OpenAI-compatible miapi-grounded route. A separate anonymous playground has its own IP, input and output caps. Search-only BYOK is another mode, not the funding source for those bundled answers. The unauthenticated signup shell also contains different rate/key placeholders and subscription copy, while the homepage sells query packs. No account entitlement or generation was tested. Model supplier and checkpoint, upstream data handling and no-card activation remain unestablished; the privacy policy retains usage logs for up to 90 days.",
+      "reopen_if": "Current primary evidence and existing authorized access establish the model supply, no-card Free activation, actual limits and coding-client behavior. Reconcile miapi.uk, its signup shell and legal pages; do not treat a no-auth playground or a generic model alias as identity proof.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aigatewayhq.com"
+      ],
+      "name": "AI Gateway HQ",
+      "checked_on": "2026-11-04",
+      "reason": "The public no-card Test Lab simulates gateway policies; its $1 welcome credit is explicitly gateway-request credit, not model credit. Live requests use a separate BYOK account or purchased managed Bedrock balance. A distinct Evaluation Agreement permits sponsored model use for a named pilot recipient, limited by the invitation's models, allocation, prepaid entitlement and expiry. That sponsored mode has not been established as a generally obtainable developer allowance. It is retained separately rather than dismissed from the paid pricing.",
+      "reopen_if": "A generally obtainable bundled model grant, or an existing authorized pilot invitation with exact recipient, model, payment and expiry terms. Check aigatewayhq.com/pricing/ and legal/evaluation/; a free gateway workspace does not by itself fund upstream inference.",
+      "current": true
+    },
     {
       "domains": [
         "privatemode.ai"

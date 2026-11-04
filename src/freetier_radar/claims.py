@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -343,6 +343,13 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"An OpenCode request budget can instead be chosen in `api\.(opencode_output_tokens)\[ID\]`",
           lambda root: tuple(k for k in ("opencode_output_tokens",) if k in ApiInfo.model_fields),
           "models.ApiInfo; client request budgets, distinct from model_limits, in tests/test_models.py"),
+    Claim("CONTRIBUTING.md", r"By default, `read: (catalog)` compares the limits",
+          lambda root: (ModelLimits.model_fields['read'].default,),
+          "prober.stale_ids; catalog cap drift and unavailable/noninteger metadata HTTP controls in tests/test_prober.py"),
+    Claim("CONTRIBUTING.md", r"set `read: (opencode-config)` and\s+`(source_provider)`",
+          lambda root: (next(v for v in get_args(ModelLimits.model_fields['read'].annotation) if v != 'catalog'),
+                        next(k for k in ModelLimits.model_fields if k == 'source_provider')),
+          "client_limits.model_limit_changes and prober.probe_entry; exact provider/model, ambiguity, changed/unreadable source HTTP controls in tests/test_client_limits.py"),
     Claim("CONTRIBUTING.md", r"It writes `(max_completion_tokens)` into that model.s request options",
           lambda root: (OPENCODE_OUTPUT_FIELD,),
           "render.build_opencode_config; conformance.check_opencode_output_budget and the real freetier-review client recorder"),

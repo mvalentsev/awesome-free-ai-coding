@@ -186,18 +186,22 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         # the other.
         moved = []
         lane = entry.api or entry.client_lane
-        if (lane and lane.model_bindings) or entry.probe.model_exclusions:
+        from .client_limits import limit_sources, model_limit_changes
+        client_sources = limit_sources(entry)
+        if (lane and lane.model_bindings) or entry.probe.model_exclusions or client_sources:
             from .quotes import model_binding_changes, model_exclusion_changes
             bodies = {}
             sources = ([b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids]
                        if lane else [])
             sources.extend(e.source for e in entry.probe.model_exclusions)
+            sources.extend(client_sources)
             for source in dict.fromkeys(sources):
                 response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
                 if response is not None:
                     bodies[source] = response.text
             moved.extend(model_binding_changes(entry, bodies))
             moved.extend(model_exclusion_changes(entry, bodies))
+            moved.extend(model_limit_changes(entry, bodies))
         if entry.quotas:
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
@@ -2111,7 +2115,8 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str
 _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
                 "ids the free list ", "ids in the ", "model table: ", "model inventory: ",
                 "api.public_key ", "keyless ", "public-key ", "anthropic route ", "codex route ",
-                "data_use ", "border: ", "border could ")
+                "data_use ", "border: ", "border could ", "api.model_limits ",
+                "api.opencode_output_tokens ")
 
 
 def for_a_human(detail: str) -> str:
@@ -2151,7 +2156,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
             if mid := _model_id(row):
                 rows.setdefault(mid, row)
         for mid, limits in entry.api.model_limits.items():
-            if mid not in entry.api.model_ids or mid not in rows:
+            if mid not in entry.api.model_ids or mid not in rows or limits.read != "catalog":
                 continue
             row = rows[mid]
             top = row.get("top_provider")

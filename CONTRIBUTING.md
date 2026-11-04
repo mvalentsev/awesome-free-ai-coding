@@ -621,11 +621,17 @@ incompatible list for review; absent operation metadata establishes no
 restriction. A shared free token balance does not turn a model for decisions,
 embeddings or code editing into a chat model.
 
-**Client token limits come from the catalog.** When a client's default exceeds
+**Client token limits are rechecked at their source.** When a client's default exceeds
 the vendor's cap, record `api.model_limits[ID]` with positive `context_tokens`,
-`output_tokens` and `source`. The source must be this row's checked catalog;
-every verification compares `context_length` and
-`top_provider.max_completion_tokens`, reporting changed or unavailable values.
+`output_tokens` and `source`. By default, `read: catalog` compares the limits
+with this row's checked catalog on every verification, reporting changed or
+unavailable context and output values.
+For an official OpenCode configuration example, set `read: opencode-config` and
+`source_provider` to its exact provider key. The source is re-read for the exact
+`provider` / provider key / `models` / model ID / `limit` object in JSON code
+examples or a JSON configuration file. Context and output must both be positive
+integers; missing, conflicting or changed limits require review. Unrelated model
+or provider examples and prose containing the same numbers cannot satisfy it.
 The writers supply OpenCode's context/output limits and LiteLLM's default
 `max_tokens` for named and pooled deployments. An explicit client token request
 can override that LiteLLM default; verify affected clients with live requests.

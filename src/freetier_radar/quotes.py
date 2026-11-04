@@ -218,6 +218,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.extend(entry.archive_review.sources)
     urls.extend(q.source for q in entry.quotas)
     urls.extend(e.source for e in entry.probe.model_exclusions)
+    from .client_limits import limit_sources
+    urls.extend(limit_sources(entry))
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
     if entry.data_use:

@@ -16,7 +16,7 @@ from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_ans
                                         printed_run, shape_differences, summary)
 from freetier_radar.prober import codex_probe_body
 from freetier_radar.render import CODEX_SINCE, LITELLM_BRIDGE_SINCE
-from freetier_radar.conformance import check_opencode_output_budget, record_opencode_output_budget
+from freetier_radar.conformance import check_opencode_output_budget, opencode_output_budget, record_opencode_output_budget
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -45,6 +45,21 @@ def test_opencode_output_budget_checks_both_wire_fields(fields, valid):
     assert check_opencode_output_budget(records, "alpha", 8000)["passed"] is valid
     assert not check_opencode_output_budget(records, "other-model", 8000)["passed"]
     assert not check_opencode_output_budget([], "alpha", 8000)["passed"]
+
+
+@pytest.mark.parametrize('read', ['catalog', 'opencode-config'])
+def test_real_client_budget_uses_sourced_model_limit_and_smaller_explicit_budget(read):
+    from freetier_radar.models import ApiInfo, Entry
+    limits = dict(context_tokens=131072, output_tokens=4096, source='https://x.ai/limits', read=read)
+    if read == 'opencode-config':
+        limits['source_provider'] = 'vendor'
+    api = ApiInfo(base_url='https://api.x.ai/v1', model_ids=['alpha'], model_limits={'alpha': limits})
+    entry = Entry.model_construct(api=api)
+    assert opencode_output_budget(entry, 'alpha') == 4096
+    assert opencode_output_budget(entry, 'other') is None
+    api.opencode_output_tokens = {'alpha': 2048}
+    assert opencode_output_budget(entry, 'alpha') == 2048
+    assert opencode_output_budget(Entry.model_construct(api=None), 'alpha') is None
 
 
 def test_output_budget_recorder_preserves_requests_and_stops_after_429():

@@ -23,6 +23,51 @@
 # when the answer is that kind of no.
 
 read:
+  - url: https://github.com/surendranb/free-inference
+    name: surendranb/free-inference
+    checked_on: '2026-11-04'
+    reason: >-
+      The repository behind freeinference.dev publishes 37 main provider
+      records and two secondary entries in data/providers.json. The current
+      website and repository agree on those records. Its criterion is an
+      artifact the user keeps, including designs, websites, notebooks and
+      agents, which is broader than this list's installed coding tools and
+      callable model access. Existing API and coding-tool identities already
+      have decisions here; a directory's model and quota values do not refresh
+      those decisions. Figma Make's separately advertised local-code beta is
+      retained on the watchlist with its admission condition, rather than
+      rejected as a design tool or promoted from ordinary workspace credits.
+      Not added as a recurring raw feed: the broader artifact categories
+      require independent scope and entitlement review, and the large JSON
+      would lose records through the existing excerpt reader.
+    reopen_if: >-
+      A newly funded model endpoint or obtainable installed coding allowance
+      lacks a current decision, including a new mode on an existing provider.
+      Review the whole machine dataset and primary terms; an artifact type,
+      directory verification date or free-model label is not entitlement proof.
+
+  - url: https://github.com/arvida/ai-infrastructure-directory
+    name: arvida/ai-infrastructure-directory
+    checked_on: '2026-11-04'
+    reason: >-
+      The source repository for Infrabase's infrastructure directory. Its
+      current Inference APIs section has 104 records spanning hosted APIs,
+      gateways, GPU rental, serving frameworks and local engines. It is an
+      infrastructure inventory, without a shared free-grant column. Reading
+      that bounded section exposed distinct advertised offers: ARK Cloud,
+      GPU Flow, Runware and MIAPI now have their own conditional watchlist
+      decisions. Other unmatched endpoints remain individual qualification
+      work; a captured homepage or paid rate does not settle their free modes.
+      Not adopted as a recurring free-offer feed: the section mixes service
+      types and billing arrangements, so each candidate needs its own primary
+      funding, obtainability and supply evidence. The website and repository
+      are one source identity, not two providers or two feeds.
+    reopen_if: >-
+      A bounded section maintains explicit free model or installed coding
+      allowances, or a newly advertised grant lacks its own current decision.
+      Preserve the exact inference-section links and qualify each grant on
+      the vendor's plan and terms, including recurring and introductory modes.
+
   - url: https://github.com/Shubhamsaboo/awesome-llm-apps
     name: Shubhamsaboo/awesome-llm-apps
     checked_on: '2026-08-30'
@@ -256,40 +301,31 @@ read:
 
   - url: https://github.com/pacocartones/free-llm-api-hub
     name: pacocartones/free-llm-api-hub
-    checked_on: '2026-09-30'
+    checked_on: '2026-11-04'
     reason: >-
-      The most like-minded list read: "A continuously-verified dataset", every
-      row dated and sourced to the vendor's docs, data/providers.json validated
-      against a schema, a freshness badge computed from the oldest
-      re-verification, and a "pick by what you actually need" table at the top
-      of the README. 41 stars, pushed 2026-09-02. Read whole: 69 rows, all
-      marked verified between 2026-08-02 and 2026-08-14, 40 of them on hosts
-      with no verdict here — and 33 of those 40 are speech, OCR, embeddings,
-      rerank and image products (Deepgram, ElevenLabs, OCR.space, Jina, Voyage,
-      Pinecone) that this registry leaves out by category. The seven text-LLM
-      rows became rows or verdicts the same day: IBM watsonx.ai Lite, Typhoon
-      and Sarvam are registry rows, W&B Inference is on the watchlist, Arli AI
-      and Tencent's TokenHub have been rows since 2026-09-17, and Clarifai could
-      not be reached from here (DNS and connection timeouts on every fetch) — it
-      went to the watchlist on 2026-09-12, once a GitHub runner could not reach
-      it either. One of its readings did not survive the vendor's page — the
-      "$100/month of Serverless Inference credits" it gives W&B is the Free
-      plan's spending cap, and the credits themselves are "for a limited time"
-      with no figure. Not a feed, because the scout reads a 20,000-character
-      excerpt and the JSON's first twenty rows are the vendors every list
-      carries. Read again 2026-09-30, from GitHub's no-credit-card topic: 49
-      stars, and the one commit since 2026-09-02 hardens its workflows — the
-      dataset is still version 2.9.0, generated 2026-08-14, its 69 rows verified
-      between 2026-08-02 and 2026-08-14. Two rows set aside by category on the
-      first read carry text and are watchlist verdicts now: AssemblyAI, which it
-      lists as "$50 free credit on signup (no card)" beside "an
-      OpenAI-compatible LLM Gateway (25+ models)" while the gateway's own
-      rate-limit table gives the free account type "Not available", and
-      Contextual AI, a RAG platform whose $25 credit reaches no chat endpoint.
+      Read the complete current machine datasets, rather than an excerpt:
+      version 2.11.0, generated 2026-10-18, has 68 provider records; the separate
+      coding datasets have eight bundled tools and three own-key tools.
+      freellmapihub.com/providers.json and the repository agree on every
+      provider and grant/model field; the repository also supplies suggested
+      environment-variable names. The earlier 69-row reading was a different
+      snapshot, not the current count. All eight bundled coding tools already
+      have registry rows. Own-key Zed, Cline and goose do not acquire a bundled
+      allowance from that dataset; Zed and Cline's independently funded modes
+      remain separate. Do not filter solely on is_text_llm: Mixedbread is
+      marked false, but its current vendor docs offer Toast 1 through Chat
+      Completions, Responses and OpenCode with a no-card Starter credit. It now
+      has its own provisional row. Other directory claims, including archived
+      offers and model lists, do not refresh a vendor verdict here. Not added
+      as a raw feed: the existing excerpt reader would elide this large JSON's
+      middle and repeat providers already tracked, while its modality flags
+      can miss a new language-model mode on an existing host.
     reopen_if: >-
-      data/providers.json gains a row with "text" in its modalities on a host
-      this registry has no verdict on — filter on modalities before reading
-      the rest.
+      A new hosted language-model or bundled coding allowance lacks its own
+      current decision, including a new mode on an existing host or a row
+      marked non-text; re-read its primary plan and terms. Reconsider recurring
+      ingestion with a bounded structured reader that preserves every relevant
+      record rather than a raw JSON excerpt.
 
   - url: https://github.com/YoannDev90/awesome-free-ai-api
     name: YoannDev90/awesome-free-ai-api

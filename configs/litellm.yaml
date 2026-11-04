@@ -1517,6 +1517,13 @@ model_list:
     api_base: https://api.sailresearch.com/v1
     api_key: os.environ/SAIL_RESEARCH_API_KEY
     use_chat_completions_api: true
+- model_name: mixedbread/toast-1
+  litellm_params:
+    model: openai/toast-1
+    api_base: https://api.mixedbread.com/v1
+    api_key: os.environ/MIXEDBREAD_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 4096
 - model_name: pollinations/gpt-oss-20b
   litellm_params:
     model: openai/gpt-oss-20b

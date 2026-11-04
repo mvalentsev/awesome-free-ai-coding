@@ -11198,3 +11198,85 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: mixedbread
+  name: Mixedbread
+  category: trial
+  url: https://www.mixedbread.com
+  source_urls:
+  - https://www.mixedbread.com/pricing
+  - https://www.mixedbread.com/docs/platform/billing
+  - https://www.mixedbread.com/docs/agent/chat-completions
+  - https://www.mixedbread.com/docs/agent/responses
+  - https://www.mixedbread.com/docs/agent/models
+  - https://www.mixedbread.com/docs/agent/integrations/opencode
+  - https://www.mixedbread.com/docs/platform/api-keys
+  - https://www.mixedbread.com/docs/production/security
+  - https://www.mixedbread.com/pages/terms
+  - https://www.mixedbread.com/pages/privacy
+  card_required: false
+  offering: OpenAI-compatible API for the Toast 1 knowledge and search model, with
+    $5 in one-time Starter credits and no card required
+  limits: Create an account and an API key; a restricted key needs the Completions
+    scope. Starter credits do not renew, and their expiry is not published. They fund
+    usage at the standard rates; hosted searches and data storage have separate charges
+    against the balance. The published search and upload rate limits do not establish
+    a Chat Completions allowance. The terms license use for internal business purposes.
+    Privacy and security pages exclude model training, but the Free-tier terms permit
+    it; this conflict is unresolved. Both legal policies specify indefinite retention
+    of Free usage data. The API documents store=false for response-content retention,
+    but its relationship to the Free-tier legal retention rule is not established.
+  quotas:
+  - amount: 5.0
+    unit: USD
+    period: one-time
+    scope: plan
+    label: Starter credits
+    source: https://www.mixedbread.com/docs/platform/billing
+    quote: $5 in one-time credits, no card required.
+    value_phrase: $5 in one-time credits
+    reviewed_on: '2026-11-04'
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.mixedbread.com/v1
+    key_url: https://platform.mixedbread.com/platform?next=api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - toast-1
+    model_limits:
+      toast-1:
+        context_tokens: 131072
+        output_tokens: 4096
+        source: https://www.mixedbread.com/docs/agent/integrations/opencode
+        read: opencode-config
+        source_provider: mixedbread
+    no_family_ids:
+    - toast-1
+    note: toast-1 is a specialized model for knowledge questions and repository investigations.
+      The vendor documents using it as a primary model or subagent in OpenCode. It
+      consumes the Starter credit rather than providing an individually free model.
+  data_use:
+    trains: unknown
+    quote: Data collected under the Free Tier is retained indefinitely.
+    url: https://www.mixedbread.com/pages/terms
+  border:
+    left_out: []
+    'on': '2026-11-04'
+    source: https://www.mixedbread.com/pages/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://www.mixedbread.com/docs/platform/billing
+    keywords:
+    - The Starter plan is free
+    - $5 in one-time credits
+    - no card required
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-04'
+  last_verified: '2026-11-04'
+  probe_failures: 0
+  provisional: true
+  rank: 97

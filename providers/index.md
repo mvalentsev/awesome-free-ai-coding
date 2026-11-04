@@ -100,6 +100,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) — verified 2026-11-02
 - [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-02
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-02
+- [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-04
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-02
 - [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-03
 - [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-03

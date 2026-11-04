@@ -986,11 +986,14 @@ OPENCODE_LEGACY_OUTPUT_FIELD = "max_tokens"
 
 
 class ModelLimits(BaseModel):
-    """Vendor catalog token limits used by generated clients and rechecked by the probe."""
+    """Documented token limits used by clients and rechecked at their source."""
     model_config = ConfigDict(extra="forbid")
     context_tokens: int = Field(gt=0, strict=True)
     output_tokens: int = Field(gt=0, strict=True)
     source: str
+    read: Literal["catalog", "opencode-config"] = Field(
+        default="catalog", exclude_if=lambda v: v == "catalog")
+    source_provider: str | None = None
 
     @field_validator("source")
     @classmethod
@@ -1003,6 +1006,11 @@ class ModelLimits(BaseModel):
     def _output_fits_context(self) -> ModelLimits:
         if self.output_tokens > self.context_tokens:
             raise ValueError("model_limits output_tokens exceeds context_tokens")
+        if self.read == "opencode-config":
+            if not self.source_provider or any(c.isspace() for c in self.source_provider):
+                raise ValueError("opencode-config limits need an exact source_provider")
+        elif self.source_provider is not None:
+            raise ValueError("source_provider is only used by opencode-config limits")
         return self
 
 
@@ -1668,7 +1676,8 @@ class Entry(BaseModel):
                        else self.probe.catalog)
             if self.api.opencode_output_tokens and not catalog:
                 raise ValueError("api.opencode_output_tokens requires a catalog this probe rechecks")
-            if self.api.model_limits and (not catalog or any(l.source != catalog for l in self.api.model_limits.values())):
+            catalog_limits = [l for l in self.api.model_limits.values() if l.read == "catalog"]
+            if catalog_limits and (not catalog or any(l.source != catalog for l in catalog_limits)):
                 raise ValueError("api.model_limits source must be the catalog this probe rechecks")
         return self
 

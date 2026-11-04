@@ -1007,3 +1007,37 @@ def test_browser_folded_contract_accepts_the_native_page_and_rejects_broken_navi
         payload['headings'] = ['What it offered', 'History']
     result = subprocess.run(['node', '-e', harness], input=json.dumps(payload), text=True, capture_output=True)
     assert (result.returncode == 0) == (damage is None), result.stderr
+
+
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_sources_collect_and_recheck_client_limits_outside_source_urls(tmp_path, changed):
+    from freetier_radar.models import Entry, save_registry
+    repo = repo_at(tmp_path)
+    source = 'https://vendor.example/client-guide'
+    row = Entry.model_validate({
+        'id': 'vendor', 'name': 'Vendor', 'url': 'https://vendor.example', 'category': 'trial',
+        'offering': 'A starting credit', 'free_part': 'sum', 'models': [],
+        'first_seen': '2026-09-01', 'last_verified': '2026-10-23',
+        'api': {'base_url': 'https://vendor.example/v1', 'model_ids': ['alpha'],
+                'no_family_ids': ['alpha'], 'model_limits': {'alpha': {
+                    'context_tokens': 32768, 'output_tokens': 4096, 'source': source,
+                    'read': 'opencode-config', 'source_provider': 'documented-provider'}}},
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['A free starting credit']},
+    })
+    save_registry(repo / 'registry.yaml', [row])
+    subprocess.run(['git', '-C', str(repo), 'add', 'registry.yaml'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture limits'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    respx.get(row.probe.endpoint).respond(200, text='<h1>A free starting credit</h1>')
+    config = {'provider': {'documented-provider': {'models': {'alpha': {
+        'limit': {'context': 32768, 'output': 2048 if changed else 4096}}}}}}
+    read = respx.get(source).respond(200, text='<pre><code>' + json.dumps(config) + '</code></pre>')
+    result = await review.sources(bundle, [])
+    assert read.call_count == 1
+    assert any(check['url'] == source and check['file'] for check in result['checks'])
+    assert result['passed'] is not changed
+    assert any('api.model_limits alpha:' in note
+               for record in result['model_checks'] for note in record['notes']) is changed

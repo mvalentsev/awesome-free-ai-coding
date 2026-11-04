@@ -330,6 +330,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         from .quotes import model_binding_changes, model_exclusion_changes
         findings.extend(model_binding_changes(entry, raw_bodies))
         findings.extend(model_exclusion_changes(entry, raw_bodies))
+        from .client_limits import model_limit_changes
+        findings.extend(model_limit_changes(entry, raw_bodies))
         model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
                              'passed': not findings,
                              'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})
@@ -630,8 +632,8 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
     else:
         budget_trace = None
         with ExitStack() as stack:
-            if client == 'opencode' and (tokens := entry.api.opencode_output_tokens.get(model)):
-                from .conformance import record_opencode_output_budget
+            from .conformance import opencode_output_budget, record_opencode_output_budget
+            if client == 'opencode' and (tokens := opencode_output_budget(entry, model)):
                 local, budget_trace = stack.enter_context(
                     record_opencode_output_budget(entry.api.base_url, model, tokens))
                 config_body = json.loads(config.read_text())
