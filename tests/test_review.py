@@ -44,6 +44,55 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     assert json.loads((bundle.out / 'scope.json').read_text())['sha'] == scope['sha']
 
 
+@pytest.mark.parametrize('source,target,expected', [
+    ('https://directory.example/list', 'https://docs.github.com/en/github-models', True),
+    ('https://directory.example/list', 'https://developers.figma.com/docs/figma-mcp-server/', True),
+    ('https://directory.example/list', 'https://github.com/cline/mcp-marketplace', True),
+    ('https://www.figma.com/make', 'https://developers.figma.com/docs/figma-mcp-server/', True),
+    ('https://github.com/cline/cline', 'https://github.com/cline/mcp-marketplace', True),
+    ('https://directory.example/list', 'https://docs.github.com/en/copilot/get-started/plans', False),
+    ('https://directory.example/list', 'https://www.cline.bot/', False),
+    ('https://directory.example/list', 'https://api.blocked.example/v1', False),
+    ('https://directory.example/list', 'https://directory.example/privacy', False),
+    ('https://directory.example/list', 'https://marketplace.visualstudio.com/items?itemName=other.extension', True),
+    ('https://marketplace.visualstudio.com/items?itemName=known.extension',
+     'https://marketplace.visualstudio.com/items?itemName=other.extension', True),
+    ('https://directory.example/list', 'https://marketplace.visualstudio.com/items?itemName=known.extension', False),
+    ('https://vendor.example/first', 'https://vendor.example/pricing?product=second', True),
+])
+@respx.mock
+async def test_source_collection_keeps_product_and_repository_scope(tmp_path, source, target, expected):
+    repo = repo_at(tmp_path)
+    # These decisions are identical on both sides: only the source read is new.
+    (repo / 'registry.yaml').write_text(json.dumps({'entries': [
+        {'id': 'copilot', 'url': 'https://github.com/features/copilot',
+         'source_urls': ['https://docs.github.com/en/copilot/get-started/plans']},
+        {'id': 'cline', 'url': 'https://cline.bot',
+         'source_urls': ['https://github.com/cline/cline']},
+        {'id': 'extension', 'url': 'https://marketplace.visualstudio.com/items?itemName=known.extension',
+         'source_urls': []},
+    ]}))
+    (repo / 'watchlist.yaml').write_text(json.dumps({'watched': [
+        {'domains': ['figma.com'], 'name': 'Figma Make', 'checked_on': review.now()[:10]},
+    ]}))
+    (repo / 'blocklist.yaml').write_text(json.dumps([{'domain': 'blocked.example'}]))
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture decisions'], check=True)
+    (repo / 'marker').write_text('Source review\n')
+    subprocess.run(['git', '-C', str(repo), 'add', 'marker'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture review'], check=True)
+    bundle = review.Bundle(repo / '.evidence/product-scope', repo)
+    assert review.prepare(repo, 'HEAD~1', 'HEAD', bundle)['rows'] == []
+    body = f'<a href="{target}">Read the linked product</a>'
+    respx.get(source).respond(200, text=body)
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert len(respx.calls) == 1
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+    assert [(r['url'], r['sources']) for r in result['lead_inventory']] == (
+        [(target, [source])] if expected else [])
+
+
 @pytest.mark.parametrize('path', [
     '/haimaker-ai-alternative',
     '/comparison/other-provider',
@@ -92,7 +141,8 @@ async def test_source_collection_retains_prose_comparisons_and_source_directorie
     result = await review.sources(bundle, [source])
     assert result['passed'] is True
     assert [(r['url'], r['sources'], r['kind']) for r in result['lead_inventory']] == (
-        [('https://vendor.example'+path, [source], 'comparison')] if path else [])
+        [('https://vendor.example'+path, [source], 'comparison')] if path else [
+            ('https://vendor.example/integrations/vscode', [source], 'link')])
     assert len(respx.calls) == 1
     assert (bundle.out / result['checks'][0]['file']).read_text() == body
 
@@ -118,6 +168,96 @@ async def test_source_collection_does_not_parse_html_literals_as_markdown_links(
         ('https://vendor.example/library', 'comparison')]
     assert len(respx.calls) == 1
     assert (bundle.out / result['checks'][0]['file']).read_text() == body
+
+
+@pytest.mark.parametrize('preamble', ['', '<!doctype html>', '\ufeff<!-- document -->'])
+@pytest.mark.parametrize('indent', ['', '    '])
+@respx.mock
+async def test_source_collection_does_not_parse_document_javascript_as_markdown(tmp_path, preamble, indent):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/html-document', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    source = 'https://vendor.example/offer'
+    # https://one.google.com/offer/freetrial, checked 2026-11-04: a JavaScript regexp
+    # after a blank line resembles a Markdown link despite remaining in script.
+    body = (preamble + '<html><head><script>first();\n\n' + indent +
+            'a.href.replace(/([?&](continue|followup)=)[^&]*/g, "$1");\n'
+            '</script></head><body><a href="/real-directory">'
+            'Model comparisons directory</a></body></html>')
+    respx.get(source).respond(200, text=body, headers={'Content-Type': 'text/html; charset=utf-8'})
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert len(respx.calls) == 1
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+    assert [(r['url'], r['sources'], r['kind']) for r in result['lead_inventory']] == [
+        ('https://vendor.example/real-directory', [source], 'comparison')]
+
+
+@pytest.mark.parametrize('source,mime,body,expected', [
+    ('https://vendor.example/catalog', 'application/json', json.dumps({
+        'description': '[Model comparisons directory](/fake)',
+        'markup': "<a href='/not-a-link'>Model comparisons directory</a>",
+        'source': 'https://unknown.example/free',
+    }), [('https://unknown.example/free', 'link')]),
+    ('https://vendor.example/settings.js', 'application/javascript',
+     'a.href.replace(/([?&](continue|followup)=)/g, ""); '
+     'const endpoint="https://unknown.example/free";', [('https://unknown.example/free', 'link')]),
+    ('https://vendor.example/settings.ts', 'text/plain',
+     'a.href.replace(/([?&](continue|followup)=)/g, ""); '
+     'const endpoint="https://unknown.example/free";', [('https://unknown.example/free', 'link')]),
+    ('https://vendor.example/llms.txt', 'text/plain',
+     '[Model comparisons directory](/real-directory)',
+     [('https://vendor.example/real-directory', 'comparison')]),
+    ('https://vendor.example/page.md', 'text/markdown',
+     '[Model comparisons directory](/real-directory)',
+     [('https://vendor.example/real-directory', 'comparison')]),
+    ('https://vendor.example/settings.ts', 'text/html',
+     '<a href="/real-directory">Model comparisons directory</a>',
+     [('https://vendor.example/real-directory', 'comparison')]),
+    ('https://vendor.example/data', 'application/octet-stream',
+     '[Model comparisons directory](/fake) https://unknown.example/free',
+     [('https://unknown.example/free', 'link')]),
+    ('https://vendor.example/page.md', 'text/markdown',
+     '<html><body>HTML example</body></html>\n\n'
+     '[Model comparisons directory](/real-directory)',
+     [('https://vendor.example/real-directory', 'comparison')]),
+])
+@respx.mock
+async def test_source_collection_respects_the_response_format(tmp_path, source, mime, body, expected):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/response-format', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    respx.get(source).respond(200, text=body, headers={'Content-Type': mime})
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert len(respx.calls) == 1
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+    assert [(r['url'], r['kind']) for r in result['lead_inventory']] == expected
+
+
+@pytest.mark.parametrize('base,href,expected', [
+    (None, 'new-product', 'https://directory.example/guide/new-product'),
+    ('https://catalog.example/base/', 'new-product', 'https://catalog.example/base/new-product'),
+    ('../catalog/', 'new-product', 'https://directory.example/catalog/new-product'),
+    ('javascript:invalid', 'new-product', None),
+    ('javascript:invalid', 'https://unknown.example/free', 'https://unknown.example/free'),
+])
+@respx.mock
+async def test_source_links_use_the_document_base_and_keep_requested_provenance(tmp_path, base, href, expected):
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence/document-base', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    source = 'https://directory.example/start'
+    base_tag = f'<base href="{base}"><base href="https://ignored.example/">' if base else ''
+    body = f'<!doctype html><html><head>{base_tag}</head><body><a href="{href}">Read</a></body></html>'
+    respx.get(source).respond(302, headers={'Location': 'https://directory.example/guide/'})
+    respx.get('https://directory.example/guide/').respond(200, text=body, headers={'Content-Type': 'text/html'})
+    result = await review.sources(bundle, [source])
+    assert result['passed'] is True
+    assert len(respx.calls) == 2
+    assert (bundle.out / result['checks'][0]['file']).read_text() == body
+    assert [(r['url'], r['sources']) for r in result['lead_inventory']] == (
+        [(expected, [source])] if expected else [])
 
 
 @pytest.mark.parametrize('path,rows,families', [

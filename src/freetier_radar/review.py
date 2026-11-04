@@ -227,6 +227,7 @@ async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
         file = bundle.write(prefix + '-' + str(len(attempts)) + '.raw', response.content)
         attempts.append({'at': now(), 'status': response.status_code, 'file': file,
                          'sha256': digest(response.content),
+                         'content_type': response.headers.get('content-type', ''),
                          'retry_after': response.headers.get('retry-after'),
                          'final_url': str(response.url)})
         return response
@@ -245,6 +246,8 @@ async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
     if expected is not None:
         passed = passed and response.content == expected
     return {'url': url, 'passed': passed, 'attempts': attempts, 'error': error,
+            'content_type': response.headers.get('content-type', '') if response is not None else '',
+            'final_url': str(response.url) if response is not None else '',
             'file': next((a['file'] for a in reversed(attempts) if response is not None
                           and a.get('sha256') == digest(response.content)), None),
             'expected_status': expected_status,
@@ -373,7 +376,10 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     catalogs, model_checks = current['page_catalogs'], current['model_checks']
     historical_checks['sources'] = [record for record in checks if record['url'] in historical_urls]
     from .review_leads import answered_sites, collect_leads
-    leads = collect_leads(raw_bodies, answered_sites(bundle.repo, scope['sha']))
+    content_types = {r['url']: r.get('content_type', '') for r in checks if r['passed']}
+    base_urls = {r['url']: r.get('final_url', r['url']) for r in checks if r['passed']}
+    leads = collect_leads(raw_bodies, answered_sites(bundle.repo, scope['sha']),
+                          content_types=content_types, base_urls=base_urls)
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'lead_inventory': leads,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,

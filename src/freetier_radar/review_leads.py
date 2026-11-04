@@ -24,6 +24,15 @@ _COMPARISON_TEXT = re.compile(
     r'|\ball\s+alternatives?\b|\b[\w.-]+\s+vs\.?\s+[\w.-]+\b', re.I,
 )
 _REVISION_COMPARE = re.compile(r'(?:^|/)compare/[^/]*\.{2,3}[^/]*(?:/|$)', re.I)
+_NAVIGATION = re.compile(
+    r'^(?:/[a-z]{2}(?:-[a-z]{2})?)?/(?:about|contact|privacy(?:-policy)?'
+    r'|terms(?:-of-service|-and-conditions)?|cookies?|cookie-policy|pricing|plans'
+    r'|login|logout|sign-?in|sign-?up|auth)/?$', re.I,
+)
+_DATA_SUFFIXES = {'.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.json', '.py', '.go', '.rs', '.css',
+                  '.yaml', '.yml', '.toml', '.xml', '.csv'}
+_HTML_TYPES = {'text/html', 'application/xhtml+xml'}
+_MARKDOWN_TYPES = {'text/markdown', 'text/x-markdown', 'application/markdown'}
 _SOCIAL = {'x.com', 'twitter.com', 'linkedin.com', 'youtube.com', 'youtu.be',
            'facebook.com', 'instagram.com', 'discord.com', 'discord.gg', 't.me',
            'telegram.org', 'bsky.app', 'reddit.com'}
@@ -37,9 +46,21 @@ class _Links(HTMLParser):
         self.labels = []
         self.current = None
         self.hidden = 0
+        self.document = False
+        self.preamble = True
+        self.base_href = None
+
+    def handle_decl(self, decl):
+        if self.preamble and decl.lower().split()[:2] == ['doctype', 'html']:
+            self.document = True
 
     def handle_starttag(self, tag, attrs):
+        if self.preamble:
+            self.document = self.document or tag in ('html', 'head', 'body')
+            self.preamble = False
         attributes = dict(attrs)
+        if tag == 'base' and self.base_href is None and attributes.get('href') is not None:
+            self.base_href = attributes['href']
         if tag in ('script', 'style'):
             self.hidden += 1
         if tag == 'a':
@@ -52,6 +73,8 @@ class _Links(HTMLParser):
             self.labels[self.current].append(attributes.get('alt') or '')
 
     def handle_data(self, data):
+        if data.strip('\ufeff \t\r\n'):
+            self.preamble = False
         if self.current is not None and not self.hidden:
             self.labels[self.current].append(data)
 
@@ -69,36 +92,70 @@ def _markdown_links(body: str) -> list[tuple[str, str]]:
         return part.content if part.type in ('text', 'code_inline') else ''
 
     links = []
+    html = _Links()
     for block in MarkdownIt('commonmark').parse(body):
+        if block.type == 'html_block':
+            html.feed(block.content)
         href, label = None, []
         for part in block.children or []:
-            if part.type == 'link_open':
+            if part.type == 'html_inline':
+                html.feed(part.content)
+            elif part.type == 'link_open' and not html.hidden:
                 href, label = part.attrGet('href'), [part.attrGet('title') or '']
             elif part.type == 'link_close':
                 if href:
                     links.append((href, ' '.join(label)))
                 href = None
-            elif href and part.type in ('text', 'code_inline', 'image'):
-                label.append(words(part))
-    return links
+            elif part.type in ('text', 'code_inline', 'image'):
+                text = words(part)
+                html.handle_data(text)
+                if href and not html.hidden:
+                    label.append(text)
+    return [(href, ' '.join(html.labels[i])) for i, href in enumerate(html.links)] + links
 
 
-def _links(body: str) -> list[tuple[str, str]]:
+def _links(body: str, *, source: str = '', content_type: str = '',
+           base_url: str | None = None) -> list[tuple[str, str]]:
+    mime = content_type.partition(';')[0].strip().lower()
+    literal_only = ((bool(mime) and mime not in _HTML_TYPES | _MARKDOWN_TYPES | {'text/plain'})
+                    or (mime in ('', 'text/plain')
+                        and Path(urlsplit(source).path).suffix.lower() in _DATA_SUFFIXES))
     parser = _Links()
-    parser.feed(body)
-    links = [(href, ' '.join(parser.labels[i])) for i, href in enumerate(parser.links)]
+    if not literal_only:
+        parser.feed(body)
+    document = mime in _HTML_TYPES or (mime not in _MARKDOWN_TYPES and parser.document)
+    links = ([(href, ' '.join(parser.labels[i])) for i, href in enumerate(parser.links)]
+             if document and not literal_only else [])
     # Existing literal absolute-URL discovery remains available in source/code data.
     # Relative targets and names come from parsed Markdown links, not code or HTML literals.
     links.extend((href, '') for href in re.findall(r'\[[^\]]+\]\((https?://[^\s)]+)\)', body))
     links.extend((href, '') for href in re.findall(r'(?m)^\s*\[[^\]]+\]:\s*<?(https?://[^\s<>]+)', body))
-    links.extend(_markdown_links(body))
+    if not literal_only and not document:
+        links.extend(_markdown_links(body))
     if not parser.links:
         links.extend((href, '') for href in re.findall(r'https?://[^\s<>"\x27`\\)\]]+', body))
-    return links
+    if not source:
+        return links
+    reference = source if base_url is None else base_url
+    if document and parser.base_href is not None:
+        try:
+            reference = urljoin(reference, parser.base_href)
+        except ValueError:
+            reference = ''
+    resolved = []
+    safe_reference = valid_source_url(reference)
+    for href, label in links:
+        try:
+            if not safe_reference and urlsplit(href).scheme.lower() != 'https':
+                continue
+            resolved.append((urljoin(reference, href), label))
+        except ValueError:
+            continue
+    return resolved
 
 
 def answered_sites(repo: Path, sha: str) -> set[str]:
-    """Use the committed decisions; expired verdicts do not answer new leads."""
+    """Keep exact source/product decisions and operator-wide blocks separate."""
     known = set()
     today = datetime.now(timezone.utc).date()
     for filename in ('registry.yaml', 'watchlist.yaml', 'blocklist.yaml', 'sources.yaml'):
@@ -110,13 +167,15 @@ def answered_sites(repo: Path, sha: str) -> set[str]:
                 urls = [row['url'], *row.get('source_urls', [])]
                 if row.get('api'):
                     urls.append(row['api']['base_url'])
-                known.update(site_of(u) for u in urls)
+                known.update(urls)
         elif filename == 'blocklist.yaml':
             known.update(r['domain'] for r in value)
         elif filename == 'watchlist.yaml':
             for row in value.get('watched', []) if isinstance(value, dict) else []:
                 if (today - date.fromisoformat(str(row['checked_on']))).days <= 90:
-                    known.update(row['domains'])
+                    # A dated offer decision does not answer every product
+                    # or directory sharing the vendor's host.
+                    known.update('https://' + domain for domain in row['domains'])
         else:
             for row in value.get('read', []) if isinstance(value, dict) else []:
                 if (today - date.fromisoformat(str(row['checked_on']))).days <= 180:
@@ -126,27 +185,50 @@ def answered_sites(repo: Path, sha: str) -> set[str]:
     return known
 
 
-def collect_leads(bodies: dict[str, str], known: set[str]) -> list[dict]:
+def _url_key(url: str) -> str:
+    parts = urlsplit(url)
+    return urlunsplit((parts.scheme.lower(), parts.netloc.lower().removeprefix('www.'),
+                      parts.path.rstrip('/'), parts.query, ''))
+
+
+def collect_leads(bodies: dict[str, str], known: set[str], *,
+                  content_types: dict[str, str] | None = None,
+                  base_urls: dict[str, str] | None = None) -> list[dict]:
     """Capture unmatched links, including same-site competitor comparisons.
 
     These are review candidates, not assertions of a free offer or a guessed
     vendor domain. There is no recursive fetch or sign-up here.
     """
+    exact = {_url_key(url) for url in known if valid_source_url(url)}
+    operators = {site for site in known if '://' not in site}
     leads = {}
     for source, body in sorted(bodies.items()):
-        for href, label in _links(body):
+        if not valid_source_url(source):
+            continue
+        reference = (base_urls or {}).get(source, source)
+        self_keys = {_url_key(source)}
+        publisher = ''
+        if valid_source_url(reference):
+            self_keys.add(_url_key(reference))
+            publisher = site_of(reference)
+        for href, label in _links(body, source=source, content_type=(content_types or {}).get(source, ''),
+                                  base_url=reference):
             try:
                 parts = urlsplit(urljoin(source, href))
             except ValueError:
                 continue
-            url = urlunsplit((parts.scheme, parts.netloc, parts.path, '', ''))
+            # RFC 3986 section 3.4, checked 2026-11-05: query data can identify a resource.
+            url = urlunsplit((parts.scheme, parts.netloc, parts.path, parts.query, ''))
             if not valid_source_url(url) or _ASSET.search(parts.path):
                 continue
             comparison = not _REVISION_COMPARE.search(parts.path) and bool(
                 _COMPARISON.search(parts.path) or _COMPARISON_TEXT.search(' '.join(label.split())))
-            if not comparison and (is_covered(url, {site_of(source)})
-                    or is_covered(url, known) or url.rstrip('/') in known
-                    or is_covered(url, _SOCIAL)):
+            own_navigation = not parts.query and publisher and is_covered(url, {publisher}) and (
+                not parts.path.strip('/') or _NAVIGATION.fullmatch(parts.path)
+                or _REVISION_COMPARE.search(parts.path))
+            key = _url_key(url)
+            if not comparison and (key in exact or key in self_keys
+                    or own_navigation or is_covered(url, operators) or is_covered(url, _SOCIAL)):
                 continue
             ident = hashlib.sha256(url.encode()).hexdigest()[:20]
             lead = leads.setdefault(ident, {'id': ident, 'url': url,

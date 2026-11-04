@@ -13,10 +13,11 @@ def test_lead_collection_preserves_competitor_paths_without_inventing_domains():
         <a href="/privacy">Privacy</a><a href="https://x.com/vendor">Social</a>
         <a href="https://cdn.example/logo.svg">Logo</a>
         <a href="https://[broken">Malformed</a>
-    '''}, {'known.example'})
+    '''}, {'known.example'}, content_types={source: 'text/html'})
     assert [r['url'] for r in result] == [
-        'https://unknown.example/free/', 'https://vendor.example/haimaker-ai-alternative']
-    assert [r['kind'] for r in result] == ['link', 'comparison']
+        'https://unknown.example/free/', 'https://unknown.example/free/?utm_source=vendor',
+        'https://vendor.example/haimaker-ai-alternative']
+    assert [r['kind'] for r in result] == ['link', 'link', 'comparison']
     assert all(r['sources'] == [source] for r in result)
 
 
@@ -27,6 +28,39 @@ def test_source_verdict_does_not_cover_every_repository_on_the_same_host():
         [New](https://github.com/owner/new-list)
     '''}, {'https://github.com/owner/read-list'})
     assert [r['url'] for r in result] == ['https://github.com/owner/new-list']
+
+
+def test_exact_decisions_normalize_url_aliases_without_covering_another_path():
+    result = collect_leads({'https://directory.example/list': '''
+        <a href="https://known.example/models/?ref=new#current">Known</a>
+        <a href="https://known.example/models/?ref=old#current">Exact known resource</a>
+        <a href="https://known.example/Models/">Different path</a>
+        <a href="https://unknown.example/free">Unknown</a>
+    '''}, {'https://www.known.example/models/?ref=old#previous', 'https://[broken'},
+        content_types={'https://directory.example/list': 'text/html'})
+    assert [r['url'] for r in result] == [
+        'https://known.example/Models/', 'https://known.example/models/?ref=new',
+        'https://unknown.example/free']
+
+
+def test_invalid_source_does_not_hide_valid_source_provenance():
+    body = '<a href="https://unknown.example/free">Unknown</a>'
+    result = collect_leads({'https://[broken': body, 'https://directory.example/list': body}, set())
+    assert [(r['url'], r['sources']) for r in result] == [
+        ('https://unknown.example/free', ['https://directory.example/list'])]
+
+
+@pytest.mark.parametrize('literal', [
+    '```html\n<a href="/fake">Model comparisons directory</a>\n```',
+    '`<a href="/fake">Model comparisons directory</a>`',
+    'Text <script>a.href.replace(/([?&](continue|followup)=)/g, "");</script>',
+    'Text <style>[Model comparisons directory](/fake)</style>',
+])
+def test_markdown_code_and_inline_hidden_html_are_not_link_sources(literal):
+    source = 'https://vendor.example/list.md'
+    result = collect_leads({source: literal+'\n\n[Model comparisons directory](/real-directory)'}, set())
+    assert [(r['url'], r['kind']) for r in result] == [
+        ('https://vendor.example/real-directory', 'comparison')]
 
 
 def test_reference_links_remain_leads_beside_html_badges_and_pdf_sources():
@@ -50,7 +84,8 @@ def test_comparison_routes_preserve_sources_and_do_not_invent_vendor_domains():
                     <a href="/tool-a-vs-tool-b#features">Same comparison</a>''',
     }, {'vendor.example'})
     assert [(r['url'], r['sources'], r['kind']) for r in result] == [
-        ('https://vendor.example/tool-a-vs-tool-b', [pricing, terms], 'comparison')]
+        ('https://vendor.example/tool-a-vs-tool-b', [pricing, terms], 'comparison'),
+        ('https://vendor.example/tool-a-vs-tool-b?ref=pricing', [pricing], 'comparison')]
 
 
 def test_ordinary_known_paths_and_editor_names_do_not_become_comparison_leads():
@@ -79,7 +114,8 @@ def test_named_comparisons_merge_html_and_markdown_provenance():
                 '[European AI alternatives directory](/library/providers)'),
     }, {'vendor.example'})
     assert [(r['url'], r['kind'], r['sources']) for r in result] == [
-        ('https://vendor.example/library/models', 'comparison', [pricing, terms]),
+        ('https://vendor.example/library/models', 'comparison', [terms]),
+        ('https://vendor.example/library/models?ref=nav', 'comparison', [pricing]),
         ('https://vendor.example/library/providers', 'comparison', [pricing, terms]),
         ('https://vendor.example/library/review', 'comparison', [pricing])]
 

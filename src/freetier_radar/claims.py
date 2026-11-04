@@ -277,7 +277,28 @@ def _review_link_formats(root: Path) -> tuple[str, ...]:
                  == ['https://vendor.example/library'])
 
 
+def _review_lead_scope(root: Path) -> tuple[str, ...]:
+    from .review_leads import collect_leads
+    examples = (
+        ('other products', 'https://vendor.example/product',
+         'https://vendor.example/another-product', {'https://vendor.example/product'}, True),
+        ('other repositories', 'https://github.com/owner/one',
+         'https://github.com/owner/two', {'https://github.com/owner/one'}, True),
+        ('operator blocks', 'https://directory.example/list',
+         'https://api.blocked.example/v1', {'blocked.example'}, False),
+        ('Query parameters', 'https://vendor.example/list',
+         'https://vendor.example/models?product=second', {'https://vendor.example/models?product=first'}, True),
+    )
+    return tuple(name for name, source, target, known, expected in examples
+                 if [r['url'] for r in collect_leads({source: f'<a href="{target}">Read</a>'}, known)]
+                 == ([target] if expected else []))
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'Exact URL decisions preserve links to (other products) and (other repositories);\s+(operator blocks) retain their domain scope\. (Query parameters) remain part of the link identity',
+          _review_lead_scope,
+          'review_leads.answered_sites and collect_leads; committed-decision HTTP product, supporting-host, repository, alias, navigation and blocklist controls in tests/test_review.py'),
     Claim('CONTRIBUTING.md',
           r'links to comparisons and source directories from\s+(HTML), (inline Markdown) and (reference Markdown)',
           _review_link_formats,
