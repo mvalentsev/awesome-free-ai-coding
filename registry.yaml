@@ -11141,3 +11141,60 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 87
+- id: codacy
+  name: Codacy
+  category: agent-cli
+  url: https://www.codacy.com
+  source_urls:
+  - https://www.codacy.com/pricing
+  - https://www.codacy.com/ai-reviewer
+  - https://www.codacy.com/sign-up
+  - https://docs.codacy.com/repositories-configure/integrations/github-integration/
+  - https://docs.codacy.com/faq/code-analysis/does-codacy-place-limits-on-the-code-analysis/
+  - https://www.codacy.com/terms
+  - https://www.codacy.com/privacy
+  card_required: false
+  offering: AI pull-request reviews for public open-source GitHub repositories, with
+    a separate no-card trial for private repositories
+  limits: Sign in with a Git provider, grant repository access and enable AI Reviewer.
+    The Team plan is free for open-source projects; the separate private-repository
+    trial lasts 14 days without a card. AI Reviewer can run automatically on the first
+    review of a pull request; later runs are triggered manually. It skips pull requests
+    whose changes plus retrieved context exceed 270,000 tokens. A numerical review
+    allowance and reset are not published. Free local Guardrails and static analysis
+    are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy
+    AI is optional, and its terms exclude training on submitted inputs. They do not
+    establish zero retention; account data and backups have separate retention rules.
+  quotas:
+  - unit: reviews
+    scope: unspecified
+    label: Open-source AI Reviewer
+    source: https://www.codacy.com/pricing
+    quote: Free forever for open-source projects
+    reviewed_on: '2026-11-04'
+  free_part: unnamed
+  models: []
+  data_use:
+    trains: 'no'
+    quote: will not be used to train artificial intelligence models
+    url: https://www.codacy.com/terms
+  border:
+    left_out: []
+    'on': '2026-11-04'
+    source: https://www.codacy.com/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://www.codacy.com/pricing
+    keywords:
+    - Free forever for open-source projects
+    - AI Reviewer & Merge Gates for Pull Requests
+    - No credit card required
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-04'
+  last_verified: '2026-11-04'
+  probe_failures: 0
+  provisional: true
+  rank: 90

@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-03
+last_modified_at: 2026-11-04
 ---
 
 {% raw %}
@@ -40,6 +40,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-03
 - [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-03
 - [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-03
+- [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) — verified 2026-11-04
 
 ## 🔌 LLM APIs with free tier
 

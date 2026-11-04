@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-03T21:59:13Z</updated>
+  <updated>2026-11-04T03:27:21Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codacy/20261104T032721Z</id>
+    <title>Added: Codacy</title>
+    <link rel="alternate" href="https://www.codacy.com"/>
+    <updated>2026-11-04T03:27:21Z</updated>
+    <summary type="text">AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/deepsource/20261103T215913Z</id>
     <title>Added: DeepSource</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://kilo.ai"/>
     <updated>2026-10-27T14:20:23Z</updated>
     <summary type="text">dropped nemotron-3-super · free models: nemotron-3-ultra, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261027T142023Z</id>
-    <title>Free models changed: OpenRouter (free models)</title>
-    <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-10-27T14:20:23Z</updated>
-    <summary type="text">dropped nemotron-3-super · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

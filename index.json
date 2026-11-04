@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-03",
+  "generated": "2026-11-04",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -133,7 +133,8 @@
       "DeepSource",
       "Liquid Inference",
       "LLM.kiwi",
-      "Summer Engine"
+      "Summer Engine",
+      "Codacy"
     ],
     "sections": [
       {
@@ -17953,6 +17954,87 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/"
+    },
+    {
+      "id": "codacy",
+      "name": "Codacy",
+      "category": "agent-cli",
+      "url": "https://www.codacy.com",
+      "source_urls": [
+        "https://www.codacy.com/pricing",
+        "https://www.codacy.com/ai-reviewer",
+        "https://www.codacy.com/sign-up",
+        "https://docs.codacy.com/repositories-configure/integrations/github-integration/",
+        "https://docs.codacy.com/faq/code-analysis/does-codacy-place-limits-on-the-code-analysis/",
+        "https://www.codacy.com/terms",
+        "https://www.codacy.com/privacy"
+      ],
+      "card_required": false,
+      "offering": "AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories",
+      "limits": "Open-source AI Reviewer: Reviews allowance: amount not published (period not published); scope not published\n\nSign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14 days without a card. AI Reviewer can run automatically on the first review of a pull request; later runs are triggered manually. It skips pull requests whose changes plus retrieved context exceed 270,000 tokens. A numerical review allowance and reset are not published. Free local Guardrails and static analysis are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy AI is optional, and its terms exclude training on submitted inputs. They do not establish zero retention; account data and backups have separate retention rules.",
+      "quotas": [
+        {
+          "unit": "reviews",
+          "scope": "unspecified",
+          "label": "Open-source AI Reviewer",
+          "source": "https://www.codacy.com/pricing",
+          "quote": "Free forever for open-source projects",
+          "reviewed_on": "2026-11-04",
+          "amount": null,
+          "period": null
+        }
+      ],
+      "free_part": "unnamed",
+      "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "will not be used to train artificial intelligence models",
+        "url": "https://www.codacy.com/terms"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-04",
+        "source": "https://www.codacy.com/terms",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.codacy.com/pricing",
+        "keywords": [
+          "Free forever for open-source projects",
+          "AI Reviewer & Merge Gates for Pull Requests",
+          "No credit card required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-04",
+      "last_verified": "2026-11-04",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 90,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Codacy",
+        "models": [],
+        "ids": [],
+        "what": "AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories",
+        "limits": "Open-source AI Reviewer: Reviews allowance: amount not published (period not published); scope not published\n\nSign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14 days without a card. AI Reviewer can run automatically on the first review of a pull request; later runs are triggered manually. It skips pull requests whose changes plus retrieved context exceed 270,000 tokens. A numerical review allowance and reset are not published. Free local Guardrails and static analysis are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy AI is optional, and its terms exclude training on submitted inputs. They do not establish zero retention; account data and backups have separate retention rules.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/"
     }
   ],
   "countries": [
@@ -20434,7 +20516,7 @@
       "checked_on": "2026-08-05",
       "reason": "Legitimate commercial routing layer, and the third unrelated service to carry the TokenRouter name — check the TLD before acting on any lead here, because .com is the listed PaleBlueDot gateway and .me is blocklisted. Its quickstart says \"You need at least one AI provider key to route requests\" and sends you to platform.openai.com, i.e. BYOK-only with no bundled model usage, and its \"Free tier available\" covers the routing plan, not tokens — the pricing page's own words are \"Pay only for routing and insights\". Not blocklisted precisely because nothing is wrong with it.",
       "reopen_if": "TokenRouter.io starts bundling model usage rather than routing only.",
-      "current": true
+      "current": false
     },
     {
       "domains": [

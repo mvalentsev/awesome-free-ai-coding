@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 100 live offers, 96 need no card, 130 free models, 67 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 101 live offers, 97 need no card, 130 free models, 67 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -17,7 +17,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) · [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) · [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) · [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) · [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) · [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) · [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) · [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) · [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) · [Zro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) · [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) · [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) · [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) · [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/)
+🆕 **New this week:** [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) · [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) · [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) · [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) · [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) · [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) · [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) · [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) · [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) · [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) · [Zro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) · [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) · [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) · [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) · [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/)
 
 ## 🚀 Start here
 
@@ -92,10 +92,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 100, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, 4 of 101, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
-<sub>**26** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**27** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 - **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 — Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/)</sub>
 - **[opencode](https://opencode.ai)** 👁 — Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK<br><sub>[verified 2026-11-02](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) · `big-pickle` · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</sub>
@@ -123,6 +123,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Summer Engine](https://www.summerengine.com)** 🧪 — Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects<br><sub>[verified 2026-11-03](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/)</sub>
 - **[Graphite](https://graphite.com)** 🧪 — AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial<br><sub>[verified 2026-11-03](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/)</sub>
 - **[Sourcery](https://www.sourcery.ai)** 🧪 — AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-03](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/)</sub>
+- **[Codacy](https://www.codacy.com)** 🧪 — AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-04](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/)</sub>
 
 ### 🔌 LLM APIs with free tier
 <sub>**34** live · **32** of them ask for no card · sorted by how much work you can get done for free</sub>
@@ -218,6 +219,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-04` | ➕ Added **[Codacy](https://www.codacy.com)** | <sub>AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories</sub> |
 | `2026-11-03` | ➕ Added **[DeepSource](https://deepsource.com)** | <sub>AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits</sub> |
 | `2026-11-03` | ➕ Added **[Graphite](https://graphite.com)** | <sub>AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial</sub> |
 | `2026-11-03` | ➕ Added **[Liquid Inference](https://inference.ai.exchange)** | <sub>Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces</sub> |
@@ -227,7 +229,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-11-03` | 🔄 Free models changed **[Cursor (Free)](https://cursor.com/)** | <sub>added composer-2.5, grok-4.5, grok-4.6, grok-4.7</sub> |
 | `2026-11-03` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added minimax-m3.1-flash</sub> |
 | `2026-11-02` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped minimax-m3.1-flash</sub> |
-| `2026-11-02` | ➕ Added **[NoTrack API](https://notrack.ai/api)** | <sub>Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
