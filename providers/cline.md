@@ -19,7 +19,7 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 
 ## Free models
 
-[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)
+[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)
 
 ## Limits, in the vendor's words
 
@@ -48,11 +48,13 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://docs.cline.bot/getting-started/cline-provider>
 - Source: <https://docs.cline.bot/usage/cline-desktop>
 - Source: <https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts>
+- Source: <https://raw.githubusercontent.com/cline/cline/main/sdk/packages/llms/src/catalog/catalog.generated.ts>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-05` — Free models changed: added beam-1.0
 - `2026-11-05` — Free models changed: added nemotron-3.5-lightning
 - `2026-10-29` — Free models changed: added nemotron-3.5-super-vl-120b-a12b
 - `2026-10-21` — Free models changed: added solar-mini-4; dropped mimo-v2.6-flash, muse-spark-1.3-contributor

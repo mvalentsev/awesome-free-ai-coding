@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-05T00:49:25Z</updated>
+  <updated>2026-11-05T05:38:45Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T053845Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-11-05T05:38:45Z</updated>
+    <summary type="text">added beam-1.0 · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning, beam-1.0</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T004925Z</id>
     <title>Free models changed: Cline</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://build.nvidia.com"/>
     <updated>2026-10-28T13:17:13Z</updated>
     <summary type="text">dropped glm-5.3 · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder/20261028T131713Z</id>
-    <title>Free models changed: Qoder</title>
-    <link rel="alternate" href="https://qoder.com"/>
-    <updated>2026-10-28T13:17:13Z</updated>
-    <summary type="text">added deepseek-v4.1-flash, qwen3.8-flash · free models: qwen3.8-flash, deepseek-v4.1-flash</summary>
   </entry>
 </feed>

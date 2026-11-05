@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-02'
-description: beam-1.0 is served free by Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'beam-1.0 free: 4 providers, limits and ids, provider probes 2026-11-02'
+description: beam-1.0 is served free by Kilo Code, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: beam-1.0
 ---
 
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**3 rows on the list serve `beam-1.0` free:** Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
+**4 rows on the list serve `beam-1.0` free:** Kilo Code, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -31,6 +31,25 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m reflection/beam-free`
 - Callable ids: `reflection/beam-free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+
+### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
+
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-11-05
+
+Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
+
+Free promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In Cline's own model list: `reflection/beam-free`
+- What you send may be used to train or improve models ([the vendor's words](https://docs.cline.bot/getting-started/free-models)).
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
