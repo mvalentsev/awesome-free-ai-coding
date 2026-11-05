@@ -3249,6 +3249,9 @@
         {
           "family": "minimax-m3.1-flash",
           "aa_model": "minimax-m3-1-flash"
+        },
+        {
+          "family": "nemotron-3.5-bolt-e4b"
         }
       ],
       "api": {
@@ -3356,7 +3359,8 @@
           "deepseek-v4.1-flash",
           "nemotron-3.5-super-vl-120b-a12b",
           "step-5-preview-600b-a27b",
-          "minimax-m3.1-flash"
+          "minimax-m3.1-flash",
+          "nemotron-3.5-bolt-e4b"
         ],
         "ids": [
           "z-ai/glm-5.3-flash",
@@ -3396,7 +3400,8 @@
           "deepseek-v4.1-flash": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "step-5-preview-600b-a27b": "",
-          "minimax-m3.1-flash": ""
+          "minimax-m3.1-flash": "",
+          "nemotron-3.5-bolt-e4b": ""
         },
         "section": {
           "id": "api-free-tier"
@@ -16336,7 +16341,17 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "glm-4.7-flash"
+        },
+        {
+          "family": "glm-4.6v-flash"
+        },
+        {
+          "family": "glm-4.1v-thinking-flash"
+        }
+      ],
       "api": {
         "base_url": "https://aiapi-pro.com/v1",
         "key_url": "https://aiapi-pro.com/register.html",
@@ -16350,11 +16365,6 @@
         "ignored_ids": [
           "cogview-3-flash",
           "cogvideox-flash"
-        ],
-        "no_family_ids": [
-          "glm-4.7-flash",
-          "glm-4.6v-flash",
-          "glm-4.1v-thinking-flash"
         ],
         "note": "Use a NovAI API key and an exact chat model ID. GLM-4.7-Flash documents OpenAI-compatible function calling and coding-agent setup. CogView and CogVideo are media generators, separate from the chat configurations."
       },
@@ -16383,7 +16393,11 @@
       "archived": false,
       "search": {
         "name": "NovAI",
-        "models": [],
+        "models": [
+          "glm-4.7-flash",
+          "glm-4.6v-flash",
+          "glm-4.1v-thinking-flash"
+        ],
         "ids": [
           "glm-4.7-flash",
           "glm-4.6v-flash",
@@ -16393,7 +16407,11 @@
         "limits": "Shared free-model calls: 10 requests/day per account (before the first completed top-up). 00:00 UTC+8\n\n5 requests/minute per account (before the first completed top-up)\n\nSeparate signup credit: $2 once per account (valid for 14 days)\n\nFree chat calls: Unmetered requests per account (after any completed top-up; upstream provider limits still apply)\n\nThe daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email account and API key are required. Signup accepts selected email providers and is screened for abuse. Paid models and top-ups are optional. The gateway says it does not store or train on prompts; upstream providers apply their own policies. Users must be at least 18.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "glm-4.7-flash": "",
+          "glm-4.6v-flash": "",
+          "glm-4.1v-thinking-flash": ""
+        },
         "section": {
           "id": "aggregator"
         },
@@ -19625,6 +19643,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
+      "family": "glm-4.7-flash",
+      "rows": [
+        "aihubmix",
+        "zai-glm",
+        "novai",
+        "meganova"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
+    },
+    {
       "family": "glm-5.2",
       "rows": [
         "aihubmix",
@@ -19682,15 +19710,6 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
-    },
-    {
-      "family": "glm-4.7-flash",
-      "rows": [
-        "aihubmix",
-        "zai-glm",
-        "meganova"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
     },
     {
       "family": "glm-5.3",
@@ -19787,6 +19806,14 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
+    },
+    {
+      "family": "glm-4.6v-flash",
+      "rows": [
+        "zai-glm",
+        "novai"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/"
     },
     {
       "family": "glm-5",
@@ -20047,6 +20074,12 @@
       ]
     },
     {
+      "family": "glm-4.1v-thinking-flash",
+      "rows": [
+        "novai"
+      ]
+    },
+    {
       "family": "glm-4.5-flash",
       "rows": [
         "zai-glm"
@@ -20058,12 +20091,6 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/"
-    },
-    {
-      "family": "glm-4.6v-flash",
-      "rows": [
-        "zai-glm"
-      ]
     },
     {
       "family": "glm-4.7",
@@ -20268,6 +20295,12 @@
         "requesty"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
+    },
+    {
+      "family": "nemotron-3.5-bolt-e4b",
+      "rows": [
+        "nvidia-nim"
+      ]
     },
     {
       "family": "qwen-flash",

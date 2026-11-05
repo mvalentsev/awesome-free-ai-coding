@@ -3,7 +3,7 @@ layout: default
 title: 'Z.ai (Zhipu GLM) free tier: limits, free models, verified 2026-11-02'
 description: 'GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4). Free models: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash. GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows'' limited-time-free cached-storage column…'
 permalink: /providers/zai-glm/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: Z.ai (Zhipu GLM)
 ---
 
@@ -19,7 +19,7 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 ## Free models
 
-[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), `glm-4.5-flash`, `glm-4.6v-flash`
+[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), `glm-4.5-flash`, [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/)
 
 ## Limits, in the vendor's words
 

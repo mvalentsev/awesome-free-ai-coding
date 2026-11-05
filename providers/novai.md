@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'NovAI free tier: limits, free models, verified 2026-11-02'
-description: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. The daily allowance is shared across free chat, image and video models; media keep separate caps after a top-up. Calls at a cap return 429 until reset. An email…
+description: 'Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. Free models: glm-4.7-flash, glm-4.6v-flash, glm-4.1v-thinking-flash. The daily allowance is shared across free chat, image and video models; media keep separate…'
 permalink: /providers/novai/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: NovAI
 ---
 
@@ -19,7 +19,7 @@ Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected 
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/), `glm-4.1v-thinking-flash`
 
 ## Limits, in the vendor's words
 
@@ -69,6 +69,7 @@ curl -s https://aiapi-pro.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-05` — Free models changed: added glm-4.1v-thinking-flash, glm-4.6v-flash, glm-4.7-flash
 - `2026-10-22` — Added: Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit
 
 ---

@@ -1526,6 +1526,7 @@ entries:
     aa_model: step-5
   - family: minimax-m3.1-flash
     aa_model: minimax-m3-1-flash
+  - family: nemotron-3.5-bolt-e4b
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -9997,7 +9998,10 @@ entries:
     quote: unlimited free-model calls after the first top-up
     reviewed_on: '2026-10-29'
   free_part: models
-  models: []
+  models:
+  - family: glm-4.7-flash
+  - family: glm-4.6v-flash
+  - family: glm-4.1v-thinking-flash
   api:
     base_url: https://aiapi-pro.com/v1
     key_url: https://aiapi-pro.com/register.html
@@ -10010,10 +10014,6 @@ entries:
     ignored_ids:
     - cogview-3-flash
     - cogvideox-flash
-    no_family_ids:
-    - glm-4.7-flash
-    - glm-4.6v-flash
-    - glm-4.1v-thinking-flash
     note: Use a NovAI API key and an exact chat model ID. GLM-4.7-Flash documents
       OpenAI-compatible function calling and coding-agent setup. CogView and CogVideo
       are media generators, separate from the chat configurations.

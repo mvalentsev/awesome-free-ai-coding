@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-05T06:22:28Z</updated>
+  <updated>2026-11-05T11:57:23Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/novai/20261105T115723Z</id>
+    <title>Free models changed: NovAI</title>
+    <link rel="alternate" href="https://aiapi-pro.com"/>
+    <updated>2026-11-05T11:57:23Z</updated>
+    <summary type="text">added glm-4.1v-thinking-flash, glm-4.6v-flash, glm-4.7-flash · free models: glm-4.7-flash, glm-4.6v-flash, glm-4.1v-thinking-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261105T115723Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-11-05T11:57:23Z</updated>
+    <summary type="text">added nemotron-3.5-bolt-e4b · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash, nemotron-3.5-super-vl-120b-a12b, step-5-preview-600b-a27b, minimax-m3.1-flash, nemotron-3.5-bolt-e4b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/merkium/20261105T062228Z</id>
     <title>Added: Merkium</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-10-29T09:22:21Z</updated>
     <summary type="text">added nemotron-3.5-super-vl-120b-a12b · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20261029T092221Z</id>
-    <title>Free models changed: Vercel AI Gateway</title>
-    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
-    <updated>2026-10-29T09:22:21Z</updated>
-    <summary type="text">added nemotron-3.5-lightning · free models: laguna-s-2.1, nemotron-3.5-lightning</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20261028T131713Z</id>
-    <title>Free models changed: Google AI Studio (Gemini API)</title>
-    <link rel="alternate" href="https://aistudio.google.com"/>
-    <updated>2026-10-28T13:17:13Z</updated>
-    <summary type="text">dropped gemini-3.5-flash, gemini-3.7-flash · free models: gemini-3.8-flash, gemini-3.6-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4</summary>
   </entry>
 </feed>

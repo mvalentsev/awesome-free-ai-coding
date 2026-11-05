@@ -1328,6 +1328,8 @@ def _multiplier_price_of(model: dict) -> list[float] | None:
     if ratio is None:
         return None
     completion = _number(model.get("completion_ratio"))
+    if "completion_ratio" in model and completion is None:
+        return None
     return [ratio, ratio * (completion if completion is not None else 1.0)]
 
 
@@ -1430,10 +1432,8 @@ def _price_note(model: dict, listed: bool = False) -> str:
     if prices is None:
         return f"{mid} publishes no price"
     note = f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
-    pricing = model.get("pricing") if isinstance(model.get("pricing"), dict) else {}
-    extra = [f"{k} {_price_row(v):g}" for k, v in pricing.items()
-             if (k.lower() in _PER_CALL_KEYS or any(m in k.lower() for m in _PER_UNIT_MARKERS))
-             and _price_row(v) not in (None, 0)]
+    extra = [f"{key} {price:g}" if price is not None else f"{key} unreadable"
+             for key, price in _additional_prices(model) if price != 0]
     return note + (" plus " + ", ".join(extra) if extra else "")
 
 
@@ -1711,27 +1711,29 @@ _PER_CALL_KEYS = ("request", "per_request", "request_price", "price_per_request"
 _PER_UNIT_MARKERS = ("per_second", "per_minute", "duration", "per_hour")
 
 
-def _charges_elsewhere(model: dict) -> bool:
-    """A non-zero price on the row that every ordinary call pays. Cache, image
-    and web-search rows are not read: they price an optional input, and a free
+def _additional_prices(model: dict) -> list[tuple[str, float | None]]:
+    """Mandatory prices beside token rates; None retains an unreadable charge.
+
+    Cache, image and web-search rows are not read: they price an optional input, and a free
     text lane is still free without it. The list is deliberately narrow — a
     stricter reading fails the offer check, and three failed probes archive a
     live row, so an unknown add-on key must not be able to do that."""
+    prices = []
     # Infron's video rows publish zero token rates beside a mandatory flat
     # request rate: https://llm.onerouter.pro/v1/models, checked 2026-10-31.
-    request_price = _number(model.get("min_request_price"))
-    if request_price is not None and request_price != 0:
-        return True
+    if "min_request_price" in model:
+        prices.append(("min_request_price", _number(model["min_request_price"])))
     pricing = model.get("pricing")
-    if not isinstance(pricing, dict):
-        return False
-    for key, value in pricing.items():
-        lowered = key.lower()
-        if lowered in _PER_CALL_KEYS or any(m in lowered for m in _PER_UNIT_MARKERS):
-            price = _price_row(value)
-            if price is not None and price != 0:
-                return True
-    return False
+    if isinstance(pricing, dict):
+        prices.extend((key, _price_row(value)) for key, value in pricing.items()
+                      if key.lower() in _PER_CALL_KEYS
+                      or any(m in key.lower() for m in _PER_UNIT_MARKERS))
+    return prices
+
+
+def _charges_elsewhere(model: dict) -> bool:
+    """Every published mandatory price must be a readable zero."""
+    return any(price != 0 for _, price in _additional_prices(model))
 
 
 def _is_free(model: dict) -> bool:
