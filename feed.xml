@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-05T05:38:45Z</updated>
+  <updated>2026-11-05T06:22:28Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/merkium/20261105T062228Z</id>
+    <title>Added: Merkium</title>
+    <link rel="alternate" href="https://www.merkium.nl"/>
+    <updated>2026-11-05T06:22:28Z</updated>
+    <summary type="text">Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T053845Z</id>
     <title>Free models changed: Cline</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://aistudio.google.com"/>
     <updated>2026-10-28T13:17:13Z</updated>
     <summary type="text">dropped gemini-3.5-flash, gemini-3.7-flash · free models: gemini-3.8-flash, gemini-3.6-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261028T131713Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-10-28T13:17:13Z</updated>
-    <summary type="text">dropped glm-5.3 · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
   </entry>
 </feed>

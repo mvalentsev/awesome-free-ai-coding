@@ -135,7 +135,8 @@
       "LLM.kiwi",
       "Summer Engine",
       "Codacy",
-      "Mixedbread"
+      "Mixedbread",
+      "Merkium"
     ],
     "sections": [
       {
@@ -18163,6 +18164,119 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/"
+    },
+    {
+      "id": "merkium",
+      "name": "Merkium",
+      "category": "api-free-tier",
+      "url": "https://www.merkium.nl",
+      "source_urls": [
+        "https://www.merkium.nl/docs",
+        "https://www.merkium.nl/docs/pricing",
+        "https://www.merkium.nl/docs/authentication",
+        "https://www.merkium.nl/docs/models",
+        "https://www.merkium.nl/docs/rate-limits",
+        "https://www.merkium.nl/privacy",
+        "https://www.merkium.nl/legal",
+        "https://www.merkium.nl/research/ganymede-1-1-technical-report"
+      ],
+      "card_required": false,
+      "offering": "Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge",
+      "limits": "30 requests/minute per key\n\nSign in and create a free API key in the Console; no card or billing step. Space requests at least two seconds apart, including each step of a tool-call round trip, and honor Retry-After on HTTP 429. The current models are advertised as permanently free; later models may be paid. The public terms page is a review draft without an effective date.",
+      "quotas": [
+        {
+          "amount": 30.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "key",
+          "source": "https://www.merkium.nl/docs/rate-limits",
+          "quote": "On the free tier, the API allows 30 requests per minute per API key, enforced as one request every two seconds.",
+          "value_phrase": "30 requests per minute per API key"
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://chat.merkium.nl/api/v1",
+        "key_url": "https://chat.merkium.nl",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "ganymede-1.1",
+          "pluto-1.2-flash",
+          "pluto-1.2-pro",
+          "ceres-1.0",
+          "ceres-1.0-pro",
+          "pluto-1.1-flash",
+          "pluto-1.1-pro"
+        ],
+        "note": "Create a key in the Console API tab. Set the OpenAI-compatible base URL verbatim; use /chat/completions for chat, streaming and tool calls. Model listing also requires the key."
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Your conversations are never used to train, fine-tune or evaluate Merkium models.",
+        "url": "https://www.merkium.nl/privacy"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-05",
+        "source": "https://www.merkium.nl/docs/pricing",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.merkium.nl/docs/pricing",
+        "keywords": [
+          "free to use through the API, permanently",
+          "not need a credit card or a billing account"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": [],
+        "model_plan": {
+          "headers": [
+            "Model ID",
+            "Price"
+          ],
+          "name_column": "Model ID",
+          "plan_column": "Price",
+          "included_value": "Free"
+        }
+      },
+      "first_seen": "2026-11-05",
+      "last_verified": "2026-11-05",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 89,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Merkium",
+        "models": [],
+        "ids": [
+          "ganymede-1.1",
+          "pluto-1.2-flash",
+          "pluto-1.2-pro",
+          "ceres-1.0",
+          "ceres-1.0-pro",
+          "pluto-1.1-flash",
+          "pluto-1.1-pro"
+        ],
+        "what": "Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge",
+        "limits": "30 requests/minute per key\n\nSign in and create a free API key in the Console; no card or billing step. Space requests at least two seconds apart, including each step of a tool-call round trip, and honor Retry-After on HTTP 429. The current models are advertised as permanently free; later models may be paid. The public terms page is a review draft without an effective date.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "api-free-tier"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/"
     }
   ],
   "countries": [
@@ -19207,6 +19321,7 @@
       "sarvam",
       "zro",
       "kiosapi-id",
+      "merkium",
       "inception-labs",
       "novai",
       "infron",
@@ -19273,6 +19388,7 @@
       "sarvam",
       "zro",
       "kiosapi-id",
+      "merkium",
       "inception-labs",
       "novai",
       "infron",
@@ -19358,6 +19474,7 @@
       "sarvam",
       "zro",
       "kiosapi-id",
+      "merkium",
       "inception-labs",
       "novai",
       "infron",
@@ -20903,9 +21020,9 @@
         "anyapi.ai"
       ],
       "name": "AnyAPI",
-      "checked_on": "2026-08-14",
-      "reason": "The free plan is real, published and server-rendered: anyapi.ai/pricing reads \"Free / Getting started / $0 / mo\", \"ANY Tokens: 100K / day\", \"Core features: All free and basic models\", \"No credit card required\", and docs.anyapi.ai repeats it — \"$0/month 100 000 ₳nyTokens per day for free / Basic and free models access\" and \"Free: Your 100K daily ₳nytokens reset every 24 hours\". What stops it is that nothing says what the quota buys. The plan cards count ₳nyTokens; the FAQ on the same pricing page defines a different unit and never reconciles them — \"A credit is our universal currency for API usage across all 400+ models. One credit equals roughly 1,000 tokens for most models, but premium models like GPT-4 or Claude 3 Opus consume more credits per token\". At 1,000 tokens a unit the free plan would be 100M model tokens a day, and the $19.90 plan 100 billion a month, which cannot be what is meant. Which models count as \"free and basic\" is published nowhere, api.anyapi.ai/v1/models answers 401, and there is no per-model price page — so there is nothing to probe that ties a model to the tier, and no arithmetic to tell a real gateway from a resold pool. The pricing copy still headlines GPT-4 and Claude 3 Opus in 2026, which is its own answer about how current it is.",
-      "reopen_if": "AnyAPI publishes which models the free plan serves, or a keyless catalog, or defines its token unit against real model tokens.",
+      "checked_on": "2026-11-05",
+      "reason": "The $0 plan advertises 100K AnyTokens per day without a card, and the official model list now identifies three Free variants with exact API IDs and zero input/output AnyToken prices: Qwen3.8 27B, Ling 3.0 Flash Fin and Ling 3.0 Flash Sante. The previous missing-model-list objection is resolved. The October 7 terms define AnyTokens as an internal billing unit rather than model tokens and say third-party inference providers' identities are not disclosed. Current sources do not establish self-hosted inference or identify authorized upstream capacity for the Free lane. That uncertainty is not a finding of unauthorized proxying. A protected models endpoint's 401 establishes neither Free-account eligibility nor a successful completion; unlimited web Playground use is a separate access mode. Sources: https://anyapi.ai/pricing, https://anyapi.ai/ai-models, https://anyapi.ai/terms-of-service and https://docs.anyapi.ai/get-started/faq.",
+      "reopen_if": "Primary evidence identifies self-hosted or authorized upstream inference for the Free lane and establishes its obtainable API entitlement and model supply. Recheck the three zero-priced variants separately from the daily AnyToken wallet, paid plans and browser Playground; do not convert AnyTokens into model tokens without a published conversion.",
       "current": true
     },
     {
@@ -21726,9 +21843,9 @@
         "commandcode.ai"
       ],
       "name": "Command Code",
-      "checked_on": "2026-09-14",
-      "reason": "A coding agent for open models whose cheapest plan is paid. The home page FAQ says \"Free tier for solo developers\", but the pricing page starts at \"Go $1 /month + processing fee\" with $10 of credits, then GOAT at $10/mo with $70. The free models it advertises — \"Free on Laguna S 2.1 Free on Ling 3.0 Flash Free on LongCat 2.0 Free on Ling 3.0 Flash Sante\", \"Requests cost no credits while capacity lasts\" — are listed inside those plans, not beside them.",
-      "reopen_if": "Command Code offers a $0 plan with model usage included.",
+      "checked_on": "2026-11-05",
+      "reason": "The CLI advertises zero-cost Beam 1.0, Glyph Cluster and Crouton Alpha. Each needs a $1 credit balance to start a session; the two stealth models have 1,000 requests/day per account with a midnight UTC reset, while Beam publishes no daily request limit. One-off top-ups start at five $1 credits plus an unspecified processing fee and do not enable auto reload. The usage guide describes no-subscription Free or balance-only usage, but the promotion eligibility sentence lists paid-plan customers without explicitly confirming these models for a balance-only CLI account. API access separately requires a subscription above Go. A one-time payment is an acceptable condition; neither the priced wallet nor the paid API plan disproves a separate Free CLI lane. Its no-subscription eligibility still needs reconciliation. Sources: https://commandcode.ai/docs/resources/pricing-limits, https://commandcode.ai/docs/resources/payment-methods and https://commandcode.ai/docs/provider.",
+      "reopen_if": "Current primary terms or an authorized account confirms that the advertised Free models work in the CLI without a recurring subscription. Record the minimum initial payment, processing fee, balance requirement and background request costs; check that mode separately from paid subscriptions and API access.",
       "current": true
     },
     {

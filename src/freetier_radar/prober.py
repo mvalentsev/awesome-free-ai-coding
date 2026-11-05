@@ -20,7 +20,7 @@ from .page_reader import browser_challenge, empty_framer_page, page_evidence, re
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
     OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, names_family, is_archived_for_good, lane_ids, load_registry,
+    _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -1918,6 +1918,17 @@ def model_table_findings(resp: httpx.Response, entry: Entry, today: date) -> lis
     if lane:
         covered.update(key(mid.rsplit('/', 1)[-1].removesuffix(':free').removesuffix('-free'))
                        for mid in lane.model_ids)
+        eligible = {key(name) for name in free}
+        missing_ids = []
+        for mid in lane.model_ids:
+            if entry_id_family(entry, mid) is not None:
+                continue
+            stem = mid.casefold().removesuffix(':free').removesuffix('-free')
+            if not {key(stem), key(stem.rsplit('/', 1)[-1])} & eligible:
+                missing_ids.append(mid)
+        if missing_ids:
+            notes.append('model table: callable ids awaiting a family no longer evidenced as free: '
+                         + ', '.join(missing_ids))
     unknown = [name for name in free if _squash(name) not in exclusions | waiting_names
                and key(name) not in covered]
     if unknown:

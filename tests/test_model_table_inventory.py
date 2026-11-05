@@ -205,3 +205,29 @@ async def test_plain_page_waiting_choices_stay_visible_and_missing_names_request
         rendered=build_provider_page(entry,[],date.today(),registry=[entry])
         assert 'beta-2' in rendered.split('## Connect',1)[1].split('\n## ',1)[0]
     else:assert for_a_human(result.detail)==result.detail and 'beta-2' in result.detail
+
+
+@pytest.mark.parametrize('kind', ['prices', 'plan'])
+@pytest.mark.parametrize('state', ['free', 'paid', 'removed'])
+async def test_callable_id_waiting_for_a_family_must_remain_free_in_its_table(kind, state):
+    value = table_entry(kind).model_dump()
+    value['category'] = 'api-free-tier'
+    value['api'] = {'base_url': 'https://vendor.example/v1', 'auth': 'api-key',
+                    'model_ids': ['alpha-1', 'lab/beta-2:free']}
+    entry = Entry.model_validate(value)
+    body = html(kind, beta=state == 'free')
+    if state == 'removed':
+        body = body[:body.index('<tr><td>Beta 2')] + body[body.index('<tr><td>Paid 3'):]
+    calls = []
+    def respond(request):
+        calls.append(str(request.url))
+        return httpx.Response(200, text=body)
+    async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.PASS if state == 'free' else ProbeStatus.STALE_IDS)
+    if state != 'free':
+        assert 'lab/beta-2:free' in result.detail
+        assert for_a_human(result.detail) == result.detail
+    assert calls == [entry.probe.endpoint]
+    assert entry.api.model_ids == ['alpha-1', 'lab/beta-2:free']
+    assert [m.family for m in entry.models] == ['alpha-1']

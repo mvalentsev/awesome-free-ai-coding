@@ -11291,3 +11291,81 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 97
+- id: merkium
+  name: Merkium
+  category: api-free-tier
+  url: https://www.merkium.nl
+  source_urls:
+  - https://www.merkium.nl/docs
+  - https://www.merkium.nl/docs/pricing
+  - https://www.merkium.nl/docs/authentication
+  - https://www.merkium.nl/docs/models
+  - https://www.merkium.nl/docs/rate-limits
+  - https://www.merkium.nl/privacy
+  - https://www.merkium.nl/legal
+  - https://www.merkium.nl/research/ganymede-1-1-technical-report
+  card_required: false
+  offering: Independent model developer with a free OpenAI-compatible API and chat
+    service; current API models have no per-request or per-token charge
+  limits: Sign in and create a free API key in the Console; no card or billing step.
+    Space requests at least two seconds apart, including each step of a tool-call
+    round trip, and honor Retry-After on HTTP 429. The current models are advertised
+    as permanently free; later models may be paid. The public terms page is a review
+    draft without an effective date.
+  quotas:
+  - amount: 30.0
+    unit: requests
+    period: minute
+    scope: key
+    source: https://www.merkium.nl/docs/rate-limits
+    quote: On the free tier, the API allows 30 requests per minute per API key, enforced
+      as one request every two seconds.
+    value_phrase: 30 requests per minute per API key
+  free_part: models
+  models: []
+  api:
+    base_url: https://chat.merkium.nl/api/v1
+    key_url: https://chat.merkium.nl
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - ganymede-1.1
+    - pluto-1.2-flash
+    - pluto-1.2-pro
+    - ceres-1.0
+    - ceres-1.0-pro
+    - pluto-1.1-flash
+    - pluto-1.1-pro
+    note: Create a key in the Console API tab. Set the OpenAI-compatible base URL
+      verbatim; use /chat/completions for chat, streaming and tool calls. Model listing
+      also requires the key.
+  data_use:
+    trains: 'no'
+    quote: Your conversations are never used to train, fine-tune or evaluate Merkium
+      models.
+    url: https://www.merkium.nl/privacy
+  border:
+    left_out: []
+    'on': '2026-11-05'
+    source: https://www.merkium.nl/docs/pricing
+  probe:
+    type: page-keywords
+    endpoint: https://www.merkium.nl/docs/pricing
+    keywords:
+    - free to use through the API, permanently
+    - not need a credit card or a billing account
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+    model_plan:
+      headers:
+      - Model ID
+      - Price
+      name_column: Model ID
+      plan_column: Price
+      included_value: Free
+  first_seen: '2026-11-05'
+  last_verified: '2026-11-05'
+  probe_failures: 0
+  provisional: true
+  rank: 89

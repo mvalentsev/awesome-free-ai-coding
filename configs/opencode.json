@@ -1068,6 +1068,37 @@
         }
       }
     },
+    "merkium": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Merkium",
+      "options": {
+        "baseURL": "https://chat.merkium.nl/api/v1",
+        "apiKey": "{env:MERKIUM_API_KEY}"
+      },
+      "models": {
+        "ganymede-1.1": {
+          "name": "ganymede-1.1"
+        },
+        "pluto-1.2-flash": {
+          "name": "pluto-1.2-flash"
+        },
+        "pluto-1.2-pro": {
+          "name": "pluto-1.2-pro"
+        },
+        "ceres-1.0": {
+          "name": "ceres-1.0"
+        },
+        "ceres-1.0-pro": {
+          "name": "ceres-1.0-pro"
+        },
+        "pluto-1.1-flash": {
+          "name": "pluto-1.1-flash"
+        },
+        "pluto-1.1-pro": {
+          "name": "pluto-1.1-pro"
+        }
+      }
+    },
     "inception-labs": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Inception Labs (Mercury)",

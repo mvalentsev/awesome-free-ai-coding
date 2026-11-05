@@ -1253,6 +1253,48 @@ model_list:
     api_base: https://api.kiosapi.id/v1
     api_key: os.environ/KIOSAPI_ID_API_KEY
     use_chat_completions_api: true
+- model_name: merkium/ganymede-1.1
+  litellm_params:
+    model: openai/ganymede-1.1
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/pluto-1.2-flash
+  litellm_params:
+    model: openai/pluto-1.2-flash
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/pluto-1.2-pro
+  litellm_params:
+    model: openai/pluto-1.2-pro
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/ceres-1.0
+  litellm_params:
+    model: openai/ceres-1.0
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/ceres-1.0-pro
+  litellm_params:
+    model: openai/ceres-1.0-pro
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/pluto-1.1-flash
+  litellm_params:
+    model: openai/pluto-1.1-flash
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
+- model_name: merkium/pluto-1.1-pro
+  litellm_params:
+    model: openai/pluto-1.1-pro
+    api_base: https://chat.merkium.nl/api/v1
+    api_key: os.environ/MERKIUM_API_KEY
+    use_chat_completions_api: true
 - model_name: inception-labs/mercury-3
   litellm_params:
     model: openai/mercury-3

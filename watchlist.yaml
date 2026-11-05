@@ -634,29 +634,27 @@ watched:
 
   - domains: [anyapi.ai]
     name: AnyAPI
-    checked_on: '2026-08-14'
+    checked_on: '2026-11-05'
     reason: >-
-      The free plan is real, published and server-rendered: anyapi.ai/pricing
-      reads "Free / Getting started / $0 / mo", "ANY Tokens: 100K / day",
-      "Core features: All free and basic models", "No credit card required",
-      and docs.anyapi.ai repeats it — "$0/month 100 000 ₳nyTokens per day for
-      free / Basic and free models access" and "Free: Your 100K daily
-      ₳nytokens reset every 24 hours". What stops it is that nothing says what
-      the quota buys. The plan cards count ₳nyTokens; the FAQ on the same
-      pricing page defines a different unit and never reconciles them — "A
-      credit is our universal currency for API usage across all 400+ models.
-      One credit equals roughly 1,000 tokens for most models, but premium
-      models like GPT-4 or Claude 3 Opus consume more credits per token". At
-      1,000 tokens a unit the free plan would be 100M model tokens a day, and
-      the $19.90 plan 100 billion a month, which cannot be what is meant. Which
-      models count as "free and basic" is published nowhere, api.anyapi.ai/v1/models
-      answers 401, and there is no per-model price page — so there is nothing
-      to probe that ties a model to the tier, and no arithmetic to tell a real
-      gateway from a resold pool. The pricing copy still headlines GPT-4 and
-      Claude 3 Opus in 2026, which is its own answer about how current it is.
+      The $0 plan advertises 100K AnyTokens per day without a card, and the
+      official model list now identifies three Free variants with exact API IDs
+      and zero input/output AnyToken prices: Qwen3.8 27B, Ling 3.0 Flash Fin and
+      Ling 3.0 Flash Sante. The previous missing-model-list objection is resolved.
+      The October 7 terms define AnyTokens as an internal billing unit rather
+      than model tokens and say third-party inference providers' identities are
+      not disclosed. Current sources do not establish self-hosted inference or
+      identify authorized upstream capacity for the Free lane. That uncertainty
+      is not a finding of unauthorized proxying. A protected models endpoint's
+      401 establishes neither Free-account eligibility nor a successful completion;
+      unlimited web Playground use is a separate access mode. Sources:
+      https://anyapi.ai/pricing, https://anyapi.ai/ai-models,
+      https://anyapi.ai/terms-of-service and https://docs.anyapi.ai/get-started/faq.
     reopen_if: >-
-      AnyAPI publishes which models the free plan serves, or a keyless catalog,
-      or defines its token unit against real model tokens.
+      Primary evidence identifies self-hosted or authorized upstream inference
+      for the Free lane and establishes its obtainable API entitlement and model
+      supply. Recheck the three zero-priced variants separately from the daily
+      AnyToken wallet, paid plans and browser Playground; do not convert AnyTokens
+      into model tokens without a published conversion.
   - domains: [ainative.studio]
     name: AINative Studio
     checked_on: '2026-08-14'
@@ -2024,17 +2022,27 @@ watched:
 
   - domains: [commandcode.ai]
     name: Command Code
-    checked_on: '2026-09-14'
+    checked_on: '2026-11-05'
     reason: >-
-      A coding agent for open models whose cheapest plan is paid. The home
-      page FAQ says "Free tier for solo developers", but the pricing page
-      starts at "Go $1 /month + processing fee" with $10 of credits, then
-      GOAT at $10/mo with $70. The free models it advertises — "Free on Laguna
-      S 2.1 Free on Ling 3.0 Flash Free on LongCat 2.0 Free on Ling 3.0 Flash
-      Sante", "Requests cost no credits while capacity lasts" — are listed
-      inside those plans, not beside them.
+      The CLI advertises zero-cost Beam 1.0, Glyph Cluster and Crouton Alpha.
+      Each needs a $1 credit balance to start a session; the two stealth models
+      have 1,000 requests/day per account with a midnight UTC reset, while Beam
+      publishes no daily request limit. One-off top-ups start at five $1 credits
+      plus an unspecified processing fee and do not enable auto reload. The usage
+      guide describes no-subscription Free or balance-only usage, but the promotion
+      eligibility sentence lists paid-plan customers without explicitly confirming
+      these models for a balance-only CLI account. API access separately requires
+      a subscription above Go. A one-time payment is an acceptable condition;
+      neither the priced wallet nor the paid API plan disproves a separate Free
+      CLI lane. Its no-subscription eligibility still needs reconciliation.
+      Sources: https://commandcode.ai/docs/resources/pricing-limits,
+      https://commandcode.ai/docs/resources/payment-methods and
+      https://commandcode.ai/docs/provider.
     reopen_if: >-
-      Command Code offers a $0 plan with model usage included.
+      Current primary terms or an authorized account confirms that the advertised
+      Free models work in the CLI without a recurring subscription. Record the
+      minimum initial payment, processing fee, balance requirement and background
+      request costs; check that mode separately from paid subscriptions and API access.
 
   - domains: [kimchi.dev]
     name: Kimchi (CAST AI)
