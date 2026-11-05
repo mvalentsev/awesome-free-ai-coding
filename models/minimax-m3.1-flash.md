@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m3.1-flash free: 1 provider, limits and ids, provider probes 2026-11-02'
+title: 'minimax-m3.1-flash free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: minimax-m3.1-flash is served free by NVIDIA NIM (build.nvidia.com). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3.1-flash/
-last_modified_at: 2026-11-03
+last_modified_at: 2026-11-05
 crumb: minimax-m3.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m3.1-flash
 
 # Where minimax-m3.1-flash is free
 
-**One row on the list serves `minimax-m3.1-flash` free:** NVIDIA NIM (build.nvidia.com). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
+**One row on the list serves `minimax-m3.1-flash` free:** NVIDIA NIM (build.nvidia.com). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m3.1-flash
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-02 · listed since 2026-11-03
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-05 · listed since 2026-11-03
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Novita AI free tier: limits, free models, verified 2026-11-02'
+title: 'Novita AI free tier: limits, free models, verified 2026-11-05'
 description: Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output. Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks…
 permalink: /providers/novita/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: Novita AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Novita AI
 
 # Novita AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-02 · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-05 · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-11-02'
+title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-11-05'
 description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage…'
 permalink: /providers/sensenova/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: SenseNova (SenseTime 商汤)
 ---
 
@@ -11,7 +11,7 @@ crumb: SenseNova (SenseTime 商汤)
 
 # SenseNova (SenseTime 商汤) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-11-02 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-11-05 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Experiential Labs free tier: limits, free models, verified 2026-11-02'
+title: 'Experiential Labs free tier: limits, free models, verified 2026-11-05'
 description: Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits. The pricing page advertises Luna and DeepSeek chat in the Free core pool, but their current model catalog applies zero-price plan discounts only on paid…
 permalink: /providers/experiential-labs/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: Experiential Labs
 ---
 
@@ -11,7 +11,7 @@ crumb: Experiential Labs
 
 # Experiential Labs free tier
 
-🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · **live** — last verified by a probe on 2026-11-02 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · **live** — last verified by a probe on 2026-11-05 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

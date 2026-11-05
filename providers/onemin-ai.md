@@ -1,9 +1,9 @@
 ---
 layout: default
-title: '1min.AI free tier: limits, free models, verified 2026-11-02'
+title: '1min.AI free tier: limits, free models, verified 2026-11-05'
 description: Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance. Free credits never expire and can be obtained through daily visits and other published activities; their amount is not published. API use…
 permalink: /providers/onemin-ai/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: 1min.AI
 ---
 
@@ -11,7 +11,7 @@ crumb: 1min.AI
 
 # 1min.AI free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-02 · [1min.ai](https://1min.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-05 · [1min.ai](https://1min.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

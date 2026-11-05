@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'laguna-xs-2.1 free: 1 provider, limits and ids, provider probes 2026-11-02'
+title: 'laguna-xs-2.1 free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: laguna-xs-2.1 is served free by NVIDIA NIM (build.nvidia.com). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: laguna-xs-2.1
 ---
 
@@ -11,7 +11,7 @@ crumb: laguna-xs-2.1
 
 # Where laguna-xs-2.1 is free
 
-**One row on the list serves `laguna-xs-2.1` free:** NVIDIA NIM (build.nvidia.com). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
+**One row on the list serves `laguna-xs-2.1` free:** NVIDIA NIM (build.nvidia.com). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: laguna-xs-2.1
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-02 · listed since 2026-09-22
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-05 · listed since 2026-09-22
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
