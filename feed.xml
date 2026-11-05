@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-04T12:51:14Z</updated>
+  <updated>2026-11-05T00:49:25Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T004925Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-11-05T00:49:25Z</updated>
+    <summary type="text">added nemotron-3.5-lightning · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixedbread/20261104T125114Z</id>
     <title>Added: Mixedbread</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://qoder.com"/>
     <updated>2026-10-28T13:17:13Z</updated>
     <summary type="text">added deepseek-v4.1-flash, qwen3.8-flash · free models: qwen3.8-flash, deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/simplellm/20261028T131713Z</id>
-    <title>Free models changed: SimpleLLM</title>
-    <link rel="alternate" href="https://simplellm.eu"/>
-    <updated>2026-10-28T13:17:13Z</updated>
-    <summary type="text">added gemma-4-e4b, llama-3.1-8b · free models: gemma-4-e4b, llama-3.1-8b</summary>
   </entry>
 </feed>

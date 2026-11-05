@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'nemotron-3.5-lightning free: 8 providers, limits and ids, provider probes 2026-11-02'
-description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each…
+title: 'nemotron-3.5-lightning free: 9 providers, limits and ids, provider probes 2026-11-02'
+description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-11-03
+last_modified_at: 2026-11-05
 crumb: nemotron-3.5-lightning
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3.5-lightning
 
 # Where nemotron-3.5-lightning is free
 
-**8 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
+**9 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-02; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -109,6 +109,25 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 - Callable ids: `nvidia/nemotron-3.5-lightning-30b-a3b`
 - What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
+### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
+
+🤖 Coding agents & CLIs · no card · last probe 2026-11-02 · listed since 2026-11-05
+
+Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
+
+Free promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In Cline's own model list: `nvidia/nemotron-3.5-lightning-free`
+- What you send may be used to train or improve models ([the vendor's words](https://docs.cline.bot/getting-started/free-models)).
+
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
 🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-09-24
@@ -199,6 +218,6 @@ The free models share each account's daily weighted allowance, reset at 00:00 UT
 
 ---
 
-Generated from `registry.yaml` on 2026-11-04 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

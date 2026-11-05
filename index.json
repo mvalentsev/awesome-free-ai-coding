@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04",
+  "generated": "2026-11-05",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -10364,20 +10364,22 @@
       "source_urls": [
         "https://docs.cline.bot/getting-started/free-models",
         "https://api.cline.bot/api/v1/ai/cline/recommended-models",
-        "https://docs.cline.bot/getting-started/cline-provider"
+        "https://docs.cline.bot/getting-started/cline-provider",
+        "https://docs.cline.bot/usage/cline-desktop",
+        "https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts"
       ],
       "card_required": false,
-      "offering": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-      "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. These models work only in the Cline IDE extension and CLI, not through the Cline API. Free usage may improve model performance and quality.",
+      "offering": "Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
+      "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.",
       "quotas": [
         {
           "unit": "usage",
           "period": "day",
           "scope": "account-model",
           "label": "Free model promotions",
-          "source": "https://docs.cline.bot/getting-started/free-models",
-          "quote": "up to a limited usage quota",
-          "reviewed_on": "2026-11-03",
+          "source": "https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts",
+          "quote": "You've reached today's free usage limit for this model.",
+          "reviewed_on": "2026-11-05",
           "amount": null
         }
       ],
@@ -10389,6 +10391,9 @@
         {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "nemotron-3.5-lightning"
         }
       ],
       "client_lane": {
@@ -10439,7 +10444,8 @@
         "name": "Cline",
         "models": [
           "solar-mini-4",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "cline-free/solar-mini4",
@@ -10447,13 +10453,14 @@
           "reflection/beam-free",
           "nvidia/nemotron-3.5-lightning-free"
         ],
-        "what": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-        "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. These models work only in the Cline IDE extension and CLI, not through the Cline API. Free usage may improve model performance and quality.",
+        "what": "Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
+        "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.",
         "why": "",
         "access": "",
         "modelAccess": {
           "solar-mini-4": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "agent-cli"
@@ -19377,6 +19384,7 @@
         "kilo-code",
         "requesty",
         "nvidia-nim",
+        "cline",
         "aihubmix",
         "vercel-ai-gateway",
         "bazaarlink"
