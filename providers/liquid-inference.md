@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Liquid Inference free tier: limits, free models, verified 2026-11-03'
+title: 'Liquid Inference free tier: limits, free models, verified 2026-11-05'
 description: Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces. The initial credit amount and expiry are not published. A separate first top-up of at least $10 earns $2; that purchase is not required for the starting credit. Each request…
 permalink: /providers/liquid-inference/
-last_modified_at: 2026-11-03
+last_modified_at: 2026-11-05
 crumb: Liquid Inference
 ---
 
@@ -11,7 +11,7 @@ crumb: Liquid Inference
 
 # Liquid Inference free tier
 
-🎁 Trials (no card when possible) · no card · not offered in mainland China, Russia, Iran and 3 more places · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-03 · [inference.ai.exchange](https://inference.ai.exchange) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in mainland China, Russia, Iran and 3 more places · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-05 · [inference.ai.exchange](https://inference.ai.exchange) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

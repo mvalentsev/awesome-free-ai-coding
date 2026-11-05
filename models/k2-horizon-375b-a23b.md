@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'k2-horizon-375b-a23b free: 1 provider, limits and ids, provider probes 2026-11-02'
+title: 'k2-horizon-375b-a23b free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: k2-horizon-375b-a23b is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/k2-horizon-375b-a23b/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: k2-horizon-375b-a23b
 ---
 
@@ -11,7 +11,7 @@ crumb: k2-horizon-375b-a23b
 
 # Where k2-horizon-375b-a23b is free
 
-**One row on the list serves `k2-horizon-375b-a23b` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
+**One row on the list serves `k2-horizon-375b-a23b` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: k2-horizon-375b-a23b
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-19
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-10-19
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'DeepSource free tier: limits, free models, verified 2026-11-03'
+title: 'DeepSource free tier: limits, free models, verified 2026-11-05'
 description: AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits. The trial lasts 14 days and includes up to $50 in AI Review credits; the actual grant is not guaranteed to equal that ceiling. Repository installation and permissions are…
 permalink: /providers/deepsource/
-last_modified_at: 2026-11-03
+last_modified_at: 2026-11-05
 crumb: DeepSource
 ---
 
@@ -11,7 +11,7 @@ crumb: DeepSource
 
 # DeepSource free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-03 · [deepsource.com](https://deepsource.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-05 · [deepsource.com](https://deepsource.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Codex (ChatGPT Free) free tier: limits, free models, verified 2026-11-02'
+title: 'Codex (ChatGPT Free) free tier: limits, free models, verified 2026-11-05'
 description: 'Codex desktop access on a $0 ChatGPT Free plan, subject to rollout. Free models: gpt-6-luna. The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE extension and iOS access; those surfaces are not specified on the Free card. The plan cards publish no numerical Free…'
 permalink: /providers/openai-codex-cli/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: Codex (ChatGPT Free)
 ---
 
@@ -11,7 +11,7 @@ crumb: Codex (ChatGPT Free)
 
 # Codex (ChatGPT Free) free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-11-02 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/pricing) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-11-05 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/pricing) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

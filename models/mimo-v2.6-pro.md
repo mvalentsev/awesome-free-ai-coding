@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'mimo-v2.6-pro free: 1 provider, limits and ids, provider probes 2026-11-02'
+title: 'mimo-v2.6-pro free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: mimo-v2.6-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-pro/
-last_modified_at: 2026-11-02
+last_modified_at: 2026-11-05
 crumb: mimo-v2.6-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.6-pro
 
 # Where mimo-v2.6-pro is free
 
-**One row on the list serves `mimo-v2.6-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-02; its offer is rechecked twice a week.
+**One row on the list serves `mimo-v2.6-pro` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.6-pro
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-02 · listed since 2026-10-06
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-10-06
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
