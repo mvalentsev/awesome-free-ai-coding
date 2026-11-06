@@ -31,7 +31,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
                      load_registry, probe_frequency)
-from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
+from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
@@ -514,6 +514,9 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS"),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",
           lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED"),
+    Claim("CONTRIBUTING.md", r"A later id answering is reported as `([^`]+)`\s+naming both results",
+          lambda root: (ProbeStatus.STALE_IDS.value,),
+          "prober.keyless_lane_verdict and HTTP alternate-completion notice regression in tests/test_prober.py"),
     Claim("CONTRIBUTING.md", r"recovery, with a (\d+)-second budget,\s+up to (\d+) redirects and an (\d+) MiB body limit",
           lambda root: _page_recovery_limits(), "page_reader recovery limits"),
     Claim("CONTRIBUTING.md", r"always calls under this\s+project's own `([^`]+)`",

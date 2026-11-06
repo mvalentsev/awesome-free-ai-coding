@@ -3,7 +3,7 @@ layout: default
 title: 'Autohand Code free tier: limits, free models, verified 2026-11-05'
 description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, using recurring hosted-response credits. Free models: fantail. Ongoing Free access is intended for evaluation and light use. It requires a…'
 permalink: /providers/autohand-code/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-06
 crumb: Autohand Code
 ---
 
@@ -23,7 +23,7 @@ Open-source coding agent for the terminal, VS Code, JetBrains and the desktop wh
 
 ## Limits, in the vendor's words
 
-15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 1,000 input tokens/minute; 1,160 output tokens/minute per account
+15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 500,000 input tokens/minute; 40,000 output tokens/minute per account
 
 Ongoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.
 

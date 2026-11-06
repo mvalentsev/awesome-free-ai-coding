@@ -204,6 +204,33 @@ def _quiet_searches():
 
 
 @respx.mock
+def test_curated_directory_keeps_middle_providers_and_key_links_with_one_read(monkeypatch):
+    """nejib1/Free-LLM, checked 2026-11-06: its directory and key table
+    together exceed the excerpt budget; both contain distinct service leads."""
+    import freetier_radar.discovery as disc
+    url = "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md"
+    feeds = [feed for feed in disc.CURATED_FEEDS if feed.startswith(url + "#")]
+    monkeypatch.setattr(disc, "CURATED_FEEDS", feeds)
+    _quiet_searches()
+    body = ("## Provider Directory\n" + "other model details\n" * 850 +
+            "| [Middle provider](https://middle.example/free) | Recurring free quota |\n" +
+            "## Quick Reference — Base URLs & API Keys\n" +
+            "| Middle provider | [Get key](https://middle.example/keys) |\n" +
+            "other connection details\n" * 400 + "## Guides & Tutorials\n")
+    route = respx.get(url).mock(return_value=httpx.Response(200, text=body))
+    respx.get("https://api.github.com/repos/nejib1/Free-LLM").mock(
+        return_value=httpx.Response(200, json={"archived": False}))
+    with httpx.Client() as client:
+        evidence = gather_evidence(["q1"], set(), env={}, http=client)
+    rendered = format_evidence(evidence)
+    assert "https://middle.example/free" in rendered
+    assert "Recurring free quota" in rendered
+    assert "https://middle.example/keys" in rendered
+    assert not evidence.feed_warnings
+    assert route.call_count == 1
+
+
+@respx.mock
 def test_a_feed_that_degrades_says_so_instead_of_going_quiet(monkeypatch):
     """A feed that cannot be read, whose fragment's heading is gone, or that has
     outgrown the excerpt reaches the run's log as one line saying what to do

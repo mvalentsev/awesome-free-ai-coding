@@ -183,7 +183,7 @@ upper half, which earns the model a page of its own and no strong mark — and n
 tier below the median or where nothing was measured. An explicit `null` score in
 a readable current leaderboard clears the old tier; a missing model or unreadable
 source preserves it for review. The measurement writer accepts only the reviewed
-index version `5.0`; a missing, ambiguous or different revision stops it before
+index version `5.0.1`; a missing, ambiguous or different revision stops it before
 registry or snapshot writes. The snapshot records its version and keeps missing
 measurements, unscored records and deprecated variants distinct. Scores from
 different index revisions must not be combined in one current comparison.
@@ -891,14 +891,15 @@ patience a 5xx gets, unless the vendor's `Retry-After` names a longer wait: a
 rate limit of the moment moved between kilo-auto/free and LLM7's first id from
 one network to the other within the hour on 2026-09-17, and is no reason to
 reorder a row. A later id answering is reported as `stale-ids`
-naming it, since the fix is to put it first; every id answering 429 is reported
+naming both results. Review agent/tool compatibility before changing defaults
+or taking down an existing notice; every id answering 429 is reported
 as a rate-limited lane. With no id answering, a 401 or 403 on the first is the
 vendor asking for a key and fails the row, which after three runs takes it and
 its command off the page — unless an `api.notice` holds it, below; a bot wall
 there is `inconclusive`, not a refusal. Any
 other 4xx — vLLM's 404 for a model id that rotated out — and a lane that cannot be
-reached are reported as `stale-ids` beside a row that stays verified. Put the id
-that answers first: that is the one a reader runs.
+reached are reported as `stale-ids` beside a row that stays verified. A default
+change needs a separate eligibility and client review.
 
 **`data_use` is the vendor's word on training on what a reader sends.** A free
 tier is often paid for in data, and the vendors that split tiers say so: the
@@ -968,7 +969,7 @@ holds a refusal off the failure count for 30 days from `since`: the run reports
 the refusal as `stale-ids` beside a row its own page keeps verified, naming the
 notice and the day it stops holding, and past that day the refusal fails the row
 as it would have without one — a vendor that has said nothing for a month about
-breaking every other client has answered. The day the lane answers again, the
+breaking every other client has answered. The day the lane's first id answers again, the
 run asks for the notice to come down. A notice is temporary by construction:
 when the vendor speaks, delete it and change the row to match what it said.
 opencode's came down on 2026-09-18, the day an OpenCode maintainer wrote that the

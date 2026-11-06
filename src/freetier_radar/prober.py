@@ -798,7 +798,8 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     but it does end the command, so any other answer sends the check on to the
     next id, up to KEYLESS_IDS_TRIED:
 
-    - a later id answering is a note naming it, since the fix is to put it first;
+    - a later id answering is a note naming both results; an ordinary completion
+      does not establish agent/tool support or resolve a notice on the first id;
     - every id answering 429 is a note that the lane is rate-limited from here;
     - with no id answering, a 401 or 403 on the first is the vendor asking for a
       key, which FAILs the row — unless the body is a bot wall, which is no
@@ -876,8 +877,11 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                 return ProbeResult(ProbeStatus.STALE_IDS, " | ".join(notes))
             first, first_answer = tried[0]
             moved = (f"{lane} call to {first} answered {_keyless_said(first_answer)} while "
-                     f"{model} answered HTTP {answer.status_code} — {first_is_read}, "
-                     f"so put {model} first" + (f", and {take_down}" if take_down else ""))
+                     f"{model} answered HTTP {answer.status_code} — {first_is_read}; "
+                     "the alternate answered an ordinary completion, so review agent/tool "
+                     "compatibility before changing client defaults" +
+                     (f"; api.notice of {notice.since.isoformat()} still needs review for {first}"
+                      if notice else ""))
             return ProbeResult(ProbeStatus.STALE_IDS, " | ".join([moved] + swapped))
         tried.append((model, answer))
     first, first_answer = tried[0]

@@ -415,14 +415,12 @@ def quota_changes(body: str, quota: UsageQuota) -> list[str]:
         return [f'{mid}: quota quote no longer in this model description' for mid in quota.model_ids
                 if mid not in by_id or not evidenced(by_id[mid])]
     notes = []
-    if not any(flatten(quota.quote) in text for text in page_texts(body)):
-        notes.append('quota quote no longer on its source')
-    if quota.reset and not any(flatten(quota.reset) in text for text in page_texts(body)):
-        notes.append('quota reset no longer on its source')
-    if quota.condition_quote and not any(flatten(quota.condition_quote) in text for text in page_texts(body)):
-        notes.append('quota condition no longer on its source')
-    if quota.period_quote and not any(flatten(quota.period_quote) in text for text in page_texts(body)):
-        notes.append('quota renewal/grant evidence no longer on its source')
+    texts = page_texts(body)
+    for phrase, label in ((quota.quote, 'quote'), (quota.reset, 'reset'),
+                          (quota.condition_quote, 'condition'),
+                          (quota.period_quote, 'renewal/grant evidence')):
+        if phrase and not any(flatten(phrase) in text for text in texts):
+            notes.append(f'quota {label} no longer on its source')
     if quota.read == 'constant':
         values = re.findall(r'\bconst\s+' + re.escape(quota.constant) + r'\s*=\s*([0-9]+(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?)\s*[;,]', body, re.I)
         if not values:

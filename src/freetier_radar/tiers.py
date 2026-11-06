@@ -55,10 +55,12 @@ SCORES_PATH = Path(__file__).with_name("intelligence-index.json")
 TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 FRONTIER_WITHIN = 10.0
 STRONG_WITHIN = 25.0
-# AA's methodology and complete leaderboard, reviewed 2026-10-31:
+# AA's methodology and complete leaderboard, reviewed 2026-11-06:
 # https://artificialanalysis.ai/methodology/intelligence-benchmarking
+# v5.0.1 regrades CRITPT v2 after grading robustness changes; the nine
+# evaluations and weights are unchanged. Refresh the complete measured series.
 # A new revision needs a review before it can replace the measured series.
-INDEX_VERSION = "5.0"
+INDEX_VERSION = "5.0.1"
 
 # Artificial Analysis /leaderboards/models, checked 2026-10-19: Next.js ships
 # string chunks; scored rows use initialModels, older pages used models.

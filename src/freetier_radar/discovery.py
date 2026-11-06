@@ -17,7 +17,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from typing import Callable, Mapping
-from urllib.parse import urlparse
+from urllib.parse import urldefrag, urlparse
 
 import httpx
 
@@ -67,9 +67,10 @@ CURATED_FEEDS = [
     "https://raw.githubusercontent.com/for-the-zero/Free-LLM-Collection/HEAD/README.md",
     # A "Credit Card?" column and a base URL per row, so a lead arrives already
     # shaped like an entry. Leads only: its limits can contradict the vendor's own
-    # docs. Read from its provider directory up to its guides, which takes in the
-    # directory and its base-URL table.
-    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory:guides",
+    # docs. The directory and base-URL table are separate bounded reads: together
+    # they exceed the excerpt budget (source checked 2026-11-06).
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory:quick-reference",
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#quick-reference:guides",
     # A proxy that runs Claude Code, Codex and other agents on other providers'
     # models, and the providers it takes keys for: one table row each with the
     # page that issues the key and an example model id. It is read because it
@@ -270,14 +271,20 @@ def _feed_name(url: str) -> str:
     return parsed.netloc + parsed.path
 
 
-def _read_feed(client: httpx.Client, feed: str, env: Mapping[str, str]) -> tuple[str | None, list[str]]:
+def _read_feed(client: httpx.Client, feed: str, env: Mapping[str, str],
+               responses: dict[str, httpx.Response] | None = None) -> tuple[str | None, list[str]]:
     """The excerpt of one curated feed the scout reads, and what is wrong with it:
     a feed that could not be read, a start heading gone, more than
     FEED_ELIDED_WARN of its section elided, or an archived repository. None of
     these fails the run; each is a line in the log saying what to do about it."""
     name = _feed_name(feed)
     try:
-        r = client.get(feed)
+        source, _ = urldefrag(feed)
+        r = responses.get(source) if responses is not None else None
+        if r is None:
+            r = client.get(source)
+            if responses is not None:
+                responses[source] = r
         r.raise_for_status()
     except httpx.HTTPError as exc:
         failure = (f"HTTP {exc.response.status_code}" if isinstance(exc, httpx.HTTPStatusError)
@@ -524,10 +531,11 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
         ev.pages = fetch_page_texts([h.url for h in kept[:max_pages]], client,
                                     time_left=time_left, on_unread=ev.page_warnings.append)
 
+        feed_responses: dict[str, httpx.Response] = {}
         for feed in CURATED_FEEDS:
             if spent():
                 break
-            excerpt, warnings = _read_feed(client, feed, env)
+            excerpt, warnings = _read_feed(client, feed, env, feed_responses)
             ev.feed_warnings.extend(warnings)
             if excerpt is not None:
                 ev.feeds[feed] = excerpt

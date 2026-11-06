@@ -12,7 +12,7 @@ import respx
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 from freetier_radar.models import Entry, Tier, load_registry, save_registry
-from freetier_radar.tiers import (FRONTIER_WITHIN, LEADERBOARD_URL, STRONG_WITHIN, Scored, _amain,
+from freetier_radar.tiers import (FRONTIER_WITHIN, INDEX_VERSION, LEADERBOARD_URL, STRONG_WITHIN, Scored, _amain,
                                   index_median, index_top, measured_tier, parse_leaderboard,
                                   review)
 
@@ -36,7 +36,7 @@ SCORED = [
 def flight_page(*arrays: list[dict]) -> str:
     """The leaderboard as Next.js ships it: the data inside escaped strings
     pushed to self.__next_f, split across chunks at arbitrary points."""
-    payload = json.dumps({"name": "Artificial Analysis Intelligence Index v5.0"})
+    payload = json.dumps({"name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}"})
     payload += "".join(f'{i}:["$","$L3c",null,{json.dumps({"models": a})}]\n'
                        for i, a in enumerate(arrays))
     cut = len(payload) // 2
@@ -52,12 +52,35 @@ def page() -> str:
     return flight_page(unscored, SCORED)
 
 
-@pytest.mark.parametrize('version', ['6.0', None, 'ambiguous'])
+@respx.mock
+async def test_reviewed_patch_revision_replaces_old_scores_through_the_http_writer(tmp_path):
+    """AA's 2026-11-06 methodology says v5.0.1 regrades all CRITPT v2
+    results. A new snapshot must use that revision's scores throughout."""
+    metadata = {"name": "Artificial Analysis Intelligence Index v5.0.1", "models": SCORED}
+    body = '<script>self.__next_f.push([1,' + json.dumps(json.dumps(metadata)) + '])</script>'
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))
+    registry, scores = tmp_path / 'registry.yaml', tmp_path / 'scores.json'
+    save_registry(registry, [entry('a', {
+        'family': 'glm-5.3', 'aa_model': 'glm-5-3', 'tier': 'strong'}, {
+        'family': 'no-score-yet', 'aa_model': 'no-score-yet', 'tier': 'strong'})])
+    scores.write_text(json.dumps({"version": "5.0", "families": {
+        "glm-5.3": {"index": 42.0}, "no-score-yet": {"index": 45.0},
+        "old-only": {"index": 50.0}}}))
+    assert await _amain(registry, write=True, scores=scores) == 0
+    snapshot = json.loads(scores.read_text())
+    assert snapshot['version'] == '5.0.1'
+    assert snapshot['families'] == {
+        'glm-5.3': {'slug': 'glm-5-3', 'index': 44.9, 'estimated': False}}
+    assert snapshot['unscored']['no-score-yet']['reason'] == 'unscored'
+    assert load_registry(registry)[0].models[1].tier is None
+
+
+@pytest.mark.parametrize('version', ['5.0', '5.0.2', '6.0', None, 'ambiguous'])
 @respx.mock
 async def test_an_unreviewed_index_revision_cannot_overwrite_tiers_or_measurements(tmp_path, version):
     metadata = '' if version is None else json.dumps({'name':
         'Artificial Analysis Intelligence Index v' +
-        ('5.0' if version == 'ambiguous' else version)})
+        (INDEX_VERSION if version == 'ambiguous' else version)})
     if version == 'ambiguous':
         metadata += json.dumps({'name': 'Artificial Analysis Intelligence Index v6.0'})
     payload = metadata + json.dumps({'models': SCORED})
@@ -95,7 +118,7 @@ async def test_scored_table_props_are_read_through_the_http_writer(tmp_path, tab
     # now arrive in initialModels beside className, not as an object's first key.
     payload = '0:["$","div",null,' + json.dumps({
         "className": "container", table_key: SCORED,
-        "name": "Artificial Analysis Intelligence Index v5.0",
+        "name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}",
     }) + ']\n'
     body = '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
     route = respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))
@@ -115,7 +138,7 @@ async def test_scored_table_props_are_read_through_the_http_writer(tmp_path, tab
 def manifest_page(key):
     # The current page's initialModels omits older models; its own manifest
     # supplies the complete table. Artificial Analysis, checked 2026-10-19.
-    props = {"name": "Artificial Analysis Intelligence Index v5.0",
+    props = {"name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}",
              "initialModels": [m for m in SCORED if not m["deprecated"]],
              "manifest": {"path": "/data/0123456789abcdef.txt"}}
     if key is not None:
@@ -142,7 +165,7 @@ async def test_writer_reads_the_complete_manifest_including_older_models(tmp_pat
     measured = json.loads(scores.read_text())
     assert "old-giant" not in measured["families"]
     assert measured["unscored"]["old-giant"] == {"slug":"old-giant", "reason":"deprecated"}
-    assert measured["version"] == "5.0"
+    assert measured["version"] == INDEX_VERSION
     model=load_registry(registry)[0].models[0]
     assert model.family == 'old-giant' and model.aa_model == 'old-giant'
     assert model.tier is None
@@ -332,7 +355,7 @@ async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, 
     assert tiers == {("a", "gemini-3.8-flash"): Tier.STRONG, ("b", "gemini-3.8-flash"): Tier.STRONG,
                      ("b", "glm-5.3"): Tier.FRONTIER}
     out = capsys.readouterr().out
-    assert ("Intelligence Index v5.0; top: Claude Fable 5.1 (max), 53.4 — frontier from 43.4, strong from 28.4, "
+    assert (f"Intelligence Index v{INDEX_VERSION}; top: Claude Fable 5.1 (max), 53.4 — frontier from 43.4, strong from 28.4, "
             "notable from 41.2, the median of its 5 current models") in out
     assert "gemini-3.8-flash: frontier → strong (41.2 on gemini-3-8-flash)" in out
 
@@ -466,7 +489,7 @@ async def test_write_keeps_every_score_it_read_for_the_readme_to_draw(tmp_path: 
     kept = json.loads(scores.read_text(encoding="utf-8"))
     assert kept["read_on"] == date.today().isoformat()
     assert kept["source"] == LEADERBOARD_URL
-    assert kept["version"] == '5.0'
+    assert kept["version"] == INDEX_VERSION
     assert kept['unscored']['renamed'] == {'slug':'no-longer-listed','reason':'missing'}
     assert kept["top"] == {"slug": "claude-fable-5-1", "name": "Claude Fable 5.1 (max)", "index": 53.4}
     assert kept["median"] == 41.2

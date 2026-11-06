@@ -6916,6 +6916,14 @@
         {
           "family": "mimo-v2.6-pro",
           "aa_model": "mimo-v2-6-pro"
+        },
+        {
+          "family": "gemma-4-26b-a4b",
+          "aa_model": "gemma-4-26b-a4b"
+        },
+        {
+          "family": "gemma-4-31b",
+          "aa_model": "gemma-4-31b"
         }
       ],
       "api": {
@@ -7042,7 +7050,9 @@
           "agents-a1",
           "intern-s2-preview-35b",
           "mimo-v2.6-flash",
-          "mimo-v2.6-pro"
+          "mimo-v2.6-pro",
+          "gemma-4-26b-a4b",
+          "gemma-4-31b"
         ],
         "ids": [
           "coding-glm-5.2-free",
@@ -7109,7 +7119,9 @@
           "agents-a1": "",
           "intern-s2-preview-35b": "",
           "mimo-v2.6-flash": "",
-          "mimo-v2.6-pro": ""
+          "mimo-v2.6-pro": "",
+          "gemma-4-26b-a4b": "",
+          "gemma-4-31b": ""
         },
         "section": {
           "id": "aggregator"
@@ -9142,7 +9154,7 @@
           "ifm/jais-3-mova-36b-a4b",
           "ifm/k2-horizon-375b-a23b"
         ],
-        "note": "New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Include reasoning in max_tokens."
+        "note": "New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking."
       },
       "data_use": {
         "trains": "yes",
@@ -12411,9 +12423,9 @@
       },
       "border": {
         "left_out": [],
-        "on": "2026-09-26",
+        "on": "2026-11-06",
         "source": "https://moark.com/docs/appendix/terms",
-        "quote": "您必须提交自身合法、真实、有效的身份信息完成真实身份的核验",
+        "quote": "因此，您只能在遵守中国和其他适用的出口管制和制裁法律法规的情况下访问、使用、或购买服务",
         "read": "quote",
         "also_named": []
       },
@@ -14895,7 +14907,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, using recurring hosted-response credits",
-      "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 1,000 input tokens/minute; 1,160 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
+      "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 500,000 input tokens/minute; 40,000 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
       "quotas": [
         {
           "amount": 15.0,
@@ -14922,7 +14934,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-10"
+          "reviewed_on": "2026-11-06"
         },
         {
           "amount": 100.0,
@@ -14947,7 +14959,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-10"
+          "reviewed_on": "2026-11-06"
         },
         {
           "amount": 10.0,
@@ -14972,10 +14984,10 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-10"
+          "reviewed_on": "2026-11-06"
         },
         {
-          "amount": 1000.0,
+          "amount": 500000.0,
           "unit": "input tokens",
           "period": "minute",
           "scope": "account",
@@ -14997,10 +15009,10 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-10"
+          "reviewed_on": "2026-11-06"
         },
         {
-          "amount": 1160.0,
+          "amount": 40000.0,
           "unit": "output tokens",
           "period": "minute",
           "scope": "account",
@@ -15022,7 +15034,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-10-10"
+          "reviewed_on": "2026-11-06"
         }
       ],
       "free_part": "models",
@@ -15064,7 +15076,7 @@
         ],
         "ids": [],
         "what": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, using recurring hosted-response credits",
-        "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 1,000 input tokens/minute; 1,160 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
+        "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 500,000 input tokens/minute; 40,000 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -19519,6 +19531,18 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
     },
     {
+      "family": "gemma-4-31b",
+      "rows": [
+        "openrouter-free",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "regolo",
+        "opper"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
+    },
+    {
       "family": "glm-5.3-flash",
       "rows": [
         "opencode",
@@ -19564,17 +19588,6 @@
         "token-harbor"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
-      "family": "gemma-4-31b",
-      "rows": [
-        "openrouter-free",
-        "requesty",
-        "nvidia-nim",
-        "regolo",
-        "opper"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
     },
     {
       "family": "beam-1.0",
@@ -19760,6 +19773,14 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
+    },
+    {
+      "family": "gemma-4-26b-a4b",
+      "rows": [
+        "openrouter-free",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
     },
     {
       "family": "glm-4.6v-flash",
@@ -20007,13 +20028,6 @@
       "rows": [
         "google-ai-studio"
       ]
-    },
-    {
-      "family": "gemma-4-26b-a4b",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
     },
     {
       "family": "gemma-4-e4b",

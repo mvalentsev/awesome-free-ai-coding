@@ -2679,7 +2679,7 @@ async def test_a_2xx_without_a_completion_is_not_the_lane_answering():
     assert result.status is ProbeStatus.STALE_IDS
     assert "gpt-oss-120b answered HTTP 200 without a completion" in result.detail
     assert "Free models need a signed-in account" in result.detail
-    assert "put qwen3-coder-30b first" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
 
     # No id answering with one is a lane that did not answer: said, never passed,
     # and never failed either — a 200 is no key being asked for.
@@ -2767,7 +2767,7 @@ async def test_an_id_answered_as_another_model_is_a_note():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
-    assert "put qwen3-coder-30b first" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
     assert "keyless call to qwen3-coder-30b answered as minimax-m2.5-free" in result.detail
 
 
@@ -2850,7 +2850,7 @@ async def test_a_first_id_that_is_rate_limited_while_another_answers_is_a_note_n
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
     assert "gpt-oss-120b answered HTTP 429" in result.detail
-    assert "put qwen3-coder-30b first" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
     assert call.call_count == 3 + 1  # the first id asked three times, then the next once
 
 
@@ -2870,7 +2870,7 @@ async def test_the_next_id_is_asked_only_after_the_pause_the_probe_takes_between
         side_effect=_answer_by_model({"gpt-oss-120b": 404, "qwen3-coder-30b": 200}))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=1.5)
-    assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
+    assert result.status is ProbeStatus.STALE_IDS and "qwen3-coder-30b answered HTTP 200" in result.detail
     assert pauses == [1.5]
 
 
@@ -2917,7 +2917,7 @@ async def test_a_4xx_a_200_carries_in_its_body_is_an_answer():
         httpx.Response(200, json=completion("qwen3-coder-30b"))])
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
-    assert "put qwen3-coder-30b first" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
     assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b", "qwen3-coder-30b"]
 
 
@@ -3123,7 +3123,7 @@ async def test_a_refused_first_id_beside_one_that_answers_is_a_note_not_a_failur
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
-    assert "put qwen3-coder-30b first" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
 
 
 @respx.mock
@@ -3195,6 +3195,28 @@ async def test_a_notice_past_its_hold_lets_the_refusal_count_again():
                                    today=date(2026, 10, 18))
     assert result.status is ProbeStatus.FAIL
     assert "api.notice of 2026-09-17 stopped holding on 2026-10-17" in result.detail
+
+
+@respx.mock
+async def test_an_alternate_chat_completion_cannot_clear_the_refused_models_notice():
+    """gateway.vlm.run/v1/openai/chat/completions, checked 2026-11-06:
+    the agent model needs a key while an ordinary-chat model answers.
+    That does not repair the advertised agent path."""
+    entry = noticed_keyless_entry(date(2026, 9, 17))
+    original_ids = list(entry.api.model_ids)
+    respx.get("https://open.x.ai/v1/models").mock(
+        return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=_answer_by_model({"gpt-oss-120b": 403, "qwen3-coder-30b": 200}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0, today=date(2026, 9, 21))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b answered HTTP 403" in result.detail
+    assert "qwen3-coder-30b answered HTTP 200" in result.detail
+    assert "take down api.notice" not in result.detail
+    assert "so put" not in result.detail
+    assert entry.api.model_ids == original_ids
+    assert entry.api.notice is not None
 
 
 @respx.mock

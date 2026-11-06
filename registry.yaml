@@ -3773,6 +3773,10 @@ entries:
     aa_model: mimo-v2-6-flash
   - family: mimo-v2.6-pro
     aa_model: mimo-v2-6-pro
+  - family: gemma-4-26b-a4b
+    aa_model: gemma-4-26b-a4b
+  - family: gemma-4-31b
+    aa_model: gemma-4-31b
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://console.aihubmix.com/workspaces/default/keys
@@ -5248,9 +5252,7 @@ entries:
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
     note: 'New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL:
-      omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high
-      (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory.
-      Include reasoning in max_tokens.'
+      omit reasoning_effort; reasoning: false disables thinking.'
   data_use:
     trains: 'yes'
     quote: Text, images and videos sent to the free row may be retained by the provider
@@ -7361,9 +7363,9 @@ entries:
     url: https://moark.com/docs/appendix/terms
   border:
     left_out: []
-    'on': '2026-09-26'
+    'on': '2026-11-06'
     source: https://moark.com/docs/appendix/terms
-    quote: 您必须提交自身合法、真实、有效的身份信息完成真实身份的核验
+    quote: 因此，您只能在遵守中国和其他适用的出口管制和制裁法律法规的情况下访问、使用、或购买服务
     read: quote
   probe:
     type: page-keywords
@@ -9027,7 +9029,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-10'
+    reviewed_on: '2026-11-06'
   - amount: 100.0
     unit: credits
     period: month
@@ -9047,7 +9049,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-10'
+    reviewed_on: '2026-11-06'
   - amount: 10.0
     unit: requests
     period: minute
@@ -9067,8 +9069,8 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-10'
-  - amount: 1000.0
+    reviewed_on: '2026-11-06'
+  - amount: 500000.0
     unit: input tokens
     period: minute
     scope: account
@@ -9087,8 +9089,8 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-10'
-  - amount: 1160.0
+    reviewed_on: '2026-11-06'
+  - amount: 40000.0
     unit: output tokens
     period: minute
     scope: account
@@ -9107,7 +9109,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-10'
+    reviewed_on: '2026-11-06'
   free_part: models
   models:
   - family: fantail

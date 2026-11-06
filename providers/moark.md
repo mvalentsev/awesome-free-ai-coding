@@ -3,7 +3,7 @@ layout: default
 title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-11-05'
 description: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought. Choose the free experience token; it can be used without buying a resource…
 permalink: /providers/moark/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-06
 crumb: Moark (Gitee AI)
 ---
 
@@ -29,7 +29,7 @@ Choose the free experience token; it can be used without buying a resource packa
 
 ## Where it is offered
 
-The vendor names no country it keeps the offer from ([source](https://moark.com/docs/appendix/terms), read 2026-09-26). In the vendor's words: “您必须提交自身合法、真实、有效的身份信息完成真实身份的核验”.
+The vendor names no country it keeps the offer from ([source](https://moark.com/docs/appendix/terms), read 2026-11-06). In the vendor's words: “因此，您只能在遵守中国和其他适用的出口管制和制裁法律法规的情况下访问、使用、或购买服务”.
 
 ## What happens to what you send
 
