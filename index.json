@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-05",
+  "generated": "2026-11-06",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -8884,7 +8884,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -8913,40 +8913,6 @@
           ],
           "reviewed_on": "2026-11-02",
           "amount": null
-        },
-        {
-          "amount": 200000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "account-model",
-          "label": "Jais 3 MoVA",
-          "condition": "Input and output count together",
-          "condition_quote": "girdi ve çıktı birlikte sayılır",
-          "reset": "00:00'da (TSİ)",
-          "source": "https://llmtr.com/blog/arapca-dil-modeli-api-jais-3",
-          "quote": "her hesabın bu model için günde 200.000 token hakkı vardır",
-          "value_phrase": "günde 200.000 token",
-          "model_ids": [
-            "ifm/jais-3-mova-36b-a4b"
-          ],
-          "reviewed_on": "2026-11-01"
-        },
-        {
-          "amount": 200000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "account-model",
-          "label": "K2 Horizon",
-          "condition": "Input and output count together; reasoning counts as output",
-          "condition_quote": "girdi ve çıktı birlikte sayılır ve düşünme token'ları çıktıya dahildir",
-          "reset": "00:00'da (TSİ)",
-          "source": "https://llmtr.com/blog/k2-horizon-reasoning-effort-max-tokens",
-          "quote": "her hesabın bu model için günde 200.000 token hakkı vardır",
-          "value_phrase": "günde 200.000 token",
-          "model_ids": [
-            "ifm/k2-horizon-375b-a23b"
-          ],
-          "reviewed_on": "2026-11-01"
         }
       ],
       "free_part": "models",
@@ -8966,13 +8932,6 @@
           "aa_model": "qwen3-8-27b"
         },
         {
-          "family": "jais-3-mova-36b-a4b"
-        },
-        {
-          "family": "k2-horizon-375b-a23b",
-          "aa_model": "k2-horizon-375b-a23b"
-        },
-        {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
         }
@@ -8987,9 +8946,7 @@
           "qwen/qwen3.8-27b-free",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "nvidia/nemotron-3.5-super-vl-free",
-          "ifm/jais-3-mova-36b-a4b",
-          "ifm/k2-horizon-375b-a23b"
+          "nvidia/nemotron-3.5-super-vl-free"
         ],
         "model_bindings": {
           "internlm/intern-s2-free": {
@@ -9181,7 +9138,9 @@
           "internlm/intern-s2-free",
           "internlm/sage-a1.5-free",
           "heabsy/qwen3.8-27b-heabsy-free",
-          "minimax/minimax-m3.1-flash-free"
+          "minimax/minimax-m3.1-flash-free",
+          "ifm/jais-3-mova-36b-a4b",
+          "ifm/k2-horizon-375b-a23b"
         ],
         "note": "New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking. Jais 3: low/high (default high), tool_choice: auto. K2 Horizon: medium/high; thinking is mandatory. Include reasoning in max_tokens."
       },
@@ -9220,8 +9179,6 @@
           "agnes-3.0-flash",
           "agnes-2.5-flash",
           "qwen3.8-27b",
-          "jais-3-mova-36b-a4b",
-          "k2-horizon-375b-a23b",
           "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
@@ -9229,12 +9186,10 @@
           "qwen/qwen3.8-27b-free",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "nvidia/nemotron-3.5-super-vl-free",
-          "ifm/jais-3-mova-36b-a4b",
-          "ifm/k2-horizon-375b-a23b"
+          "nvidia/nemotron-3.5-super-vl-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nJais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)\n\nK2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -9242,8 +9197,6 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "jais-3-mova-36b-a4b": "until 2026-11-05",
-          "k2-horizon-375b-a23b": "until 2026-11-05",
           "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
@@ -9260,8 +9213,6 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "jais-3-mova-36b-a4b": "until 2026-11-05",
-          "k2-horizon-375b-a23b": "until 2026-11-05",
           "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "ids": {
@@ -9269,9 +9220,7 @@
           "qwen/qwen3.8-27b-free": "",
           "agnes/agnes-3.0-flash": "",
           "agnes/agnes-2.5-flash": "",
-          "nvidia/nemotron-3.5-super-vl-free": "",
-          "ifm/jais-3-mova-36b-a4b": "free until 2026-11-05 23:59+03:00",
-          "ifm/k2-horizon-375b-a23b": "free until 2026-11-05 23:59+03:00"
+          "nvidia/nemotron-3.5-super-vl-free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -20156,20 +20105,6 @@
       ]
     },
     {
-      "family": "jais-3-mova-36b-a4b",
-      "rows": [
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/"
-    },
-    {
-      "family": "k2-horizon-375b-a23b",
-      "rows": [
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/"
-    },
-    {
       "family": "kimi-for-coding",
       "rows": [
         "aihubmix"
@@ -20552,6 +20487,16 @@
       "family": "intern-s2-397b",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/intern-s2-397b/"
+    },
+    {
+      "family": "jais-3-mova-36b-a4b",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/jais-3-mova-36b-a4b/"
+    },
+    {
+      "family": "k2-horizon-375b-a23b",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/"
     },
     {
       "family": "kolibri-1",

@@ -1,51 +1,26 @@
 ---
 layout: default
-title: 'jais-3-mova-36b-a4b free: 1 provider, limits and ids, provider probes 2026-11-05'
-description: jais-3-mova-36b-a4b is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'jais-3-mova-36b-a4b free: no current listing, last listed 2026-11-06'
+description: No row currently lists jais-3-mova-36b-a4b under Free models. The list carried it at LLMTR until 2026-11-06. Each row's page gives its current offer.
 permalink: /models/jais-3-mova-36b-a4b/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-06
 crumb: jais-3-mova-36b-a4b
 ---
 
 {% raw %}
 
-# Where jais-3-mova-36b-a4b is free
+# jais-3-mova-36b-a4b: no current free listing
 
-**One row on the list serves `jais-3-mova-36b-a4b` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
+**No row currently lists `jais-3-mova-36b-a4b` under Free models.** The list carried it at LLMTR until 2026-11-06. Each row's page says what it offers now.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## Who serves it free
+## Rows that listed it
 
-### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-10-19
-
-Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`
-
-Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
-
-Jais 3 MoVA: 200,000 tokens/day per account per model (Input and output count together); for `ifm/jais-3-mova-36b-a4b`. 00:00'da (TSİ)
-
-K2 Horizon: 200,000 tokens/day per account per model (Input and output count together; reasoning counts as output); for `ifm/k2-horizon-375b-a23b`. 00:00'da (TSİ)
-
-Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
-
-</details>
-
-- Base URL: `https://llmtr.com/v1`
-- Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `ifm/jais-3-mova-36b-a4b`
-- `ifm/jais-3-mova-36b-a4b`: free until 2026-11-05 23:59+03:00 ([conditions](https://llmtr.com/models/ifm/jais-3-mova-36b-a4b))
-- What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
+- [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-10-19 to 2026-11-06
 
 ---
 
-Generated from `registry.yaml` on 2026-11-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

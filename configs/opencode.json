@@ -477,20 +477,6 @@
         },
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
-        },
-        "ifm/jais-3-mova-36b-a4b": {
-          "name": "ifm/jais-3-mova-36b-a4b (until 2026-11-05)",
-          "limit": {
-            "context": 524288,
-            "output": 524288
-          }
-        },
-        "ifm/k2-horizon-375b-a23b": {
-          "name": "ifm/k2-horizon-375b-a23b (until 2026-11-05)",
-          "limit": {
-            "context": 524288,
-            "output": 524288
-          }
         }
       }
     },

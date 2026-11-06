@@ -635,26 +635,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/ifm/jais-3-mova-36b-a4b
-  litellm_params:
-    model: openai/ifm/jais-3-mova-36b-a4b
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 524288
-  model_info:
-    access: free until 2026-11-05 23:59+03:00
-    source: https://llmtr.com/models/ifm/jais-3-mova-36b-a4b
-- model_name: llmtr/ifm/k2-horizon-375b-a23b
-  litellm_params:
-    model: openai/ifm/k2-horizon-375b-a23b
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 524288
-  model_info:
-    access: free until 2026-11-05 23:59+03:00
-    source: https://llmtr.com/models/ifm/k2-horizon-375b-a23b
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
