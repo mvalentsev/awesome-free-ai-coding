@@ -90,6 +90,13 @@
         },
         "recursive/flint-v1.0:free": {
           "name": "recursive/flint-v1.0:free"
+        },
+        "liquid/lfm-3-1.7b:free": {
+          "name": "liquid/lfm-3-1.7b:free",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
         }
       }
     },
@@ -167,6 +174,13 @@
           "limit": {
             "context": 262144,
             "output": 32768
+          }
+        },
+        "liquid/lfm-3-1.7b:free": {
+          "name": "liquid/lfm-3-1.7b:free",
+          "limit": {
+            "context": 262144,
+            "output": 8192
           }
         }
       }
@@ -477,6 +491,16 @@
         },
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
+        },
+        "liquid/lfm3-1.7b-free": {
+          "name": "liquid/lfm3-1.7b-free (until 2026-12-30)"
+        },
+        "parallel/parallel-free": {
+          "name": "parallel/parallel-free (until 2027-01-04)",
+          "limit": {
+            "context": 20000,
+            "output": 20000
+          }
         }
       }
     },
@@ -499,6 +523,13 @@
         },
         "reflection/beam-free": {
           "name": "reflection/beam-free"
+        },
+        "humansand/ampersand-v0.1": {
+          "name": "humansand/ampersand-v0.1",
+          "limit": {
+            "context": 1000000,
+            "output": 32768
+          }
         }
       }
     },
@@ -673,6 +704,9 @@
             "context": 262144,
             "output": 131072
           }
+        },
+        "meituan/longcat-2.5:free": {
+          "name": "meituan/longcat-2.5:free"
         }
       }
     },

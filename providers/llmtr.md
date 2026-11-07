@@ -3,7 +3,7 @@ layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-05'
 description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b. Free chat rows can be called on a new account with zero…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-11-06
+last_modified_at: 2026-11-07
 crumb: LLMTR
 ---
 
@@ -27,6 +27,10 @@ Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; sco
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
+LFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`
+
+Parallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`
+
 Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
 ## Where it is offered
@@ -41,7 +45,9 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
+- `liquid/lfm3-1.7b-free`: free until 2026-12-30 23:59+03:00 ([conditions](https://llmtr.com/models/liquid/lfm3-1.7b-free))
+- `parallel/parallel-free`: free until 2027-01-04 23:59+03:00 ([conditions](https://llmtr.com/models/parallel/parallel-free))
 - Note: New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -100,6 +106,8 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/blog/jais-3-vs-k2-horizon>
 - Source: <https://llmtr.com/models/poolside/laguna-xs-2.1>
 - Source: <https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b>
+- Source: <https://llmtr.com/models/liquid/lfm3-1.7b-free>
+- Source: <https://llmtr.com/models/parallel/parallel-free>
 
 ## History
 

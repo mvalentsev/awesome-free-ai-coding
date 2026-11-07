@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.1-pro free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: gemini-3.1-pro is served free by Gemini Enterprise Agent Platform express mode (formerly Vertex AI). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.1-pro/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: gemini-3.1-pro
 ---
 
@@ -23,14 +23,12 @@ crumb: gemini-3.1-pro
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
+- Limits, in the vendor's words: Preview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`
+
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
 - Limits, in the vendor's words: Preview models: Per-minute requests allowance: amount varies per project per model
-
-Stable Gemini models: 10 requests/minute per project per model (Free express trial lasts up to 90 days); for `gemini-2.5-pro`, `gemini-2.5-flash`
-
-Preview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`
 
 The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.
 

@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-11-05'
 description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: qwen3.8-flash
 ---
 
@@ -47,13 +47,13 @@ Free token grants apply in Singapore (international), independently per model an
 
 Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim
 
-- Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
+- Limits, in the vendor's words: Qwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
+
+Pro trial: 300 credits once per account (Valid for 2 weeks)
 
 Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
 
 Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
-
-Qwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
 
 The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The Qwen3.8-Flash promotion includes individual Free accounts with zero Credits, requires no claim, and excludes Teams and Enterprise. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Free uses spend no Credits; its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01 at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
 - No API endpoint to paste: this row is a tool you install or sign in to.
@@ -65,13 +65,13 @@ The Free plan continues on unnamed basic models with unpublished daily and month
 
 Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app
 
-- Limits, in the vendor's words: Pro trial: 300 credits once per account (Valid for 2 weeks)
+- Limits, in the vendor's words: Qwen3.8 Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
+
+Pro trial: 300 credits once per account (Valid for 2 weeks)
 
 Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
 
 Basic-model fallback: Completions allowance: amount not published (period not published) per account
-
-Qwen3.8 Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
 
 The model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Its end is "结束时间将提前在本页公告" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are "separate product systems"; their accounts, tasks and data are not interoperable.
 - No API endpoint to paste: this row is a tool you install or sign in to.

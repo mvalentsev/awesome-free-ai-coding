@@ -419,6 +419,46 @@ def two_family_entry() -> Entry:
     return e
 
 
+@pytest.mark.parametrize("limits, detail", [
+    ({"context_window": 1000000, "max_tokens": 32768}, ""),
+    ({"context_window": 524288, "max_tokens": 16384},
+     "context_tokens=524288 (recorded 1000000), output_tokens=16384 (recorded 32768)"),
+    ({"context_window": 1000000, "max_tokens": True}, "output_tokens unavailable"),
+    ({"context_window": 1000000, "max_tokens": "32768"}, "output_tokens unavailable"),
+    ({"context_window": True, "max_tokens": 32768},
+     "context_tokens unavailable, output_tokens unavailable"),
+    ({"context_length": 1000000, "max_tokens": 32768}, "output_tokens unavailable"),
+])
+@respx.mock
+async def test_catalog_rechecks_vercel_context_window_and_output_tokens(limits, detail):
+    """Vercel's paired catalog fields are token maxima, not request defaults.
+
+    Source: https://vercel.com/ai-gateway/models/ampersand-v0.1 and its
+    /v1/models record at https://ai-gateway.vercel.sh/v1/models, read 2026-11-07.
+    """
+    endpoint = "https://ai-gateway.vercel.sh/v1/models"
+    mid = "humansand/ampersand-v0.1"
+    row = zero_price_entry().model_dump()
+    row["models"] = [{"family": "ampersand-v0.1"}]
+    row["probe"]["endpoint"] = endpoint
+    row["probe"]["free_marker"] = ""
+    row["api"] = {
+        "base_url": "https://ai-gateway.vercel.sh/v1", "model_ids": [mid],
+        "model_limits": {mid: {
+            "context_tokens": 1000000, "output_tokens": 32768, "source": endpoint,
+        }},
+    }
+    respx.get(endpoint).respond(200, json={"data": [{
+        "id": mid, "object": "model", "name": "Ampersand v0.1",
+        "pricing": {"input": "0", "output": "0"}, **limits,
+    }]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if detail else ProbeStatus.PASS)
+    if detail:
+        assert f"api.model_limits {mid}: {detail}" in result.detail
+
+
 @pytest.mark.parametrize("parameters, supported", [(None, False), (["max_tokens"], False),
                                                    (["max_completion_tokens"], False),
                                                    (["max_tokens", "max_completion_tokens"], True)])

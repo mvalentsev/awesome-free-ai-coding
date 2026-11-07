@@ -49,6 +49,34 @@ def test_every_provider_uses_the_shared_section_contract():
         assert headings == required + [h for h in optional if h in headings] + ending, e.id
 
 
+def test_model_pages_separate_their_allowance_from_provider_and_other_model_limits():
+    from freetier_radar.render import build_model_page, build_provider_page
+
+    row = make(models=[{'family': 'alpha'}, {'family': 'beta'}],
+        limits='Shared provider conditions. ' * 10,
+        api={'base_url': 'https://api.x.ai/v1', 'model_ids': ['alpha', 'beta']},
+        quotas=[
+            {'amount': 200, 'unit': 'requests', 'period': 'hour', 'scope': 'ip',
+             'source': 'https://x.ai/limits', 'quote': '200 requests per hour'},
+            {'amount': 20, 'unit': 'requests', 'period': 'day', 'scope': 'account-model',
+             'label': 'Alpha allowance', 'model_ids': ['alpha'],
+             'source': 'https://x.ai/alpha', 'quote': '20 requests per day'},
+            {'amount': 30, 'unit': 'requests', 'period': 'day', 'scope': 'account-model',
+             'label': 'Beta allowance', 'model_ids': ['beta'],
+             'source': 'https://x.ai/beta', 'quote': '30 requests per day'},
+        ])
+    for family, own, other in [('alpha', 'Alpha allowance', 'Beta allowance'),
+                               ('beta', 'Beta allowance', 'Alpha allowance')]:
+        page = build_model_page(family, [row], [], TODAY)
+        assert own in page and other not in page
+        shared = page.split('<summary>Provider-wide limits</summary>', 1)[1].split('</details>', 1)[0]
+        assert own not in shared
+        assert shared.count('200 requests/hour per IP') == 1
+        assert page.count('200 requests/hour per IP') == 1
+    provider = build_provider_page(row, [], TODAY)
+    assert 'Alpha allowance' in provider and 'Beta allowance' in provider
+
+
 def test_connect_labels_keep_account_conditions_once_and_model_conditions_on_the_model():
     from freetier_radar.render import build_provider_page
 

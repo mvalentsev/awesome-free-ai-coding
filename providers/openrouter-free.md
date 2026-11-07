@@ -3,7 +3,7 @@ layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-11-05'
 description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note and 3 more. OpenRouter''s FAQ says its free models "have low…'
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: OpenRouter (free models)
 ---
 
@@ -43,8 +43,8 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `OPENROUTER_API_KEY` — get one at <https://openrouter.ai/settings/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://openrouter.ai/api`
 - Codex CLI: [`configs/codex/openrouter-free.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/openrouter-free.config.toml) — copy it to `~/.codex/`, then `codex -p openrouter-free`; set up on the lane by the vendor's own page, <https://openrouter.ai/docs/cookbook/coding-agents/codex-cli>: "Configure Codex for OpenRouter"
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `google/gemma-4-31b-it:free`, `google/gemma-4-26b-a4b-it:free`, `cohere/north-mini-code:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`, `dots-studio/dots-3-note-preview:free`, `liquid/lfm-2.5-2.6b:free`, `openrouter/free`, `nvidia/nemotron-3.5-super-vl:free`, `xingchen-agi/xing4.0-29b-a4b:free`, `recursive/flint-v1.0:free`
-- Note: Use IDs with the :free suffix; their input and output prices are zero. openrouter/free chooses a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api, leave ANTHROPIC_API_KEY empty and use a :free ID as ANTHROPIC_MODEL.
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `google/gemma-4-31b-it:free`, `google/gemma-4-26b-a4b-it:free`, `cohere/north-mini-code:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`, `dots-studio/dots-3-note-preview:free`, `liquid/lfm-2.5-2.6b:free`, `openrouter/free`, `nvidia/nemotron-3.5-super-vl:free`, `xingchen-agi/xing4.0-29b-a4b:free`, `recursive/flint-v1.0:free`, `liquid/lfm-3-1.7b:free`
+- Note: Use IDs with the :free suffix; their input and output prices are zero. openrouter/free chooses a free model automatically. LiquidAI advises against agentic coding with the listed LFM models. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api, leave ANTHROPIC_API_KEY empty and use a :free ID as ANTHROPIC_MODEL.
 
 Try it from your terminal with your key in `OPENROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -61,6 +61,7 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
 - Source: <https://openrouter.ai/docs/faq>
 - Source: <https://openrouter.ai/docs/api_reference/limits>
 - Source: <https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration>
+- Source: <https://huggingface.co/LiquidAI/LFM3-1.7B>
 
 ## History
 

@@ -3,7 +3,7 @@ layout: default
 title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-05'
 description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-2.5-flash/
-last_modified_at: 2026-11-06
+last_modified_at: 2026-11-07
 crumb: agnes-2.5-flash
 ---
 
@@ -26,11 +26,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`
-
-Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
-
-Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
+- Limits, in the vendor's words: Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
 </details>
 

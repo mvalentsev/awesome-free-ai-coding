@@ -1,5 +1,6 @@
 import httpx
 import json
+from datetime import timedelta
 from pathlib import Path
 import pytest
 import respx
@@ -50,6 +51,7 @@ def test_indonesian_period_words_do_not_match_the_wrong_window(period, quote):
     ('completion', True), ('tasks', True), ('price', True),
     ('duplicate', True), ('missing-free', True), ('boolean', True),
     ('missing-script', True), ('duplicate-script', True), ('invalid-json', True),
+    ('expired-review', True),
 ])
 @respx.mock
 async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(change, changed):
@@ -80,9 +82,15 @@ async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(change, changed
     respx.get(entry.probe.endpoint).respond(200, text='<p>Free plan with limited usage</p>' + script)
     # This control isolates the quotas from the independent current page anchors.
     entry.probe = entry.probe.model_copy(update={'keywords': [], 'machinery_keywords': []})
+    # Check the saved source fixture at its review date; calendar expiry is a
+    # separate HTTP control, so later runs still exercise SKU/price changes.
+    review_day = max(q.reviewed_on for q in entry.quotas)
+    probe_day = review_day + timedelta(days=7 if change == 'expired-review' else 0)
     async with httpx.AsyncClient() as client:
-        result = await probe_entry(client, entry, attempts=1, backoff=0)
+        result = await probe_entry(client, entry, attempts=1, backoff=0, today=probe_day)
     assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS), result.detail
+    if change == 'expired-review':
+        assert 'fresh dated review' in result.detail
 
 
 def test_script_quota_requires_a_review_and_its_explicit_reader():

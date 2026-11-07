@@ -7,6 +7,7 @@ entries:
   - https://openrouter.ai/docs/faq
   - https://openrouter.ai/docs/api_reference/limits
   - https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration
+  - https://huggingface.co/LiquidAI/LFM3-1.7B
   card_required: false
   offering: One API key for a rotating set of :free model variants, open-weight and
     stealth models among them
@@ -90,11 +91,17 @@ entries:
     - nvidia/nemotron-3.5-super-vl:free
     - xingchen-agi/xing4.0-29b-a4b:free
     - recursive/flint-v1.0:free
+    - liquid/lfm-3-1.7b:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
         source: https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard
         quote: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4
+    model_limits:
+      liquid/lfm-3-1.7b:free:
+        context_tokens: 262144
+        output_tokens: 8192
+        source: https://openrouter.ai/api/v1/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - google/lyria-3-pro-preview
@@ -103,6 +110,7 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
     - recursive/flint-v1.0:free
+    - liquid/lfm-3-1.7b:free
     anthropic_base_url: https://openrouter.ai/api
     codex:
       base_url: https://openrouter.ai/api/v1
@@ -110,7 +118,7 @@ entries:
       quote: Configure Codex for OpenRouter
     note: Use IDs with the :free suffix; their input and output prices are zero. openrouter/free
       chooses a free model automatically. LiquidAI advises against agentic coding
-      with lfm-2.5-2.6b. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api,
+      with the listed LFM models. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api,
       leave ANTHROPIC_API_KEY empty and use a :free ID as ANTHROPIC_MODEL.
   data_use:
     trains: opt-out
@@ -713,7 +721,9 @@ entries:
     NVIDIA offers are trial-only and exclude personal or confidential data. Flint
     40B Free allows training and retains data for 30 days. Beam Free''s provider does
     not train on inputs and retains them for 30 days; its listed territorial exclusions
-    include Russia.'
+    include Russia. Inkling 2 Small Free permits training. Crouton Alpha Free retains
+    data for 30 days without training. Both have model-specific territorial exclusions,
+    including Russia.'
   quotas:
   - unit: usage
     scope: unspecified
@@ -748,6 +758,10 @@ entries:
     'on': '2026-10-19'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: Beam Free
+  - family: inkling-2-small
+    'on': '2026-11-07'
+    source: https://opencode.ai/v2/docs/console/models/
+    table_name: Inkling 2 Small Free
   data_use:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
@@ -780,6 +794,16 @@ entries:
       source: https://docs.typesafe.ai/introduction/coding-agents
       quote: It does not generate text, write code, or hold a conversation.
       reviewed_on: '2026-11-03'
+    - name: Iceman Free
+      source: https://opencode.ai/v2/docs/console/models/
+      quote: Iceman Free is a stealth model that's free on OpenCode for a limited
+        time.
+      reviewed_on: '2026-11-07'
+    - name: Crouton Alpha Free
+      source: https://opencode.ai/v2/docs/console/models/
+      quote: Crouton Alpha Free is a stealth model that's free on OpenCode for a limited
+        time.
+      reviewed_on: '2026-11-07'
   first_seen: '2026-07-19'
   last_verified: '2026-11-05'
   probe_failures: 0
@@ -794,6 +818,7 @@ entries:
   - https://api.kilo.ai/api/gateway/models
   - https://kilo.ai/docs/gateway/authentication
   - https://kilocode.ai
+  - https://huggingface.co/LiquidAI/LFM3-1.7B
   card_required: false
   offering: Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible
     gateway, alongside BYOK and local models
@@ -844,6 +869,7 @@ entries:
     - recursive/flint-v1.0:free
     - reflection/beam-free
     - google/gemma-4-31b-it:free
+    - liquid/lfm-3-1.7b:free
     model_bindings:
       reflection/beam-free:
         family: beam-1.0
@@ -863,6 +889,10 @@ entries:
         context_tokens: 262144
         output_tokens: 32768
         source: https://api.kilo.ai/api/gateway/models
+      liquid/lfm-3-1.7b:free:
+        context_tokens: 262144
+        output_tokens: 8192
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free
@@ -874,12 +904,13 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - stealth/glyph-cluster
     - recursive/flint-v1.0:free
+    - liquid/lfm-3-1.7b:free
     refuses_bearer: true
     codex:
       base_url: https://api.kilo.ai/api/gateway
     note: Use free IDs without a key; metered IDs require sign-in. kilo-auto/free
       and openrouter/free choose a free model automatically. LiquidAI advises against
-      agentic coding with lfm-2.5-2.6b.
+      agentic coding with the listed LFM models.
   data_use:
     trains: 'yes'
     quote: Prompts may be logged by the upstream provider and used to improve their
@@ -2520,6 +2551,9 @@ entries:
   - https://reflection.ai/legal/terms-of-service
   - https://reflection.ai/legal/privacy-policy
   - https://vercel.com/changelog/minimax-m3-1-flash-now-available-on-ai-gateway-for-free
+  - https://vercel.com/ai-gateway/models/ampersand-v0.1
+  - https://ampersand.humansand.ai/terms
+  - https://ampersand.humansand.ai/privacy
   card_required: true
   offering: OpenAI-compatible model gateway with $5 of monthly credit after adding
     a payment method, plus separate zero-priced model routes
@@ -2527,7 +2561,9 @@ entries:
     requests return `403 customer_verification_required`. Credit spends at provider
     list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced
     model routes remain a separate free mode and do not spend that balance. Use their
-    exact free IDs: a similarly named route without its free suffix can be metered.'
+    exact free IDs: a similarly named route without its free suffix can be metered.
+    Ampersand inputs and outputs may be used for model training under its provider
+    privacy notice.'
   quotas:
   - amount: 5.0
     unit: USD
@@ -2573,12 +2609,18 @@ entries:
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-lightning-free
     - reflection/beam-free
+    - humansand/ampersand-v0.1
     model_bindings:
       reflection/beam-free:
         family: beam-1.0
         source: https://ai-gateway.vercel.sh/v1/models
         quote: Beam 1.0 (Free)
         read: catalog
+    model_limits:
+      humansand/ampersand-v0.1:
+        context_tokens: 1000000
+        output_tokens: 32768
+        source: https://ai-gateway.vercel.sh/v1/models
     ignored_ids:
     - liquid/d1
     - convaiinnovations/laya
@@ -4922,6 +4964,8 @@ entries:
   - https://llmtr.com/blog/jais-3-vs-k2-horizon
   - https://llmtr.com/models/poolside/laguna-xs-2.1
   - https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b
+  - https://llmtr.com/models/liquid/lfm3-1.7b-free
+  - https://llmtr.com/models/parallel/parallel-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -5073,6 +5117,37 @@ entries:
     - internlm/agents-a1-free
     - internlm/sage-a1.5-free
     reviewed_on: '2026-10-30'
+  - unit: tokens
+    period: one-time
+    scope: account-model
+    state: variable
+    label: LFM3
+    condition: About 2,000,000 tokens; varies with input/output mix and does not renew;
+      can end early if the free allocation runs out
+    condition_quote: LFM3-1.7B (Ücretsiz), Liquid AI'nin 1,7 milyar parametreli dil
+      modelinin 30 Aralık 2026 23:59'a (TSİ) kadar ücretsiz sunulan sürümüdür; ücretsiz
+      kullanım için ayrılan kota daha önce biterse o tarihten önce kapanır.
+    source: https://llmtr.com/models/liquid/lfm3-1.7b-free
+    quote: Ücretsiz hak hesap başına yaklaşık 2 milyon tokendir, girdi ve çıktı oranına
+      göre değişir ve dönem içinde yenilenmez.
+    model_ids:
+    - liquid/lfm3-1.7b-free
+    reviewed_on: '2026-11-07'
+  - unit: usage
+    scope: account-model
+    label: Parallel
+    condition: 20,000 characters across all messages; no tool calling; can end early
+      if the free allocation runs out
+    condition_quote: Parallel (Ücretsiz), soruyu canlı web'de araştırıp kaynaklarıyla
+      yanıtlayan modelin 4 Ocak 2027 23:59'a (TSİ) kadar ücretsiz sunulan sürümüdür;
+      ücretsiz kullanım için ayrılan kota daha önce biterse o tarihten önce kapanır.
+      Hesap başına ücretsiz kullanım sınırlıdır.
+    source: https://llmtr.com/models/parallel/parallel-free
+    quote: Yalnızca metin kabul eder; mesajlar toplam 20.000 karakteri geçemez. Araç
+      çağrısı yoktur.
+    model_ids:
+    - parallel/parallel-free
+    reviewed_on: '2026-11-07'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -5094,6 +5169,8 @@ entries:
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - nvidia/nemotron-3.5-super-vl-free
+    - liquid/lfm3-1.7b-free
+    - parallel/parallel-free
     model_bindings:
       internlm/intern-s2-free:
         family: intern-s2-397b
@@ -5158,6 +5235,12 @@ entries:
       internlm/sage-a1.5-free:
         source: https://llmtr.com/models/internlm/sage-a1.5-free
         until: '2026-10-31T23:59:00+03:00'
+      liquid/lfm3-1.7b-free:
+        source: https://llmtr.com/models/liquid/lfm3-1.7b-free
+        until: '2026-12-30T23:59:00+03:00'
+      parallel/parallel-free:
+        source: https://llmtr.com/models/parallel/parallel-free
+        until: '2027-01-04T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -5215,6 +5298,10 @@ entries:
         context_tokens: 262144
         output_tokens: 262144
         source: https://llmtr.com/v1/models
+      parallel/parallel-free:
+        context_tokens: 20000
+        output_tokens: 20000
+        source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -5251,6 +5338,9 @@ entries:
     - minimax/minimax-m3.1-flash-free
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
+    no_family_ids:
+    - liquid/lfm3-1.7b-free
+    - parallel/parallel-free
     note: 'New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL:
       omit reasoning_effort; reasoning: false disables thinking.'
   data_use:
@@ -6554,6 +6644,8 @@ entries:
   - https://portal.nousresearch.com/
   - https://hermes-agent.nousresearch.com/docs/guides/run-nemotron-3-ultra-free
   - https://inference-api.nousresearch.com/v1/models
+  - https://portal.nousresearch.com/terms
+  - https://portal.nousresearch.com/privacy
   card_required: false
   offering: Nous Research's inference portal with a $0 Free plan for :free models,
     accessible through an OpenAI-compatible API and Hermes Agent
@@ -6583,6 +6675,7 @@ entries:
     - stepfun/step-3.7-flash:free
     - upstage/solar-mini4:free
     - reflection/beam-1.0-501b-a23b:free
+    - meituan/longcat-2.5:free
     model_limits:
       reflection/beam-1.0-501b-a23b:free:
         context_tokens: 262144

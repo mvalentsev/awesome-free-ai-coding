@@ -86,7 +86,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model":"openrouter/free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
-<sub>Use free IDs without a key; metered IDs require sign-in. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b.</sub>
+<sub>Use free IDs without a key; metered IDs require sign-in. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with the listed LFM models.</sub>
 
 **Connect your coding agent:** [base URLs, keys and client configs](#-plug-it-into-your-agent).
 

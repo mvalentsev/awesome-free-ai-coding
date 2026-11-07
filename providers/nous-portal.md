@@ -3,7 +3,7 @@ layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-11-05'
 description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, solar-mini-4, beam-1.0. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a…'
 permalink: /providers/nous-portal/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: Nous Portal (Hermes Agent)
 ---
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `upstage/solar-mini4:free`, `reflection/beam-1.0-501b-a23b:free`
+- Callable ids: `stepfun/step-3.7-flash:free`, `upstage/solar-mini4:free`, `reflection/beam-1.0-501b-a23b:free`, `meituan/longcat-2.5:free`
 - Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan. Beam has a 262K context and always reasons; its default effort is medium.
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -57,6 +57,8 @@ curl -s https://inference-api.nousresearch.com/v1/chat/completions \
 - Source: <https://portal.nousresearch.com/>
 - Source: <https://hermes-agent.nousresearch.com/docs/guides/run-nemotron-3-ultra-free>
 - Source: <https://inference-api.nousresearch.com/v1/models>
+- Source: <https://portal.nousresearch.com/terms>
+- Source: <https://portal.nousresearch.com/privacy>
 
 ## History
 

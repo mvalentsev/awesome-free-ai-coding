@@ -3,7 +3,7 @@ layout: default
 title: 'glm-4.7-flash free: 4 providers, limits and ids, provider probes 2026-11-05'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM), NovAI and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: glm-4.7-flash
 ---
 
@@ -23,18 +23,16 @@ crumb: glm-4.7-flash
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
+- Limits, in the vendor's words: 500/day coding routes: 5 requests/minute; 500 requests/day per account per model; for `coding-minimax-m3-free`, `coding-glm-4.7-free`, `coding-glm-4.6-free`
+
+500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `glm-4.7-flash-free`
+
+500/day coding routes: 5 requests/minute per account per model; for `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-minimax-m2-free`
+
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: 100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`
-
-500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`
-
-Other free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`
-
-Gemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`
-
-Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
+- Limits, in the vendor's words: Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
 
 </details>
 
@@ -96,26 +94,12 @@ The daily allowance is shared across free chat, image and video models; media ke
 
 OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
 
+- Limits, in the vendor's words: Tier 2: GLM-4.7-Flash: 50 requests/day per account per model (After a $1 deposit); for `zai-org/GLM-4.7-Flash`
+
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Tier 1: Manta Mini 1.0: 50 requests/day per account per model; for `meganova-ai/manta-mini-1.0`
-
-Tier 1: Manta Flash 1.0: 50 requests/day per account per model; for `meganova-ai/manta-flash-1.0`
-
-Tier 1: Mistral-Small-3.2-24B-Instruct-2506: 50 requests/day per account per model; for `mistralai/Mistral-Small-3.2-24B-Instruct-2506`
-
-Tier 2: Manta Mini 1.0: 500 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-mini-1.0`
-
-Tier 2: Manta Flash 1.0: 500 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-flash-1.0`
-
-Tier 2: Mistral-Small-3.2-24B-Instruct-2506: 300 requests/day per account per model (After a $1 deposit); for `mistralai/Mistral-Small-3.2-24B-Instruct-2506`
-
-Tier 2: Manta Pro 1.0: 50 requests/day per account per model (After a $1 deposit); for `meganova-ai/manta-pro-1.0`
-
-Tier 2: GLM-4.7-Flash: 50 requests/day per account per model (After a $1 deposit); for `zai-org/GLM-4.7-Flash`
-
-Tier 1: 60 requests/minute; 200,000 tokens/minute per account
+- Limits, in the vendor's words: Tier 1: 60 requests/minute; 200,000 tokens/minute per account
 
 Tier 1 registration needs no card. A $1 deposit unlocks Tier 2's separate per-model free allowances. Daily quotas reset at 00:00 UTC; they are per model, not one total budget to spend on any model. Free modules are for evaluation and interactive use, not production or unattended batches. The operator is Nebula Nova Inc. Audio and embedding quotas do not establish coding-model allowances.
 

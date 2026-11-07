@@ -2752,12 +2752,19 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     if e.api and e.api.notice:
         # First, as on the row's page: before a reader copies the base URL.
         out += [_notice_quote(e.api.notice), ""]
-    limits = (f"- Limits, in the vendor's words: {limits_text(e)}" if limits_text(e)
-              else "- The vendor publishes no figure for this tier.")
-    if limits_text(e) and len(families) > 1 and len(limits_text(e)) > README_LIMITS_COLLAPSE:
-        out += ['<details markdown="block">', "<summary>Provider-wide limits</summary>", "", limits, "", "</details>", ""]
+    from .quotas import quota_summary
+    model_quotas = [q for q in e.quotas if q.model_ids and set(q.model_ids) & set(ids)]
+    specific = quota_summary(e.model_copy(update={"quotas": model_quotas, "page_catalog": None}))
+    shared = limits_text(e.model_copy(update={"quotas": [q for q in e.quotas if not q.model_ids]}))
+    if shared and len(families) > 1 and len(shared) > README_LIMITS_COLLAPSE:
+        if specific:
+            out += [f"- Limits, in the vendor's words: {specific}", ""]
+        out += ['<details markdown="block">', "<summary>Provider-wide limits</summary>", "",
+                f"- Limits, in the vendor's words: {shared}", "", "</details>", ""]
     else:
-        out.append(limits)
+        limits = "\n\n".join(filter(None, (specific, shared)))
+        out.append(f"- Limits, in the vendor's words: {limits}" if limits
+                   else "- The vendor publishes no figure for this tier.")
     # This model's ids and no other's — an id is the most specific of the row's
     # families that names it, as the probe reads it — then the row page's own
     # connection lines.

@@ -166,6 +166,13 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/liquid/lfm-3-1.7b:free
+  litellm_params:
+    model: openai/liquid/lfm-3-1.7b:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 8192
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -635,6 +642,25 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
+- model_name: llmtr/liquid/lfm3-1.7b-free
+  litellm_params:
+    model: openai/liquid/lfm3-1.7b-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-12-30 23:59+03:00
+    source: https://llmtr.com/models/liquid/lfm3-1.7b-free
+- model_name: llmtr/parallel/parallel-free
+  litellm_params:
+    model: openai/parallel/parallel-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 20000
+  model_info:
+    access: free until 2027-01-04 23:59+03:00
+    source: https://llmtr.com/models/parallel/parallel-free
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
@@ -659,6 +685,13 @@ model_list:
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
+- model_name: vercel-ai-gateway/humansand/ampersand-v0.1
+  litellm_params:
+    model: openai/humansand/ampersand-v0.1
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 32768
 - model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8
   litellm_params:
     model: openai/Qwen/Qwen3.6-35B-A3B-FP8
@@ -900,6 +933,12 @@ model_list:
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
     max_tokens: 131072
+- model_name: nous-portal/meituan/longcat-2.5:free
+  litellm_params:
+    model: openai/meituan/longcat-2.5:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
 - model_name: iteracompute/qwen/qwen3.8-27b
   litellm_params:
     model: openai/qwen/qwen3.8-27b

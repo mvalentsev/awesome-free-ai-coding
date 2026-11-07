@@ -2211,6 +2211,11 @@ def _catalog_output_limit(model: dict) -> int | None:
     # gateway.vlm.run/v1/openai/models uses max_output_tokens (checked 2026-10-26).
     values = [model.get("max_output_tokens"),
               top.get("max_completion_tokens") if isinstance(top, dict) else None]
+    # Vercel /v1/models pairs context_window with the maximum output max_tokens:
+    # https://vercel.com/ai-gateway/models/ampersand-v0.1, checked 2026-11-07.
+    # An unpaired max_tokens can be a request default rather than a model cap.
+    if type(model.get("context_window")) is int and model["context_window"] > 0:
+        values.append(model.get("max_tokens"))
     return min((value for value in values if type(value) is int and value > 0),
                default=None)
 
@@ -2234,7 +2239,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
                 continue
             row = rows[mid]
             top = row.get("top_provider")
-            contexts = [row.get("context_length"),
+            contexts = [row.get("context_length"), row.get("context_window"),
                         top.get("context_length") if isinstance(top, dict) else None]
             context = min((value for value in contexts if type(value) is int and value > 0),
                           default=None)

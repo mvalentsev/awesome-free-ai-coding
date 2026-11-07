@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-s-2.1 free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: laguna-s-2.1 is served free by Vercel AI Gateway. It asks for a card on file. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/laguna-s-2.1/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: laguna-s-2.1
 ---
 
@@ -30,9 +30,7 @@ OpenAI-compatible model gateway with $5 of monthly credit after adding a payment
 
 Free credit rate limits: Requests allowance: amount not published (period not published); scope not published (Limits apply per model.)
 
-Beam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`
-
-A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
+A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered. Ampersand inputs and outputs may be used for model training under its provider privacy notice.
 
 </details>
 

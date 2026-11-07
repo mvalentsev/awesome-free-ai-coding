@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-120b free: 4 providers, limits and ids, provider probes 2026-11-05'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-120b/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-07
 crumb: gpt-oss-120b
 ---
 
@@ -23,12 +23,12 @@ crumb: gpt-oss-120b
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
+- Limits, in the vendor's words: Coding models: 30 requests/minute; 1,000 requests/day; 8,000 tokens/minute; 200,000 tokens/day per organization per model; for `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`
+
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Coding models: 30 requests/minute; 1,000 requests/day; 8,000 tokens/minute; 200,000 tokens/day per organization per model; for `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`
-
-These are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits; their API examples do not establish free coding-model eligibility. Groq calls the table "a high level summary and there may be exceptions"; the account limits page gives the exact values.
+- Limits, in the vendor's words: These are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits; their API examples do not establish free coding-model eligibility. Groq calls the table "a high level summary and there may be exceptions"; the account limits page gives the exact values.
 
 </details>
 
