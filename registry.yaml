@@ -713,9 +713,7 @@ entries:
     NVIDIA offers are trial-only and exclude personal or confidential data. Flint
     40B Free allows training and retains data for 30 days. Beam Free''s provider does
     not train on inputs and retains them for 30 days; its listed territorial exclusions
-    include Russia. Pulse Alpha Free allows data retention for model improvement and
-    excludes the EU, Iceland, Liechtenstein, Norway, Russia, Ukraine, Venezuela, Cuba,
-    Iran and North Korea.'
+    include Russia.'
   quotas:
   - unit: usage
     scope: unspecified
@@ -781,13 +779,6 @@ entries:
     - name: Jev 1.13 Free
       source: https://docs.typesafe.ai/introduction/coding-agents
       quote: It does not generate text, write code, or hold a conversation.
-      reviewed_on: '2026-11-03'
-    - name: Pulse Alpha Free
-      source: https://opencode.ai/v2/docs/console/models/
-      quote: Pulse Alpha Free is a stealth model that’s free on OpenCode for a limited
-        time. The team is using this time to collect feedback and improve the model.
-        It’s not available in the European Union, Iceland, Liechtenstein, Norway,
-        Cuba, Iran, North Korea, Russia, Ukraine, or Venezuela.
       reviewed_on: '2026-11-03'
   first_seen: '2026-07-19'
   last_verified: '2026-11-05'

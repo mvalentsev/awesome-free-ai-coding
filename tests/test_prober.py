@@ -3220,6 +3220,31 @@ async def test_an_alternate_chat_completion_cannot_clear_the_refused_models_noti
 
 
 @respx.mock
+@pytest.mark.parametrize("public_key", [None, "published-trial-key"])
+async def test_a_swapped_response_cannot_clear_the_requested_models_notice(public_key):
+    entry = noticed_keyless_entry(date(2026, 9, 17))
+    if public_key:
+        data = entry.model_dump()
+        data["api"].update(auth="key", public_key=public_key,
+                           key_url="https://open.x.ai/free-key")
+        entry = Entry.model_validate(data)
+        respx.get("https://open.x.ai/free-key").mock(
+            return_value=httpx.Response(200, text=public_key))
+    respx.get("https://open.x.ai/v1/models").mock(
+        return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json=completion("gpt-oss-20b")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0, today=date(2026, 9, 21))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b answered as gpt-oss-20b" in result.detail
+    assert "take down api.notice" not in result.detail
+    assert "api.notice of 2026-09-17 still needs review for gpt-oss-120b" in result.detail
+    assert entry.api.notice is not None
+
+
+@respx.mock
 async def test_a_lane_that_answers_again_under_a_notice_asks_for_the_notice_to_come_down():
     """A lane that answers again while its notice stands is a note to take the
     notice down: the notice tells readers the command does not work."""

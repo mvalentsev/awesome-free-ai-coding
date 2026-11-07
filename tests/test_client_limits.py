@@ -99,3 +99,32 @@ async def test_probe_rechecks_page_limits_at_http_boundary(body, status, detail)
     assert source.call_count == 1
     if detail:
         assert 'api.model_limits alpha: ' + detail in result.detail
+
+
+@respx.mock
+async def test_models_share_one_parsed_source_without_sharing_their_limits(monkeypatch):
+    import freetier_radar.client_limits as limits
+    row = entry()
+    row.api.model_ids.append('beta')
+    row.api.no_family_ids.append('beta')
+    row.api.model_limits['beta'] = row.api.model_limits['alpha'].model_copy()
+    source_config = config()
+    source_config['provider']['vendor']['models']['beta'] = {
+        'limit': {'context': 131072, 'output': 2048}}
+    respx.get(row.probe.endpoint).respond(200, text='A free starting credit')
+    source = respx.get('https://x.ai/client-guide').respond(200, text=code(source_config))
+    parsed = []
+    original_feed = limits._CodeBlocks.feed
+
+    def record_feed(parser, body):
+        parsed.append(body)
+        return original_feed(parser, body)
+
+    monkeypatch.setattr(limits._CodeBlocks, 'feed', record_feed)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, row, attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'api.model_limits beta: output_tokens=2048 (recorded 4096)' in result.detail
+    assert 'api.model_limits alpha:' not in result.detail
+    assert source.call_count == 1
+    assert len(parsed) == 1

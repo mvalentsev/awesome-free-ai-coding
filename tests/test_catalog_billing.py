@@ -59,3 +59,48 @@ async def test_explicit_free_modes_optional_addons_and_omitted_multipliers_stay_
     async with httpx.AsyncClient(transport=transport) as client:
         result = await probe_entry(client, entry(), attempts=1, backoff=0)
     assert result.status is ProbeStatus.PASS, result.detail
+
+
+@pytest.mark.parametrize("billable", ["prompt_tokens", "completion_tokens",
+                                       "input_text_tokens", "output_text_tokens"])
+@pytest.mark.parametrize("cost,free", [(0, True), ("0", True), (0.5, False),
+                                     (None, False), ("unknown", False), (False, False)])
+async def test_authoritative_billing_lines_override_zero_summary_prices(billable, cost, free):
+    # https://aihubmix.com/api/v1/models, checked 2026-11-07: Gemini Live
+    # and Omni have zero summary rates beside paid billing_config token lines.
+    model = {"id": "qwen3-coder", "pricing": {"input": 0, "output": 0},
+             "pricing_source": "billing_config", "pricing_lines": [
+                 {"billable": billable, "unit": "million_tokens", "cost_usd": cost}]}
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, json={"data": [model]}))
+    async with httpx.AsyncClient(transport=transport) as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.PASS if free else ProbeStatus.FAIL), result.detail
+    if not free:
+        assert "pricing_lines" in result.detail and billable in result.detail
+
+
+@pytest.mark.parametrize("fields", [
+    {"pricing_lines": [{"billable": "cached_tokens", "cost_usd": 1},
+                       {"billable": "input_image_tokens", "cost_usd": 2}]},
+    {"isFree": True, "pricing_lines": [{"billable": "prompt_tokens", "cost_usd": 1}]},
+    {"promo": {"status": "active", "is_free": True},
+     "pricing_lines": [{"billable": "completion_tokens", "cost_usd": 2}]},
+])
+async def test_optional_billing_addons_and_explicit_free_modes_remain_free(fields):
+    model = {"id": "qwen3-coder", "pricing": {"input": 0, "output": 0},
+             "pricing_source": "billing_config", **fields}
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, json={"data": [model]}))
+    async with httpx.AsyncClient(transport=transport) as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+
+
+@pytest.mark.parametrize("lines", [None, {}, "unreadable"])
+async def test_unreadable_authoritative_billing_lines_cannot_confirm_free_access(lines):
+    model = {"id": "qwen3-coder", "pricing": {"input": 0, "output": 0},
+             "pricing_source": "billing_config", "pricing_lines": lines}
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, json={"data": [model]}))
+    async with httpx.AsyncClient(transport=transport) as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "pricing_lines unreadable" in result.detail

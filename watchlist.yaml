@@ -4141,3 +4141,44 @@ watched:
       The linked AI service publishes a usable coding-compatible Free endpoint, its model and upstream
       identity, no-payment/card activation, quota/reset and data policy. Keep hosting purchases
       separate from the advertised AI mode.
+
+  - domains: [onemira.com]
+    name: OneMira
+    checked_on: '2026-11-07'
+    reason: >-
+      OneMira C1 includes offline transcription and meeting-note organization.
+      Its MCP server and Mira CLI expose recordings and Wiki context to existing
+      agents; optional model services use the user's own provider key. The
+      inspected product and integration docs do not establish hosted free model
+      access or a coding agent with bundled usage for existing source code.
+      The hardware purchase is not the reason for exclusion. Sources:
+      https://onemira.com/products/c1,
+      https://onemira.com/docs/mcp-integration and
+      https://github.com/onemira-space/onemira-mcp.
+    reopen_if: >-
+      Official documentation establishes an obtainable free API model allowance
+      or a coding agent with bundled model usage that works on existing code.
+      Assess that access separately from transcription and MCP context tools.
+
+  - domains: [jzstoken.com]
+    name: JZS Token
+    checked_on: '2026-11-07'
+    reason: >-
+      The homepage and jzs-max-3.0 model page explicitly price its promotion at
+      $0 until November 30, 2026 UTC. It requires a dedicated key; Standard keys
+      exclude this route. The quick start requires a minimum $1.50 credit
+      purchase, and both key types share the account balance. That initial
+      payment is a condition, not an automatic rejection. The exact end hour,
+      access with a zero balance and any top-up fee remain unconfirmed. The
+      model is a flagship alias served through a dedicated upstream route;
+      current terms do not identify that capacity or its authorization. This
+      uncertainty is not evidence of unauthorized proxying. API content is
+      forwarded under the upstream provider's own policy. Sources:
+      https://jzstoken.com/model-pricing/jzs-max-3.0,
+      https://jzstoken.com/docs/faq, https://jzstoken.com/docs/quick-start,
+      https://jzstoken.com/terms and https://jzstoken.com/privacy.
+    reopen_if: >-
+      Primary evidence or existing authorized access resolves the promotion's
+      exact cutoff, dedicated-key entitlement, payment and balance conditions,
+      and permitted upstream supply. Review the $0 model mode independently
+      of the prepaid wallet and ordinary post-promotion prices.

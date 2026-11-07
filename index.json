@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06",
+  "generated": "2026-11-07",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -1506,7 +1506,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Pulse Alpha Free allows data retention for model improvement and excludes the EU, Iceland, Liechtenstein, Norway, Russia, Ukraine, Venezuela, Cuba, Iran and North Korea.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
       "quotas": [
         {
           "unit": "usage",
@@ -1608,12 +1608,6 @@
             "source": "https://docs.typesafe.ai/introduction/coding-agents",
             "quote": "It does not generate text, write code, or hold a conversation.",
             "reviewed_on": "2026-11-03"
-          },
-          {
-            "name": "Pulse Alpha Free",
-            "source": "https://opencode.ai/v2/docs/console/models/",
-            "quote": "Pulse Alpha Free is a stealth model that’s free on OpenCode for a limited time. The team is using this time to collect feedback and improve the model. It’s not available in the European Union, Iceland, Liechtenstein, Norway, Cuba, Iran, North Korea, Russia, Ukraine, or Venezuela.",
-            "reviewed_on": "2026-11-03"
           }
         ]
       },
@@ -1637,7 +1631,7 @@
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Pulse Alpha Free allows data retention for model improvement and excludes the EU, Iceland, Liechtenstein, Norway, Russia, Ukraine, Venezuela, Cuba, Iran and North Korea.",
+        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -23424,6 +23418,26 @@
       "checked_on": "2026-11-03",
       "reason": "The current hosting homepage explicitly advertises Chat AI plus Free API. The unrelated prepaid-hosting policy does not establish the AI payment conditions. Exact AI endpoint, eligible model identity, quota/reset, permitted supply and no-payment activation remain unconfirmed. Source: https://oriper.com/.",
       "reopen_if": "The linked AI service publishes a usable coding-compatible Free endpoint, its model and upstream identity, no-payment/card activation, quota/reset and data policy. Keep hosting purchases separate from the advertised AI mode.",
+      "current": true
+    },
+    {
+      "domains": [
+        "onemira.com"
+      ],
+      "name": "OneMira",
+      "checked_on": "2026-11-07",
+      "reason": "OneMira C1 includes offline transcription and meeting-note organization. Its MCP server and Mira CLI expose recordings and Wiki context to existing agents; optional model services use the user's own provider key. The inspected product and integration docs do not establish hosted free model access or a coding agent with bundled usage for existing source code. The hardware purchase is not the reason for exclusion. Sources: https://onemira.com/products/c1, https://onemira.com/docs/mcp-integration and https://github.com/onemira-space/onemira-mcp.",
+      "reopen_if": "Official documentation establishes an obtainable free API model allowance or a coding agent with bundled model usage that works on existing code. Assess that access separately from transcription and MCP context tools.",
+      "current": true
+    },
+    {
+      "domains": [
+        "jzstoken.com"
+      ],
+      "name": "JZS Token",
+      "checked_on": "2026-11-07",
+      "reason": "The homepage and jzs-max-3.0 model page explicitly price its promotion at $0 until November 30, 2026 UTC. It requires a dedicated key; Standard keys exclude this route. The quick start requires a minimum $1.50 credit purchase, and both key types share the account balance. That initial payment is a condition, not an automatic rejection. The exact end hour, access with a zero balance and any top-up fee remain unconfirmed. The model is a flagship alias served through a dedicated upstream route; current terms do not identify that capacity or its authorization. This uncertainty is not evidence of unauthorized proxying. API content is forwarded under the upstream provider's own policy. Sources: https://jzstoken.com/model-pricing/jzs-max-3.0, https://jzstoken.com/docs/faq, https://jzstoken.com/docs/quick-start, https://jzstoken.com/terms and https://jzstoken.com/privacy.",
+      "reopen_if": "Primary evidence or existing authorized access resolves the promotion's exact cutoff, dedicated-key entitlement, payment and balance conditions, and permitted upstream supply. Review the $0 model mode independently of the prepaid wallet and ordinary post-promotion prices.",
       "current": true
     }
   ]

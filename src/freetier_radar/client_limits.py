@@ -46,19 +46,28 @@ def _unique_object(pairs):
     return result
 
 
-def opencode_limits(body: str, provider: str, model: str) -> tuple[dict | None, str]:
-    """Require one unambiguous provider/model limit in JSON code examples."""
+def _config_examples(body: str) -> list[tuple[str, object]]:
     parser = _CodeBlocks()
     parser.feed(body)
     blocks = parser.blocks + re.findall(r"```(?:jsonc?)?\s*\n(.*?)```", body, re.S)
     # A source may be the configuration file itself, rather than an HTML page.
     if body.lstrip().startswith("{"):
         blocks.append(body)
-    found = set()
+    examples = []
     for block in blocks:
         try:
             config = json.loads(block, object_pairs_hook=_unique_object)
         except (ValueError, RecursionError):
+            config = None
+        examples.append((block, config))
+    return examples
+
+
+def _example_limits(examples: list[tuple[str, object]], provider: str,
+                    model: str) -> tuple[dict | None, str]:
+    found = set()
+    for block, config in examples:
+        if config is None:
             if all(json.dumps(key) in block for key in ("provider", "models", provider, model)):
                 return None, "documented limits invalid"
             continue
@@ -84,6 +93,11 @@ def opencode_limits(body: str, provider: str, model: str) -> tuple[dict | None, 
     return {"context_tokens": context, "output_tokens": output}, ""
 
 
+def opencode_limits(body: str, provider: str, model: str) -> tuple[dict | None, str]:
+    """Require one unambiguous provider/model limit in JSON code examples."""
+    return _example_limits(_config_examples(body), provider, model)
+
+
 def limit_sources(entry: Entry) -> list[str]:
     if not entry.api:
         return []
@@ -95,6 +109,7 @@ def model_limit_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
     if not entry.api:
         return []
     findings = []
+    examples = {}
     for mid, limits in entry.api.model_limits.items():
         if mid not in entry.api.model_ids or limits.read != "opencode-config":
             continue
@@ -102,7 +117,9 @@ def model_limit_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
         if body is None:
             detail = "source could not be checked"
         else:
-            actual, detail = opencode_limits(body, limits.source_provider, mid)
+            if limits.source not in examples:
+                examples[limits.source] = _config_examples(body)
+            actual, detail = _example_limits(examples[limits.source], limits.source_provider, mid)
             if actual is not None:
                 detail = ", ".join(f"{key}={value} (recorded {getattr(limits, key)})"
                                    for key, value in actual.items()

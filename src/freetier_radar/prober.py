@@ -856,15 +856,17 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                                      patient_with_429=not tried)
         completion = _completion(answer)
         if completion is not None:
-            take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
-                         "the lane does not work") if notice else ""
             served = _answered_as(model, completion)
+            take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
+                         "the lane does not work") if notice and not served else ""
             swapped = ([f"{lane} call to {model} answered as {served} — the id serves another model "
                         "than it names; read the catalog before the configs keep handing it out"]
                        if served else [])
             if not tried:
                 notes = swapped + ([f"{lane} call to {model} answered HTTP {answer.status_code} — "
                                     + take_down] if take_down else [])
+                if notice and served:
+                    notes.append(f"api.notice of {notice.since.isoformat()} still needs review for {model}")
                 if not public:
                     await asyncio.sleep(backoff)
                     drift = await _bearer_drift(client, entry, url, model, headers, backoff)
@@ -1732,6 +1734,19 @@ def _additional_prices(model: dict) -> list[tuple[str, float | None]]:
         prices.extend((key, _price_row(value)) for key, value in pricing.items()
                       if key.lower() in _PER_CALL_KEYS
                       or any(m in key.lower() for m in _PER_UNIT_MARKERS))
+    # The billing configuration can carry the real token rates beside zero
+    # summaries: https://aihubmix.com/api/v1/models, checked 2026-11-07.
+    # Optional cached/media inputs do not price the ordinary text lane.
+    if model.get("pricing_source") == "billing_config":
+        lines = model.get("pricing_lines")
+        if isinstance(lines, list):
+            for i, line in enumerate(lines):
+                if isinstance(line, dict) and line.get("billable") in (
+                        "prompt_tokens", "completion_tokens", "input_text_tokens", "output_text_tokens"):
+                    prices.append((f"pricing_lines[{i}].{line['billable']}",
+                                   _number(line.get("cost_usd"))))
+        elif "pricing_lines" in model:
+            prices.append(("pricing_lines", None))
     return prices
 
 
