@@ -740,27 +740,69 @@ def _completion(answer: httpx.Response | str) -> dict | None:
 ROUTER_IDS = {"auto", "free"}
 
 
+def _model_name(model_id: str) -> str:
+    name = model_id.lower().rsplit("/", 1)[-1]
+    stem, separator, tag = name.rpartition(":")
+    if separator and tag in ("free", "latest"):
+        name = stem
+    return re.sub(r"[-_.](free|latest)$", "", name)
+
+
 def _model_key(model_id: str) -> str:
-    """The model an id names, as letters and digits: its last path segment,
-    less a :variant tag and a -free or -latest that names no model of its own."""
-    name = model_id.lower().rsplit("/", 1)[-1].split(":", 1)[0]
-    return re.sub(r"[^a-z0-9]", "", re.sub(r"[-_.](free|latest)$", "", name))
+    """Namespace-free spelling, retaining meaningful size/version tags."""
+    return re.sub(r"[^a-z0-9]", "", _model_name(model_id))
+
+
+def _model_versions(model_id: str) -> dict[int, str]:
+    """Numeric version parts aligned by their position in the model key."""
+    name = _model_name(model_id)
+    versions = {}
+    for match in re.finditer(r"\d+(?:[._-]\d+)*", name):
+        value = match[0]
+        if re.match(r"[bt](?:$|[-_.:])", name[match.end():]):
+            boundary = max(value.rfind("-"), value.rfind("_"))
+            if boundary < 0:
+                continue  # A compact parameter count establishes no generation.
+            value = value[:boundary]
+        # Hyphenated date/revision identifiers are qualifiers, not generations.
+        value = re.sub(r"[-_]\d{4,}(?:[-_]\d+)*$", "", value)
+        if value.isdigit() and len(value) >= 4:
+            continue
+        position = len(re.sub(r"[^a-z0-9]", "", name[:match.start()]))
+        versions[position] = value.replace("_", ".").replace("-", ".")
+    return versions
+
+
+def _same_model_version(left: str, right: str) -> bool:
+    def parts(version):
+        values = [part.lstrip("0") or "0" for part in version.split(".")]
+        while len(values) > 1 and values[-1] == "0":
+            values.pop()
+        return values
+    a, b = parts(left), parts(right)
+    if "." in left and "." in right:
+        return a == b
+    return left.replace(".", "") == right.replace(".", "") or "".join(a) == "".join(b)
 
 
 def _answered_as(asked: str, completion: dict) -> str | None:
     """The model a completion names where it is not the one asked, else None.
 
-    The two names are compared by `_model_key`, and one key running on into the
-    other is the same model: vendors cut a served name short (LLM Tech answers
-    nvidia/Qwen3.8-27B-NVFP4 as qwen38) and add a dated revision, but a size
-    or a version that differs is another model. A router id names none, and a completion that names none is
-    taken at its word."""
+    The keys allow shortened spellings and dated revisions, provided they do
+    not contradict an explicit numeric generation. Different sizes or versions
+    identify another model. A router id names none, and a completion that names
+    none is taken at its word."""
     served = completion.get("model")
     if not isinstance(served, str):
         return None
     want, got = _model_key(asked), _model_key(served)
-    if want in ROUTER_IDS or want.startswith(got) or got.startswith(want):
+    if want in ROUTER_IDS:
         return None
+    if want.startswith(got) or got.startswith(want):
+        left, right = _model_versions(asked), _model_versions(served)
+        if all(_same_model_version(left[position], right[position])
+               for position in left.keys() & right.keys()):
+            return None
     return served
 
 

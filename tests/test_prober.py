@@ -2737,6 +2737,12 @@ ANSWERED_AS_ANOTHER = [
     ("glm-4.5-air-free", "minimax-m2.5-free"),  # Septor's -free aliases
     ("zai-org/GLM-5.2-FP8", "zai-org/GLM-5.3"),  # Sail's legacy GLM-5.2 id
     ("openai/gpt-oss-120b", "openai/gpt-oss-20b"),  # the smaller sibling under the bigger name
+    ("glm-5-free", "glm-5.3"),  # a numeric prefix must not hide a new generation
+    ("glm-5-free", "glm-5.3beta"),
+    ("qwen/qwen3-free", "qwen/qwen3.8"),
+    ("vendor/model-1.23-free", "model-12.3"),  # equal flattened digits are different versions
+    ("mistral/mistral-large-4", "mistral/mistral-large-4.1"),
+    ("vendor/model-5-v1", "model-5-v1.3"),
 ]
 
 
@@ -2771,9 +2777,35 @@ async def test_an_id_answered_as_another_model_is_a_note():
     assert "keyless call to qwen3-coder-30b answered as minimax-m2.5-free" in result.detail
 
 
+@pytest.mark.parametrize("asked,served", [
+    ("qwen3.8:27b", "qwen3.8:8b"),
+    ("qwen:3.8", "qwen:3.9"),
+])
+@respx.mock
+async def test_meaningful_model_tags_cannot_clear_another_models_notice(asked, served):
+    entry, catalog = keyless_lane(asked)
+    entry.api.notice = noticed_keyless_entry(date(2026, 9, 17)).api.notice
+    respx.get("https://open.x.ai/v1/models").respond(200, json=catalog)
+    no_codex_route()
+    respx.post("https://open.x.ai/v1/chat/completions").respond(200, json=completion(served))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0, today=date(2026, 9, 21))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert f"{asked} answered as {served}" in result.detail
+    assert "take down api.notice" not in result.detail
+
+
 # (id asked, model the completion names) — every pair the model asked, and why.
 ANSWERED_AS_ITSELF = [
     ("nvidia/Qwen3.8-27B-NVFP4", "qwen38"),  # LLM Tech's served name
+    ("nvidia/Qwen3.8-27B-NVFP4", "qwen3827b"),  # a compact size spelling
+    ("glm-5-free", "glm-5.0"),  # an omitted zero minor version
+    ("qwen/qwen3.8.0-27b", "qwen380"),  # the compressed version retains its zero
+    ("meta/llama-3.2-11b-vision-instruct", "meta/llama-3_2-11b-vision-instruct"),
+    ("qwen/qwen3.8-27b", "qwen3-8-27b"),
+    ("openai/gpt-4", "openai/gpt-4-0314"),  # a numeric dated revision
+    ("codestral-2508", "codestral-250801"),  # a shortened date spelling
+    ("qwen3.8:27b:free", "qwen3.8:27b"),  # only the price tag is removed
     ("qwen/qwen3.8-27b", "Qwen/Qwen3.8-27B"),  # an upper-case spelling
     ("nvidia/nemotron-3-super-120b-a12b:free", "nvidia/nemotron-3-super-120b-a12b"),  # the :free variant tag
     ("deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-flash-0731"),  # a dated revision

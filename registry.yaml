@@ -4463,10 +4463,12 @@ entries:
   card_required: false
   offering: Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily
     regional allowances and conditional free-session access
-  limits: Available models depend on the app and access level. “Promotional prices
-    are temporary, and any price may change.” “Freebuff collects prompts, messages,
-    code, files, repository data, and agent traces when you use features that need
-    them”. Check the balance and picker in your app.
+  limits: The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before
+    November 3 keep their other models until those are retired.” Available models
+    depend on the app, account and access level. “Promotional prices are temporary,
+    and any price may change.” “Freebuff collects prompts, messages, code, files,
+    repository data, and agent traces when you use features that need them”. Check
+    the balance and picker in your app.
   free_part: models
   page_catalog:
     source: https://freebuff.com/llms.txt
@@ -4545,9 +4547,16 @@ entries:
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
       terra-full:
         kind: wallet
-        quote: Open on full access, a paid plan on limited access. One session a day
+        quote: Included with a paid plan (Pro on limited access). Two sessions a day
           on every plan.
+        reviewed_on: '2026-11-07'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
+      luna-account:
+        kind: wallet
+        note: The current plan comparison and client rules require a paid plan. Retained
+          account access follows the condition above.
+        reviewed_on: '2026-11-07'
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
     models:
     - name: Solar Pro 4
       model:
@@ -4600,7 +4609,7 @@ entries:
     - name: GPT-6 Luna
       model:
         family: gpt-6-luna
-      condition: wallet
+      condition: luna-account
     - name: MiMo 2.6 Pro
       model:
         family: mimo-v2.6-pro
@@ -4637,7 +4646,7 @@ entries:
     - Daily hours refill at midnight in your local timezone and unused daily hours
       do not carry over.
     - Older app versions show the same balance as Freebucks, five to an hour.
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-07'
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.'
