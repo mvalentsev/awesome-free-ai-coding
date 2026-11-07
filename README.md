@@ -327,3 +327,7 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 <sub>MIT · <a href="#top">back to top ↑</a></sub>
 
 </div>
+
+### Spoken Context & Local AI MCP Hardware
+
+- [OneMira C1 & onemira-mcp](https://onemira.com/products/c1) - Standalone dual-microphone AI voice recorder with local AI transcription, multi-speaker separation (Speaker ID), Google Native OKF Markdown Wiki, and native Claude/Cursor MCP server ([onemira-mcp](https://github.com/onemira-space/onemira-mcp)) with zero cloud subscription.
