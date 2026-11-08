@@ -23,11 +23,11 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-10 requests/minute; 50 requests/day per account (before any top-up)
+10 requests/minute; 50 requests/day per workspace (before any top-up)
 
-20 requests/minute; 800 requests/day per account ($20 lifetime spend)
+20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)
 
-The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies.
+The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states "OrcaRouter rate-limits at the workspace level, not per API key."
 
 ## Where it is offered
 
@@ -57,6 +57,7 @@ curl -s https://api.orcarouter.ai/v1/chat/completions \
 - Source: <https://docs.orcarouter.ai/getting-started/quickstart.md>
 - Source: <https://www.orcarouter.ai/terms.html>
 - Source: <https://www.orcarouter.ai/privacy.html>
+- Source: <https://docs.orcarouter.ai/operations/rate-limits.md>
 
 ## History
 

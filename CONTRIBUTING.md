@@ -5,6 +5,9 @@
 Open a [Suggest a service](../../issues/new?template=suggest-a-service.yml) issue — that's it.
 Every suggestion goes through the same machinery as everything else: a live probe must
 confirm the free offer on an official page before the entry lands.
+The maintainer does not need a personal API key to admit a documented free offer.
+Authenticated generation, billing and coding-client checks are separate evidence;
+record unavailable checks without treating them as proof that an offer is ineligible.
 
 ## What qualifies
 
@@ -644,7 +647,10 @@ This positive token count is a client setting, separate from the vendor's model
 limits. It writes `max_completion_tokens` into that model's request options
 and gives `max_tokens` the same budget for older clients;
 it does not supply a context window or assert an unpublished output limit.
-The probe rechecks support for this parameter in the row's catalog. Verify a
+The probe rechecks support for this parameter in the row's catalog. If the
+vendor documents the output parameter on a page instead, record its exact
+`source` and `quote` in `api.opencode_output_sources[ID]`; the quote must name
+the parameter and chosen token count, and the probe rechecks that page. Verify a
 budget with `freetier-review client`: it records the forwarded request budgets
 and checks the real tool read, final answer and completed session. Recheck on
 client or upstream changes and retain a dated vendor/client review.

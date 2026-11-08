@@ -27,7 +27,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 60 requests/minute; scope not published
 
-The Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated.
+The Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated. The privacy policy states "Usage logs are retained for up to 90 days."
 
 ## Where it is offered
 

@@ -615,7 +615,11 @@ def _catalog_endpoint_lists(model: dict) -> list[list[str]]:
     for field in CATALOG_ENDPOINT_FIELDS:
         value = model.get(field)
         if isinstance(value, list) and value and all(isinstance(p, str) and p for p in value):
-            paths.append(value)
+            # A protocol label does not distinguish Chat from Responses:
+            # https://api.beatapi.io/v1/text/models, checked 2026-11-08.
+            operations = [p for p in value if p.strip().casefold() != "openai"]
+            if operations:
+                paths.append(operations)
     return paths
 
 
@@ -1818,6 +1822,16 @@ def _is_free(model: dict) -> bool:
     prices = _price_of(model)
     if prices is not None:
         return all(p == 0 for p in prices) and not _charges_elsewhere(model)
+    # A complete request-only price means the whole call is free at zero:
+    # https://docs.orcarouter.ai/routing/free-models.md, checked 2026-11-08.
+    pricing = model.get("pricing")
+    if isinstance(pricing, dict) and set(pricing) == {"request"}:
+        if any(key in model for key in ("input_cost_per_token", "output_cost_per_token")):
+            return False  # the ordinary token price above was unreadable
+        multiplier_fields = ("quota_type", "model_price", "model_ratio", "completion_ratio")
+        factors = _multiplier_price_of(model) if any(key in model for key in multiplier_fields) else []
+        return (_price_row(pricing["request"]) == 0 and factors is not None
+                and all(p == 0 for p in factors) and not _charges_elsewhere(model))
     # Kiosapi labels unpriced rows tier=free/paid:
     # https://api.kiosapi.id/v1/models, checked 2026-11-02. A tier cannot
     # override published prices or make an unreadable price free.

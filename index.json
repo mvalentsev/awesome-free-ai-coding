@@ -18462,14 +18462,14 @@
       ],
       "card_required": false,
       "offering": "A free model API with a separate daily AnyToken allowance",
-      "limits": "100,000 AnyTokens/day per account. 00:00 UTC\n\nAnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.",
+      "limits": "100,000 AnyTokens/day per account. midnight UTC\n\nAnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.",
       "quotas": [
         {
           "amount": 100000.0,
           "unit": "AnyTokens",
           "period": "day",
           "scope": "account",
-          "reset": "00:00 UTC",
+          "reset": "midnight UTC",
           "source": "https://anyapi.ai/terms-of-service",
           "quote": "The Free plan provides Customer with up to 100,000 anyTokens per calendar day at no charge. Daily allowances reset at midnight UTC and do not carry over.",
           "value_phrase": "100,000 anyTokens per calendar day"
@@ -18541,7 +18541,7 @@
           "inclusionai/ling-3.0-flash-sante:free"
         ],
         "what": "A free model API with a separate daily AnyToken allowance",
-        "limits": "100,000 AnyTokens/day per account. 00:00 UTC\n\nAnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.",
+        "limits": "100,000 AnyTokens/day per account. midnight UTC\n\nAnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -18658,7 +18658,7 @@
       ],
       "card_required": false,
       "offering": "A monthly free API allowance for web-grounded answers with citations",
-      "limits": "100 queries/month per account\n\n60 requests/minute; scope not published\n\nThe Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated.",
+      "limits": "100 queries/month per account\n\n60 requests/minute; scope not published\n\nThe Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated. The privacy policy states \"Usage logs are retained for up to 90 days.\"",
       "quotas": [
         {
           "amount": 100.0,
@@ -18690,6 +18690,15 @@
         "model_ids": [
           "miapi-grounded"
         ],
+        "opencode_output_tokens": {
+          "miapi-grounded": 2000
+        },
+        "opencode_output_sources": {
+          "miapi-grounded": {
+            "source": "https://miapi.uk",
+            "quote": "max_tokens integer Optional 50-2000"
+          }
+        },
         "no_family_ids": [
           "miapi-grounded"
         ],
@@ -18728,7 +18737,7 @@
           "miapi-grounded"
         ],
         "what": "A monthly free API allowance for web-grounded answers with citations",
-        "limits": "100 queries/month per account\n\n60 requests/minute; scope not published\n\nThe Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated.",
+        "limits": "100 queries/month per account\n\n60 requests/minute; scope not published\n\nThe Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public Playground has separate caps. Upstream model and data conditions are not separately stated. The privacy policy states \"Usage logs are retained for up to 90 days.\"",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -18806,10 +18815,7 @@
           "deepseek-v4.1-flash-free",
           "hy4-free"
         ],
-        "opencode_output_tokens": {
-          "hy4-free": 4096
-        },
-        "note": "Use a key in the default auto group and the exact -free ID. A zero balance is allowed. All three listed Free IDs support Chat Completions; the Free catalog does not promise Responses. Give the reasoning variant at least 2,000 output tokens because reasoning consumes that budget."
+        "note": "Use a key in the default auto group and the exact -free ID. A zero balance is allowed. All three listed Free IDs support Chat Completions; the Free catalog does not promise Responses. Reasoning consumes the output budget; the Free guide recommends \"2000 or more\" tokens."
       },
       "border": {
         "left_out": [],
@@ -18872,17 +18878,18 @@
         "https://api.orcarouter.ai/api/free-package/public",
         "https://docs.orcarouter.ai/getting-started/quickstart.md",
         "https://www.orcarouter.ai/terms.html",
-        "https://www.orcarouter.ai/privacy.html"
+        "https://www.orcarouter.ai/privacy.html",
+        "https://docs.orcarouter.ai/operations/rate-limits.md"
       ],
       "card_required": false,
       "offering": "Free model APIs for accounts with established GitHub linkage",
-      "limits": "10 requests/minute; 50 requests/day per account (before any top-up)\n\n20 requests/minute; 800 requests/day per account ($20 lifetime spend)\n\nThe workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies.",
+      "limits": "10 requests/minute; 50 requests/day per workspace (before any top-up)\n\n20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)\n\nThe workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states \"OrcaRouter rate-limits at the workspace level, not per API key.\"",
       "quotas": [
         {
           "amount": 10.0,
           "unit": "requests",
           "period": "minute",
-          "scope": "account",
+          "scope": "workspace",
           "condition": "before any top-up",
           "condition_quote": "\"min_paid_usd\":0,",
           "source": "https://api.orcarouter.ai/api/free-package/public",
@@ -18893,7 +18900,7 @@
           "amount": 50.0,
           "unit": "requests",
           "period": "day",
-          "scope": "account",
+          "scope": "workspace",
           "condition": "before any top-up",
           "condition_quote": "\"min_paid_usd\":0,",
           "source": "https://api.orcarouter.ai/api/free-package/public",
@@ -18904,7 +18911,7 @@
           "amount": 20.0,
           "unit": "requests",
           "period": "minute",
-          "scope": "account",
+          "scope": "workspace",
           "condition": "$20 lifetime spend",
           "condition_quote": "\"min_paid_usd\":20,",
           "source": "https://api.orcarouter.ai/api/free-package/public",
@@ -18915,7 +18922,7 @@
           "amount": 800.0,
           "unit": "requests",
           "period": "day",
-          "scope": "account",
+          "scope": "workspace",
           "condition": "$20 lifetime spend",
           "condition_quote": "\"min_paid_usd\":20,",
           "source": "https://api.orcarouter.ai/api/free-package/public",
@@ -18974,7 +18981,7 @@
           "z-ai/glm-5.3-flash-free"
         ],
         "what": "Free model APIs for accounts with established GitHub linkage",
-        "limits": "10 requests/minute; 50 requests/day per account (before any top-up)\n\n20 requests/minute; 800 requests/day per account ($20 lifetime spend)\n\nThe workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies.",
+        "limits": "10 requests/minute; 50 requests/day per workspace (before any top-up)\n\n20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)\n\nThe workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states \"OrcaRouter rate-limits at the workspace level, not per API key.\"",
         "why": "",
         "access": "",
         "modelAccess": {},

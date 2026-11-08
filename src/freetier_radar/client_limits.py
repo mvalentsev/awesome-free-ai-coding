@@ -101,14 +101,24 @@ def opencode_limits(body: str, provider: str, model: str) -> tuple[dict | None, 
 def limit_sources(entry: Entry) -> list[str]:
     if not entry.api:
         return []
-    return list(dict.fromkeys(l.source for mid, l in entry.api.model_limits.items()
-                             if mid in entry.api.model_ids and l.read == "opencode-config"))
+    sources = [l.source for mid, l in entry.api.model_limits.items()
+               if mid in entry.api.model_ids and l.read == "opencode-config"]
+    sources.extend(s.source for mid, s in entry.api.opencode_output_sources.items()
+                   if mid in entry.api.model_ids)
+    return list(dict.fromkeys(sources))
 
 
 def model_limit_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
     if not entry.api:
         return []
     findings = []
+    from .quotes import flatten, page_texts
+    for mid, source in entry.api.opencode_output_sources.items():
+        if mid not in entry.api.model_ids:
+            continue
+        body = bodies.get(source.source)
+        if body is None or not any(flatten(source.quote) in text for text in page_texts(body)):
+            findings.append(f"api.opencode_output_tokens {mid}: documented output parameter changed or unavailable")
     examples = {}
     for mid, limits in entry.api.model_limits.items():
         if mid not in entry.api.model_ids or limits.read != "opencode-config":

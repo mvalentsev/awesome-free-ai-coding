@@ -250,7 +250,7 @@ class UsageQuota(BaseModel):
     window: int = Field(default=1, gt=0, exclude_if=lambda v: v == 1)
     rolling: bool = Field(default=False, exclude_if=lambda v: not v)
     scope: Literal['account','person','ip','account-model','project','key','unspecified','ip-model',
-                   'organization','organization-model','project-model','key-model','plan','team','endpoint','disputed']
+                   'organization','organization-model','project-model','key-model','plan','team','workspace','endpoint','disputed']
     state: Literal['variable','unmetered','account-specific','disputed'] | None = None
     label: str = Field(default='', max_length=120, exclude_if=lambda v: not v)
     condition: str = Field(default='', max_length=200, exclude_if=lambda v: not v)
@@ -493,6 +493,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
 
 
 SCOPE_WORDS = {'account':'per account','person':'per person','ip':'per IP','account-model':'per account per model',
+               'workspace':'per workspace',
                'project':'per project','key':'per key','unspecified':'scope not published',
                'ip-model':'per IP per model','organization':'per organization',
                'organization-model':'per organization per model','project-model':'per project per model','key-model':'per key per model',

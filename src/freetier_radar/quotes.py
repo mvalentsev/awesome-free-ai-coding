@@ -122,6 +122,9 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
         field = "api" if entry.api else "client_lane"
         found.extend((f"{field}.model_bindings.{mid}.quote", b.quote)
                      for mid,b in lane.model_bindings.items() if mid in lane.model_ids)
+        if entry.api:
+            found.extend((f"api.opencode_output_sources.{mid}.quote", s.quote)
+                         for mid, s in entry.api.opencode_output_sources.items() if mid in lane.model_ids)
     if entry.page_catalog:
         from .page_catalog import catalog_quotes
         found.extend(catalog_quotes(entry.page_catalog))
@@ -136,6 +139,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if (match := re.fullmatch(r"api\.opencode_output_sources\.(.+)\.quote", field)) and entry.api:
+        return entry.api.opencode_output_sources[match[1]].source
     if field == "remaining_free.quote" and entry.remaining_free:
         return entry.remaining_free.source
     if match := re.fullmatch(r"probe\.model_exclusions\[(\d+)\]\.quote", field):

@@ -38,7 +38,7 @@ The vendor names no country it keeps the offer from ([source](https://beatapi.io
 - Base URL: `https://api.beatapi.io/v1`
 - Key: `BEATAPI_API_KEY` — get one at <https://beatapi.io/dashboard/apikeys>
 - Callable ids: `glm-5.3-flash-free`, `deepseek-v4.1-flash-free`, `hy4-free`
-- Note: Use a key in the default auto group and the exact -free ID. A zero balance is allowed. All three listed Free IDs support Chat Completions; the Free catalog does not promise Responses. Give the reasoning variant at least 2,000 output tokens because reasoning consumes that budget.
+- Note: Use a key in the default auto group and the exact -free ID. A zero balance is allowed. All three listed Free IDs support Chat Completions; the Free catalog does not promise Responses. Reasoning consumes the output budget; the Free guide recommends "2000 or more" tokens.
 
 Try it from your terminal with your key in `BEATAPI_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

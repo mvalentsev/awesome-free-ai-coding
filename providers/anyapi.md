@@ -23,7 +23,7 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-100,000 AnyTokens/day per account. 00:00 UTC
+100,000 AnyTokens/day per account. midnight UTC
 
 AnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.
 

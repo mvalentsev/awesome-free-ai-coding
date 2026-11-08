@@ -1071,6 +1071,20 @@ class ModelBinding(BaseModel):
         return self
 
 
+class OutputBudgetSource(BaseModel):
+    """An official parameter description backing a chosen request budget."""
+    model_config = ConfigDict(extra="forbid")
+    source: str
+    quote: str = Field(min_length=3)
+
+    @field_validator("source")
+    @classmethod
+    def _public_source(cls, value):
+        if not valid_source_url(value):
+            raise ValueError("output budget source must be a public https URL")
+        return value
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -1083,6 +1097,8 @@ class ApiInfo(BaseModel):
     model_limits: dict[str, ModelLimits] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Chosen OpenCode request budgets; these do not assert vendor model limits.
     opencode_output_tokens: dict[str, Annotated[int, Field(gt=0, strict=True)]] = Field(
+        default_factory=dict, exclude_if=lambda v: not v)
+    opencode_output_sources: dict[str, OutputBudgetSource] = Field(
         default_factory=dict, exclude_if=lambda v: not v)
     # Zero-priced ids the catalog carries that are deliberately not in
     # model_ids — an image generator, a row whose own description says it was
@@ -1167,7 +1183,14 @@ class ApiInfo(BaseModel):
         _metadata_ids_are_listed(
             self.model_ids, self.ignored_ids, model_access=self.model_access,
             model_bindings=self.model_bindings, model_limits=self.model_limits,
-            opencode_output_tokens=self.opencode_output_tokens)
+            opencode_output_tokens=self.opencode_output_tokens,
+            opencode_output_sources=self.opencode_output_sources)
+        for mid, source in self.opencode_output_sources.items():
+            tokens = self.opencode_output_tokens.get(mid)
+            if tokens is None or not re.search(rf"(?<![\d]){tokens}(?![\d])", source.quote):
+                raise ValueError("output budget source must quote its chosen token count")
+            if not re.search(r"\bmax_(?:completion_)?tokens\b|\bmax_output_tokens\b", source.quote):
+                raise ValueError("output budget source must name an output-token parameter")
         for mid, tokens in self.opencode_output_tokens.items():
             if mid in self.model_limits and tokens > self.model_limits[mid].output_tokens:
                 raise ValueError("opencode_output_tokens exceeds the catalog output limit")
@@ -1691,7 +1714,8 @@ class Entry(BaseModel):
         if self.api is not None and (self.api.model_limits or self.api.opencode_output_tokens):
             catalog = (self.probe.endpoint if self.probe.type is ProbeType.API_MODELS
                        else self.probe.catalog)
-            if self.api.opencode_output_tokens and not catalog:
+            if (self.api.opencode_output_tokens and not catalog
+                    and set(self.api.opencode_output_tokens) - self.api.opencode_output_sources.keys()):
                 raise ValueError("api.opencode_output_tokens requires a catalog this probe rechecks")
             catalog_limits = [l for l in self.api.model_limits.values() if l.read == "catalog"]
             if catalog_limits and (not catalog or any(l.source != catalog for l in catalog_limits)):
@@ -1978,7 +2002,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
                 metadata = {name: {i: value for i, value in getattr(current, name).items()
                                    if i in retained}
                             for name in ("model_access", "model_bindings", "model_limits",
-                                         "opencode_output_tokens") if hasattr(current, name)}
+                                         "opencode_output_tokens", "opencode_output_sources") if hasattr(current, name)}
                 current = current.model_copy(update={
                     "ignored_ids": [i for i in current.ignored_ids if i in retained], **metadata})
                 entry_updates["api" if e.api else "client_lane"] = current
