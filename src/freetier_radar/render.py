@@ -711,14 +711,15 @@ def _chart(models: list[dict], scores: dict | None) -> Chart | None:
 
 
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
-    """The README pictures and their retained URLs, in each
-    of its VARIANTS: the wide pair one palette each, the narrow one with both —
-    and the site's mark, the hero's radar alone (SITE_RADAR)."""
+    """Theme-aware SVGs for each layout, retained fixed-palette URLs, and
+    the site's mark, the hero's radar alone (SITE_RADAR)."""
     drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow),
                "strong": lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)}
     palettes = {"light": (LIGHT, False), "dark": (DARK, False), "narrow": (None, True)}
     pictures = {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
                 for name, draw in drawers.items() for variant in VARIANTS}
+    pictures.update({f"{README_PICTURES}/{name}.svg": draw(None, False)
+                     for name, draw in drawers.items()})
     pictures[SITE_RADAR] = radar_svg(hero)
     return pictures
 

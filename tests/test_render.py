@@ -1038,7 +1038,7 @@ def test_render_readme(tmp_path: Path):
     assert "LLM APIs with free tier" in text
     assert "## 📡 How this list stays fresh" in text
     assert "```mermaid" in text
-    assert 'srcset="assets/readme/hero-dark.svg"' in text
+    assert 'src="assets/readme/hero.svg"' in text
     assert "## 📦 Archive" in text
     assert "Dead Tool" in text.split("## 📦 Archive")[1]
     assert out.read_text(encoding="utf-8") == text
@@ -1419,9 +1419,8 @@ def test_the_readme_opens_on_the_hero_and_a_phone_is_served_the_narrow_one(tmp_p
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[0]
     sources = re.findall(r'<source media="([^"]+)" srcset="([^"]+)">', hero)
-    assert sources == [("(max-width: 600px)", "assets/readme/hero-narrow.svg"),
-                       ("(prefers-color-scheme: dark)", "assets/readme/hero-dark.svg")]
-    img = re.search(r'<img alt="([^"]+)" src="assets/readme/hero-light.svg" width="860">', hero)
+    assert sources == [("(max-width: 600px)", "assets/readme/hero-narrow.svg")]
+    img = re.search(r'<img alt="([^"]+)" src="assets/readme/hero.svg" width="860">', hero)
     assert img and "2 live offers, 1 need no card, 1 free models" in img.group(1)
     assert not any(line.startswith("| **") for line in hero.splitlines())
 
@@ -2258,7 +2257,7 @@ def test_current_free_measurements_keep_the_comparison_and_provider_path_without
     registry=tmp_path/'registry.yaml'
     save_registry(registry,rows)
     text=render_readme(registry,Path('templates'),tmp_path/'README.md',today=TODAY,scores=SCORES)
-    assert 'src="assets/readme/strong-light.svg"' in text
+    assert 'src="assets/readme/strong.svg"' in text
     assert 'Where each one is free' in text
     assert '[A](https://x.ai)' in text and '[B](https://x.ai)' in text
     svg=(tmp_path/'assets/readme/strong-light.svg').read_text()
@@ -2280,7 +2279,7 @@ def test_the_free_models_are_compared_with_the_index_leader_named_separately(tmp
     # <picture> and serves every reader its fallback: the picture sits in an HTML
     # block
     assert '<div align="center">\n<a href="' in strong
-    assert 'src="assets/readme/strong-light.svg" width="860"' in strong
+    assert 'src="assets/readme/strong.svg" width="860"' in strong
     assert "<details>" in strong and strong.index("<details>") < strong.index("[`kimi-k3`]")
     # the chart's order: the higher score first
     assert strong.index("[`kimi-k3`]") < strong.index("[`glm-5.3`]")
@@ -2338,11 +2337,14 @@ def test_a_picture_is_described_once_for_the_readme_and_for_itself(tmp_path: Pat
     save_registry(reg, _strong_rows())
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY, scores=SCORES)
     for name in ("hero", "strong"):
-        alt = re.search(rf'<img alt="([^"]+)" src="{README_PICTURES}/{name}-light.svg"', text).group(1)
-        svg = (tmp_path / README_PICTURES / f"{name}-dark.svg").read_text(encoding="utf-8")
+        alt = re.search(rf'<img alt="([^"]+)" src="{README_PICTURES}/{name}\.svg"', text).group(1)
+        svg = (tmp_path / README_PICTURES / f"{name}.svg").read_text(encoding="utf-8")
         assert re.search(r"<title[^>]*>(.*?)</title>", svg).group(1) == alt.replace("&", "&amp;")
-        named = set(re.findall(rf'{README_PICTURES}/({name}-\w+\.svg)', text))
-        assert named == {p.name for p in (tmp_path / README_PICTURES).glob(f"{name}-*.svg")}
+        named = set(re.findall(rf'{README_PICTURES}/({name}(?:-narrow)?\.svg)', text))
+        assert named == {f"{name}.svg", f"{name}-narrow.svg"}
+        for filename in named:
+            rendered = (tmp_path / README_PICTURES / filename).read_text()
+            assert "@media (prefers-color-scheme: dark)" in rendered
 
 
 def test_a_row_that_needs_a_key_links_where_to_get_one(tmp_path: Path):

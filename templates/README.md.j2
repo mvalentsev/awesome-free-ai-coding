@@ -1,10 +1,8 @@
-{#- One <picture> for every picture the README shows: a phone gets the narrow one by width
-    alone (it follows the reader's theme itself), the wide pair by the theme. -#}
+{#- Width selects the layout; each SVG follows the theme itself. -#}
 {% macro picture(name, alt) -%}
 <picture>
   <source media="(max-width: {{ narrow_until }}px)" srcset="{{ pictures_dir }}/{{ name }}-narrow.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="{{ pictures_dir }}/{{ name }}-dark.svg">
-  <img alt="{{ alt }}" src="{{ pictures_dir }}/{{ name }}-light.svg" width="{{ picture_width }}">
+  <img alt="{{ alt }}" src="{{ pictures_dir }}/{{ name }}.svg" width="{{ picture_width }}">
 </picture>
 {%- endmacro %}
 <a name="top"></a>

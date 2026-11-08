@@ -115,13 +115,12 @@ def test_every_word_reads_at_the_width_a_reader_sees_it():
         assert sizes and min(sizes) * scale >= 11, (narrow, min(sizes) * scale)
 
 
-def test_the_narrow_hero_follows_the_readers_theme_and_the_wide_pair_does_not():
-    """A phone is served the narrow hero whatever its theme, so that one picture
-    carries both palettes and the reader's preference picks one; the wide pair
-    is chosen between by the README's <picture>, so each holds one palette."""
-    narrow = hero_svg(HERO, None, narrow=True)
-    assert "@media (prefers-color-scheme: dark)" in narrow
-    assert LIGHT.canvas in narrow and DARK.canvas in narrow
+@pytest.mark.parametrize("narrow", [False, True])
+def test_each_layout_follows_the_readers_theme_and_fixed_palette_links_stay_fixed(narrow):
+    """Both layouts follow the theme; existing fixed-palette URLs retain theirs."""
+    adaptive = hero_svg(HERO, None, narrow=narrow)
+    assert "@media (prefers-color-scheme: dark)" in adaptive
+    assert LIGHT.canvas in adaptive and DARK.canvas in adaptive
     for palette, other in ((LIGHT, DARK), (DARK, LIGHT)):
         wide = hero_svg(HERO, palette)
         assert "prefers-color-scheme" not in wide

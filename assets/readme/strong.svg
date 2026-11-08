@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="874" viewBox="0 0 1160 874" role="img" aria-labelledby="title">
+<title id="title">Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-06: the strongest, qwen3.8-max, scores 33.7 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 60.0</title>
+<style>.card{fill:#ffffff;stroke:#d1d9e0}.t{fill:#1f2328}.m{fill:#59636e}.bar{fill:#0969da}.grid{stroke:#59636e;stroke-opacity:.18}.axis{stroke:#59636e;stroke-opacity:.5}@media (prefers-color-scheme: dark) {.card{fill:#0d1117;stroke:#3d444d}.t{fill:#f0f6fc}.m{fill:#9198a1}.bar{fill:#4493f8}.grid{stroke:#9198a1;stroke-opacity:.18}.axis{stroke:#9198a1;stroke-opacity:.5}}</style>
+<rect class="card" x="1" y="1" width="1158" height="872" rx="18" stroke-width="2"/>
+<text class="t" x="40" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700">Free models, compared</text>
+<text class="m" x="40" y="90" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">AA Intelligence Index v5.0.1, read 2026-11-06</text>
+<text class="m" x="40" y="116" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">Index leader: Gemini 4 Carbon, 60.0</text>
+<text class="m tick" x="416.5" y="146" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">0</text>
+<line class="grid" x1="416.5" y1="156" x2="416.5" y2="808"/>
+<text class="m tick" x="537.4" y="146" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">10</text>
+<line class="grid" x1="537.4" y1="156" x2="537.4" y2="808"/>
+<text class="m tick" x="658.2" y="146" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">20</text>
+<line class="grid" x1="658.2" y1="156" x2="658.2" y2="808"/>
+<text class="m tick" x="779.1" y="146" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">30</text>
+<line class="grid" x1="779.1" y1="156" x2="779.1" y2="808"/>
+<text class="m tick" x="900.0" y="146" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">40</text>
+<line class="grid" x1="900.0" y1="156" x2="900.0" y2="808"/>
+<line class="axis" x1="416.5" y1="156" x2="900.0" y2="156"/>
+<text class="m" x="1000" y="146" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">Score</text>
+<text class="m" x="1120" y="146" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">Offers</text>
+<text class="t label" x="396.5" y="188" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">qwen3.8-max</text>
+<rect class="bar" x="416.5" y="173" width="407.3" height="18" rx="4"/>
+<text class="t score" x="1000" y="188" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">33.7</text>
+<text class="m offers" x="1120" y="188" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="220" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">glm-5.3</text>
+<rect class="bar" x="416.5" y="205" width="383.2" height="18" rx="4"/>
+<text class="t score" x="1000" y="220" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">31.7</text>
+<text class="m offers" x="1120" y="220" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">3</text>
+<text class="t label" x="396.5" y="252" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.8-flash</text>
+<rect class="bar" x="416.5" y="237" width="372.3" height="18" rx="4"/>
+<text class="t score" x="1000" y="252" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">30.8</text>
+<text class="m offers" x="1120" y="252" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">2</text>
+<text class="t label" x="396.5" y="284" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">mimo-v2.6-pro</text>
+<rect class="bar" x="416.5" y="269" width="361.4" height="18" rx="4"/>
+<text class="t score" x="1000" y="284" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">29.9</text>
+<text class="m offers" x="1120" y="284" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="316" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">minimax-m3.1-flash</text>
+<rect class="bar" x="416.5" y="301" width="351.7" height="18" rx="4"/>
+<text class="t score" x="1000" y="316" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">29.1</text>
+<text class="m offers" x="1120" y="316" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="348" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">step-5-preview-600b-a27b</text>
+<rect class="bar" x="416.5" y="333" width="344.5" height="18" rx="4"/>
+<text class="t score" x="1000" y="348" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">28.5</text>
+<text class="m offers" x="1120" y="348" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="380" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gpt-6-luna</text>
+<rect class="bar" x="416.5" y="365" width="337.2" height="18" rx="4"/>
+<text class="t score" x="1000" y="380" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">27.9</text>
+<text class="m offers" x="1120" y="380" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="412" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">glm-5.3-flash</text>
+<rect class="bar" x="416.5" y="397" width="336.0" height="18" rx="4"/>
+<text class="t score" x="1000" y="412" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">27.8</text>
+<text class="m offers" x="1120" y="412" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">6</text>
+<text class="t label" x="396.5" y="444" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">mimo-v2.6-flash</text>
+<rect class="bar" x="416.5" y="429" width="322.7" height="18" rx="4"/>
+<text class="t score" x="1000" y="444" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">26.7</text>
+<text class="m offers" x="1120" y="444" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">4</text>
+<text class="t label" x="396.5" y="476" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">deepseek-v4-pro</text>
+<rect class="bar" x="416.5" y="461" width="279.2" height="18" rx="4"/>
+<text class="t score" x="1000" y="476" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">23.1</text>
+<text class="m offers" x="1120" y="476" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="508" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">qwen3.8-27b</text>
+<rect class="bar" x="416.5" y="493" width="243.0" height="18" rx="4"/>
+<text class="t score" x="1000" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">20.1</text>
+<text class="m offers" x="1120" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">8</text>
+<text class="t label" x="396.5" y="540" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">minimax-m3</text>
+<rect class="bar" x="416.5" y="525" width="228.5" height="18" rx="4"/>
+<text class="t score" x="1000" y="540" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">18.9</text>
+<text class="m offers" x="1120" y="540" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">2</text>
+<text class="t label" x="396.5" y="572" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">nemotron-3.5-super-vl-120b-a12b</text>
+<rect class="bar" x="416.5" y="557" width="164.4" height="18" rx="4"/>
+<text class="t score" x="1000" y="572" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">13.6</text>
+<text class="m offers" x="1120" y="572" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">6</text>
+<text class="t label" x="396.5" y="604" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">inkling-small</text>
+<rect class="bar" x="416.5" y="589" width="155.9" height="18" rx="4"/>
+<text class="t score" x="1000" y="604" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">12.9</text>
+<text class="m offers" x="1120" y="604" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="636" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">inkling</text>
+<rect class="bar" x="416.5" y="621" width="151.1" height="18" rx="4"/>
+<text class="t score" x="1000" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">12.5</text>
+<text class="m offers" x="1120" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="668" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">nemotron-3-ultra</text>
+<rect class="bar" x="416.5" y="653" width="142.6" height="18" rx="4"/>
+<text class="t score" x="1000" y="668" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">11.8</text>
+<text class="m offers" x="1120" y="668" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">7</text>
+<text class="t label" x="396.5" y="700" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.5-flash-lite</text>
+<rect class="bar" x="416.5" y="685" width="141.4" height="18" rx="4"/>
+<text class="t score" x="1000" y="700" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">11.7</text>
+<text class="m offers" x="1120" y="700" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="732" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">muse-glimmer-30b</text>
+<rect class="bar" x="416.5" y="717" width="76.2" height="18" rx="4"/>
+<text class="t score" x="1000" y="732" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">6.3</text>
+<text class="m offers" x="1120" y="732" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">3</text>
+<text class="t label" x="396.5" y="764" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">command-a-plus</text>
+<rect class="bar" x="416.5" y="749" width="74.9" height="18" rx="4"/>
+<text class="t score" x="1000" y="764" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">6.2</text>
+<text class="m offers" x="1120" y="764" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="t label" x="396.5" y="796" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">nemotron-3.5-lightning</text>
+<rect class="bar" x="416.5" y="781" width="66.5" height="18" rx="4"/>
+<text class="t score" x="1000" y="796" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">5.5</text>
+<text class="m offers" x="1120" y="796" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">9</text>
+<text class="m" x="40" y="848" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">each bar: a model a live offer on this list serves free — where, in the list below</text>
+</svg>

@@ -9,10 +9,9 @@ it on the next render. The counters are the figures the README's text states.
 Two widths, because one aspect ratio cannot serve both screens: the wide hero
 for a desktop column, the narrow one — served to a phone through the README's
 `<picture>` — with the radar above the words and every word drawn large enough
-to read at the width a phone shows it. The wide pair holds one palette each and
-the README picks between them the way GitHub documents; the narrow one holds
-both and follows the reader's theme itself, and its `<source>` asks for a width
-alone.
+to read at the width a phone shows it. The README selects the layout by width;
+each SVG follows the reader's theme. The older fixed-palette URLs remain
+generated for existing links.
 """
 from __future__ import annotations
 
@@ -34,8 +33,7 @@ WIDE_SHOWN = 823
 NARROW_SHOWN = 324
 # The widest screen the README serves the narrow pictures to.
 NARROW_UNTIL = 600
-# The files each picture is drawn as: the wide pair, one palette each, and the
-# narrow one with both.
+# The narrow layout and previously published fixed-palette URLs.
 VARIANTS = ("light", "dark", "narrow")
 # A phone scrolls a picture a screen at a time: its chart draws the strongest
 # ten and names how many more the list under it has.
@@ -300,8 +298,8 @@ def _narrow_words(hero: Hero) -> list[str]:
 
 
 def hero_svg(hero: Hero, palette: Palette | None, narrow: bool = False) -> str:
-    """The top of the README. `palette` None draws both palettes and lets the
-    reader's theme choose, which is what the narrow hero is served as."""
+    """The top of the README. `palette` None lets the reader's theme choose;
+    an explicit palette retains the older fixed-theme links."""
     frame = _NARROW if narrow else _WIDE
     title = escape(hero_words(hero))
     accent_to = frame.width - 60

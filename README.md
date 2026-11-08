@@ -3,8 +3,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 109 live offers, 105 need no card, 130 free models, 75 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 109 live offers, 105 need no card, 130 free models, 75 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -33,8 +32,7 @@
 <div align="center">
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
-  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-06: the strongest, qwen3.8-max, scores 33.7 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 60.0" src="assets/readme/strong-light.svg" width="860">
+  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-06: the strongest, qwen3.8-max, scores 33.7 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 60.0" src="assets/readme/strong.svg" width="860">
 </picture></a>
 </div>
 
