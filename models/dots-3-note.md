@@ -3,7 +3,7 @@ layout: default
 title: 'dots-3-note free: 3 providers, limits and ids, provider probes 2026-11-05'
 description: dots-3-note is served free by OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/dots-3-note/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: dots-3-note
 ---
 
@@ -79,6 +79,6 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

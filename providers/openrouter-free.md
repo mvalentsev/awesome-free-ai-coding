@@ -3,7 +3,7 @@ layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-11-05'
 description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note and 3 more. OpenRouter''s FAQ says its free models "have low…'
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: OpenRouter (free models)
 ---
 
@@ -83,6 +83,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

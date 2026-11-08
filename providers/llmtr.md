@@ -3,7 +3,7 @@ layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-05'
 description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b. Free chat rows can be called on a new account with zero…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: LLMTR
 ---
 
@@ -147,6 +147,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

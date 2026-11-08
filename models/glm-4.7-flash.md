@@ -3,7 +3,7 @@ layout: default
 title: 'glm-4.7-flash free: 4 providers, limits and ids, provider probes 2026-11-05'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM), NovAI and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: glm-4.7-flash
 ---
 
@@ -128,6 +128,6 @@ Tier 1 registration needs no card. A $1 deposit unlocks Tier 2's separate per-mo
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

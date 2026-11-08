@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-11-07 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
+> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-11-08 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
 
 Each offer links to a page with the free tier in the vendor's own words, the connection details (base URL, where to get a key, model ids, an Anthropic-format URL where the vendor documents one), the evidence the probe reads and the row's history. "No card" means the vendor asks for no payment method; "no key" means the endpoint answers without an account; "no account" means the vendor prints a key anyone may call it with. Offers the list carried and carries no more are listed last, under Archived, each with why it left.
 
@@ -20,7 +20,7 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 - [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/): MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them; no card
 - [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/): Codex desktop access on a $0 ChatGPT Free plan, subject to rollout; no card; not offered in mainland China, Russia, Hong Kong and 24 more places; free models: `gpt-6-luna`
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/): VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it; no card
-- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/): Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim; no card; free models: `qwen3.8-flash`
+- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/): A separately documented free allowance continues after the named model promotions; no card
 - [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/): AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents; no card; not offered in mainland China, Russia, Hong Kong and 25 more places; what you send may be used to train or improve models unless you turn that off; free models: `mellum`
 - [Baidu Comate (文心快码)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/): Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days; no card
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/): Free plan of TRAE's AI IDE, TraeCode: Auto mode only, a one-time Basic usage allowance and limited autocompletion; no card; not offered in mainland China, Russia, Canada and 11 more places; what you send may be used to train or improve models unless you turn that off
@@ -143,7 +143,6 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [glm-5.3](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/): notable; AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), ZCode (Z.ai)
 - [muse-glimmer-30b](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/): Requesty, NVIDIA NIM (build.nvidia.com), Routeway
 - [qwen3.6](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/): Hetzner Inference API, FreeInference (Harvard SEAS), OVHcloud AI Endpoints
-- [qwen3.8-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/): Alibaba Cloud Model Studio (DashScope, international), Qoder, Qoder CN (formerly Lingma)
 - [solar-mini-4](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/): Freebuff, Cline, Nous Portal (Hermes Agent)
 - [xing4.0-29b-a4b](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/): OpenRouter (free models), Kilo Code, SiliconFlow (China)
 - [agnes-2.5-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/): LLMTR, Agnes AI
@@ -161,6 +160,7 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [minimax-m3](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/): AIHubMix (free models), FreeInference (Harvard SEAS)
 - [qwen3.5-122b-a10b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/): Alibaba Cloud Model Studio (DashScope, international), Regolo AI
 - [qwen3.5-4b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/): Mixlayer, SiliconFlow (China)
+- [qwen3.8-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/): Alibaba Cloud Model Studio (DashScope, international), Qoder CN (formerly Lingma)
 - [agents-a1](https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/): AIHubMix (free models)
 - [claude-opus-4.6](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/): Google Antigravity
 - [claude-sonnet-4](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/): Kiro

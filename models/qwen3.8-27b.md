@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 8 providers, limits and ids, provider probes 2026-11-05'
 description: qwen3.8-27b is served free by Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: qwen3.8-27b
 ---
 
@@ -187,12 +187,12 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ## Related models
 
-- [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — free at Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma)
+- [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — free at Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma)
 - [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

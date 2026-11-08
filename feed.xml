@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-06T07:46:58Z</updated>
+  <updated>2026-11-08T13:54:56Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder/20261108T135456Z</id>
+    <title>Free models changed: Qoder</title>
+    <link rel="alternate" href="https://qoder.com"/>
+    <updated>2026-11-08T13:54:56Z</updated>
+    <summary type="text">dropped qwen3.8-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261106T074658Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://llmtr.com"/>
     <updated>2026-10-29T09:22:21Z</updated>
     <summary type="text">added nemotron-3.5-super-vl-120b-a12b; dropped nemotron-3-super · free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, intern-s2-397b, atria-dawn, atria-dawn-preview, agents-a1, sage-a1.5, nemotron-3.5-super-vl-120b-a12b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261029T092221Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-10-29T09:22:21Z</updated>
-    <summary type="text">added nemotron-3.5-super-vl-120b-a12b, step-5-preview-600b-a27b · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash, nemotron-3.5-super-vl-120b-a12b, step-5-preview-600b-a27b</summary>
   </entry>
 </feed>

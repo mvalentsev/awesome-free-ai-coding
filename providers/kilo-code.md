@@ -3,7 +3,7 @@ layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-11-05'
 description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3-ultra, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b, beam-1.0. The…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: Kilo Code
 ---
 
@@ -84,6 +84,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

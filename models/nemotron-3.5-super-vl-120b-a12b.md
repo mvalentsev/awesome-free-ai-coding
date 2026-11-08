@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-super-vl-120b-a12b free: 6 providers, limits and ids, provider probes 2026-11-05'
 description: nemotron-3.5-super-vl-120b-a12b is served free by opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe…
 permalink: /models/nemotron-3.5-super-vl-120b-a12b/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: nemotron-3.5-super-vl-120b-a12b
 ---
 
@@ -143,6 +143,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -2357,18 +2357,11 @@ entries:
     quote: If you choose to continue using the Free plan, don’t worry—we will continue
       to serve you with basic models, subject to daily and monthly limits.
     free_part: unnamed
-  offering: Alibaba's coding apps with an ongoing Free basic-model allowance, a free
-    Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim
-  limits: 'The Free plan continues on unnamed basic models with unpublished daily
-    and monthly limits after credits run out. The Qwen3.8-Flash promotion includes
-    individual Free accounts with zero Credits, requires no claim, and excludes Teams
-    and Enterprise. Daily free uses are limited, with more for paid accounts; after
-    the allowance, wait until the next day or spend Credits. Free uses spend no Credits;
-    its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01
-    at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and
-    unmetered completions and next edits. Daily promotional credits require a manual
-    claim in the international desktop app; "End time: To be announced". Efficient-tier
-    promotional usage requires a paid plan.'
+  offering: A separately documented free allowance continues after the named model
+    promotions
+  limits: If you choose to continue using the Free plan, don’t worry—we will continue
+    to serve you with basic models, subject to daily and monthly limits. Current model
+    IDs and account eligibility must be confirmed with the provider.
   quotas:
   - amount: 300.0
     unit: credits
@@ -2424,13 +2417,10 @@ entries:
     model_ids:
     - DeepSeek-Flash
     reviewed_on: '2026-10-28'
-  free_part: models
-  models:
-  - family: qwen3.8-flash
-    aa_model: qwen3-8-flash-next
+  free_part: unnamed
+  models: []
   client_lane:
-    model_ids:
-    - Qwen3.8-Flash
+    model_ids: []
     model_bindings:
       Qwen3.8-Flash:
         family: qwen3.8-flash
@@ -2442,15 +2432,17 @@ entries:
         source: https://docs.qoder.com/events/deepseek-flash-free
         quote: DeepSeek-Flash (DeepSeek-V4.1-Flash-1017)
     model_access:
+      Qwen3.8-Flash:
+        source: https://docs.qoder.com/events/flashoffer
+        until: '2026-11-07T00:00:00+08:00'
       DeepSeek-Flash:
         source: https://docs.qoder.com/events/deepseek-flash-free
         until: '2026-11-01T00:00:00+08:00'
     ignored_ids:
     - DeepSeek-Flash
-    note: Select Qwen3.8-Flash in an official Qoder International app, including CLI.
-      Its promotion includes individual Free accounts with zero Credits; Teams and
-      Enterprise are excluded. It requires no claim. Other models used by a feature
-      can still spend Credits.
+    - Qwen3.8-Flash
+    note: The named model promotions have ended; check the continuing offer's current
+      models and eligibility in your account.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -2459,8 +2451,8 @@ entries:
     type: page-keywords
     endpoint: https://docs.qoder.com/account/pricing
     keywords:
-    - we will continue to serve you with basic models, subject to daily and monthly
-      limits
+    - If you choose to continue using the Free plan, don’t worry—we will continue
+      to serve you with basic models, subject to daily and monthly limits.
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

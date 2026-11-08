@@ -3,7 +3,7 @@ layout: default
 title: 'agents-a1 free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: agents-a1 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agents-a1/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: agents-a1
 ---
 
@@ -44,6 +44,6 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

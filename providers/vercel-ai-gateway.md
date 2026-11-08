@@ -3,7 +3,7 @@ layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-11-05'
 description: 'OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes. Free models: laguna-s-2.1, nemotron-3.5-lightning, beam-1.0. A team must add a valid payment method before using free credit; otherwise requests return `403…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: Vercel AI Gateway
 ---
 
@@ -96,6 +96,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,7 +3,7 @@ layout: default
 title: 'north-mini-code free: 4 providers, limits and ids, provider probes 2026-11-05'
 description: north-mini-code is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/north-mini-code/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: north-mini-code
 ---
 
@@ -103,6 +103,6 @@ Trial keys are for evaluation, not production or commercial use; new accounts st
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

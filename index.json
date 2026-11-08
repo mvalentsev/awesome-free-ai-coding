@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-07",
+  "generated": "2026-11-08",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -4665,8 +4665,8 @@
         "quote": "If you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits.",
         "free_part": "unnamed"
       },
-      "offering": "Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim",
-      "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nPro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)\n\nQwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`\n\nThe Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The Qwen3.8-Flash promotion includes individual Free accounts with zero Credits, requires no claim, and excludes Teams and Enterprise. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Free uses spend no Credits; its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01 at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; \"End time: To be announced\". Efficient-tier promotional usage requires a paid plan.",
+      "offering": "A separately documented free allowance continues after the named model promotions",
+      "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nPro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)\n\nIf you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits. Current model IDs and account eligibility must be confirmed with the provider.",
       "quotas": [
         {
           "amount": 300.0,
@@ -4706,32 +4706,12 @@
           "quote": "Unlimited completions & next edits",
           "reviewed_on": "2026-11-03",
           "amount": null
-        },
-        {
-          "unit": "requests",
-          "period": "day",
-          "scope": "account-model",
-          "label": "Qwen3.8-Flash promotion",
-          "source": "https://docs.qoder.com/events/flashoffer",
-          "quote": "Each account receives a limited number of free uses each day. Paid subscribers receive more free uses than free users.",
-          "model_ids": [
-            "Qwen3.8-Flash"
-          ],
-          "reviewed_on": "2026-10-31",
-          "amount": null
         }
       ],
-      "free_part": "models",
-      "models": [
-        {
-          "family": "qwen3.8-flash",
-          "aa_model": "qwen3-8-flash-next"
-        }
-      ],
+      "free_part": "unnamed",
+      "models": [],
       "client_lane": {
-        "model_ids": [
-          "Qwen3.8-Flash"
-        ],
+        "model_ids": [],
         "model_bindings": {
           "Qwen3.8-Flash": {
             "family": "qwen3.8-flash",
@@ -4745,15 +4725,20 @@
           }
         },
         "model_access": {
+          "Qwen3.8-Flash": {
+            "source": "https://docs.qoder.com/events/flashoffer",
+            "until": "2026-11-07T00:00:00+08:00"
+          },
           "DeepSeek-Flash": {
             "source": "https://docs.qoder.com/events/deepseek-flash-free",
             "until": "2026-11-01T00:00:00+08:00"
           }
         },
         "ignored_ids": [
-          "DeepSeek-Flash"
+          "DeepSeek-Flash",
+          "Qwen3.8-Flash"
         ],
-        "note": "Select Qwen3.8-Flash in an official Qoder International app, including CLI. Its promotion includes individual Free accounts with zero Credits; Teams and Enterprise are excluded. It requires no claim. Other models used by a feature can still spend Credits."
+        "note": "The named model promotions have ended; check the continuing offer's current models and eligibility in your account."
       },
       "border": {
         "left_out": [],
@@ -4767,7 +4752,7 @@
         "type": "page-keywords",
         "endpoint": "https://docs.qoder.com/account/pricing",
         "keywords": [
-          "we will continue to serve you with basic models, subject to daily and monthly limits"
+          "If you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits."
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -4782,19 +4767,13 @@
       "archived": false,
       "search": {
         "name": "Qoder",
-        "models": [
-          "qwen3.8-flash"
-        ],
-        "ids": [
-          "Qwen3.8-Flash"
-        ],
-        "what": "Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim",
-        "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nPro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)\n\nQwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`\n\nThe Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The Qwen3.8-Flash promotion includes individual Free accounts with zero Credits, requires no claim, and excludes Teams and Enterprise. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Free uses spend no Credits; its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01 at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; \"End time: To be announced\". Efficient-tier promotional usage requires a paid plan.",
+        "models": [],
+        "ids": [],
+        "what": "A separately documented free allowance continues after the named model promotions",
+        "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nPro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)\n\nIf you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits. Current model IDs and account eligibility must be confirmed with the provider.",
         "why": "",
         "access": "",
-        "modelAccess": {
-          "qwen3.8-flash": ""
-        },
+        "modelAccess": {},
         "section": {
           "id": "agent-cli"
         },
@@ -4804,12 +4783,8 @@
       },
       "access_labels": {
         "offer": "",
-        "models": {
-          "qwen3.8-flash": ""
-        },
-        "ids": {
-          "Qwen3.8-Flash": ""
-        }
+        "models": {},
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/"
     },
@@ -19818,15 +19793,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
     },
     {
-      "family": "qwen3.8-flash",
-      "rows": [
-        "alibaba-model-studio",
-        "qoder",
-        "qoder-cn"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
-    },
-    {
       "family": "solar-mini-4",
       "rows": [
         "freebuff",
@@ -19964,6 +19930,14 @@
         "siliconflow-cn"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
+    },
+    {
+      "family": "qwen3.8-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "qoder-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
       "family": "agents-a1",

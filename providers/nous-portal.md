@@ -3,7 +3,7 @@ layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-11-05'
 description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, solar-mini-4, beam-1.0. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a…'
 permalink: /providers/nous-portal/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: Nous Portal (Hermes Agent)
 ---
 
@@ -77,6 +77,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

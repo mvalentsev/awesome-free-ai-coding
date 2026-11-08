@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-120b free: 4 providers, limits and ids, provider probes 2026-11-05'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-120b/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: gpt-oss-120b
 ---
 
@@ -108,6 +108,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

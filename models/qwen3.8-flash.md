@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-flash free: 3 providers, limits and ids, provider probes 2026-11-05'
-description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3.8-flash free: 2 providers, limits and ids, provider probes 2026-11-05'
+description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: qwen3.8-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-flash
 
 # Where qwen3.8-flash is free
 
-**3 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international), Qoder and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-11-05; their offers are rechecked twice a week.
+**2 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-11-05; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -41,24 +41,6 @@ Free token grants apply in Singapore (international), independently per model an
 - Callable ids: `qwen3.8-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
-### [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/)
-
-🤖 Coding agents & CLIs · no card · last probe 2026-11-05 · listed since 2026-10-28
-
-Alibaba's coding apps with an ongoing Free basic-model allowance, a free Qwen promotion, a 300-credit Pro trial, and daily promotional credits to claim
-
-- Limits, in the vendor's words: Qwen3.8-Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`
-
-Pro trial: 300 credits once per account (Valid for 2 weeks)
-
-Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
-
-Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
-
-The Free plan continues on unnamed basic models with unpublished daily and monthly limits after credits run out. The Qwen3.8-Flash promotion includes individual Free accounts with zero Credits, requires no claim, and excludes Teams and Enterprise. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Free uses spend no Credits; its end will be announced in advance. The DeepSeek-Flash promotion ended on 2026-11-01 at 00:00 Singapore time. The separate 14-day Pro trial includes 300 credits and unmetered completions and next edits. Daily promotional credits require a manual claim in the international desktop app; "End time: To be announced". Efficient-tier promotional usage requires a paid plan.
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In Qoder's own model list: `Qwen3.8-Flash`
-
 ### [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/)
 
 🤖 Coding agents & CLIs · no card · last probe 2026-11-05 · listed since 2026-10-12
@@ -79,6 +61,7 @@ The model promotion is open to personal users, including free accounts with zero
 
 ## Rows that listed it before
 
+- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — listed 2026-10-28 to 2026-11-08
 - [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) — listed 2026-09-16 to 2026-10-15; the row itself is archived
 
 ## Related models
@@ -89,6 +72,6 @@ The model promotion is open to personal users, including free accounts with zero
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-06
+last_modified_at: 2026-11-08
 ---
 
 {% raw %}
@@ -28,7 +28,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) — verified 2026-11-05
 - [Codex (ChatGPT Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-11-05 · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) — verified 2026-11-05
-- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-11-05 · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/)
+- [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-11-05
 - [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) — verified 2026-11-05 · `mellum`
 - [Baidu Comate (文心快码)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) — verified 2026-11-05
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-11-05

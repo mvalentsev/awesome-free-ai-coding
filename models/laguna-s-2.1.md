@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-s-2.1 free: 1 provider, limits and ids, provider probes 2026-11-05'
 description: laguna-s-2.1 is served free by Vercel AI Gateway. It asks for a card on file. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/laguna-s-2.1/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: laguna-s-2.1
 ---
 
@@ -57,6 +57,6 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

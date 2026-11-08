@@ -3,7 +3,7 @@ layout: default
 title: 'opencode free tier: limits, free models, verified 2026-11-05'
 description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, deepseek-v4.1-flash, glm-5.3-flash…'
 permalink: /providers/opencode/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-08
 crumb: opencode
 ---
 
@@ -69,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
