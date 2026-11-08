@@ -4,12 +4,12 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 103 live offers, 99 need no card, 130 free models, 69 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 109 live offers, 105 need no card, 130 free models, 75 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
-![Every row verified 2026-11-05](https://img.shields.io/badge/every%20row%20verified-2026--11--05-3fb950)
+![Every row verified 2026-11-05 or later](https://img.shields.io/badge/every%20row%20verified-2026--11--05%20or%20later-3fb950)
 
 **[🌐&nbsp;Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎&nbsp;Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🤖&nbsp;Agents](#-coding-agents--clis) · [🔌&nbsp;APIs](#-llm-apis-with-free-tier) · [🎁&nbsp;Trials](#-trials-no-card-when-possible) · [🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers) · [🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent) · [📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
 
@@ -17,7 +17,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) · [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) · [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) · [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) · [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) · [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) · [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) · [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) · [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) · [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) · [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/)
+🆕 **New this week:** [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) · [BeatAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) · [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [MIAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) · [OrcaRouter](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) · [PLaMo API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) · [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) · [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) · [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) · [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) · [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) · [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) · [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) · [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) · [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) · [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) · [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/)
 
 ## 🚀 Start here
 
@@ -77,7 +77,7 @@
 - **Codex CLI on a free lane** — [OpenRouter (free models)](https://openrouter.ai) `codex -p openrouter-free` · [Kilo Code](https://kilo.ai) `codex -p kilo-code` · [AIHubMix (free models)](https://aihubmix.com) `codex -p aihubmix` · [any lane of the LiteLLM config](configs/codex/litellm.config.toml) `codex -p litellm`
 
 
-<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh); the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>
+<sub>Picks follow the [list order](CONTRIBUTING.md#how-rows-are-ordered). Claude Code routes have [`shell functions`](configs/claude-code.sh). Direct Codex routes have [`profiles`](configs/codex/); probes recheck keyless requests or the vendor's setup instructions.</sub>
 
 **Try without an account:** [Kilo Code](https://kilo.ai) — a rate-limited connectivity check:
 
@@ -92,7 +92,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 103, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — card required: 4 of 109 · **👁** — what you send may be used to train models · **🧪** — provisional for two weeks of probes · **verified** — latest probe date; opens limits, evidence and history</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**27** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -126,7 +126,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Codacy](https://www.codacy.com)** 🧪 — AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/)</sub>
 
 ### 🔌 LLM APIs with free tier
-<sub>**35** live · **33** of them ask for no card · sorted by how much work you can get done for free</sub>
+<sub>**37** live · **35** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 - **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 — Free tier on the Gemini API, priced model by model rather than as one account quota<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) · [🔑 key](https://aistudio.google.com/apikey) · [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) · [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) · [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) · [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) · [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · `gemma-4`</sub>
 - **[Groq](https://groq.com)** — Fast inference against a free plan Groq publishes as a per-model rate table<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) · [🔑 key](https://console.groq.com/keys) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</sub>
@@ -151,8 +151,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Ollama Cloud](https://ollama.com/cloud)** — Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) · [🔑 key](https://ollama.com/settings/keys)</sub>
 - **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** — EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</sub>
 - **[LLM.kiwi](https://llm.kiwi)** 🧪 — Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) · [🔑 key](https://llm.kiwi/login)</sub>
+- **[MIAPI](https://miapi.uk)** 🧪 — A monthly free API allowance for web-grounded answers with citations<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) · [🔑 key](https://miapi.uk/signup.html)</sub>
 - **[Novita AI](https://novita.ai/)** — Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) · [🔑 key](https://novita.ai/settings/key-management)</sub>
 - **[Sail Research](https://www.sailresearch.com)** 💳 — Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) · [🔑 key](https://app.sailresearch.com)</sub>
+- **[PLaMo API (Preferred Networks)](https://plamo.preferredai.jp/api)** 👁 🧪 — Preferred Networks model API with a Free plan for eligible users in Japan<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) · [🔑 key](https://console.platform.preferredai.jp/)</sub>
 - **[Pollinations.AI](https://pollinations.ai)** — Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)</sub>
 - **[IBM watsonx.ai (Lite plan)](https://www.ibm.com/products/watsonx-ai)** 💳 — IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) · [🔑 key](https://cloud.ibm.com/iam/apikeys)</sub>
 - **[Aion Labs](https://www.aionlabs.ai)** — OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) · [🔑 key](https://www.aionlabs.ai/app/api-keys/)</sub>
@@ -192,7 +194,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Liquid Inference](https://inference.ai.exchange)** 🧪 — Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) · [🔑 key](https://inference.ai.exchange)</sub>
 
 ### 🧭 Aggregators (one key, many providers)
-<sub>**18** live · **16** of them ask for no card · sorted by how much work you can get done for free</sub>
+<sub>**22** live · **20** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 - **[OpenRouter (free models)](https://openrouter.ai)** 👁 — One API key for a rotating set of :free model variants, open-weight and stealth models among them<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) · [🔑 key](https://openrouter.ai/settings/keys) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) · [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) · [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/) · [+3 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)</sub>
 - **[Requesty](https://www.requesty.ai)** 👁 — OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) · [🔑 key](https://app.requesty.ai/api-keys) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) · [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · `leanstral-1.5` · [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/) · [+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)</sub>
@@ -211,7 +213,11 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Kiosapi.id](https://kiosapi.id)** 🧪 — Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [🔑 key](https://kiosapi.id/dashboard/keys)</sub>
 - **[NovAI](https://aiapi-pro.com)** — Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) · [🔑 key](https://aiapi-pro.com/register.html) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · `glm-4.1v-thinking-flash`</sub>
 - **[1min.AI](https://1min.ai)** 🧪 — Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) · [🔑 key](https://app.1min.ai/)</sub>
+- **[OrcaRouter (free models)](https://www.orcarouter.ai)** 🧪 — Free model APIs for accounts with established GitHub linkage<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) · [🔑 key](https://www.orcarouter.ai)</sub>
+- **[AnyAPI](https://anyapi.ai)** 🧪 — A free model API with a separate daily AnyToken allowance<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) · [🔑 key](https://dash.anyapi.ai/?page=api-keys)</sub>
+- **[BeatAPI (free models)](https://beatapi.io)** 🧪 — A no-top-up API for free text-model variants<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) · [🔑 key](https://beatapi.io/dashboard/apikeys)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits<br><sub>[verified 2026-11-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
+- **[JZS Token](https://jzstoken.com)** (requires $1.5 top-up) 🧪 — A temporary free model API with a dedicated key and prepaid account<br><sub>[verified 2026-11-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [🔑 key](https://jzstoken.com/dashboard/keys)</sub>
 
 **🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 130 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
@@ -221,16 +227,16 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-08` | ➕ Added **[AnyAPI](https://anyapi.ai)** | <sub>A free model API with a separate daily AnyToken allowance</sub> |
+| `2026-11-08` | ➕ Added **[BeatAPI (free models)](https://beatapi.io)** | <sub>A no-top-up API for free text-model variants</sub> |
+| `2026-11-08` | ➕ Added **[JZS Token](https://jzstoken.com)** | <sub>A temporary free model API with a dedicated key and prepaid account</sub> |
+| `2026-11-08` | ➕ Added **[MIAPI](https://miapi.uk)** | <sub>A monthly free API allowance for web-grounded answers with citations</sub> |
+| `2026-11-08` | ➕ Added **[OrcaRouter (free models)](https://www.orcarouter.ai)** | <sub>Free model APIs for accounts with established GitHub linkage</sub> |
+| `2026-11-08` | ➕ Added **[PLaMo API (Preferred Networks)](https://plamo.preferredai.jp/api)** | <sub>Preferred Networks model API with a Free plan for eligible users in Japan</sub> |
 | `2026-11-08` | 🔄 Free models changed **[Qoder](https://qoder.com)** | <sub>dropped qwen3.8-flash</sub> |
 | `2026-11-06` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added gemma-4-26b-a4b, gemma-4-31b</sub> |
 | `2026-11-06` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped jais-3-mova-36b-a4b, k2-horizon-375b-a23b</sub> |
 | `2026-11-05` | 🔄 Free models changed **[NovAI](https://aiapi-pro.com)** | <sub>added glm-4.1v-thinking-flash, glm-4.6v-flash, glm-4.7-flash</sub> |
-| `2026-11-05` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added nemotron-3.5-bolt-e4b</sub> |
-| `2026-11-05` | ➕ Added **[Merkium](https://www.merkium.nl)** | <sub>Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge</sub> |
-| `2026-11-05` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added beam-1.0</sub> |
-| `2026-11-05` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added nemotron-3.5-lightning</sub> |
-| `2026-11-04` | ➕ Added **[Mixedbread](https://www.mixedbread.com)** | <sub>OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required</sub> |
-| `2026-11-04` | ➕ Added **[Codacy](https://www.codacy.com)** | <sub>AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
@@ -268,23 +274,23 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | <sub>delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)</sub> |
 | [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | <sub>delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly</sub> |
 
-<sub>Provider pages retain the offer, evidence and history. A row archived by its probe returns when it passes again. Merged entries keep their old pages, pointing to the retained row. See [the archive rules](#-how-this-list-stays-fresh) below.</sub>
+<sub>Pages retain offers, evidence and history. Probe archives return after passing; merged pages point to the retained row. See [archive rules](#-how-this-list-stays-fresh).</sub>
 
 </details>
 
-**🔭 Checked and not listed** — 278 services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them](https://mvalentsev.github.io/awesome-free-ai-coding/providers/checked/). Nothing there is disqualified, and every verdict expires after 90 days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
+**🔭 Checked and not listed** — 272 services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them](https://mvalentsev.github.io/awesome-free-ai-coding/providers/checked/). Nothing there is disqualified, and every verdict expires after 90 days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
 
 ## 🔧 Plug it into your agent
 
-**[Connection table](configs/README.md)** — base URLs, keys and client notes for 69 live OpenAI-compatible APIs, plus available Claude Code routes and direct Codex profiles. [Copy buttons on the website](https://mvalentsev.github.io/awesome-free-ai-coding/#connections). These configs are regenerated on every update:
+**[Connection table](configs/README.md)** — base URLs, keys and client notes for 75 live OpenAI-compatible APIs, plus available Claude Code routes and direct Codex profiles. [Copy buttons on the website](https://mvalentsev.github.io/awesome-free-ai-coding/#connections). These configs are regenerated on every update:
 
-- [`configs/opencode.json`](configs/opencode.json) — Drop-in [opencode](https://opencode.ai) config with every provider wired up: keys via `{env:...}`, keyless endpoints work immediately
-- [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai) proxy config: `env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model LiteLLM can call behind one local endpoint; ask for `free/nokey` instead of a model and a call moves to the next free lane when one runs out — LiteLLM would send your `OPENAI_API_KEY` to a lane whose own key is not set
-- [`configs/claude-code.sh`](configs/claude-code.sh) — One shell function per gateway that serves the Anthropic Messages format: `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in where the row lists one
-- [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) — [Codex CLI](https://developers.openai.com/codex) profile over the LiteLLM config: Codex speaks only the OpenAI Responses API, and the proxy answers it for every lane in that file from the lane's chat completions — copy it to `~/.codex/` and run `codex -p litellm` (Codex CLI 0.134 and LiteLLM 1.98 or later)
+- [`configs/opencode.json`](configs/opencode.json) — [opencode](https://opencode.ai) providers: keys via `{env:...}`, keyless endpoints ready to use
+- [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai): `env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1` serves the listed models locally; `free/nokey` falls back between free lanes. Set each lane's own key: otherwise LiteLLM forwards `OPENAI_API_KEY`
+- [`configs/claude-code.sh`](configs/claude-code.sh) — `source` it for [Claude Code](https://code.claude.com/docs) functions with the listed keys and models
+- [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) — Copy to `~/.codex/`; run `codex -p litellm`. [Codex CLI](https://developers.openai.com/codex) uses Responses; LiteLLM translates to chat completions (Codex CLI 0.134, LiteLLM 1.98 or later)
 - [`configs/free-llm.env.example`](configs/free-llm.env.example) — Commented env exports for any OpenAI-compatible tool
-- [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) — The list for machines: one text file for LLM search and agents, the JSON registry, and an Atom feed of every change
-- [`browse.html`](https://mvalentsev.github.io/awesome-free-ai-coding/browse.html) · [provider pages](https://mvalentsev.github.io/awesome-free-ai-coding/providers/) — The list as a filterable table, and one page per row: the offer in the vendor's own words, the connection details, the evidence and the history
+- [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) — Text for agents, the JSON registry and the Atom changelog
+- [`browse.html`](https://mvalentsev.github.io/awesome-free-ai-coding/browse.html) · [provider pages](https://mvalentsev.github.io/awesome-free-ai-coding/providers/) — Filterable list, full offers, connections, evidence and history
 
 ## 📡 How this list stays fresh
 

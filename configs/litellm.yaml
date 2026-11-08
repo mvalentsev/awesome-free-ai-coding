@@ -1524,6 +1524,24 @@ model_list:
     api_base: https://api.notrack.ai/v1
     api_key: os.environ/NOTRACK_AI_API_KEY
     use_chat_completions_api: true
+- model_name: orcarouter/deepseek/deepseek-v4-flash-free
+  litellm_params:
+    model: openai/deepseek/deepseek-v4-flash-free
+    api_base: https://api.orcarouter.ai/v1
+    api_key: os.environ/ORCAROUTER_API_KEY
+    use_chat_completions_api: true
+- model_name: orcarouter/deepseek/deepseek-v4.1-flash-free
+  litellm_params:
+    model: openai/deepseek/deepseek-v4.1-flash-free
+    api_base: https://api.orcarouter.ai/v1
+    api_key: os.environ/ORCAROUTER_API_KEY
+    use_chat_completions_api: true
+- model_name: orcarouter/z-ai/glm-5.3-flash-free
+  litellm_params:
+    model: openai/z-ai/glm-5.3-flash-free
+    api_base: https://api.orcarouter.ai/v1
+    api_key: os.environ/ORCAROUTER_API_KEY
+    use_chat_completions_api: true
 - model_name: standardcompute/anthropic/claude-standardcompute
   litellm_params:
     model: openai/anthropic/claude-standardcompute
@@ -1536,11 +1554,53 @@ model_list:
     api_base: https://api.stdcmpt.com/v1
     api_key: os.environ/STANDARDCOMPUTE_API_KEY
     use_chat_completions_api: true
+- model_name: anyapi/qwen/qwen3.8-27b:free
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b:free
+    api_base: https://api.anyapi.ai/v1
+    api_key: os.environ/ANYAPI_API_KEY
+    use_chat_completions_api: true
+- model_name: anyapi/inclusionai/ling-3.0-flash-fin:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-fin:free
+    api_base: https://api.anyapi.ai/v1
+    api_key: os.environ/ANYAPI_API_KEY
+    use_chat_completions_api: true
+- model_name: anyapi/inclusionai/ling-3.0-flash-sante:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-sante:free
+    api_base: https://api.anyapi.ai/v1
+    api_key: os.environ/ANYAPI_API_KEY
+    use_chat_completions_api: true
+- model_name: beatapi/glm-5.3-flash-free
+  litellm_params:
+    model: openai/glm-5.3-flash-free
+    api_base: https://api.beatapi.io/v1
+    api_key: os.environ/BEATAPI_API_KEY
+    use_chat_completions_api: true
+- model_name: beatapi/deepseek-v4.1-flash-free
+  litellm_params:
+    model: openai/deepseek-v4.1-flash-free
+    api_base: https://api.beatapi.io/v1
+    api_key: os.environ/BEATAPI_API_KEY
+    use_chat_completions_api: true
+- model_name: beatapi/hy4-free
+  litellm_params:
+    model: openai/hy4-free
+    api_base: https://api.beatapi.io/v1
+    api_key: os.environ/BEATAPI_API_KEY
+    use_chat_completions_api: true
 - model_name: llm-kiwi/auto
   litellm_params:
     model: openai/auto
     api_base: https://api.llm.kiwi/v1
     api_key: os.environ/LLM_KIWI_API_KEY
+    use_chat_completions_api: true
+- model_name: miapi/miapi-grounded
+  litellm_params:
+    model: openai/miapi-grounded
+    api_base: https://api.miapi.uk/v1
+    api_key: os.environ/MIAPI_API_KEY
     use_chat_completions_api: true
 - model_name: novita/apodex/apodex-1.1-mini
   litellm_params:
@@ -1585,6 +1645,18 @@ model_list:
     api_key: os.environ/MIXEDBREAD_API_KEY
     use_chat_completions_api: true
     max_tokens: 4096
+- model_name: plamo/plamo-3.1-prime
+  litellm_params:
+    model: openai/plamo-3.1-prime
+    api_base: https://api.platform.preferredai.jp/v1
+    api_key: os.environ/PLAMO_API_KEY
+    use_chat_completions_api: true
+- model_name: plamo/plamo-3.0-prime
+  litellm_params:
+    model: openai/plamo-3.0-prime
+    api_base: https://api.platform.preferredai.jp/v1
+    api_key: os.environ/PLAMO_API_KEY
+    use_chat_completions_api: true
 - model_name: pollinations/gpt-oss-20b
   litellm_params:
     model: openai/gpt-oss-20b
@@ -1639,6 +1711,15 @@ model_list:
     api_base: https://models.mixlayer.ai/v1
     api_key: os.environ/MIXLAYER_API_KEY
     use_chat_completions_api: true
+- model_name: jzstoken/jzs-max-3.0
+  litellm_params:
+    model: openai/jzs-max-3.0
+    api_base: https://jzstoken.com/api/v1
+    api_key: os.environ/JZSTOKEN_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $1.5 one-time top-up; free until 2026-11-30 UTC
+    source: https://jzstoken.com/model-pricing/jzs-max-3.0
 - model_name: modelscope/deepseek-ai/DeepSeek-V4.1-Flash
   litellm_params:
     model: openai/deepseek-ai/DeepSeek-V4.1-Flash

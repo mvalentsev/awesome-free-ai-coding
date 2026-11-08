@@ -101,7 +101,7 @@ def archive_reason(entry: Entry, today: date) -> str:
     if rule is ArchiveRule.RETIRED:
         lane = entry.api or entry.client_lane
         if lane and not lane.model_ids and entry.free_part is FreePart.MODELS and any(
-                a.until and a.until.astimezone(timezone.utc).date() == entry.retired_on
+                a.until and a.ends_at.astimezone(timezone.utc).date() == entry.retired_on
                 for a in lane.model_access.values()):
             return f"documented free promotions ended on {entry.retired_on.isoformat()}"
         return f"vendor-announced shutdown on {entry.retired_on.isoformat()}"

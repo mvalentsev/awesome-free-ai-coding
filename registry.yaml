@@ -11460,3 +11460,437 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 89
+- id: jzstoken
+  name: JZS Token
+  category: aggregator
+  url: https://jzstoken.com
+  source_urls:
+  - https://jzstoken.com/model-pricing/jzs-max-3.0
+  - https://jzstoken.com/docs/quick-start
+  - https://jzstoken.com/docs/faq
+  - https://jzstoken.com/terms
+  - https://jzstoken.com/privacy
+  card_required: false
+  access:
+    source: https://jzstoken.com/docs/quick-start
+    initial_payment_usd: 1.5
+  offering: A temporary free model API with a dedicated key and prepaid account
+  limits: Credits do not expire and there is no monthly subscription. Any top-up fee
+    is unpublished. The gateway forwards API content to upstream providers under their
+    own policies; its no-content-storage statement covers the gateway. Per-model output
+    and request limits are unpublished.
+  free_part: models
+  models: []
+  api:
+    base_url: https://jzstoken.com/api/v1
+    key_url: https://jzstoken.com/dashboard/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - jzs-max-3.0
+    model_access:
+      jzs-max-3.0:
+        source: https://jzstoken.com/model-pricing/jzs-max-3.0
+        until: '2026-11-30'
+    note: Create a Dedicated key for this model; a Standard key excludes it. Use /chat/completions.
+      The vendor does not certify streaming, tools, structured output or the Messages
+      format separately for every model. All keys share the account balance.
+  border:
+    left_out: []
+    'on': '2026-11-08'
+    source: https://jzstoken.com/terms
+  probe:
+    type: page-keywords
+    endpoint: https://jzstoken.com/model-pricing/jzs-max-3.0
+    keywords:
+    - jzs-max-3.0
+    - Free until Nov 30, 2026 (UTC)
+    - Calls to this model are billed at $0 during the promotion
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 99
+- id: anyapi
+  name: AnyAPI
+  category: aggregator
+  url: https://anyapi.ai
+  source_urls:
+  - https://anyapi.ai/pricing
+  - https://anyapi.ai/terms-of-service
+  - https://anyapi.ai/ai-models
+  - https://docs.anyapi.ai/get-started/quick-start.md
+  - https://docs.anyapi.ai/features/privacy-logging.md
+  - https://anyapi.ai/ai-models/qwen-qwen3-8-27b-free
+  - https://anyapi.ai/ai-models/inclusionai-ling-3-0-flash-fin-free
+  - https://anyapi.ai/ai-models/inclusionai-ling-3-0-flash-sante-free
+  card_required: false
+  offering: A free model API with a separate daily AnyToken allowance
+  limits: AnyTokens are internal billing units, not model tokens. The daily wallet
+    does not carry over and is limited to one account per person or legal entity.
+    Browser Playground access is a separate mode. Requests go to third-party providers
+    with their own data policies; the documentation offers provider-selection controls.
+  quotas:
+  - amount: 100000.0
+    unit: AnyTokens
+    period: day
+    scope: account
+    reset: 00:00 UTC
+    source: https://anyapi.ai/terms-of-service
+    quote: The Free plan provides Customer with up to 100,000 anyTokens per calendar
+      day at no charge. Daily allowances reset at midnight UTC and do not carry over.
+    value_phrase: 100,000 anyTokens per calendar day
+  free_part: models
+  models: []
+  api:
+    base_url: https://api.anyapi.ai/v1
+    key_url: https://dash.anyapi.ai/?page=api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen/qwen3.8-27b:free
+    - inclusionai/ling-3.0-flash-fin:free
+    - inclusionai/ling-3.0-flash-sante:free
+    model_bindings:
+      qwen/qwen3.8-27b:free:
+        family: qwen3.8-27b
+        source: https://anyapi.ai/ai-models/qwen-qwen3-8-27b-free
+        quote: 'Input price 0 Anytoken Output price 0 Anytoken Qwen3.8 27B: Agentic
+          Coding at Local Scale, Free to Deploy'
+      inclusionai/ling-3.0-flash-fin:free:
+        family: ling-3.0-flash-fin
+        source: https://anyapi.ai/ai-models/inclusionai-ling-3-0-flash-fin-free
+        quote: 'Input price 0 Anytoken Output price 0 Anytoken Ling 3.0 Flash Fin:
+          A Finance-Specialized MoE for Source-Grounded Investment Workflows'
+      inclusionai/ling-3.0-flash-sante:free:
+        family: ling-3.0-flash-sante
+        source: https://anyapi.ai/ai-models/inclusionai-ling-3-0-flash-sante-free
+        quote: Input price 0 Anytoken Output price 0 Anytoken A Medical-Domain Fine-Tune
+          Built for Clinical Reasoning and Evidence Retrieval Ling 3.0 Flash Sante
+          is inclusionAI's (Ant Group) health and medicine fine-tune of Ling 3.0 Flash.
+    note: Create a Free account and an API key in the Dashboard. Use the exact provider/model:free
+      ID with /chat/completions. The daily AnyToken wallet and each zero-priced variant
+      have separate scopes; paid models require a different plan.
+  border:
+    left_out: []
+    'on': '2026-11-08'
+    source: https://anyapi.ai/terms-of-service
+  probe:
+    type: page-keywords
+    endpoint: https://anyapi.ai/pricing
+    keywords:
+    - 100K / day
+    - No credit card required
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 96
+- id: plamo
+  name: PLaMo API (Preferred Networks)
+  category: api-free-tier
+  url: https://plamo.preferredai.jp/api
+  source_urls:
+  - https://docs.plamo.preferredai.jp/en/pricing
+  - https://docs.plamo.preferredai.jp/en/getting-started
+  - https://docs.plamo.preferredai.jp/en/api
+  - https://docs.plamo.preferredai.jp/en/limit
+  - https://plamo.preferredai.jp/info/terms
+  card_required: false
+  offering: Preferred Networks model API with a Free plan for eligible users in Japan
+  limits: Registration and use are limited to adults resident in Japan or Japanese
+    entities. Free inputs and outputs are stored and used for training; personal information
+    must not be submitted. Usage and rate limits apply; the public limits table does
+    not separate Free-plan amounts. The web-search campaign is a separate allowance.
+  free_part: models
+  models: []
+  api:
+    base_url: https://api.platform.preferredai.jp/v1
+    key_url: https://console.platform.preferredai.jp/
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - plamo-3.1-prime
+    - plamo-3.0-prime
+    model_bindings:
+      plamo-3.1-prime:
+        family: plamo-3.1-prime
+        source: https://docs.plamo.preferredai.jp/en/api
+        quote: plamo-3.1-prime 262,144 tokens 20,480 tokens Yes
+      plamo-3.0-prime:
+        family: plamo-3.0-prime
+        source: https://docs.plamo.preferredai.jp/en/api
+        quote: plamo-3.0-prime 262,144 tokens 20,480 tokens Yes
+    note: Select the Free API plan, then create a key in the Console. Prefer the current
+      model ID. The API reference states that the older ID will switch to the current
+      model after January 31, 2027.
+  data_use:
+    trains: 'yes'
+    quote: On the Free plan, input and output are stored and used for training in
+      every feature.
+    url: https://docs.plamo.preferredai.jp/en/pricing
+  border:
+    served: [JP]
+    'on': '2026-11-08'
+    source: https://plamo.preferredai.jp/info/terms
+  probe:
+    type: page-keywords
+    endpoint: https://docs.plamo.preferredai.jp/en/pricing
+    keywords:
+    - On the Free plan, input and output are stored and used for training in every
+      feature
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 97
+- id: miapi
+  name: MIAPI
+  category: api-free-tier
+  url: https://miapi.uk
+  source_urls:
+  - https://miapi.uk/privacy.html
+  - https://miapi.uk/terms.html
+  card_required: false
+  offering: A monthly free API allowance for web-grounded answers with citations
+  limits: The Free plan covers all endpoints. Query packs are a separate paid mode
+    and do not expire. Questions are limited to 2,000 characters and output budgets
+    to 50–2,000 tokens; no token-based context limit is published. The public Playground
+    has separate caps. Upstream model and data conditions are not separately stated.
+  quotas:
+  - amount: 100.0
+    unit: queries
+    period: month
+    scope: account
+    source: https://miapi.uk
+    quote: Free $0 100 queries / month 1 API key 60 req/min All endpoints Refills
+      monthly
+    value_phrase: 100 queries / month
+  - amount: 60.0
+    unit: requests
+    period: minute
+    scope: unspecified
+    source: https://miapi.uk
+    quote: Free $0 100 queries / month 1 API key 60 req/min All endpoints Refills
+      monthly
+    value_phrase: 60 req/min
+    reviewed_on: '2026-11-08'
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.miapi.uk/v1
+    key_url: https://miapi.uk/signup.html
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - miapi-grounded
+    no_family_ids:
+    - miapi-grounded
+    note: Use the grounded-answer alias with /chat/completions. The official OpenAI
+      SDK example uses this endpoint. Set max_tokens between 50 and 2,000 and keep
+      questions within the documented character limit. Streaming is documented; function-tool
+      compatibility is not specified.
+  border:
+    left_out: []
+    'on': '2026-11-08'
+    source: https://miapi.uk/terms.html
+  probe:
+    type: page-keywords
+    endpoint: https://miapi.uk
+    keywords:
+    - 100 queries / month
+    - miapi-grounded
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 96
+- id: beatapi
+  name: BeatAPI (free models)
+  category: aggregator
+  url: https://beatapi.io
+  source_urls:
+  - https://beatapi.io/pricing
+  - https://beatapi.io/terms-of-service
+  - https://docs.beatapi.io/free-models
+  - https://docs.beatapi.io/faq/account-billing
+  card_required: false
+  offering: A no-top-up API for free text-model variants
+  limits: Free calls are counted separately from paid rate limits, but can also be
+    refused when the ordinary account limit is exhausted. Availability can change
+    without notice and no daily allowance is promised. Free model contexts, output
+    limits and reasoning settings are not those of the paid siblings.
+  quotas:
+  - amount: 1.0
+    unit: requests
+    period: minute
+    scope: account
+    condition: before the first top-up
+    condition_quote: Each account is limited to 1 successful request per minute before
+      the first top-up and up to 10 per minute after.
+    source: https://docs.beatapi.io/free-models
+    quote: Each account is limited to 1 successful request per minute before the first
+      top-up and up to 10 per minute after.
+    value_phrase: 1 successful request per minute
+  - amount: 10.0
+    unit: requests
+    period: minute
+    scope: account
+    condition: after any top-up
+    condition_quote: After any top-up Up to 10
+    source: https://docs.beatapi.io/free-models
+    quote: Account state Successful requests per minute Before the first top-up 1
+      After any top-up Up to 10
+    read: table
+    table:
+      headers:
+      - Account state
+      - Successful requests per minute
+      column: Successful requests per minute
+      rows:
+      - After any top-up
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+  free_part: models
+  models: []
+  api:
+    base_url: https://api.beatapi.io/v1
+    key_url: https://beatapi.io/dashboard/apikeys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - glm-5.3-flash-free
+    - deepseek-v4.1-flash-free
+    - hy4-free
+    opencode_output_tokens:
+      hy4-free: 4096
+    note: Use a key in the default auto group and the exact -free ID. A zero balance
+      is allowed. All three listed Free IDs support Chat Completions; the Free catalog
+      does not promise Responses. Give the reasoning variant at least 2,000 output
+      tokens because reasoning consumes that budget.
+  border:
+    left_out: []
+    'on': '2026-11-08'
+    source: https://beatapi.io/terms-of-service
+  probe:
+    type: page-keywords
+    endpoint: https://docs.beatapi.io/free-models
+    keywords:
+    - A zero balance is fine, and so is an account that has never topped up
+    - glm-5.3-flash-free
+    - deepseek-v4.1-flash-free
+    - hy4-free
+    free_marker: ''
+    require_zero_price: false
+    catalog: https://api.beatapi.io/v1/text/models
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 96
+- id: orcarouter
+  name: OrcaRouter (free models)
+  category: aggregator
+  url: https://www.orcarouter.ai
+  source_urls:
+  - https://docs.orcarouter.ai/routing/free-models.md
+  - https://api.orcarouter.ai/api/free-package/public
+  - https://docs.orcarouter.ai/getting-started/quickstart.md
+  - https://www.orcarouter.ai/terms.html
+  - https://www.orcarouter.ai/privacy.html
+  card_required: false
+  offering: Free model APIs for accounts with established GitHub linkage
+  limits: The workspace owner must link a GitHub account registered for some time,
+    unless lifetime spend exempts the workspace. The lowest tier also has a small
+    unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models
+    never fall back to a paid model; availability and limits can change. Requests
+    are routed to upstream providers under their own policies.
+  quotas:
+  - amount: 10.0
+    unit: requests
+    period: minute
+    scope: account
+    condition: before any top-up
+    condition_quote: '"min_paid_usd":0,'
+    source: https://api.orcarouter.ai/api/free-package/public
+    quote: '"min_paid_usd":0,"rpm":10,"rpd":50}'
+    value_phrase: '"rpm":10'
+  - amount: 50.0
+    unit: requests
+    period: day
+    scope: account
+    condition: before any top-up
+    condition_quote: '"min_paid_usd":0,'
+    source: https://api.orcarouter.ai/api/free-package/public
+    quote: '"min_paid_usd":0,"rpm":10,"rpd":50}'
+    value_phrase: '"rpd":50'
+  - amount: 20.0
+    unit: requests
+    period: minute
+    scope: account
+    condition: $20 lifetime spend
+    condition_quote: '"min_paid_usd":20,'
+    source: https://api.orcarouter.ai/api/free-package/public
+    quote: '"min_paid_usd":20,"rpm":20,"rpd":800}'
+    value_phrase: '"rpm":20'
+  - amount: 800.0
+    unit: requests
+    period: day
+    scope: account
+    condition: $20 lifetime spend
+    condition_quote: '"min_paid_usd":20,'
+    source: https://api.orcarouter.ai/api/free-package/public
+    quote: '"min_paid_usd":20,"rpm":20,"rpd":800}'
+    value_phrase: '"rpd":800'
+  free_part: models
+  models: []
+  api:
+    base_url: https://api.orcarouter.ai/v1
+    key_url: https://www.orcarouter.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek/deepseek-v4-flash-free
+    - deepseek/deepseek-v4.1-flash-free
+    - z-ai/glm-5.3-flash-free
+    ignored_ids:
+    - orca/orcaverify-text1.0-free
+    - tencent/hy3-free
+    - tencent/hy4-preview-free
+    note: 'Create an OrcaRouter key and keep the exact -free ID. The listed variants
+      declare Chat Completions in the public catalog. Paid siblings and the separately
+      gated Security Research models have different access conditions. Read the error
+      reason: rate windows, capacity, prompt size and GitHub eligibility are different
+      failures.'
+  border:
+    left_out: []
+    'on': '2026-11-08'
+    source: https://www.orcarouter.ai/terms.html
+  probe:
+    type: api-models
+    endpoint: https://api.orcarouter.ai/v1/models
+    keywords: []
+    free_marker: -free
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-11-08'
+  last_verified: '2026-11-08'
+  probe_failures: 0
+  provisional: true
+  rank: 95

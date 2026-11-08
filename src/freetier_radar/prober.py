@@ -1513,7 +1513,9 @@ def _rows(data: object, lane: str | None) -> list[dict]:
     elif isinstance(data, list):
         rows = data
     elif isinstance(data, dict):
-        rows = data.get("data", data.get("models", []))
+        rows = data
+        while isinstance(rows, dict):
+            rows = rows.get("data", rows.get("models", []))
         rows = rows if isinstance(rows, list) else []
     else:
         rows = []

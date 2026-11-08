@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 from urllib.parse import urlparse
@@ -691,7 +691,7 @@ class FreeAccess(BaseModel):
         default="top-up", exclude_if=lambda v: v == "top-up")
     topup_fee_percent: float = Field(default=0, ge=0, allow_inf_nan=False,
                                      exclude_if=lambda v: not v)
-    until: datetime | None = None
+    until: datetime | date | None = None
 
     @field_validator("source")
     @classmethod
@@ -700,12 +700,29 @@ class FreeAccess(BaseModel):
             raise ValueError("access source must be an https URL")
         return value
 
+    @field_validator("until", mode="before")
+    @classmethod
+    def _parse_deadline(cls, value):
+        if isinstance(value, str):
+            return (date.fromisoformat(value) if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value)
+                    else datetime.fromisoformat(value))
+        return value
+
     @field_validator("until")
     @classmethod
-    def _deadline_has_a_timezone(cls, value: datetime | None) -> datetime | None:
-        if value is not None and value.utcoffset() is None:
+    def _deadline_has_a_timezone(cls, value: datetime | date | None) -> datetime | date | None:
+        if isinstance(value, datetime) and value.utcoffset() is None:
             raise ValueError("access.until needs the vendor's timezone")
+        if value == date.max:
+            raise ValueError("a UTC date deadline needs a following expiry day")
         return value
+
+    @property
+    def ends_at(self) -> datetime | None:
+        """An exact instant, or the midnight after an inclusive UTC date."""
+        if self.until is None or isinstance(self.until, datetime):
+            return self.until
+        return datetime.combine(self.until + timedelta(days=1), datetime.min.time(), timezone.utc)
 
     @model_validator(mode="after")
     def _conditions_are_complete(self) -> FreeAccess:
@@ -1864,7 +1881,7 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
     conditions = [id_access(entry, i) for i in ids] or [entry.access]
     return min(conditions, key=lambda a: (
         (a.initial_payment_usd or 0) * (1 + a.topup_fee_percent / 100) if a else 0,
-        -(a.until.timestamp() if a and a.until else float("inf"))))
+        -(a.ends_at.timestamp() if a and a.until else float("inf"))))
 
 
 def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
@@ -1877,8 +1894,12 @@ def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
         if access.topup_fee_percent:
             words[-1] += f" + {access.topup_fee_percent:g}% fee"
     if access.until:
-        words.append(f"until {access.until.date().isoformat()}" if compact else
-                     f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
+        if isinstance(access.until, datetime):
+            words.append(f"until {access.until.date().isoformat()}" if compact else
+                         f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
+        else:
+            words.append(f"until {access.until.isoformat()}" if compact else
+                         f"free until {access.until.isoformat()} UTC")
     return "; ".join(words)
 
 
@@ -1911,7 +1932,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
     for e in entries:
         if e.page_catalog:
             expired_names = {m.name for m in e.page_catalog.models if not m.expired
-                             and (a := id_access(e, m.name)) and a.until and now >= a.until}
+                             and (a := id_access(e, m.name)) and a.until and now >= a.ends_at}
             if expired_names:
                 row = e.model_dump(mode="json", exclude_none=True)
                 row.pop("models", None)
@@ -1928,7 +1949,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
             continue
         block = e.api or e.client_lane
         expired = {i for i in block.model_ids if (a := id_access(e, i))
-                   and a.until is not None and now >= a.until} if block else set()
+                   and a.until is not None and now >= a.ends_at} if block else set()
         if not expired:
             out.append(e)
             continue
@@ -1975,7 +1996,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
                     catalog=e.probe.endpoint if e.api and e.probe.type is ProbeType.API_MODELS
                     else e.probe.catalog)
             else:
-                ended_on = max(id_access(e, i).until for i in expired).astimezone(timezone.utc).date()
+                ended_on = max(id_access(e, i).ends_at for i in expired).astimezone(timezone.utc).date()
                 entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
         out.append(e.model_copy(update=entry_updates))
     return out

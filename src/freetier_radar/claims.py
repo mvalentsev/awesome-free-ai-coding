@@ -294,7 +294,19 @@ def _review_lead_scope(root: Path) -> tuple[str, ...]:
                  == ([target] if expected else []))
 
 
+def _utc_date_deadline(root: Path) -> tuple[str, ...]:
+    day = date(2026, 11, 30)
+    access = FreeAccess(source='https://vendor.example/promo', until=day)
+    end = access.ends_at
+    return ('inclusive' if (end.date() - day).days == 1 else 'invalid',
+            end.tzname(), end.strftime('%H:%M'))
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'Date-only `until` values are (inclusive) (UTC) dates: the writer expires\s+them at (00:00) UTC on the following day',
+          _utc_date_deadline,
+          'models.FreeAccess.ends_at and expire_entries; real writer date-preservation, inclusive-day expiry and timestamp controls in tests/test_free_access.py'),
     Claim('CONTRIBUTING.md',
           r'Exact URL decisions preserve links to (other products) and (other repositories);\s+(operator blocks) retain their domain scope\. (Query parameters) remain part of the link identity',
           _review_lead_scope,

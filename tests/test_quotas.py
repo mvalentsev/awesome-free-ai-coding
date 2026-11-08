@@ -438,6 +438,23 @@ def test_ended_model_quota_retains_evidence_without_advertising_current_allowanc
     assert structured_quotas(e)==[]
 
 
+@pytest.mark.parametrize('unit, source_unit, amount, period', [
+    ('AnyTokens', 'anyTokens', 100000, 'day'),
+    ('queries', 'queries', 100, 'month'),
+])
+def test_billing_quota_cannot_be_relabelled_as_model_tokens(unit, source_unit, amount, period):
+    from freetier_radar.quotas import UsageQuota, quota_changes, quota_value
+
+    phrase = f"{amount:,} {source_unit} per calendar {period}"
+    quote = f"The Free plan provides Customer with up to {phrase} at no charge."
+    quota = UsageQuota(amount=amount, unit=unit, period=period, scope="account",
+                       source="https://vendor.example/terms", quote=quote,
+                       value_phrase=phrase)
+    assert not quota_changes(f"<p>{quote}</p>", quota)
+    assert quota_changes(f"<p>{quote.replace(source_unit, 'tokens')}</p>", quota)
+    assert unit in quota_value(quota)
+
+
 def test_multiple_source_bindings_for_the_same_labeled_allowance_print_it_once():
     from freetier_radar.quotas import quota_summary
     e=Entry.model_validate({**BASE,'quotas':[

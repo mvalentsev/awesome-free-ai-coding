@@ -86,7 +86,7 @@ class Waiting:
     # Where `vendor` was read: the vendor's free list, or the record a row's
     # free_since names for the id.
     vendor_source: str = "the vendor's list"
-    until: datetime | None = None
+    until: datetime | date | None = None
 
     @property
     def since(self) -> date:

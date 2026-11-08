@@ -94,26 +94,6 @@ watched:
       help.figma.com/hc/en-us/articles/40775535020695 and the current Make plan;
       do not substitute workspace-builder credits for local-code access.
 
-  - domains: [miapi.uk]
-    name: MIAPI
-    checked_on: '2026-11-04'
-    reason: >-
-      The current page offers 100 grounded-answer queries per month, one Free
-      key and 60 requests per minute, including an OpenAI-compatible
-      miapi-grounded route. A separate anonymous playground has its own IP,
-      input and output caps. Search-only BYOK is another mode, not the funding
-      source for those bundled answers. The unauthenticated signup shell also
-      contains different rate/key placeholders and subscription copy, while
-      the homepage sells query packs. No account entitlement or generation
-      was tested. Model supplier and checkpoint, upstream data handling and
-      no-card activation remain unestablished; the privacy policy retains
-      usage logs for up to 90 days.
-    reopen_if: >-
-      Current primary evidence and existing authorized access establish the
-      model supply, no-card Free activation, actual limits and coding-client
-      behavior. Reconcile miapi.uk, its signup shell and legal pages; do not
-      treat a no-auth playground or a generic model alias as identity proof.
-
   - domains: [aigatewayhq.com]
     name: AI Gateway HQ
     checked_on: '2026-11-04'
@@ -208,37 +188,6 @@ watched:
       Primary terms introduce a positive free API allowance or usable
       trial compute without a recurring paid subscription. Restore the
       existing row after checking current activation and model conditions.
-  - domains: [beatapi.io]
-    name: BeatAPI
-    checked_on: '2026-10-13'
-    reason: >-
-      The current free price table (https://beatapi.io/pricing) advertises
-      GPT-6.1 Sol, DeepSeek V4 and V4.1 Flash, GLM 5.3 and 5.3 Flash, and
-      Gemini 3.8 Flash at zero input and output cost under separate free IDs.
-      The product page says no card or top-up is required
-      (https://beatapi.io/gpt-6-1-sol-api); the free-route docs support
-      Responses and Chat Completions
-      (https://docs.beatapi.io/text-api/gpt-6-1-sol-free).
-      Free calls share one successful request per minute per account before
-      the first top-up and at most ten afterward
-      (https://docs.beatapi.io/faq/account-billing). Daily allowance and
-      continued availability are not guaranteed. The seventh free item,
-      JEV, returns typed decisions rather than generated text
-      (https://docs.beatapi.io/decisions). Public terms and routing information
-      (https://beatapi.io/terms-of-service and https://beatapi.io/llms.txt)
-      do not establish self-hosted inference or named authorized upstream
-      capacity for the free text routes. That does not establish unauthorized
-      proxying. The model catalog and fresh Chat Completions and Responses
-      requests without a key return 401; authenticated zero-balance
-      completion and a tool round trip remain unverified.
-    reopen_if: >-
-      BeatAPI establishes self-hosted inference or named authorized upstream
-      capacity for its free text routes, and a no-card account demonstrates
-      free completion and a valid tool-result round trip with the advertised
-      ID and payment conditions. Re-read current free prices, daily allowance
-      and promotion terms before inclusion; any documented initial payment
-      is an access condition, not an automatic rejection.
-
   - domains: [blockrun.ai]
     name: BlockRun
     checked_on: '2026-10-05'
@@ -632,29 +581,6 @@ watched:
       no-card signup grant or recurring API allowance. Check promotional and referral modes independently
       of paid Token Packs and the retired Flash allowance.
 
-  - domains: [anyapi.ai]
-    name: AnyAPI
-    checked_on: '2026-11-05'
-    reason: >-
-      The $0 plan advertises 100K AnyTokens per day without a card, and the
-      official model list now identifies three Free variants with exact API IDs
-      and zero input/output AnyToken prices: Qwen3.8 27B, Ling 3.0 Flash Fin and
-      Ling 3.0 Flash Sante. The previous missing-model-list objection is resolved.
-      The October 7 terms define AnyTokens as an internal billing unit rather
-      than model tokens and say third-party inference providers' identities are
-      not disclosed. Current sources do not establish self-hosted inference or
-      identify authorized upstream capacity for the Free lane. That uncertainty
-      is not a finding of unauthorized proxying. A protected models endpoint's
-      401 establishes neither Free-account eligibility nor a successful completion;
-      unlimited web Playground use is a separate access mode. Sources:
-      https://anyapi.ai/pricing, https://anyapi.ai/ai-models,
-      https://anyapi.ai/terms-of-service and https://docs.anyapi.ai/get-started/faq.
-    reopen_if: >-
-      Primary evidence identifies self-hosted or authorized upstream inference
-      for the Free lane and establishes its obtainable API entitlement and model
-      supply. Recheck the three zero-priced variants separately from the daily
-      AnyToken wallet, paid plans and browser Playground; do not convert AnyTokens
-      into model tokens without a published conversion.
   - domains: [ainative.studio]
     name: AINative Studio
     checked_on: '2026-08-14'
@@ -907,22 +833,6 @@ watched:
     reopen_if: >-
       Blackbox publishes a free tier with a token or request allowance, on the
       pricing page rather than in an extension listing.
-
-  - domains:
-    - orcarouter.ai
-    name: OrcaRouter
-    checked_on: '2026-10-14'
-    reason: The free-routing-only verdict is outdated. The active public free-package and
-      pricing APIs name four generative zero-price aliases beside the OrcaVerify classifier.
-      Baseline access is 10 requests/minute and 50/day without a top-up; HY4 Preview has
-      a separate 50/minute and 250/day baseline. Established GitHub linkage gates free access.
-      Docs describe an unpublished prompt cap and separate access-denied, quota and capacity
-      failures; free IDs do not fall back to paid IDs. Terms name Continuum AI Pte. Ltd.
-      and commercial upstream providers, but actual free-lane supply and eligible-account
-      generation remain unproved. Classifier access does not add a coding model.
-    reopen_if: An authorized established-GitHub account confirms the generative free lane,
-      its serving route and current prompt/plan limits, while primary free-package and pricing
-      APIs still agree.
 
   - domains: [aibadgr.com]
     name: Badgr
@@ -4047,22 +3957,6 @@ watched:
       Current Inflection primary API/plan terms establish a coding-compatible endpoint with an obtainable
       Free allowance, its authentication/payment, eligible model identity, limits and data policy.
 
-  - domains: [preferredai.jp]
-    name: PLaMo API (Preferred Networks)
-    checked_on: '2026-11-03'
-    reason: >-
-      The current PLaMo Prime API has an explicit Free plan, separately from paid Standard/Provider.
-      Free inputs and outputs are stored and used for training; personal data must not be submitted.
-      Current terms and the console restrict registration to adults resident in Japan or Japanese
-      entities. No-card API activation is unconfirmed. The dated search/Deep Research campaign is
-      not an expiry for the underlying Free LLM plan. Sources: https://plamo.preferredai.jp/api,
-      https://docs.plamo.preferredai.jp/en/pricing, https://docs.plamo.preferredai.jp/en/getting-started,
-      https://plamo.preferredai.jp/info/terms and https://console.platform.preferredai.jp/.
-    reopen_if: >-
-      Current primary Free activation documentation or an existing authorized eligible Japanese
-      account resolves payment/card conditions. Preserve Japan-only eligibility, training/personal-data
-      restrictions and the distinction between model access and the search promotion.
-
   - domains: [apmix.ai]
     name: apmix.ai
     checked_on: '2026-11-03'
@@ -4159,26 +4053,3 @@ watched:
       Official documentation establishes an obtainable free API model allowance
       or a coding agent with bundled model usage that works on existing code.
       Assess that access separately from transcription and MCP context tools.
-
-  - domains: [jzstoken.com]
-    name: JZS Token
-    checked_on: '2026-11-07'
-    reason: >-
-      The homepage and jzs-max-3.0 model page explicitly price its promotion at
-      $0 until November 30, 2026 UTC. It requires a dedicated key; Standard keys
-      exclude this route. The quick start requires a minimum $1.50 credit
-      purchase, and both key types share the account balance. That initial
-      payment is a condition, not an automatic rejection. The exact end hour,
-      access with a zero balance and any top-up fee remain unconfirmed. The
-      model is a flagship alias served through a dedicated upstream route;
-      current terms do not identify that capacity or its authorization. This
-      uncertainty is not evidence of unauthorized proxying. API content is
-      forwarded under the upstream provider's own policy. Sources:
-      https://jzstoken.com/model-pricing/jzs-max-3.0,
-      https://jzstoken.com/docs/faq, https://jzstoken.com/docs/quick-start,
-      https://jzstoken.com/terms and https://jzstoken.com/privacy.
-    reopen_if: >-
-      Primary evidence or existing authorized access resolves the promotion's
-      exact cutoff, dedicated-key entitlement, payment and balance conditions,
-      and permitted upstream supply. Review the $0 model mode independently
-      of the prepaid wallet and ordinary post-promotion prices.

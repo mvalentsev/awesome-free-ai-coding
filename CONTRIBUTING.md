@@ -19,14 +19,17 @@ An entry must be **legal** and **directly usable by a developer**:
 free model quota or recurring free credit may require a one-time deposit or card
 verification charge. Include it with the amount and any top-up fee visible;
 usage within that quota must be free, with no recurring paid subscription required.
-An expiring free-model promotion qualifies too, with its exact deadline and
-timezone. A spend allowance still names no individually free model.
+An expiring free-model promotion qualifies too, with its published deadline and
+timezone. Date-only `until` values are inclusive UTC dates: the writer expires
+them at 00:00 UTC on the following day. The published date stays a date; this
+does not assert that the vendor supplied an exact hour. A spend allowance still
+names no individually free model.
 
 Record whole-offer payment conditions in `access`, and conditions on specific
 callable IDs in `api.model_access` (or `client_lane.model_access`). Each uses the
 same structure: `source` (an official HTTPS page), `initial_payment_usd`, optional
 `payment_kind`, `topup_fee_percent`, and
-`until` (a timestamp with timezone, for model promotions). Omit conditions that
+`until` (a timestamp with timezone or a UTC date, for model promotions). Omit conditions that
 do not apply. These fields generate the disclosures; do not duplicate them in
 templates or add exceptions for a particular vendor.
 

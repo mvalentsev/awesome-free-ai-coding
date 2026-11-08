@@ -73,7 +73,7 @@
 {% endif %}- **Codex CLI on a free lane** — {% for p in picks.codex %}[{{ p.name }}]({{ p.url }}) `{{ p.command }}`{{ dot }}{% endfor %}[any lane of the LiteLLM config]({{ codex.path }}) `codex -p {{ codex.name }}`{{ '' }}
 
 
-<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered){% if picks.frontier %}; frontier means within {{ frontier_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models){% endif %}{% if picks.claude_code %}; the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh){% endif %}; the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>
+<sub>Picks follow the [list order](CONTRIBUTING.md#how-rows-are-ordered){% if picks.frontier %}; frontier means within {{ frontier_within }} points of the [index leader](https://artificialanalysis.ai/leaderboards/models){% endif %}{% if picks.claude_code %}. Claude Code routes have [`shell functions`](configs/claude-code.sh){% endif %}. Direct Codex routes have [`profiles`](configs/codex/); probes recheck keyless requests or the vendor's setup instructions.</sub>
 
 {% endif %}
 {% if quickstart %}
@@ -96,7 +96,7 @@
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, {% if card_count %}{{ card_count }} of {{ active_count }}{% else %}none today{% endif %}, and no other row asks for one{% if has_trains %}{{ dot }}**👁** — what you send may be used to train models, in the vendor's own words{% endif %}{% if has_provisional %}{{ dot }}**🧪** — new, provisional for {{ provisional_weeks }} of probes{% endif %}{{ dot }}**verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — card required: {% if card_count %}{{ card_count }} of {{ active_count }}{% else %}none today{% endif %}{% if has_trains %}{{ dot }}**👁** — what you send may be used to train models{% endif %}{% if has_provisional %}{{ dot }}**🧪** — provisional for {{ provisional_weeks }} of probes{% endif %}{{ dot }}**verified** — latest probe date; opens limits, evidence and history</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
@@ -144,7 +144,7 @@ _Nothing verified right now._
 _Empty — the radar is clean._
 {% endif %}
 
-<sub>Provider pages retain the offer, evidence and history. A row archived by its probe returns when it passes again. Merged entries keep their old pages, pointing to the retained row. See [the archive rules](#-how-this-list-stays-fresh) below.</sub>
+<sub>Pages retain offers, evidence and history. Probe archives return after passing; merged pages point to the retained row. See [archive rules](#-how-this-list-stays-fresh).</sub>
 
 </details>
 
@@ -156,13 +156,13 @@ _Empty — the radar is clean._
 
 **[Connection table](configs/README.md)** — base URLs, keys and client notes for {{ endpoint_count }} live OpenAI-compatible APIs, plus available Claude Code routes and direct Codex profiles. [Copy buttons on the website]({{ pages_url }}/#connections). These configs are regenerated on every update:
 
-- [`configs/opencode.json`](configs/opencode.json) — Drop-in [opencode](https://opencode.ai) config with every provider wired up: keys via `{env:...}`, keyless endpoints work immediately
-- [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai) proxy config: `{{ litellm_command }}` puts every free model LiteLLM can call behind one local endpoint{% if litellm_groups %}; ask for {{ litellm_groups | either_code }} instead of a model and a call moves to the next free lane when one runs out{% endif %} — LiteLLM would send your `OPENAI_API_KEY` to a lane whose own key is not set{{ '' }}
-- [`configs/claude-code.sh`](configs/claude-code.sh) — One shell function per gateway that serves the Anthropic Messages format: `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in where the row lists one
-- [`{{ codex.path }}`]({{ codex.path }}) — [Codex CLI](https://developers.openai.com/codex) profile over the LiteLLM config: Codex speaks only the OpenAI Responses API, and the proxy answers it for every lane in that file from the lane's chat completions — copy it to `~/.codex/` and run `codex -p {{ codex.name }}` (Codex CLI {{ codex.since }} and LiteLLM {{ codex.litellm_since }} or later)
+- [`configs/opencode.json`](configs/opencode.json) — [opencode](https://opencode.ai) providers: keys via `{env:...}`, keyless endpoints ready to use
+- [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai): `{{ litellm_command }}` serves the listed models locally{% if litellm_groups %}; {{ litellm_groups | either_code }} falls back between free lanes{% endif %}. Set each lane's own key: otherwise LiteLLM forwards `OPENAI_API_KEY`{{ '' }}
+- [`configs/claude-code.sh`](configs/claude-code.sh) — `source` it for [Claude Code](https://code.claude.com/docs) functions with the listed keys and models
+- [`{{ codex.path }}`]({{ codex.path }}) — Copy to `~/.codex/`; run `codex -p {{ codex.name }}`. [Codex CLI](https://developers.openai.com/codex) uses Responses; LiteLLM translates to chat completions (Codex CLI {{ codex.since }}, LiteLLM {{ codex.litellm_since }} or later)
 - [`configs/free-llm.env.example`](configs/free-llm.env.example) — Commented env exports for any OpenAI-compatible tool
-- [`llms.txt`](llms.txt){{ dot }}[`index.json`](index.json){{ dot }}[feed]({{ feed_url }}) — The list for machines: one text file for LLM search and agents, the JSON registry, and an Atom feed of every change
-- [`browse.html`]({{ pages_url }}/browse.html){{ dot }}[provider pages]({{ pages_url }}/providers/) — The list as a filterable table, and one page per row: the offer in the vendor's own words, the connection details, the evidence and the history
+- [`llms.txt`](llms.txt){{ dot }}[`index.json`](index.json){{ dot }}[feed]({{ feed_url }}) — Text for agents, the JSON registry and the Atom changelog
+- [`browse.html`]({{ pages_url }}/browse.html){{ dot }}[provider pages]({{ pages_url }}/providers/) — Filterable list, full offers, connections, evidence and history
 
 ## 📡 How this list stays fresh
 

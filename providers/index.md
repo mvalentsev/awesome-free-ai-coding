@@ -67,8 +67,10 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-11-05
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-11-05 · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 - [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) — verified 2026-11-05
+- [MIAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) — verified 2026-11-08
 - [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-11-05
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-11-05
+- [PLaMo API (Preferred Networks)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) — verified 2026-11-08
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-11-05 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
 - [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-11-05
 - [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) — verified 2026-11-05
@@ -125,7 +127,11 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-05
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-11-05 · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · `glm-4.1v-thinking-flash`
 - [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) — verified 2026-11-05
+- [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) — verified 2026-11-08
+- [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) — verified 2026-11-08
+- [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) — verified 2026-11-08
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-11-05
+- [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) — verified 2026-11-08
 
 ## Archived
 

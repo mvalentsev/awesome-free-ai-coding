@@ -243,9 +243,9 @@ def _numbers(text: str) -> set[float]:
 class UsageQuota(BaseModel):
     model_config = ConfigDict(extra='forbid')
     amount: float | None = Field(default=None, gt=0, allow_inf_nan=False)
-    unit: Literal['requests','tokens','neurons','credits','USD','tasks','one-hour sessions','list-price value','usage',
+    unit: Literal['requests','queries','tokens','neurons','credits','USD','tasks','one-hour sessions','list-price value','usage',
                   'messages','completions','edit predictions','points','CUH','input tokens','output tokens',
-                  'Hypercredits','weighted units','interactions','INR','reviews']
+                  'Hypercredits','AnyTokens','weighted units','interactions','INR','reviews']
     period: Literal['second','minute','hour','day','week','month','one-time','concurrent'] | None = None
     window: int = Field(default=1, gt=0, exclude_if=lambda v: v == 1)
     rolling: bool = Field(default=False, exclude_if=lambda v: not v)
@@ -499,11 +499,11 @@ SCOPE_WORDS = {'account':'per account','person':'per person','ip':'per IP','acco
                'plan':'per service plan','team':'per team','endpoint':'shared across the endpoint','disputed':'sharing scope disputed'}
 PERIOD_ADJECTIVES = {'second':'Per-second','minute':'Per-minute','hour':'Hourly','day':'Daily','week':'Weekly',
                      'month':'Monthly','one-time':'One-time','concurrent':'Concurrent',None:''}
-_SINGULAR_UNITS = {'requests':'request', 'tokens':'token', 'neurons':'neuron', 'credits':'credit',
+_SINGULAR_UNITS = {'requests':'request', 'queries':'query', 'tokens':'token', 'neurons':'neuron', 'credits':'credit',
                    'tasks':'task', 'reviews':'review', 'one-hour sessions':'one-hour session', 'messages':'message',
                    'completions':'completion', 'edit predictions':'edit prediction', 'points':'point',
                    'input tokens':'input token', 'output tokens':'output token',
-                   'Hypercredits':'Hypercredit', 'weighted units':'weighted unit', 'interactions':'interaction'}
+                   'Hypercredits':'Hypercredit', 'AnyTokens':'AnyToken', 'weighted units':'weighted unit', 'interactions':'interaction'}
 
 
 def quota_value(q: UsageQuota) -> str:

@@ -53,6 +53,70 @@ def test_invalid_access_conditions_cannot_be_published(access):
                    "model_access": {"preview": access}})
 
 
+def test_utc_calendar_deadline_keeps_its_date_and_expires_after_the_day(tmp_path):
+    from freetier_radar.render import render_repository
+
+    access = {"source": "https://vendor.example/promo", "until": "2026-11-30"}
+    row = entry(first_seen=date(2026, 11, 8), last_verified=date(2026, 11, 8),
+                api={"base_url": "https://vendor.example/v1",
+                     "model_ids": ["steady", "preview"], "model_access": {"preview": access}})
+    path = tmp_path / "registry.yaml"
+    save_registry(path, [row])
+    assert load_registry(path)[0].api.model_access["preview"].until == date(2026, 11, 30)
+    before = datetime(2026, 11, 30, 23, 59, 59, tzinfo=timezone.utc)
+    render_repository(path, Path("templates"), tmp_path, today=before.date(), now=before)
+    current = load_registry(path)[0]
+    assert current.api.model_ids == ["steady", "preview"]
+    assert "free until 2026-11-30 UTC" in build_provider_page(current, [], before.date())
+    assert "2026-12-01" not in build_provider_page(current, [], before.date())
+    assert build_index([current], before.date())["entries"][0]["api"]["model_access"]["preview"] == access
+    after = datetime(2026, 12, 1, tzinfo=timezone.utc)
+    render_repository(path, Path("templates"), tmp_path, today=after.date(), now=after)
+    current = load_registry(path)[0]
+    assert current.api.model_ids == ["steady"]
+    assert current.api.model_access["preview"].until == date(2026, 11, 30)
+    assert "preview" not in build_opencode_config([current], after.date())["provider"]["gateway"]["models"]
+
+
+def test_utc_calendar_deadline_archives_a_sole_promotion_with_the_right_reason():
+    from freetier_radar.history import archive_reason
+    from freetier_radar.models import expire_entries
+
+    row = entry(models=[{"family": "preview"}], api={
+        "base_url": "https://vendor.example/v1", "model_ids": ["preview"],
+        "model_access": {"preview": {"source": "https://vendor.example/promo", "until": "2026-11-30"}}})
+    current = expire_entries([row], datetime(2026, 12, 1, tzinfo=timezone.utc))[0]
+    assert current.retired_on == date(2026, 12, 1)
+    assert archive_reason(current, date(2026, 12, 1)) == "documented free promotions ended on 2026-12-01"
+
+
+@pytest.mark.parametrize("until", ["2026-11-30T00:00:00", datetime(2026, 11, 30)])
+def test_calendar_deadline_support_does_not_accept_naive_timestamps(until):
+    with pytest.raises(ValidationError):
+        entry(api={"model_ids": ["preview"], "model_access": {"preview": {
+            "source": "https://vendor.example/promo", "until": until}}})
+
+
+@pytest.mark.parametrize("until", ["2026-11-30T00:00:00+00:00", "2026-11-30T00:00:00+08:00"])
+def test_exact_midnight_deadlines_keep_timestamp_precision(until):
+    from freetier_radar.models import FreeAccess
+
+    access = FreeAccess(source="https://vendor.example/promo", until=until)
+    assert isinstance(access.until, datetime)
+    assert access.model_dump(mode="json")["until"] == until.replace("+00:00", "Z")
+    assert access.ends_at == datetime.fromisoformat(until)
+
+
+def test_date_and_timestamp_deadlines_share_family_selection():
+    from freetier_radar.models import family_access
+
+    row = entry(models=[{"family": "preview"}], api={
+        "model_ids": ["preview", "preview-free"], "model_access": {
+            "preview": {"source": "https://vendor.example/promo", "until": "2026-11-30"},
+            "preview-free": {"source": "https://vendor.example/promo", "until": "2026-11-30T23:00:00Z"}}})
+    assert family_access(row, "preview").until == date(2026, 11, 30)
+
+
 def test_upfront_payment_rows_follow_unfunded_rows_at_equal_rank():
     rows = [entry(id="a-paid", name="A Paid", access={"initial_payment_usd": 1,
                    "source": "https://vendor.example/pricing"}, api={"model_ids": ["steady"]}),
