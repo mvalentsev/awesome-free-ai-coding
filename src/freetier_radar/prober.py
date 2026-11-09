@@ -15,12 +15,13 @@ from pathlib import Path
 
 import httpx
 
-from .page_reader import browser_challenge, empty_framer_page, page_evidence, recover_page, recover_page_sync
+from .page_reader import (browser_challenge, empty_app_page, empty_framer_page,
+                          page_evidence, recover_page, recover_page_sync)
 
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
     OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
+    Border, _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -294,7 +295,7 @@ def page_response_ok(response: httpx.Response) -> bool:
     unfinished redirect bodies must never confirm a quote, model or retirement.
     """
     return (response.is_success and not browser_challenge(response)
-            and not empty_framer_page(response))
+            and not empty_framer_page(response) and not empty_app_page(response))
 
 
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
@@ -1094,7 +1095,6 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
     inside each country it leaves out. A change is a note beside a row that
     stays verified, never a failure: the offer is still there, and which
     countries it reaches is a reviewer's to reread."""
-    from .quotes import page_texts, quote_found  # quotes reads pages through this module
     border = entry.border
     if border.read == "none":
         return None
@@ -1110,8 +1110,19 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
     page, failure = await _page_beside(client, url, entry, probed, attempts, backoff)
     if page is None:
         return f"border could not be checked against {url}: {failure}"
+    return border_changes(page.text, border)
+
+
+def border_changes(body: str, border: Border) -> str | None:
+    """Compare captured HTTP territory evidence without fetching another copy."""
+    from .quotes import page_texts, quote_found
+    if border.read in ("none", "dns"):
+        return None
+    url = border.source
+    recorded = set(border.served if border.served is not None else border.left_out)
+    names = border.read == "page" and bool(recorded)
     if border.read == "codes":
-        listed = _listed_codes(page.text)
+        listed = _listed_codes(body)
         if listed is None:
             return f"border could not be checked against {url}: the answer is no list of codes"
         added, gone = sorted(listed - recorded), sorted(recorded - listed)
@@ -1121,11 +1132,11 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
                 f"no longer lists {', '.join(gone)}" if gone else ""]
         return f"border: {url} {' and '.join(s for s in said if s)} — {BORDER_REREAD}"
     notes = []
-    if border.quote and not quote_found(border.quote, page_texts(page.text)):
+    if border.quote and not quote_found(border.quote, page_texts(body)):
         notes.append("its quote is gone")
     if names:
         from .countries import codes_named, country_name
-        rendered, raw = _country_texts(page.text)
+        rendered, raw = _country_texts(body)
         seen = codes_named(rendered)
         gone = sorted(recorded - seen - codes_named(raw))
         added = sorted(seen - recorded - set(border.also_named))
@@ -1786,11 +1797,18 @@ def _additional_prices(model: dict) -> list[tuple[str, float | None]]:
     # summaries: https://aihubmix.com/api/v1/models, checked 2026-11-07.
     # Optional cached/media inputs do not price the ordinary text lane.
     if model.get("pricing_source") == "billing_config":
+        mandatory = {"prompt_tokens", "completion_tokens", "input_text_tokens", "output_text_tokens"}
+        # Native audio operations bill their required medium, not the zero
+        # token summary: https://aihubmix.com/api/v1/models, checked 2026-11-09.
+        # An optional audio input on a text chat model remains separate.
+        if model.get("types") == "stt" or model.get("input_modalities") == "audio":
+            mandatory.add("audio_input_seconds")
+        if model.get("types") == "t2a" or model.get("output_modalities") == "audio":
+            mandatory.add("audio_generation")
         lines = model.get("pricing_lines")
         if isinstance(lines, list):
             for i, line in enumerate(lines):
-                if isinstance(line, dict) and line.get("billable") in (
-                        "prompt_tokens", "completion_tokens", "input_text_tokens", "output_text_tokens"):
+                if isinstance(line, dict) and line.get("billable") in mandatory:
                     prices.append((f"pricing_lines[{i}].{line['billable']}",
                                    _number(line.get("cost_usd"))))
         elif "pricing_lines" in model:
@@ -1977,15 +1995,16 @@ def free_table_models(resp: httpx.Response, entry: Entry) -> list[str] | None:
 def model_table_findings(resp: httpx.Response, entry: Entry, today: date) -> list[str]:
     """Account for every eligible row without promoting a waiting family."""
     from .quotas import UNKNOWN_RECHECK_DAYS
+    from .quotes import prose_model_access_changes
+    notes = prose_model_access_changes(entry, {entry.probe.endpoint: resp.text})
     free = free_table_models(resp, entry)
     if free is None:
         if (entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.page_catalog is None
                 and entry.newcomers):
             missing = [n.family for n in entry.newcomers if not family_named(resp, entry, n.family)]
             if missing:
-                return ["model inventory: waiting models no longer named by current source: " + ", ".join(missing)]
-        return []
-    notes = []
+                notes.append("model inventory: waiting models no longer named by current source: " + ", ".join(missing))
+        return notes
     names = {_squash(name) for name in free}
     waiting_names = {_squash(n.table_name) for n in entry.newcomers if n.table_name}
     exclusions = {_squash(e.name) for e in entry.probe.model_exclusions}

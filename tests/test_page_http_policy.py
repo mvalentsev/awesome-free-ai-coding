@@ -61,6 +61,39 @@ async def test_all_page_readers_agree_on_which_bodies_can_supply_evidence(status
     assert len(calls) == (8 if status == 503 else 6)
 
 
+@pytest.mark.parametrize('rendered', [False, True])
+@pytest.mark.parametrize('script_attrs', ['type="module"', 'async', 'defer'])
+async def test_client_rendered_shell_is_unreadable_even_when_metadata_names_the_offer(tmp_path, rendered, script_attrs):
+    from freetier_radar import review
+
+    body = ('<html><head><title>' + QUOTE + '</title>'
+            '<script ' + script_attrs + ' src="/assets/index.js"></script></head>'
+            '<body><div id="root">' + (QUOTE if rendered else '') + '</div></body></html>')
+    def answer(request):
+        return httpx.Response(200, text=body, headers={'content-type': 'text/html'})
+    transport = httpx.MockTransport(answer)
+
+    with httpx.Client(transport=transport) as client:
+        unread = []
+        pages = fetch_page_texts([URL], client, on_unread=unread.append)
+        assert bool(pages[URL]) is rendered
+        assert bool(unread) is (not rendered)
+        assert (probe_check_sync(entry(), client) is None) is rendered
+        assert named_by_row(client)(entry(), 'absent-model') is (False if rendered else None)
+
+    async with httpx.AsyncClient(transport=transport) as client:
+        missing, unread = await check_entries([entry()], client)
+        assert bool(unread) is (not rendered)
+        assert bool(missing) is (not rendered)
+        if missing:
+            assert missing[0].unverified
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+        assert result.status is (ProbeStatus.PASS if rendered else ProbeStatus.INCONCLUSIVE)
+        bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+        check = await review.fetch(client, URL, bundle, page=True)
+        assert check['passed'] is rendered
+
+
 @pytest.mark.parametrize('retry_after', ['120', 'Wed, 04 Nov 2026 00:00:00 GMT', 'invalid'])
 async def test_a_source_503_with_an_unwaited_retry_after_stays_inconclusive(retry_after):
     calls = []

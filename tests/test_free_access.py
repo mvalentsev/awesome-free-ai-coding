@@ -90,6 +90,22 @@ def test_utc_calendar_deadline_archives_a_sole_promotion_with_the_right_reason()
     assert archive_reason(current, date(2026, 12, 1)) == "documented free promotions ended on 2026-12-01"
 
 
+def test_expired_api_quota_cannot_return_through_the_raw_machine_payload():
+    from freetier_radar.models import expire_entries
+    row = entry(models=[{'family': 'preview'}], api={
+        'model_ids': ['preview'], 'model_access': {'preview': {
+            'source': 'https://vendor.example/promo', 'until': '2026-11-30'}}},
+        remaining_free={'source': 'https://vendor.example/free', 'free_part': 'unnamed',
+                        'quote': 'A recurring Free allowance remains available after the promotion.'},
+        quotas=[{'amount': 20, 'unit': 'requests', 'period': 'day', 'scope': 'account-model',
+                 'model_ids': ['preview'], 'source': 'https://vendor.example/promo',
+                 'quote': 'Preview allows 20 requests per day.'}])
+    now = datetime(2026, 12, 1, tzinfo=timezone.utc)
+    ended = expire_entries([row], now)[0]
+    assert ended.quotas[0].amount == 20
+    assert build_index([ended], now.date())['entries'][0]['quotas'] == []
+
+
 @pytest.mark.parametrize("until", ["2026-11-30T00:00:00", datetime(2026, 11, 30)])
 def test_calendar_deadline_support_does_not_accept_naive_timestamps(until):
     with pytest.raises(ValidationError):

@@ -736,6 +736,21 @@ class FreeAccess(BaseModel):
         return self
 
 
+class ProseModelAccess(FreeAccess):
+    """Free model conditions on a page without a callable API or client ID."""
+    quote: str = Field(min_length=12, max_length=1200)
+    deadline_quote: str | None = Field(default=None, min_length=12, max_length=1200,
+                                       exclude_if=lambda value: value is None)
+
+    @model_validator(mode="after")
+    def _dated_offer_has_its_deadline_words(self):
+        if bool(self.until) != bool(self.deadline_quote):
+            raise ValueError("a prose promotion needs its until and deadline quote together")
+        if any('...' in text or '…' in text for text in (self.quote, self.deadline_quote or '')):
+            raise ValueError("prose model conditions need complete source quotes")
+        return self
+
+
 class RemainingFree(BaseModel):
     """A separately sourced free mode that survives the last model promotion."""
     model_config = ConfigDict(extra="forbid")
@@ -1568,6 +1583,8 @@ class Entry(BaseModel):
     # Which kind of free this is; freetier-check refuses a live row without it.
     free_part: FreePart | None = None
     models: list[ModelFamily] = []
+    model_access: dict[str, ProseModelAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    expired_models: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Models a page row's page serves free, waiting for their family — see Newcomer.
     newcomers: list[Newcomer] = Field(default_factory=list, exclude_if=lambda v: not v)
     page_catalog: PageCatalog | None = None
@@ -1591,6 +1608,27 @@ class Entry(BaseModel):
     rank: int = 100  # sort key within a category: lower renders higher
 
     @model_validator(mode="after")
+    def _prose_model_conditions_are_scoped(self) -> Entry:
+        if not self.model_access and not self.expired_models:
+            return self
+        if self.api or self.client_lane or self.page_catalog or self.probe.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError("use the API, client or page catalog's own model_access")
+        active = {model.family for model in self.models}
+        expired = set(self.expired_models)
+        if len(expired) != len(self.expired_models) or active & expired:
+            raise ValueError("expired prose families must be distinct from active families")
+        if self.model_access.keys() - active - expired or expired - self.model_access.keys():
+            raise ValueError("prose model_access must name an active or retained expired family")
+        for family, access in self.model_access.items():
+            if _id_squash(family) not in _id_squash(access.quote):
+                raise ValueError("the prose access quote must identify its exact family")
+            if family in active and (self.probe.follow or access.source != self.probe.endpoint):
+                raise ValueError("active prose model conditions use the directly probed page")
+            if family in expired and not access.until:
+                raise ValueError("an expired prose model needs its recorded deadline")
+        return self
+
+    @model_validator(mode="after")
     def _archive_review_describes_an_archived_row(self) -> Entry:
         if self.archive_review is not None:
             archived_on = self.delisted.on if self.delisted else self.retired_on
@@ -1601,6 +1639,12 @@ class Entry(BaseModel):
     @model_validator(mode="after")
     def _quota_catalog_is_bound_to_the_lane(self) -> Entry:
         for quota in self.quotas:
+            if quota.families:
+                if self.api or self.client_lane or self.page_catalog:
+                    raise ValueError('use model_ids for quotas on an API or client lane')
+                known = {model.family for model in self.models} | set(self.expired_models)
+                if set(quota.families) - known:
+                    raise ValueError('a family quota needs an active or expired prose family')
             if quota.read == "catalog":
                 if quota.source not in (self.probe.endpoint, self.probe.catalog):
                     raise ValueError("catalog quota source must be this row's checked catalog")
@@ -1616,8 +1660,9 @@ class Entry(BaseModel):
         if self.access is not None and self.access.until is not None:
             raise ValueError("whole-offer expiry uses retired_on; access.until belongs to model_access")
         lane = self.api or self.client_lane or self.page_catalog
-        if self.access and self.access.initial_payment_usd and lane and any(
-                a.initial_payment_usd for a in lane.model_access.values()):
+        scoped_access = lane.model_access if lane else self.model_access
+        if self.access and self.access.initial_payment_usd and any(
+                a.initial_payment_usd for a in scoped_access.values()):
             raise ValueError("record the whole-offer payment once in access; model_access may "
                              "add deadlines but cannot replace it with another payment")
         return self
@@ -1884,7 +1929,8 @@ def entry_id_family(entry: Entry, model_id: str, families: Iterable[str] | None 
 def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
     lane = entry.api or entry.client_lane
     scoped = (lane.model_access.get(model_id) if lane else
-              entry.page_catalog.model_access.get(model_id) if entry.page_catalog else None)
+              entry.page_catalog.model_access.get(model_id) if entry.page_catalog
+              else entry.model_access.get(model_id))
     if scoped is None:
         return entry.access
     if entry.access and entry.access.initial_payment_usd and not scoped.initial_payment_usd:
@@ -1902,6 +1948,8 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
     if entry.page_catalog:
         ids = [m.name for m in entry.page_catalog.models if m.model and m.model.family == family
                and entry.page_catalog.independently_free(m)]
+    if family in entry.model_access:
+        ids = [family]
     conditions = [id_access(entry, i) for i in ids] or [entry.access]
     return min(conditions, key=lambda a: (
         (a.initial_payment_usd or 0) * (1 + a.topup_fee_percent / 100) if a else 0,
@@ -1954,6 +2002,25 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
         raise ValueError("expiry clock needs a timezone")
     out = []
     for e in entries:
+        if e.model_access:
+            expired = {m.family for m in e.models if (a := id_access(e, m.family))
+                       and a.until and now >= a.ends_at}
+            if not expired:
+                out.append(e)
+                continue
+            surviving = [m for m in e.models if m.family not in expired]
+            updates = {'models': surviving,
+                       'expired_models': list(dict.fromkeys([*e.expired_models, *sorted(expired)]))}
+            if not surviving and e.free_part is FreePart.MODELS:
+                if e.remaining_free:
+                    updates.update(free_part=e.remaining_free.free_part, access=e.remaining_free.access,
+                                   probe=Probe(type=ProbeType.PAGE_KEYWORDS, endpoint=e.remaining_free.source,
+                                               keywords=[e.remaining_free.quote]))
+                else:
+                    ended_on = max(id_access(e, family).ends_at for family in expired).astimezone(timezone.utc).date()
+                    updates['retired_on'] = min(e.retired_on, ended_on) if e.retired_on else ended_on
+            out.append(e.model_copy(update=updates))
+            continue
         if e.page_catalog:
             expired_names = {m.name for m in e.page_catalog.models if not m.expired
                              and (a := id_access(e, m.name)) and a.until and now >= a.ends_at}

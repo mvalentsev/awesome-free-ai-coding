@@ -85,7 +85,7 @@ def browser_challenge(response: httpx.Response) -> bool:
             or any(m in raw for m in ("cf-browser-verification", "window._cf_chl_opt", "vercel security checkpoint")))
 
 
-class _FramerShell(HTMLParser):
+class _PageShell(HTMLParser):
     def __init__(self):
         super().__init__()
         self.indexes = []
@@ -93,6 +93,8 @@ class _FramerShell(HTMLParser):
         self.seen_body = False
         self.hidden = 0
         self.text = []
+        self.app_mount = False
+        self.client_bootstrap = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -100,6 +102,11 @@ class _FramerShell(HTMLParser):
             self.indexes.append(attrs.get("content", ""))
         if tag == "body":
             self.body = self.seen_body = True
+        if self.body and tag == "div" and attrs.get("id") in ("root", "app"):
+            self.app_mount = True
+        if (tag == "script" and attrs.get("src")
+                and attrs.get("type", "").lower() in ("", "module", "text/javascript", "application/javascript")):
+            self.client_bootstrap = True
         if tag in ("script", "style", "noscript"):
             self.hidden += 1
 
@@ -125,7 +132,7 @@ def empty_framer_page(response: httpx.Response) -> bool:
             or "html" not in response.headers.get("content-type", "").lower()
             or "framer-search-index" not in response.text):
         return False
-    parsed = _FramerShell()
+    parsed = _PageShell()
     parsed.feed(response.text)
     if not parsed.seen_body or "".join(parsed.text).strip() or len(parsed.indexes) != 1:
         return False
@@ -133,6 +140,22 @@ def empty_framer_page(response: httpx.Response) -> bool:
     if not re.fullmatch(r"https://framerusercontent\.com/sites/[A-Za-z0-9_-]+/searchIndex-[A-Za-z0-9_-]+\.json", index):
         return False
     return True
+
+
+def empty_app_page(response: httpx.Response) -> bool:
+    """A client bootstrap and empty app mount do not supply rendered page text.
+
+    PLaMo's https://plamo.preferredai.jp/info/terms returned this shape on
+    2026-11-09; https://www.trae.ai/pricing used async/defer scripts that day.
+    A title or description cannot establish the page's offer or terms.
+    """
+    if (not response.is_success
+            or "html" not in response.headers.get("content-type", "").lower()):
+        return False
+    parsed = _PageShell()
+    parsed.feed(response.text)
+    return (parsed.seen_body and parsed.app_mount and parsed.client_bootstrap
+            and not "".join(parsed.text).strip())
 
 
 def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient) -> bool:

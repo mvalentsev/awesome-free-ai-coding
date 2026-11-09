@@ -134,6 +134,10 @@ def check(root: Path, today: date | None = None) -> list[str]:
     tiers: dict[str, tuple[str, str]] = {}
     for e in entries:
         for m in e.models:
+            # A scoped variant review has no measurement to compare yet.
+            # Explicitly bound measurements still obey the shared family rule.
+            if not m.aa_auto and m.aa_model is None and m.tier is None:
+                continue
             tier = m.tier.value if m.tier else "no tier"
             first = tiers.get(m.family)
             if first is None:

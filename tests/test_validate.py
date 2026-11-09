@@ -306,6 +306,23 @@ def test_one_family_carries_one_tier(tmp_path: Path):
     assert check(agreeing, TODAY) == []
 
 
+@pytest.mark.parametrize('held,bound', [(False, False), (True, False), (True, True)])
+def test_explicit_variant_hold_can_wait_beside_a_measured_family(tmp_path: Path, held, bound):
+    measured = {'family': 'x-mini', 'aa_model': 'x-mini', 'tier': 'frontier'}
+    pending = {'family': 'x-mini', 'aa_auto': not held}
+    if bound:
+        pending.update(aa_model='x-mini', tier='strong')
+    root = build(tmp_path, entries=[
+        {**ENTRY, 'models': [measured]},
+        {**ENTRY, 'id': 'y', 'name': 'Y', 'url': 'https://y.ai', 'models': [pending]},
+    ])
+    problems = check(root, TODAY)
+    if held and not bound:
+        assert problems == []
+    else:
+        assert any('a family carries one tier' in problem for problem in problems)
+
+
 def test_a_dismissal_that_matches_nothing_is_dead_weight(tmp_path: Path):
     root = build(tmp_path, dismissed=[
         {"entry": "ghost", "family": "a", "superseded_by": "b"},

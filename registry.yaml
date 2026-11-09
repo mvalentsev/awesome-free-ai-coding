@@ -468,7 +468,7 @@ entries:
     source: https://docs.mistral.ai/admin/billing-usage/subscriptions
     quote: Each Mistral plan includes monthly usage that is shared across Studio,
       the API, and Vibe Code.
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   - unit: requests
     period: second
     scope: organization-model
@@ -476,7 +476,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Requests per second: The request throughput limit for the model.'
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   - unit: tokens
     period: minute
     scope: organization-model
@@ -484,7 +484,7 @@ entries:
     label: API rate limits
     source: https://docs.mistral.ai/admin/billing-usage/usage-limits
     quote: 'Tokens per minute: The token throughput limit for the model.'
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: sum
   models: []
   api:
@@ -730,7 +730,7 @@ entries:
     label: Free model usage
     source: https://opencode.ai/v2/docs/console/models/
     quote: Big Pickle
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: big-pickle
@@ -959,7 +959,7 @@ entries:
     label: Basic usage
     source: https://www.trae.ai/pricing
     quote: For free users, it's a one-time allowance and doesn't reset monthly.
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-09'
   - amount: 5000.0
     unit: completions
     period: month
@@ -976,7 +976,7 @@ entries:
         name: Free
         display_price: $0
       field: product_extra.subscription_extra.quota.auto_completion_limit
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-09'
   - amount: 2.0
     unit: tasks
     period: concurrent
@@ -993,7 +993,7 @@ entries:
         name: Free
         display_price: $0
       field: product_extra.subscription_extra.quota.solo_agent_parallel_limit
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-09'
   free_part: unnamed
   models: []
   data_use:
@@ -1049,18 +1049,24 @@ entries:
   - https://codeium.com
   - https://docs.devin.ai/desktop/models.md
   card_required: false
-  offering: Free plan of Cognition's desktop coding agent — the IDE that shipped as
-    Windsurf
-  limits: Windsurf is now Devin Desktop. Free has limited model availability; the
-    model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At
-    a cap, Free must wait for a reset; buying extra usage is a paid-plan feature.
-    A separate SWE-2 promotion appears on the Pro card and does not establish eligibility
-    for the Free plan.
+  remaining_free:
+    source: https://devin.ai/pricing
+    quote: The Free plan includes a light quota to code with agents, limited model
+      availability, unlimited inline edits, and unlimited Tab completions.
+    free_part: unnamed
+  offering: Free plan of Cognition's desktop and terminal coding agents, alongside
+    its paid plans
+  limits: Windsurf is now Devin Desktop. Free models do not consume the plan's usage
+    quota. Metered models consume daily and weekly token budgets; Free must wait for
+    a reset after either allowance is exhausted. Buying extra usage requires a paid
+    plan. Check your account's model selector for current availability and prices.
   quotas:
   - unit: usage
     period: day
     scope: account
     label: Agent usage
+    condition: metered models only
+    condition_quote: free models don't count against your quota at all
     source: https://docs.devin.ai/desktop/accounts/quota
     quote: daily and weekly allowances
     reviewed_on: '2026-11-03'
@@ -1068,6 +1074,8 @@ entries:
     period: week
     scope: account
     label: Agent usage
+    condition: metered models only
+    condition_quote: free models don't count against your quota at all
     source: https://docs.devin.ai/desktop/accounts/quota
     quote: daily and weekly allowances
     reviewed_on: '2026-11-03'
@@ -1087,7 +1095,16 @@ entries:
     reviewed_on: '2026-11-03'
   free_part: models
   models:
+  - family: swe-2-flash-medium
+    aa_auto: false
   - family: swe-1.6
+  model_access:
+    swe-2-flash-medium:
+      source: https://docs.devin.ai/desktop/models.md
+      until: '2026-12-04T18:00:00Z'
+      quote: SWE-2 Flash Medium is available on the Free plan. SWE-2 Flash High and
+        Max require a paid plan.
+      deadline_quote: SWE-2 Flash is free until December 4, 2026 at 18:00 UTC.
   data_use:
     trains: 'yes'
     quote: By default, we may use your data for model training purposes to improve
@@ -1102,7 +1119,7 @@ entries:
     type: page-keywords
     endpoint: https://docs.devin.ai/desktop/models.md
     keywords:
-    - Free tier users only have access to
+    - SWE-2 Flash
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -1182,7 +1199,7 @@ entries:
     source: https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
     quote: Copilot Free and Copilot Student both have an allowance of AI credits
     period_quote: monthly GitHub AI Credits allowance that varies by plan
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: unnamed
   models: []
   data_use:
@@ -1635,7 +1652,7 @@ entries:
     label: Free Flash models
     source: https://docs.z.ai/guides/overview/pricing.md
     quote: GLM-4.7-Flash | Free
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -1713,7 +1730,7 @@ entries:
     source: https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started
     quote: 'Anonymous: 2 requests per minute, per IP and per model.'
     value_phrase: 'Anonymous: 2 requests per minute, per IP and per model.'
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: gpt-oss-120b
@@ -1774,7 +1791,7 @@ entries:
     label: Legacy anonymous lane
     source: https://text.pollinations.ai/models
     quote: anonymous
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: gpt-oss-20b
@@ -1854,7 +1871,7 @@ entries:
     quote: After removal, new users will no longer receive a free quota for the model;
       quotas already issued to existing users remain available until they expire or
       are exhausted.
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - amount: 2000.0
     unit: requests
     period: day
@@ -1867,7 +1884,7 @@ entries:
     quote: OAuth authentication provides an independent free quota for model inference
       (2,000 calls per day)
     value_phrase: 2,000 calls per day
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: qwen3.8-max
@@ -2573,7 +2590,7 @@ entries:
     condition_quote: a lower limit per model
     source: https://vercel.com/docs/ai-gateway/rate-limits
     quote: this page describes behavior rather than fixed numbers
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: usage
     scope: unspecified
     label: Beam launch offer
@@ -2584,7 +2601,7 @@ entries:
     quote: Beam is free to use for a limited time
     model_ids:
     - reflection/beam-free
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: laguna-s-2.1
@@ -2734,7 +2751,7 @@ entries:
     label: Additional IP guard
     source: https://bazaarlink.ai/free
     quote: with an additional IP guard
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -2929,7 +2946,7 @@ entries:
     source: https://docs.routeway.ai/getting-started/rate-limits.md
     quote: 5 Requests Per Minute (RPM)
     value_phrase: 5 Requests Per Minute (RPM)
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-09'
   - amount: 20.0
     unit: requests
     period: minute
@@ -2939,7 +2956,7 @@ entries:
     source: https://docs.routeway.ai/getting-started/faq.md
     quote: 20 requests/minute
     value_phrase: 20 requests/minute
-    reviewed_on: '2026-10-27'
+    reviewed_on: '2026-11-09'
   - amount: 200.0
     unit: requests
     period: day
@@ -3110,28 +3127,28 @@ entries:
     label: Gemini agent allowance
     source: https://antigravity.google/docs/models
     quote: Gemini models Weekly limit remaining
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: usage
     period: week
     scope: account
     label: Claude and GPT agent allowance
     source: https://antigravity.google/docs/models
     quote: Claude and GPT models Weekly limit remaining
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: completions
     scope: account
     state: unmetered
     label: Tab
     source: https://antigravity.google/pricing
     quote: Unlimited Tab completions
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: requests
     scope: account
     state: unmetered
     label: Command
     source: https://antigravity.google/pricing
     quote: Unlimited Command requests
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -3734,7 +3751,7 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-26b-a4b-it-free
-    reviewed_on: '2026-10-30'
+    reviewed_on: '2026-11-09'
   - unit: usage
     scope: unspecified
     label: Gemma 4 free routes
@@ -3747,7 +3764,7 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-31b-it-free
-    reviewed_on: '2026-10-30'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: glm-5.3
@@ -3804,6 +3821,9 @@ entries:
     aa_model: gemma-4-26b-a4b
   - family: gemma-4-31b
     aa_model: gemma-4-31b
+  - family: flint-v1.0
+  - family: nemotron-3.5-super-vl-120b-a12b
+  - family: xing4.0-29b-a4b
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://console.aihubmix.com/workspaces/default/keys
@@ -3849,6 +3869,13 @@ entries:
         source: https://aihubmix.com/api/v1/models
         quote: Intern-S2-Preview is InternLM’s 35B scientific multimodal foundation
           model
+        read: catalog
+      nemotron-3.5-super-vl-free:
+        family: nemotron-3.5-super-vl-120b-a12b
+        source: https://aihubmix.com/api/v1/models
+        quote: NVIDIA Nemotron 3.5 Super VL is an open, multimodal mixture-of-experts
+          model developed by NVIDIA that features 12 billion active parameters out
+          of 120 billion total.
         read: catalog
     ignored_ids:
     - qwen3.6-plus-preview-free
@@ -4165,7 +4192,7 @@ entries:
     label: Public beta
     source: https://www.sensenova.cn/token-plan
     quote: 公测期完全免费开放，付费档位即将上线
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: sensenova-6.8-flash-lite
@@ -4679,7 +4706,7 @@ entries:
       condition: specialist
     limited_allowance: 6 one-hour sessions per day
     notes:
-    - MiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud.
+    - DeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud.
     - Daily hours refill at midnight in your local timezone and unused daily hours
       do not carry over.
     - Older app versions show the same balance as Freebucks, five to an hour.
@@ -4980,7 +5007,7 @@ entries:
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b
     - qwen/qwen3.8-27b-free
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: usage
     period: day
     scope: account-model
@@ -5025,7 +5052,7 @@ entries:
     quote: free of charge with a daily quota
     model_ids:
     - nvidia/nemotron-3.5-super-vl-free
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: usage
     period: day
     scope: unspecified
@@ -5143,6 +5170,18 @@ entries:
     model_ids:
     - parallel/parallel-free
     reviewed_on: '2026-11-07'
+  - amount: 3000000.0
+    unit: tokens
+    scope: account-model
+    label: Qwen3.8 Max promotion
+    source: https://llmtr.com/v1/models
+    quote: Kodlama ve uzun akıl yürütme işleri için Qwen3.8 Max; 13 Kasım 2026 03:00'e
+      (TSİ) kadar ücretsiz, hesap başına 3 milyon token.
+    value_phrase: hesap başına 3 milyon token
+    read: catalog
+    model_ids:
+    - qwen/qwen3.8-max-free
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -5153,6 +5192,8 @@ entries:
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
+  - family: qwen3.8-max
+    aa_auto: false
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5166,6 +5207,7 @@ entries:
     - nvidia/nemotron-3.5-super-vl-free
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
+    - qwen/qwen3.8-max-free
     model_bindings:
       internlm/intern-s2-free:
         family: intern-s2-397b
@@ -5236,6 +5278,9 @@ entries:
       parallel/parallel-free:
         source: https://llmtr.com/models/parallel/parallel-free
         until: '2027-01-04T23:59:00+03:00'
+      qwen/qwen3.8-max-free:
+        source: https://llmtr.com/models/qwen/qwen3.8-max-free
+        until: '2026-11-13T03:00:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -5297,6 +5342,12 @@ entries:
         context_tokens: 20000
         output_tokens: 20000
         source: https://llmtr.com/v1/models
+      qwen/qwen3.8-max-free:
+        context_tokens: 262144
+        output_tokens: 262144
+        source: https://llmtr.com/v1/models
+    opencode_output_tokens:
+      qwen/qwen3.8-max-free: 8192
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -5333,6 +5384,7 @@ entries:
     - minimax/minimax-m3.1-flash-free
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
+    - parallel/search-free
     no_family_ids:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
@@ -5544,7 +5596,7 @@ entries:
     quote: Quotas, rate limits, model access, and usage limits may change based on
       usage, demand, infrastructure capacity, abuse prevention, operational needs,
       and individual or aggregate activity
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -6213,7 +6265,7 @@ entries:
     label: Allowed and effective text rates for default users
     source: https://wiki.agnes-ai.com/en/docs/tokenplan
     quote: adjusted dynamically based on platform capacity and service conditions
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: agnes-3.0-flash
@@ -6654,7 +6706,7 @@ entries:
     label: Free models
     source: https://portal.nousresearch.com/
     quote: Standard rate limits
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: step-3.7-flash
@@ -6916,7 +6968,7 @@ entries:
     source: https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit
     quote: $1 credit
     value_phrase: $1 credit
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   - amount: 10.0
     unit: requests
     period: minute
@@ -8257,9 +8309,10 @@ entries:
     label: Zero-priced model
     source: https://novita.ai/models/model-detail/apodex-apodex-1.1-mini
     quote: Input $0 / M Tokens Output $0 / M Tokens
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
-  models: []
+  models:
+  - family: apodex-1.1-mini
   api:
     base_url: https://api.novita.ai/openai
     key_url: https://novita.ai/settings/key-management
@@ -9232,20 +9285,24 @@ entries:
   - https://docs.qoder.cn/events/flashoffer
   - https://docs.qoder.com/product-series/quick-start
   card_required: false
+  remaining_free:
+    source: https://docs.qoder.cn/events/100credits
+    quote: 2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
+      。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits
+      可跨天保留 。
+    free_part: sum
   offering: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a
-    free personal-model promotion alongside a two-week 300-credit trial and 100 credits
-    a day to claim in the desktop app
-  limits: The model promotion is open to personal users, including free accounts with
-    zero credits; it needs no paid subscription or claim and works across the CN apps,
-    including CLI. Daily free uses are limited, with more for paid accounts; after
-    the allowance, wait until the next day or spend Credits. Its end is "结束时间将提前在本页公告"
-    (to be announced in advance). The separate daily credit promotion must be claimed
-    in the desktop app; its end is "结束时间：另行公告" (to be announced). Each claim window
-    runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit
-    does not accumulate. After trial credit runs out, a basic model still provides
-    limited completion. Signup requires an Alibaba Cloud account bound to a phone
-    number; real-name verification is needed for purchases. Qoder and Qoder CN are
-    "separate product systems"; their accounts, tasks and data are not interoperable.
+    two-week 300-credit trial and 100 credits a day to claim in the desktop app
+  limits: Claim each daily reward in the CN desktop app between 10:00 and the next
+    day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each
+    claimed reward expires after 30 days. Credits work across the CN apps and are
+    spent at each model's current rate. The reward campaign's end is "结束时间：另行公告" (to
+    be announced). After trial credit runs out, a basic model still provides limited
+    completion. Signup requires an Alibaba Cloud account bound to a phone number;
+    real-name verification is needed for purchases. Qoder and Qoder CN are "separate
+    product systems"; their accounts, tasks and data are not interoperable. The former
+    Qwen3.8-Flash free-model promotion ended on November 7, 2026 at 00:00 Beijing
+    time (UTC+8); discounted calls now consume Credits.
   quotas:
   - amount: 300.0
     unit: credits
@@ -9274,7 +9331,7 @@ entries:
     label: Basic-model fallback
     source: https://docs.qoder.cn/product-overview/billing-description
     quote: 有限次数的补全
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - unit: requests
     period: day
     scope: account-model
@@ -9284,33 +9341,33 @@ entries:
     model_ids:
     - Qwen3.8-Flash
     reviewed_on: '2026-11-02'
-  free_part: models
-  models:
-  - family: qwen3.8-flash
-    aa_model: qwen3-8-flash-next
+  free_part: sum
+  models: []
   client_lane:
-    model_ids:
-    - Qwen3.8-Flash
+    model_ids: []
     model_bindings:
       Qwen3.8-Flash:
         family: qwen3.8-flash
         source: https://docs.qoder.cn/events/flashoffer
         quote: Qwen3.8-Flash 是千问系列中兼顾响应速度与使用成本的多模态模型
-    note: Select Qwen3.8-Flash in an official Qoder CN app, including CLI. The daily
-      no-credit allowance includes Free personal accounts; other model calls can consume
-      Credits.
+    model_access:
+      Qwen3.8-Flash:
+        source: https://docs.qoder.cn/events/flashoffer
+        until: '2026-11-07T00:00:00+08:00'
+    ignored_ids:
+    - Qwen3.8-Flash
+    note: The Qwen3.8-Flash free-model promotion has ended; continuing shared Credits
+      are spent at each model's current rate.
   border:
     left_out: []
     'on': '2026-09-27'
     source: https://docs.qoder.cn/product-overview/account-and-subscription
   probe:
     type: page-keywords
-    endpoint: https://docs.qoder.cn/events/flashoffer
+    endpoint: https://docs.qoder.cn/events/100credits
     keywords:
-    - Qwen3.8-Flash
-    - 调用该模型不消耗 Credits
-    - 无需领取
-    - 免费个人用户也可参与
+    - 2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在
+      Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -9527,7 +9584,7 @@ entries:
     label: Trial rate limit
     source: https://wallabytoken.com/terms
     quote: may be restricted to specific models and lower rate limits
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: sum
   models: []
   api:
@@ -9584,7 +9641,7 @@ entries:
     source: https://www.aionlabs.ai/pricing/
     quote: A daily credit allowance to try agent jobs, the API, and browser chat.
       No card required.
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-09'
   - amount: 15.0
     unit: requests
     period: minute
@@ -9806,7 +9863,7 @@ entries:
     label: General
     source: https://simplellm.eu/docs/limits.md
     quote: general requests-per-minute counters
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   - unit: requests
     period: hour
     scope: unspecified
@@ -9814,7 +9871,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   - unit: requests
     period: day
     scope: unspecified
@@ -9822,7 +9879,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   - unit: tokens
     period: hour
     scope: unspecified
@@ -9830,7 +9887,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   - unit: tokens
     period: day
     scope: unspecified
@@ -9838,7 +9895,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-10-28'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: gemma-4-e4b
@@ -10090,7 +10147,7 @@ entries:
       429s name the provider)
     source: https://aiapi-pro.com/transparency.html
     quote: unlimited free-model calls after the first top-up
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-09'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -10335,7 +10392,7 @@ entries:
     label: Starter
     source: https://www.greptile.com/pricing
     quote: 50 free credits per month
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-09'
   - amount: 500.0
     unit: credits
     period: month
@@ -10349,7 +10406,7 @@ entries:
     quote: Pre-Series A startups with under $2M revenue in the past 12 months get
       500 free credits a month for 6 months.
     value_phrase: 500 free credits a month
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-09'
   free_part: unnamed
   models: []
   data_use:
@@ -10414,7 +10471,7 @@ entries:
     source: https://docs.cubic.dev/ide/cli-review
     quote: CLI usage is unlimited during alpha, subject to rate limits that ensure
       fair access.
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-09'
   free_part: unnamed
   models: []
   data_use:
@@ -10464,7 +10521,7 @@ entries:
     scope: account
     source: https://codeant.ai/cli
     quote: Start Free Trial
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-09'
   free_part: unnamed
   models: []
   data_use:
@@ -10523,7 +10580,7 @@ entries:
     source: https://zro.moonmath.ai/pricing
     quote: Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash. Resets every
       day.
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-09'
   free_part: models
   models: []
   api:
@@ -10684,7 +10741,7 @@ entries:
     source: https://kiosapi.id/docs
     quote: 'Rate limit free: 5 req/menit'
     value_phrase: 5 req/menit
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   free_part: models
   models: []
   api:
@@ -10751,7 +10808,7 @@ entries:
     source: https://1min.ai/free-credits
     quote: 1min.AI offers numerous ways for users to obtain free credits without making
       a purchase, and these credits never expire.
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - amount: 60.0
     unit: requests
     period: minute
@@ -10831,7 +10888,7 @@ entries:
       to integrate and test.
     value_phrase: $0.50 of free credit
     period_quote: Trial keys (before the first top-up)
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-09'
   - amount: 60.0
     unit: requests
     period: minute
@@ -11495,6 +11552,8 @@ entries:
       jzs-max-3.0:
         source: https://jzstoken.com/model-pricing/jzs-max-3.0
         until: '2026-11-30'
+    no_family_ids:
+    - jzs-max-3.0
     note: Create a Dedicated key for this model; a Standard key excludes it. Use /chat/completions.
       The vendor does not certify streaming, tools, structured output or the Messages
       format separately for every model. All keys share the account balance.
@@ -11604,7 +11663,6 @@ entries:
   - https://docs.plamo.preferredai.jp/en/getting-started
   - https://docs.plamo.preferredai.jp/en/api
   - https://docs.plamo.preferredai.jp/en/limit
-  - https://plamo.preferredai.jp/info/terms
   card_required: false
   offering: Preferred Networks model API with a Free plan for eligible users in Japan
   limits: Registration and use are limited to adults resident in Japan or Japanese
@@ -11640,8 +11698,9 @@ entries:
     url: https://docs.plamo.preferredai.jp/en/pricing
   border:
     served: [JP]
-    'on': '2026-11-08'
+    'on': '2026-11-09'
     source: https://plamo.preferredai.jp/info/terms
+    read: none
   probe:
     type: page-keywords
     endpoint: https://docs.plamo.preferredai.jp/en/pricing

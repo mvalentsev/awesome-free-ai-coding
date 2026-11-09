@@ -267,7 +267,20 @@ class UsageQuota(BaseModel):
     script_field: QuotaScriptField | None = None
     follow: dict[str,str] | None = None
     model_ids: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+    families: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     reviewed_on: date | None = None
+
+    @model_validator(mode='after')
+    def _one_model_namespace(self):
+        if self.families and (self.model_ids or self.read in ('catalog', 'catalog-field')):
+            raise ValueError('family quotas do not name callable catalog IDs')
+        if len(set(self.families)) != len(self.families):
+            raise ValueError('quota families must be distinct')
+        return self
+
+    @property
+    def subjects(self) -> list[str]:
+        return self.model_ids or self.families
 
     @field_validator('amount', mode='before')
     @classmethod
@@ -450,6 +463,17 @@ def quota_changes(body: str, quota: UsageQuota) -> list[str]:
     return notes
 
 
+def quota_review_changes(quota: UsageQuota, today: date) -> list[str]:
+    """A matching source cannot renew a manual unit, scope or allowance review."""
+    unresolved = (quota.read == 'script-field' or quota.amount is None
+                  or quota.period is None or quota.state
+                  or quota.scope in ('unspecified', 'disputed'))
+    if (quota.reviewed_on and unresolved
+            and (today - quota.reviewed_on).days >= UNKNOWN_RECHECK_DAYS):
+        return ['unresolved quota needs a fresh dated review']
+    return []
+
+
 async def resolved_quota_entry(client, entry: Entry, attempts: int = 3, backoff: float = 1) -> Entry:
     """Resolve the current release before any quote or numeric comparison."""
     from .models import Follow
@@ -487,8 +511,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
             notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')
         else:
             notes.extend(f'quotas[{i}]: {n}' for n in quota_changes(page.text, q))
-        if q.reviewed_on and (q.read == 'script-field' or q.amount is None or q.period is None or q.state or q.scope in ('unspecified','disputed')) and (today - q.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
-            notes.append(f'quotas[{i}]: unresolved quota needs a fresh dated review')
+        notes.extend(f'quotas[{i}]: {n}' for n in quota_review_changes(q, today))
     return notes
 
 
@@ -551,6 +574,9 @@ def structured_quotas(entry: Entry) -> list[dict]:
 
 
 def active_quota(entry: Entry, quota: UsageQuota) -> UsageQuota | None:
+    if quota.families:
+        families = [family for family in quota.families if family not in entry.expired_models]
+        return quota.model_copy(update={'families': families}) if families else None
     lane = entry.api or entry.client_lane
     if not quota.model_ids or not lane:return quota
     ended = {mid for mid in lane.ignored_ids if mid in lane.model_access and lane.model_access[mid].until}
@@ -562,21 +588,22 @@ def quota_summary(entry: Entry) -> str:
     groups = {}
     for row in structured_quotas(entry):
         q = UsageQuota.model_validate(row)
-        key = (q.label, q.scope, q.condition, q.reset, () if q.label else tuple(q.model_ids))
+        key = (q.label, q.scope, q.condition, q.reset, () if q.label else tuple(q.subjects))
         groups.setdefault(key, []).append(q)
     partitions = []
     for key, quotas in groups.items():
-        general = [q for q in quotas if not q.model_ids]
+        general = [q for q in quotas if not q.subjects]
         if general:
             partitions.append((key, general))
-        ids = list(dict.fromkeys(mid for q in quotas for mid in q.model_ids))
+        ids = list(dict.fromkeys(mid for q in quotas for mid in q.subjects))
         profiles = {}
         for mid in ids:
-            profile = tuple(sorted({quota_value(q) for q in quotas if mid in q.model_ids}))
+            profile = tuple(sorted({quota_value(q) for q in quotas if mid in q.subjects}))
             profiles.setdefault(profile, []).append(mid)
         for ids in profiles.values():
-            bound = [q.model_copy(update={'model_ids':[mid for mid in q.model_ids if mid in ids]})
-                     for q in quotas if set(q.model_ids) & set(ids)]
+            bound = [q.model_copy(update={('families' if q.families else 'model_ids'):
+                                         [mid for mid in q.subjects if mid in ids]})
+                     for q in quotas if set(q.subjects) & set(ids)]
             partitions.append((key, bound))
     paragraphs = []
     for (label, scope, condition, reset, _), quotas in partitions:
@@ -588,7 +615,7 @@ def quota_summary(entry: Entry) -> str:
         text = (label + ': ' if label else '') + '; '.join(words) + ('; ' if scope == 'unspecified' else ' ') + scoped
         if condition:
             text += ' (' + condition + ')'
-        ids = list(dict.fromkeys(mid for q in quotas for mid in q.model_ids))
+        ids = list(dict.fromkeys(mid for q in quotas for mid in q.subjects))
         if ids:
             text += '; for ' + ', '.join('`' + mid + '`' for mid in ids)
         if reset:

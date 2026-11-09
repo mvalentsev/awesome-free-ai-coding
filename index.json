@@ -1138,7 +1138,7 @@
           "label": "Shared Studio, API and Vibe allowance",
           "source": "https://docs.mistral.ai/admin/billing-usage/subscriptions",
           "quote": "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code.",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -1149,7 +1149,7 @@
           "label": "API rate limits",
           "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
           "quote": "Requests per second: The request throughput limit for the model.",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -1160,7 +1160,7 @@
           "label": "API rate limits",
           "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
           "quote": "Tokens per minute: The token throughput limit for the model.",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -1531,7 +1531,7 @@
           "label": "Free model usage",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "quote": "Big Pickle",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -1928,7 +1928,7 @@
           "label": "Basic usage",
           "source": "https://www.trae.ai/pricing",
           "quote": "For free users, it's a one-time allowance and doesn't reset monthly.",
-          "reviewed_on": "2026-11-01",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -1950,7 +1950,7 @@
             },
             "field": "product_extra.subscription_extra.quota.auto_completion_limit"
           },
-          "reviewed_on": "2026-11-01"
+          "reviewed_on": "2026-11-09"
         },
         {
           "amount": 2.0,
@@ -1971,7 +1971,7 @@
             },
             "field": "product_extra.subscription_extra.quota.solo_agent_parallel_limit"
           },
-          "reviewed_on": "2026-11-01"
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "unnamed",
@@ -2277,14 +2277,21 @@
         "https://docs.devin.ai/desktop/models.md"
       ],
       "card_required": false,
-      "offering": "Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf",
-      "limits": "Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nInline edits: Unmetered interactions per account\n\nWindsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying extra usage is a paid-plan feature. A separate SWE-2 promotion appears on the Pro card and does not establish eligibility for the Free plan.",
+      "remaining_free": {
+        "source": "https://devin.ai/pricing",
+        "quote": "The Free plan includes a light quota to code with agents, limited model availability, unlimited inline edits, and unlimited Tab completions.",
+        "free_part": "unnamed"
+      },
+      "offering": "Free plan of Cognition's desktop and terminal coding agents, alongside its paid plans",
+      "limits": "Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account (metered models only)\n\nTab: Unmetered completions per account\n\nInline edits: Unmetered interactions per account\n\nWindsurf is now Devin Desktop. Free models do not consume the plan's usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after either allowance is exhausted. Buying extra usage requires a paid plan. Check your account's model selector for current availability and prices.",
       "quotas": [
         {
           "unit": "usage",
           "period": "day",
           "scope": "account",
           "label": "Agent usage",
+          "condition": "metered models only",
+          "condition_quote": "free models don't count against your quota at all",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
           "reviewed_on": "2026-11-03",
@@ -2295,6 +2302,8 @@
           "period": "week",
           "scope": "account",
           "label": "Agent usage",
+          "condition": "metered models only",
+          "condition_quote": "free models don't count against your quota at all",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
           "reviewed_on": "2026-11-03",
@@ -2326,9 +2335,21 @@
       "free_part": "models",
       "models": [
         {
+          "family": "swe-2-flash-medium",
+          "aa_auto": false
+        },
+        {
           "family": "swe-1.6"
         }
       ],
+      "model_access": {
+        "swe-2-flash-medium": {
+          "source": "https://docs.devin.ai/desktop/models.md",
+          "until": "2026-12-04T18:00:00Z",
+          "quote": "SWE-2 Flash Medium is available on the Free plan. SWE-2 Flash High and Max require a paid plan.",
+          "deadline_quote": "SWE-2 Flash is free until December 4, 2026 at 18:00 UTC."
+        }
+      },
       "data_use": {
         "trains": "yes",
         "quote": "By default, we may use your data for model training purposes to improve and enhance the Services. If you’re on a paid plan, you can opt out at any time on the Data Controls settings page.",
@@ -2346,7 +2367,7 @@
         "type": "page-keywords",
         "endpoint": "https://docs.devin.ai/desktop/models.md",
         "keywords": [
-          "Free tier users only have access to"
+          "SWE-2 Flash"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -2362,14 +2383,16 @@
       "search": {
         "name": "Devin Desktop (formerly Windsurf)",
         "models": [
+          "swe-2-flash-medium",
           "swe-1.6"
         ],
         "ids": [],
-        "what": "Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf",
-        "limits": "Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nInline edits: Unmetered interactions per account\n\nWindsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying extra usage is a paid-plan feature. A separate SWE-2 promotion appears on the Pro card and does not establish eligibility for the Free plan.",
+        "what": "Free plan of Cognition's desktop and terminal coding agents, alongside its paid plans",
+        "limits": "Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account (metered models only)\n\nTab: Unmetered completions per account\n\nInline edits: Unmetered interactions per account\n\nWindsurf is now Devin Desktop. Free models do not consume the plan's usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after either allowance is exhausted. Buying extra usage requires a paid plan. Check your account's model selector for current availability and prices.",
         "why": "",
         "access": "",
         "modelAccess": {
+          "swe-2-flash-medium": "until 2026-12-04",
           "swe-1.6": ""
         },
         "section": {
@@ -2378,6 +2401,14 @@
         "flags": [
           "nocard"
         ]
+      },
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "swe-2-flash-medium": "until 2026-12-04",
+          "swe-1.6": ""
+        },
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/"
     },
@@ -2482,7 +2513,7 @@
           "source": "https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals",
           "quote": "Copilot Free and Copilot Student both have an allowance of AI credits",
           "period_quote": "monthly GitHub AI Credits allowance that varies by plan",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -3470,7 +3501,7 @@
           "label": "Free Flash models",
           "source": "https://docs.z.ai/guides/overview/pricing.md",
           "quote": "GLM-4.7-Flash | Free",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -3596,7 +3627,7 @@
           "source": "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
           "quote": "Anonymous: 2 requests per minute, per IP and per model.",
           "value_phrase": "Anonymous: 2 requests per minute, per IP and per model.",
-          "reviewed_on": "2026-10-27"
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "models",
@@ -3703,7 +3734,7 @@
           "label": "Legacy anonymous lane",
           "source": "https://text.pollinations.ai/models",
           "quote": "anonymous",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -3811,7 +3842,7 @@
           "condition_quote": "After removal, new users will no longer receive a free quota for the model; quotas already issued to existing users remain available until they expire or are exhausted.",
           "source": "https://www.alibabacloud.com/help/en/model-studio/new-free-quota",
           "quote": "After removal, new users will no longer receive a free quota for the model; quotas already issued to existing users remain available until they expire or are exhausted.",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         },
@@ -3826,7 +3857,7 @@
           "source": "https://www.alibabacloud.com/help/en/model-studio/new-free-quota",
           "quote": "OAuth authentication provides an independent free quota for model inference (2,000 calls per day)",
           "value_phrase": "2,000 calls per day",
-          "reviewed_on": "2026-11-02"
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "models",
@@ -4932,7 +4963,7 @@
           "condition_quote": "a lower limit per model",
           "source": "https://vercel.com/docs/ai-gateway/rate-limits",
           "quote": "this page describes behavior rather than fixed numbers",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         },
@@ -4947,7 +4978,7 @@
           "model_ids": [
             "reflection/beam-free"
           ],
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -5162,7 +5193,7 @@
           "label": "Additional IP guard",
           "source": "https://bazaarlink.ai/free",
           "quote": "with an additional IP guard",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -5502,7 +5533,7 @@
           "source": "https://docs.routeway.ai/getting-started/rate-limits.md",
           "quote": "5 Requests Per Minute (RPM)",
           "value_phrase": "5 Requests Per Minute (RPM)",
-          "reviewed_on": "2026-10-27"
+          "reviewed_on": "2026-11-09"
         },
         {
           "amount": 20.0,
@@ -5514,7 +5545,7 @@
           "source": "https://docs.routeway.ai/getting-started/faq.md",
           "quote": "20 requests/minute",
           "value_phrase": "20 requests/minute",
-          "reviewed_on": "2026-10-27"
+          "reviewed_on": "2026-11-09"
         },
         {
           "amount": 200.0,
@@ -5802,7 +5833,7 @@
           "label": "Gemini agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Gemini models Weekly limit remaining",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -5812,7 +5843,7 @@
           "label": "Claude and GPT agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Claude and GPT models Weekly limit remaining",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -5822,7 +5853,7 @@
           "label": "Tab",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         },
@@ -5833,7 +5864,7 @@
           "label": "Command",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Command requests",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -6821,7 +6852,7 @@
           "model_ids": [
             "gemma-4-26b-a4b-it-free"
           ],
-          "reviewed_on": "2026-10-30",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         },
@@ -6835,7 +6866,7 @@
           "model_ids": [
             "gemma-4-31b-it-free"
           ],
-          "reviewed_on": "2026-10-30",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -6951,6 +6982,15 @@
         {
           "family": "gemma-4-31b",
           "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "flint-v1.0"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b"
+        },
+        {
+          "family": "xing4.0-29b-a4b"
         }
       ],
       "api": {
@@ -6998,6 +7038,12 @@
             "family": "intern-s2-preview-35b",
             "source": "https://aihubmix.com/api/v1/models",
             "quote": "Intern-S2-Preview is InternLM’s 35B scientific multimodal foundation model",
+            "read": "catalog"
+          },
+          "nemotron-3.5-super-vl-free": {
+            "family": "nemotron-3.5-super-vl-120b-a12b",
+            "source": "https://aihubmix.com/api/v1/models",
+            "quote": "NVIDIA Nemotron 3.5 Super VL is an open, multimodal mixture-of-experts model developed by NVIDIA that features 12 billion active parameters out of 120 billion total.",
             "read": "catalog"
           }
         },
@@ -7079,7 +7125,10 @@
           "mimo-v2.6-flash",
           "mimo-v2.6-pro",
           "gemma-4-26b-a4b",
-          "gemma-4-31b"
+          "gemma-4-31b",
+          "flint-v1.0",
+          "nemotron-3.5-super-vl-120b-a12b",
+          "xing4.0-29b-a4b"
         ],
         "ids": [
           "coding-glm-5.2-free",
@@ -7148,7 +7197,10 @@
           "mimo-v2.6-flash": "",
           "mimo-v2.6-pro": "",
           "gemma-4-26b-a4b": "",
-          "gemma-4-31b": ""
+          "gemma-4-31b": "",
+          "flint-v1.0": "",
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "xing4.0-29b-a4b": ""
         },
         "section": {
           "id": "aggregator"
@@ -7538,7 +7590,7 @@
           "label": "Public beta",
           "source": "https://www.sensenova.cn/token-plan",
           "quote": "公测期完全免费开放，付费档位即将上线",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -8068,7 +8120,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nDeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
@@ -8323,7 +8375,7 @@
         ],
         "limited_allowance": "6 one-hour sessions per day",
         "notes": [
-          "MiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud.",
+          "DeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud.",
           "Daily hours refill at midnight in your local timezone and unused daily hours do not carry over.",
           "Older app versions show the same balance as Freebucks, five to an hour."
         ],
@@ -8382,7 +8434,7 @@
         ],
         "ids": [],
         "what": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-        "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo V2.6 Flash Fast is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+        "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nDeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -8934,7 +8986,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nQwen3.8 Max promotion: 3,000,000 tokens (period not published) per account per model; for `qwen/qwen3.8-max-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -8948,7 +9000,7 @@
             "nvidia/nemotron-3-ultra-550b-a55b",
             "qwen/qwen3.8-27b-free"
           ],
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -8961,7 +9013,7 @@
           "model_ids": [
             "nvidia/nemotron-3.5-super-vl-free"
           ],
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -8994,6 +9046,21 @@
           "reviewed_on": "2026-11-07",
           "amount": null,
           "period": null
+        },
+        {
+          "amount": 3000000.0,
+          "unit": "tokens",
+          "scope": "account-model",
+          "label": "Qwen3.8 Max promotion",
+          "source": "https://llmtr.com/v1/models",
+          "quote": "Kodlama ve uzun akıl yürütme işleri için Qwen3.8 Max; 13 Kasım 2026 03:00'e (TSİ) kadar ücretsiz, hesap başına 3 milyon token.",
+          "value_phrase": "hesap başına 3 milyon token",
+          "read": "catalog",
+          "model_ids": [
+            "qwen/qwen3.8-max-free"
+          ],
+          "reviewed_on": "2026-11-09",
+          "period": null
         }
       ],
       "free_part": "models",
@@ -9015,6 +9082,10 @@
         {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "qwen3.8-max",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -9029,7 +9100,8 @@
           "agnes/agnes-2.5-flash",
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
-          "parallel/parallel-free"
+          "parallel/parallel-free",
+          "qwen/qwen3.8-max-free"
         ],
         "model_bindings": {
           "internlm/intern-s2-free": {
@@ -9122,6 +9194,10 @@
           "parallel/parallel-free": {
             "source": "https://llmtr.com/models/parallel/parallel-free",
             "until": "2027-01-04T23:59:00+03:00"
+          },
+          "qwen/qwen3.8-max-free": {
+            "source": "https://llmtr.com/models/qwen/qwen3.8-max-free",
+            "until": "2026-11-13T03:00:00+03:00"
           }
         },
         "model_limits": {
@@ -9199,7 +9275,15 @@
             "context_tokens": 20000,
             "output_tokens": 20000,
             "source": "https://llmtr.com/v1/models"
+          },
+          "qwen/qwen3.8-max-free": {
+            "context_tokens": 262144,
+            "output_tokens": 262144,
+            "source": "https://llmtr.com/v1/models"
           }
+        },
+        "opencode_output_tokens": {
+          "qwen/qwen3.8-max-free": 8192
         },
         "ignored_ids": [
           "liquid/lfm-2.5-embedding-350m-free",
@@ -9236,7 +9320,8 @@
           "heabsy/qwen3.8-27b-heabsy-free",
           "minimax/minimax-m3.1-flash-free",
           "ifm/jais-3-mova-36b-a4b",
-          "ifm/k2-horizon-375b-a23b"
+          "ifm/k2-horizon-375b-a23b",
+          "parallel/search-free"
         ],
         "no_family_ids": [
           "liquid/lfm3-1.7b-free",
@@ -9279,7 +9364,8 @@
           "agnes-3.0-flash",
           "agnes-2.5-flash",
           "qwen3.8-27b",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "qwen3.8-max"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
@@ -9288,10 +9374,11 @@
           "agnes/agnes-2.5-flash",
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
-          "parallel/parallel-free"
+          "parallel/parallel-free",
+          "qwen/qwen3.8-max-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nQwen3.8 Max promotion: 3,000,000 tokens (period not published) per account per model; for `qwen/qwen3.8-max-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -9299,7 +9386,8 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "qwen3.8-max": "until 2026-11-13"
         },
         "section": {
           "id": "aggregator"
@@ -9315,7 +9403,8 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "qwen3.8-max": "until 2026-11-13"
         },
         "ids": {
           "nvidia/nemotron-3-ultra-550b-a55b": "",
@@ -9324,7 +9413,8 @@
           "agnes/agnes-2.5-flash": "",
           "nvidia/nemotron-3.5-super-vl-free": "",
           "liquid/lfm3-1.7b-free": "free until 2026-12-30 23:59+03:00",
-          "parallel/parallel-free": "free until 2027-01-04 23:59+03:00"
+          "parallel/parallel-free": "free until 2027-01-04 23:59+03:00",
+          "qwen/qwen3.8-max-free": "free until 2026-11-13 03:00+03:00"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -9576,7 +9666,7 @@
           "state": "variable",
           "source": "https://freeinference.org/terms",
           "quote": "Quotas, rate limits, model access, and usage limits may change based on usage, demand, infrastructure capacity, abuse prevention, operational needs, and individual or aggregate activity",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -10564,7 +10654,7 @@
           "label": "Allowed and effective text rates for default users",
           "source": "https://wiki.agnes-ai.com/en/docs/tokenplan",
           "quote": "adjusted dynamically based on platform capacity and service conditions",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -11389,7 +11479,7 @@
           "label": "Free models",
           "source": "https://portal.nousresearch.com/",
           "quote": "Standard rate limits",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -11759,7 +11849,7 @@
           "source": "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
           "quote": "$1 credit",
           "value_phrase": "$1 credit",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "period": null
         },
         {
@@ -13750,13 +13840,17 @@
           "label": "Zero-priced model",
           "source": "https://novita.ai/models/model-detail/apodex-apodex-1.1-mini",
           "quote": "Input $0 / M Tokens Output $0 / M Tokens",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "apodex-1.1-mini"
+        }
+      ],
       "api": {
         "base_url": "https://api.novita.ai/openai",
         "key_url": "https://novita.ai/settings/key-management",
@@ -13797,7 +13891,9 @@
       "archived": false,
       "search": {
         "name": "Novita AI",
-        "models": [],
+        "models": [
+          "apodex-1.1-mini"
+        ],
         "ids": [
           "apodex/apodex-1.1-mini"
         ],
@@ -13805,7 +13901,9 @@
         "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "apodex-1.1-mini": ""
+        },
         "section": {
           "id": "api-free-tier"
         },
@@ -15201,8 +15299,13 @@
         "https://docs.qoder.com/product-series/quick-start"
       ],
       "card_required": false,
-      "offering": "Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app",
-      "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nBasic-model fallback: Completions allowance: amount not published (period not published) per account\n\nQwen3.8 Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`\n\nThe model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Its end is \"结束时间将提前在本页公告\" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is \"结束时间：另行公告\" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are \"separate product systems\"; their accounts, tasks and data are not interoperable.",
+      "remaining_free": {
+        "source": "https://docs.qoder.cn/events/100credits",
+        "quote": "2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。",
+        "free_part": "sum"
+      },
+      "offering": "Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a two-week 300-credit trial and 100 credits a day to claim in the desktop app",
+      "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nBasic-model fallback: Completions allowance: amount not published (period not published) per account\n\nClaim each daily reward in the CN desktop app between 10:00 and the next day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each claimed reward expires after 30 days. Credits work across the CN apps and are spent at each model's current rate. The reward campaign's end is \"结束时间：另行公告\" (to be announced). After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are \"separate product systems\"; their accounts, tasks and data are not interoperable. The former Qwen3.8-Flash free-model promotion ended on November 7, 2026 at 00:00 Beijing time (UTC+8); discounted calls now consume Credits.",
       "quotas": [
         {
           "amount": 300.0,
@@ -15236,35 +15339,15 @@
           "label": "Basic-model fallback",
           "source": "https://docs.qoder.cn/product-overview/billing-description",
           "quote": "有限次数的补全",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
-        },
-        {
-          "unit": "requests",
-          "period": "day",
-          "scope": "account-model",
-          "label": "Qwen3.8 Flash promotion",
-          "source": "https://docs.qoder.cn/events/flashoffer",
-          "quote": "每个账号每日享有一定次数的免费使用额度，付费订阅用户的免费使用次数高于免费用户。",
-          "model_ids": [
-            "Qwen3.8-Flash"
-          ],
-          "reviewed_on": "2026-11-02",
-          "amount": null
         }
       ],
-      "free_part": "models",
-      "models": [
-        {
-          "family": "qwen3.8-flash",
-          "aa_model": "qwen3-8-flash-next"
-        }
-      ],
+      "free_part": "sum",
+      "models": [],
       "client_lane": {
-        "model_ids": [
-          "Qwen3.8-Flash"
-        ],
+        "model_ids": [],
         "model_bindings": {
           "Qwen3.8-Flash": {
             "family": "qwen3.8-flash",
@@ -15272,7 +15355,16 @@
             "quote": "Qwen3.8-Flash 是千问系列中兼顾响应速度与使用成本的多模态模型"
           }
         },
-        "note": "Select Qwen3.8-Flash in an official Qoder CN app, including CLI. The daily no-credit allowance includes Free personal accounts; other model calls can consume Credits."
+        "model_access": {
+          "Qwen3.8-Flash": {
+            "source": "https://docs.qoder.cn/events/flashoffer",
+            "until": "2026-11-07T00:00:00+08:00"
+          }
+        },
+        "ignored_ids": [
+          "Qwen3.8-Flash"
+        ],
+        "note": "The Qwen3.8-Flash free-model promotion has ended; continuing shared Credits are spent at each model's current rate."
       },
       "border": {
         "left_out": [],
@@ -15284,12 +15376,9 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://docs.qoder.cn/events/flashoffer",
+        "endpoint": "https://docs.qoder.cn/events/100credits",
         "keywords": [
-          "Qwen3.8-Flash",
-          "调用该模型不消耗 Credits",
-          "无需领取",
-          "免费个人用户也可参与"
+          "2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -15304,25 +15393,24 @@
       "archived": false,
       "search": {
         "name": "Qoder CN (formerly Lingma)",
-        "models": [
-          "qwen3.8-flash"
-        ],
-        "ids": [
-          "Qwen3.8-Flash"
-        ],
-        "what": "Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app",
-        "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nBasic-model fallback: Completions allowance: amount not published (period not published) per account\n\nQwen3.8 Flash promotion: Daily requests allowance: amount not published per account per model; for `Qwen3.8-Flash`\n\nThe model promotion is open to personal users, including free accounts with zero credits; it needs no paid subscription or claim and works across the CN apps, including CLI. Daily free uses are limited, with more for paid accounts; after the allowance, wait until the next day or spend Credits. Its end is \"结束时间将提前在本页公告\" (to be announced in advance). The separate daily credit promotion must be claimed in the desktop app; its end is \"结束时间：另行公告\" (to be announced). Each claim window runs from 10:00 to the next day at 10:00 Beijing time (UTC+8); unclaimed credit does not accumulate. After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are \"separate product systems\"; their accounts, tasks and data are not interoperable.",
+        "models": [],
+        "ids": [],
+        "what": "Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a two-week 300-credit trial and 100 credits a day to claim in the desktop app",
+        "limits": "Pro trial: 300 credits once per account (Valid for 2 weeks)\n\nClaimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)\n\nBasic-model fallback: Completions allowance: amount not published (period not published) per account\n\nClaim each daily reward in the CN desktop app between 10:00 and the next day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each claimed reward expires after 30 days. Credits work across the CN apps and are spent at each model's current rate. The reward campaign's end is \"结束时间：另行公告\" (to be announced). After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are \"separate product systems\"; their accounts, tasks and data are not interoperable. The former Qwen3.8-Flash free-model promotion ended on November 7, 2026 at 00:00 Beijing time (UTC+8); discounted calls now consume Credits.",
         "why": "",
         "access": "",
-        "modelAccess": {
-          "qwen3.8-flash": ""
-        },
+        "modelAccess": {},
         "section": {
           "id": "agent-cli"
         },
         "flags": [
           "nocard"
         ]
+      },
+      "access_labels": {
+        "offer": "",
+        "models": {},
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/"
     },
@@ -15627,7 +15715,7 @@
           "label": "Trial rate limit",
           "source": "https://wallabytoken.com/terms",
           "quote": "may be restricted to specific models and lower rate limits",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -15713,7 +15801,7 @@
           "scope": "account",
           "source": "https://www.aionlabs.ai/pricing/",
           "quote": "A daily credit allowance to try agent jobs, the API, and browser chat. No card required.",
-          "reviewed_on": "2026-11-01",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -16021,7 +16109,7 @@
           "label": "General",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "general requests-per-minute counters",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -16032,7 +16120,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -16043,7 +16131,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -16054,7 +16142,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null
         },
         {
@@ -16065,7 +16153,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-10-28",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -16398,7 +16486,7 @@
           "condition_quote": "none on accounts with any completed top-up; 5 requests/min before the first top-up (model providers may still throttle at peak hours, and those 429s name the provider)",
           "source": "https://aiapi-pro.com/transparency.html",
           "quote": "unlimited free-model calls after the first top-up",
-          "reviewed_on": "2026-10-29",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -16756,7 +16844,7 @@
           "label": "Starter",
           "source": "https://www.greptile.com/pricing",
           "quote": "50 free credits per month",
-          "reviewed_on": "2026-10-31"
+          "reviewed_on": "2026-11-09"
         },
         {
           "amount": 500.0,
@@ -16769,7 +16857,7 @@
           "source": "https://www.greptile.com/pricing",
           "quote": "Pre-Series A startups with under $2M revenue in the past 12 months get 500 free credits a month for 6 months.",
           "value_phrase": "500 free credits a month",
-          "reviewed_on": "2026-10-31"
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "unnamed",
@@ -16858,7 +16946,7 @@
           "label": "Interactive CLI during alpha",
           "source": "https://docs.cubic.dev/ide/cli-review",
           "quote": "CLI usage is unlimited during alpha, subject to rate limits that ensure fair access.",
-          "reviewed_on": "2026-10-31",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         }
@@ -16937,7 +17025,7 @@
           "scope": "account",
           "source": "https://codeant.ai/cli",
           "quote": "Start Free Trial",
-          "reviewed_on": "2026-10-31",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -17018,7 +17106,7 @@
           "label": "Free plan",
           "source": "https://zro.moonmath.ai/pricing",
           "quote": "Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash. Resets every day.",
-          "reviewed_on": "2026-10-31",
+          "reviewed_on": "2026-11-09",
           "amount": null
         }
       ],
@@ -17245,7 +17333,7 @@
           "source": "https://kiosapi.id/docs",
           "quote": "Rate limit free: 5 req/menit",
           "value_phrase": "5 req/menit",
-          "reviewed_on": "2026-11-02"
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "models",
@@ -17336,7 +17424,7 @@
           "label": "Free credits",
           "source": "https://1min.ai/free-credits",
           "quote": "1min.AI offers numerous ways for users to obtain free credits without making a purchase, and these credits never expire.",
-          "reviewed_on": "2026-11-02",
+          "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
         },
@@ -17440,7 +17528,7 @@
           "quote": "Your first key comes with $0.50 of free credit, good for 7 days — enough to integrate and test.",
           "value_phrase": "$0.50 of free credit",
           "period_quote": "Trial keys (before the first top-up)",
-          "reviewed_on": "2026-11-02"
+          "reviewed_on": "2026-11-09"
         },
         {
           "amount": 60.0,
@@ -18393,6 +18481,9 @@
             "until": "2026-11-30"
           }
         },
+        "no_family_ids": [
+          "jzs-max-3.0"
+        ],
         "note": "Create a Dedicated key for this model; a Standard key excludes it. Use /chat/completions. The vendor does not certify streaming, tools, structured output or the Messages format separately for every model. All keys share the account balance."
       },
       "border": {
@@ -18567,8 +18658,7 @@
         "https://docs.plamo.preferredai.jp/en/pricing",
         "https://docs.plamo.preferredai.jp/en/getting-started",
         "https://docs.plamo.preferredai.jp/en/api",
-        "https://docs.plamo.preferredai.jp/en/limit",
-        "https://plamo.preferredai.jp/info/terms"
+        "https://docs.plamo.preferredai.jp/en/limit"
       ],
       "card_required": false,
       "offering": "Preferred Networks model API with a Free plan for eligible users in Japan",
@@ -18607,10 +18697,10 @@
         "served": [
           "JP"
         ],
-        "on": "2026-11-08",
+        "on": "2026-11-09",
         "source": "https://plamo.preferredai.jp/info/terms",
         "quote": "",
-        "read": "page",
+        "read": "none",
         "also_named": []
       },
       "probe": {
@@ -20285,6 +20375,19 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
     },
     {
+      "family": "nemotron-3.5-super-vl-120b-a12b",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "cline",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
+    },
+    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -20319,18 +20422,6 @@
         "tokenrouter"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
-    },
-    {
-      "family": "nemotron-3.5-super-vl-120b-a12b",
-      "rows": [
-        "opencode",
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "cline",
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
       "family": "beam-1.0",
@@ -20423,6 +20514,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
     },
     {
+      "family": "xing4.0-29b-a4b",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix",
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"
+    },
+    {
       "family": "dots-3-note",
       "rows": [
         "openrouter-free",
@@ -20467,15 +20568,6 @@
         "nous-portal"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/"
-    },
-    {
-      "family": "xing4.0-29b-a4b",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "siliconflow-cn"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"
     },
     {
       "family": "agnes-2.5-flash",
@@ -20599,12 +20691,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
     },
     {
-      "family": "qwen3.8-flash",
+      "family": "qwen3.8-max",
       "rows": [
-        "alibaba-model-studio",
-        "qoder-cn"
+        "llmtr",
+        "alibaba-model-studio"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
     },
     {
       "family": "agents-a1",
@@ -20618,6 +20711,13 @@
       "rows": [
         "regolo"
       ]
+    },
+    {
+      "family": "apodex-1.1-mini",
+      "rows": [
+        "novita"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
     },
     {
       "family": "big-pickle",
@@ -20734,6 +20834,12 @@
       "family": "fantail",
       "rows": [
         "autohand-code"
+      ]
+    },
+    {
+      "family": "flint-v1.0",
+      "rows": [
+        "aihubmix"
       ]
     },
     {
@@ -21175,12 +21281,11 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/"
     },
     {
-      "family": "qwen3.8-max",
+      "family": "qwen3.8-flash",
       "rows": [
         "alibaba-model-studio"
       ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
       "family": "sensenova-6.8-flash-lite",
@@ -21214,9 +21319,11 @@
       ]
     },
     {
-      "family": "apodex-1.1-mini",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
+      "family": "swe-2-flash-medium",
+      "rows": [
+        "windsurf"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/"
     },
     {
       "family": "atria-dawn",

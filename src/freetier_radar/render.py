@@ -1218,7 +1218,7 @@ def _index_countries() -> list[dict]:
 
 def _index_access_labels(e: Entry) -> dict:
     lane = e.api or e.client_lane
-    if not (e.access or e.page_catalog or (lane and lane.model_access)):
+    if not (e.access or e.page_catalog or e.model_access or (lane and lane.model_access)):
         return {}
     return {"access_labels": {
         "offer": access_words(e.access, compact=True),
@@ -1241,7 +1241,7 @@ def build_index(entries: list[Entry], today: date,
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
              "no_account": needs_no_account(e),
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
-             **({"quotas": quotas} if (quotas := structured_quotas(e)) else {}),
+             **({"quotas": quotas} if (quotas := structured_quotas(e)) or e.quotas else {}),
              "archived": is_archived(e, today),
              "search": _search_record(e, archive_reason(e, today) if is_archived(e, today) else ""),
              **_index_access_labels(e),
@@ -2310,7 +2310,8 @@ _ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, s
                                 "out")}
 
 
-def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False) -> list[str]:
+def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
+                   family: str | None = None) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
     request carries, the Anthropic route, Codex's profile and the ids — every id
     the row lists on the row's own page, one model's ids on that model's page.
@@ -2320,6 +2321,10 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False) -
     api = e.api
     if not (api and api.base_url):
         out = ["- No API endpoint to paste: this row is a tool you install or sign in to."]
+        if family is None:
+            out.extend(f"- {model.table_name or model.family}: {access_words(access)} "
+                       f"([conditions]({access.source}))"
+                       for model in e.models if (access := e.model_access.get(model.family)))
         if e.client_lane is not None and ids:
             out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{i}`" for i in ids))
         elif include_waiting and (choices := [n.table_name or n.family for n in e.newcomers]):
@@ -2702,8 +2707,9 @@ def _listed_since(events: list[Event], entry_id: str, family: str) -> date | Non
 
 
 def _promotion_rows(entries: list[Entry], family: str) -> set[str]:
-    return {e.id for e in entries if (lane := e.api or e.client_lane)
-            for i, a in lane.model_access.items() if a.until and entry_id_family(e, i, [family]) == family}
+    return ({e.id for e in entries if (lane := e.api or e.client_lane)
+             for i, a in lane.model_access.items() if a.until and entry_id_family(e, i, [family]) == family}
+            | {e.id for e in entries if family in e.model_access and e.model_access[family].until})
 
 
 def _served_before(events: list[Event], family: str, serving: set[str],
@@ -2751,9 +2757,10 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
         # First, as on the row's page: before a reader copies the base URL.
         out += [_notice_quote(e.api.notice), ""]
     from .quotas import quota_summary
-    model_quotas = [q for q in e.quotas if q.model_ids and set(q.model_ids) & set(ids)]
+    model_quotas = [q for q in e.quotas if family in q.families
+                    or (q.model_ids and set(q.model_ids) & set(ids))]
     specific = quota_summary(e.model_copy(update={"quotas": model_quotas, "page_catalog": None}))
-    shared = limits_text(e.model_copy(update={"quotas": [q for q in e.quotas if not q.model_ids]}))
+    shared = limits_text(e.model_copy(update={"quotas": [q for q in e.quotas if not q.subjects]}))
     if shared and len(families) > 1 and len(shared) > README_LIMITS_COLLAPSE:
         if specific:
             out += [f"- Limits, in the vendor's words: {specific}", ""]
@@ -2766,7 +2773,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     # This model's ids and no other's — an id is the most specific of the row's
     # families that names it, as the probe reads it — then the row page's own
     # connection lines.
-    out += _connect_lines(e, ids)
+    out += _connect_lines(e, ids, family=family)
     if e.api and e.api.base_url and not ids:
         out.append("- Callable ids: the row lists none for this model")
     if e.data_use is not None:

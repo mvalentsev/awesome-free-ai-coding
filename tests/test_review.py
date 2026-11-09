@@ -1052,6 +1052,63 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
 
 
 @respx.mock
+@pytest.mark.parametrize('age,unpublished', [(6, True), (7, True), (30, False)])
+async def test_sources_require_a_current_review_of_unpublished_quota(tmp_path, monkeypatch, age, unpublished):
+    from datetime import date, timedelta
+    from test_render import make
+
+    today = date(2026, 11, 9)
+    source = 'https://vendor.example/limits'
+    quote = 'Daily allowance shown in your dashboard' if unpublished else '50 requests per day'
+    entry = make(quotas=[{'amount': None if unpublished else 50, 'unit': 'requests',
+                         'period': 'day', 'scope': 'account', 'source': source,
+                         'quote': quote, 'reviewed_on': today - timedelta(days=age)}])
+    monkeypatch.setattr(review, 'now', lambda: today.isoformat() + 'T00:00:00+00:00')
+    monkeypatch.setattr(review, 'blob', lambda *args: json.dumps({'entries': [entry.model_dump(mode='json')]}).encode())
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    bundle.save('scope', {'base': 'a' * 40, 'sha': 'b' * 40, 'rows': [entry.id], 'paths': []})
+    respx.get(entry.probe.endpoint).respond(200, text='x-mini-2 free')
+    respx.get(source).respond(200, text=quote)
+
+    result = await review.sources(bundle, [])
+
+    due = unpublished and age >= 7
+    assert all(record['passed'] for record in result['checks'])
+    assert all(record['found'] for record in result['quotes'])
+    assert result['passed'] is (not due)
+    assert result['quotas'][0]['notes'] == (['unresolved quota needs a fresh dated review'] if due else [])
+    assert entry.quotas[0].amount == (None if unpublished else 50)
+    assert entry.quotas[0].reviewed_on == today - timedelta(days=age)
+
+
+@respx.mock
+@pytest.mark.parametrize('reader,body,changed', [
+    ('page', 'Free access is available in Japan.', False),
+    ('page', 'Free access is available in France.', True),
+    ('codes', '["JP"]', False),
+    ('codes', '["JP", "FR"]', True),
+    ('codes', '{"message": "No country list"}', True),
+])
+async def test_sources_recheck_recorded_regions_at_the_http_boundary(tmp_path, monkeypatch, reader, body, changed):
+    from test_render import make
+
+    source = 'https://vendor.example/regions'
+    entry = make(border={'served': ['JP'], 'source': source, 'on': '2026-11-08', 'read': reader})
+    monkeypatch.setattr(review, 'blob', lambda *args: json.dumps({'entries': [entry.model_dump(mode='json')]}).encode())
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    bundle.save('scope', {'base': 'a' * 40, 'sha': 'b' * 40, 'rows': [entry.id], 'paths': []})
+    respx.get(entry.probe.endpoint).respond(200, text='x-mini-2 free')
+    respx.get(source).respond(200, text=body)
+
+    result = await review.sources(bundle, [])
+
+    assert all(record['passed'] for record in result['checks'])
+    assert result['passed'] is (not changed)
+    assert bool(result['model_checks'][0]['notes']) is changed
+    assert entry.border.served == ['JP']
+
+
+@respx.mock
 @pytest.mark.parametrize("role", ["historical", "shared", "extra"])
 @pytest.mark.parametrize("archive", ["delisted", "retired"])
 async def test_unread_historical_sources_stay_visible_without_certifying_current_use(tmp_path, monkeypatch, role, archive):

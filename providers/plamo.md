@@ -27,7 +27,7 @@ Registration and use are limited to adults resident in Japan or Japanese entitie
 
 ## Where it is offered
 
-Offered only in Japan ([source](https://plamo.preferredai.jp/info/terms), read 2026-11-08). That leaves out 96.7% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
+Offered only in Japan ([source](https://plamo.preferredai.jp/info/terms), read 2026-11-09). That leaves out 96.7% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## What happens to what you send
 
@@ -56,7 +56,6 @@ curl -s https://api.platform.preferredai.jp/v1/chat/completions \
 - Source: <https://docs.plamo.preferredai.jp/en/getting-started>
 - Source: <https://docs.plamo.preferredai.jp/en/api>
 - Source: <https://docs.plamo.preferredai.jp/en/limit>
-- Source: <https://plamo.preferredai.jp/info/terms>
 
 ## History
 

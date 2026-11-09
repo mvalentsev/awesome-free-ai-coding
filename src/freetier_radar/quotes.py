@@ -115,6 +115,11 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
         found.append(("data_use.quote", entry.data_use.quote))
     if entry.remaining_free:
         found.append(("remaining_free.quote", entry.remaining_free.quote))
+    for family, access in entry.model_access.items():
+        if family not in entry.expired_models:
+            found.append((f'model_access.{family}.quote', access.quote))
+            if access.deadline_quote:
+                found.append((f'model_access.{family}.deadline_quote', access.deadline_quote))
     # The words a keyed lane's Codex profile rests on (see models.CodexRoute).
     if entry.api and entry.api.codex and entry.api.codex.quote:
         found.append(("api.codex.quote", entry.api.codex.quote))
@@ -139,6 +144,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if match := re.fullmatch(r'model_access\.(.+)\.(?:quote|deadline_quote)', field):
+        return entry.model_access[match[1]].source
     if (match := re.fullmatch(r"api\.opencode_output_sources\.(.+)\.quote", field)) and entry.api:
         return entry.api.opencode_output_sources[match[1]].source
     if field == "remaining_free.quote" and entry.remaining_free:
@@ -154,6 +161,12 @@ def row_quote_source(entry: Entry, field: str) -> str | None:
     if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.budgets\[(\d+)\]\.amount_quote', field)):
         return entry.page_catalog.budgets[int(match[1])].amount_source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
+
+
+def prose_model_access_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
+    return [field + ': source quote missing or changed'
+            for field, quote in row_quotes(entry) if field.startswith('model_access.')
+            and not quote_found(quote, page_texts(bodies.get(row_quote_source(entry, field), '')))]
 
 
 def model_binding_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
@@ -222,6 +235,9 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     if entry.archive_review:
         urls.extend(entry.archive_review.sources)
     urls.extend(q.source for q in entry.quotas)
+    urls.extend(a.source for family, a in entry.model_access.items() if family not in entry.expired_models)
+    if entry.border and entry.border.read not in ('none', 'dns'):
+        urls.append(entry.border.source)
     urls.extend(e.source for e in entry.probe.model_exclusions)
     from .client_limits import limit_sources
     urls.extend(limit_sources(entry))

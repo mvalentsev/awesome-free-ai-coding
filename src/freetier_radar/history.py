@@ -100,9 +100,11 @@ def archive_reason(entry: Entry, today: date) -> str:
         return f"delisted on {entry.delisted.on.isoformat()}: {entry.delisted.reason}"
     if rule is ArchiveRule.RETIRED:
         lane = entry.api or entry.client_lane
-        if lane and not lane.model_ids and entry.free_part is FreePart.MODELS and any(
+        scoped = lane.model_access if lane else entry.model_access
+        empty = not lane.model_ids if lane else not entry.models
+        if empty and entry.free_part is FreePart.MODELS and any(
                 a.until and a.ends_at.astimezone(timezone.utc).date() == entry.retired_on
-                for a in lane.model_access.values()):
+                for a in scoped.values()):
             return f"documented free promotions ended on {entry.retired_on.isoformat()}"
         return f"vendor-announced shutdown on {entry.retired_on.isoformat()}"
     if rule is ArchiveRule.FAILED:

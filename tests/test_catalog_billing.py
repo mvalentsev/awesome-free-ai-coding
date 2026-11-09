@@ -79,6 +79,39 @@ async def test_authoritative_billing_lines_override_zero_summary_prices(billable
         assert "pricing_lines" in result.detail and billable in result.detail
 
 
+@pytest.mark.parametrize('billable,model_type,input_modes,output_modes', [
+    ('audio_input_seconds', 'stt', 'audio,text', 'text'),
+    ('audio_input_seconds', 't2a', 'audio', 'audio'),
+    ('audio_generation', 't2a', 'text', 'audio'),
+])
+@pytest.mark.parametrize('cost,free', [(0, True), (0.12, False), (None, False)])
+async def test_native_audio_billing_is_mandatory_despite_zero_token_summaries(
+        billable, model_type, input_modes, output_modes, cost, free):
+    # AIHubMix's catalog on 2026-11-09: native transcription, isolation and
+    # generation bill audio in pricing_lines: https://aihubmix.com/api/v1/models.
+    model = {'id': 'qwen3-coder', 'types': model_type,
+             'input_modalities': input_modes, 'output_modalities': output_modes,
+             'pricing': {'input': 0, 'output': 0}, 'pricing_source': 'billing_config',
+             'pricing_lines': [{'billable': billable, 'unit': 'minute', 'cost_usd': cost}]}
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, json={'data': [model]}))
+    async with httpx.AsyncClient(transport=transport) as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.PASS if free else ProbeStatus.FAIL), result.detail
+    if not free:
+        assert billable in result.detail
+
+
+async def test_optional_audio_input_does_not_price_a_free_text_chat_lane():
+    model = {'id': 'qwen3-coder', 'types': 'llm', 'input_modalities': 'text,audio',
+             'output_modalities': 'text', 'pricing': {'input': 0, 'output': 0},
+             'pricing_source': 'billing_config', 'pricing_lines': [
+                 {'billable': 'audio_input_seconds', 'unit': 'minute', 'cost_usd': 0.12}]}
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, json={'data': [model]}))
+    async with httpx.AsyncClient(transport=transport) as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 @pytest.mark.parametrize("fields", [
     {"pricing_lines": [{"billable": "cached_tokens", "cost_usd": 1},
                        {"billable": "input_image_tokens", "cost_usd": 2}]},

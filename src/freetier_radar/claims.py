@@ -296,6 +296,40 @@ def _review_link_formats(root: Path) -> tuple[str, ...]:
                  == ['https://vendor.example/library'])
 
 
+def _source_detail_policy(root: Path) -> tuple[str, ...]:
+    import ast
+    tree = ast.parse((root / 'src/freetier_radar/review.py').read_text())
+    source = next(node for node in tree.body if isinstance(node, ast.AsyncFunctionDef)
+                  and node.name == 'sources')
+    calls = {node.func.id for node in ast.walk(source)
+             if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)}
+    return ('rechecks' if {'quota_review_changes', 'border_changes'} <= calls else 'omits',)
+
+
+def _prose_access_fields(root: Path) -> tuple[str, ...]:
+    from .models import Entry, ProseModelAccess
+    return tuple(name for name in ('model_access', 'quote', 'deadline_quote', 'until', 'expired_models')
+                 if name in (Entry.model_fields if name in ('model_access', 'expired_models')
+                             else ProseModelAccess.model_fields))
+
+
+def _empty_app_policy(root: Path) -> tuple[str, ...]:
+    import httpx
+    from .prober import page_response_ok
+    shell = '<html><head><title>Free offer</title><script type="module" src="/app.js"></script></head><body><div id="root"></div></body></html>'
+    response = httpx.Response(200, text=shell, headers={'content-type': 'text/html'})
+    return ('unreadable' if not page_response_ok(response) else 'readable',)
+
+
+def _native_audio_policy(root: Path) -> tuple[str, ...]:
+    from .prober import _is_free
+    models = [{'types': kind, 'pricing': {'input': 0, 'output': 0},
+               'pricing_source': 'billing_config',
+               'pricing_lines': [{'billable': billable, 'cost_usd': 1}]}
+              for kind, billable in (('stt', 'audio_input_seconds'), ('t2a', 'audio_generation'))]
+    return ('mandatory billing lines' if all(not _is_free(model) for model in models) else 'ignored billing lines',)
+
+
 def _review_lead_scope(root: Path) -> tuple[str, ...]:
     from .review_leads import collect_leads
     examples = (
@@ -322,6 +356,25 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'For a prose-based tool without callable IDs, `(model_access)` on the entry uses\s+'
+          r'the exact family, an eligibility `(quote)` and a `(deadline_quote)` beside `(until)`\.\s+'
+          r'The same source checks, model labels and expiry writer apply\. Ended families\s+'
+          r'remain in `(expired_models)`;',
+          _prose_access_fields,
+          'models.Entry and ProseModelAccess; HTTP Free-plan/deadline, writer-clock and scoped-quota controls in tests/test_prose_promotions.py'),
+    Claim('CONTRIBUTING.md',
+          r'The sources phase (rechecks) quota review deadlines and recorded territory lists',
+          _source_detail_policy,
+          'review.sources uses quotas.quota_review_changes and prober.border_changes; HTTP expiry and region controls in tests/test_review.py'),
+    Claim('CONTRIBUTING.md',
+          r'An HTML response with an empty app mount and a client bootstrap is (unreadable)',
+          _empty_app_policy,
+          'prober.page_response_ok and page_reader.empty_app_page; metadata-only and rendered HTTP controls across readers in tests/test_page_http_policy.py'),
+    Claim('CONTRIBUTING.md',
+          r'Native speech transcription and audio generation use (mandatory billing lines)',
+          _native_audio_policy,
+          'prober._additional_prices; native audio zero/paid/unreadable and optional text input controls in tests/test_catalog_billing.py'),
     Claim('CONTRIBUTING.md',
           r'Unavailable pinned measurements (report) current\s+dated checkpoint candidates for review; automatic substitutions are (not made)',
           _checkpoint_review_policy,

@@ -265,6 +265,7 @@ def scoped(bundle: Bundle) -> dict:
 
 async def sources(bundle: Bundle, extra: list[str]) -> dict:
     scope = scoped(bundle)
+    today = datetime.fromisoformat(now()).date()
     entries = [Entry.model_validate(e) for e in yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
                if e['id'] in scope['rows']]
     urls, by_row, followed, probe_urls = set(extra), {}, [], {}
@@ -299,7 +300,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
     quotes, catalogs, quotas, model_checks = [], [], [], []
     for entry in entries:
-        from .prober import check_content, join_free_list, stale_ids, unevidenced_families, model_table_findings
+        from .prober import (border_changes, check_content, join_free_list, stale_ids,
+                             unevidenced_families, model_table_findings)
         from .models import ProbeType
         def response(url):
             body = raw_bodies.get(url)
@@ -324,7 +326,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                     findings.append(content)
                 if missing := unevidenced_families(current, entry):
                     findings.append('listed families not evidenced: ' + ', '.join(missing))
-                findings.extend(model_table_findings(current, entry, datetime.now(timezone.utc).date()))
+                findings.extend(model_table_findings(current, entry, today))
                 catalog = current if entry.probe.type is ProbeType.API_MODELS else response(entry.probe.catalog) if entry.probe.catalog else None
                 if entry.probe.catalog and catalog is None:
                     findings.append('current model catalog unreadable')
@@ -335,6 +337,12 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         findings.extend(model_exclusion_changes(entry, raw_bodies))
         from .client_limits import model_limit_changes
         findings.extend(model_limit_changes(entry, raw_bodies))
+        if entry.border and entry.border.read not in ('none', 'dns'):
+            body = raw_bodies.get(entry.border.source)
+            if body is None:
+                findings.append('border source unreadable; current region eligibility not established')
+            elif changed := border_changes(body, entry.border):
+                findings.append(changed)
         model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
                              'passed': not findings,
                              'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})
@@ -351,10 +359,11 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
             notes = check_page_catalog(body, entry.page_catalog, raw_bodies) if body is not None else ['source unreadable']
             catalogs.append({'row': entry.id, 'source': entry.page_catalog.source, 'notes': notes,
                              'passed': not notes})
-        from .quotas import quota_changes
+        from .quotas import quota_changes, quota_review_changes
         for i, quota in enumerate(entry.quotas):
             body = raw_bodies.get(quota.source)
             notes = quota_changes(body, quota) if body is not None else ['source unreadable']
+            notes.extend(quota_review_changes(quota, today))
             quotas.append({'row': entry.id, 'field': f'quotas[{i}]', 'source': quota.source,
                            'notes': notes, 'passed': not notes})
     # CONTRIBUTING preserves a delisted row's last published offer. Keep its

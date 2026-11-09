@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="874" viewBox="0 0 1160 874" role="img" aria-labelledby="title">
-<title id="title">Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-09: the strongest, qwen3.8-max, scores 33.7 and is free on 1 offer; the top of the index, Gemini 4 Carbon, 60.0</title>
+<title id="title">Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-09: the strongest, qwen3.8-max, scores 33.7 and is free on 2 offers; the top of the index, Gemini 4 Carbon, 60.0</title>
 <style>.card{fill:#ffffff;stroke:#d1d9e0}.t{fill:#1f2328}.m{fill:#59636e}.bar{fill:#0969da}.grid{stroke:#59636e;stroke-opacity:.18}.axis{stroke:#59636e;stroke-opacity:.5}@media (prefers-color-scheme: dark) {.card{fill:#0d1117;stroke:#3d444d}.t{fill:#f0f6fc}.m{fill:#9198a1}.bar{fill:#4493f8}.grid{stroke:#9198a1;stroke-opacity:.18}.axis{stroke:#9198a1;stroke-opacity:.5}}</style>
 <rect class="card" x="1" y="1" width="1158" height="872" rx="18" stroke-width="2"/>
 <text class="t" x="40" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700">Free models, compared</text>
@@ -21,7 +21,7 @@
 <text class="t label" x="396.5" y="188" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">qwen3.8-max</text>
 <rect class="bar" x="416.5" y="173" width="407.3" height="18" rx="4"/>
 <text class="t score" x="1000" y="188" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">33.7</text>
-<text class="m offers" x="1120" y="188" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">1</text>
+<text class="m offers" x="1120" y="188" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">2</text>
 <text class="t label" x="396.5" y="220" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">deepseek-v4.1-flash-1017</text>
 <rect class="bar" x="416.5" y="205" width="394.1" height="18" rx="4"/>
 <text class="t score" x="1000" y="220" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">32.6</text>
@@ -77,7 +77,7 @@
 <text class="t label" x="396.5" y="636" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">nemotron-3.5-super-vl-120b-a12b</text>
 <rect class="bar" x="416.5" y="621" width="164.4" height="18" rx="4"/>
 <text class="t score" x="1000" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">13.6</text>
-<text class="m offers" x="1120" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">6</text>
+<text class="m offers" x="1120" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">7</text>
 <text class="t label" x="396.5" y="668" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">inkling-small</text>
 <rect class="bar" x="416.5" y="653" width="155.9" height="18" rx="4"/>
 <text class="t score" x="1000" y="668" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">12.9</text>

@@ -404,6 +404,8 @@ unavailable`.
 
 An unpriced catalog may use `tier: free`. Published prices take precedence over
 that tier label; an unreadable price does not become free.
+Native speech transcription and audio generation use mandatory billing lines
+even beside zero token summaries; optional audio input does not price a free text lane.
 
 **A vendor can list its free lane under a key of its own.** Cline's
 recommended-models document carries no price and no free flag: it lists
@@ -557,6 +559,11 @@ the row and all its evidence remain available.
 quote is re-read by the probe. When the last promotion ends, this evidence keeps
 the provider live with that free part and payment condition, without retaining
 an expired model ID or assigning an unconfirmed replacement.
+For a prose-based tool without callable IDs, `model_access` on the entry uses
+the exact family, an eligibility `quote` and a `deadline_quote` beside `until`.
+The same source checks, model labels and expiry writer apply. Ended families
+remain in `expired_models`; their family-bound quotas stay as evidence and are
+excluded from current Limits.
 The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
 which writes nothing before a deadline and earns no verification fields.
 It explicitly requests a Pages build before notifying IndexNow. A manual run
@@ -1287,6 +1294,10 @@ including source-read failures under `sources`. These remain visible without
 asserting current free eligibility. A URL used by a current row or explicitly
 requested still requires a successful read. Source reads and a dated withdrawal
 judgment are still required when an offer is withdrawn.
+The sources phase rechecks quota review deadlines and recorded territory lists
+with the verification checks. Reading a matching quote does not renew a manual review.
+An HTML response with an empty app mount and a client bootstrap is unreadable;
+its title and metadata cannot establish the page's offer or terms.
 
 The sources phase records unmatched hyperlinks and same-site provider comparison
 links in `lead_inventory`; it does not infer a vendor domain from a comparison

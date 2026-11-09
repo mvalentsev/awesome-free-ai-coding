@@ -5,8 +5,43 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-08T23:54:19Z</updated>
+  <updated>2026-11-09T17:22:02Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261109T172202Z</id>
+    <title>Free models changed: AIHubMix (free models)</title>
+    <link rel="alternate" href="https://aihubmix.com"/>
+    <updated>2026-11-09T17:22:02Z</updated>
+    <summary type="text">added flint-v1.0, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b · free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, north-mini-code, nemotron-3-ultra, minimax-m3, minimax-m2.7, kimi-for-coding, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-flash, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-omni, agents-a1, intern-s2-preview-35b, mimo-v2.6-flash, mimo-v2.6-pro, gemma-4-26b-a4b, gemma-4-31b, flint-v1.0, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261109T172202Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-11-09T17:22:02Z</updated>
+    <summary type="text">added qwen3.8-max · free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, qwen3.8-max</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/novita/20261109T172202Z</id>
+    <title>Free models changed: Novita AI</title>
+    <link rel="alternate" href="https://novita.ai/"/>
+    <updated>2026-11-09T17:22:02Z</updated>
+    <summary type="text">added apodex-1.1-mini · free models: apodex-1.1-mini</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder-cn/20261109T172202Z</id>
+    <title>Free models changed: Qoder CN (formerly Lingma)</title>
+    <link rel="alternate" href="https://qoder.cn"/>
+    <updated>2026-11-09T17:22:02Z</updated>
+    <summary type="text">dropped qwen3.8-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20261109T172202Z</id>
+    <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
+    <link rel="alternate" href="https://devin.ai/desktop"/>
+    <updated>2026-11-09T17:22:02Z</updated>
+    <summary type="text">added swe-2-flash-medium · free models: swe-2-flash-medium, swe-1.6</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20261108T235419Z</id>
     <title>Free models changed: Freebuff</title>
@@ -321,40 +356,5 @@
     <link rel="alternate" href="https://www.coderabbit.ai"/>
     <updated>2026-10-31T14:01:31Z</updated>
     <summary type="text">Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cubic/20261031T140131Z</id>
-    <title>Added: cubic</title>
-    <link rel="alternate" href="https://cubic.dev"/>
-    <updated>2026-10-31T14:01:31Z</updated>
-    <summary type="text">AI reviews for existing repositories, with an ongoing Free PR allowance and an included model for interactive local CLI reviews during alpha</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/greptile/20261031T140131Z</id>
-    <title>Added: Greptile</title>
-    <link rel="alternate" href="https://www.greptile.com"/>
-    <updated>2026-10-31T14:01:31Z</updated>
-    <summary type="text">AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/poolside/20261031T133758Z</id>
-    <title>Archived: Poolside Platform</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"/>
-    <updated>2026-10-31T13:37:58Z</updated>
-    <summary type="text">vendor-announced shutdown on 2026-10-31</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261031T005742Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-10-31T00:57:42Z</updated>
-    <summary type="text">added beam-1.0, xing4.0-29b-a4b · free models: nemotron-3-ultra, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b, beam-1.0</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261031T005742Z</id>
-    <title>Free models changed: OpenRouter (free models)</title>
-    <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-10-31T00:57:42Z</updated>
-    <summary type="text">added xing4.0-29b-a4b · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
   </entry>
 </feed>

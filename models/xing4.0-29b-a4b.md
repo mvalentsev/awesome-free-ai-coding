@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'xing4.0-29b-a4b free: 3 providers, limits and ids, provider probes 2026-11-09'
-description: xing4.0-29b-a4b is served free by OpenRouter (free models), Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'xing4.0-29b-a4b free: 4 providers, limits and ids, provider probes 2026-11-09'
+description: xing4.0-29b-a4b is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/xing4.0-29b-a4b/
 last_modified_at: 2026-11-09
 crumb: xing4.0-29b-a4b
@@ -11,7 +11,7 @@ crumb: xing4.0-29b-a4b
 
 # Where xing4.0-29b-a4b is free
 
-**3 rows on the list serve `xing4.0-29b-a4b` free:** OpenRouter (free models), Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `xing4.0-29b-a4b` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -55,6 +55,25 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m xingchen-agi/xing4.0-29b-a4b:free`
 - Callable ids: `xingchen-agi/xing4.0-29b-a4b:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+
+### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
+
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-09
+
+OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
+
+</details>
+
+- Base URL: `https://aihubmix.com/v1`
+- Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
+- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
+- Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m xing4.0-29b-a4b-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
+- Callable ids: `xing4.0-29b-a4b-free`
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
