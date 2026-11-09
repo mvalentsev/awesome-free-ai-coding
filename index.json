@@ -302,14 +302,6 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "inkling",
-          "aa_model": "inkling"
-        },
-        {
-          "family": "inkling-small",
-          "aa_model": "inkling-small"
-        },
-        {
           "family": "dots-3-note"
         },
         {
@@ -415,8 +407,6 @@
           "gemma-4-26b-a4b",
           "north-mini-code",
           "nemotron-3.5-lightning",
-          "inkling",
-          "inkling-small",
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
@@ -449,8 +439,6 @@
           "gemma-4-26b-a4b": "",
           "north-mini-code": "",
           "nemotron-3.5-lightning": "",
-          "inkling": "",
-          "inkling-small": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
@@ -3270,9 +3258,6 @@
           "family": "llama-3.2-90b-vision"
         },
         {
-          "family": "llama-3.2-11b-vision"
-        },
-        {
           "family": "deepseek-v4.1-flash",
           "aa_model": "deepseek-v4-1-flash"
         },
@@ -3393,7 +3378,6 @@
           "nemotron-3-nano-omni",
           "diffusiongemma",
           "llama-3.2-90b-vision",
-          "llama-3.2-11b-vision",
           "deepseek-v4.1-flash",
           "nemotron-3.5-super-vl-120b-a12b",
           "step-5-preview-600b-a27b",
@@ -3434,7 +3418,6 @@
           "nemotron-3-nano-omni": "",
           "diffusiongemma": "",
           "llama-3.2-90b-vision": "",
-          "llama-3.2-11b-vision": "",
           "deepseek-v4.1-flash": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "step-5-preview-600b-a27b": "",
@@ -10453,10 +10436,8 @@
           "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "nemotron-3.5-lightning"
-        },
-        {
-          "family": "beam-1.0"
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
         }
       ],
       "client_lane": {
@@ -10513,8 +10494,7 @@
         "models": [
           "solar-mini-4",
           "nemotron-3.5-super-vl-120b-a12b",
-          "nemotron-3.5-lightning",
-          "beam-1.0"
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "cline-free/solar-mini4",
@@ -10529,8 +10509,7 @@
         "modelAccess": {
           "solar-mini-4": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "nemotron-3.5-lightning": "",
-          "beam-1.0": ""
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "agent-cli"
@@ -20333,16 +20312,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
-      "family": "beam-1.0",
-      "rows": [
-        "kilo-code",
-        "cline",
-        "vercel-ai-gateway",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
-    },
-    {
       "family": "deepseek-v4-flash",
       "rows": [
         "alibaba-model-studio",
@@ -20421,6 +20390,15 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
+    },
+    {
+      "family": "beam-1.0",
+      "rows": [
+        "kilo-code",
+        "vercel-ai-gateway",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "dots-3-note",
@@ -20859,20 +20837,6 @@
       ]
     },
     {
-      "family": "inkling",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
-    },
-    {
-      "family": "inkling-small",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
-    },
-    {
       "family": "intern-s2-preview-35b",
       "rows": [
         "aihubmix"
@@ -20929,12 +20893,6 @@
       "family": "llama-3.1-8b",
       "rows": [
         "simplellm"
-      ]
-    },
-    {
-      "family": "llama-3.2-11b-vision",
-      "rows": [
-        "nvidia-nim"
       ]
     },
     {
@@ -21257,6 +21215,16 @@
       "family": "hy3",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/"
+    },
+    {
+      "family": "inkling",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
+    },
+    {
+      "family": "inkling-small",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
     },
     {
       "family": "intern-s2-397b",

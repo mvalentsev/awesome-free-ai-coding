@@ -61,10 +61,6 @@ entries:
     aa_model: north-mini-code
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
-  - family: inkling
-    aa_model: inkling
-  - family: inkling-small
-    aa_model: inkling-small
   - family: dots-3-note
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
@@ -1539,7 +1535,6 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: diffusiongemma
   - family: llama-3.2-90b-vision
-  - family: llama-3.2-11b-vision
   - family: deepseek-v4.1-flash
     aa_model: deepseek-v4-1-flash
   - family: nemotron-3.5-super-vl-120b-a12b
@@ -6149,7 +6144,7 @@ entries:
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: nemotron-3.5-lightning
-  - family: beam-1.0
+    aa_model: nemotron-3-5-lightning
   client_lane:
     model_ids:
     - cline-free/solar-mini4
