@@ -484,7 +484,7 @@ def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(t
         "## 🚀 Start here")[0]
     assert {d.replace("--", "-") for d in re.findall(r"\d{4}-{1,2}\d{2}-{1,2}\d{2}", top)} == {floor}
     assert f"![Every row verified {floor} or later](" in top
-    for svg in sorted((tmp_path / "assets" / "readme").glob("hero-*.svg")):
+    for svg in sorted((tmp_path / "assets" / "readme").glob("hero*.svg")):
         assert not re.search(r"\d{4}-\d{2}-\d{2}", svg.read_text(encoding="utf-8")), svg.name
     html = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
     assert f"every row verified <b>{floor} or later</b>" in html
@@ -1435,8 +1435,8 @@ def test_the_render_draws_the_pictures_beside_the_readme(tmp_path: Path):
                         make(id="c", name="C", category="agent-cli"),
                         make(id="gone", name="Gone", probe_failures=5)])
     render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    drawn = sorted(p.name for p in (tmp_path / "assets" / "readme").glob("hero-*.svg"))
-    assert drawn == ["hero-dark.svg", "hero-light.svg", "hero-narrow.svg"]
+    drawn = sorted(p.name for p in (tmp_path / "assets" / "readme").glob("hero*.svg"))
+    assert drawn == ["hero-narrow.svg", "hero.svg"]
     for name in drawn:
         svg = (tmp_path / "assets" / "readme" / name).read_text(encoding="utf-8")
         assert svg.count('<circle class="dot agents"') == 2
@@ -1450,12 +1450,12 @@ def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="a", name="A")])
     render_all(reg, Path("templates"), tmp_path, today=TODAY, contributing_from=Path("."))
-    hero = tmp_path / "assets" / "readme" / "hero-dark.svg"
+    hero = tmp_path / "assets" / "readme" / "hero.svg"
     hero.write_text(hero.read_text(encoding="utf-8").replace("live offers", "live deals"),
                     encoding="utf-8")
     (tmp_path / "assets" / "readme" / "hero-old.svg").write_text("<svg/>", encoding="utf-8")
     stale = check_rendered(reg, Path("templates"), tmp_path, today=TODAY)
-    assert "assets/readme/hero-dark.svg" in stale and "assets/readme/hero-old.svg" in stale
+    assert "assets/readme/hero.svg" in stale and "assets/readme/hero-old.svg" in stale
 
 
 def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
@@ -2260,7 +2260,7 @@ def test_current_free_measurements_keep_the_comparison_and_provider_path_without
     assert 'src="assets/readme/strong.svg"' in text
     assert 'Where each one is free' in text
     assert '[A](https://x.ai)' in text and '[B](https://x.ai)' in text
-    svg=(tmp_path/'assets/readme/strong-light.svg').read_text()
+    svg=(tmp_path/'assets/readme/strong.svg').read_text()
     assert 'glm-5.3' in svg and 'kimi-k3' in svg
     assert '## 📦 Archive' in text and '## 🔧 Plug it into your agent' in text
 
@@ -2283,7 +2283,7 @@ def test_the_free_models_are_compared_with_the_index_leader_named_separately(tmp
     assert "<details>" in strong and strong.index("<details>") < strong.index("[`kimi-k3`]")
     # the chart's order: the higher score first
     assert strong.index("[`kimi-k3`]") < strong.index("[`glm-5.3`]")
-    chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text(encoding="utf-8")
+    chart = (tmp_path / "assets" / "readme" / "strong.svg").read_text(encoding="utf-8")
     assert ">45.9*<" in chart
     assert re.search(r'class="m offers"[^>]*>1</text>', chart)
     assert re.search(r'class="m offers"[^>]*>2</text>', chart)
@@ -2297,9 +2297,9 @@ def test_without_a_measurement_the_strong_models_stay_a_list(tmp_path: Path):
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY,
                          scores={**SCORES, "families": {}})
     strong = text.split("**Free models, compared.**")[1].split("**Or pick by what you need:**")[0]
-    assert "strong-light.svg" not in strong and "<details>" not in strong
+    assert "strong.svg" not in strong and "<details>" not in strong
     assert "- [`glm-5.3`]" in strong
-    chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text()
+    chart = (tmp_path / "assets" / "readme" / "strong.svg").read_text()
     assert "no current measurements" in chart and 'class="bar ' not in chart
 
 
@@ -2320,11 +2320,39 @@ def test_render_replaces_old_chart_scores_when_none_can_be_drawn(tmp_path, monke
     monkeypatch.setattr(renderer, "load_scores", lambda: {**SCORES, "families": {}})
     render_repository(reg, Path("templates"), tmp_path, today=TODAY)
     assert check_rendered(reg, Path("templates"), tmp_path, today=TODAY) == []
-    for variant in ("light", "dark", "narrow"):
-        svg = (tmp_path / "assets/readme" / f"strong-{variant}.svg").read_text()
+    for name in ("strong.svg", "strong-narrow.svg"):
+        svg = (tmp_path / "assets/readme" / name).read_text()
         assert "glm-5.3" not in svg and "kimi-k3" not in svg
         assert "<title" in svg and 'role="img"' in svg
-    assert "strong-light.svg" not in (tmp_path / "README.md").read_text()
+    assert "strong.svg" not in (tmp_path / "README.md").read_text()
+
+
+@pytest.mark.parametrize("existing_files", [False, True])
+def test_picture_writer_keeps_only_images_used_by_the_readme_and_site(tmp_path, monkeypatch,
+                                                                    existing_files):
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_all
+    import freetier_radar.render as renderer
+
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, _strong_rows())
+    monkeypatch.setattr(renderer, "load_scores", lambda: SCORES)
+    pictures = tmp_path / "assets/readme"
+    pictures.mkdir(parents=True)
+    unrelated = pictures / "keep.txt"
+    unrelated.write_text("not a generated image")
+    if existing_files:
+        for name in ("hero-light.svg", "strong-dark.svg", "orphan.svg"):
+            (pictures / name).write_text("<svg/>")
+
+    render_all(registry, Path("templates"), tmp_path, today=TODAY,
+               contributing_from=Path("."))
+    pages = (tmp_path / "README.md").read_text() + (tmp_path / "index.html").read_text()
+    referenced = set(re.findall(r'(?:src|srcset)="(assets/readme/[^"\s]+\.svg)"', pages))
+    assert referenced
+    generated = {p.relative_to(tmp_path).as_posix() for p in pictures.glob("*.svg")}
+    assert generated == referenced
+    assert unrelated.read_text() == "not a generated image"
 
 
 def test_a_picture_is_described_once_for_the_readme_and_for_itself(tmp_path: Path):

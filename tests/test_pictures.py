@@ -35,7 +35,7 @@ def _view_width(svg: str) -> float:
 def test_the_radar_draws_one_dot_per_live_offer_in_its_section_colour(narrow):
     """The radar is the list: a dot is a live row, so a row that dies takes its
     dot with it on the next render, and the colours are the sections."""
-    dots = _dots(hero_svg(HERO, LIGHT, narrow=narrow))
+    dots = _dots(hero_svg(HERO, narrow=narrow))
     assert len(dots) == 80
     assert {tone: sum(1 for d in dots if d[0] == tone) for tone in
             ("agents", "apis", "trials", "aggregators")} == {
@@ -60,7 +60,7 @@ def test_the_sites_mark_is_the_heros_radar_without_its_words():
 def test_a_dot_lights_up_when_the_beam_reaches_its_bearing(narrow):
     """The beam's leading edge starts at north and turns clockwise once a
     period; each dot's delay is the moment it passes, not decoration."""
-    svg = hero_svg(HERO, DARK, narrow=narrow)
+    svg = hero_svg(HERO, narrow=narrow)
     cx, cy = _centre(svg)
     for _, x, y, _, delay in _dots(svg):
         bearing = math.degrees(math.atan2(x - cx, cy - y)) % 360
@@ -74,7 +74,7 @@ def test_no_two_dots_overlap(counts):
                 arcs=tuple(Arc(t, t, n) for t, n in zip(
                     ("agents", "apis", "trials", "aggregators"), counts)))
     for narrow in (False, True):
-        dots = _dots(hero_svg(hero, LIGHT, narrow=narrow))
+        dots = _dots(hero_svg(hero, narrow=narrow))
         assert len(dots) == sum(counts)
         for i, a in enumerate(dots):
             for b in dots[i + 1:]:
@@ -83,7 +83,7 @@ def test_no_two_dots_overlap(counts):
 
 @pytest.mark.parametrize("narrow", [False, True])
 def test_the_counters_are_the_figures_they_are_given(narrow):
-    svg = hero_svg(HERO, LIGHT, narrow=narrow)
+    svg = hero_svg(HERO, narrow=narrow)
     for figure, label in (("80", "live offers"), ("76", "need no card"),
                           ("150", "free models"), ("17", "OpenAI-compatible")):
         assert f">{figure}</text>" in svg and f">{label}</text>" in svg
@@ -95,8 +95,8 @@ def test_hero_connection_coverage_is_independent_of_benchmark_classification(nar
     from freetier_radar.render import _hero
     facts = {"active_count": 8, "no_card_count": 6, "family_count": 12,
              "endpoint_count": 5, "strong_models": [], "schedule": "twice a week"}
-    before = hero_svg(_hero([], facts), LIGHT, narrow=narrow)
-    after = hero_svg(_hero([], {**facts, "strong_models": ["new leader"]}), LIGHT, narrow=narrow)
+    before = hero_svg(_hero([], facts), narrow=narrow)
+    after = hero_svg(_hero([], {**facts, "strong_models": ["new leader"]}), narrow=narrow)
     assert before == after
     assert "5 OpenAI-compatible" in hero_words(_hero([], facts))
 
@@ -109,29 +109,25 @@ def test_every_word_reads_at_the_width_a_reader_sees_it():
     the wide hero draws nothing that lands under eleven on the desktop, and
     the narrow one, the only one a phone is served, nothing under eleven there."""
     for narrow, shown in ((False, WIDE_SHOWN), (True, NARROW_SHOWN)):
-        svg = hero_svg(HERO, LIGHT, narrow=narrow)
+        svg = hero_svg(HERO, narrow=narrow)
         scale = shown / _view_width(svg)
         sizes = [float(s) for s in re.findall(r'font-size="([\d.]+)"', svg)]
         assert sizes and min(sizes) * scale >= 11, (narrow, min(sizes) * scale)
 
 
 @pytest.mark.parametrize("narrow", [False, True])
-def test_each_layout_follows_the_readers_theme_and_fixed_palette_links_stay_fixed(narrow):
-    """Both layouts follow the theme; existing fixed-palette URLs retain theirs."""
-    adaptive = hero_svg(HERO, None, narrow=narrow)
+def test_each_layout_contains_both_palettes_and_follows_the_readers_theme(narrow):
+    """Both layouts contain the same light and dark palettes."""
+    adaptive = hero_svg(HERO, narrow=narrow)
     assert "@media (prefers-color-scheme: dark)" in adaptive
     assert LIGHT.canvas in adaptive and DARK.canvas in adaptive
-    for palette, other in ((LIGHT, DARK), (DARK, LIGHT)):
-        wide = hero_svg(HERO, palette)
-        assert "prefers-color-scheme" not in wide
-        assert palette.canvas in wide and other.canvas not in wide
 
 
 def test_a_reader_who_asked_for_less_motion_gets_a_still_picture():
     """The beam stops at north and every dot stays lit. The beam turns by a CSS
     animation for that: SMIL's <animate…> runs whatever the reader asked for.
     It turns about the hub, the point its group's style names."""
-    for svg in (hero_svg(HERO, LIGHT), hero_svg(HERO, None, narrow=True), radar_svg(HERO)):
+    for svg in (hero_svg(HERO), hero_svg(HERO, narrow=True), radar_svg(HERO)):
         still = re.search(r"@media \(prefers-reduced-motion: reduce\) (\{.*?\}\})", svg).group(1)
         assert re.search(r"\.dot \{ animation: none; opacity: 1 \}", still)
         assert re.search(r"\.turning \{ animation: none \}", still)
@@ -144,12 +140,12 @@ def test_a_reader_who_asked_for_less_motion_gets_a_still_picture():
 
 def test_the_same_figures_draw_the_same_picture():
     """render --check compares bytes, so nothing here may depend on the run."""
-    assert hero_svg(HERO, DARK) == hero_svg(HERO, DARK)
-    assert hero_svg(HERO, None, narrow=True) == hero_svg(HERO, None, narrow=True)
+    assert hero_svg(HERO) == hero_svg(HERO)
+    assert hero_svg(HERO, narrow=True) == hero_svg(HERO, narrow=True)
 
 
 def test_the_picture_says_what_it_shows_to_a_screen_reader():
-    svg = hero_svg(HERO, LIGHT)
+    svg = hero_svg(HERO)
     title = re.search(r"<title[^>]*>(.*?)</title>", svg).group(1)
     assert "80 live offers" in title and "one dot per live offer" in title
 
@@ -176,7 +172,7 @@ def test_free_comparison_geometry_does_not_depend_on_an_unavailable_leader(narro
     from dataclasses import replace
     def widths(chart):
         return re.findall(r'<rect class="bar[^\"]*"[^>]*width="([\d.]+)"',
-                          chart_svg(chart, LIGHT, narrow=narrow))
+                          chart_svg(chart, narrow=narrow))
     assert widths(CHART) == widths(replace(CHART, top_name="New leader", top_score=100))
 
 
@@ -184,7 +180,7 @@ def test_free_comparison_geometry_does_not_depend_on_an_unavailable_leader(narro
 def test_the_chart_ranks_the_models_by_score_and_draws_each_to_scale(narrow):
     """The numeric axis starts at zero; bar lengths preserve score ratios,
     with identical ticks in both widths and no implicit percent normalization."""
-    svg = chart_svg(CHART, LIGHT, narrow=narrow)
+    svg = chart_svg(CHART, narrow=narrow)
     labels = _LABEL.findall(svg)
     ranked = sorted(CHART.bars, key=lambda b: (-b.score, b.family))
     shown = ranked[:NARROW_BARS] if narrow else ranked
@@ -201,16 +197,16 @@ def test_the_chart_ranks_the_models_by_score_and_draws_each_to_scale(narrow):
 
 
 def test_the_phone_chart_names_what_it_leaves_for_the_list():
-    svg = chart_svg(CHART, LIGHT, narrow=True)
+    svg = chart_svg(CHART, narrow=True)
     assert f"+{len(CHART.bars) - NARROW_BARS} more in the list below" in svg
-    assert "more in the list below" not in chart_svg(CHART, LIGHT)
+    assert "more in the list below" not in chart_svg(CHART)
 
 
 def test_a_low_scoring_comparison_keeps_its_measurement_and_room_for_the_full_identity():
     chart=Chart(bars=(Bar('nemotron-3.5-super-vl-120b-a12b', 13.6, 5, False),),
                 top_name='Leader',top_score=59.4,read_on=date(2026,10,31),
                 version='5.0')
-    svg=chart_svg(chart,LIGHT)
+    svg=chart_svg(chart)
     assert 'class="bar"' in svg
     label=re.search(r'<text class="t label" x="([\d.]+)"',svg)
     assert float(label[1]) >= 40 + len(chart.bars[0].family)*11.5
@@ -221,7 +217,7 @@ def test_display_rounding_does_not_change_bar_geometry():
     chart = Chart(bars=(Bar('rounded-score', 34.44, 1, False),),
                   top_name='Leader', top_score=59.4, read_on=date(2026, 10, 31),
                   version='5.0')
-    svg = chart_svg(chart, LIGHT)
+    svg = chart_svg(chart)
     assert '>34.4</text>' in svg
     tick = re.search(r'<text class="m tick" x="([\d.]+)"[^>]*>40</text>', svg)
     left, _, width = map(float, _BAR.findall(svg)[0])
@@ -238,7 +234,7 @@ def test_axis_handles_zero_scores_and_new_score_ranges_without_clipping(highest)
     assert all(b - a == pytest.approx(ticks[1]) for a, b in zip(ticks, ticks[1:]))
     chart = replace(CHART, bars=(Bar('measured', highest, 1, False),))
     for narrow in (False, True):
-        svg = chart_svg(chart, LIGHT, narrow=narrow)
+        svg = chart_svg(chart, narrow=narrow)
         left, _, width = map(float, _BAR.findall(svg)[0])
         end = float(re.findall(r'<text class="m tick" x="([\d.]+)"', svg)[-1])
         assert 0 <= width <= end - left
@@ -247,7 +243,7 @@ def test_axis_handles_zero_scores_and_new_score_ranges_without_clipping(highest)
 
 @pytest.mark.parametrize("narrow", [False, True])
 def test_each_bar_says_its_score_and_how_many_offers_serve_it_free(narrow):
-    svg = chart_svg(CHART, DARK, narrow=narrow)
+    svg = chart_svg(CHART, narrow=narrow)
     assert ">45.4<" in svg and 'class="m offers"' in svg
     assert re.search(r'class="m offers"[^>]*>1</text>', svg)
     assert re.search(r'class="m offers"[^>]*>2</text>', svg)
@@ -260,18 +256,20 @@ def test_each_bar_says_its_score_and_how_many_offers_serve_it_free(narrow):
 
 def test_no_footnote_without_an_estimate():
     plain = Chart(**{**CHART.__dict__, "bars": tuple(b for b in CHART.bars if not b.estimated)})
-    assert "estimated by" not in chart_svg(plain, LIGHT)
+    assert "estimated by" not in chart_svg(plain)
 
 
 def test_the_chart_reads_at_the_width_a_reader_sees_it():
     for narrow, shown in ((False, WIDE_SHOWN), (True, NARROW_SHOWN)):
-        svg = chart_svg(CHART, LIGHT, narrow=narrow)
+        svg = chart_svg(CHART, narrow=narrow)
         scale = shown / _view_width(svg)
         sizes = [float(s) for s in re.findall(r'font-size="([\d.]+)"', svg)]
         assert min(sizes) * scale >= 11, (narrow, min(sizes) * scale)
 
 
-def test_the_phone_chart_follows_the_theme_and_the_same_bars_draw_the_same_bytes():
-    assert "@media (prefers-color-scheme: dark)" in chart_svg(CHART, None, narrow=True)
-    assert "prefers-color-scheme" not in chart_svg(CHART, DARK)
-    assert chart_svg(CHART, None, narrow=True) == chart_svg(CHART, None, narrow=True)
+@pytest.mark.parametrize("narrow", [False, True])
+def test_each_chart_layout_contains_both_palettes_and_draws_the_same_bytes(narrow):
+    svg = chart_svg(CHART, narrow=narrow)
+    assert "@media (prefers-color-scheme: dark)" in svg
+    assert LIGHT.canvas in svg and DARK.canvas in svg
+    assert svg == chart_svg(CHART, narrow=narrow)

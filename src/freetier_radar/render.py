@@ -34,7 +34,7 @@ from .prober import PROVISIONAL_PROMOTE_DAYS
 # the pages state beside the answer, and the scores the tiers were read off.
 from .tiers import FRONTIER_WITHIN, SCORES_PATH, STRONG_WITHIN
 # The README's pictures, drawn from the figures below.
-from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Hero, chart_svg,
+from .pictures import (NARROW_UNTIL, Arc, Bar, Chart, Hero, chart_svg,
                        chart_words, hero_svg, hero_words, radar_svg)
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
@@ -711,15 +711,12 @@ def _chart(models: list[dict], scores: dict | None) -> Chart | None:
 
 
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
-    """Theme-aware SVGs for each layout, retained fixed-palette URLs, and
-    the site's mark, the hero's radar alone (SITE_RADAR)."""
-    drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow),
-               "strong": lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)}
-    palettes = {"light": (LIGHT, False), "dark": (DARK, False), "narrow": (None, True)}
-    pictures = {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
-                for name, draw in drawers.items() for variant in VARIANTS}
-    pictures.update({f"{README_PICTURES}/{name}.svg": draw(None, False)
-                     for name, draw in drawers.items()})
+    """Theme-aware SVGs for each layout and the site's radar mark."""
+    drawers = {"hero": lambda narrow: hero_svg(hero, narrow=narrow),
+               "strong": lambda narrow: chart_svg(chart, narrow=narrow)}
+    pictures = {f"{README_PICTURES}/{name}{suffix}.svg": draw(narrow)
+                for name, draw in drawers.items()
+                for suffix, narrow in (("", False), ("-narrow", True))}
     pictures[SITE_RADAR] = radar_svg(hero)
     return pictures
 
@@ -3063,10 +3060,9 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
     context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
-    for rel, svg in readme_pictures(context["hero"], context["chart"]).items():
-        picture = out_path.parent / rel
-        picture.parent.mkdir(parents=True, exist_ok=True)
-        picture.write_text(svg, encoding="utf-8")
+    _write_files(out_path.parent / README_PICTURES, "*.svg",
+                 {Path(rel).name: svg
+                  for rel, svg in readme_pictures(context["hero"], context["chart"]).items()})
     return text
 
 

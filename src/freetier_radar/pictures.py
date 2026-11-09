@@ -10,8 +10,7 @@ Two widths, because one aspect ratio cannot serve both screens: the wide hero
 for a desktop column, the narrow one — served to a phone through the README's
 `<picture>` — with the radar above the words and every word drawn large enough
 to read at the width a phone shows it. The README selects the layout by width;
-each SVG follows the reader's theme. The older fixed-palette URLs remain
-generated for existing links.
+each SVG contains both palettes and follows the reader's theme.
 """
 from __future__ import annotations
 
@@ -20,7 +19,7 @@ from dataclasses import dataclass
 from datetime import date
 from xml.sax.saxutils import escape
 
-__all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_BARS", "VARIANTS",
+__all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_BARS",
            "Palette", "LIGHT", "DARK", "TONES", "Arc", "Hero", "hero_svg", "hero_words",
            "radar_svg", "Bar", "Chart", "chart_svg", "chart_words"]
 
@@ -33,8 +32,6 @@ WIDE_SHOWN = 823
 NARROW_SHOWN = 324
 # The widest screen the README serves the narrow pictures to.
 NARROW_UNTIL = 600
-# The narrow layout and previously published fixed-palette URLs.
-VARIANTS = ("light", "dark", "narrow")
 # A phone scrolls a picture a screen at a time: its chart draws the strongest
 # ten and names how many more the list under it has.
 NARROW_BARS = 10
@@ -168,16 +165,13 @@ def _rules(p: Palette) -> str:
                       for tone, colour in TONES.items()))
 
 
-def _colours(palette: Palette | None, rules) -> str:
-    """One palette, or both with the reader's theme choosing — the narrow
-    pictures, which a phone is served whatever its theme."""
-    if palette is not None:
-        return rules(palette)
+def _colours(rules) -> str:
+    """Both palettes, with the reader's theme choosing."""
     return rules(LIGHT) + "@media (prefers-color-scheme: dark) {" + rules(DARK) + "}"
 
 
-def _style(palette: Palette | None) -> str:
-    colours = _colours(palette, _rules)
+def _style() -> str:
+    colours = _colours(_rules)
     return ("<style>" + colours
             + ".rim{fill:none}.s0{stop-opacity:.5}.s1,.g1{stop-opacity:0}.g0{stop-opacity:.12}"
             # A dot lights up as the beam passes it; the delay is that moment.
@@ -297,9 +291,8 @@ def _narrow_words(hero: Hero) -> list[str]:
     return out
 
 
-def hero_svg(hero: Hero, palette: Palette | None, narrow: bool = False) -> str:
-    """The top of the README. `palette` None lets the reader's theme choose;
-    an explicit palette retains the older fixed-theme links."""
+def hero_svg(hero: Hero, narrow: bool = False) -> str:
+    """The top of the README, with both palettes at the requested width."""
     frame = _NARROW if narrow else _WIDE
     title = escape(hero_words(hero))
     accent_to = frame.width - 60
@@ -307,7 +300,7 @@ def hero_svg(hero: Hero, palette: Palette | None, narrow: bool = False) -> str:
              f'height="{frame.height}" viewBox="0 0 {frame.width} {frame.height}" role="img" '
              f'aria-labelledby="title">',
              f'<title id="title">{title}</title>',
-             _style(palette),
+             _style(),
              f'<defs><linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="0" y1="0" '
              f'x2="{accent_to}" y2="0"><stop class="a0" offset="0"/><stop class="a1" offset="1"/>'
              f'</linearGradient></defs>',
@@ -329,7 +322,7 @@ def radar_svg(hero: Hero) -> str:
         f'height="{frame.height}" viewBox="0 0 {frame.width} {frame.height}" role="img" '
         f'aria-labelledby="title">',
         f'<title id="title">{escape(hero_words(hero))}</title>',
-        _style(None),
+        _style(),
         *_radar(frame, hero.arcs),
         "</svg>"]) + "\n"
 
@@ -393,7 +386,7 @@ def _chart_ticks(highest: float) -> tuple[float, ...]:
     return tuple(i * step for i in range(intervals + 1))
 
 
-def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
+def _empty_chart_svg(narrow: bool) -> str:
     width, height = (600, 190) if narrow else (1160, 180)
     x = 30 if narrow else 40
     heading = "Free models, compared"
@@ -402,7 +395,7 @@ def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
         f'<title id="title">{escape(chart_words(None))}</title>',
-        "<style>" + _colours(palette, _chart_rules) + "</style>",
+        "<style>" + _colours(_chart_rules) + "</style>",
         f'<rect class="card" x="1" y="1" width="{width - 2}" height="{height - 2}" '
         'rx="18" stroke-width="2"/>',
         f'<text class="t" x="{x}" y="58" font-family="{SANS}" font-size="30" '
@@ -414,7 +407,7 @@ def _empty_chart_svg(palette: Palette | None, narrow: bool) -> str:
         '</svg>'])
 
 
-def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False) -> str:
+def chart_svg(chart: Chart | None, narrow: bool = False) -> str:
     """Compare actual free-model scores on a labelled, zero-based scale.
 
     The global leader is a named reference, independent of the free models'
@@ -422,7 +415,7 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
     names sit above their bars so a full model identity keeps the whole width.
     """
     if chart is None or not chart.bars:
-        return _empty_chart_svg(palette, narrow)
+        return _empty_chart_svg(narrow)
     ranked = chart.ranked()
     shown = ranked[:NARROW_BARS] if narrow else ranked
     width = 600 if narrow else 1160
@@ -453,7 +446,7 @@ def chart_svg(chart: Chart | None, palette: Palette | None, narrow: bool = False
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
              f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
              f'<title id="title">{escape(chart_words(chart))}</title>',
-             "<style>" + _colours(palette, _chart_rules) + "</style>",
+             "<style>" + _colours(_chart_rules) + "</style>",
              f'<rect class="card" x="1" y="1" width="{width - 2}" height="{height - 2}" rx="18" '
              f'stroke-width="2"/>']
     if narrow:
