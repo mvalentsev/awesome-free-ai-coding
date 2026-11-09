@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLM.kiwi free tier: limits, free models, verified 2026-11-05'
+title: 'LLM.kiwi free tier: limits, free models, verified 2026-11-09'
 description: Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router. Sign in with Google or GitHub and create a dashboard key. Free allows three active API keys; numerical request and token budgets and reset periods are not published. Capacity, rate limits and fair use apply. The…
 permalink: /providers/llm-kiwi/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: LLM.kiwi
 ---
 
@@ -11,7 +11,7 @@ crumb: LLM.kiwi
 
 # LLM.kiwi free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-05 · [llm.kiwi](https://llm.kiwi) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-09 · [llm.kiwi](https://llm.kiwi) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

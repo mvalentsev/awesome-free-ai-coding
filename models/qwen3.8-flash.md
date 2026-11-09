@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-flash free: 2 providers, limits and ids, provider probes 2026-11-05'
+title: 'qwen3.8-flash free: 2 providers, limits and ids, provider probes 2026-11-09'
 description: qwen3.8-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-flash/
-last_modified_at: 2026-11-08
+last_modified_at: 2026-11-09
 crumb: qwen3.8-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-flash
 
 # Where qwen3.8-flash is free
 
-**2 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-11-05; their offers are rechecked twice a week.
+**2 rows on the list serve `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and Qoder CN (formerly Lingma). None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.8-flash
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-05 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-09 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
@@ -43,7 +43,7 @@ Free token grants apply in Singapore (international), independently per model an
 
 ### [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-05 · listed since 2026-10-12
+🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-10-12
 
 Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a free personal-model promotion alongside a two-week 300-credit trial and 100 credits a day to claim in the desktop app
 

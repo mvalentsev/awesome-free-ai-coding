@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-11-05'
+title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-11-09'
 description: Serverless model inference on Cloudflare, with an OpenAI-compatible API and a daily free allowance. Past the free allowance "further operations will fail with an error". Some models require a paid billing method through the Workers Paid plan or prepaid AI Gateway credits even if neurons remain…
 permalink: /providers/cloudflare-workers-ai/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Cloudflare Workers AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Cloudflare Workers AI
 
 # Cloudflare Workers AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-05 · [cloudflare.com](https://www.cloudflare.com/products/workers-ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [cloudflare.com](https://www.cloudflare.com/products/workers-ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

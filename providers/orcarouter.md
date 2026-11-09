@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OrcaRouter (free models) free tier: limits, free models, verified 2026-11-08'
+title: 'OrcaRouter (free models) free tier: limits, free models, verified 2026-11-09'
 description: Free model APIs for accounts with established GitHub linkage. The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never…
 permalink: /providers/orcarouter/
-last_modified_at: 2026-11-08
+last_modified_at: 2026-11-09
 crumb: OrcaRouter (free models)
 ---
 
@@ -11,7 +11,7 @@ crumb: OrcaRouter (free models)
 
 # OrcaRouter (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-08 · [orcarouter.ai](https://www.orcarouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-09 · [orcarouter.ai](https://www.orcarouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'AnyAPI free tier: limits, free models, verified 2026-11-08'
+title: 'AnyAPI free tier: limits, free models, verified 2026-11-09'
 description: A free model API with a separate daily AnyToken allowance. AnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with…
 permalink: /providers/anyapi/
-last_modified_at: 2026-11-08
+last_modified_at: 2026-11-09
 crumb: AnyAPI
 ---
 
@@ -11,7 +11,7 @@ crumb: AnyAPI
 
 # AnyAPI free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-08 · [anyapi.ai](https://anyapi.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-09 · [anyapi.ai](https://anyapi.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

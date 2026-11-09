@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Merkium free tier: limits, free models, verified 2026-11-05'
+title: 'Merkium free tier: limits, free models, verified 2026-11-09'
 description: Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge. Sign in and create a free API key in the Console; no card or billing step. Space requests at least two seconds apart, including each step of a tool-call round…
 permalink: /providers/merkium/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Merkium
 ---
 
@@ -11,7 +11,7 @@ crumb: Merkium
 
 # Merkium free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-05, a regular row from the first probe it passes on or after 2026-11-19 · **live** — last verified by a probe on 2026-11-05 · [merkium.nl](https://www.merkium.nl) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-05, a regular row from the first probe it passes on or after 2026-11-19 · **live** — last verified by a probe on 2026-11-09 · [merkium.nl](https://www.merkium.nl) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

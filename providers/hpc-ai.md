@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-11-05'
+title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-11-09'
 description: OpenAI-compatible inference with $2 of signup credit, or $4 in total with the vendor invite code, before any deposit. The invite-code grant is the total signup balance, not an extra amount added to the standard grant; supplies are limited. Credit spends at model list prices. L0 applies before the…
 permalink: /providers/hpc-ai/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: HPC-AI Model APIs
 ---
 
@@ -11,7 +11,7 @@ crumb: HPC-AI Model APIs
 
 # HPC-AI Model APIs free tier
 
-🎁 Trials (no card when possible) · no card · not offered in mainland China · **live** — last verified by a probe on 2026-11-05 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in mainland China · **live** — last verified by a probe on 2026-11-09 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

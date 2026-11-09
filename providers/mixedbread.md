@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Mixedbread free tier: limits, free models, verified 2026-11-05'
+title: 'Mixedbread free tier: limits, free models, verified 2026-11-09'
 description: OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required. Create an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the…
 permalink: /providers/mixedbread/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Mixedbread
 ---
 
@@ -11,7 +11,7 @@ crumb: Mixedbread
 
 # Mixedbread free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-04, a regular row from the first probe it passes on or after 2026-11-18 · **live** — last verified by a probe on 2026-11-05 · [mixedbread.com](https://www.mixedbread.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-04, a regular row from the first probe it passes on or after 2026-11-18 · **live** — last verified by a probe on 2026-11-09 · [mixedbread.com](https://www.mixedbread.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

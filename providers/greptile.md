@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Greptile free tier: limits, free models, verified 2026-11-05'
+title: 'Greptile free tier: limits, free models, verified 2026-11-09'
 description: AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan. Starter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate…
 permalink: /providers/greptile/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Greptile
 ---
 
@@ -11,7 +11,7 @@ crumb: Greptile
 
 # Greptile free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-05 · [greptile.com](https://www.greptile.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-09 · [greptile.com](https://www.greptile.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

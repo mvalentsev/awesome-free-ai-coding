@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-26b-a4b free: 2 providers, limits and ids, provider probes 2026-11-05'
+title: 'gemma-4-26b-a4b free: 2 providers, limits and ids, provider probes 2026-11-09'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-11-08
+last_modified_at: 2026-11-09
 crumb: gemma-4-26b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-26b-a4b
 
 # Where gemma-4-26b-a4b is free
 
-**2 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models) and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-05; their offers are rechecked twice a week.
+**2 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models) and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemma-4-26b-a4b
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-09-25
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-11-06
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-06
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

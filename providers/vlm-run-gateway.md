@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'VLM Run Gateway free tier: limits, free models, verified 2026-11-05'
+title: 'VLM Run Gateway free tier: limits, free models, verified 2026-11-09'
 description: 'OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta. Free models: qwen3.8-27b, diffusiongemma, qwen3.5-0.8b. GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together…'
 permalink: /providers/vlm-run-gateway/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: VLM Run Gateway
 ---
 
@@ -11,7 +11,7 @@ crumb: VLM Run Gateway
 
 # VLM Run Gateway free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-05 · [vlm.run](https://vlm.run) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [vlm.run](https://vlm.run) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 > ⚠️ **Does not work as published since [2026-11-05](https://docs.vlm.run/gateway/authentication).** Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 403 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.
 

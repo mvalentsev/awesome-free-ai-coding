@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'diffusiongemma free: 2 providers, limits and ids, provider probes 2026-11-05'
+title: 'diffusiongemma free: 2 providers, limits and ids, provider probes 2026-11-09'
 description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com) and VLM Run Gateway. None asks for a card; VLM Run Gateway answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/diffusiongemma/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: diffusiongemma
 ---
 
@@ -11,7 +11,7 @@ crumb: diffusiongemma
 
 # Where diffusiongemma is free
 
-**2 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com) and VLM Run Gateway. None asks for a card; VLM Run Gateway answers with no account at all. The providers' last scheduled probes were on 2026-11-05; their offers are rechecked twice a week.
+**2 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com) and VLM Run Gateway. None asks for a card; VLM Run Gateway answers with no account at all. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: diffusiongemma
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-05 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-09 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -39,7 +39,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-05 · listed since 2026-10-09
+🔌 LLM APIs with free tier · no card · last probe 2026-11-09 · listed since 2026-10-09
 
 OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta
 

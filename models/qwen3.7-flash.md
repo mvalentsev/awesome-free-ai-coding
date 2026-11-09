@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.7-flash free: 1 provider, limits and ids, provider probes 2026-11-05'
+title: 'qwen3.7-flash free: 1 provider, limits and ids, provider probes 2026-11-09'
 description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.7-flash/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: qwen3.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.7-flash
 
 # Where qwen3.7-flash is free
 
-**One row on the list serves `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
+**One row on the list serves `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.7-flash
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-05 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-09 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 

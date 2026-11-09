@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'kimi-k3 free: 1 provider, limits and ids, provider probes 2026-11-05'
+title: 'kimi-k3 free: 1 provider, limits and ids, provider probes 2026-11-09'
 description: kimi-k3 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/kimi-k3/
-last_modified_at: 2026-11-08
+last_modified_at: 2026-11-09
 crumb: kimi-k3
 ---
 
@@ -11,7 +11,7 @@ crumb: kimi-k3
 
 # Where kimi-k3 is free
 
-**One row on the list serves `kimi-k3` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
+**One row on the list serves `kimi-k3` free:** AIHubMix (free models). It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: kimi-k3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-05 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-09-16
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Sourcery free tier: limits, free models, verified 2026-11-05'
+title: 'Sourcery free tier: limits, free models, verified 2026-11-09'
 description: AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories. Install the GitHub or GitLab integration and grant repository access. Public repositories receive ongoing Free reviews; the numerical allowance and reset…
 permalink: /providers/sourcery/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Sourcery
 ---
 
@@ -11,7 +11,7 @@ crumb: Sourcery
 
 # Sourcery free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-05 · [sourcery.ai](https://www.sourcery.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-09 · [sourcery.ai](https://www.sourcery.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
