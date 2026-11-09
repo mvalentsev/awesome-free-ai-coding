@@ -268,7 +268,7 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     CONTRIBUTING reads where the lane names no variant — and a reviewer whose
     lane serves another variant names that one instead."""
     measured = {m.family for e in entries for m in e.models if m.aa_model}
-    held = {m.family for e in entries for m in e.models if not m.aa_auto}
+    held = {m.family for e in entries for m in e.models if m.measurement_held}
     found: dict[str, Scored] = {}
     for e in entries:
         for m in e.models:
@@ -401,6 +401,9 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
         named = {family: scored for family, scored in bare}
         for e in entries:
             for fam in e.models:
+                if fam.measurement_held:
+                    fam.tier = None
+                    continue
                 if fam.family in named and fam.aa_model is None:
                     fam.aa_model = named[fam.family].slug
                     fam.tier = measured_tier(named[fam.family].index, top.index, median)

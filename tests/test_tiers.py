@@ -521,6 +521,25 @@ async def test_a_variant_review_hold_survives_the_http_writer_and_a_bare_peer(tm
 
 
 @respx.mock
+@pytest.mark.parametrize('bound', [False, True])
+async def test_a_variant_hold_survives_a_measured_peers_tier_change(tmp_path, bound):
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry = tmp_path / 'registry.yaml'
+    pending = {'family': 'gemini-3.8-flash', 'aa_auto': False}
+    if bound:
+        pending.update(aa_model='gemini-3-8-flash', tier='frontier')
+    save_registry(registry, [
+        entry('measured', {'family': 'gemini-3.8-flash', 'aa_model': 'gemini-3-8-flash', 'tier': 'frontier'}),
+        entry('pending', pending),
+    ])
+    assert await _amain(registry, write=True) == 0
+    measured, held = [row.models[0] for row in load_registry(registry)]
+    assert measured.tier is Tier.STRONG
+    assert held.tier is (Tier.STRONG if bound else None)
+    assert held.aa_model == ('gemini-3-8-flash' if bound else None)
+
+
+@respx.mock
 async def test_a_variant_hold_preserves_an_explicit_reviewed_measurement(tmp_path):
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry = tmp_path / 'registry.yaml'

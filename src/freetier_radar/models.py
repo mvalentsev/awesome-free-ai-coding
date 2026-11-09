@@ -262,6 +262,10 @@ class ModelFamily(BaseModel):
     # under review. Explicit reviewed bindings are independent of this switch.
     aa_auto: bool = Field(default=True, strict=True, exclude_if=lambda value: value is True)
 
+    @property
+    def measurement_held(self) -> bool:
+        return not self.aa_auto and self.aa_model is None
+
     @field_validator("table_name")
     @classmethod
     def _table_label(cls, value: str | None) -> str | None:
