@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-11-09'
-description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: deepseek-v4-flash, glm-5.3-flash, minimax-m3, qwen3.6. No card. This is an experimental research service with…'
+description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: glm-5.3-flash, minimax-m3, deepseek-v4-flash, qwen3.6. No card. This is an experimental research service with…'
 permalink: /providers/freeinference/
 last_modified_at: 2026-11-09
 crumb: FreeInference (Harvard SEAS)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
+<span data-model-sort-inline><span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="minimax-m3">[`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/)</span>, <span data-model-family="deepseek-v4-flash">[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)</span>, <span data-model-family="qwen3.6">[`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -36,7 +37,7 @@ The vendor names no country it keeps the offer from ([source](https://freeinfere
 - Base URL: `https://freeinference.org/v1`
 - Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: `glm-5.3-flash`, `deepseek-v4-flash`, `qwen3.6-35b`, `minimax-m3`
+- Callable ids: `glm-5.3-flash`, `minimax-m3`, `deepseek-v4-flash`, `qwen3.6-35b`
 - Note: Use a model marked Free in the documentation and returned for your key by authenticated /v1/models. The public view omits qwen3.6-35b and minimax-m3 although the docs mark both Free; confirm their availability for your key. Catalog prices are upstream accounting values, not fees charged to Free users.
 
 Try it from your terminal with your key in `FREEINFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:

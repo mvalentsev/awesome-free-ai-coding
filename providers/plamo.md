@@ -37,7 +37,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://api.platform.preferredai.jp/v1`
 - Key: `PLAMO_API_KEY` — get one at <https://console.platform.preferredai.jp/>
-- Callable ids: `plamo-3.1-prime`, `plamo-3.0-prime`
+- Callable ids: `plamo-3.0-prime`, `plamo-3.1-prime`
 - Note: Select the Free API plan, then create a key in the Console. Prefer the current model ID. The API reference states that the older ID will switch to the current model after January 31, 2027.
 
 Try it from your terminal with your key in `PLAMO_API_KEY` — it goes from your machine to the vendor and nowhere else:

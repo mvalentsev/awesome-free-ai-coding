@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-11-09'
-description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash-1017. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created…'
+description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: deepseek-v4.1-flash-1017, glm-5.3-flash, mimo-v2.6-flash, solar-mini-4, solar-pro-4. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-11-09
 crumb: Freebuff
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 ## Free models
 
-`solar-pro-4`, [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)
+<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
 
 ## Limits, in the vendor's words
 

@@ -55,7 +55,7 @@ Free promotions require a Cline account, with Google, GitHub or email signup and
 
 🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-09 · listed since 2026-10-30
 
-OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes
+OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 
 - Limits, in the vendor's words: Beam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`
 

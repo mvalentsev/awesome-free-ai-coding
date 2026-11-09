@@ -38,7 +38,7 @@ The vendor names no country it keeps the offer from ([source](https://thegrid.ai
 - Base URL: `https://api.thegrid.ai/v1`
 - Key: `THE_GRID_API_KEY` — get one at <https://app.thegrid.ai/profile>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://messages-beta.api.thegrid.ai`
-- Callable ids: `agent-prime`, `code-prime`, `agent-max`
+- Callable ids: `agent-max`, `agent-prime`, `code-prime`
 - Note: the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models, where each carries the models it delivered; the Claude Code guide sets ANTHROPIC_BASE_URL=https://messages-beta.api.thegrid.ai, the Messages API in beta
 
 Try it from your terminal with your key in `THE_GRID_API_KEY` — it goes from your machine to the vendor and nowhere else:

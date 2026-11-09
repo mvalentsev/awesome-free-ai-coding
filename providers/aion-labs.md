@@ -39,7 +39,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 - Base URL: `https://api.aionlabs.ai/v1`
 - Key: `AION_LABS_API_KEY` — get one at <https://www.aionlabs.ai/app/api-keys/>
-- Callable ids: `aion-labs/aion-3.5`, `aion-labs/aion-3.5-mini`, `aion-labs/aion-3.0-mini`, `aion-labs/aion-3.0`, `aion-labs/aion-2.0`, `aion-labs/aion-rp-llama-3.1-8b`
+- Callable ids: `aion-labs/aion-2.0`, `aion-labs/aion-3.0`, `aion-labs/aion-3.0-mini`, `aion-labs/aion-3.5`, `aion-labs/aion-3.5-mini`, `aion-labs/aion-rp-llama-3.1-8b`
 - Note: Create an API key in the dashboard and send it as a bearer token with the OpenAI Chat Completions format.
 
 Try it from your terminal with your key in `AION_LABS_API_KEY` — it goes from your machine to the vendor and nowhere else:

@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-11-09'
-description: 'EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b. The documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model''s anonymous…'
+description: 'EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card. Free models: qwen3.8-27b, gpt-oss-120b, qwen3.6. The documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model''s anonymous…'
 permalink: /providers/ovh-ai-endpoints/
 last_modified_at: 2026-11-09
 crumb: OVHcloud AI Endpoints
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ EU-hosted serverless API for open models, with anonymous OpenAI-compatible acces
 
 ## Free models
 
-[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="qwen3.6">[`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -39,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Your data i
 
 - Base URL: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`
 - Key: none — the lane is anonymous
-- Callable ids: `Qwen3.6-27B`, `Qwen3.8-27B`, `gpt-oss-120b`
+- Callable ids: `Qwen3.8-27B`, `gpt-oss-120b`, `Qwen3.6-27B`
 - Note: Use anonymous requests for the free lane; a 429 indicates a rate limit, not the end of the offer. API access keys require a Public Cloud project with a payment method and are billed per token.
 
 Try it from your terminal — the lane takes no key:

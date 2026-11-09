@@ -42,7 +42,7 @@ What you send is not used to train models. In the vendor's words: “RouterPlex 
 - Base URL: `https://api.routerplex.com/v1`
 - Key: `ROUTERPLEX_API_KEY` — get one at <https://routerplex.com/sign-up>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.routerplex.com`
-- Callable ids: `deepseek-v4-flash`, `glm-5.3-flash`, `claude-sonnet-4-6`
+- Callable ids: `claude-sonnet-4-6`, `deepseek-v4-flash`, `glm-5.3-flash`
 
 Try it from your terminal with your key in `ROUTERPLEX_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

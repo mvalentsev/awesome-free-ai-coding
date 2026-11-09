@@ -39,7 +39,7 @@ What you send is not used to train models. In the vendor's words: “Your conver
 
 - Base URL: `https://chat.merkium.nl/api/v1`
 - Key: `MERKIUM_API_KEY` — get one at <https://chat.merkium.nl>
-- Callable ids: `ganymede-1.1`, `pluto-1.2-flash`, `pluto-1.2-pro`, `ceres-1.0`, `ceres-1.0-pro`, `pluto-1.1-flash`, `pluto-1.1-pro`
+- Callable ids: `ceres-1.0`, `ceres-1.0-pro`, `ganymede-1.1`, `pluto-1.1-flash`, `pluto-1.1-pro`, `pluto-1.2-flash`, `pluto-1.2-pro`
 - Note: Create a key in the Console API tab. Set the OpenAI-compatible base URL verbatim; use /chat/completions for chat, streaming and tool calls. Model listing also requires the key.
 
 Try it from your terminal with your key in `MERKIUM_API_KEY` — it goes from your machine to the vendor and nowhere else:

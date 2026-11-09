@@ -11,7 +11,8 @@ on:
   push:
     branches: [main]
     # Every file the site publishes: layout.MAP's lines marked `published`, and
-    # no other. tests/test_layout.py holds the two lists to one.
+    # no other. freetier-render generates this projection; tests/test_layout.py
+    # independently checks the filter against the map.
     paths:
       - "registry.yaml"
       - "watchlist.yaml"
@@ -37,6 +38,7 @@ on:
       - "assets/*.svg"
       - "assets/*.png"
       - "assets/*.js"
+      - "assets/*.css"
       - "eb68c254f1e03877b906ccc800002691.txt"
       - "CONTRIBUTING.md"
       - "LICENSE"

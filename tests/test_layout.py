@@ -96,7 +96,7 @@ def test_the_map_calls_generated_exactly_what_the_render_writes(tmp_path):
     generated = {f for f in tracked_files(ROOT) if node_for(f).kind is Kind.GENERATED}
     assert generated <= written, generated - written
     # CONTRIBUTING.md is written by hand, all but the map section the render prints
-    assert {f for f in written if node_for(f).kind is not Kind.GENERATED} == {"CONTRIBUTING.md"}
+    assert {f for f in written if node_for(f).kind is not Kind.GENERATED} == {"CONTRIBUTING.md", ".github/workflows/indexnow.yml"}
 
 
 def test_the_scheduled_run_commits_every_file_it_writes():
@@ -260,6 +260,19 @@ def test_the_indexnow_ping_fires_on_every_file_the_site_publishes():
     on = workflow.get("on", workflow.get(True))  # YAML 1.1 reads the key `on` as true
     assert on["push"]["branches"] == ["main"]
     assert on["push"]["paths"] == [n.path for n in MAP if n.published]
+
+
+def test_publication_filter_writer_tracks_new_map_entries_and_preserves_the_job(tmp_path, monkeypatch):
+    from freetier_radar import render
+    source = ROOT / ".github/workflows/indexnow.yml"
+    before = yaml.safe_load(source.read_text())
+    monkeypatch.setattr(render, "MAP", (*MAP, Node("new-published.html", Kind.PAGE, "a new page", published=True)))
+    text = render.render_indexnow_filter(source, tmp_path / "indexnow.yml")
+    after = yaml.safe_load(text)
+    assert after[True]["push"]["paths"][-1] == "new-published.html"
+    after[True]["push"]["paths"] = before[True]["push"]["paths"]
+    assert after == before
+    assert "on:\n" in text
 
 
 def test_the_published_pages_are_kept():

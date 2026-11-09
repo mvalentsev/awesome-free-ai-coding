@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Z.ai (Zhipu GLM) free tier: limits, free models, verified 2026-11-09'
-description: 'GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4). Free models: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash. GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows'' limited-time-free cached-storage column…'
+description: 'GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4). Free models: glm-4.5-flash, glm-4.6v-flash, glm-4.7-flash. GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows'' limited-time-free cached-storage column…'
 permalink: /providers/zai-glm/
 last_modified_at: 2026-11-09
 crumb: Z.ai (Zhipu GLM)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 ## Free models
 
-[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), `glm-4.5-flash`, [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/)
+<span data-model-sort-inline><span data-model-family="glm-4.5-flash">`glm-4.5-flash`</span>, <span data-model-family="glm-4.6v-flash">[`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/)</span>, <span data-model-family="glm-4.7-flash">[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “For enterpr
 - Base URL: `https://api.z.ai/api/paas/v4`
 - Key: `ZAI_GLM_API_KEY` — get one at <https://z.ai/manage-apikey/apikey-list>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.z.ai/api/anthropic`
-- Callable ids: `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash`
+- Callable ids: `glm-4.5-flash`, `glm-4.6v-flash`, `glm-4.7-flash`
 - Note: the ids are the chat completion reference's own, where glm-4.7-flash and glm-4.5-flash sit in its model enum; Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with "your_zai_api_key" as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the free Flash ids answer on that route is not stated, and the route answers 401 keyless (2026-09-05)
 
 Try it from your terminal with your key in `ZAI_GLM_API_KEY` — it goes from your machine to the vendor and nowhere else:

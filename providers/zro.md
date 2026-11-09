@@ -39,7 +39,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 - Base URL: `https://zro.moonmath.ai/v1`
 - Key: `ZRO_API_KEY` — get one at <https://zro.moonmath.ai/get-started?plan=free>
-- Callable ids: `glm-5.3-flash`, `deepseek-v4.1-flash`
+- Callable ids: `deepseek-v4.1-flash`, `glm-5.3-flash`
 - Note: Create an account and API key for the Free plan and select either listed Flash ID. Other models and auto routing use metered rates. The vendor documents Chat Completions, Responses and Messages; these configurations use Chat Completions. Authenticated generation and Free activation have not been checked here.
 
 Try it from your terminal with your key in `ZRO_API_KEY` — it goes from your machine to the vendor and nowhere else:

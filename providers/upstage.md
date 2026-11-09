@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-11-09'
-description: Upstage Solar LLM API; $10 free credit on signup, no card. See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
+description: Upstage Solar LLM API with free signup credit, no card. See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
 permalink: /providers/upstage/
 last_modified_at: 2026-11-09
 crumb: Upstage (Solar API)
@@ -15,7 +15,7 @@ crumb: Upstage (Solar API)
 
 ## What you get
 
-Upstage Solar LLM API; $10 free credit on signup, no card
+Upstage Solar LLM API with free signup credit, no card
 
 ## Free models
 
@@ -39,7 +39,7 @@ What you send is not used to train models. In the vendor's words: “The Company
 
 - Base URL: `https://api.upstage.ai/v1`
 - Key: `UPSTAGE_API_KEY` — get one at <https://console.upstage.ai/api-keys>
-- Callable ids: `solar-pro4`, `solar-mini4`
+- Callable ids: `solar-mini4`, `solar-pro4`
 
 Try it from your terminal with your key in `UPSTAGE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

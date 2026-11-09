@@ -39,7 +39,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 - Base URL: `https://api.sailresearch.com/v1`
 - Key: `SAIL_RESEARCH_API_KEY` — get one at <https://app.sailresearch.com>
-- Callable ids: `moonshotai/Kimi-K3`, `zai-org/GLM-5.3`, `deepseek-ai/DeepSeek-V4-Pro-0813`, `zai-org/GLM-5.3-Flash`, `deepseek-ai/DeepSeek-V4-Flash-0731`
+- Callable ids: `deepseek-ai/DeepSeek-V4-Flash-0731`, `deepseek-ai/DeepSeek-V4-Pro-0813`, `moonshotai/Kimi-K3`, `zai-org/GLM-5.3`, `zai-org/GLM-5.3-Flash`
 - Note: Select an ID from the current models page and confirm availability with authenticated /v1/models. The vendor documents Responses, Chat Completions and Messages APIs. A balanced or flex completion window trades latency for lower token prices; some models are flex-only. The listed examples use the default window.
 
 Try it from your terminal with your key in `SAIL_RESEARCH_API_KEY` — it goes from your machine to the vendor and nowhere else:

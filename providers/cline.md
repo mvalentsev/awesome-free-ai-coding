@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Cline free tier: limits, free models, verified 2026-11-09'
-description: 'Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: solar-mini-4…'
+description: 'Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: nemotron-3.5-super-vl-120b-a12b…'
 permalink: /providers/cline/
 last_modified_at: 2026-11-09
 crumb: Cline
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 
 ## Free models
 
-[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -38,7 +39,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/solar-mini4`, `cline-free/nemotron-3.5-super-vl`, `reflection/beam-free`, `nvidia/nemotron-3.5-lightning-free`
+- In Cline's own model list: `cline-free/nemotron-3.5-super-vl`, `reflection/beam-free`, `nvidia/nemotron-3.5-lightning-free`, `cline-free/solar-mini4`
 
 ## Evidence
 

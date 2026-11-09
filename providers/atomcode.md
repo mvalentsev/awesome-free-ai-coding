@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'AtomCode free tier: limits, free models, verified 2026-11-09'
-description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash, qwen3-vl-8b-instruct, glm-5.2…'
+description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash, glm-5.2, qwen3-vl-8b-instruct…'
 permalink: /providers/atomcode/
 last_modified_at: 2026-11-09
 crumb: AtomCode
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Open-source terminal coding agent from AtomGit, the code host run by CSDN and th
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), `qwen3-vl-8b-instruct`, [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/)
+<span data-model-sort-inline><span data-model-family="deepseek-v4-flash">[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)</span>, <span data-model-family="glm-5.2">[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/)</span>, <span data-model-family="qwen3-vl-8b-instruct">`qwen3-vl-8b-instruct`</span></span>
 
 ## Limits, in the vendor's words
 

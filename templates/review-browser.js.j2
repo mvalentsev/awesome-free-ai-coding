@@ -161,7 +161,7 @@ async (page) => {
           if((model.rows.length&&!text.includes(countText)) || (model.tier&&!text.includes(model.tier))) throw Error('Model count/tier: '+model.family);
           if(await body.locator('h3').count()!==model.rows.length) throw Error('Model headings count: '+model.family);
           await folds(body);
-          if(width===375&&scheme==='light'&&model===plan.models[0]) await page.screenshot({path:plan.output.replace('.json','-mobile.png'),fullPage:true});
+          if(width===375&&scheme==='light'&&model.family===plan.representative_models[0]) await page.screenshot({path:plan.output.replace('.json','-mobile.png'),fullPage:true});
           await record(prefix+'model/'+model.family);
           for(const id of model.rows.filter(id=>plan.links.some(link=>link[0]===id&&link[1]===model.family))) {
             await body.locator('h3 a[href$="/providers/'+id+'/"]').click();
@@ -229,6 +229,51 @@ async (page) => {
             for(const id of row.api?.model_ids||[]) if(!text.includes(id)) throw Error('Provider API id: '+row.id+' '+id);
           }
           await record(prefix+'provider/'+row.id);
+        }
+        for(const kind of ['home','index','provider','browse']) {
+          const id=prefix+'model-sort/'+kind;
+          if(!selected.has(id)) continue;
+          const row=plan.sort_row;
+          const url=kind==='home'?plan.site+'?review='+plan.sha+'#model-index':
+            kind==='index'?plan.site+'models/?review='+plan.sha:
+            kind==='provider'?row.page+'?review='+plan.sha:
+            plan.site+'browse.html?q='+encodeURIComponent(row.id)+'&nocard=1';
+          await go(url);
+          const control=page.getByLabel(plan.model_sort.label).first();
+          await control.waitFor();
+          const read=async()=>{
+            if(kind==='home') return await page.locator('#model-index tr[data-family]').evaluateAll(items=>items.map(item=>item.dataset.family));
+            if(kind==='index') return await page.locator('.markdown-body table').first().locator('tbody tr').evaluateAll(items=>items.map(item=>item.querySelector('code')?.textContent.trim()).filter(Boolean));
+            if(kind==='provider') return await page.locator('[data-model-sort-inline] > [data-model-family]').evaluateAll(items=>items.map(item=>item.dataset.modelFamily));
+            const offer=page.locator('#rows tr').filter({has:page.locator('a[href$="/providers/'+row.id+'/"]')});
+            return await offer.locator('td.models .fam').evaluateAll(items=>items.map(item=>item.querySelector('a > span, span')?.textContent));
+          };
+          await control.selectOption('score');
+          const initial=await read(), before=new URL(page.url());
+          if(initial.length<plan.model_sort.minimum) throw Error('No sortable content: '+kind);
+          const names=new Intl.Collator('en',{numeric:true,sensitivity:'base'});
+          const counts=Object.fromEntries(plan.models_catalog.map(model=>[model.family,model.rows.length]));
+          const expectedName=initial.slice().sort(names.compare);
+          await control.selectOption('name');
+          if(JSON.stringify(await read())!==JSON.stringify(expectedName)) throw Error('Model name sort: '+kind);
+          await control.selectOption('providers');
+          const expectedProviders=initial.slice().sort((a,b)=>(counts[b]||0)-(counts[a]||0)||names.compare(a,b));
+          if(JSON.stringify(await read())!==JSON.stringify(expectedProviders)) throw Error('Provider count sort: '+kind);
+          for(const key of ['q','cat','client','where','nocard','compare']) if(new URL(page.url()).searchParams.get(key)!==before.searchParams.get(key)) throw Error('Sort lost filter: '+key);
+          await page.goBack();
+          await page.waitForFunction(()=>document.querySelector('select[aria-label="Model order"]')?.value==='name');
+          if(JSON.stringify(await read())!==JSON.stringify(expectedName)) throw Error('Sort history: '+kind);
+          await page.goForward();
+          await page.waitForFunction(()=>document.querySelector('select[aria-label="Model order"]')?.value==='providers');
+          if(JSON.stringify(await read())!==JSON.stringify(expectedProviders)) throw Error('Sort forward history: '+kind);
+          await page.goBack();
+          await page.waitForFunction(()=>document.querySelector('select[aria-label="Model order"]')?.value==='name');
+          await page.reload({waitUntil:'domcontentloaded'});
+          await control.waitFor();
+          if(await control.inputValue()!=='name'||JSON.stringify(await read())!==JSON.stringify(expectedName)) throw Error('Sort reload: '+kind);
+          await control.selectOption('score');
+          if(JSON.stringify(await read())!==JSON.stringify(initial)) throw Error('Default order not restored: '+kind);
+          await record(id,{models:initial.length});
         }
         if(width!==320&&(selected.has(prefix+'readme')||plan.readme_images.some((_,i)=>selected.has(prefix+'readme-image/'+i)))) {
           await go(plan.repository+'?review='+plan.sha);

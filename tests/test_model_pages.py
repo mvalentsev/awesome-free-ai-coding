@@ -10,6 +10,7 @@ the links from every page that names the model.
 """
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+import re
 
 import pytest
 import yaml
@@ -245,7 +246,8 @@ def test_a_model_page_says_how_to_connect_in_the_row_pages_own_lines():
     assert len(lines(connect)) == 5
     assert lines(block) == lines(connect)
     assert "- Callable ids: `qwen/qwen3.8-27b`" in block
-    assert "- Callable ids: `qwen/qwen3.8-27b`, `openai/gpt-oss-120b`" in connect
+    ids_line = next(line for line in connect.splitlines() if line.startswith("- Callable ids:"))
+    assert set(re.findall(r"`([^`]+)`", ids_line)) == {"qwen/qwen3.8-27b", "openai/gpt-oss-120b"}
 
 
 def test_a_lane_served_inside_its_client_names_the_ids_to_pick_there():
@@ -258,8 +260,9 @@ def test_a_lane_served_inside_its_client_names_the_ids_to_pick_there():
                  probe={"type": "api-models", "endpoint": "https://api.cline.bot/models",
                         "lane": "free"})
     row_page = build_provider_page(cline, [], TODAY)
-    assert ("- In Cline's own model list: `cline-free/muse-spark-1.3-contributor`, "
-            "`cline-free/glm-5.3-flash`") in row_page
+    ids_line = next(line for line in row_page.splitlines() if line.startswith("- In Cline's own model list:"))
+    assert set(re.findall(r"`([^`]+)`", ids_line)) == {
+        "cline-free/muse-spark-1.3-contributor", "cline-free/glm-5.3-flash"}
     model = build_model_page("glm-5.3-flash", [cline, keyless(models=[{"family": "glm-5.3-flash"}])],
                              [], TODAY)
     assert "- In Cline's own model list: `cline-free/glm-5.3-flash`\n" in model
@@ -353,7 +356,9 @@ def test_the_pages_that_name_a_model_link_its_page(tmp_path):
     assert f'<a href="{PAGES_URL}/models/glm-5.3/"><code>glm-5.3</code></a>' in html
     assert "<th scope=\"row\"><code>solo</code></th>" in html
     page = build_provider_page(entries[0], [], TODAY, registry=entries)
-    assert f"[`glm-5.3`]({PAGES_URL}/models/glm-5.3/), `solo`" in page
+    families = page.split("## Free models")[1].split("\n## ")[0]
+    assert f"[`glm-5.3`]({PAGES_URL}/models/glm-5.3/)" in families
+    assert "`solo`" in families
     ctx = build_context(entries, TODAY)
     assert ctx["model_index"][0]["page"] == model_page_url("glm-5.3")
 

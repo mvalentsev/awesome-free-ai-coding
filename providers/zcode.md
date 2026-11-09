@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-11-09'
-description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5-turbo, glm-5.3-flash. Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel…'
+description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5.3-flash, glm-5-turbo. Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel…'
 permalink: /providers/zcode/
 last_modified_at: 2026-11-09
 crumb: ZCode (Z.ai)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Z.ai's desktop coding agent, free as an app, with five days of its GLM models fo
 
 ## Free models
 
-[`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/), [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)
+<span data-model-sort-inline><span data-model-family="glm-5.3">[`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/)</span>, <span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="glm-5-turbo">[`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)</span></span>
 
 ## Limits, in the vendor's words
 

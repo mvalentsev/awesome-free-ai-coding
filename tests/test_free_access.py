@@ -229,7 +229,7 @@ def test_compact_list_labels_keep_payment_and_fee_with_full_details_on_the_page(
     row = entry(api={"base_url": "https://vendor.example/v1", "model_ids": ["steady", "preview"],
                      "model_access": {"preview": {**PAID, "topup_fee_percent": 8}}})
     rendered = next(r for s in build_site_context([row], DAY)["sections"] for r in s["rows"])
-    label = rendered["models"][1]["access"]
+    label = next(model["access"] for model in rendered["models"] if model["family"] == "preview")
     assert label == "requires $5 top-up + 8% fee; until 2026-10-06"
     assert build_index([row], DAY)["entries"][0]["access_labels"]["models"]["preview"] == label
     assert access_words(row.api.model_access["preview"]) == (

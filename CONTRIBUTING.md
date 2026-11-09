@@ -173,7 +173,15 @@ The first four no-card agents are also the top of the README, with the models
 they hand you, the strongest first, so this ordering is the page's answer to
 "what do I use, then?"
 Nothing about it is typed by hand: change `rank` and both the section and that
-block follow. The "pick by what you need" table under it is the same ordering
+block follow. Matching Intelligence Index scores come first, highest first;
+unavailable scores use the retained tier, then natural model-name order.
+Only the reviewed benchmark variant supplies a score. The same rule applies
+before short lists are truncated and to provider pages and the model index.
+Pages model orders are `score`, `name` or `providers`: Intelligence Index,
+natural name or number of free providers. The choice is shared across the model index, provider pages and
+Browse, kept in the URL and restored during navigation.
+Provider ordering remains `rank` within each section.
+The "pick by what you need" table under it is the same ordering
 read three names deep per section, card-required rows left out; its frontier
 line is the one answer that crosses sections, and it is ordered by how many
 families a row marks `tier: frontier`, then by `rank` — so a tier is a claim
@@ -1022,8 +1030,7 @@ current measured scores come first, highest first, independently of a Strong mar
 The comparison axis starts at 0 and scales to the free models, with labelled,
 equally spaced ticks and a round upper bound. Both widths use the same scale;
 the global index leader is named separately as a reference. The README folds
-who serves each model under it in the chart's order. Without measurements it lists the most widely served
-families. The graph names the index revision and read date; unavailable scores
+who serves each model under it in the chart's order. Without measurements it follows the same retained-tier and model-name order. The graph names the index revision and read date; unavailable scores
 do not become zeros. Every family and everyone who serves it free is in the site's model index, which grows
 with the families rather than the rows — 70 in 7 KB on 2026-09-20, 149 in 18.7 KB on
 09-25 — and left the README that day. `README_BUDGET` in `render.py` is the ceiling, and a test
@@ -1187,7 +1194,8 @@ cannot print two versions of it.
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
-| `assets/*.js` | **page** — shared browser query and model-name matching | — | `hand` |
+| `assets/*.js` | **page** — shared browser search, model matching and sorting | — | `hand` |
+| `assets/*.css` | **page** — shared model sorting controls | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
@@ -1205,7 +1213,12 @@ cannot print two versions of it.
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
-| `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page, the IndexNow ping on a push and the conformance run of LiteLLM and Codex CLI on the configs · not on the site | — | `hand` |
+| `.github/workflows/indexnow.yml` | **config** — IndexNow after publication; its push filter is generated from the published map · not on the site | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
+| `.github/workflows/ci.yml` | **config** — registry, generated output and package compatibility checks · not on the site | — | `hand` |
+| `.github/workflows/conformance.yml` | **config** — client compatibility on the generated configs · not on the site | — | `hand` |
+| `.github/workflows/expire.yml` | **config** — publish only model promotions whose deadlines have passed · not on the site | — | `hand` |
+| `.github/workflows/read-page.yml` | **config** — read primary pages with the project HTTP client · not on the site | — | `hand` |
+| `.github/workflows/update.yml` | **config** — scheduled verification, model measurements and scouting · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the watcher of the pinned actions and of uv.lock · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
 
@@ -1262,6 +1275,11 @@ uv run freetier-bars              # which ids a free lane has carried two weeks 
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
 
+`freetier-render` also generates the registered numerical rule values in this
+guide from their code constants. Other assertions remain checked by `claims.py`;
+missing or reworded registered sentences still fail validation. Vendor quotes
+and historical observations retain their original values and dates.
+
 `freetier-review --out <private-directory>` collects evidence for a review.
 Use a git-ignored directory or one outside the repository. Run its phases in
 order: `prepare --base <commit> --head <commit>`, `sources`, `judgment`, `publication`,
@@ -1285,6 +1303,12 @@ changed in an existing evidence directory or combined with `--verification-run`.
 `client --client <opencode|codex> --binary <path> --provider <id> --model <id>`
 checks a real keyless lane in an isolated home using the committed configuration,
 a fresh file, a completed tool read and its final answer. Every attempt is kept.
+The browser plan checks each changed page's content once. Shared layout,
+themes and desktop/mobile widths use representative providers and models,
+including archived, folded and empty states where affected. README images still
+exercise their wide/narrow and light/dark variants. The plan records each case's
+purpose and its representatives; the importer still requires the complete plan.
+
 The report covers collected evidence; source reads and quote matches still need
 vendor judgment, affected API lanes still need controls, and the full diff still
 needs independent review. The hooks below remain mandatory.

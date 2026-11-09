@@ -21,7 +21,7 @@ crumb: laguna-s-2.1
 
 🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-09 · listed since 2026-08-14
 
-OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes
+OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>

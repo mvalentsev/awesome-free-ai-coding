@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-09'
-description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, qwen3.8-max. Free chat rows can be called on a new…'
+description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, agnes-2.5-flash, agnes-3.0-flash, qwen3.8-max. Free chat rows can be called on a new…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-11-09
 crumb: LLMTR
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/), [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) (until 2026-11-13)
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="agnes-2.5-flash">[`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)</span>, <span data-model-family="agnes-3.0-flash">[`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</span>, <span data-model-family="qwen3.8-max">[`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) (until 2026-11-13)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -47,10 +48,10 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `nvidia/nemotron-3.5-super-vl-free`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`, `qwen/qwen3.8-max-free`
+- Callable ids: `qwen/qwen3.8-27b-free`, `nvidia/nemotron-3.5-super-vl-free`, `nvidia/nemotron-3-ultra-550b-a55b`, `agnes/agnes-2.5-flash`, `agnes/agnes-3.0-flash`, `qwen/qwen3.8-max-free`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
+- `qwen/qwen3.8-max-free`: free until 2026-11-13 03:00+03:00 ([conditions](https://llmtr.com/models/qwen/qwen3.8-max-free))
 - `liquid/lfm3-1.7b-free`: free until 2026-12-30 23:59+03:00 ([conditions](https://llmtr.com/models/liquid/lfm3-1.7b-free))
 - `parallel/parallel-free`: free until 2027-01-04 23:59+03:00 ([conditions](https://llmtr.com/models/parallel/parallel-free))
-- `qwen/qwen3.8-max-free`: free until 2026-11-13 03:00+03:00 ([conditions](https://llmtr.com/models/qwen/qwen3.8-max-free))
 - Note: New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:

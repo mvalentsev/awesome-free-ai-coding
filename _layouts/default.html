@@ -17,6 +17,7 @@
     {% seo title=false %}
     <link rel="icon" type="image/svg+xml" href="{{ "/assets/favicon.svg" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% if page.model_sort %}<link rel="stylesheet" href="{{ "/assets/model-sort.css" | relative_url }}">{% endif %}
     <style>
       .markdown-body :not(pre) > code { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
       .markdown-body td code { white-space: nowrap; }
@@ -70,5 +71,9 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
+    {% if page.model_sort %}
+    <script src="{{ "/assets/model-sort.js" | relative_url }}"></script>
+    <script>FreeTierModelSort.mountDocument({{ "/index.json" | relative_url | jsonify }}, {{ page.sortable_model_index | default: false | jsonify }});</script>
+    {% endif %}
   </body>
 </html>

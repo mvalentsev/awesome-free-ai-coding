@@ -37,7 +37,7 @@ The vendor names no country it keeps the offer from ([source](https://kiosapi.id
 
 - Base URL: `https://api.kiosapi.id/v1`
 - Key: `KIOSAPI_ID_API_KEY` — get one at <https://kiosapi.id/dashboard/keys>
-- Callable ids: `zai/glm-4.7-flash`, `qwen/qwen3-30b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `aisingapore/sea-lion-27b`
+- Callable ids: `aisingapore/sea-lion-27b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `qwen/qwen3-30b`, `zai/glm-4.7-flash`
 - Note: Use a live key. Test keys return fixed mock responses without calling a model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions is separate. The public catalog marks function tools available on GLM, Qwen and Gemma, but not Llama or SEA-LION.
 
 Try it from your terminal with your key in `KIOSAPI_ID_API_KEY` — it goes from your machine to the vendor and nowhere else:

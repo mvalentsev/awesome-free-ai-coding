@@ -40,7 +40,7 @@ Offered only in mainland China ([source](https://help.aliyun.com/zh/account/veri
 - Base URL: `https://api-inference.modelscope.cn/v1`
 - Key: `MODELSCOPE_API_KEY` — get one at <https://modelscope.cn/my/myaccesstoken>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api-inference.modelscope.cn`
-- Callable ids: `deepseek-ai/DeepSeek-V4.1-Flash`, `deepseek-ai/DeepSeek-V4-Pro`, `ZhipuAI/GLM-5.2`, `MiniMax/MiniMax-M3`, `Qwen/Qwen3.8-27B`, `Qwen/Qwen3.8-Flash-Next`, `stepfun-ai/Step-3.7-Flash`, `Qwen/Qwen3.5-397B-A17B`, `nex-agi/Nex-N2.5-Pro`, `deepseek-ai/DeepSeek-V4-Flash-0731`, `ZhipuAI/GLM-4.7-Flash`
+- Callable ids: `deepseek-ai/DeepSeek-V4-Flash-0731`, `deepseek-ai/DeepSeek-V4-Pro`, `deepseek-ai/DeepSeek-V4.1-Flash`, `MiniMax/MiniMax-M3`, `nex-agi/Nex-N2.5-Pro`, `Qwen/Qwen3.5-397B-A17B`, `Qwen/Qwen3.8-27B`, `Qwen/Qwen3.8-Flash-Next`, `stepfun-ai/Step-3.7-Flash`, `ZhipuAI/GLM-4.7-Flash`, `ZhipuAI/GLM-5.2`
 - Note: the key is a ModelScope access token, and it calls only once the account is bound to an Alibaba Cloud account that has passed real-name verification. The ids are the coding-capable rows of the keyless catalog; the Anthropic-format route is in beta
 
 Try it from your terminal with your key in `MODELSCOPE_API_KEY` — it goes from your machine to the vendor and nowhere else:

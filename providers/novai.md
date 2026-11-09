@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'NovAI free tier: limits, free models, verified 2026-11-09'
-description: 'Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. Free models: glm-4.7-flash, glm-4.6v-flash, glm-4.1v-thinking-flash. The daily allowance is shared across free chat, image and video models; media keep separate…'
+description: 'Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit. Free models: glm-4.1v-thinking-flash, glm-4.6v-flash, glm-4.7-flash. The daily allowance is shared across free chat, image and video models; media keep separate…'
 permalink: /providers/novai/
 last_modified_at: 2026-11-09
 crumb: NovAI
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected 
 
 ## Free models
 
-[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/), `glm-4.1v-thinking-flash`
+<span data-model-sort-inline><span data-model-family="glm-4.1v-thinking-flash">`glm-4.1v-thinking-flash`</span>, <span data-model-family="glm-4.6v-flash">[`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/)</span>, <span data-model-family="glm-4.7-flash">[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -41,7 +42,7 @@ The vendor names no country it keeps the offer from ([source](https://aiapi-pro.
 
 - Base URL: `https://aiapi-pro.com/v1`
 - Key: `NOVAI_API_KEY` — get one at <https://aiapi-pro.com/register.html>
-- Callable ids: `glm-4.7-flash`, `glm-4.6v-flash`, `glm-4.1v-thinking-flash`
+- Callable ids: `glm-4.1v-thinking-flash`, `glm-4.6v-flash`, `glm-4.7-flash`
 - Note: Use a NovAI API key and an exact chat model ID. GLM-4.7-Flash documents OpenAI-compatible function calling and coding-agent setup. CogView and CogVideo are media generators, separate from the chat configurations.
 
 Try it from your terminal with your key in `NOVAI_API_KEY` — it goes from your machine to the vendor and nowhere else:

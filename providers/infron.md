@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://llm.onerouter.pro/v1`
 - Key: `INFRON_API_KEY` — get one at <https://infron.ai/dashboard/apiKeys>
-- Callable ids: `qwen/qwen3.8-27b:free`, `qwen/qwen3.8-27b-abliterated-cyber:free`, `internlm/atria-dawn-preview:free`, `apodex/apodex-1.1-mini:free`
+- Callable ids: `apodex/apodex-1.1-mini:free`, `internlm/atria-dawn-preview:free`, `qwen/qwen3.8-27b-abliterated-cyber:free`, `qwen/qwen3.8-27b:free`
 - Note: Use exact :free IDs with an Infron account key; the OneRouter API domain is documented by Infron. Their daily request pool is shared, and the required balance is held rather than spent on free calls. Catalog availability is public; authenticated generation and account eligibility have not been checked here.
 
 Try it from your terminal with your key in `INFRON_API_KEY` — it goes from your machine to the vendor and nowhere else:

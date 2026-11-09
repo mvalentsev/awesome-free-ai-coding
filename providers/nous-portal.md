@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-11-09'
-description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: step-3.7-flash, solar-mini-4, beam-1.0. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a…'
+description: 'Nous Research''s inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent. Free models: beam-1.0, solar-mini-4, step-3.7-flash. Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. Use a…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-11-09
 crumb: Nous Portal (Hermes Agent)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ## Free models
 
-[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)
+<span data-model-sort-inline><span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="step-3.7-flash">[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -39,7 +40,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `upstage/solar-mini4:free`, `reflection/beam-1.0-501b-a23b:free`, `meituan/longcat-2.5:free`
+- Callable ids: `reflection/beam-1.0-501b-a23b:free`, `upstage/solar-mini4:free`, `stepfun/step-3.7-flash:free`, `meituan/longcat-2.5:free`
 - Note: Select a :free model and use your Nous Portal key; paid variants are outside the free plan. Beam has a 262K context and always reasons; its default effort is medium.
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:

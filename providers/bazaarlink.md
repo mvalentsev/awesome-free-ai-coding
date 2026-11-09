@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: deepseek-v4-flash, nemotron-3.5-lightning. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency…'
+description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: nemotron-3.5-lightning, deepseek-v4-flash. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency…'
 permalink: /providers/bazaarlink/
 last_modified_at: 2026-11-09
 crumb: BazaarLink
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 
 ## Free models
 
-[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="deepseek-v4-flash">[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -43,7 +44,7 @@ The vendor names no country it keeps the offer from ([source](https://bazaarlink
 
 - Base URL: `https://api.bazaarlink.ai/v1`
 - Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
-- Callable ids: `deepseek/deepseek-v4-flash-0731free:free`, `auto:free`, `nvidia/nemotron-3.5-lightning-free:free`, `reflection/beam-free:free`, `stealth/glyph-cluster:free`, `qwen/qwen3.7-flash:free`
+- Callable ids: `nvidia/nemotron-3.5-lightning-free:free`, `deepseek/deepseek-v4-flash-0731free:free`, `auto:free`, `qwen/qwen3.7-flash:free`, `reflection/beam-free:free`, `stealth/glyph-cluster:free`
 - Note: The listed :free routes use the shared free allowance. auto:free selects a free model and can use paid routing on a funded account "unless paid fallback is disabled". Glyph Cluster is a stealth model with an undisclosed identity.
 
 Try it from your terminal with your key in `BAZAARLINK_API_KEY` — it goes from your machine to the vendor and nowhere else:

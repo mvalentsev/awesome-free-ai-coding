@@ -288,7 +288,7 @@ Step = tuple[str, Callable[[Path], str]]
 CHECKS: list[Step] = [
     ("freetier-check", lambda snap: _run(snap, *_command("validate", "--root", "."))),
     ("freetier-render --check", lambda snap: _run(snap, *_command("render", "--check"))),
-    ("pytest", lambda snap: _run(snap, "-m", "pytest", "-q", "-p", "no:cacheprovider", "-x")),
+    ("pytest", lambda snap: _run(snap, "-m", "pytest", "-q", "-p", "no:cacheprovider")),
 ]
 
 

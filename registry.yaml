@@ -2175,7 +2175,7 @@ entries:
   - https://console.upstage.ai/docs/getting-started
   - https://console.upstage.ai/
   card_required: false
-  offering: Upstage Solar LLM API; $10 free credit on signup, no card
+  offering: Upstage Solar LLM API with free signup credit, no card
   limits: See the console for credit validity. After the signup credit is spent, continue
     with prepaid credit or pay-as-you-go billing.
   quotas:
@@ -2564,7 +2564,7 @@ entries:
   - https://ampersand.humansand.ai/terms
   - https://ampersand.humansand.ai/privacy
   card_required: true
-  offering: OpenAI-compatible model gateway with $5 of monthly credit after adding
+  offering: OpenAI-compatible model gateway with recurring free credit after adding
     a payment method, plus separate zero-priced model routes
   limits: 'A team must add a valid payment method before using free credit; otherwise
     requests return `403 customer_verification_required`. Credit spends at provider
@@ -11377,7 +11377,7 @@ entries:
   - https://www.mixedbread.com/pages/privacy
   card_required: false
   offering: OpenAI-compatible API for the Toast 1 knowledge and search model, with
-    $5 in one-time Starter credits and no card required
+    one-time Starter credit and no card required
   limits: Create an account and an API key; a restricted key needs the Completions
     scope. Starter credits do not renew, and their expiry is not published. They fund
     usage at the standard rates; hosted searches and data storage have separate charges

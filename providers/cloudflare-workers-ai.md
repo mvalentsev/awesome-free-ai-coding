@@ -41,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 
 - Base URL: `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1`
 - Key: `CLOUDFLARE_WORKERS_AI_API_KEY` — get one at <https://dash.cloudflare.com/profile/api-tokens>
-- Callable ids: `@cf/qwen/qwen3.8-27b`, `@cf/meta/llama-4-scout-17b-16e-instruct`
+- Callable ids: `@cf/meta/llama-4-scout-17b-16e-instruct`, `@cf/qwen/qwen3.8-27b`
 - Note: substitute {account_id} with your Cloudflare account ID
 
 Try it from your terminal with your key in `CLOUDFLARE_WORKERS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:

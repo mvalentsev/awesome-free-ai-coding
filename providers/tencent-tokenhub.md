@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “不会，�
 - Base URL: `https://tokenhub.tencentmaas.com/v1`
 - Key: `TENCENT_TOKENHUB_API_KEY` — get one at <https://console.cloud.tencent.com/tokenhub/apikey>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenhub.tencentmaas.com`
-- Callable ids: `kimi-k3`, `glm-5.3`, `hy3`, `minimax-m3`
+- Callable ids: `glm-5.3`, `hy3`, `kimi-k3`, `minimax-m3`
 - Note: Use the IDs in the models page's 调用参数 column; /v1/models requires a key. For Claude Code, set ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com and ANTHROPIC_MODEL=hy3.
 
 Try it from your terminal with your key in `TENCENT_TOKENHUB_API_KEY` — it goes from your machine to the vendor and nowhere else:

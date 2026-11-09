@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Hetzner Inference API free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.6, qwen3.8-27b. Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a…'
+description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.8-27b, qwen3.6. Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a…'
 permalink: /providers/hetzner-inference/
 last_modified_at: 2026-11-09
 crumb: Hetzner Inference API
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 ## Free models
 
-[`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="qwen3.6">[`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -39,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Prompts and
 
 - Base URL: `https://inference.hetzner.com/api/v1`
 - Key: `HETZNER_INFERENCE_API_KEY` — get one at <https://experiments.hetzner.com/inference>
-- Callable ids: `Qwen/Qwen3.6-35B-A3B-FP8`, `Qwen3.8-27B`
+- Callable ids: `Qwen3.8-27B`, `Qwen/Qwen3.6-35B-A3B-FP8`
 - Note: both ids are 262K-context and take text and images; /v1/models, /v1/completions and /v1/chat/completions are the whole surface. The key is minted in the Inference tab of experiments.hetzner.com, which is a client-rendered page behind a Hetzner login — the readable copy of the terms is the docs page this row probes
 
 Try it from your terminal with your key in `HETZNER_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:

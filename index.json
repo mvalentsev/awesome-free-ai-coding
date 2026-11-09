@@ -1,6 +1,26 @@
 {
   "generated": "2026-11-09",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
+  "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
+  "model_sort": {
+    "label": "Model order",
+    "default": "score",
+    "minimum": 2,
+    "options": [
+      {
+        "id": "score",
+        "label": "Intelligence Index: highest first"
+      },
+      {
+        "id": "name",
+        "label": "Model name: A–Z"
+      },
+      {
+        "id": "providers",
+        "label": "Free providers: most first"
+      }
+    ]
+  },
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
     "yes": "What you send may be used to train or improve models.",
@@ -282,43 +302,43 @@
       "free_part": "models",
       "models": [
         {
-          "family": "nemotron-3-ultra",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
-          "family": "gemma-4-31b",
-          "aa_model": "gemma-4-31b"
-        },
-        {
-          "family": "gemma-4-26b-a4b",
-          "aa_model": "gemma-4-26b-a4b"
-        },
-        {
-          "family": "north-mini-code",
-          "aa_model": "north-mini-code"
-        },
-        {
-          "family": "nemotron-3.5-lightning",
-          "aa_model": "nemotron-3-5-lightning"
-        },
-        {
-          "family": "inkling",
-          "aa_model": "inkling"
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         },
         {
           "family": "inkling-small",
           "aa_model": "inkling-small"
         },
         {
+          "family": "inkling",
+          "aa_model": "inkling"
+        },
+        {
+          "family": "nemotron-3-ultra",
+          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "gemma-4-31b",
+          "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "north-mini-code",
+          "aa_model": "north-mini-code"
+        },
+        {
           "family": "dots-3-note"
+        },
+        {
+          "family": "gemma-4-26b-a4b",
+          "aa_model": "gemma-4-26b-a4b"
         },
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
-        },
-        {
-          "family": "nemotron-3.5-super-vl-120b-a12b",
-          "aa_model": "nemotron-3-5-super-vl"
         },
         {
           "family": "xing4.0-29b-a4b"
@@ -502,20 +522,20 @@
           "aa_model": "gemini-3-8-flash"
         },
         {
-          "family": "gemini-3.6-flash",
-          "aa_model": "gemini-3-6-flash"
-        },
-        {
           "family": "gemini-3.5-flash-lite",
           "aa_model": "gemini-3-5-flash-lite"
+        },
+        {
+          "family": "gemini-3-flash",
+          "aa_model": "gemini-3-flash"
         },
         {
           "family": "gemini-3.1-flash-lite",
           "aa_model": "gemini-3-1-flash-lite-preview"
         },
         {
-          "family": "gemini-3-flash",
-          "aa_model": "gemini-3-flash"
+          "family": "gemini-3.6-flash",
+          "aa_model": "gemini-3-6-flash"
         },
         {
           "family": "gemma-4"
@@ -1031,16 +1051,16 @@
       "free_part": "models",
       "models": [
         {
-          "family": "gpt-oss-120b",
-          "aa_model": "gpt-oss-120b"
+          "family": "qwen3.8-27b",
+          "aa_model": "qwen3-8-27b"
         },
         {
           "family": "gpt-oss-20b",
           "aa_model": "gpt-oss-20b"
         },
         {
-          "family": "qwen3.8-27b",
-          "aa_model": "qwen3-8-27b"
+          "family": "gpt-oss-120b",
+          "aa_model": "gpt-oss-120b"
         }
       ],
       "api": {
@@ -1539,7 +1559,18 @@
       "free_part": "models",
       "models": [
         {
-          "family": "big-pickle"
+          "family": "glm-5.3-flash",
+          "table_name": "GLM-5.3-Flash Free",
+          "aa_model": "glm-5-3-flash"
+        },
+        {
+          "family": "mimo-v2.6-flash",
+          "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "table_name": "Nemotron 3.5 Super VL Free",
+          "aa_model": "nemotron-3-5-super-vl"
         },
         {
           "family": "nemotron-3-ultra",
@@ -1550,23 +1581,12 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "mimo-v2.6-flash",
-          "aa_model": "mimo-v2-6-flash"
+          "family": "big-pickle"
         },
         {
           "family": "deepseek-v4.1-flash",
           "table_name": "DeepSeek V4.1 Flash Free",
           "aa_model": "deepseek-v4-1-flash"
-        },
-        {
-          "family": "glm-5.3-flash",
-          "table_name": "GLM-5.3-Flash Free",
-          "aa_model": "glm-5-3-flash"
-        },
-        {
-          "family": "nemotron-3.5-super-vl-120b-a12b",
-          "table_name": "Nemotron 3.5 Super VL Free",
-          "aa_model": "nemotron-3-5-super-vl"
         }
       ],
       "newcomers": [
@@ -1715,16 +1735,23 @@
       "free_part": "models",
       "models": [
         {
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
           "family": "nemotron-3-ultra",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "north-mini-code",
           "aa_model": "north-mini-code"
         },
         {
-          "family": "nemotron-3.5-lightning",
-          "aa_model": "nemotron-3-5-lightning"
+          "family": "beam-1.0"
         },
         {
           "family": "dots-3-note"
@@ -1734,14 +1761,7 @@
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
-          "family": "nemotron-3.5-super-vl-120b-a12b",
-          "aa_model": "nemotron-3-5-super-vl"
-        },
-        {
           "family": "xing4.0-29b-a4b"
-        },
-        {
-          "family": "beam-1.0"
         }
       ],
       "api": {
@@ -2335,11 +2355,11 @@
       "free_part": "models",
       "models": [
         {
-          "family": "swe-2-flash-medium",
-          "aa_auto": false
+          "family": "swe-1.6"
         },
         {
-          "family": "swe-1.6"
+          "family": "swe-2-flash-medium",
+          "aa_auto": false
         }
       ],
       "model_access": {
@@ -2733,32 +2753,32 @@
       "free_part": "models",
       "models": [
         {
-          "family": "claude-sonnet-4.5",
-          "aa_model": "claude-4-5-sonnet"
-        },
-        {
           "family": "claude-sonnet-4",
           "aa_model": "claude-4-sonnet"
         },
         {
-          "family": "glm-5",
-          "aa_model": "glm-5"
-        },
-        {
-          "family": "minimax-m2.5",
-          "aa_model": "minimax-m2-5"
+          "family": "claude-sonnet-4.5",
+          "aa_model": "claude-4-5-sonnet"
         },
         {
           "family": "deepseek-v3.2",
           "aa_model": "deepseek-v3-2"
         },
         {
-          "family": "qwen3-coder-next",
-          "aa_model": "qwen3-coder-next"
+          "family": "glm-5",
+          "aa_model": "glm-5"
         },
         {
           "family": "minimax-m2.1",
           "aa_model": "minimax-m2-1"
+        },
+        {
+          "family": "minimax-m2.5",
+          "aa_model": "minimax-m2-5"
+        },
+        {
+          "family": "qwen3-coder-next",
+          "aa_model": "qwen3-coder-next"
         }
       ],
       "data_use": {
@@ -2856,17 +2876,17 @@
       "free_part": "models",
       "models": [
         {
-          "family": "grok-4.7",
-          "aa_auto": false
-        },
-        {
-          "family": "grok-4.6"
+          "family": "composer-2.5"
         },
         {
           "family": "grok-4.5"
         },
         {
-          "family": "composer-2.5"
+          "family": "grok-4.6"
+        },
+        {
+          "family": "grok-4.7",
+          "aa_auto": false
         }
       ],
       "data_use": {
@@ -3264,15 +3284,24 @@
       "free_part": "models",
       "models": [
         {
+          "family": "minimax-m3.1-flash",
+          "aa_model": "minimax-m3-1-flash"
+        },
+        {
+          "family": "step-5-preview-600b-a27b",
+          "aa_model": "step-5"
+        },
+        {
           "family": "glm-5.3-flash",
           "aa_model": "glm-5-3-flash"
         },
         {
-          "family": "nemotron-3-ultra",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+          "family": "nemotron-3.5-super-vl-120b-a12b",
+          "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "laguna-xs-2.1"
+          "family": "nemotron-3-ultra",
+          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "muse-glimmer-30b",
@@ -3287,37 +3316,28 @@
           "aa_model": "gemma-4-31b"
         },
         {
-          "family": "gpt-oss-20b",
-          "aa_model": "gpt-oss-20b"
-        },
-        {
-          "family": "nemotron-3-nano-omni",
-          "aa_model": "nemotron-3-nano-omni-30b-a3b"
+          "family": "deepseek-v4.1-flash",
+          "aa_model": "deepseek-v4-1-flash"
         },
         {
           "family": "diffusiongemma"
         },
         {
-          "family": "llama-3.2-90b-vision"
+          "family": "gpt-oss-20b",
+          "aa_model": "gpt-oss-20b"
+        },
+        {
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "llama-3.2-11b-vision"
         },
         {
-          "family": "deepseek-v4.1-flash",
-          "aa_model": "deepseek-v4-1-flash"
+          "family": "llama-3.2-90b-vision"
         },
         {
-          "family": "nemotron-3.5-super-vl-120b-a12b",
-          "aa_model": "nemotron-3-5-super-vl"
-        },
-        {
-          "family": "step-5-preview-600b-a27b",
-          "aa_model": "step-5"
-        },
-        {
-          "family": "minimax-m3.1-flash",
-          "aa_model": "minimax-m3-1-flash"
+          "family": "nemotron-3-nano-omni",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
           "family": "nemotron-3.5-bolt-e4b"
@@ -3509,14 +3529,14 @@
       "free_part": "models",
       "models": [
         {
-          "family": "glm-4.7-flash",
-          "aa_model": "glm-4-7-flash"
-        },
-        {
           "family": "glm-4.5-flash"
         },
         {
           "family": "glm-4.6v-flash"
+        },
+        {
+          "family": "glm-4.7-flash",
+          "aa_model": "glm-4-7-flash"
         }
       ],
       "api": {
@@ -3633,15 +3653,15 @@
       "free_part": "models",
       "models": [
         {
+          "family": "qwen3.8-27b",
+          "aa_model": "qwen3-8-27b"
+        },
+        {
           "family": "gpt-oss-120b",
           "aa_model": "gpt-oss-120b"
         },
         {
           "family": "qwen3.6"
-        },
-        {
-          "family": "qwen3.8-27b",
-          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -3868,20 +3888,17 @@
           "aa_model": "qwen3-8-max"
         },
         {
-          "family": "qwen3.8-flash",
-          "aa_model": "qwen3-8-flash-next"
-        },
-        {
-          "family": "qwen3.8-2.4t-a95b",
-          "aa_model": "qwen3-8-2-4t-a95b"
-        },
-        {
-          "family": "qwen3.8-27b",
-          "aa_model": "qwen3-8-27b"
+          "family": "glm-5.3",
+          "tier": "notable",
+          "aa_model": "glm-5-3"
         },
         {
           "family": "deepseek-v4-pro",
           "aa_model": "deepseek-v4-pro"
+        },
+        {
+          "family": "qwen3.8-27b",
+          "aa_model": "qwen3-8-27b"
         },
         {
           "family": "deepseek-v4-flash",
@@ -3892,13 +3909,58 @@
           "aa_model": "deepseek-v4-1-flash"
         },
         {
-          "family": "glm-5.3",
-          "tier": "notable",
-          "aa_model": "glm-5-3"
+          "family": "glm-5.1",
+          "aa_model": "glm-5-1"
         },
         {
           "family": "glm-5.2",
           "aa_model": "glm-5-2"
+        },
+        {
+          "family": "qwen3-coder-flash"
+        },
+        {
+          "family": "qwen3-vl-plus"
+        },
+        {
+          "family": "qwen3.5-27b",
+          "aa_model": "qwen3-5-27b"
+        },
+        {
+          "family": "qwen3.5-35b-a3b",
+          "aa_model": "qwen3-5-35b-a3b"
+        },
+        {
+          "family": "qwen3.5-122b-a10b",
+          "aa_model": "qwen3-5-122b-a10b"
+        },
+        {
+          "family": "qwen3.5-397b-a17b",
+          "aa_model": "qwen3-5-397b-a17b"
+        },
+        {
+          "family": "qwen3.5-flash"
+        },
+        {
+          "family": "qwen3.5-plus"
+        },
+        {
+          "family": "qwen3.6-27b",
+          "aa_model": "qwen3-6-27b"
+        },
+        {
+          "family": "qwen3.6-35b-a3b",
+          "aa_model": "qwen3-6-35b-a3b"
+        },
+        {
+          "family": "qwen3.6-flash"
+        },
+        {
+          "family": "qwen3.6-plus",
+          "aa_model": "qwen3-6-plus"
+        },
+        {
+          "family": "qwen3.7-flash"
         },
         {
           "family": "qwen3.7-max",
@@ -3909,63 +3971,21 @@
           "aa_model": "qwen3-7-plus"
         },
         {
-          "family": "qwen3.7-flash"
+          "family": "qwen3.8-2.4t-a95b",
+          "aa_model": "qwen3-8-2-4t-a95b"
         },
         {
-          "family": "qwen3.6-plus",
-          "aa_model": "qwen3-6-plus"
+          "family": "qwen3.8-flash",
+          "aa_model": "qwen3-8-flash-next"
         },
         {
-          "family": "qwen3.6-flash"
-        },
-        {
-          "family": "qwen3.6-35b-a3b",
-          "aa_model": "qwen3-6-35b-a3b"
-        },
-        {
-          "family": "qwen3.6-27b",
-          "aa_model": "qwen3-6-27b"
-        },
-        {
-          "family": "qwen3.5-plus"
-        },
-        {
-          "family": "qwen3.5-flash"
-        },
-        {
-          "family": "qwen3.5-397b-a17b",
-          "aa_model": "qwen3-5-397b-a17b"
-        },
-        {
-          "family": "qwen3.5-122b-a10b",
-          "aa_model": "qwen3-5-122b-a10b"
-        },
-        {
-          "family": "qwen3.5-35b-a3b",
-          "aa_model": "qwen3-5-35b-a3b"
-        },
-        {
-          "family": "qwen3.5-27b",
-          "aa_model": "qwen3-5-27b"
-        },
-        {
-          "family": "qwen3-coder-flash"
+          "family": "qwen-flash"
         },
         {
           "family": "qwen-max"
         },
         {
           "family": "qwen-plus"
-        },
-        {
-          "family": "qwen-flash"
-        },
-        {
-          "family": "qwen3-vl-plus"
-        },
-        {
-          "family": "glm-5.1",
-          "aa_model": "glm-5-1"
         }
       ],
       "api": {
@@ -4381,7 +4401,7 @@
         "https://console.upstage.ai/"
       ],
       "card_required": false,
-      "offering": "Upstage Solar LLM API; $10 free credit on signup, no card",
+      "offering": "Upstage Solar LLM API with free signup credit, no card",
       "limits": "Signup credit: $10 once per account\n\nSee the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.",
       "quotas": [
         {
@@ -4447,7 +4467,7 @@
           "solar-pro4",
           "solar-mini4"
         ],
-        "what": "Upstage Solar LLM API; $10 free credit on signup, no card",
+        "what": "Upstage Solar LLM API with free signup credit, no card",
         "limits": "Signup credit: $10 once per account\n\nSee the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.",
         "why": "",
         "access": "",
@@ -4557,9 +4577,6 @@
           "aa_model": "command-a-plus"
         },
         {
-          "family": "command-a-reasoning"
-        },
-        {
           "family": "north-mini-code",
           "aa_model": "north-mini-code"
         },
@@ -4568,16 +4585,19 @@
           "aa_model": "command-a"
         },
         {
-          "family": "command-a-vision"
+          "family": "command-a-reasoning"
         },
         {
-          "family": "command-r-plus"
+          "family": "command-a-vision"
         },
         {
           "family": "command-r"
         },
         {
           "family": "command-r7b"
+        },
+        {
+          "family": "command-r-plus"
         }
       ],
       "api": {
@@ -4941,7 +4961,7 @@
         "https://ampersand.humansand.ai/privacy"
       ],
       "card_required": true,
-      "offering": "OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes",
+      "offering": "OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes",
       "limits": "Gateway credit: $5/month per team\n\nFree credit rate limits: Requests allowance: amount not published (period not published); scope not published (Limits apply per model.)\n\nBeam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`\n\nA team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered. Ampersand inputs and outputs may be used for model training under its provider privacy notice.",
       "quotas": [
         {
@@ -4986,14 +5006,14 @@
       "free_part": "models",
       "models": [
         {
-          "family": "laguna-s-2.1"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "beam-1.0"
+        },
+        {
+          "family": "laguna-s-2.1"
         }
       ],
       "api": {
@@ -5086,7 +5106,7 @@
           "reflection/beam-free",
           "humansand/ampersand-v0.1"
         ],
-        "what": "OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes",
+        "what": "OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes",
         "limits": "Gateway credit: $5/month per team\n\nFree credit rate limits: Requests allowance: amount not published (period not published); scope not published (Limits apply per model.)\n\nBeam launch offer: Usage allowance: amount not published (period not published); scope not published (The free route stops at the end of the launch offer; the end date and numerical allowance are unpublished.); for `reflection/beam-free`\n\nA team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered. Ampersand inputs and outputs may be used for model training under its provider privacy notice.",
         "why": "",
         "access": "",
@@ -5201,12 +5221,12 @@
       "free_part": "models",
       "models": [
         {
-          "family": "deepseek-v4-flash",
-          "aa_model": "deepseek-v4-flash"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "aa_model": "deepseek-v4-flash"
         }
       ],
       "api": {
@@ -5670,20 +5690,12 @@
       "free_part": "models",
       "models": [
         {
+          "family": "ling-3.1-flash",
+          "aa_model": "ling-3-1-flash-1019"
+        },
+        {
           "family": "nemotron-3-ultra",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
-          "family": "nemotron-3-super",
-          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
-        },
-        {
-          "family": "gemma-4-31b",
-          "aa_model": "gemma-4-31b"
-        },
-        {
-          "family": "ling-3.0-tiny",
-          "aa_model": "ling-3-0-tiny"
         },
         {
           "family": "muse-glimmer-30b",
@@ -5694,7 +5706,15 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
+          "family": "gemma-4-31b",
+          "aa_model": "gemma-4-31b"
+        },
+        {
           "family": "leanstral-1.5"
+        },
+        {
+          "family": "ling-3.0-tiny",
+          "aa_model": "ling-3-0-tiny"
         },
         {
           "family": "nemotron-3-nano-30b"
@@ -5704,8 +5724,8 @@
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
-          "family": "ling-3.1-flash",
-          "aa_model": "ling-3-1-flash-1019"
+          "family": "nemotron-3-super",
+          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         }
       ],
       "api": {
@@ -6879,47 +6899,54 @@
           "aa_model": "glm-5-3"
         },
         {
+          "family": "mimo-v2.6-pro",
+          "tier": "notable",
+          "aa_model": "mimo-v2-6-pro"
+        },
+        {
           "family": "glm-5.3-flash",
           "aa_model": "glm-5-3-flash"
         },
         {
-          "family": "kimi-k3",
-          "aa_model": "kimi-k3"
-        },
-        {
-          "family": "glm-5.2",
-          "aa_model": "glm-5-2"
-        },
-        {
-          "family": "glm-5.1",
-          "aa_model": "glm-5-1"
-        },
-        {
-          "family": "glm-5",
-          "aa_model": "glm-5"
-        },
-        {
-          "family": "glm-5-turbo",
-          "aa_model": "glm-5-turbo"
-        },
-        {
-          "family": "north-mini-code",
-          "aa_model": "north-mini-code"
-        },
-        {
-          "family": "nemotron-3-ultra",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+          "family": "mimo-v2.6-flash",
+          "aa_model": "mimo-v2-6-flash"
         },
         {
           "family": "minimax-m3",
           "aa_model": "minimax-m3"
         },
         {
-          "family": "minimax-m2.7",
-          "aa_model": "minimax-m2-7"
+          "family": "nemotron-3-ultra",
+          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
-          "family": "kimi-for-coding"
+          "family": "nemotron-3.5-lightning",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "gemma-4-31b",
+          "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "north-mini-code",
+          "aa_model": "north-mini-code"
+        },
+        {
+          "family": "agents-a1"
+        },
+        {
+          "family": "dots-3-note"
+        },
+        {
+          "family": "flint-v1.0"
+        },
+        {
+          "family": "gemma-4-26b-a4b",
+          "aa_model": "gemma-4-26b-a4b"
+        },
+        {
+          "family": "glm-4.6",
+          "aa_model": "glm-4-6"
         },
         {
           "family": "glm-4.7",
@@ -6930,61 +6957,54 @@
           "aa_model": "glm-4-7-flash"
         },
         {
-          "family": "glm-4.6",
-          "aa_model": "glm-4-6"
+          "family": "glm-5",
+          "aa_model": "glm-5"
         },
         {
-          "family": "minimax-m2.5",
-          "aa_model": "minimax-m2-5"
+          "family": "glm-5-turbo",
+          "aa_model": "glm-5-turbo"
         },
         {
-          "family": "minimax-m2.1",
-          "aa_model": "minimax-m2-1"
+          "family": "glm-5.1",
+          "aa_model": "glm-5-1"
         },
         {
-          "family": "minimax-m2",
-          "aa_model": "minimax-m2"
+          "family": "glm-5.2",
+          "aa_model": "glm-5-2"
+        },
+        {
+          "family": "intern-s2-preview-35b"
+        },
+        {
+          "family": "kimi-for-coding"
+        },
+        {
+          "family": "kimi-k3",
+          "aa_model": "kimi-k3"
         },
         {
           "family": "mimo-v2-flash",
           "aa_model": "mimo-v2-flash"
         },
         {
-          "family": "dots-3-note"
+          "family": "minimax-m2",
+          "aa_model": "minimax-m2"
         },
         {
-          "family": "nemotron-3.5-lightning",
-          "aa_model": "nemotron-3-5-lightning"
+          "family": "minimax-m2.1",
+          "aa_model": "minimax-m2-1"
+        },
+        {
+          "family": "minimax-m2.5",
+          "aa_model": "minimax-m2-5"
+        },
+        {
+          "family": "minimax-m2.7",
+          "aa_model": "minimax-m2-7"
         },
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
-        },
-        {
-          "family": "agents-a1"
-        },
-        {
-          "family": "intern-s2-preview-35b"
-        },
-        {
-          "family": "mimo-v2.6-flash",
-          "aa_model": "mimo-v2-6-flash"
-        },
-        {
-          "family": "mimo-v2.6-pro",
-          "tier": "notable",
-          "aa_model": "mimo-v2-6-pro"
-        },
-        {
-          "family": "gemma-4-26b-a4b",
-          "aa_model": "gemma-4-26b-a4b"
-        },
-        {
-          "family": "gemma-4-31b",
-          "aa_model": "gemma-4-31b"
-        },
-        {
-          "family": "flint-v1.0"
         },
         {
           "family": "nemotron-3.5-super-vl-120b-a12b"
@@ -7760,11 +7780,11 @@
       "free_part": "models",
       "models": [
         {
-          "family": "qwen3.6"
-        },
-        {
           "family": "qwen3.8-27b",
           "aa_model": "qwen3-8-27b"
+        },
+        {
+          "family": "qwen3.6"
         }
       ],
       "api": {
@@ -7964,32 +7984,32 @@
       "free_part": "models",
       "models": [
         {
-          "family": "glm-5.2",
-          "aa_model": "glm-5-2"
-        },
-        {
-          "family": "gpt-oss-120b",
-          "aa_model": "gpt-oss-120b"
-        },
-        {
           "family": "qwen3.8-27b",
           "aa_model": "qwen3-8-27b"
-        },
-        {
-          "family": "apertus-70b",
-          "aa_model": "apertus-70b-instruct"
         },
         {
           "family": "gemma-4-31b",
           "aa_model": "gemma-4-31b"
         },
         {
+          "family": "mistral-small-4",
+          "aa_model": "mistral-small-4"
+        },
+        {
+          "family": "apertus-70b",
+          "aa_model": "apertus-70b-instruct"
+        },
+        {
+          "family": "glm-5.2",
+          "aa_model": "glm-5-2"
+        },
+        {
           "family": "gpt-oss-20b",
           "aa_model": "gpt-oss-20b"
         },
         {
-          "family": "mistral-small-4",
-          "aa_model": "mistral-small-4"
+          "family": "gpt-oss-120b",
+          "aa_model": "gpt-oss-120b"
         },
         {
           "family": "qwen3.5-9b",
@@ -8124,23 +8144,23 @@
       "free_part": "models",
       "models": [
         {
-          "family": "solar-pro-4"
-        },
-        {
-          "family": "solar-mini-4"
-        },
-        {
-          "family": "mimo-v2.6-flash",
-          "aa_model": "mimo-v2-6-flash"
+          "family": "deepseek-v4.1-flash-1017",
+          "tier": "notable",
+          "aa_model": "deepseek-v4-1-flash-1017"
         },
         {
           "family": "glm-5.3-flash",
           "aa_model": "glm-5-3-flash"
         },
         {
-          "family": "deepseek-v4.1-flash-1017",
-          "tier": "notable",
-          "aa_model": "deepseek-v4-1-flash-1017"
+          "family": "mimo-v2.6-flash",
+          "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "solar-mini-4"
+        },
+        {
+          "family": "solar-pro-4"
         }
       ],
       "page_catalog": {
@@ -8628,12 +8648,12 @@
       "free_part": "models",
       "models": [
         {
-          "family": "mistral-small-3.2",
-          "aa_model": "mistral-small-3-2"
-        },
-        {
           "family": "glm-4.7-flash",
           "aa_model": "glm-4-7-flash"
+        },
+        {
+          "family": "mistral-small-3.2",
+          "aa_model": "mistral-small-3-2"
         }
       ],
       "api": {
@@ -9066,22 +9086,22 @@
       "free_part": "models",
       "models": [
         {
-          "family": "nemotron-3-ultra",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
-          "family": "agnes-3.0-flash"
-        },
-        {
-          "family": "agnes-2.5-flash"
-        },
-        {
           "family": "qwen3.8-27b",
           "aa_model": "qwen3-8-27b"
         },
         {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "nemotron-3-ultra",
+          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+        },
+        {
+          "family": "agnes-2.5-flash"
+        },
+        {
+          "family": "agnes-3.0-flash"
         },
         {
           "family": "qwen3.8-max",
@@ -9674,16 +9694,16 @@
       "free_part": "models",
       "models": [
         {
-          "family": "deepseek-v4-flash",
-          "aa_model": "deepseek-v4-flash"
-        },
-        {
           "family": "glm-5.3-flash",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "minimax-m3",
           "aa_model": "minimax-m3"
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "qwen3.6"
@@ -10536,17 +10556,17 @@
       "free_part": "models",
       "models": [
         {
-          "family": "solar-mini-4"
-        },
-        {
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "aa_model": "nemotron-3-5-super-vl"
+        },
+        {
+          "family": "beam-1.0"
         },
         {
           "family": "nemotron-3.5-lightning"
         },
         {
-          "family": "beam-1.0"
+          "family": "solar-mini-4"
         }
       ],
       "client_lane": {
@@ -10661,10 +10681,10 @@
       "free_part": "models",
       "models": [
         {
-          "family": "agnes-3.0-flash"
+          "family": "agnes-2.5-flash"
         },
         {
-          "family": "agnes-2.5-flash"
+          "family": "agnes-3.0-flash"
         }
       ],
       "api": {
@@ -11353,12 +11373,12 @@
       "free_part": "models",
       "models": [
         {
-          "family": "deepseek-v4.1-flash",
-          "aa_model": "deepseek-v4-1-flash"
-        },
-        {
           "family": "mimo-v2.6-flash",
           "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "api": {
@@ -11487,14 +11507,14 @@
       "free_part": "models",
       "models": [
         {
-          "family": "step-3.7-flash",
-          "aa_model": "step-3-7-flash"
+          "family": "beam-1.0"
         },
         {
           "family": "solar-mini-4"
         },
         {
-          "family": "beam-1.0"
+          "family": "step-3.7-flash",
+          "aa_model": "step-3-7-flash"
         }
       ],
       "api": {
@@ -14476,30 +14496,30 @@
       "free_part": "models",
       "models": [
         {
-          "family": "xing4.0-29b",
-          "superseded_by": "xing4.0-29b-a4b"
-        },
-        {
-          "family": "xing4.0-29b-a4b"
-        },
-        {
-          "family": "qwen3-8b"
+          "family": "deepseek-r1-0528-qwen3-8b"
         },
         {
           "family": "glm-4-9b-0414"
         },
         {
+          "family": "glm-z1-9b-0414"
+        },
+        {
           "family": "qwen2.5-7b"
+        },
+        {
+          "family": "qwen3-8b"
         },
         {
           "family": "qwen3.5-4b",
           "aa_model": "qwen3-5-4b"
         },
         {
-          "family": "glm-z1-9b-0414"
+          "family": "xing4.0-29b-a4b"
         },
         {
-          "family": "deepseek-r1-0528-qwen3-8b"
+          "family": "xing4.0-29b",
+          "superseded_by": "xing4.0-29b-a4b"
         }
       ],
       "api": {
@@ -14842,19 +14862,19 @@
       "free_part": "models",
       "models": [
         {
-          "family": "gemini-3.1-pro",
-          "aa_model": "gemini-3-1-pro-preview"
-        },
-        {
-          "family": "gemini-3-flash",
-          "aa_model": "gemini-3-flash"
+          "family": "gemini-2.5-flash"
         },
         {
           "family": "gemini-2.5-pro",
           "aa_model": "gemini-2-5-pro"
         },
         {
-          "family": "gemini-2.5-flash"
+          "family": "gemini-3-flash",
+          "aa_model": "gemini-3-flash"
+        },
+        {
+          "family": "gemini-3.1-pro",
+          "aa_model": "gemini-3-1-pro-preview"
         }
       ],
       "api": {
@@ -15018,12 +15038,12 @@
           "aa_model": "glm-5-3"
         },
         {
-          "family": "glm-5-turbo",
-          "aa_model": "glm-5-turbo"
-        },
-        {
           "family": "glm-5.3-flash",
           "aa_model": "glm-5-3-flash"
+        },
+        {
+          "family": "glm-5-turbo",
+          "aa_model": "glm-5-turbo"
         }
       ],
       "data_use": {
@@ -15529,11 +15549,11 @@
           "aa_model": "deepseek-v4-flash"
         },
         {
-          "family": "qwen3-vl-8b-instruct"
-        },
-        {
           "family": "glm-5.2",
           "aa_model": "glm-5-2"
+        },
+        {
+          "family": "qwen3-vl-8b-instruct"
         }
       ],
       "border": {
@@ -16493,13 +16513,13 @@
       "free_part": "models",
       "models": [
         {
-          "family": "glm-4.7-flash"
+          "family": "glm-4.1v-thinking-flash"
         },
         {
           "family": "glm-4.6v-flash"
         },
         {
-          "family": "glm-4.1v-thinking-flash"
+          "family": "glm-4.7-flash"
         }
       ],
       "api": {
@@ -18242,7 +18262,7 @@
         "https://www.mixedbread.com/pages/privacy"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required",
+      "offering": "OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required",
       "limits": "Starter credits: $5 once per service plan\n\nCreate an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the standard rates; hosted searches and data storage have separate charges against the balance. The published search and upload rate limits do not establish a Chat Completions allowance. The terms license use for internal business purposes. Privacy and security pages exclude model training, but the Free-tier terms permit it; this conflict is unresolved. Both legal policies specify indefinite retention of Free usage data. The API documents store=false for response-content retention, but its relationship to the Free-tier legal retention rule is not established.",
       "quotas": [
         {
@@ -18319,7 +18339,7 @@
         "ids": [
           "toast-1"
         ],
-        "what": "OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required",
+        "what": "OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required",
         "limits": "Starter credits: $5 once per service plan\n\nCreate an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the standard rates; hosted searches and data storage have separate charges against the balance. The published search and upload rate limits do not establish a Chat Completions allowance. The terms license use for internal business purposes. Privacy and security pages exclude model training, but the Free-tier terms permit it; this conflict is unresolved. Both legal policies specify indefinite retention of Free usage data. The API documents store=false for response-content retention, but its relationship to the Free-tier legal retention rule is not established.",
         "why": "",
         "access": "",
@@ -20333,19 +20353,104 @@
   },
   "models": [
     {
-      "family": "nemotron-3.5-lightning",
+      "family": "qwen3.8-max",
+      "rows": [
+        "llmtr",
+        "alibaba-model-studio"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
+    },
+    {
+      "family": "deepseek-v4.1-flash-1017",
+      "rows": [
+        "freebuff"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/"
+    },
+    {
+      "family": "glm-5.3",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio",
+        "zcode"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+    },
+    {
+      "family": "gemini-3.8-flash",
+      "rows": [
+        "google-ai-studio",
+        "antigravity"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
+    },
+    {
+      "family": "mimo-v2.6-pro",
+      "rows": [
+        "aihubmix"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/"
+    },
+    {
+      "family": "ling-3.1-flash",
+      "rows": [
+        "requesty"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
+    },
+    {
+      "family": "minimax-m3.1-flash",
+      "rows": [
+        "nvidia-nim"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/"
+    },
+    {
+      "family": "step-5-preview-600b-a27b",
+      "rows": [
+        "nvidia-nim"
+      ]
+    },
+    {
+      "family": "gpt-6-luna",
+      "rows": [
+        "openai-codex-cli"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
+    },
+    {
+      "family": "glm-5.3-flash",
       "rows": [
         "opencode",
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
         "nvidia-nim",
-        "cline",
+        "freebuff",
         "aihubmix",
-        "vercel-ai-gateway",
-        "bazaarlink"
+        "zcode",
+        "freeinference"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
+    },
+    {
+      "family": "mimo-v2.6-flash",
+      "rows": [
+        "opencode",
+        "freebuff",
+        "aihubmix",
+        "token-harbor"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
+    },
+    {
+      "family": "deepseek-v4-pro",
+      "rows": [
+        "alibaba-model-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
     },
     {
       "family": "qwen3.8-27b",
@@ -20362,17 +20467,12 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
     {
-      "family": "nemotron-3-ultra",
+      "family": "minimax-m3",
       "rows": [
-        "opencode",
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
-        "nvidia-nim",
         "aihubmix",
-        "llmtr"
+        "freeinference"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
     },
     {
       "family": "nemotron-3.5-super-vl-120b-a12b",
@@ -20388,6 +20488,71 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
+      "family": "inkling-small",
+      "rows": [
+        "openrouter-free"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
+    },
+    {
+      "family": "inkling",
+      "rows": [
+        "openrouter-free"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
+    },
+    {
+      "family": "nemotron-3-ultra",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
+    },
+    {
+      "family": "gemini-3.5-flash-lite",
+      "rows": [
+        "google-ai-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/"
+    },
+    {
+      "family": "muse-glimmer-30b",
+      "rows": [
+        "requesty",
+        "nvidia-nim",
+        "routeway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
+    },
+    {
+      "family": "command-a-plus",
+      "rows": [
+        "cohere"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/"
+    },
+    {
+      "family": "nemotron-3.5-lightning",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "cline",
+        "aihubmix",
+        "vercel-ai-gateway",
+        "bazaarlink"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+    },
+    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -20400,108 +20565,10 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
     },
     {
-      "family": "glm-5.3-flash",
+      "family": "mistral-small-4",
       "rows": [
-        "opencode",
-        "nvidia-nim",
-        "freebuff",
-        "aihubmix",
-        "zcode",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
-    },
-    {
-      "family": "nemotron-3-nano-omni",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "requesty",
-        "nvidia-nim",
-        "aihubmix",
-        "tokenrouter"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
-    },
-    {
-      "family": "beam-1.0",
-      "rows": [
-        "kilo-code",
-        "cline",
-        "vercel-ai-gateway",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
-    },
-    {
-      "family": "deepseek-v4-flash",
-      "rows": [
-        "alibaba-model-studio",
-        "bazaarlink",
-        "atomcode",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "opencode",
-        "nvidia-nim",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
-      "family": "glm-4.7-flash",
-      "rows": [
-        "aihubmix",
-        "zai-glm",
-        "novai",
-        "meganova"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
-    },
-    {
-      "family": "glm-5.2",
-      "rows": [
-        "aihubmix",
-        "alibaba-model-studio",
-        "regolo",
-        "atomcode"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
-    },
-    {
-      "family": "gpt-oss-120b",
-      "rows": [
-        "groq-free",
-        "antigravity",
-        "regolo",
-        "ovh-ai-endpoints"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/"
-    },
-    {
-      "family": "gpt-oss-20b",
-      "rows": [
-        "groq-free",
-        "nvidia-nim",
-        "regolo",
-        "pollinations"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
-    },
-    {
-      "family": "mimo-v2.6-flash",
-      "rows": [
-        "opencode",
-        "freebuff",
-        "aihubmix",
-        "token-harbor"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
+        "regolo"
+      ]
     },
     {
       "family": "north-mini-code",
@@ -20514,60 +20581,11 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
     },
     {
-      "family": "xing4.0-29b-a4b",
+      "family": "agents-a1",
       "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "aihubmix",
-        "siliconflow-cn"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"
-    },
-    {
-      "family": "dots-3-note",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
         "aihubmix"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
-    },
-    {
-      "family": "glm-5.3",
-      "rows": [
-        "aihubmix",
-        "alibaba-model-studio",
-        "zcode"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
-    },
-    {
-      "family": "muse-glimmer-30b",
-      "rows": [
-        "requesty",
-        "nvidia-nim",
-        "routeway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
-    },
-    {
-      "family": "qwen3.6",
-      "rows": [
-        "hetzner-inference",
-        "freeinference",
-        "ovh-ai-endpoints"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
-    },
-    {
-      "family": "solar-mini-4",
-      "rows": [
-        "freebuff",
-        "cline",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/"
     },
     {
       "family": "agnes-2.5-flash",
@@ -20586,127 +20604,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/"
     },
     {
-      "family": "diffusiongemma",
-      "rows": [
-        "nvidia-nim",
-        "vlm-run-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
-    },
-    {
-      "family": "gemini-3-flash",
-      "rows": [
-        "google-ai-studio",
-        "vertex-ai-express"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/"
-    },
-    {
-      "family": "gemini-3.8-flash",
-      "rows": [
-        "google-ai-studio",
-        "antigravity"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
-    },
-    {
-      "family": "gemma-4-26b-a4b",
-      "rows": [
-        "openrouter-free",
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
-    },
-    {
-      "family": "glm-4.6v-flash",
-      "rows": [
-        "zai-glm",
-        "novai"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/"
-    },
-    {
-      "family": "glm-5",
-      "rows": [
-        "kiro",
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/"
-    },
-    {
-      "family": "glm-5-turbo",
-      "rows": [
-        "aihubmix",
-        "zcode"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
-    },
-    {
-      "family": "glm-5.1",
-      "rows": [
-        "aihubmix",
-        "alibaba-model-studio"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
-    },
-    {
-      "family": "minimax-m2.1",
-      "rows": [
-        "kiro",
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/"
-    },
-    {
-      "family": "minimax-m2.5",
-      "rows": [
-        "kiro",
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
-    },
-    {
-      "family": "minimax-m3",
-      "rows": [
-        "aihubmix",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
-    },
-    {
-      "family": "qwen3.5-122b-a10b",
-      "rows": [
-        "alibaba-model-studio",
-        "regolo"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"
-    },
-    {
-      "family": "qwen3.5-4b",
-      "rows": [
-        "mixlayer",
-        "siliconflow-cn"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
-    },
-    {
-      "family": "qwen3.8-max",
-      "rows": [
-        "llmtr",
-        "alibaba-model-studio"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
-    },
-    {
-      "family": "agents-a1",
-      "rows": [
-        "aihubmix"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agents-a1/"
-    },
-    {
       "family": "apertus-70b",
       "rows": [
         "regolo"
@@ -20718,6 +20615,16 @@
         "novita"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
+    },
+    {
+      "family": "beam-1.0",
+      "rows": [
+        "kilo-code",
+        "cline",
+        "vercel-ai-gateway",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
     {
       "family": "big-pickle",
@@ -20760,13 +20667,6 @@
       ]
     },
     {
-      "family": "command-a-plus",
-      "rows": [
-        "cohere"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/"
-    },
-    {
       "family": "command-a-reasoning",
       "rows": [
         "cohere"
@@ -20785,13 +20685,13 @@
       ]
     },
     {
-      "family": "command-r-plus",
+      "family": "command-r7b",
       "rows": [
         "cohere"
       ]
     },
     {
-      "family": "command-r7b",
+      "family": "command-r-plus",
       "rows": [
         "cohere"
       ]
@@ -20816,19 +20716,41 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
     },
     {
-      "family": "deepseek-v4-pro",
+      "family": "deepseek-v4-flash",
       "rows": [
-        "alibaba-model-studio"
+        "alibaba-model-studio",
+        "bazaarlink",
+        "atomcode",
+        "freeinference"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
-      "family": "deepseek-v4.1-flash-1017",
+      "family": "deepseek-v4.1-flash",
       "rows": [
-        "freebuff"
+        "opencode",
+        "nvidia-nim",
+        "alibaba-model-studio",
+        "token-harbor"
       ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
+    },
+    {
+      "family": "diffusiongemma",
+      "rows": [
+        "nvidia-nim",
+        "vlm-run-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
+    },
+    {
+      "family": "dots-3-note",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
     },
     {
       "family": "fantail",
@@ -20862,6 +20784,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/"
     },
     {
+      "family": "gemini-3-flash",
+      "rows": [
+        "google-ai-studio",
+        "vertex-ai-express"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/"
+    },
+    {
       "family": "gemini-3.1-flash-lite",
       "rows": [
         "google-ai-studio"
@@ -20876,13 +20806,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/"
     },
     {
-      "family": "gemini-3.5-flash-lite",
-      "rows": [
-        "google-ai-studio"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/"
-    },
-    {
       "family": "gemini-3.6-flash",
       "rows": [
         "google-ai-studio"
@@ -20894,6 +20817,14 @@
       "rows": [
         "google-ai-studio"
       ]
+    },
+    {
+      "family": "gemma-4-26b-a4b",
+      "rows": [
+        "openrouter-free",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
     },
     {
       "family": "gemma-4-e4b",
@@ -20927,11 +20858,63 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/"
     },
     {
+      "family": "glm-4.6v-flash",
+      "rows": [
+        "zai-glm",
+        "novai"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/"
+    },
+    {
       "family": "glm-4.7",
       "rows": [
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/"
+    },
+    {
+      "family": "glm-4.7-flash",
+      "rows": [
+        "aihubmix",
+        "zai-glm",
+        "novai",
+        "meganova"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
+    },
+    {
+      "family": "glm-5",
+      "rows": [
+        "kiro",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/"
+    },
+    {
+      "family": "glm-5-turbo",
+      "rows": [
+        "aihubmix",
+        "zcode"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
+    },
+    {
+      "family": "glm-5.1",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
+    },
+    {
+      "family": "glm-5.2",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio",
+        "regolo",
+        "atomcode"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
       "family": "glm-z1-9b-0414",
@@ -20940,11 +20923,24 @@
       ]
     },
     {
-      "family": "gpt-6-luna",
+      "family": "gpt-oss-20b",
       "rows": [
-        "openai-codex-cli"
+        "groq-free",
+        "nvidia-nim",
+        "regolo",
+        "pollinations"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
+    },
+    {
+      "family": "gpt-oss-120b",
+      "rows": [
+        "groq-free",
+        "antigravity",
+        "regolo",
+        "ovh-ai-endpoints"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/"
     },
     {
       "family": "grok-4.5",
@@ -20963,20 +20959,6 @@
       "rows": [
         "cursor-hobby"
       ]
-    },
-    {
-      "family": "inkling",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
-    },
-    {
-      "family": "inkling-small",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
     },
     {
       "family": "intern-s2-preview-35b",
@@ -21025,13 +21007,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"
     },
     {
-      "family": "ling-3.1-flash",
-      "rows": [
-        "requesty"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
-    },
-    {
       "family": "llama-3.1-8b",
       "rows": [
         "simplellm"
@@ -21063,19 +21038,27 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/"
     },
     {
-      "family": "mimo-v2.6-pro",
-      "rows": [
-        "aihubmix"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/"
-    },
-    {
       "family": "minimax-m2",
       "rows": [
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"
+    },
+    {
+      "family": "minimax-m2.1",
+      "rows": [
+        "kiro",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/"
+    },
+    {
+      "family": "minimax-m2.5",
+      "rows": [
+        "kiro",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
     },
     {
       "family": "minimax-m2.7",
@@ -21085,22 +21068,9 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
     },
     {
-      "family": "minimax-m3.1-flash",
-      "rows": [
-        "nvidia-nim"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/"
-    },
-    {
       "family": "mistral-small-3.2",
       "rows": [
         "meganova"
-      ]
-    },
-    {
-      "family": "mistral-small-4",
-      "rows": [
-        "regolo"
       ]
     },
     {
@@ -21109,6 +21079,18 @@
         "requesty"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/"
+    },
+    {
+      "family": "nemotron-3-nano-omni",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "tokenrouter"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
     },
     {
       "family": "nemotron-3-super",
@@ -21121,24 +21103,6 @@
       "family": "nemotron-3.5-bolt-e4b",
       "rows": [
         "nvidia-nim"
-      ]
-    },
-    {
-      "family": "qwen-flash",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen-max",
-      "rows": [
-        "alibaba-model-studio"
-      ]
-    },
-    {
-      "family": "qwen-plus",
-      "rows": [
-        "alibaba-model-studio"
       ]
     },
     {
@@ -21186,6 +21150,21 @@
       ]
     },
     {
+      "family": "qwen3.5-4b",
+      "rows": [
+        "mixlayer",
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
+    },
+    {
+      "family": "qwen3.5-9b",
+      "rows": [
+        "regolo"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/"
+    },
+    {
       "family": "qwen3.5-27b",
       "rows": [
         "alibaba-model-studio"
@@ -21200,18 +21179,19 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-35b-a3b/"
     },
     {
+      "family": "qwen3.5-122b-a10b",
+      "rows": [
+        "alibaba-model-studio",
+        "regolo"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"
+    },
+    {
       "family": "qwen3.5-397b-a17b",
       "rows": [
         "alibaba-model-studio"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/"
-    },
-    {
-      "family": "qwen3.5-9b",
-      "rows": [
-        "regolo"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/"
     },
     {
       "family": "qwen3.5-flash",
@@ -21224,6 +21204,15 @@
       "rows": [
         "alibaba-model-studio"
       ]
+    },
+    {
+      "family": "qwen3.6",
+      "rows": [
+        "hetzner-inference",
+        "freeinference",
+        "ovh-ai-endpoints"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
     },
     {
       "family": "qwen3.6-27b",
@@ -21288,10 +21277,37 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
     },
     {
+      "family": "qwen-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
       "family": "sensenova-6.8-flash-lite",
       "rows": [
         "sensenova"
       ]
+    },
+    {
+      "family": "solar-mini-4",
+      "rows": [
+        "freebuff",
+        "cline",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/"
     },
     {
       "family": "solar-pro-4",
@@ -21307,12 +21323,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
     },
     {
-      "family": "step-5-preview-600b-a27b",
-      "rows": [
-        "nvidia-nim"
-      ]
-    },
-    {
       "family": "swe-1.6",
       "rows": [
         "windsurf"
@@ -21324,6 +21334,16 @@
         "windsurf"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/"
+    },
+    {
+      "family": "xing4.0-29b-a4b",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix",
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"
     },
     {
       "family": "atria-dawn",

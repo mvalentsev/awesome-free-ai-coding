@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-11-09'
-description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash. The free express trial is for new…'
+description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-2.5-flash, gemini-2.5-pro, gemini-3-flash, gemini-3.1-pro. The free express trial is for new…'
 permalink: /providers/vertex-ai-express/
 last_modified_at: 2026-11-09
 crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ## Free models
 
-[`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/), [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/), [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/), `gemini-2.5-flash`
+<span data-model-sort-inline><span data-model-family="gemini-2.5-flash">`gemini-2.5-flash`</span>, <span data-model-family="gemini-2.5-pro">[`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/)</span>, <span data-model-family="gemini-3-flash">[`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/)</span>, <span data-model-family="gemini-3.1-pro">[`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -43,7 +44,7 @@ What you send is not used to train models. In the vendor's words: “Google won'
 
 - Base URL: `https://aiplatform.googleapis.com/v1` (not OpenAI-shaped)
 - Key: `VERTEX_AI_EXPRESS_API_KEY` — get one at <https://console.cloud.google.com/expressmode>
-- Callable ids: `gemini-3.1-pro-preview`, `gemini-3-flash-preview`, `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`
+- Callable ids: `gemini-2.5-flash`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-pro-preview`, `gemini-2.5-flash-lite`
 - Note: the key stands in for a project and a location: `https://aiplatform.googleapis.com/v1/publishers/google/models/{model}:streamGenerateContent?key={API_KEY}`, Gemini's own API rather than an OpenAI-compatible one. Clients kept the old name: the Google Gen AI SDK takes the key with vertexai=True, and Gemini CLI reads it from GOOGLE_API_KEY "if using express mode", with Vertex AI as the auth method
 
 ## Evidence

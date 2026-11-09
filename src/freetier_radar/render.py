@@ -153,7 +153,7 @@ README_MODELS = 8
 # name before it, so a wrapped line never starts with one.
 DOT = "\u00a0· "
 # How many measured free models Start here compares, highest score first.
-# Without measurements it keeps the most widely served models as a list.
+# Unavailable measurements retain the shared tier and natural-name order.
 README_COMPARISON = 20
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
@@ -227,10 +227,58 @@ CHANGE_LABELS: dict[EventType, str] = {
     kind: f"{_EVENT_MARKS[kind]} {word}" for kind, word in EVENT_WORDS.items()}
 
 
-def _readme_families(e: Entry) -> tuple[list[str], int]:
-    """The families a README line names, in the row's own order and at most
+def _model_score(model: ModelFamily, scores: dict | None = None) -> float | None:
+    """Only the reviewed family variant may supply a display score."""
+    recorded = (scores or {}).get("families", {}).get(model.family, {})
+    score = recorded.get("index")
+    if (not model.aa_model or recorded.get("slug") != model.aa_model
+            or type(score) not in (int, float)):
+        return None
+    return score
+
+
+def _score_label(model: ModelFamily, scores: dict | None = None) -> str:
+    score = _model_score(model, scores)
+    if score is None:
+        return ""
+    estimated = (scores or {}).get("families", {}).get(model.family, {}).get("estimated")
+    return f"Index {'~' if estimated else ''}{score:g}"
+
+
+MODEL_ORDER_FIELDS = ("score", "tier", "name")
+MODEL_SORT = {"label": "Model order", "default": "score", "minimum": 2, "options": [
+    {"id": "score", "label": "Intelligence Index: highest first"},
+    {"id": "name", "label": "Model name: A–Z"},
+    {"id": "providers", "label": "Free providers: most first"},
+]}
+
+
+def _display_model_order(family: str, tier: Tier | None, score: float | None) -> tuple:
+    name = tuple((1, int(part)) if part.isdigit() else (0, part.casefold())
+                 for part in re.split(r"(\d+)", family))
+    fields = {"score": (score is None, -score if score is not None else 0),
+              "tier": _TIER_FIRST.get(tier, len(_TIER_FIRST)), "name": name}
+    return tuple(fields[field] for field in MODEL_ORDER_FIELDS)
+
+
+def _model_order(model: ModelFamily, scores: dict | None = None) -> tuple:
+    """Matching scores first; unknown scores use retained tier and natural name.
+
+    An unbound or different benchmark variant cannot rank a held family.
+    Registry order remains evidence and never becomes a selection priority.
+    """
+    return _display_model_order(model.family, model.tier, _model_score(model, scores))
+
+
+def _ordered_models(e: Entry, scores: dict | None = None) -> list[ModelFamily]:
+    return sorted((m for m in e.models if m.superseded_by is None),
+                  key=lambda m: _model_order(m, scores))
+
+
+def _readme_families(e: Entry, scores: dict | None = None, *, recorded: bool = False) -> tuple[list[str], int]:
+    """The families a README line names, in display order and at most
     README_MODELS of them, and how many more the row's page names."""
-    fams = live_families(e)
+    fams = live_families(e) if recorded else [m.family for m in _ordered_models(e, scores)]
     return fams[:README_MODELS], max(0, len(fams) - README_MODELS)
 
 
@@ -398,17 +446,17 @@ def border_words(e: Entry) -> str:
     return " ".join(said)
 
 
-def _row_models(e: Entry, pages: set[str]) -> str:
+def _row_models(e: Entry, pages: set[str], scores: dict | None = None) -> str:
     """A row's models as a Markdown line names them — the README's list and the
     provider index alike: the first README_MODELS, each linking its own page
     where it has one (what a reader who stops on a model name came for), then
     a count linking the row's page for the rest."""
-    shown, more = _readme_families(e)
+    shown, more = _readme_families(e, scores)
     return DOT.join(([_entry_family_links(e, shown, pages, DOT)] if shown else [])
                       + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
 
 
-def _row(e: Entry, pages: set[str]) -> dict[str, str]:
+def _row(e: Entry, pages: set[str], scores: dict | None = None) -> dict[str, str]:
     return {
         "name": e.name,
         "url": e.url,
@@ -432,7 +480,7 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         "key_url": e.api.key_url if e.api and e.api.key_url and e.api.key_kind != "none" else "",
         # The row's families, as `_row_models` names them; a row that names none
         # has the date alone on its small line.
-        "models": _row_models(e, pages),
+        "models": _row_models(e, pages, scores),
     }
 
 
@@ -493,8 +541,13 @@ def _access_description(e: Entry, family: str | None = None, *, compact: bool = 
         family_condition(e, family) if family else "") if text)
 
 
-def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ") -> str:
-    return sep.join(_family_links([f], pages) + _access_flag(e, f) for f in families)
+def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ",
+                        sortable: bool = False) -> str:
+    links = [_family_links([f], pages) + _access_flag(e, f) for f in families]
+    if sortable:
+        links = [f'<span data-model-family="{family}">{text}</span>' for family, text in zip(families, links)]
+        return '<span data-model-sort-inline>' + sep.join(links) + '</span>'
+    return sep.join(links)
 
 
 def _provisional_words(e: Entry) -> str:
@@ -569,17 +622,19 @@ def _notice_since(notice: Notice) -> str:
     return f"[{since}]({notice.url})" if notice.url else since
 
 
-def _model_index(active: list[Entry], pages: set[str]) -> list[dict]:
-    """Model family → everyone who serves it free, most-served first
+def _model_index(active: list[Entry], pages: set[str], scores: dict | None = None) -> list[dict]:
+    """Model family → everyone who serves it free, in display order
     (`_rows_by_family`), with the family's page and tier where it has them.
 
     A row that needs a card carries its 💳 here too: "free at" beside a name
     with no mark reads as free without one.
     """
     out = []
-    for family, ps in _rows_by_family(active).items():
+    for family, ps in _rows_by_family(active, scores).items():
         mark = _measured(family, ps)
-        out.append({"family": family,
+        model = _family_model(family, ps)
+        out.append({"family": family, "score": _model_score(model, scores),
+                    "score_label": _score_label(model, scores),
                     "page": model_page_url(family) if family in pages else "",
                     "tier": mark.tier.value if mark is not None else "",
                     "providers": [{"id": p.id, "name": p.name, "url": p.url,
@@ -588,9 +643,9 @@ def _model_index(active: list[Entry], pages: set[str]) -> list[dict]:
     return out
 
 
-def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
+def _rows_by_family(active: list[Entry], scores: dict | None = None) -> dict[str, list[Entry]]:
     """Every family the live rows publish, and the rows that serve it free —
-    the most widely served family first, then by name, and each family's rows
+    families in the shared display order, and each family's rows
     in the order the list reads them. The one grouping behind the model index,
     the model pages and index.json's `models`, so the three name the same
     families with the same rows."""
@@ -598,8 +653,11 @@ def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
     for e in active:
         for family in live_families(e):
             by_family.setdefault(family, []).append(e)
+    def key(item):
+        family, rows = item
+        return _model_order(_family_model(family, rows), scores)
     return {family: sorted(rows, key=lambda e: (requires_payment(e, family), *_by_rank(e)))
-            for family, rows in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))}
+            for family, rows in sorted(by_family.items(), key=key)}
 
 
 # Best first: where two lanes serve variants that measure apart, a page says
@@ -613,6 +671,11 @@ def _measured(family: str, rows: list[Entry]) -> ModelFamily | None:
     marks = [m for e in rows for m in e.models
              if m.family == family and m.superseded_by is None and m.tier is not None]
     return min(marks, key=lambda m: _TIER_ORDER.index(m.tier), default=None)
+
+
+def _family_model(family: str, rows: list[Entry]) -> ModelFamily:
+    models = [m for e in rows for m in e.models if m.family == family and not m.superseded_by]
+    return _measured(family, rows) or next((m for m in models if m.aa_model), models[0])
 
 
 def _has_model_page(family: str, rows: list[Entry]) -> bool:
@@ -689,6 +752,10 @@ def load_scores(path: Path = SCORES_PATH) -> dict | None:
         return None
 
 
+def _resolve_scores(scores: dict | None) -> dict:
+    return (load_scores() or {}) if scores is None else scores
+
+
 def _plain_model(name: str) -> str:
     """The board names a model with its settings — "Claude Opus 5.5 (Adaptive
     Reasoning, Max Effort, Default Fallback)" — and a label needs the model."""
@@ -700,9 +767,9 @@ def _chart(models: list[dict], scores: dict | None) -> Chart | None:
     if not scores:
         return None
     kept = scores.get("families") or {}
-    bars = tuple(Bar(m["family"], kept[m["family"]]["index"], len(m["providers"]),
+    bars = tuple(Bar(m["family"], m.get("score", kept[m["family"]]["index"]), len(m["providers"]),
                      bool(kept[m["family"]].get("estimated")))
-                 for m in models if m["family"] in kept)
+                 for m in models if m["family"] in kept and m.get("score", kept[m["family"]]["index"]) is not None)
     if not bars:
         return None
     return Chart(bars=bars, top_name=_plain_model(scores["top"]["name"]),
@@ -724,39 +791,43 @@ def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
 def _in_chart_order(strong: list[dict], scores: dict | None) -> list[dict]:
     """Models as the chart ranks them (Chart.ranked) — the highest
     score first, each with its `score` — and a model no score is kept for after
-    them, in its own order: one ranking for the README's chart, the list under
+    them, by retained tier and natural name: one ranking for the README's chart, the list under
     it and the site."""
     kept = (scores or {}).get("families") or {}
-    scored = [{**m, "score": kept[m["family"]]["index"] if m["family"] in kept else None}
+    scored = [{**m, "score": m.get("score", kept.get(m["family"], {}).get("index"))}
               for m in strong]
-    return sorted(scored, key=lambda m: (m["score"] is None, -(m["score"] or 0),
-                                         m["family"] if m["score"] is not None else ""))
+    def key(model):
+        tier = model.get("tier")
+        if "tier" not in model and "frontier" in model:
+            tier = Tier.FRONTIER if model["frontier"] else Tier.STRONG
+        return _display_model_order(model["family"], Tier(tier) if tier else None, model["score"])
+    return sorted(scored, key=key)
 
 
-def _strong_models(active: list[Entry]) -> list[dict]:
+def _strong_models(active: list[Entry], scores: dict | None = None) -> list[dict]:
     """The models a reader comes for, and every row that serves each one free.
 
     The frontier and strong families, their tier marks measured against the
     Artificial Analysis index and never typed; the bar keeps the set short.
-    Frontier first, then the most widely served — every row beside a model is
-    one more free quota of it — and the name to break a tie. A family, its rows
+    Matching measurements first, then retained tier and natural name; every
+    provider beside a model names a separate eligible offer. A family, its rows
     and its mark are the ones its model page prints (`_rows_by_family`,
     `_measured`). A row that needs a card carries its 💳 here as in the list."""
     strong = []
-    for family, rows in _rows_by_family(active).items():
+    for family, rows in _rows_by_family(active, scores).items():
         mark = _measured(family, rows)
         if mark is not None and mark.tier in (Tier.FRONTIER, Tier.STRONG):
             # Every family here measures strong or better, so every one has a page.
             strong.append({"family": family, "frontier": mark.tier is Tier.FRONTIER,
+                           "score": _model_score(mark, scores),
                            "page": model_page_url(family),
                            "providers": [{"name": p.name, "url": p.url,
                                           "card_required": p.card_required,
                                           "card_flag": _card_flag(p) + _access_flag(p, family)} for p in rows]})
-    # Stable: each tier keeps _rows_by_family's order, the most widely served first.
-    return sorted(strong, key=lambda m: not m["frontier"])
+    return strong
 
 
-def _starters(active: list[Entry]) -> list[dict]:
+def _starters(active: list[Entry], scores: dict | None = None) -> list[dict]:
     """The agents a reader can code with today, named before the list.
 
     The answer to "what do I actually use?" is the agents that run on a $0 plan,
@@ -770,17 +841,15 @@ def _starters(active: list[Entry]) -> list[dict]:
     rows = [e for e in active
             if e.category is Category.AGENT_CLI and not e.card_required
             and not requires_payment(e) and live_families(e)]
-    return [_starter(e) for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
+    return [_starter(e, scores) for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
 
 
 # The order a starter names its families in: the tiers a reader comes for first.
-_TIER_FIRST = {Tier.FRONTIER: 0, Tier.STRONG: 1, Tier.NOTABLE: 2}
+_TIER_FIRST = {tier: position for position, tier in enumerate(_TIER_ORDER)}
 
 
-def _starter(e: Entry) -> dict:
-    tiers = {m.family: m.tier for m in e.models}
-    families = sorted((f for f in live_families(e) if not requires_payment(e, f)),
-                      key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
+def _starter(e: Entry, scores: dict | None = None) -> dict:
+    families = [m.family for m in _ordered_models(e, scores) if not requires_payment(e, m.family)]
     return {"name": e.name, "url": e.url, "families": families[:README_STARTER_MODELS],
             "access_labels": {f: _access_description(e, f) for f in families[:README_STARTER_MODELS]},
             "more": max(0, len(families) - README_STARTER_MODELS),
@@ -1060,7 +1129,7 @@ def _connection_note(e: Entry) -> str:
 
 def _shared_facts(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
-                  pages: set[str] | None = None) -> dict:
+                  pages: set[str] | None = None, scores: dict | None = None) -> dict:
     """Every figure and every stated rule the README and the site both print,
     worked out once: a figure computed in one place cannot be two figures, and a
     rule the code applies — the frontier bar, the provisional fortnight, how
@@ -1073,7 +1142,7 @@ def _shared_facts(entries: list[Entry], today: date,
     # among live rows, a floor every row on the page meets, in `_floor`'s words.
     colour = badge_colour(_oldest_verified(active, today), today)
     pages = model_pages(entries, [], today) if pages is None else pages
-    model_index = _model_index(active, pages)
+    model_index = _model_index(active, pages, scores)
     anthropic = _anthropic_ready(entries, today)
     return {
         "date": today.isoformat(),
@@ -1088,13 +1157,20 @@ def _shared_facts(entries: list[Entry], today: date,
         "endpoint_count": len(connectable),
         "family_count": len(model_index),
         "model_index": model_index,
+        "model_sort": MODEL_SORT,
+        "score_date": (scores or {}).get("read_on", ""),
+        "score_source": (scores or {}).get("source", ""),
+        "site_models": SITE_MODELS,
+        "model_sort_data": _script_json({"site": PAGES_URL, "model_sort": MODEL_SORT,
+                                         "models": [{"family": m["family"], "rows": [p["id"] for p in m["providers"]]}
+                                                    for m in model_index]}),
         "models_url": models_index_url(),
         "model_page_rule": _model_page_rule(),
         # Every model with a page and its address: each place a page names a
         # model links its page (the site's `chip` macro reads this).
         "model_pages": {f: model_page_url(f) for f in sorted(pages)},
-        "strong_models": _strong_models(active),
-        "starters": _starters(active),
+        "strong_models": _strong_models(active, scores),
+        "starters": _starters(active, scores),
         "picks": _picks(active, connectable),
         "quickstart": _quickstart(connectable),
         # Every verdict on the page of services checked and not listed, a
@@ -1141,12 +1217,13 @@ def build_context(entries: list[Entry], today: date,
                   history: list[Event] | None = None,
                   pages: set[str] | None = None,
                   scores: dict | None = None) -> dict:
+    scores = _resolve_scores(scores)
     active = [e for e in entries if not is_archived(e, today)]
     pages = model_pages(entries, history or [], today) if pages is None else pages
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
-        sections.append({"title": title, "rows": [_row(e, pages) for e in rows],
+        sections.append({"title": title, "rows": [_row(e, pages, scores) for e in rows],
                          **_card_counts(rows)})
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
@@ -1161,15 +1238,14 @@ def build_context(entries: list[Entry], today: date,
          "note": _connection_note(e)}
         for e in _connectable(entries, today)
     ]
-    shared = _shared_facts(entries, today, watchlist, pages)
+    shared = _shared_facts(entries, today, watchlist, pages, scores)
     hero = _hero(active, shared)
-    scores = load_scores() if scores is None else scores
     # Reuse the full model index grouping: eligibility and provider conditions
     # do not depend on whether a measurement earns a Strong label.
     candidates = [{**model, "frontier": model["tier"] == "frontier"}
                   for model in shared["model_index"]]
     measured = [model for model in candidates
-                if model["family"] in (scores or {}).get("families", {})
+                if model["score"] is not None
                 or model["tier"] in ("strong", "frontier")]
     comparison = _in_chart_order(measured or candidates, scores)[:README_COMPARISON]
     chart = _chart(comparison, scores)
@@ -1229,16 +1305,22 @@ def _index_access_labels(e: Entry) -> dict:
 
 def build_index(entries: list[Entry], today: date,
                 watchlist: list[Watched] | None = None,
-                pages: set[str] | None = None) -> dict:
+                pages: set[str] | None = None, scores: dict | None = None) -> dict:
+    scores = _resolve_scores(scores)
     from .quotas import structured_quotas
     return {
         "generated": today.isoformat(),
         "source": REPO_URL,
+        "site": PAGES_URL,
+        "model_sort": MODEL_SORT,
         "feed": FEED_URL,
         "data_use_words": dict(DATA_USE_WORDS),
         "search_config": _search_config(entries),
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
+             "models": [m.model_dump(mode="json", exclude_none=True) for m in
+                        (e.models if is_archived(e, today) else
+                         [*_ordered_models(e, scores), *(m for m in e.models if m.superseded_by)])],
              "no_account": needs_no_account(e),
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": quotas} if (quotas := structured_quotas(e)) or e.quotas else {}),
@@ -1258,7 +1340,7 @@ def build_index(entries: list[Entry], today: date,
         # question a machine asks of this list as often as a reader does, and
         # the page a model has where it has one.
         "models": _index_models(entries, today,
-                                model_pages(entries, [], today) if pages is None else pages),
+                                model_pages(entries, [], today) if pages is None else pages, scores),
         # Additive: a consumer reading .entries is unaffected. "Considered and
         # not listed, on this date, for this reason" is an answer worth
         # publishing in machine-readable form too.
@@ -1369,7 +1451,7 @@ def _search_record(e: Entry, reason: str = "") -> dict:
     }
 
 
-def _site_row(e: Entry) -> dict:
+def _site_row(e: Entry, scores: dict | None = None) -> dict:
     """A row of a section table: the facts, with every judgement already made.
 
     The answers browse.html filters on that a card can show beside the name —
@@ -1378,7 +1460,7 @@ def _site_row(e: Entry) -> dict:
     reader who scans this page are asking one question. Whether the API is
     OpenAI-compatible is the connection table's to say, where the base URL is.
     """
-    families = [m for m in e.models if m.superseded_by is None]
+    families = _ordered_models(e, scores)
     chips = [{"family": m.family, "tier": m.tier.value if m.tier else "",
               "access": _access_description(e, m.family, compact=True)} for m in families]
     api = e.api
@@ -1412,14 +1494,14 @@ def _site_row(e: Entry) -> dict:
     }
 
 
-def _site_sections(active: list[Entry]) -> list[dict]:
+def _site_sections(active: list[Entry], scores: dict | None = None) -> list[dict]:
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
         emoji, _, name = title.partition(" ")
         sections.append({
             "id": cat.value, "emoji": emoji, "title": name, "short": SITE_NAV_LABELS[cat],
-            "rows": [_site_row(e) for e in rows], **_card_counts(rows),
+            "rows": [_site_row(e, scores) for e in rows], **_card_counts(rows),
         })
     return sections
 
@@ -1607,14 +1689,14 @@ def build_site_context(entries: list[Entry], today: date,
     Markdown — folded cells, backticked ids, escaped pipes — that an HTML page
     would have to unpick.
     """
+    scores = _resolve_scores(scores)
     active = [e for e in entries if not is_archived(e, today)]
-    facts = _shared_facts(entries, today, watchlist, pages)
+    facts = _shared_facts(entries, today, watchlist, pages, scores)
     return {
         **facts,
         # The README chart's ranking, with each model's score beside it.
-        "strong_models": _in_chart_order(facts["strong_models"],
-                                         load_scores() if scores is None else scores),
-        "sections": _site_sections(active),
+        "strong_models": _in_chart_order(facts["strong_models"], scores),
+        "sections": _site_sections(active, scores),
         "jsonld": _site_jsonld(facts["active_count"], facts["family_count"], today),
         "connections": _site_connections(_connectable(entries, today)),
         "client_configs": _script_json(_site_client_configs(entries, today)),
@@ -1639,7 +1721,7 @@ _ASK_TEXT = {"user-agent": "every request names its client in its own User-Agent
              "session-header": "every request needs a stable id per conversation in `{}`"}
 
 
-def _llms_line(e: Entry) -> str:
+def _llms_line(e: Entry, scores: dict | None = None) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append(_card_words(e))
     if e.access:
@@ -1673,7 +1755,7 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
         if codex_ready(e):
             parts.append(f"Codex CLI profile at {REPO_URL}/blob/main/{codex_profile_path(e)}")
-    fams = live_families(e)
+    fams = [m.family for m in _ordered_models(e, scores)]
     if fams:
         parts.append("free models: " + ", ".join(f"`{f}`" + _access_flag(e, f, compact=False) for f in fams))
     if e.page_catalog:
@@ -1683,13 +1765,14 @@ def _llms_line(e: Entry) -> str:
     return f"- [{e.name}]({provider_page_url(e.id)}): " + "; ".join(parts)
 
 
-def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = None) -> str:
+def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = None, scores: dict | None = None) -> str:
     """The list as one text file in the llms.txt shape — a title, a summary in a
     blockquote, then sections of links with a note each.
 
     This is the registry in the form that reads best as text, one line per
     offer with what it needs (card, key) and where it answers.
     """
+    scores = _resolve_scores(scores)
     live = [e for e in entries if not is_archived(e, today)]
     groups = litellm_groups(entries, today)
     gone = sorted(_archive(entries, today), key=lambda e: e.name.lower())
@@ -1712,11 +1795,11 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
     ]
     for title, rows in sections(live):
         lines += ["", f"## {_plain_title(title)}", ""]
-        lines += [_llms_line(e) for e in rows]
+        lines += [_llms_line(e, scores) for e in rows]
     # The same rows turned inside out, for the question that starts from a
     # model: every model with a page, and who serves it.
     pages = model_pages(entries, [], today) if pages is None else pages
-    paged = [(f, rows) for f, rows in _rows_by_family(live).items() if f in pages]
+    paged = [(f, rows) for f, rows in _rows_by_family(live, scores).items() if f in pages]
     if paged:
         lines += ["", "## Free models by name", "",
                   f"A model gets a page of its own once {_model_page_rule()}: every row that "
@@ -2263,14 +2346,14 @@ def _page(fields: dict, body: list[str]) -> str:
                       "", "{% endraw %}", ""])
 
 
-def _page_description(e: Entry) -> str:
+def _page_description(e: Entry, scores: dict | None = None, *, recorded: bool = False) -> str:
     """The <meta> description: the offer first, then the free models, then the
     figures, cut at a word. The models come off the column, the list a probe
     reads back, since `offering` names none on a row of free models."""
     offer = e.offering.strip()
     if offer and offer[-1] not in ".!?":
         offer += "."
-    shown, more = _readme_families(e)
+    shown, more = _readme_families(e, scores, recorded=recorded)
     named = (f" Free models: {', '.join(shown)}{f' and {more} more' if more else ''}."
              if shown else "")
     terms = "\n\n".join(t for t in (e.limits, catalog_words(e.page_catalog)
@@ -2311,13 +2394,21 @@ _ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, s
 
 
 def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
-                   family: str | None = None) -> list[str]:
+                   family: str | None = None, scores: dict | None = None) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
     request carries, the Anthropic route, Codex's profile and the ids — every id
     the row lists on the row's own page, one model's ids on that model's page.
     One function for both pages, so a new way in (a key the vendor prints, a
     header every request carries) reaches every page that says how to connect,
     and none says it its own way."""
+    bindings = {m.family: m for m in e.models if not m.superseded_by}
+    def key(mid):
+        family = entry_id_family(e, mid)
+        model = bindings.get(family) or ModelFamily(family="unclassified")
+        access = id_access(e, mid)
+        return (family is None, *_model_order(model, scores),
+                bool(access and access.initial_payment_usd), mid.casefold())
+    ids = sorted(ids, key=key)
     api = e.api
     if not (api and api.base_url):
         out = ["- No API endpoint to paste: this row is a tool you install or sign in to."]
@@ -2366,9 +2457,9 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
     return out
 
 
-def _connect_section(e: Entry) -> list[str]:
+def _connect_section(e: Entry, scores: dict | None = None) -> list[str]:
     lane = lane_ids(e)
-    out = ["## Connect", "", *_connect_lines(e, lane.model_ids if lane else [], include_waiting=True)]
+    out = ["## Connect", "", *_connect_lines(e, lane.model_ids if lane else [], include_waiting=True, scores=scores)]
     if e.api and e.api.base_url and e.api.note:
         out.append(f"- Note: {e.api.note}")
     return out + [""] + _try_it(e)
@@ -2501,7 +2592,7 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
 
 def build_provider_page(e: Entry, events: list[Event], today: date, blocked: bool = False,
                         registry: list[Entry] | None = None,
-                        pages: set[str] | None = None) -> str:
+                        pages: set[str] | None = None, scores: dict | None = None) -> str:
     """One page per row on the Pages site, in the row's own words.
 
     It is for the reader who arrives with a question about one vendor and for
@@ -2523,6 +2614,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
 
     A row folded into another gets a page of its own kind, `build_folded_page`.
     """
+    scores = _resolve_scores(scores)
     if e.duplicate_of is not None:
         return build_folded_page(e, events, today, folded_into(registry or [], e))
     archived = is_archived(e, today)
@@ -2532,7 +2624,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     else:
         title = f"{e.name} free tier: limits, free models, verified {verified}"
     head = {"title": title,
-            "description": _page_description(e),
+            "description": _page_description(e, scores, recorded=archived),
             "permalink": _permalink(provider_page_url(e.id)),
             "last_modified_at": _last_modified(e, events),
             # The page's own name in the breadcrumb the layout writes for
@@ -2582,7 +2674,10 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         # list publishes does not work right now.
         out += ["", _notice_quote(e.api.notice)]
     out += ["", "## What it offered" if archived else "## What you get", "", e.offering, ""]
-    fams = live_families(e)
+    fams = live_families(e) if archived else [m.family for m in _ordered_models(e, scores)]
+    sortable = not archived and len(fams) >= MODEL_SORT["minimum"]
+    if sortable:
+        head["model_sort"] = True
     if archived:
         named = "The row named no free model."
     elif e.free_part is FreePart.SUM:
@@ -2599,7 +2694,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
                  "has them, are under Connect.")
     out += ["## Free models it listed" if archived else "## Free models", "",
             _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
-                                else pages) if fams else named,
+                                else pages, sortable=sortable) if fams else named,
             ""]
     out += ["## Limits, in the vendor's words", "",
             limits_text(e) if limits_text(e) else "The vendor publishes no figure for this tier.", ""]
@@ -2610,7 +2705,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
                 f"{DATA_USE_WORDS[e.data_use.trains]} In the vendor's words: "
                 f"“{e.data_use.quote}” ([source]({e.data_use.url})).", ""]
     if not archived:
-        out += _connect_section(e)
+        out += _connect_section(e, scores)
     out += _evidence_section(e, blocked)
     out += _history_section(e, events)
     if not archived:
@@ -2629,9 +2724,10 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
 
 def build_providers_index(entries: list[Entry], today: date,
                           events: list[Event] | None = None,
-                          pages: set[str] | None = None) -> str:
+                          pages: set[str] | None = None, scores: dict | None = None) -> str:
     """The page that links every provider page — live rows first, in section
     order, the archive after — so a crawler that lands anywhere finds the rest."""
+    scores = _resolve_scores(scores)
     head = {"title": "Every free LLM API and coding agent on the list, with its evidence",
             "description": "One page per provider: the free tier in the vendor's own "
                            "words, connection details, the evidence a live probe reads "
@@ -2651,7 +2747,7 @@ def build_providers_index(entries: list[Entry], today: date,
     for title, rows in sections(live):
         out += [f"## {title}", ""]
         for e in rows:
-            fams = _row_models(e, pages)
+            fams = _row_models(e, pages, scores)
             out.append(f"- [{e.name}]({provider_page_url(e.id)}){_card_flag(e)} — verified "
                        f"{e.last_verified.isoformat()}" + (DOT + fams if fams else ""))
         out.append("")
@@ -2783,7 +2879,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
 
 
 def build_model_page(family: str, entries: list[Entry], events: list[Event], today: date,
-                     pages: set[str] | None = None) -> str:
+                     pages: set[str] | None = None, scores: dict | None = None) -> str:
     """One page per model the list can say something about across its rows.
 
     A reader arrives with a model in mind as often as with a vendor — where is
@@ -2797,8 +2893,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     registry's or the history's, and the body sits inside {% raw %} for the
     reason the provider pages' does.
     """
+    scores = _resolve_scores(scores)
     active = [e for e in entries if not is_archived(e, today)]
-    by_family = _rows_by_family(active)
+    by_family = _rows_by_family(active, scores)
     pages = model_pages(entries, events, today) if pages is None else pages
     rows = by_family.get(family, [])
     by_id = {e.id: e for e in entries}
@@ -2897,16 +2994,17 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
 
 def build_models_index(entries: list[Entry], today: date,
                        events: list[Event] | None = None,
-                       pages: set[str] | None = None) -> str:
+                       pages: set[str] | None = None, scores: dict | None = None) -> str:
     """Every model the live rows serve free and every row that serves each one —
     the site's model index as a page of its own, for the reader who searched
     for a list of free models rather than for one of them. A model with a page
     links to it; any other links the row that serves it. The models no row
     serves any more, whose pages stay, follow with the day each was last
     listed."""
+    scores = _resolve_scores(scores)
     events = events or []
     active = [e for e in entries if not is_archived(e, today)]
-    by_family = _rows_by_family(active)
+    by_family = _rows_by_family(active, scores)
     pages = model_pages(entries, events, today) if pages is None else pages
     gone = []
     for family in pages - set(by_family):
@@ -2923,10 +3021,10 @@ def build_models_index(entries: list[Entry], today: date,
     changed = [*(_last_modified(e, events) for e in active), *(g[1] for g in gone if g[1])]
     head = {"title": title, "description": description,
             "permalink": _permalink(models_index_url()),
-            "last_modified_at": max(changed, default=today)}
+            "last_modified_at": max(changed, default=today),
+            "model_sort": True, "sortable_model_index": True}
     out = ["# Every free model on the list", "",
-           f"{len(by_family)} model families, and every row that serves each one free, the most "
-           f"widely served first. A model gets a page of its own once {_model_page_rule()}: every "
+           f"{len(by_family)} model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once {_model_page_rule()}: every "
            "row that serves it, the limits in the vendor's words and the ids to call. It keeps "
            "the page when fewer rows serve it, and when none does the page says since when and "
            f"which rows listed it. A live probe reads every row again {_schedule()}.", "",
@@ -2934,6 +3032,8 @@ def build_models_index(entries: list[Entry], today: date,
            "| Model | Free at |", "|---|---|"]
     for family, rows in by_family.items():
         cell = f"[`{family}`]({model_page_url(family)})" if family in pages else f"`{family}`"
+        if label := _score_label(_family_model(family, rows), scores):
+            cell += f" <small>{label}</small>"
         mark = _measured(family, rows)
         if mark is not None:
             cell += f" · {mark.tier.value}"
@@ -2952,13 +3052,13 @@ def build_models_index(entries: list[Entry], today: date,
     return _page(head, out)
 
 
-def _index_models(entries: list[Entry], today: date, pages: set[str]) -> list[dict]:
+def _index_models(entries: list[Entry], today: date, pages: set[str], scores: dict | None = None) -> list[dict]:
     """index.json's model index: every family the live rows serve free, the ids
     of the rows that serve it, its tier where it has one and its page where it
     has one — the question a machine asks as often as a reader — and after them
     every model with a page that no row serves any more, its rows empty."""
     active = [e for e in entries if not is_archived(e, today)]
-    by_family = _rows_by_family(active)
+    by_family = _rows_by_family(active, scores)
     out = []
     for family, rows in by_family.items():
         mark = _measured(family, rows)
@@ -3074,7 +3174,8 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
 
 
 def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Path,
-                          today: date | None = None, watchlist_path: Path | None = None) -> str:
+                          today: date | None = None, watchlist_path: Path | None = None,
+                          scores: dict | None = None) -> str:
     """configs/README.md — the connection table, beside the files it describes.
 
     Base URL, key name and the notes that matter for every live OpenAI-compatible
@@ -3085,7 +3186,7 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     context, so the two pages cannot disagree about a lane.
     """
     today = today or datetime.now(timezone.utc).date()
-    context = _github_page_context(registry_path, today, watchlist_path)
+    context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template(CONFIGS_TEMPLATE).render(**context)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(text, encoding="utf-8")
@@ -3132,11 +3233,12 @@ def _write_files(folder: Path, pattern: str, files: dict[str, str],
 
 
 def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
-                     watchlist_path: Path | None = None) -> None:
+                     watchlist_path: Path | None = None, scores: dict | None = None) -> None:
     """Everything the render writes besides the README, the site's front page and
     configs/README.md: the feed, the provider and model pages, index.json,
     llms.txt, and the configs with the Codex profiles."""
     today = today or datetime.now(timezone.utc).date()
+    scores = _resolve_scores(scores)
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
     history = _history_beside(registry_path)
@@ -3152,21 +3254,21 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         f"{CHECKED_PAGE}.md": build_checked_page(watchlist, today),
         **{f"{e.id}.md": build_provider_page(e, history, today,
                                              is_blocked(domain_of(e.url), blocklist),
-                                             registry=entries, pages=pages)
+                                             registry=entries, pages=pages, scores=scores)
            for e in entries},
-        f"{PROVIDERS_INDEX_PAGE}.md": build_providers_index(entries, today, history, pages)}, dates)
+        f"{PROVIDERS_INDEX_PAGE}.md": build_providers_index(entries, today, history, pages, scores)}, dates)
     # A page per model that has one, the pages already published among them,
     # and the index of every model. The only file taken away is one no family
     # names: a page the site published stays (`model_pages`).
     _write_files(root / MODELS_DIR, "*.md", {
-        **{f"{family}.md": build_model_page(family, entries, history, today, pages)
+        **{f"{family}.md": build_model_page(family, entries, history, today, pages, scores)
            for family in sorted(pages)},
-        "index.md": build_models_index(entries, today, history, pages)}, dates)
+        "index.md": build_models_index(entries, today, history, pages, scores)}, dates)
     (root / "index.json").write_text(
-        json.dumps(build_index(entries, today, watchlist, pages), indent=2,
+        json.dumps(build_index(entries, today, watchlist, pages, scores), indent=2,
                    ensure_ascii=False) + "\n",
         encoding="utf-8")
-    (root / "llms.txt").write_text(build_llms_txt(entries, today, pages), encoding="utf-8")
+    (root / "llms.txt").write_text(build_llms_txt(entries, today, pages, scores), encoding="utf-8")
     configs = root / "configs"
     configs.mkdir(parents=True, exist_ok=True)
     (configs / "opencode.json").write_text(
@@ -3221,7 +3323,7 @@ MAP_END = "<!-- End of the map. -->"
 
 
 def render_contributing(source: Path, out: Path) -> str | None:
-    """CONTRIBUTING.md with its map section printed from the map.
+    """CONTRIBUTING.md with its map and registered values from their writers.
 
     The prose is a person's; the table is layout.MAP's, so the page that
     explains which file comes from which cannot describe a map the checks no
@@ -3235,6 +3337,23 @@ def render_contributing(source: Path, out: Path) -> str | None:
     head, rest = text.split(MAP_BEGIN, 1)
     _, tail = rest.split(MAP_END, 1)
     text = f"{head}{MAP_BEGIN}\n\n{markdown_table()}\n\n{MAP_END}{tail}"
+    from .claims import render_claims
+    text = render_claims(text, CONTRIBUTING, source.parent)
+    out.write_text(text, encoding="utf-8")
+    return text
+
+
+def render_indexnow_filter(source: Path, out: Path) -> str | None:
+    """Generate the static Actions push filter from the publication map."""
+    if not source.is_file():
+        return None
+    text = source.read_text(encoding="utf-8")
+    pattern = r"(?m)^    paths:\n(?:      - [^\n]+\n)+"
+    block = "    paths:\n" + "".join(f"      - {json.dumps(node.path)}\n" for node in MAP if node.published)
+    text, matches = re.subn(pattern, lambda _: block, text)
+    if matches != 1:
+        raise ValueError("IndexNow needs exactly one published-file push filter")
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(text, encoding="utf-8")
     return text
 
@@ -3248,14 +3367,17 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
     `contributing_from` is the directory whose CONTRIBUTING.md the map is
     printed into — the repository itself, when the output is not."""
     today = today or datetime.now(timezone.utc).date()
+    scores = _resolve_scores(None)
     render_readme(registry_path, template_dir, root / readme_name, today=today,
-                  watchlist_path=watchlist_path)
+                  watchlist_path=watchlist_path, scores=scores)
     render_site(registry_path, template_dir, root / SITE_PAGE, today=today,
-                watchlist_path=watchlist_path)
+                watchlist_path=watchlist_path, scores=scores)
     render_configs_readme(registry_path, template_dir, root / CONFIGS_README, today=today,
-                          watchlist_path=watchlist_path)
-    render_artifacts(registry_path, root, today=today, watchlist_path=watchlist_path)
+                          watchlist_path=watchlist_path, scores=scores)
+    render_artifacts(registry_path, root, today=today, watchlist_path=watchlist_path, scores=scores)
     render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
+    render_indexnow_filter((contributing_from or registry_path.parent) / ".github/workflows/indexnow.yml",
+                          root / ".github/workflows/indexnow.yml")
 
 
 def render_repository(registry_path: Path, template_dir: Path, root: Path,

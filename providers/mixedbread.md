@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Mixedbread free tier: limits, free models, verified 2026-11-09'
-description: OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required. Create an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the…
+description: OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required. Create an account and an API key; a restricted key needs the Completions scope. Starter credits do not renew, and their expiry is not published. They fund usage at the standard…
 permalink: /providers/mixedbread/
 last_modified_at: 2026-11-09
 crumb: Mixedbread
@@ -15,7 +15,7 @@ crumb: Mixedbread
 
 ## What you get
 
-OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required
+OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required
 
 ## Free models
 

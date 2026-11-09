@@ -35,7 +35,7 @@ The vendor names no country it keeps the offer from ([source](https://inference.
 
 - Base URL: `https://inference.dahl.global/v1`
 - Key: `DAHL_INFERENCE_API_KEY` — get one at <https://inference.dahl.global/account>
-- Callable ids: `zai-org/GLM-5.3-Flash`, `deepseek-ai/DeepSeek-V4-Flash-0731`, `MiniMaxAI/MiniMax-M2.7`
+- Callable ids: `deepseek-ai/DeepSeek-V4-Flash-0731`, `MiniMaxAI/MiniMax-M2.7`, `zai-org/GLM-5.3-Flash`
 - Note: Model IDs rotate with network capacity. Allocate tokens from the account pool to each key at /account; a key without allocated tokens answers `402`.
 
 Try it from your terminal with your key in `DAHL_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:

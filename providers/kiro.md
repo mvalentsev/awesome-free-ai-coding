@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Kiro free tier: limits, free models, verified 2026-11-09'
-description: 'Perpetual free tier of AWS''s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. Free models: claude-sonnet-4.5, claude-sonnet-4, glm-5, minimax-m2.5, deepseek-v3.2, qwen3-coder-next, minimax-m2.1. Requires social login or AWS Builder ID. Credits do not…'
+description: 'Perpetual free tier of AWS''s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. Free models: claude-sonnet-4, claude-sonnet-4.5, deepseek-v3.2, glm-5, minimax-m2.1, minimax-m2.5, qwen3-coder-next. Requires social login or AWS Builder ID. Credits do not…'
 permalink: /providers/kiro/
 last_modified_at: 2026-11-09
 crumb: Kiro
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ## Free models
 
-[`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/), [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/), [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/), [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/), [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/), [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/), [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/)
+<span data-model-sort-inline><span data-model-family="claude-sonnet-4">[`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/)</span>, <span data-model-family="claude-sonnet-4.5">[`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/)</span>, <span data-model-family="deepseek-v3.2">[`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/)</span>, <span data-model-family="glm-5">[`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/)</span>, <span data-model-family="minimax-m2.1">[`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/)</span>, <span data-model-family="minimax-m2.5">[`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/)</span>, <span data-model-family="qwen3-coder-next">[`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/)</span></span>
 
 ## Limits, in the vendor's words
 

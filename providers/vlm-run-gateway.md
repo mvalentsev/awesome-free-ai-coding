@@ -5,6 +5,7 @@ description: 'OpenAI-compatible gateway whose GPU-served vision and language mod
 permalink: /providers/vlm-run-gateway/
 last_modified_at: 2026-11-09
 crumb: VLM Run Gateway
+model_sort: true
 ---
 
 {% raw %}
@@ -21,7 +22,7 @@ OpenAI-compatible gateway whose GPU-served vision and language models accept ano
 
 ## Free models
 
-[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/), `qwen3.5-0.8b`
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="diffusiongemma">[`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/)</span>, <span data-model-family="qwen3.5-0.8b">`qwen3.5-0.8b`</span></span>
 
 ## Limits, in the vendor's words
 
@@ -37,7 +38,7 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
-- Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
+- Callable ids: `qwen/qwen3.8-27b`, `google/diffusiongemma-26b-a4b-it`, `qwen/qwen3.5-0.8b`
 - Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate 4,096-token request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
 
 Try it from your terminal — the lane takes no key:

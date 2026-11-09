@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Agnes AI free tier: limits, free models, verified 2026-11-09'
-description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. The Flash models'' input, cached input and output are currently zero-priced; Pro remains metered. Zero…'
+description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-2.5-flash, agnes-3.0-flash. The Flash models'' input, cached input and output are currently zero-priced; Pro remains metered. Zero…'
 permalink: /providers/agnes-ai/
 last_modified_at: 2026-11-09
 crumb: Agnes AI
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ## Free models
 
-[`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)
+<span data-model-sort-inline><span data-model-family="agnes-2.5-flash">[`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)</span>, <span data-model-family="agnes-3.0-flash">[`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -39,7 +40,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://apihub.agnes-ai.com/v1`
 - Key: `AGNES_AI_API_KEY` — get one at <https://platform.agnes-ai.com>
-- Callable ids: `agnes-3.0-flash`, `agnes-2.5-flash`
+- Callable ids: `agnes-2.5-flash`, `agnes-3.0-flash`
 - Note: the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM. Agnes AI's China station (agnes-ai.cn) prices the same two Flash models at ¥0 (当前均免费, all currently free) and serves them from api.agnes-ai.cn/v1
 
 Try it from your terminal with your key in `AGNES_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:

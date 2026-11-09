@@ -41,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “Prompts, co
 - Key: `ABLITERATION_AI_API_KEY` — get one at <https://abliteration.ai/console>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.abliteration.ai`
 - Codex CLI: [`configs/codex/abliteration-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/abliteration-ai.config.toml) — copy it to `~/.codex/`, then `codex -p abliteration-ai`; set up on the lane by the vendor's own page, <https://docs.abliteration.ai/integrations/codex>: "To use Codex with Abliteration"
-- Callable ids: `abliterated-model-large-flash`, `abliterated-model-large-v2`, `abliterated-model`, `abliterated-model-large`
+- Callable ids: `abliterated-model`, `abliterated-model-large`, `abliterated-model-large-flash`, `abliterated-model-large-v2`
 - Note: Abliterated Large Flash and abliterated-model support image inputs; Large v2 and the deprecated Large model are text-only. The deprecated abliterated-model-large remains documented as available for existing integrations. All listed models support Chat Completions, Responses and Messages.
 
 Try it from your terminal with your key in `ABLITERATION_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:

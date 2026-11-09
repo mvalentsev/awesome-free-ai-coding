@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b and 2 more. No credit card for the Free…'
+description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: ling-3.1-flash, nemotron-3-ultra, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, leanstral-1.5, ling-3.0-tiny, nemotron-3-nano-30b and 2 more. No credit card for the Free plan…'
 permalink: /providers/requesty/
 last_modified_at: 2026-11-09
 crumb: Requesty
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI-compatible router with free models beside a metered catalog, routing, cac
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), `leanstral-1.5`, [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/)
+<span data-model-sort-inline><span data-model-family="ling-3.1-flash">[`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="muse-glimmer-30b">[`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</span>, <span data-model-family="leanstral-1.5">`leanstral-1.5`</span>, <span data-model-family="ling-3.0-tiny">[`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/)</span>, <span data-model-family="nemotron-3-nano-30b">[`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span>, <span data-model-family="nemotron-3-super">[`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://router.requesty.ai/v1`
 - Key: `REQUESTY_API_KEY` — get one at <https://app.requesty.ai/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://router.requesty.ai`
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `nvidia/nemotron-3-nano-30b-a3b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `novita/inclusionai/ling-3.0-tiny`, `google/gemma-4-31b-it`, `mistral/leanstral-1-5`, `nvidia/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `novita/ling-3.1-flash`
+- Callable ids: `novita/ling-3.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `google/gemma-4-31b-it`, `mistral/leanstral-1-5`, `novita/inclusionai/ling-3.0-tiny`, `nvidia/nemotron-3-nano-30b-a3b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `nvidia/nemotron-3-super-120b-a12b`
 - Note: Free-plan IDs are priced zero and have no expired retirement date; they carry no :free suffix. NVIDIA rows disclose training use and 30-day retention. For Claude Code, set ANTHROPIC_BASE_URL=https://router.requesty.ai, or https://router.eu.requesty.ai for EU residency.
 
 Try it from your terminal with your key in `REQUESTY_API_KEY` — it goes from your machine to the vendor and nowhere else:

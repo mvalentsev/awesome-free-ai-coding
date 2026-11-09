@@ -8,8 +8,40 @@ from jinja2 import Environment
 
 from . import git
 from .indexnow import index_at
-from .render import PAGES_URL, REPO_URL
+from .render import MODEL_SORT, PAGES_URL, REPO_URL
 from .review import Bundle, blob, scoped
+
+COVERAGE_PURPOSES = ('changed-content', 'shared-layout')
+
+
+def _representatives(items: list[dict], features) -> list[dict]:
+    """Cover shared layout states with the longest suitable content."""
+    pending = set().union(*(features(item) for item in items))
+    chosen = []
+    while pending:
+        item = max(items, key=lambda item: (len(features(item) & pending), len(json.dumps(item))))
+        chosen.append(item)
+        pending -= features(item)
+    return chosen
+
+
+def _row_features(row: dict) -> set[str]:
+    if row.get('duplicate_of'):
+        return {'folded'}
+    state = {'archived' if row.get('archived') else 'live'}
+    state.add('models' if row.get('models') else 'no-models')
+    for name in ('page_catalog', 'quotas', 'access', 'model_access', 'api', 'data_use', 'border'):
+        if row.get(name):
+            state.add(name)
+    if (row.get('api') or {}).get('notice'):
+        state.add('notice')
+    return state
+
+
+def _model_features(model: dict) -> set[str]:
+    return {'listed' if model.get('rows') else 'withdrawn',
+            'measured' if model.get('tier') else 'unmeasured',
+            'multiple-providers' if len(model.get('rows', [])) > 1 else 'single-or-empty'}
 
 
 def browser_plan(bundle: Bundle) -> dict:
@@ -21,7 +53,7 @@ def browser_plan(bundle: Bundle) -> dict:
               for m in {m['family']: m for m in [*before['models'], *index['models']]}.values()
               if m.get('page') and m['family'] in scope['families']]
     if not models:
-        models = [m for m in index['models'] if m.get('page') and m.get('tier') == 'strong'][:2]
+        models = [m for m in index['models'] if m.get('page') and m.get('rows')][:2]
     rows = [e for e in index['entries'] if e['id'] in scope['rows']]
     folded_ids = {e['duplicate_of'] for e in rows if e.get('duplicate_of')}
     folded_targets = {e['id']: {'name': e['name'], 'page': e['page']}
@@ -46,23 +78,57 @@ def browser_plan(bundle: Bundle) -> dict:
     readme_models = [current[family] for family in comparison_families if family in current]
     readme_images = [html_text.unescape(alt) for alt in re.findall(
         r'<picture>.*?<img\s[^>]*alt="([^"]+)"', readme, re.S)]
-    cases = []
-    for width in widths:
-        for scheme in schemes:
-            prefix = f'{width}/{scheme}/'
-            cases += [prefix + kind + '/' + m['family'] for kind in ('search', 'browse', 'model') for m in models]
-            cases += [prefix + 'provider/' + e['id'] for e in rows]
-            cases += [prefix + 'config/' + client for client in clients]
-            if len(named) == 2:
-                cases.append(prefix + 'search-flow')
-            if width != 320:
-                cases.append(prefix + 'readme')
-                cases += [prefix + 'readme-image/' + str(i) for i in range(len(readme_images))]
+    row_controls = _representatives(rows, _row_features)
+    model_controls = _representatives(models, _model_features)
+    config_control = max(clients, key=lambda client: len(json.dumps(
+        json.loads(config_block.group(1))[client])), default=None)
+    coverage = {}
+
+    def add(width, scheme, kind, name='', purpose=COVERAGE_PURPOSES[1]):
+        case = f'{width}/{scheme}/{kind}' + ('/' + name if name else '')
+        coverage.setdefault(case, purpose)
+
+    # Unique content and associations once. Themes and widths exercise the
+    # shared components on representatives, not every provider's same page.
+    for model in models:
+        for kind in ('search', 'browse', 'model'):
+            add(1440, 'light', kind, model['family'], COVERAGE_PURPOSES[0])
+    for row in rows:
+        add(1440, 'light', 'provider', row['id'], COVERAGE_PURPOSES[0])
+    for client in clients:
+        add(1440, 'light', 'config', client, 'client-content')
+    for width, scheme in ((1440, 'light'), (1440, 'dark'), (375, 'light'), (375, 'dark'), (320, 'light')):
+        for row in row_controls:
+            add(width, scheme, 'provider', row['id'])
+        for model in model_controls:
+            for kind in ('search', 'browse', 'model'):
+                add(width, scheme, kind, model['family'])
+        if config_control:
+            add(width, scheme, 'config', config_control)
+        if len(named) == 2:
+            add(width, scheme, 'search-flow')
+        if width != 320:
+            add(width, scheme, 'readme')
+            for i in range(len(readme_images)):
+                add(width, scheme, 'readme-image', str(i))
+    cases = list(coverage)
+    sortable = [row for row in index['entries'] if not row.get('archived') and not row.get('duplicate_of')
+                and len([m for m in row.get('models', []) if not m.get('superseded_by')]) >= index.get('model_sort', MODEL_SORT)['minimum']]
+    sort_row = next((row for row in sortable if row['id'] == 'opencode'), sortable[0] if sortable else None)
+    if index.get('model_sort'):
+        for width, scheme in ((1440, 'light'), (375, 'dark')):
+            for kind in ('home', 'index', *(('provider', 'browse') if sort_row else ())):
+                add(width, scheme, 'model-sort', kind, 'user-sort')
+        cases = list(coverage)
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
             'chart_date': json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['read_on']
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
             'models': models, 'rows': rows, 'folded_targets': folded_targets,
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
+            'coverage': coverage,
+            'representative_rows': [row['id'] for row in row_controls],
+            'representative_models': [model['family'] for model in model_controls],
+            'model_sort': index.get('model_sort'), 'models_catalog': index['models'], 'sort_row': sort_row,
             'clients': clients,
             'readme_model_list': readme_model_list, 'readme_images': readme_images,
             'readme_models': readme_models,

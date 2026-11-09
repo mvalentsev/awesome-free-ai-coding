@@ -81,6 +81,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   .comparison-provider { display: block; grid-row: auto; }
 }
 </style>
+<link rel="stylesheet" href="assets/model-sort.css">
 </head>
 <body>
 <main>
@@ -105,6 +106,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   <select id="where" aria-label="Where you are">
     <option value="">Where you are: anywhere</option>
   </select>
+  <label id="model-sort-label" class="model-sort" hidden><select id="model-sort"></select></label>
   <label class="chip"><input type="checkbox" id="nocard"> No card</label>
   <label class="chip"><input type="checkbox" id="nokey"> No account needed</label>
   <label class="chip"><input type="checkbox" id="openai"> OpenAI-compatible</label>
@@ -140,6 +142,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 </main>
 <script src="assets/model-name.js"></script>
 <script src="assets/search.js"></script>
+<script src="assets/model-sort.js"></script>
 <script>
 (function () {
   "use strict";
@@ -158,9 +161,11 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
   var dataUseWords = {};
   // A model's own page, where it has one: index.json's `models` names each.
   var modelPages = {};
+  var modelSorter = null;
 
   function families(e) {
-    return (e.models || []).filter(function (m) { return !m.superseded_by; });
+    var models = (e.models || []).filter(function (m) { return !m.superseded_by; });
+    return modelSorter ? modelSorter.order(models) : models;
   }
   function callableIds(e) {
     var lane = e.api || e.client_lane;
@@ -211,6 +216,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
     if (els.where.value) params.set("where", els.where.value);
     FILTERS.forEach(function (id) { if (els[id].checked) params.set(id, "1"); });
     if (comparison.length) params.set("compare", comparison.join(","));
+    if (modelSorter) modelSorter.writeState(params);
     var qs = params.toString();
     history.replaceState(null, "", (qs ? "?" + qs : location.pathname) + location.hash);
   }
@@ -526,6 +532,14 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
       return 0;
     });
     readState();
+    if (typeof FreeTierModelSort !== "undefined" && data.model_sort) {
+      modelSorter = FreeTierModelSort.controller(data, function (event) {
+        if (event && event.history) readState();
+        render();
+      });
+      modelSorter.control(document.getElementById("model-sort"));
+      document.getElementById("model-sort-label").hidden = false;
+    }
     // A link that asked for frontier models on a week none is free asks for the
     // strong ones, the nearest answer the list has, instead of an empty table.
     if (entries.some(function (e) { return !e.archived && hasFrontier(e); })) {

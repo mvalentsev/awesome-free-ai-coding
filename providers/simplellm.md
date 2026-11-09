@@ -5,6 +5,7 @@ description: 'OpenAI-compatible chat API from Stage One Solutions UG in Germany,
 permalink: /providers/simplellm/
 last_modified_at: 2026-11-09
 crumb: SimpleLLM
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled 
 
 ## Free models
 
-`gemma-4-e4b`, `llama-3.1-8b`
+<span data-model-sort-inline><span data-model-family="gemma-4-e4b">`gemma-4-e4b`</span>, <span data-model-family="llama-3.1-8b">`llama-3.1-8b`</span></span>
 
 ## Limits, in the vendor's words
 

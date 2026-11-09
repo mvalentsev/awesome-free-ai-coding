@@ -35,7 +35,7 @@ The vendor names no country it keeps the offer from ([source](https://anyapi.ai/
 
 - Base URL: `https://api.anyapi.ai/v1`
 - Key: `ANYAPI_API_KEY` — get one at <https://dash.anyapi.ai/?page=api-keys>
-- Callable ids: `qwen/qwen3.8-27b:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`
+- Callable ids: `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `qwen/qwen3.8-27b:free`
 - Note: Create a Free account and an API key in the Dashboard. Use the exact provider/model:free ID with /chat/completions. The daily AnyToken wallet and each zero-priced variant have separate scopes; paid models require a different plan.
 
 Try it from your terminal with your key in `ANYAPI_API_KEY` — it goes from your machine to the vendor and nowhere else:

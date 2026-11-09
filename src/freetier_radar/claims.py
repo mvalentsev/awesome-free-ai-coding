@@ -1,8 +1,8 @@
 """What the hand-written files say about the code and the data, held to them.
 
-The pages are generated and state every rule from the constant that applies
-it; CONTRIBUTING.md, the site's config, the social preview's source and
-browse.html are written by hand and cannot. So each sentence that states a figure the code applies is
+The pages state every rule from its constant. CONTRIBUTING.md also generates
+registered rule values; other handwritten assertions remain independently
+checked. Each sentence that states a figure the code applies is
 listed here with the constant it states, how often the files in SCHEDULED say
 the list is checked is held to models.PROBE_WEEKDAYS (and so is the workflow's
 cron), and `freetier-check` refuses the sentence — or the constant — the day
@@ -33,7 +33,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
                      load_registry, probe_frequency)
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
-from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
+from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT,
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
@@ -48,7 +48,7 @@ from .quality import (CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS,
                       CONFLICT_STATES, WITHDRAWAL_VERDICTS)
 from .review_leads import LEAD_VERDICTS
 
-__all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
+__all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims", "render_claims"]
 
 @dataclass(frozen=True)
 class Claim:
@@ -59,6 +59,7 @@ class Claim:
     truth: Callable[[Path], tuple[str, ...]]
     source: str
     read: Callable[[re.Match], tuple[str, ...]] = re.Match.groups
+    generated: bool = False
 
 
 def _no_row_sets(field: str) -> Callable[[Path], tuple[str, ...]]:
@@ -69,6 +70,11 @@ def _no_row_sets(field: str) -> Callable[[Path], tuple[str, ...]]:
                 if e.api and getattr(e.api, field)]
         return ("No",) if not rows else (", ".join(rows),)
     return truth
+
+
+def _browser_coverage_purposes(root: Path) -> tuple[str, ...]:
+    from .review_browser import COVERAGE_PURPOSES
+    return tuple(purpose.rsplit('-', 1)[-1] for purpose in COVERAGE_PURPOSES)
 
 
 def _keys(found: re.Match) -> tuple[str, ...]:
@@ -356,6 +362,21 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim(".github/workflows/indexnow.yml", r"(freetier-render) generates this projection",
+          lambda root: next(node.written_by for node in MAP if node.path == ".github/workflows/indexnow.yml"),
+          "layout.MAP and render.render_indexnow_filter; independent new-file/job-preservation controls in tests/test_layout.py"),
+    Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
+          _browser_coverage_purposes,
+          "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),
+    Claim("CONTRIBUTING.md", r"Pages model orders are `(score)`, `(name)` or `(providers)`",
+          lambda root: tuple(option["id"] for option in MODEL_SORT["options"]),
+          "render.MODEL_SORT and model-sort.js; ordering and browser history/filter controls"),
+    Claim("assets/model-sort.js", r'if \(mode === "(score)"\) return items.slice\(\);',
+          lambda root: (MODEL_SORT["default"],),
+          "render.MODEL_SORT; generated score order preserved by model-sort.js and tests/test_search_contract.py"),
+    Claim("CONTRIBUTING.md", r"Matching Intelligence Index (score)s come first, highest first;"
+          r"\s+unavailable scores use the retained (tier), then natural model-(name) order",
+          lambda root: MODEL_ORDER_FIELDS, "render.MODEL_ORDER_FIELDS and shared display ordering; tests/test_render.py"),
     Claim('CONTRIBUTING.md',
           r'For a prose-based tool without callable IDs, `(model_access)` on the entry uses\s+'
           r'the exact family, an eligibility `(quote)` and a `(deadline_quote)` beside `(until)`\.\s+'
@@ -536,10 +557,10 @@ CLAIMS: tuple[Claim, ...] = (
           "quotas.UsageQuota; HTTP-boundary and source-binding regressions in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"dated manual review after (\d+) days",
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
-          "quotas.UNKNOWN_RECHECK_DAYS and quota_moved; expiry regression in tests/test_quotas.py"),
+          "quotas.UNKNOWN_RECHECK_DAYS and quota_moved; expiry regression in tests/test_quotas.py", generated=True),
     Claim("CONTRIBUTING.md", r"probe requests a fresh review\s+after (\d+) days",
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
-          "page_catalog.check_page_catalog and UNKNOWN_RECHECK_DAYS; Markdown HTTP-boundary expiry regression"),
+          "page_catalog.check_page_catalog and UNKNOWN_RECHECK_DAYS; Markdown HTTP-boundary expiry regression", generated=True),
     Claim("CONTRIBUTING.md", r"Read modes are `(page)`,\s+`(catalog)`, `(constant)`, `(table)`, `(catalog-field)`, and `(script-field)`",
           lambda root: get_args(UsageQuota.model_fields['read'].annotation),
           "quotas.UsageQuota and quota_changes; HTTP-boundary regressions in tests/test_quotas.py"),
@@ -558,85 +579,85 @@ CLAIMS: tuple[Claim, ...] = (
           _review_producer_workflows,
           "review.PRODUCER_WORKFLOWS and prepare; matching main-writer receipt regressions in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"and it\s+expires after (\d+) days, at which point the scout",
-          lambda root: (str(WATCH_RECHECK_DAYS),), "models.WATCH_RECHECK_DAYS"),
+          lambda root: (str(WATCH_RECHECK_DAYS),), "models.WATCH_RECHECK_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"Those verdicts expire after (\d+)\s+days",
-          lambda root: (str(SOURCE_RECHECK_DAYS),), "models.SOURCE_RECHECK_DAYS"),
+          lambda root: (str(SOURCE_RECHECK_DAYS),), "models.SOURCE_RECHECK_DAYS", generated=True),
     Claim("CONTRIBUTING.md",
           r"after (\w+) failed\s+probes in a row, or after (\d+) days without a passing probe",
           lambda root: (_word(ARCHIVE_AFTER_FAILURES), str(ARCHIVE_AFTER_DAYS)),
-          "models.ARCHIVE_AFTER_FAILURES and ARCHIVE_AFTER_DAYS"),
+          "models.ARCHIVE_AFTER_FAILURES and ARCHIVE_AFTER_DAYS", generated=True),
     Claim("CONTRIBUTING.md",
           r"scores within (\d+) points of the top\s+of the index, counting current models only,"
           r"\s+`strong` within (\d+)",
           lambda root: (f"{FRONTIER_WITHIN:g}", f"{STRONG_WITHIN:g}"),
-          "tiers.FRONTIER_WITHIN and STRONG_WITHIN"),
+          "tiers.FRONTIER_WITHIN and STRONG_WITHIN", generated=True),
     Claim("CONTRIBUTING.md", r"index version `([\d.]+)`; a missing",
-          lambda root: (INDEX_VERSION,), "tiers.INDEX_VERSION and HTTP writer revision regressions"),
+          lambda root: (INDEX_VERSION,), "tiers.INDEX_VERSION and HTTP writer revision regressions", generated=True),
     Claim("CONTRIBUTING.md", r"The comparison axis starts at (\d+) and scales to the free models",
           lambda root: (f"{_chart_ticks(33.6)[0]:g}",),
           "pictures._chart_ticks; zero baseline, real score ratios and common-width axis controls in tests/test_pictures.py"),
     Claim("CONTRIBUTING.md", r"vendor output in backticks, (\d+) characters\s+at most",
-          lambda root: (str(PROSE_LIMITS["api.notice"]),), "validate.PROSE_LIMITS['api.notice']"),
+          lambda root: (str(PROSE_LIMITS["api.notice"]),), "validate.PROSE_LIMITS['api.notice']", generated=True),
     Claim("CONTRIBUTING.md", r"holds a refusal off the failure count for (\d+) days from `since`",
-          lambda root: (str(NOTICE_HOLD_DAYS),), "models.NOTICE_HOLD_DAYS"),
+          lambda root: (str(NOTICE_HOLD_DAYS),), "models.NOTICE_HOLD_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"only events from the last (\d+) days, at most (\w+) per channel",
           lambda root: (str(MAX_AGE_DAYS), _word(POSTS_PER_RUN)),
-          "announce.MAX_AGE_DAYS and POSTS_PER_RUN"),
+          "announce.MAX_AGE_DAYS and POSTS_PER_RUN", generated=True),
     Claim("CONTRIBUTING.md",
           r"`freetier-check` holds `offering` to ([\d,]+) characters, `limits` to ([\d,]+) and"
           r"\s+`api.note` to ([\d,]+)",
           lambda root: tuple(f"{PROSE_LIMITS[f]:,}" for f in ("offering", "limits", "api.note")),
-          "validate.PROSE_LIMITS"),
+          "validate.PROSE_LIMITS", generated=True),
     Claim("CONTRIBUTING.md", r"The first (\w+) no-card agents are also the top of the README",
-          lambda root: (_word(README_STARTERS),), "render.README_STARTERS"),
+          lambda root: (_word(README_STARTERS),), "render.README_STARTERS", generated=True),
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",
-          lambda root: (_word(README_PICKS),), "render.README_PICKS"),
+          lambda root: (_word(README_PICKS),), "render.README_PICKS", generated=True),
     Claim("CONTRIBUTING.md", r"An undated model on a rotating lane waits (\w+ weeks|a week)",
-          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
-          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"`offering`, the first (\w+)\s+model families and the date",
-          lambda root: (_word(README_MODELS),), "render.README_MODELS"),
+          lambda root: (_word(README_MODELS),), "render.README_MODELS", generated=True),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",
-          lambda root: (_ordinal(README_MODELS),), "render.README_MODELS"),
+          lambda root: (_ordinal(README_MODELS),), "render.README_MODELS", generated=True),
     Claim("CONTRIBUTING.md", r"The comparison shows at most (\w+) families;",
-          lambda root: (_word(README_COMPARISON),), "render.README_COMPARISON"),
+          lambda root: (_word(README_COMPARISON),), "render.README_COMPARISON", generated=True),
     Claim("CONTRIBUTING.md", r"a page for every model (\w+) rows or more serve",
-          lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS"),
+          lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS", generated=True),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",
-          lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED"),
+          lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED", generated=True),
     Claim("CONTRIBUTING.md", r"A later id answering is reported as `([^`]+)`\s+naming both results",
           lambda root: (ProbeStatus.STALE_IDS.value,),
           "prober.keyless_lane_verdict and HTTP alternate-completion notice regression in tests/test_prober.py"),
     Claim("CONTRIBUTING.md", r"recovery, with a (\d+)-second budget,\s+up to (\d+) redirects and an (\d+) MiB body limit",
-          lambda root: _page_recovery_limits(), "page_reader recovery limits"),
+          lambda root: _page_recovery_limits(), "page_reader recovery limits", generated=True),
     Claim("CONTRIBUTING.md", r"always calls under this\s+project's own `([^`]+)`",
           lambda root: (UA["User-Agent"],), "prober.UA"),
     Claim("CONTRIBUTING.md", r"sends `User-Agent: ([^`]+)`",
           lambda root: (QUICKSTART_USER_AGENT,), "render.QUICKSTART_USER_AGENT"),
     Claim("CONTRIBUTING.md", r"\| a sentence of (\d+)\+ words quoted from the page \|",
-          lambda root: (str(ANCHOR_PHRASE_WORDS),), "models.ANCHOR_PHRASE_WORDS"),
+          lambda root: (str(ANCHOR_PHRASE_WORDS),), "models.ANCHOR_PHRASE_WORDS", generated=True),
     Claim("CONTRIBUTING.md", r"reports every quote of (\w+) words or more",
-          lambda root: (_word(MIN_WORDS),), "quotes.MIN_WORDS"),
+          lambda root: (_word(MIN_WORDS),), "quotes.MIN_WORDS", generated=True),
     Claim("CONTRIBUTING.md", r"is a route, a (\d+), (\d+) or (\d+)\s+is reported",
-          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE"),
+          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE", generated=True),
     Claim("CONTRIBUTING.md", r"beside the (\w+) configs it describes",
           lambda root: (_word(len([n for n in MAP if n.kind is Kind.GENERATED
                                    and n.path.startswith("configs/")
                                    and n.path != "configs/README.md"])),),
-          "the configs layout.MAP marks generated"),
+          "the configs layout.MAP marks generated", generated=True),
     Claim("CONTRIBUTING.md",
           r"a hand edit of `(\w+)`,\s+`(\w+)`, `(\w+)` or `(\w+)`, which only the run's probe",
           lambda root: tuple(sorted(EARNED)), "gate.EARNED",
           read=lambda found: tuple(sorted(found.groups()))),
     Claim("CONTRIBUTING.md", r"Anthropic check's way: a (\d+), (\d+) or (\d+) is",
-          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE"),
+          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE", generated=True),
     Claim("CONTRIBUTING.md", r"cannot take is `(\w+)`, the LiteLLM profile's name",
           lambda root: (CODEX_LITELLM_PROFILE,), "models.CODEX_LITELLM_PROFILE"),
     Claim("CONTRIBUTING.md", r"the header asks for\s+LiteLLM (\d+\.\d+) or later",
-          lambda root: (LITELLM_BRIDGE_SINCE,), "render.LITELLM_BRIDGE_SINCE"),
+          lambda root: (LITELLM_BRIDGE_SINCE,), "render.LITELLM_BRIDGE_SINCE", generated=True),
     Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",
-          lambda root: (CODEX_SINCE,), "render.CODEX_SINCE"),
+          lambda root: (CODEX_SINCE,), "render.CODEX_SINCE", generated=True),
     Claim("CONTRIBUTING.md", r"Python (\d+\.\d+) to (\d+\.\d+), httpx",
           _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml"),
     Claim("CONTRIBUTING.md", r"`conformance` workflow runs them every (\w+)",
@@ -673,6 +694,27 @@ CLAIMS: tuple[Claim, ...] = (
 # The hand-written files that say how often the list is checked.
 SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/social-preview.svg")
 _FREQUENCY = re.compile(r"\b(?:" + "|".join(map(re.escape, TIMES_A_WEEK.values())) + r")\b")
+
+
+def render_claims(text: str, file: str, root: Path) -> str:
+    """Generate opted-in values while preserving each registered sentence.
+
+    Missing/reworded assertions still fail check_claims; this writer cannot
+    invent prose, rewrite external quotes or renew dated vendor evidence.
+    """
+    for claim in CLAIMS:
+        if claim.file != file or not claim.generated:
+            continue
+        found = re.search(claim.pattern, text)
+        if found is None:
+            continue
+        values = claim.truth(root)
+        if claim.read is not re.Match.groups or len(values) != len(found.groups()):
+            raise ValueError(f"{claim.source}: generated claims need one value per plain group")
+        for group, value in reversed(list(enumerate(values, 1))):
+            start, end = found.span(group)
+            text = text[:start] + value + text[end:]
+    return text
 
 
 def _line(text: str, at: int) -> int:

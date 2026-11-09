@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-11-09'
-description: 'Cohere''s Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Free models: command-a-plus, command-a-reasoning, north-mini-code, command-a, command-a-vision, command-r-plus, command-r, command-r7b. Trial keys are…'
+description: 'Cohere''s Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Free models: command-a-plus, north-mini-code, command-a, command-a-reasoning, command-a-vision, command-r, command-r7b, command-r-plus. Trial keys are…'
 permalink: /providers/cohere/
 last_modified_at: 2026-11-09
 crumb: Cohere (trial keys)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Cohere's Command models via free trial API keys that never expire, plus a 30B/3B
 
 ## Free models
 
-[`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/), `command-a-reasoning`, [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b`
+<span data-model-sort-inline><span data-model-family="command-a-plus">[`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="command-a">`command-a`</span>, <span data-model-family="command-a-reasoning">`command-a-reasoning`</span>, <span data-model-family="command-a-vision">`command-a-vision`</span>, <span data-model-family="command-r">`command-r`</span>, <span data-model-family="command-r7b">`command-r7b`</span>, <span data-model-family="command-r-plus">`command-r-plus`</span></span>
 
 ## Limits, in the vendor's words
 
@@ -43,7 +44,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://api.cohere.com/compatibility/v1`
 - Key: `COHERE_API_KEY` — get one at <https://dashboard.cohere.com/api-keys>
-- Callable ids: `north-mini-code-1-0`, `command-a-plus-05-2026`, `command-a-reasoning-08-2025`, `command-a-03-2025`, `command-a-vision-07-2025`, `command-r-plus-08-2024`, `command-r-08-2024`, `command-r7b-12-2024`
+- Callable ids: `command-a-plus-05-2026`, `north-mini-code-1-0`, `command-a-03-2025`, `command-a-reasoning-08-2025`, `command-a-vision-07-2025`, `command-r-08-2024`, `command-r7b-12-2024`, `command-r-plus-08-2024`
 - Note: Use the OpenAI-compatible endpoint; the native API is https://api.cohere.com/v2. The exact IDs come from the vendor's model pages. north-mini-code-1-0 is free on both Trial and production keys; the other listed models use the Trial allowance.
 
 Try it from your terminal with your key in `COHERE_API_KEY` — it goes from your machine to the vendor and nowhere else:

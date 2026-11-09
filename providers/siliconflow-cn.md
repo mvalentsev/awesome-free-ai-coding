@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-11-09'
-description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: xing4.0-29b-a4b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b. Free models are zero-priced but…'
+description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: deepseek-r1-0528-qwen3-8b, glm-4-9b-0414, glm-z1-9b-0414, qwen2.5-7b, qwen3-8b, qwen3.5-4b, xing4.0-29b-a4b. Free models are zero-priced but…'
 permalink: /providers/siliconflow-cn/
 last_modified_at: 2026-11-09
 crumb: SiliconFlow (China)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Zero-priced small chat models on SiliconFlow China, after real-name verification
 
 ## Free models
 
-[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/), [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`, `qwen2.5-7b`, [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/), `glm-z1-9b-0414`, `deepseek-r1-0528-qwen3-8b`
+<span data-model-sort-inline><span data-model-family="deepseek-r1-0528-qwen3-8b">`deepseek-r1-0528-qwen3-8b`</span>, <span data-model-family="glm-4-9b-0414">`glm-4-9b-0414`</span>, <span data-model-family="glm-z1-9b-0414">`glm-z1-9b-0414`</span>, <span data-model-family="qwen2.5-7b">`qwen2.5-7b`</span>, <span data-model-family="qwen3-8b">[`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/)</span>, <span data-model-family="qwen3.5-4b">[`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/)</span>, <span data-model-family="xing4.0-29b-a4b">[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “我们不�
 - Base URL: `https://api.siliconflow.cn/v1`
 - Key: `SILICONFLOW_CN_API_KEY` — get one at <https://cloud.siliconflow.cn/account/ak>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.siliconflow.cn`
-- Callable ids: `XingChenAGI/Xing4.0-29B`, `Qwen/Qwen3-8B`, `THUDM/GLM-4-9B-0414`, `THUDM/GLM-Z1-9B-0414`, `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B`, `Qwen/Qwen3.5-4B`, `Qwen/Qwen2.5-7B-Instruct`
+- Callable ids: `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B`, `THUDM/GLM-4-9B-0414`, `THUDM/GLM-Z1-9B-0414`, `Qwen/Qwen2.5-7B-Instruct`, `Qwen/Qwen3-8B`, `Qwen/Qwen3.5-4B`, `XingChenAGI/Xing4.0-29B`
 - Note: ids are the price list's own; Hunyuan-MT-7B, the other chat row at ¥0, is a translation model. /v1/models needs a key, and the Messages route the API reference documents is https://api.siliconflow.cn/v1/messages
 
 Try it from your terminal with your key in `SILICONFLOW_CN_API_KEY` — it goes from your machine to the vendor and nowhere else:

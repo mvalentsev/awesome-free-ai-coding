@@ -40,7 +40,7 @@ The vendor names no country it keeps the offer from ([source](https://routeway.a
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
-- Callable ids: `deepseek-v4.1-flash:free`, `minimax-m3.1-flash:free`, `muse-glimmer-30b:free`
+- Callable ids: `muse-glimmer-30b:free`, `deepseek-v4.1-flash:free`, `minimax-m3.1-flash:free`
 - Note: Only IDs ending :free are free; the same catalog meters Claude, GPT and other paid models. Some zero-priced community fine-tunes are intended for expressive writing and roleplay.
 
 Try it from your terminal with your key in `ROUTEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:

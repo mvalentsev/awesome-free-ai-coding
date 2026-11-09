@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash, mimo-v2.6-flash. Enable explicit :free routes in the dashboard before calling them; the rotating model…'
+description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: mimo-v2.6-flash, deepseek-v4.1-flash. Enable explicit :free routes in the dashboard before calling them; the rotating model…'
 permalink: /providers/token-harbor/
 last_modified_at: 2026-11-09
 crumb: Token Harbor
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ## Free models
 
-[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
+<span data-model-sort-inline><span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -45,7 +46,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
 - Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
-- Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`
+- Callable ids: `mimo-v2.6-flash:free`, `deepseek-v4.1-flash:free`
 - Note: The :free suffix selects the free route, which has to be switched on in the dashboard first. /v1/models needs a key; use the IDs listed under Free on the Models page. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints".
 
 Try it from your terminal with your key in `TOKEN_HARBOR_API_KEY` — it goes from your machine to the vendor and nowhere else:

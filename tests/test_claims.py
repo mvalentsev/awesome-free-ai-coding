@@ -37,6 +37,20 @@ def test_a_sentence_that_states_a_constant_is_held_to_it(tmp_path):
                         (RECHECK,), scheduled=()) == []
 
 
+def test_contributing_writer_generates_rule_values_from_the_registered_truth(tmp_path, monkeypatch):
+    from freetier_radar import claims
+    from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
+
+    root = _root(tmp_path, f"A verdict is retained and it expires after 30 days, at which point the scout\n"
+                          f"{MAP_BEGIN}\nold map\n{MAP_END}\n")
+    claim = next(c for c in CLAIMS if c.source == "models.WATCH_RECHECK_DAYS")
+    monkeypatch.setattr(claims, "WATCH_RECHECK_DAYS", 90)
+    assert check_claims(root, (claim,), scheduled=())
+    text = render_contributing(root / "CONTRIBUTING.md", root / "CONTRIBUTING.md")
+    assert "expires after 90 days" in text
+    assert check_claims(root, (claim,), scheduled=()) == []
+
+
 def test_a_sentence_rewritten_past_its_claim_is_reported(tmp_path):
     """A claim that stops matching checks nothing, which is how a hand-written
     figure drifts: the sentence is reworded, the figure goes with it."""

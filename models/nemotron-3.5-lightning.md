@@ -153,7 +153,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-09 · listed since 2026-10-29
 
-OpenAI-compatible model gateway with $5 of monthly credit after adding a payment method, plus separate zero-priced model routes
+OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
@@ -202,10 +202,10 @@ The free models share each account's daily weighted allowance, reset at 00:00 UT
 
 ## Related models
 
-- [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — free at opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR
 - [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/) — free at opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models) and LLMTR
-- [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) — free at OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and TokenRouter (PaleBlueDot)
+- [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — free at opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR
 - [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/) — free at Requesty
+- [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) — free at OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and TokenRouter (PaleBlueDot)
 - [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) — free at Requesty
 
 ---

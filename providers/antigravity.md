@@ -5,6 +5,7 @@ description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan servi
 permalink: /providers/antigravity/
 last_modified_at: 2026-11-09
 crumb: Google Antigravity
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Free models
 
-[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/), [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/), [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)
+<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span></span>
 
 ## Limits, in the vendor's words
 

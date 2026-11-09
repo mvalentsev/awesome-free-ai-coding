@@ -12,6 +12,60 @@ from test_render import TODAY, make
 from test_site import SEARCH_ASSETS, TEMPLATES
 
 
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs browser JavaScript runtime")
+def test_model_sort_choices_change_order_without_mutating_generated_inputs():
+    source = (TEMPLATES.parent / "assets/model-sort.js").read_text()
+    script = source + """
+    const items = [{family:'alpha-10'}, {family:'zeta'}, {family:'alpha-2'}];
+    const counts = {'alpha-10':1, zeta:5, 'alpha-2':2};
+    console.log(JSON.stringify({orders:['score','name','providers'].map(mode =>
+      FreeTierModelSort.order(items,mode,counts).map(item => item.family)),
+      original:items.map(item => item.family)}));
+    """
+    result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == {"orders": [
+        ["alpha-10", "zeta", "alpha-2"], ["alpha-2", "alpha-10", "zeta"],
+        ["zeta", "alpha-2", "alpha-10"]], "original": ["alpha-10", "zeta", "alpha-2"]}
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs browser JavaScript runtime")
+def test_model_sort_history_restores_stored_order_and_links_clear_old_choices():
+    source = (TEMPLATES.parent / "assets/model-sort.js").read_text()
+    script = source + """
+    const site = 'https://site.example';
+    global.location = {href: site + '/providers/offer/?q=glm#models'};
+    let stored = 'name', previous;
+    global.localStorage = {getItem: () => stored, setItem: (_, value) => {stored = value;}};
+    global.history = {
+      replaceState: (_, __, url) => {location.href = new URL(url, site).href;},
+      pushState: (_, __, url) => {previous = location.href; location.href = new URL(url, site).href;}
+    };
+    const handlers = {};
+    global.window = {addEventListener: (name, handler) => {handlers[name] = handler;}};
+    global.document = {addEventListener: (name, handler) => {handlers[name] = handler;},
+      createElement: () => ({})};
+    const select = {parentNode: {tagName: 'DIV'}, setAttribute: () => {}, appendChild: () => {},
+      addEventListener: (_, handler) => {select.change = handler;}};
+    const sorter = FreeTierModelSort.controller({site, models: [], model_sort: {
+      default: 'score', label: 'Model order', options: ['score','name','providers'].map(id => ({id,label:id}))
+    }}, () => {});
+    sorter.control(select);
+    select.value = 'providers'; select.change();
+    location.href = previous; handlers.popstate();
+    const restored = sorter.value(), originalQuery = new URL(location.href).searchParams.get('q');
+    select.value = 'name'; select.change();
+    const anchor = {href: site + '/models/glm/', getAttribute: () => anchor.href};
+    const event = {target: {closest: () => anchor}};
+    handlers.click(event);
+    select.value = 'score'; select.change(); handlers.click(event);
+    console.log(JSON.stringify({restored, originalQuery, linkOrder: new URL(anchor.href).searchParams.get('model-sort')}));
+    """
+    result = subprocess.run(["node", "-e", script], capture_output=True, text=True, timeout=30)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == {"restored": "name", "originalQuery": "glm", "linkOrder": None}
+
+
 def records(html):
     class Rows(HTMLParser):
         def __init__(self):

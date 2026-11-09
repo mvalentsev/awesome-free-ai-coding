@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-11-05'
-description: 'Free plan of Cognition''s desktop and terminal coding agents, alongside its paid plans. Free models: swe-2-flash-medium, swe-1.6. Windsurf is now Devin Desktop. Free models do not consume the plan''s usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after…'
+description: 'Free plan of Cognition''s desktop and terminal coding agents, alongside its paid plans. Free models: swe-1.6, swe-2-flash-medium. Windsurf is now Devin Desktop. Free models do not consume the plan''s usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after…'
 permalink: /providers/windsurf/
 last_modified_at: 2026-11-09
 crumb: Devin Desktop (formerly Windsurf)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Free plan of Cognition's desktop and terminal coding agents, alongside its paid 
 
 ## Free models
 
-[`swe-2-flash-medium`](https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/) (until 2026-12-04), `swe-1.6`
+<span data-model-sort-inline><span data-model-family="swe-1.6">`swe-1.6`</span>, <span data-model-family="swe-2-flash-medium">[`swe-2-flash-medium`](https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/) (until 2026-12-04)</span></span>
 
 ## Limits, in the vendor's words
 

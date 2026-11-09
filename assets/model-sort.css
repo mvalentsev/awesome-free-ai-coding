@@ -1,0 +1,4 @@
+.model-sort { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; font-size: .9rem; }
+.model-sort[hidden] { display: none; }
+.model-sort select { min-width: 0; max-width: 100%; padding: .35rem .5rem; font: inherit; color: inherit; background: var(--raised, Canvas); border: 1px solid var(--line, currentColor); border-radius: 6px; color-scheme: inherit; }
+.model-sort select:focus-visible { outline: 2px solid var(--accent, Highlight); outline-offset: 2px; }

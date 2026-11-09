@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-11-09'
-description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note and 3 more. OpenRouter''s FAQ says its free models "have low…'
+description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3.5-super-vl-120b-a12b, inkling-small, inkling, nemotron-3-ultra, nemotron-3.5-lightning, gemma-4-31b, north-mini-code, dots-3-note and 3 more. OpenRouter''s FAQ says its free…'
 permalink: /providers/openrouter-free/
 last_modified_at: 2026-11-09
 crumb: OpenRouter (free models)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/), [`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/)
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="inkling-small">[`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/)</span>, <span data-model-family="inkling">[`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="dots-3-note">[`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/)</span>, <span data-model-family="gemma-4-26b-a4b">[`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span>, <span data-model-family="xing4.0-29b-a4b">[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -43,7 +44,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `OPENROUTER_API_KEY` — get one at <https://openrouter.ai/settings/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://openrouter.ai/api`
 - Codex CLI: [`configs/codex/openrouter-free.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/openrouter-free.config.toml) — copy it to `~/.codex/`, then `codex -p openrouter-free`; set up on the lane by the vendor's own page, <https://openrouter.ai/docs/cookbook/coding-agents/codex-cli>: "Configure Codex for OpenRouter"
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `google/gemma-4-31b-it:free`, `google/gemma-4-26b-a4b-it:free`, `cohere/north-mini-code:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`, `dots-studio/dots-3-note-preview:free`, `liquid/lfm-2.5-2.6b:free`, `openrouter/free`, `nvidia/nemotron-3.5-super-vl:free`, `xingchen-agi/xing4.0-29b-a4b:free`, `recursive/flint-v1.0:free`, `liquid/lfm-3-1.7b:free`
+- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `thinkingmachines/inkling-small:free`, `thinkingmachines/inkling:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `google/gemma-4-31b-it:free`, `cohere/north-mini-code:free`, `dots-studio/dots-3-note-preview:free`, `google/gemma-4-26b-a4b-it:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `xingchen-agi/xing4.0-29b-a4b:free`, `liquid/lfm-2.5-2.6b:free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `recursive/flint-v1.0:free`
 - Note: Use IDs with the :free suffix; their input and output prices are zero. openrouter/free chooses a free model automatically. LiquidAI advises against agentic coding with the listed LFM models. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api, leave ANTHROPIC_API_KEY empty and use a :free ID as ANTHROPIC_MODEL.
 
 Try it from your terminal with your key in `OPENROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:

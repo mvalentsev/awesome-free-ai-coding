@@ -281,8 +281,6 @@ def test_rendered_page_changes_reach_review_coverage_without_registry_changes(tm
     from freetier_radar.review_browser import browser_plan
     plan = browser_plan(bundle)
     assert [row['id'] for row in plan['rows']] == rows
-    if rows:
-        assert sum(case.endswith('/provider/vendor') for case in plan['cases']) == 6
 
 
 @pytest.mark.parametrize('change,rows', [
@@ -618,6 +616,28 @@ def test_report_keeps_missing_phases_and_failed_live_calls_visible(tmp_path):
     assert 'judgment' in result['missing']
     assert 'client-opencode' in result['failed']
     assert result['human_review_required']
+
+
+def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_controls(tmp_path, monkeypatch):
+    from freetier_radar import review_browser
+
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    rows = [{'id': f'vendor-{i}', 'name': f'Vendor {i}', 'models': [],
+             'page': f'https://site.example/providers/vendor-{i}/'} for i in range(40)]
+    scope['rows'] = [row['id'] for row in rows]
+    bundle.save('scope', scope)
+    index = {'entries': rows, 'models': [{'family': 'beta', 'tier': 'strong',
+                                         'rows': [], 'page': 'https://site.example/models/beta/'}]}
+    monkeypatch.setattr(review_browser, 'index_at', lambda *args, **kwargs: index)
+    plan = review_browser.browser_plan(bundle)
+    provider_cases = [case for case in plan['cases'] if '/provider/' in case]
+    assert {case for case in provider_cases if case.startswith('1440/light/')} == {
+        '1440/light/provider/' + row['id'] for row in rows}
+    assert len(provider_cases) <= len(rows) + 12
+    assert any(case.startswith('375/dark/provider/') for case in provider_cases)
+    assert any(case.startswith('320/light/provider/') for case in provider_cases)
 
 
 def test_browser_plan_covers_changed_families_and_import_rejects_partial_or_wrong_runs(tmp_path):
@@ -971,7 +991,8 @@ def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path):
     from freetier_radar.review_browser import browser_plan
     plan = browser_plan(bundle)
     assert plan['rows'][0]['archived']
-    assert len([case for case in plan['cases'] if '/provider/vendor' in case]) == 6
+    assert '1440/light/provider/vendor' in plan['cases']
+    assert 'vendor' in plan['representative_rows']
 
 
 def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_path):
@@ -1180,7 +1201,8 @@ def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, m
         'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier',
         'url': 'https://vendor.example', 'offering': 'Free models',
         'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
-        'models': [{'family': 'alpha', 'tier': None if mode in ('no-strong', 'measured-without-strong') else 'strong'}],
+        'models': [{'family': 'alpha', 'tier': None if mode in ('no-strong', 'measured-without-strong') else 'strong',
+                    'aa_model': 'alpha' if mode.startswith('measured') else None}],
         'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
                   'keywords': ['100 free requests per day']}})
     save_registry(repo / 'registry.yaml', [row])
@@ -1228,7 +1250,8 @@ def test_browser_plan_keeps_folded_targets_outside_the_changed_rows(tmp_path):
     plan = browser_plan(bundle)
     assert plan['folded_targets']['holder']['name'] == 'Canonical service'
     assert 'holder' not in {row['id'] for row in plan['rows']}
-    assert len([case for case in plan['cases'] if '/provider/vendor' in case]) == 6
+    assert '1440/light/provider/vendor' in plan['cases']
+    assert 'vendor' in plan['representative_rows']
 
 
 @pytest.mark.skipif(shutil.which('node') is None, reason='needs node to run the browser check')

@@ -124,9 +124,9 @@ def test_the_page_is_html_and_says_what_it_is(tmp_path):
     assert 'lang="en"' in html
     assert 'name="viewport"' in html
     assert "prefers-color-scheme" in html
-    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js", "assets/search.js"]
+    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js", "assets/search.js", "assets/model-sort.js"]
     assert (TEMPLATES.parent / "assets/model-name.js").is_file()
-    assert not re.search(r'<link\b[^>]*rel="stylesheet"', html), "no external styles"
+    assert re.findall(r'<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"', html) == ["assets/model-sort.css"], "only shared local styles"
 
 
 def test_structured_data_is_valid_json_and_cannot_close_its_own_script(tmp_path):

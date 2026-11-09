@@ -38,7 +38,7 @@ The vendor names no country it keeps the offer from ([source](https://impossibl.
 - Base URL: `https://api.impossibl.com/v1`
 - Key: `IMPOSSIBL_API_KEY` — get one at <https://impossibl.com/dashboard>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.impossibl.com`
-- Callable ids: `zai/glm-5.3-flash`, `deepseek/deepseek-v4.1-flash`, `qwen/qwen3.8-27b`
+- Callable ids: `deepseek/deepseek-v4.1-flash`, `qwen/qwen3.8-27b`, `zai/glm-5.3-flash`
 - Note: ids are the keyless catalog's at api.impossibl.com/v1/models, 2026-09-17; which of them the promotional credit can call is not published. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.impossibl.com and clears ANTHROPIC_API_KEY so the bearer token is used
 
 Try it from your terminal with your key in `IMPOSSIBL_API_KEY` — it goes from your machine to the vendor and nowhere else:

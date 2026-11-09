@@ -36,6 +36,7 @@
 <script type="application/ld+json">
 {{ jsonld | safe }}
 </script>
+<link rel="stylesheet" href="assets/model-sort.css">
 <style>
 :root {
   color-scheme: light dark;
@@ -440,10 +441,10 @@ tr.flash { animation: flash 1.6s ease-out; }
     <p class="sub" style="margin-bottom:10px">Each of these scores within {{ strong_within }} points of the top of the
       <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
       Index</a>, re-read {{ schedule }}, and every row beside it serves it free — the highest
-      score first.</p>
+      score first by default.</p>
     <div class="scroll">
       <table class="files">
-        <tbody>
+          <tbody data-model-sort-list>
           {% for m in strong_models %}
           <tr>
             <th scope="row">{{ chip(m.family, m.frontier) }}{% if m.score is not none %} <span class="score">{{ '%.1f' % m.score }}</span>{% endif %}</th>
@@ -586,10 +587,10 @@ tr.flash { animation: flash 1.6s ease-out; }
             </td>
             <td class="models" data-label="Free models">
               {% if r.models %}
-              <div class="chips">
-                {% for m in r.models %}<span class="model-access">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
+              <div class="chips" data-model-sort-chips data-visible="{{ site_models }}">
+                {% for m in r.models %}<span class="model-access" data-model-family="{{ m.family }}">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
                 {% if r.more_models %}<details class="more"><summary class="chip">+{{ r.more_models | length }} more</summary><div class="chips">
-                  {% for m in r.more_models %}<span class="model-access">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
+                  {% for m in r.more_models %}<span class="model-access" data-model-family="{{ m.family }}">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
                 </div></details>{% endif %}
               </div>
               {% else %}<span class="empty">—</span>{% endif %}
@@ -626,13 +627,14 @@ tr.flash { animation: flash 1.6s ease-out; }
     </header>
     <details id="model-index" class="fold">
       <summary>Show the model index</summary>
+      {% if score_date and score_source %}<p class="sub">Scores: <a href="{{ score_source }}">Intelligence Index</a>, read {{ score_date }}.</p>{% endif %}
       <div class="scroll" style="padding: 4px 16px">
         <table class="files">
-          <tbody>
+          <tbody data-model-sort-list>
             {% for m in model_index %}
             <tr id="model-{{ m.family }}" data-family="{{ m.family }}" data-tier="{{ m.tier }}"
                 data-rows="{{ m.providers | map(attribute='id') | join(' ') }}">
-              <th scope="row">{% if m.page %}<a href="{{ m.page }}"><code>{{ m.family }}</code></a>{% else %}<code>{{ m.family }}</code>{% endif %}</th>
+              <th scope="row">{% if m.page %}<a href="{{ m.page }}"><code>{{ m.family }}</code></a>{% else %}<code>{{ m.family }}</code>{% endif %}{% if m.score_label %} <small class="sub">{{ m.score_label }}</small>{% endif %}</th>
               <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %}</td>
             </tr>
             {% endfor %}
@@ -888,7 +890,10 @@ tr.flash { animation: flash 1.6s ease-out; }
 
 <script src="assets/model-name.js"></script>
 <script src="assets/search.js"></script>
+<script type="application/json" id="model-sort-data">{{ model_sort_data | safe }}</script>
+<script src="assets/model-sort.js"></script>
 <script>
+if (typeof FreeTierModelSort !== "undefined") FreeTierModelSort.mount(JSON.parse(document.getElementById("model-sort-data").textContent));
 // Progressive enhancement only: the page is complete without a line of this.
 (function () {
   "use strict";

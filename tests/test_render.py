@@ -135,7 +135,7 @@ def test_a_provider_page_description_names_the_free_models_from_the_column():
 
     assert description(id="few", offering="A free lane, no card", limits="20 requests a minute",
                        models=[{"family": "kimi-k3"}, {"family": "glm-5.3"}]) == (
-        "A free lane, no card. Free models: kimi-k3, glm-5.3. 20 requests a minute")
+        "A free lane, no card. Free models: glm-5.3, kimi-k3. 20 requests a minute")
     many = [{"family": f"m-{i}"} for i in range(README_MODELS + 3)]
     shown = ", ".join(f"m-{i}" for i in range(README_MODELS))
     assert description(id="many", offering="A catalog", models=many).startswith(
@@ -740,9 +740,36 @@ def test_headline_counts_are_derived_from_the_registry():
     assert ctx["endpoint_count"] == 2
 
 
+def test_model_lists_rank_before_truncating_and_keep_unbound_scores_out(monkeypatch):
+    from freetier_radar import render
+    from freetier_radar.render import build_site_context
+
+    entry = make(models=[{"family": "unmeasured", "aa_auto": False},
+                         {"family": "alpha", "tier": "strong", "aa_model": "alpha"},
+                         {"family": "beta", "tier": "strong", "aa_model": "beta"}])
+    scores = {"families": {"alpha": {"slug": "alpha", "index": 20},
+                           "beta": {"slug": "beta", "index": 30},
+                           "unmeasured": {"slug": "wrong-variant", "index": 100}},
+              "top": {"name": "Top", "index": 40}, "read_on": TODAY.isoformat()}
+    site = build_site_context([entry], TODAY, scores=scores)
+    row = next(row for section in site["sections"] for row in section["rows"])
+    assert [m["family"] for m in row["models"] + row["more_models"]] == ["beta", "alpha", "unmeasured"]
+    text = next(row["models"] for section in build_context([entry], TODAY, scores=scores)["sections"]
+                for row in section["rows"])
+    assert text.index("beta") < text.index("alpha") < text.index("unmeasured")
+    chart = build_context([entry], TODAY, scores=scores)["chart"]
+    assert {bar.family for bar in chart.bars} == {"alpha", "beta"}
+    monkeypatch.setattr(render, "load_scores", lambda: scores)
+    assert [m["family"] for m in render.build_index([entry], TODAY)["entries"][0]["models"]] == ["beta", "alpha", "unmeasured"]
+    page = render.build_provider_page(entry, [], TODAY)
+    named = page.split("## Free models\n")[1].split("## Limits,")[0]
+    assert named.index("beta") < named.index("alpha") < named.index("unmeasured")
+    assert [m.family for m in entry.models] == ["unmeasured", "alpha", "beta"]
+
+
 def test_model_index_groups_providers_by_family():
-    """The model index answers "who serves qwen3 for free?", most-served family
-    first. Superseded families stay out of it: they are not callable any more."""
+    """An unmeasured index uses names; provider grouping keeps rank order.
+    Superseded families stay out of it: they are not callable any more."""
     entries = [
         make(id="a", name="A", rank=1, models=[{"family": "qwen3"}, {"family": "gpt-oss"}]),
         make(id="b", name="B", rank=2, models=[{"family": "qwen3"},
@@ -751,8 +778,8 @@ def test_model_index_groups_providers_by_family():
              last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)),
     ]
     index = build_context(entries, TODAY)["model_index"]
-    assert [m["family"] for m in index] == ["qwen3", "gpt-oss"]
-    assert [p["name"] for p in index[0]["providers"]] == ["A", "B"]
+    assert [m["family"] for m in index] == ["gpt-oss", "qwen3"]
+    assert [p["name"] for p in index[1]["providers"]] == ["A", "B"]
 
 
 def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
@@ -787,8 +814,7 @@ def test_a_reader_after_one_model_is_sent_to_the_websites_index(tmp_path: Path):
 
 def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_path: Path):
     """The README's Start here names the frontier and strong models with every
-    row that serves each one free: frontier first, then the most widely served,
-    since every row beside a model is another free quota of it; a row that
+    row that serves each one free: retained tier and name order without a score; a row that
     needs a card says so here as it does in the list."""
     from freetier_radar.models import save_registry
     strong = {"tier": "strong", "aa_model": "kimi-k3"}
@@ -800,10 +826,10 @@ def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_pa
         make(id="d", name="D", rank=4, models=[{"family": "glm-5.3", "tier": "strong",
                                                 "aa_model": "glm-5-3"}]),
     ]
-    ctx = build_context(entries, TODAY)
+    ctx = build_context(entries, TODAY, scores={})
     assert [(m["family"], m["frontier"], [p["name"] + p["card_flag"] for p in m["providers"]])
             for m in ctx["strong_models"]] == [
-        ("big", True, ["C"]), ("kimi-k3", False, ["A", "B 💳"]), ("glm-5.3", False, ["D"])]
+        ("big", True, ["C"]), ("glm-5.3", False, ["D"]), ("kimi-k3", False, ["A", "B 💳"])]
     reg = tmp_path / "registry.yaml"
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
@@ -2406,6 +2432,16 @@ def test_the_top_names_the_rows_added_this_week():
     ctx = build_context(rows, TODAY, history=events)
     assert [r["name"] for r in ctx["new_rows"]] == ["New", "Older"]
     assert ctx["new_rows"][0]["page"].endswith("/providers/new/")
+
+
+def test_archived_models_keep_the_recorded_order_in_pages_and_exports():
+    from freetier_radar.render import build_provider_page
+    entry = make(models=[{"family": "zeta"}, {"family": "alpha"}],
+                 last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1))
+    page = build_provider_page(entry, [], TODAY, scores={})
+    section = page.split("## Free models it listed")[1].split("\n## ")[0]
+    assert "`zeta`, `alpha`" in section
+    assert [model["family"] for model in build_index([entry], TODAY, scores={})["entries"][0]["models"]] == ["zeta", "alpha"]
 
 
 def test_a_wrapped_readme_line_keeps_its_names_whole(tmp_path):

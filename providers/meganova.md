@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'MegaNova free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit. Free models: mistral-small-3.2, glm-4.7-flash. Tier 1 registration needs no card. A $1 deposit unlocks Tier 2''s separate per-model free allowances. Daily quotas reset at…'
+description: 'OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit. Free models: glm-4.7-flash, mistral-small-3.2. Tier 1 registration needs no card. A $1 deposit unlocks Tier 2''s separate per-model free allowances. Daily quotas reset at…'
 permalink: /providers/meganova/
 last_modified_at: 2026-11-09
 crumb: MegaNova
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus add
 
 ## Free models
 
-`mistral-small-3.2`, [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up)
+<span data-model-sort-inline><span data-model-family="glm-4.7-flash">[`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up)</span>, <span data-model-family="mistral-small-3.2">`mistral-small-3.2`</span></span>
 
 ## Limits, in the vendor's words
 
@@ -51,7 +52,7 @@ Offered in the 187 countries and territories its list names, not in Hong Kong, V
 
 - Base URL: `https://api.meganova.ai/v1`
 - Key: `MEGANOVA_API_KEY` — get one at <https://www.meganova.ai/api-keys>
-- Callable ids: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-flash-1.0`, `zai-org/GLM-4.7-Flash`, `meganova-ai/manta-pro-1.0`
+- Callable ids: `zai-org/GLM-4.7-Flash`, `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-flash-1.0`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-pro-1.0`
 - `zai-org/GLM-4.7-Flash`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
 - `meganova-ai/manta-pro-1.0`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
 - Note: Free quota is used first; paid continuation requires enabling the charge switch. Mistral tool execution failed in the tested OpenCode setup, and its LiteLLM-to-Responses path failed in Codex CLI. Manta routers may return tool requests as plain text.
