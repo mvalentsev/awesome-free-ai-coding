@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-08T17:24:53Z</updated>
+  <updated>2026-11-08T23:54:19Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20261108T235419Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-11-08T23:54:19Z</updated>
+    <summary type="text">added deepseek-v4.1-flash-1017; dropped deepseek-v4.1-flash · free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash-1017</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/anyapi/20261108T172453Z</id>
     <title>Added: AnyAPI</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-10-31T00:57:42Z</updated>
     <summary type="text">added xing4.0-29b-a4b · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/siliconflow-cn/20261031T005742Z</id>
-    <title>Free models changed: SiliconFlow (China)</title>
-    <link rel="alternate" href="https://siliconflow.cn"/>
-    <updated>2026-10-31T00:57:42Z</updated>
-    <summary type="text">added xing4.0-29b-a4b; dropped xing4.0-29b · free models: xing4.0-29b-a4b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b</summary>
   </entry>
 </feed>

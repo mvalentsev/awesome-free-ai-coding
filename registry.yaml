@@ -3000,6 +3000,7 @@ entries:
   - https://www.requesty.ai/pricing
   - https://docs.requesty.ai/quickstart
   - https://router.requesty.ai/v1/models
+  - https://api.novita.ai/v3/openai/models
   - https://docs.requesty.ai/integrations/claude-code
   card_required: false
   offering: OpenAI-compatible router with free models beside a metered catalog, routing,
@@ -3035,7 +3036,7 @@ entries:
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: ling-3.1-flash
-    aa_model: ling-3-1-flash
+    aa_model: ling-3-1-flash-1019
   api:
     base_url: https://router.requesty.ai/v1
     key_url: https://app.requesty.ai/api-keys
@@ -3797,6 +3798,7 @@ entries:
   - family: mimo-v2.6-flash
     aa_model: mimo-v2-6-flash
   - family: mimo-v2.6-pro
+    tier: notable
     aa_model: mimo-v2-6-pro
   - family: gemma-4-26b-a4b
     aa_model: gemma-4-26b-a4b
@@ -4568,7 +4570,7 @@ entries:
         kind: paid
         note: The public Free-plan comparison requires a paid plan; paid plans allow
           one one-hour session per day.
-        reviewed_on: '2026-11-01'
+        reviewed_on: '2026-11-09'
         source: https://freebuff.com/plans
       specialist:
         kind: specialist
@@ -4577,7 +4579,7 @@ entries:
       muse-full:
         kind: wallet
         note: Credit-funded at full access; a paid plan is required at limited access.
-        reviewed_on: '2026-11-01'
+        reviewed_on: '2026-11-09'
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
       terra-full:
         kind: wallet
@@ -4632,13 +4634,14 @@ entries:
       listed: true
     - name: DeepSeek V4.1 Flash 10/17
       model:
-        family: deepseek-v4.1-flash
-        aa_model: deepseek-v4-1-flash
+        family: deepseek-v4.1-flash-1017
+        tier: notable
+        aa_model: deepseek-v4-1-flash-1017
       limited: true
       condition: wallet
       first_free:
-        'on': '2026-09-22'
-        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+        'on': '2026-10-23'
+        source: https://freebuff.com/llms.txt
       listed: true
     - name: GPT-6 Luna
       model:
@@ -4650,7 +4653,7 @@ entries:
       condition: wallet
     - name: DeepSeek V4.1 Flash Fast 10/17
       model:
-        family: deepseek-v4.1-flash
+        family: deepseek-v4.1-flash-1017
       condition: wallet
     - name: GPT-6.1 Terra
       model:

@@ -36,7 +36,7 @@ import re
 import statistics
 import sys
 from dataclasses import dataclass, replace
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -279,6 +279,47 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     return sorted(found.items())
 
 
+def _checkpoint_date(value: str) -> bool:
+    try:
+        # MMDD may refer to a leap-day release in any year.
+        datetime.strptime('2000' + value if len(value) == 4 else value,
+                          '%y%m%d' if len(value) == 6 else '%Y%m%d')
+    except ValueError:
+        return False
+    return True
+
+
+def checkpoint_reviews(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[Mark, list[Scored]]]:
+    """Dated scores worth reviewing beside an unavailable pinned measurement.
+
+    These are candidates, not aliases: the serving checkpoint and effort need
+    vendor evidence. Restrict the suffix to a date and optional effort; a new
+    generation, parameter count or different model is not a replacement.
+    """
+    _, marks = review([e for e in entries if not is_archived(e, date.today())], models)
+    findings = []
+    for mark in marks:
+        if mark.score and not mark.score.deprecated and mark.score.index is not None:
+            continue
+        identity = re.fullmatch(r'(.+?)(?:-(\d{4}|\d{6}|\d{8}))?'
+                                r'(-(?:low|medium|high|xhigh|max|non-reasoning))?', mark.aa_model)
+        if identity is None:
+            continue
+        stem, checkpoint, effort = identity.groups()
+        if checkpoint and not _checkpoint_date(checkpoint):
+            stem += '-' + checkpoint
+        # Keep an explicitly selected effort; an undated default may have
+        # several dated effort variants, all requiring an independent review.
+        suffix = re.escape(effort) if effort else r'(?:-(?:low|medium|high|xhigh|max|non-reasoning))?'
+        pattern = re.compile(re.escape(stem) + r'-(\d{4}|\d{6}|\d{8})' + suffix)
+        candidates = [m for m in models.values()
+                      if (match := pattern.fullmatch(m.slug)) and _checkpoint_date(match[1])
+                      and not m.deprecated and m.index is not None]
+        if candidates:
+            findings.append((mark, sorted(candidates, key=lambda m: m.slug)))
+    return findings
+
+
 def keep_scores(path: Path, entries: list[Entry], board: dict[str, Scored], today: date,
                 version: str) -> None:
     """The scores the render draws, kept on every --write run whether or not a
@@ -336,6 +377,14 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
+    checkpoint_findings = checkpoint_reviews(live, board)
+    for mark, candidates in checkpoint_findings:
+        reason = ('missing record' if mark.score is None else
+                  'deprecated record' if mark.score.deprecated else 'no current score')
+        print(f"  review binding: {mark.family}: {mark.aa_model} has {reason}; "
+              "confirm the served checkpoint and effort before changing its pinned binding")
+        for candidate in candidates:
+            print(f"    https://artificialanalysis.ai/models/{candidate.slug} — {candidate.index:.1f}")
     # A bare family is measured as the board's model of its name (see
     # unmeasured); an aa_model named by hand is never replaced.
     bare = unmeasured(live, board)
@@ -366,7 +415,8 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
           f"{sum(m.score is not None and m.score.index is None for m in marks)} without a current score, "
           f"{len(bare)} newly measured model identities"
-          f"{' — measured now' if write and bare else ''}")
+          f"{' — measured now' if write and bare else ''}, "
+          f"{len(checkpoint_findings)} dated checkpoint bindings to review")
     return 1 if unknown or (moved and not write) else 0
 
 

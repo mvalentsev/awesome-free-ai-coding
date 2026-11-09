@@ -3,7 +3,7 @@ layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-11-05'
 description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b and 2 more. No credit card for the Free…'
 permalink: /providers/requesty/
-last_modified_at: 2026-11-05
+last_modified_at: 2026-11-09
 crumb: Requesty
 ---
 
@@ -58,6 +58,7 @@ curl -s https://router.requesty.ai/v1/chat/completions \
 - Source: <https://www.requesty.ai/pricing>
 - Source: <https://docs.requesty.ai/quickstart>
 - Source: <https://router.requesty.ai/v1/models>
+- Source: <https://api.novita.ai/v3/openai/models>
 - Source: <https://docs.requesty.ai/integrations/claude-code>
 
 ## History
@@ -73,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

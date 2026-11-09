@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-11-06",
+  "read_on": "2026-11-09",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "version": "5.0.1",
   "top": {
@@ -7,7 +7,7 @@
     "name": "Gemini 4 Carbon (High)",
     "index": 60.0
   },
-  "median": 30.0,
+  "median": 29.9,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -17,6 +17,11 @@
     "deepseek-v4-pro": {
       "slug": "deepseek-v4-pro",
       "index": 23.1,
+      "estimated": false
+    },
+    "deepseek-v4.1-flash-1017": {
+      "slug": "deepseek-v4-1-flash-1017",
+      "index": 32.6,
       "estimated": false
     },
     "gemini-3.5-flash-lite": {
@@ -57,6 +62,11 @@
     "inkling-small": {
       "slug": "inkling-small",
       "index": 12.9,
+      "estimated": false
+    },
+    "ling-3.1-flash": {
+      "slug": "ling-3-1-flash-1019",
+      "index": 29.6,
       "estimated": false
     },
     "mimo-v2.6-flash": {
@@ -232,10 +242,6 @@
     },
     "ling-3.0-tiny": {
       "slug": "ling-3-0-tiny",
-      "reason": "unscored"
-    },
-    "ling-3.1-flash": {
-      "slug": "ling-3-1-flash",
       "reason": "unscored"
     },
     "longcat-2.0": {

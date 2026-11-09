@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08",
+  "generated": "2026-11-09",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "data_use_words": {
@@ -5618,6 +5618,7 @@
         "https://www.requesty.ai/pricing",
         "https://docs.requesty.ai/quickstart",
         "https://router.requesty.ai/v1/models",
+        "https://api.novita.ai/v3/openai/models",
         "https://docs.requesty.ai/integrations/claude-code"
       ],
       "card_required": false,
@@ -5673,7 +5674,7 @@
         },
         {
           "family": "ling-3.1-flash",
-          "aa_model": "ling-3-1-flash"
+          "aa_model": "ling-3-1-flash-1019"
         }
       ],
       "api": {
@@ -6940,6 +6941,7 @@
         },
         {
           "family": "mimo-v2.6-pro",
+          "tier": "notable",
           "aa_model": "mimo-v2-6-pro"
         },
         {
@@ -8084,8 +8086,9 @@
           "aa_model": "glm-5-3-flash"
         },
         {
-          "family": "deepseek-v4.1-flash",
-          "aa_model": "deepseek-v4-1-flash"
+          "family": "deepseek-v4.1-flash-1017",
+          "tier": "notable",
+          "aa_model": "deepseek-v4-1-flash-1017"
         }
       ],
       "page_catalog": {
@@ -8161,7 +8164,7 @@
           "paid-sol": {
             "kind": "paid",
             "note": "The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day.",
-            "reviewed_on": "2026-11-01",
+            "reviewed_on": "2026-11-09",
             "source": "https://freebuff.com/plans"
           },
           "specialist": {
@@ -8171,7 +8174,7 @@
           "muse-full": {
             "kind": "wallet",
             "note": "Credit-funded at full access; a paid plan is required at limited access.",
-            "reviewed_on": "2026-11-01",
+            "reviewed_on": "2026-11-09",
             "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           },
           "terra-full": {
@@ -8245,14 +8248,15 @@
           {
             "name": "DeepSeek V4.1 Flash 10/17",
             "model": {
-              "family": "deepseek-v4.1-flash",
-              "aa_model": "deepseek-v4-1-flash"
+              "family": "deepseek-v4.1-flash-1017",
+              "tier": "notable",
+              "aa_model": "deepseek-v4-1-flash-1017"
             },
             "limited": true,
             "condition": "wallet",
             "first_free": {
-              "on": "2026-09-22",
-              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+              "on": "2026-10-23",
+              "source": "https://freebuff.com/llms.txt"
             },
             "listed": true
           },
@@ -8273,7 +8277,7 @@
           {
             "name": "DeepSeek V4.1 Flash Fast 10/17",
             "model": {
-              "family": "deepseek-v4.1-flash"
+              "family": "deepseek-v4.1-flash-1017"
             },
             "condition": "wallet"
           },
@@ -8374,7 +8378,7 @@
           "solar-mini-4",
           "mimo-v2.6-flash",
           "glm-5.3-flash",
-          "deepseek-v4.1-flash"
+          "deepseek-v4.1-flash-1017"
         ],
         "ids": [],
         "what": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
@@ -8386,7 +8390,7 @@
           "solar-mini-4": "",
           "mimo-v2.6-flash": "",
           "glm-5.3-flash": "",
-          "deepseek-v4.1-flash": ""
+          "deepseek-v4.1-flash-1017": ""
         },
         "section": {
           "id": "agent-cli"
@@ -8402,7 +8406,7 @@
           "solar-mini-4": "",
           "mimo-v2.6-flash": "",
           "glm-5.3-flash": "",
-          "deepseek-v4.1-flash": ""
+          "deepseek-v4.1-flash-1017": ""
         },
         "ids": {}
       },
@@ -20329,17 +20333,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "opencode",
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
       "family": "beam-1.0",
       "rows": [
         "kilo-code",
@@ -20358,6 +20351,16 @@
         "freeinference"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "opencode",
+        "nvidia-nim",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "glm-4.7-flash",
@@ -20720,6 +20723,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
     },
     {
+      "family": "deepseek-v4.1-flash-1017",
+      "rows": [
+        "freebuff"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/"
+    },
+    {
       "family": "fantail",
       "rows": [
         "autohand-code"
@@ -20950,6 +20961,7 @@
       "rows": [
         "aihubmix"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/"
     },
     {

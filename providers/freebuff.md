@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-11-05'
-description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before…'
+description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash-1017. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-11-07
+last_modified_at: 2026-11-09
 crumb: Freebuff
 ---
 
@@ -19,7 +19,7 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 ## Free models
 
-`solar-pro-4`, [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
+`solar-pro-4`, [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)
 
 ## Limits, in the vendor's words
 
@@ -63,6 +63,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-08` — Free models changed: added deepseek-v4.1-flash-1017; dropped deepseek-v4.1-flash
 - `2026-10-13` — Free models changed: dropped gpt-6.1-sol
 - `2026-10-13` — Free models changed: added gpt-6.1-sol
 - `2026-10-10` — Free models changed: added solar-mini-4
@@ -77,6 +78,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

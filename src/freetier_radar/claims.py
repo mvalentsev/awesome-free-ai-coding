@@ -264,6 +264,25 @@ def _automatic_aa_hold(root: Path) -> tuple[str, ...]:
             'measured' if explicit[0].score == board['reviewed-model'] else 'invalid')
 
 
+def _checkpoint_review_policy(root: Path) -> tuple[str, ...]:
+    from .models import Entry
+    from .tiers import Scored, checkpoint_reviews
+    row = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
+        'url': 'https://vendor.example', 'offering': 'Free models',
+        'provisional': False,
+        'first_seen': '2026-07-19', 'last_verified': date.today(),
+        'models': [{'family': 'reviewed-model', 'aa_model': 'reviewed-model'}],
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                  'keywords': ['100 free requests per day']}})
+    findings = checkpoint_reviews([row], {
+        'top': Scored('top', 'Top', 50, False, False),
+        'reviewed-model': Scored('reviewed-model', 'Old model', None, True, False),
+        'reviewed-model-1017': Scored('reviewed-model-1017', 'Dated model', 40, False, False)})
+    return ('report' if findings and findings[0][1][0].slug == 'reviewed-model-1017' else 'invalid',
+            'not made' if row.models[0].aa_model == 'reviewed-model' else 'invalid')
+
+
 def _review_link_formats(root: Path) -> tuple[str, ...]:
     from .review_leads import collect_leads
     source = 'https://vendor.example/pricing'
@@ -303,6 +322,10 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim('CONTRIBUTING.md',
+          r'Unavailable pinned measurements (report) current\s+dated checkpoint candidates for review; automatic substitutions are (not made)',
+          _checkpoint_review_policy,
+          'tiers.checkpoint_reviews and HTTP writer regressions for deprecated/null records, pinned efforts, archived rows and different-generation controls in tests/test_tiers.py'),
     Claim('CONTRIBUTING.md',
           r'Date-only `until` values are (inclusive) (UTC) dates: the writer expires\s+them at (00:00) UTC on the following day',
           _utc_date_deadline,

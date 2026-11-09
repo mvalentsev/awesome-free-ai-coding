@@ -212,7 +212,11 @@ measured the same way: where the board scores a model of exactly its name, `--wr
 names that slug as its `aa_model` — the model's own page, as above — so a new
 model's mark follows the index as models come out, not as reviewers remember; a
 lane that serves another variant names that one by hand, and a hand-named
-`aa_model` is never replaced. Set `aa_auto: false` to hold automatic binding for
+`aa_model` is never replaced. Unavailable pinned measurements report current
+dated checkpoint candidates for review; automatic substitutions are not made.
+Confirm the checkpoint and reasoning effort each provider serves before changing
+its binding. Retain separate families when providers serve different checkpoints.
+Set `aa_auto: false` to hold automatic binding for
 a family while its available benchmark variant is under review; explicit
 reviewed bindings remain measured. Record the source, checked date and next
 review trigger in private evidence. On 2026-09-17 the top was 53.4

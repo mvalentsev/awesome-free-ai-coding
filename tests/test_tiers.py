@@ -337,6 +337,68 @@ def test_review_says_which_marks_the_index_no_longer_backs():
 
 
 @respx.mock
+@pytest.mark.parametrize('deprecated', [False, True])
+async def test_an_unrated_pinned_binding_reports_current_dated_checkpoints_without_rebinding(
+        tmp_path, capsys, deprecated):
+    """A stable null tier hid AA's moved dated checkpoint in the HTTP update.
+    A candidate needs a vendor/effort review before replacing a pinned binding."""
+    rows = [*SCORED, {
+        'slug': 'deepseek-v4-1-flash', 'name': 'DeepSeek V4.1 Flash (Max)',
+        'deprecated': deprecated, 'intelligenceIndex': None,
+    }, {
+        'slug': 'deepseek-v4-1-flash-1017', 'name': 'DeepSeek V4.1 Flash 1017 (Max)',
+        'deprecated': False, 'intelligenceIndex': 32.6,
+    }, {
+        'slug': 'deepseek-v4-1-flash-1017-high', 'name': 'DeepSeek V4.1 Flash 1017 (High)',
+        'deprecated': False, 'intelligenceIndex': 28.6,
+    }, {
+        'slug': 'deepseek-v4-1-flash-1018', 'name': 'Unscored checkpoint',
+        'deprecated': False, 'intelligenceIndex': None,
+    }, {
+        'slug': 'deepseek-v4-1-flash-2', 'name': 'Different generation',
+        'deprecated': False, 'intelligenceIndex': 40,
+    }, {
+        'slug': 'deepseek-v4-1-flash-4096', 'name': 'Different numeric variant',
+        'deprecated': False, 'intelligenceIndex': 40,
+    }]
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=flight_page(rows)))
+    registry, scores = tmp_path / 'registry.yaml', tmp_path / 'scores.json'
+    save_registry(registry, [entry('a', {'family': 'deepseek-v4.1-flash',
+                                       'aa_model': 'deepseek-v4-1-flash'})])
+    assert await _amain(registry, write=True, scores=scores) == 0
+    model = load_registry(registry)[0].models[0]
+    assert model.aa_model == 'deepseek-v4-1-flash' and model.tier is None
+    assert 'deepseek-v4.1-flash' not in json.loads(scores.read_text())['families']
+    output = capsys.readouterr().out
+    assert 'review binding: deepseek-v4.1-flash' in output
+    assert 'https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017 — 32.6' in output
+    assert 'https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017-high — 28.6' in output
+    assert 'deepseek-v4-1-flash-1018' not in output
+    assert 'deepseek-v4-1-flash-2' not in output
+    assert 'deepseek-v4-1-flash-4096' not in output
+    assert 'confirm the served checkpoint and effort' in output
+
+
+def test_checkpoint_candidates_preserve_effort_and_ignore_archived_rows():
+    from freetier_radar.tiers import checkpoint_reviews
+    active = entry('a', {'family': 'deepseek-v4.1-flash',
+                         'aa_model': 'deepseek-v4-1-flash-0910-high'})
+    archived = entry('gone', {'family': 'ling-3.1-flash', 'aa_model': 'ling-3-1-flash'})
+    archived.retired_on = date(2026, 9, 1)
+    board = {
+        'top': Scored('top', 'Top', 60, False, False),
+        'deepseek-v4-1-flash-0910-high': Scored('deepseek-v4-1-flash-0910-high', 'Old high', None, True, False),
+        'deepseek-v4-1-flash-1017-high': Scored('deepseek-v4-1-flash-1017-high', 'New high', 28.6, False, False),
+        'deepseek-v4-1-flash-1017': Scored('deepseek-v4-1-flash-1017', 'New max', 32.6, False, False),
+        'ling-3-1-flash-1019': Scored('ling-3-1-flash-1019', 'Ling', 29.6, False, False),
+    }
+    findings = checkpoint_reviews([active, archived], board)
+    assert [(mark.family, [m.slug for m in candidates]) for mark, candidates in findings] == [
+        ('deepseek-v4.1-flash', ['deepseek-v4-1-flash-1017-high'])]
+    assert active.models[0].aa_model == 'deepseek-v4-1-flash-0910-high'
+
+
+@respx.mock
 async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, capsys):
     """A family carries one tier, so --write moves a mark on every row that carries
     the family; a run without --write only reports the move, and fails."""
