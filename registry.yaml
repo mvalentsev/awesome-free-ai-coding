@@ -9577,11 +9577,12 @@ entries:
   offering: OpenAI-compatible Kimi K3 API from an Australian open-weight inference
     gateway, with $0.50 of signup credit and no card or initial payment
   limits: One trial per person or organisation, with a verified email and human check.
-    The trial credit does not expire; requests stop when it is exhausted. Optional
-    paid top-ups start at $20. Trial access may have lower rate limits or model restrictions;
-    the vendor publishes no numeric trial rate. Wallaby says it does not log or train
-    on prompts, but its privacy policy does not establish the upstream providers'
-    retention or training rules. Users must be at least 18.
+    The trial credit does not expire; requests stop when it is exhausted. For optional
+    paid use, "an eligible first top-up is $5, then regular top-ups start at $10".
+    Trial access may have lower rate limits or model restrictions; the vendor publishes
+    no numeric trial rate. Wallaby says it does not log or train on prompts, but its
+    privacy policy does not establish the upstream providers' retention or training
+    rules. Users must be at least 18.
   quotas:
   - amount: 0.5
     unit: USD
