@@ -119,6 +119,20 @@ claude-opper() {
   claude "$@"
 }
 
+# ── cheapllm.shop · get a key: https://cheapllm.shop/signup
+#    free ids: deepseek-v4.1-flash-1017
+claude-cheapllm-shop() {
+  if [ -z "${CHEAPLLM_SHOP_API_KEY:-}" ]; then
+    echo "claude-cheapllm-shop: set CHEAPLLM_SHOP_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
+  ANTHROPIC_BASE_URL="https://cheapllm.shop" \
+  ANTHROPIC_AUTH_TOKEN="$CHEAPLLM_SHOP_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-v4.1-flash-1017" \
+  claude "$@"
+}
+
 # ── The Grid · get a key: https://app.thegrid.ai/profile
 #    free ids: agent-prime, code-prime, agent-max
 claude-the-grid() {

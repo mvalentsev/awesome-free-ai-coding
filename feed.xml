@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-10T00:15:02Z</updated>
+  <updated>2026-11-10T18:05:16Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cheapllm-shop/20261110T180516Z</id>
+    <title>Added: cheapllm.shop</title>
+    <link rel="alternate" href="https://cheapllm.shop"/>
+    <updated>2026-11-10T18:05:16Z</updated>
+    <summary type="text">OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261110T180516Z</id>
+    <title>Free models changed: Kilo Code</title>
+    <link rel="alternate" href="https://kilo.ai"/>
+    <updated>2026-11-10T18:05:16Z</updated>
+    <summary type="text">added flint-v1.0 · free models: nemotron-3-ultra, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b, flint-v1.0</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261110T180516Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-11-10T18:05:16Z</updated>
+    <summary type="text">added flint-v1.0 · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b, flint-v1.0</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20261110T001502Z</id>
     <title>Free models changed: BazaarLink</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"/>
     <updated>2026-11-01T14:02:54Z</updated>
     <summary type="text">documented free promotions ended on 2026-11-01</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/infron/20261101T010149Z</id>
-    <title>Added: Infron</title>
-    <link rel="alternate" href="https://infron.ai"/>
-    <updated>2026-11-01T01:01:49Z</updated>
-    <summary type="text">OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/llmtech/20261101T010149Z</id>
-    <title>Archived: LLM Tech</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/"/>
-    <updated>2026-11-01T01:01:49Z</updated>
-    <summary type="text">vendor-announced shutdown on 2026-11-01</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/zro/20261101T010149Z</id>
-    <title>Added: Zro (MoonMath)</title>
-    <link rel="alternate" href="https://zro.moonmath.ai"/>
-    <updated>2026-11-01T01:01:49Z</updated>
-    <summary type="text">OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models</summary>
   </entry>
 </feed>

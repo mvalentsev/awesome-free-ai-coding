@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-05 or later'
-description: 132 model families the list's 109 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 132 model families the list's 110 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-11-10
 model_sort: true
@@ -66,7 +66,7 @@ sortable_model_index: true
 | [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
 | [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `fantail` | [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) |
-| [`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
+| [`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) (via openrouter/free; the router chooses the model), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `gemini-2.5` | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |

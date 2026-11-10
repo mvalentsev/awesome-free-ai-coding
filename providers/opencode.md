@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `GLM-5.3-Flash Free`, `Nemotron 3.5 Super VL Free`, `Nemotron 3 Ultra Free`, `Nemotron 3.5 Lightning Free`, `Beam Free`, `Big Pickle`, `DeepSeek V4.1 Flash Free`, `Flint 40B Free`, `Inkling 2 Small Free`, `LongCat 2.5 Free`
+- In opencode's own model list: `GLM-5.3-Flash Free`, `Nemotron 3.5 Super VL Free`, `Nemotron 3 Ultra Free`, `Nemotron 3.5 Lightning Free`, `Beam Free`, `Big Pickle`, `DeepSeek V4.1 Flash Free`, `Flint 40B Free`, `Inkling 2 Small Free`, `LongCat 2.5 Free`, `MiniMax M3.1 Flash Free`
 
 ## Evidence
 

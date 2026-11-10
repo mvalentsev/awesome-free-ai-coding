@@ -1132,6 +1132,12 @@ model_list:
     api_base: https://api.simplellm.eu/v1
     api_key: os.environ/SIMPLELLM_API_KEY
     use_chat_completions_api: true
+- model_name: cheapllm-shop/deepseek-v4.1-flash-1017
+  litellm_params:
+    model: openai/deepseek-v4.1-flash-1017
+    api_base: https://cheapllm.shop/v1
+    api_key: os.environ/CHEAPLLM_SHOP_API_KEY
+    use_chat_completions_api: true
 - model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
   litellm_params:
     model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506

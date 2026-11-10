@@ -916,6 +916,19 @@
         }
       }
     },
+    "cheapllm-shop": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "cheapllm.shop",
+      "options": {
+        "baseURL": "https://cheapllm.shop/v1",
+        "apiKey": "{env:CHEAPLLM_SHOP_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4.1-flash-1017": {
+          "name": "deepseek-v4.1-flash-1017"
+        }
+      }
+    },
     "meganova": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MegaNova",

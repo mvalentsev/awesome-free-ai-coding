@@ -67,6 +67,7 @@ entries:
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: xing4.0-29b-a4b
+  - family: flint-v1.0
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -104,7 +105,6 @@ entries:
     no_family_ids:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
-    - recursive/flint-v1.0:free
     - liquid/lfm-3-1.7b:free
     anthropic_base_url: https://openrouter.ai/api
     codex:
@@ -776,6 +776,10 @@ entries:
     'on': '2026-11-09'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: LongCat 2.5 Free
+  - family: minimax-m3.1-flash
+    'on': '2026-11-10'
+    source: https://opencode.ai/v2/docs/console/models/
+    table_name: MiniMax M3.1 Flash Free
   data_use:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
@@ -861,6 +865,10 @@ entries:
     router:
       id: openrouter/free
       model_id: xingchen-agi/xing4.0-29b-a4b:free
+  - family: flint-v1.0
+    router:
+      id: openrouter/free
+      model_id: recursive/flint-v1.0:free
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -11971,3 +11979,62 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 95
+- id: cheapllm-shop
+  name: cheapllm.shop
+  category: api-free-tier
+  url: https://cheapllm.shop
+  source_urls:
+  - https://cheapllm.shop/docs
+  - https://cheapllm.shop/integrations
+  - https://cheapllm.shop/terms
+  - https://cheapllm.shop/v1/models
+  card_required: false
+  offering: OpenAI- and Anthropic-compatible model API with free beta access and a
+    permanent hourly Free tier
+  limits: Email registration and an API key are required; no card. "During the beta
+    every account is free, with no rate limit." The beta has no published end date.
+    Requests may queue for 30 seconds before a 503 with Retry-After. After beta, the
+    documented Free floor is 5,000 input and 1,000 output tokens per rolling hour
+    per account, shared across all keys; charges require adding a payment method.
+    The operator says API prompts and answers are not stored and requests run on infrastructure
+    it operates or rents; request metadata is retained. Signed-in browser-chat conversations
+    are stored separately.
+  free_part: models
+  models: []
+  api:
+    base_url: https://cheapllm.shop/v1
+    key_url: https://cheapllm.shop/signup
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-v4.1-flash-1017
+    anthropic_base_url: https://cheapllm.shop
+    codex:
+      base_url: https://cheapllm.shop/v1
+      source: https://cheapllm.shop/docs
+      quote: Tools built for the OpenAI Responses API (Codex CLI, recent OpenAI SDK
+        code) can call POST /v1/responses
+    note: 'Use the exact model ID with your own account key. Chat Completions supports
+      tools and streaming; Messages and Responses adapters are documented. Responses
+      is stateless: store and previous_response_id are not retained.'
+  border:
+    left_out: []
+    'on': '2026-11-10'
+    source: https://cheapllm.shop/terms
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://cheapllm.shop/docs
+    keywords:
+    - During the beta every account is free, with no rate limit.
+    - permanent free tier
+    - 5,000 input tokens and 1,000 output tokens per hour
+    - deepseek-v4.1-flash-1017
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-10'
+  last_verified: '2026-11-10'
+  probe_failures: 0
+  provisional: true
+  rank: 85
