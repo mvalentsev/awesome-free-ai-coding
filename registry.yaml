@@ -2696,7 +2696,7 @@ entries:
     quote: 'No credit: 10 RPM'
     value_phrase: 'No credit: 10 RPM'
     period_quote: RPM uses a rolling 60-second window
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-11-10'
   - amount: 60.0
     unit: weighted units
     period: day
@@ -2705,7 +2705,7 @@ entries:
     source: https://bazaarlink.ai/free
     quote: 60 weighted units/day
     value_phrase: 60 weighted units/day
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 20.0
     unit: requests
     period: minute
@@ -2716,7 +2716,7 @@ entries:
     quote: 'With credit: 20 RPM'
     value_phrase: 'With credit: 20 RPM'
     period_quote: RPM uses a rolling 60-second window
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-11-10'
   - amount: 120.0
     unit: weighted units
     period: day
@@ -2725,7 +2725,7 @@ entries:
     source: https://bazaarlink.ai/free
     quote: 120 weighted units/day
     value_phrase: 120 weighted units/day
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 2.0
     unit: requests
     period: concurrent
@@ -2734,7 +2734,7 @@ entries:
     source: https://bazaarlink.ai/free
     quote: 'Concurrent free requests per account: 2'
     value_phrase: 'Concurrent free requests per account: 2'
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 20.0
     unit: requests
     period: minute
@@ -2743,13 +2743,13 @@ entries:
     source: https://bazaarlink.ai/free
     quote: 'Site-wide free cap: 20 RPM'
     value_phrase: 'Site-wide free cap: 20 RPM'
-    reviewed_on: '2026-10-19'
+    reviewed_on: '2026-11-10'
   - unit: requests
     scope: ip
     label: Additional IP guard
     source: https://bazaarlink.ai/free
     quote: with an additional IP guard
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -3126,28 +3126,28 @@ entries:
     label: Gemini agent allowance
     source: https://antigravity.google/docs/models
     quote: Gemini models Weekly limit remaining
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: usage
     period: week
     scope: account
     label: Claude and GPT agent allowance
     source: https://antigravity.google/docs/models
     quote: Claude and GPT models Weekly limit remaining
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: completions
     scope: account
     state: unmetered
     label: Tab
     source: https://antigravity.google/pricing
     quote: Unlimited Tab completions
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: requests
     scope: account
     state: unmetered
     label: Command
     source: https://antigravity.google/pricing
     quote: Unlimited Command requests
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -3948,7 +3948,7 @@ entries:
     quote: every new account includes a one-time credit of 100 million free tokens.
     value_phrase: every new account includes a one-time credit of 100 million free
       tokens.
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 1000.0
     unit: requests
     period: minute
@@ -3970,7 +3970,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 1000000.0
     unit: input tokens
     period: minute
@@ -3992,7 +3992,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 100000.0
     unit: output tokens
     period: minute
@@ -4014,7 +4014,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   api:
@@ -4446,6 +4446,7 @@ entries:
     quote: 1 month duration Full access for 30 days, then choose a plan 1M tokens
       per day
     value_phrase: 1M tokens per day
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: glm-5.2
@@ -5602,7 +5603,7 @@ entries:
     quote: Quotas, rate limits, model access, and usage limits may change based on
       usage, demand, infrastructure capacity, abuse prevention, operational needs,
       and individual or aggregate activity
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: deepseek-v4-flash
@@ -5641,9 +5642,9 @@ entries:
         quote: minimax-m3
     anthropic_base_url: https://freeinference.org/anthropic
     note: Use a model marked Free in the documentation and returned for your key by
-      authenticated /v1/models. The public view omits qwen3.6-35b and minimax-m3 although
-      the docs mark both Free; confirm their availability for your key. Catalog prices
-      are upstream accounting values, not fees charged to Free users.
+      authenticated /v1/models. The public view omits glm-5.3-flash and minimax-m3
+      although the docs mark both Free; confirm their availability for your key. Catalog
+      prices are upstream accounting values, not fees charged to Free users.
   border:
     left_out: []
     'on': '2026-09-26'
@@ -5945,9 +5946,8 @@ entries:
   limits: Signup credit requires a verified user, applies across APIs and never expires;
     its value is in INR, with no guaranteed token conversion. Rate limits apply per
     account across its keys, with separate pools by API. The listed Pay-as-you-go
-    rate covers Sarvam-105B. The v2 chat and Responses APIs are generally available
-    for the documented open models; the pricing page still labels some other models
-    beta. No page read mentions a card.
+    rate covers Sarvam-105B. Some v2 catalog models require per-organization Provisioned
+    Throughput; listing alone does not grant access. A card requirement is not documented.
   quotas:
   - amount: 100.0
     unit: INR
@@ -5957,7 +5957,7 @@ entries:
     quote: Sarvam offers ₹100 worth of free credits for every verified user on signup.
     value_phrase: ₹100 worth of free credits
     period_quote: on signup
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-10'
   - amount: 60.0
     unit: requests
     period: minute
@@ -5971,7 +5971,7 @@ entries:
     value_phrase: 60 req/min
     model_ids:
     - sarvam-105b
-    reviewed_on: '2026-11-01'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   api:
@@ -9321,7 +9321,7 @@ entries:
     source: https://docs.qoder.cn/product-overview/billing-description
     quote: 有限的体验额度，含为期 2 周的试用及 300 Credits
     value_phrase: 有限的体验额度，含为期 2 周的试用及 300 Credits
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - amount: 100.0
     unit: credits
     period: day
@@ -9332,13 +9332,13 @@ entries:
     source: https://docs.qoder.cn/events/100credits
     quote: Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
     value_phrase: Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - unit: completions
     scope: account
     label: Basic-model fallback
     source: https://docs.qoder.cn/product-overview/billing-description
     quote: 有限次数的补全
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: day
     scope: account-model
@@ -9347,7 +9347,7 @@ entries:
     quote: 每个账号每日享有一定次数的免费使用额度，付费订阅用户的免费使用次数高于免费用户。
     model_ids:
     - Qwen3.8-Flash
-    reviewed_on: '2026-11-02'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   client_lane:
@@ -9776,6 +9776,7 @@ entries:
     source: https://inferbase.ai/pricing
     quote: Free includes 5,000 requests a month
     value_phrase: 5,000 requests a month
+    reviewed_on: '2026-11-10'
   - amount: 100.0
     unit: requests
     period: day
@@ -9785,6 +9786,7 @@ entries:
     quote: 100 requests and $0.50 of model usage a day
     value_phrase: 100 requests
     period_quote: a day
+    reviewed_on: '2026-11-10'
   - amount: 0.5
     unit: USD
     period: day
@@ -9793,6 +9795,7 @@ entries:
     source: https://inferbase.ai/pricing
     quote: 100 requests and $0.50 of model usage a day
     value_phrase: $0.50 of model usage a day
+    reviewed_on: '2026-11-10'
   - amount: 10.0
     unit: requests
     period: minute
@@ -9800,12 +9803,14 @@ entries:
     label: Managed inference
     source: https://inferbase.ai/pricing
     quote: managed inference allows 10 requests a minute per organization
+    reviewed_on: '2026-11-10'
   - amount: 60.0
     unit: requests
     period: minute
     scope: key
     source: https://inferbase.ai/pricing
     quote: a key allows 60 requests per minute
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   api:
@@ -9856,13 +9861,25 @@ entries:
   card_required: false
   offering: OpenAI-compatible chat API from Stage One Solutions UG in Germany, with
     enabled zero-price aliases usable without credit
-  limits: An account and API key are required. Request and token budgets depend on
-    configuration; the authenticated rate-limit endpoint reports current minute, hourly
-    and daily counters. The docs do not establish one shared scope for every key,
-    model and upstream limit. The public catalog can list an enabled alias whose backend
-    is disabled, so listing does not prove a successful completion. Planned or disabled
-    rows are excluded. Numeric free limits and reset times are not publicly fixed.
+  limits: An account and API key are required. The free request slot is shared across
+    all free models and account keys, for streaming and non-streaming chat; paid requests
+    use separate limits. Other request and token budgets depend on configuration;
+    the authenticated rate-limit endpoint reports current minute, hourly and daily
+    counters. Those counters do not establish one scope for every key, model and upstream
+    limit or show whether the free slot is occupied. The public catalog can list an
+    enabled alias whose backend is disabled, so listing does not prove a successful
+    completion. Planned or disabled rows are excluded. Other numeric budgets and reset
+    times are not publicly fixed.
   quotas:
+  - amount: 1.0
+    unit: requests
+    period: concurrent
+    scope: account
+    label: All free models
+    source: https://simplellm.eu/docs/limits.md
+    quote: Only one free-model request may run at a time per account.
+    value_phrase: one free-model request may run at a time per account.
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: minute
     scope: unspecified
@@ -9870,7 +9887,7 @@ entries:
     label: General
     source: https://simplellm.eu/docs/limits.md
     quote: general requests-per-minute counters
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: hour
     scope: unspecified
@@ -9878,7 +9895,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: day
     scope: unspecified
@@ -9886,7 +9903,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: tokens
     period: hour
     scope: unspecified
@@ -9894,7 +9911,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   - unit: tokens
     period: day
     scope: unspecified
@@ -9902,7 +9919,7 @@ entries:
     label: Free models
     source: https://simplellm.eu/docs/limits.md
     quote: free-model hourly/daily request and token counters
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: gemma-4-e4b
@@ -9953,40 +9970,43 @@ entries:
   - https://iteracompute.com/about/
   - https://iteracompute.com/terms.html
   - https://iteracompute.com/privacy.html
+  - https://iteracompute.com/models/auto/
   card_required: false
   remaining_free:
     source: https://iteracompute.com/free-tier-terms/
     quote: For recharged users, lifetime benefits mean retaining the monthly token
-      allowance, TPM, context limit and queue priority of the Starter or Pro tier
-      they have reached, including after a free-model upgrade or replacement.
+      allowance, context limit and queue priority of the Starter or Pro tier they
+      have reached, including after a free-model upgrade or replacement.
     free_part: unnamed
     access:
-      source: https://iteracompute.com/free-tier-terms/
+      source: https://iteracompute.com/terms.html
       initial_payment_usd: 10.0
+      topup_fee_percent: 8.0
   offering: OpenAI-compatible API with recurring free usage on a self-hosted open
-    model
+    model and an automatic router
   limits: Register and verify an email, or sign in with Google. Input and output,
-    including reasoning, count across all account keys. "Context includes input and
-    requested output; output is capped at 8,192 tokens." Free total context is 128K.
-    Requests reserve maximum usage, then settle actual usage. Exhausted quota returns
-    429 without automatic paid overage. No recharge is required; optional cumulative
-    $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal
-    minus refunds, excluding grants and fees. Spending the balance keeps the tier;
-    refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero
-    data retention requires a separate signed agreement. The no-recharge Qwen promotion
-    has a deadline; recharged Starter and Pro users retain tier benefits, while the
-    model name, weights and precision may change.
+    including reasoning, count across all account keys and free routes. "Context includes
+    input and requested output; output is capped at 8,192 tokens." Free total context
+    is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage,
+    then settle actual usage; exhausted quota returns 429 without automatic paid overage.
+    No recharge is required. Optional cumulative $10/$50 top-ups unlock larger allowances;
+    new external payments add an 8% fee. Thresholds use completed principal minus
+    refunds, excluding grants and fees. Spending keeps the tier; refunds may lower
+    it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention
+    requires a separate signed agreement. The no-recharge promotion has a deadline;
+    recharged users retain tier benefits while model names, weights and precision
+    may change.
   quotas:
   - amount: 30000000.0
     unit: tokens
     period: month
     scope: account
-    label: Qwen Free tier
+    label: Shared free-model allowance
     reset: Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing
       time); unused tokens do not roll over.
     source: https://iteracompute.com/free/
-    quote: Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge
-      required 30M 128K 160,000
+    quote: Tier Cumulative net recharge Monthly tokens Context Output speed Free No
+      recharge required 30M 128K Shared capacity; may be slow
     read: table
     table:
       headers:
@@ -9994,7 +10014,7 @@ entries:
       - Cumulative net recharge
       - Monthly tokens
       - Context
-      - TPM
+      - Output speed
       column: Monthly tokens
       rows:
       - Free
@@ -10005,34 +10025,21 @@ entries:
       active_class: ''
     model_ids:
     - qwen/qwen3.8-27b
-    reviewed_on: '2026-10-28'
-  - amount: 160000.0
-    unit: tokens
-    period: minute
+    - Auto
+    reviewed_on: '2026-11-10'
+  - amount: 1.0
+    unit: requests
+    period: concurrent
     scope: account
-    label: Qwen Free tier
+    label: Shared free-model slot
     source: https://iteracompute.com/free/
-    quote: Tier Cumulative net recharge Monthly tokens Context TPM Free No recharge
-      required 30M 128K 160,000
-    read: table
-    table:
-      headers:
-      - Tier
-      - Cumulative net recharge
-      - Monthly tokens
-      - Context
-      - TPM
-      column: TPM
-      rows:
-      - Free
-      row_column: 0
-      where: {}
-      cell_part: ''
-      active_tab: ''
-      active_class: ''
-    model_ids:
-    - qwen/qwen3.8-27b
-    reviewed_on: '2026-10-28'
+    quote: Free, Starter and Pro each allow one queued or running request per account
+      and use shared capacity that may be slow, shared across all keys and Auto.
+    value_phrase: one queued or running request per account
+    period_quote: Monthly tokens and concurrency are shared across your account’s
+      API keys and free routes; changing keys or model IDs does not create another
+      allowance.
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: qwen3.8-27b
@@ -10044,8 +10051,12 @@ entries:
     openai_compatible: true
     model_ids:
     - qwen/qwen3.8-27b
+    - Auto
     model_access:
       qwen/qwen3.8-27b:
+        source: https://iteracompute.com/free/
+        until: '2026-11-24T00:00:00-08:00'
+      Auto:
         source: https://iteracompute.com/free/
         until: '2026-11-24T00:00:00-08:00'
     ignored_ids:
@@ -10056,10 +10067,12 @@ entries:
     - opencode/nemotron-3.5-super-vl:free
     - opencode/big-pickle:free
     - opencode/beam:free
-    note: The documented no-recharge allowance covers qwen/qwen3.8-27b. Eligibility
-      and independent allowances for other routes are unconfirmed; do not apply Qwen
-      limits to them. Create a key scoped to Qwen and use Chat Completions. Authenticated
-      generation has not been checked here.
+    no_family_ids:
+    - Auto
+    note: Use qwen/qwen3.8-27b for the named model or Auto for the changing routing
+      pool; both share the free allowance. Create an API key and use Chat Completions.
+      Auto does not pin model weights or precision. Independent eligibility and allowances
+      for the other catalog routes remain unconfirmed.
   data_use:
     trains: 'no'
     quote: Without your explicit authorization, we will not use your Model API call
@@ -10119,7 +10132,7 @@ entries:
     quote: 10 free-model calls per day and 5 requests per minute on the free tier,
       resetting at 00:00 UTC+8.
     value_phrase: 10 free-model calls per day
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-10'
   - amount: 5.0
     unit: requests
     period: minute
@@ -10131,7 +10144,7 @@ entries:
     quote: 10 free-model calls per day and 5 requests per minute on the free tier,
       resetting at 00:00 UTC+8.
     value_phrase: 5 requests per minute
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-10'
   - amount: 2.0
     unit: USD
     period: one-time
@@ -10142,7 +10155,7 @@ entries:
     source: https://aiapi-pro.com/register.html
     quote: $2.00 welcome credit (valid 14 days)
     value_phrase: $2.00 welcome credit
-    reviewed_on: '2026-10-29'
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: day
     scope: account
@@ -10154,7 +10167,7 @@ entries:
       429s name the provider)
     source: https://aiapi-pro.com/transparency.html
     quote: unlimited free-model calls after the first top-up
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -10321,6 +10334,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
+    reviewed_on: '2026-11-10'
   - amount: 3.0
     unit: reviews
     period: hour
@@ -10348,6 +10362,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -10389,8 +10404,7 @@ entries:
   limits: Starter permits one active developer and unlimited repositories. Its credits
     do not cover CLI reviews; new CLI organizations receive a separate "14-day free
     trial" with no payment method required. De-identified customer data can be used
-    for AI training; organization admins can turn this off in Data & Privacy. Startup-grant
-    activation and payment requirements are not specified on the pricing page.
+    for AI training; organization admins can turn this off in Data & Privacy.
   quotas:
   - amount: 50.0
     unit: credits
@@ -10399,21 +10413,7 @@ entries:
     label: Starter
     source: https://www.greptile.com/pricing
     quote: 50 free credits per month
-    reviewed_on: '2026-11-09'
-  - amount: 500.0
-    unit: credits
-    period: month
-    scope: unspecified
-    label: Startup grant on approval
-    condition: Application required; pre-Series A, under $2M revenue in the past 12
-      months; grant lasts 6 months
-    condition_quote: Pre-Series A startups with under $2M revenue in the past 12 months
-      get 500 free credits a month for 6 months.
-    source: https://www.greptile.com/pricing
-    quote: Pre-Series A startups with under $2M revenue in the past 12 months get
-      500 free credits a month for 6 months.
-    value_phrase: 500 free credits a month
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -10470,7 +10470,7 @@ entries:
     quote: The free plan includes 20 AI reviews per month, shared across repositories
       in your GitHub organization.
     value_phrase: 20 AI reviews per month
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-10'
   - unit: reviews
     scope: unspecified
     state: unmetered
@@ -10478,7 +10478,7 @@ entries:
     source: https://docs.cubic.dev/ide/cli-review
     quote: CLI usage is unlimited during alpha, subject to rate limits that ensure
       fair access.
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -10518,17 +10518,18 @@ entries:
   card_required: false
   offering: Installed CLI for AI pull-request review and suggested fixes on existing
     code, with a no-card introductory trial
-  limits: The "14-day free trial" requires no card. The CLI authenticates with your
-    code-host account. Paid plans are offered after the trial. The Trust Center says
-    LLM requests are "not logged or retained by CodeAnt AI or the model provider";
-    personal information can be retained while your account is active.
+  limits: A trial is advertised without a card; confirm its duration and allowance
+    before starting. The CLI authenticates with your code-host account. Paid plans
+    are offered after the trial. The Trust Center says LLM requests are "not logged
+    or retained by CodeAnt AI or the model provider"; personal information can be
+    retained while your account is active.
   quotas:
   - unit: usage
     period: one-time
     scope: account
     source: https://codeant.ai/cli
     quote: Start Free Trial
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:

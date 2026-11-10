@@ -105,13 +105,13 @@ Free token grants apply in Singapore (international), independently per model an
 
 🔌 LLM APIs with free tier · no card · last probe 2026-11-09 · listed since 2026-10-21
 
-OpenAI-compatible API with recurring free usage on a self-hosted open model
+OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router
 
-- Limits, in the vendor's words: Qwen Free tier: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
+- Limits, in the vendor's words: Shared free-model allowance: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`, `Auto`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.
 
-Qwen Free tier: 160,000 tokens/minute per account; for `qwen/qwen3.8-27b`
+Shared free-model slot: 1 request at once per account
 
-Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. Requests reserve maximum usage, then settle actual usage. Exhausted quota returns 429 without automatic paid overage. No recharge is required; optional cumulative $10/$50 top-ups unlock larger allowances. Recharge thresholds use completed principal minus refunds, excluding grants and fees. Spending the balance keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement. The no-recharge Qwen promotion has a deadline; recharged Starter and Pro users retain tier benefits, while the model name, weights and precision may change.
+Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. No recharge is required. Optional cumulative $10/$50 top-ups unlock larger allowances; new external payments add an 8% fee. Thresholds use completed principal minus refunds, excluding grants and fees. Spending keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement. The no-recharge promotion has a deadline; recharged users retain tier benefits while model names, weights and precision may change.
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`

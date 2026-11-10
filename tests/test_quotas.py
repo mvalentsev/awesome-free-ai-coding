@@ -20,6 +20,37 @@ def quota_text(quota):
     return quota_summary(Entry.model_validate({**BASE, 'quotas': [quota]}))
 
 
+@pytest.mark.parametrize('quote', [
+    'Only one free-model request may run at a time per account.',
+    'Free, Starter and Pro each allow one queued or running request per account.',
+])
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_spelled_concurrency_counts_follow_the_http_source(quote, changed):
+    # https://simplellm.eu/docs/limits.md and https://iteracompute.com/free/,
+    # checked 2026-11-10: both publish the concurrency count in words.
+    period = 'Monthly tokens and concurrency are shared across account keys.'
+    source = respx.get(QUOTA['source']).respond(
+        200, text=(quote.replace('one ', 'two ') if changed else quote) + ' ' + period)
+    async with httpx.AsyncClient() as client:
+        await client.get(QUOTA['source'])
+        assert source.called
+        entry = Entry.model_validate({**BASE, 'quotas': [{
+            **QUOTA, 'amount': 1, 'period': 'concurrent', 'scope': 'account',
+            'quote': quote, 'value_phrase': quote, 'period_quote': period,
+        }]})
+        respx.get(BASE['probe']['endpoint']).respond(200, text='Recurring free quota for chat')
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+
+
+def test_spelled_count_does_not_cross_an_unrelated_model_description():
+    from freetier_radar.quotas import UsageQuota
+    with pytest.raises(ValueError, match='not a number'):
+        UsageQuota.model_validate({**QUOTA, 'amount': 1,
+                                  'quote': 'One model supports free requests per hour.'})
+
+
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock
 async def test_indonesian_daily_and_minute_quotas_use_the_http_source(changed):

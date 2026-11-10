@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SimpleLLM free tier: limits, free models, verified 2026-11-09'
-description: 'OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit. Free models: gemma-4-e4b, llama-3.1-8b. An account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports…'
+description: 'OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit. Free models: gemma-4-e4b, llama-3.1-8b. An account and API key are required. The free request slot is shared across all free models and account keys, for streaming and…'
 permalink: /providers/simplellm/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: SimpleLLM
 model_sort: true
 ---
@@ -24,11 +24,13 @@ OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled 
 
 ## Limits, in the vendor's words
 
+All free models: 1 request at once per account
+
 General: Per-minute requests allowance: see your account for values; scope not published
 
 Free models: Hourly requests allowance: see your account for values; Daily requests allowance: see your account for values; Hourly tokens allowance: see your account for values; Daily tokens allowance: see your account for values; scope not published
 
-An account and API key are required. Request and token budgets depend on configuration; the authenticated rate-limit endpoint reports current minute, hourly and daily counters. The docs do not establish one shared scope for every key, model and upstream limit. The public catalog can list an enabled alias whose backend is disabled, so listing does not prove a successful completion. Planned or disabled rows are excluded. Numeric free limits and reset times are not publicly fixed.
+An account and API key are required. The free request slot is shared across all free models and account keys, for streaming and non-streaming chat; paid requests use separate limits. Other request and token budgets depend on configuration; the authenticated rate-limit endpoint reports current minute, hourly and daily counters. Those counters do not establish one scope for every key, model and upstream limit or show whether the free slot is occupied. The public catalog can list an enabled alias whose backend is disabled, so listing does not prove a successful completion. Planned or disabled rows are excluded. Other numeric budgets and reset times are not publicly fixed.
 
 ## Where it is offered
 

@@ -235,7 +235,8 @@ def _numbers(text: str) -> set[float]:
         values.add(float(m[1].replace(',',''))*scale)
     words = {'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,
              'nine':9,'ten':10,'eleven':11,'twelve':12,'fifteen':15,'twenty':20}
-    for m in re.finditer(r'\b('+'|'.join(words)+r')[ -]+(?:(?:concurrent|free)\s+)?(requests?|calls?|credits?|tasks?|reviews?|days?|weeks?|months?|hours?|dollars?|tokens?)\b',text,re.I):
+    modifiers = r'(?:concurrent|free(?:[ -]model)?|queued(?:\s+or\s+running)?|running|outstanding)'
+    for m in re.finditer(r'\b('+'|'.join(words)+r')[ -]+(?:'+modifiers+r'\s+)*(requests?|calls?|credits?|tasks?|reviews?|days?|weeks?|months?|hours?|dollars?|tokens?)\b',text,re.I):
         values.add(words[m[1].lower()])
     return values
 
@@ -342,7 +343,7 @@ class UsageQuota(BaseModel):
                        'day':r'\b(?:days?|daily|hari|rpd|günde|günlük)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
                        'month':r'\b(?:months?|monthly|mo)\b|每月|月',
                        'one-time':r'\b(?:one.time|sign.?up|welcome|initial|new accounts?|new users?|registration|trials?|preview|once|first time)\b|注册|首次|试用|仅可领取一次',
-                       'concurrent':r'\b(?:concurrent|simultaneous|simultaneously|in flight|at a time)\b|并发',
+                       'concurrent':r'\b(?:concurrent|concurrency|simultaneous|simultaneously|in flight|at a time)\b|并发',
                        None:''}[self.period]
             period_evidence = self.period_quote or phrase
             if not re.search(units, phrase, re.I) or (periods and not re.search(periods, period_evidence, re.I)):

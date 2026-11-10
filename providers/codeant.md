@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'CodeAnt AI free tier: limits, free models, verified 2026-11-09'
-description: Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial. The "14-day free trial" requires no card. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The Trust Center says LLM requests are "not logged…
+description: Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial. A trial is advertised without a card; confirm its duration and allowance before starting. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The…
 permalink: /providers/codeant/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: CodeAnt AI
 ---
 
@@ -25,7 +25,7 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 One-time usage allowance: amount not published per account
 
-The "14-day free trial" requires no card. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The Trust Center says LLM requests are "not logged or retained by CodeAnt AI or the model provider"; personal information can be retained while your account is active.
+A trial is advertised without a card; confirm its duration and allowance before starting. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The Trust Center says LLM requests are "not logged or retained by CodeAnt AI or the model provider"; personal information can be retained while your account is active.
 
 ## Where it is offered
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-11-09'
 description: India's Sarvam AI grants verified users ₹100 in credits that never expire, spendable across its APIs, including Sarvam-105B chat through an OpenAI-compatible endpoint. Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token…
 permalink: /providers/sarvam/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Sarvam AI
 ---
 
@@ -27,7 +27,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 Pay-as-you-go Sarvam-105B: 60 requests/minute per account (Shared by all API keys under the account); for `sarvam-105b`
 
-Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token conversion. Rate limits apply per account across its keys, with separate pools by API. The listed Pay-as-you-go rate covers Sarvam-105B. The v2 chat and Responses APIs are generally available for the documented open models; the pricing page still labels some other models beta. No page read mentions a card.
+Signup credit requires a verified user, applies across APIs and never expires; its value is in INR, with no guaranteed token conversion. Rate limits apply per account across its keys, with separate pools by API. The listed Pay-as-you-go rate covers Sarvam-105B. Some v2 catalog models require per-organization Provisioned Throughput; listing alone does not grant access. A card requirement is not documented.
 
 ## Where it is offered
 
