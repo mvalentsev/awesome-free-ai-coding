@@ -3,4 +3,5 @@
 # freetier-render --check and the tests on a snapshot of the index, the logs,
 # the fields only the scheduled run writes (src/freetier_radar/gate.py).
 # Enabled once per clone: git config core.hooksPath .githooks
+. "$(dirname "$0")/uv-env"
 exec uv run --quiet --frozen freetier-gate pre-commit

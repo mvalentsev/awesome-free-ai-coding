@@ -1273,7 +1273,7 @@ labels. Keep conditions specific to a model attached to that model.
 
 ```bash
 uv sync
-git config core.hooksPath .githooks   # once per clone: every check runs before each commit
+git config core.hooksPath .githooks   # once per clone: every check runs before each commit; hooks choose a writable uv cache when UV_CACHE_DIR is unset
 uv run pytest
 uv run freetier-map               # the map: what every file is, what it is made from, what writes it
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing

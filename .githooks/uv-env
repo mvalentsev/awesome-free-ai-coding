@@ -1,0 +1,7 @@
+#!/bin/sh
+# Keep hooks usable in managed checkouts whose default uv cache is read-only.
+# Respect an explicitly selected cache; otherwise use a disposable writable one.
+if [ -z "${UV_CACHE_DIR:-}" ]; then
+    UV_CACHE_DIR="${TMPDIR:-/tmp}/freetier-uv-cache"
+    export UV_CACHE_DIR
+fi
