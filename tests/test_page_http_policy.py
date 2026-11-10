@@ -61,14 +61,19 @@ async def test_all_page_readers_agree_on_which_bodies_can_supply_evidence(status
     assert len(calls) == (8 if status == 503 else 6)
 
 
-@pytest.mark.parametrize('rendered', [False, True])
-@pytest.mark.parametrize('script_attrs', ['type="module"', 'async', 'defer'])
-async def test_client_rendered_shell_is_unreadable_even_when_metadata_names_the_offer(tmp_path, rendered, script_attrs):
+@pytest.mark.parametrize('script_attrs,content,rendered', [
+    ('type="module"', '', False),
+    ('async', '', False),
+    ('defer', '', False),
+    ('type="module"', QUOTE, True),
+    ('type="module"', '<template data-mint="manifest">' + QUOTE + '</template>', False),
+])
+async def test_client_rendered_shell_is_unreadable_even_when_metadata_names_the_offer(tmp_path, rendered, script_attrs, content):
     from freetier_radar import review
 
     body = ('<html><head><title>' + QUOTE + '</title>'
             '<script ' + script_attrs + ' src="/assets/index.js"></script></head>'
-            '<body><div id="root">' + (QUOTE if rendered else '') + '</div></body></html>')
+            '<body><div id="root">' + content + '</div></body></html>')
     def answer(request):
         return httpx.Response(200, text=body, headers={'content-type': 'text/html'})
     transport = httpx.MockTransport(answer)

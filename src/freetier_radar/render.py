@@ -538,7 +538,9 @@ def _access_flag(e: Entry, family: str | None = None, *, compact: bool = True) -
 def _access_description(e: Entry, family: str | None = None, *, compact: bool = True) -> str:
     return "; ".join(text for text in (
         access_words(family_access(e, family) if family else e.access, compact=compact),
-        family_condition(e, family) if family else "") if text)
+        family_condition(e, family) if family else "",
+        next((f"via {model.router.id}; the router chooses the model"
+              for model in e.models if model.family == family and model.router), "")) if text)
 
 
 def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ",
@@ -1294,7 +1296,8 @@ def _index_countries() -> list[dict]:
 
 def _index_access_labels(e: Entry) -> dict:
     lane = e.api or e.client_lane
-    if not (e.access or e.page_catalog or e.model_access or (lane and lane.model_access)):
+    if not (e.access or e.page_catalog or e.model_access or any(model.router for model in e.models)
+            or (lane and lane.model_access)):
         return {}
     return {"access_labels": {
         "offer": access_words(e.access, compact=True),
@@ -1878,9 +1881,10 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
 # One name over every lane of a kind, in the order a caller falls back through
 # them: the strongest models first, then any strong one, then the lanes that
 # need no account at all.
-FREE_GROUPS = ("free/frontier", "free/strong", "free/nokey")
+MEASURED_POOLS = {tier: f"free/{tier.value}" for tier in (Tier.FRONTIER, Tier.STRONG)}
+FREE_GROUPS = (*MEASURED_POOLS.values(), "free/nokey")
 # What a group pools, in the words the Codex profile explains its model with.
-GROUP_WORDS = {"free/frontier": "every frontier lane", "free/strong": "every strong lane",
+GROUP_WORDS = {**{name: f"every {tier.value} lane" for tier, name in MEASURED_POOLS.items()},
                "free/nokey": "the lanes that need no account"}
 
 # Codex CLI on the free lanes. Codex speaks only the OpenAI Responses API (a
@@ -1980,7 +1984,7 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
             # notable decides a model's page, not a pool: a caller asking for
             # free/strong asked for the strong bar.
             tier = _tier_of_id(e, model_id)
-            names = ([f"free/{tier.value}"] if tier in (Tier.FRONTIER, Tier.STRONG) else []) + (
+            names = ([MEASURED_POOLS[tier]] if tier in MEASURED_POOLS else []) + (
                 ["free/nokey"] if needs_no_account(e) else [])
             if access and access.initial_payment_usd:
                 names = []
@@ -2418,8 +2422,14 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
                        for model in e.models if (access := e.model_access.get(model.family)))
         if e.client_lane is not None and ids:
             out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{i}`" for i in ids))
-        elif include_waiting and (choices := [n.table_name or n.family for n in e.newcomers]):
-            out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{name}`" for name in choices))
+        else:
+            choices = [model.table_name for model in _ordered_models(e, scores)
+                       if model.table_name and (family is None or model.family == family)]
+            if include_waiting:
+                choices += [model.table_name or model.family for model in e.newcomers]
+            if choices:
+                out.append(f"- In {e.name}'s own model list: " +
+                           ", ".join(f"`{name}`" for name in dict.fromkeys(choices)))
         return out
     out = [f"- Base URL: `{api.base_url}`" + ("" if api.openai_compatible else " (not OpenAI-shaped)")]
     if api.key_kind == "none":
@@ -2452,6 +2462,8 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
         out += [f"- `{i}`: {words} ([conditions]({api.model_access[i].source}))"
                 for i in ids if (words := access_words(api.model_access.get(i)))]
+        out += [f"- `{mid}`: the router chooses the model ([conditions]({api.free_routers[mid].source}))"
+                for mid in ids if mid in api.free_routers]
     elif api.no_ids:
         out.append(f"- Callable ids: none listed — {api.no_ids}")
     return out
@@ -2835,6 +2847,8 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     lane = lane_ids(e)
     families = live_families(e)
     ids = [i for i in (lane.model_ids if lane else []) if entry_id_family(e, i, families) == family]
+    ids += [model.router.id for model in e.models if model.family == family and model.router
+            and model.router.id not in ids]
     flags = [CATEGORY_TITLES[e.category]]
     if not requires_payment(e, family):
         flags.append(_card_words(e))
@@ -3289,6 +3303,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
+        "# Automatic routers are excluded from measured model pools.\n"
         + "".join(f"{line}\n" for line in _comment(
             f"Needs LiteLLM {LITELLM_BRIDGE_SINCE} or later: every entry carries "
             "use_chat_completions_api, which 1.88.3 and earlier send on to the vendor, where a "

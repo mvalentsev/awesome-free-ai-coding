@@ -48,8 +48,8 @@ import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
 from . import git
-from .models import Entry, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD
-from .render import CODEX_SINCE, FREE_GROUPS, LITELLM_BRIDGE_SINCE, REPO_URL, litellm_command
+from .models import Entry, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, load_registry
+from .render import CODEX_SINCE, FREE_GROUPS, MEASURED_POOLS, LITELLM_BRIDGE_SINCE, REPO_URL, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
@@ -116,6 +116,7 @@ SENTENCES: dict[str, Sentence] = {
                                        + r" or later; the file goes where Codex keeps its "
                                          r"config, ~/\.codex unless CODEX_HOME says otherwise"),
     "selector-model": Sentence("index.html", r'id="client-configs"'),
+    "router-pools": Sentence(LITELLM_YAML, r"Automatic routers are excluded from measured model pools\."),
     "no-keys": Sentence(LITELLM_PROFILE, r"A lane whose key is not set is skipped, and "
                                          r"free/nokey needs none, so the profile answers before "
                                          r"you set any\."),
@@ -1252,6 +1253,17 @@ def _check_keyed(run: _Run, served: _Lanes, base: str, codex_versions: list[str]
                      + ("" if ok else " — " + _tail(done.stdout + done.stderr)))
 
 
+def routed_pool_violations(entries: list[Entry], config: dict) -> list[str]:
+    """A router's possible member cannot assign a measured pool to its requests."""
+    routers = {(entry.api.base_url.rstrip('/'), f'openai/{mid}')
+               for entry in entries if entry.api for mid in entry.api.free_routers}
+    measured = set(MEASURED_POOLS.values())
+    return [f"{item['model_name']}: an automatic router is not a measured deployment"
+            for item in config.get('model_list', []) if item.get('model_name') in measured
+            and (str((params := item.get('litellm_params', {})).get('api_base', '')).rstrip('/'),
+                 params.get('model')) in routers]
+
+
 def run_checks(root: Path, litellm: dict[str, str], codex: dict[str, str],
                work: Path) -> list[Finding]:
     run = _Run(root, work, litellm, codex)
@@ -1269,6 +1281,9 @@ def run_checks(root: Path, litellm: dict[str, str], codex: dict[str, str],
                  f"{litellm_versions[0]} and Codex {codex_versions[0]}; the files ask for "
                  f"{want_litellm} and {want_codex}")
     config = yaml.safe_load((root / LITELLM_YAML).read_text(encoding="utf-8"))
+    violations = routed_pool_violations(load_registry(root / 'registry.yaml'), config)
+    run.note('router-pools', 'violation' if violations else 'ok', 'configuration',
+             '; '.join(violations) if violations else 'automatic selection stays outside measured model pools')
     run_argv = printed_run((root / LITELLM_YAML).read_text(encoding="utf-8"))
     profile_argv, _, _ = printed_profile((root / LITELLM_PROFILE).read_text(encoding="utf-8"))
     lanes_ = lanes(config)

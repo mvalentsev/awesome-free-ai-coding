@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-11-09'
-description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, beam-1.0, dots-3-note, nemotron-3-nano-omni, xing4.0-29b-a4b. The…'
+description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, dots-3-note, nemotron-3-nano-omni, xing4.0-29b-a4b. The free-model…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Kilo Code
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible 
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="dots-3-note">[`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span>, <span data-model-family="xing4.0-29b-a4b">[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/)</span></span>
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="dots-3-note">[`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span>, <span data-model-family="xing4.0-29b-a4b">[`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/) (via openrouter/free; the router chooses the model)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -41,7 +41,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `reflection/beam-free`, `dots-studio/dots-3-note-preview:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `xingchen-agi/xing4.0-29b-a4b:free`, `google/gemma-4-31b-it:free`, `kilo-auto/free`, `liquid/lfm-2.5-2.6b:free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `recursive/flint-v1.0:free`, `stealth/glyph-cluster`
+- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `dots-studio/dots-3-note-preview:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `kilo-auto/free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `stealth/glyph-cluster`, `thinkingmachines/inkling-2-small:free`
+- `openrouter/free`: the router chooses the model ([conditions](https://openrouter.ai/api/v1/models))
 - Note: Use free IDs without a key; metered IDs require sign-in. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with the listed LFM models.
 
 Try it from your terminal — the lane takes no key:
@@ -60,11 +61,13 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - Source: <https://kilo.ai/docs/gateway/authentication>
 - Source: <https://kilocode.ai>
 - Source: <https://huggingface.co/LiquidAI/LFM3-1.7B>
+- Source: <https://openrouter.ai/docs/cookbook/get-started/free-models-router-playground>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-10` — Free models changed: dropped beam-1.0
 - `2026-11-01` — Free models changed: dropped laguna-s-2.1, laguna-xs-2.1
 - `2026-10-31` — Free models changed: added beam-1.0, xing4.0-29b-a4b
 - `2026-10-29` — Free models changed: added nemotron-3.5-super-vl-120b-a12b
@@ -85,6 +88,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

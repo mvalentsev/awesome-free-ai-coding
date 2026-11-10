@@ -3,7 +3,7 @@ layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-11-09'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: qwen3.8-27b, gemma-4-31b, mistral-small-4, apertus-70b, glm-5.2, gpt-oss-20b, gpt-oss-120b, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
 permalink: /providers/regolo/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Regolo AI
 model_sort: true
 ---
@@ -26,7 +26,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 30-day trial: 1,000,000 tokens/day per account
 
-"Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
+"Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. Brick v1 Beta is a lightweight prompt-complexity classifier for LLM routing pipelines and is excluded from coding configs.
 
 ## Where it is offered
 
@@ -40,8 +40,8 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
-- Callable ids: `qwen3.8-27b`, `gemma4-31b`, `mistral-small-4-119b`, `apertus-70b`, `glm5.2`, `gpt-oss-20b`, `gpt-oss-120b`, `qwen3.5-9b`, `qwen3.5-122b`, `brick-complexity-pro`
-- Note: GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. brick-v1-beta is a zero-priced prompt classifier and is excluded from coding configs. Pricing lists brick-complexity-pro as Core-included, but the public catalog omitted it on 2026-10-31; confirm this router with your account before using it.
+- Callable ids: `qwen3.8-27b`, `gemma4-31b`, `mistral-small-4-119b`, `apertus-70b`, `glm5.2`, `gpt-oss-20b`, `gpt-oss-120b`, `qwen3.5-9b`, `qwen3.5-122b`
+- Note: GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. Brick v1 Beta is a prompt-complexity classifier and is excluded from coding configs.
 
 Try it from your terminal with your key in `REGOLO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -73,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

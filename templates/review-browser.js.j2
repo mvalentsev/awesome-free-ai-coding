@@ -46,7 +46,13 @@ async (page) => {
           const data=await page.locator('#client-configs').textContent();
           const rows=JSON.parse(data)[client];
           if(JSON.stringify(choices)!==JSON.stringify(rows.map(r=>r.id))) throw Error('Client choices disagree');
-          for(const row of rows) {
+          const content=plan.coverage[prefix+'config/'+client]!=='shared-layout';
+          const longest=!content ? rows.flatMap(row=>row.models.map(model=>({row,model,
+            length:[row.name,model.model,model.command,model.route,model.access].filter(Boolean).join(' ').length
+          }))).reduce((best,item)=>!best||item.length>best.length?item:best,null) : null;
+          const checkedRows=content?rows:longest?[longest.row]:[];
+          let checkedModels=0;
+          for(const row of checkedRows) {
             await page.locator('#config-provider').selectOption(row.id);
             const result=page.locator('#config-result');
             const text=await result.innerText();
@@ -55,22 +61,26 @@ async (page) => {
             for(const path of row.files) if(!await result.locator('a[href="'+plan.repository+'/blob/main/'+path+'"]').count()) throw Error('Wrong config link: '+path);
             const selection=new URL(page.url()).searchParams;
             if(selection.get('client')!==client || selection.get('provider')!==row.id) throw Error('Configuration missing from shared URL');
-            for(const model of row.models) {
+            for(const model of content?row.models:[longest.model]) {
+              checkedModels++;
               await page.locator('#config-model').selectOption(model.id);
               const selected=await result.innerText();
               if(!selected.includes(model.command)||!selected.includes('Model: '+model.model)) throw Error('Selected model lost: '+row.id+'/'+model.id);
               if(model.access&&!selected.includes(model.access)) throw Error('Selected model access hidden');
               if(new URL(page.url()).searchParams.get('model')!==model.id) throw Error('Selected model missing from URL');
+              const metrics=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));
+              if(metrics.scroll>metrics.width) throw Error('Configuration overflow: '+row.id+'/'+model.id);
             }
             await page.locator('#config-model').selectOption(row.models[0].id);
           }
-          if(rows.length) {
-            const last=rows[rows.length-1];
+          if(checkedRows.length) {
+            const last=checkedRows[checkedRows.length-1];
             await page.reload({waitUntil:'domcontentloaded'});
             if(await page.locator('#config-client').inputValue()!==client || await page.locator('#config-provider').inputValue()!==last.id) throw Error('Configuration lost on reload');
             if(!(await page.locator('#config-result').innerText()).includes(last.command)) throw Error('Restored command differs');
           }
-          await record(prefix+'config/'+client,{choices:choices.length});
+          await record(prefix+'config/'+client,{choices:choices.length,
+            checkedProviders:checkedRows.length,checkedModels});
         }
         if(selected.has(prefix+'search-flow')) {
           const [first,second]=plan.search_rows;

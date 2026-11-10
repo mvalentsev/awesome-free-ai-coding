@@ -77,6 +77,28 @@ def _browser_coverage_purposes(root: Path) -> tuple[str, ...]:
     return tuple(purpose.rsplit('-', 1)[-1] for purpose in COVERAGE_PURPOSES)
 
 
+def _internal_browser_policy(root: Path) -> tuple[str, ...]:
+    from .review_browser import browser_scope
+    internal = browser_scope(['CONTRIBUTING.md', 'src/freetier_radar/prober.py'])
+    layout = browser_scope(['_layouts/default.html'])
+    return ('no browser cases',) if internal == (False, False) and layout == (True, True) else ()
+
+
+def _pending_quota_policy(root: Path) -> tuple[str, ...]:
+    from .models import Entry
+    row = Entry.model_validate({
+        'id': 'claim', 'name': 'Claim', 'category': 'agent-cli',
+        'url': 'https://vendor.example', 'offering': 'Free models', 'free_part': 'models',
+        'first_seen': '2026-07-19', 'last_verified': '2026-07-19',
+        'newcomers': [{'family': 'next-model', 'on': '2026-07-19', 'source': 'https://vendor.example/models'}],
+        'quotas': [{'amount': 100, 'unit': 'requests', 'period': 'day', 'scope': 'account-model',
+                    'families': ['next-model'], 'source': 'https://vendor.example/models',
+                    'quote': 'Next Model allows 100 requests per day.'}],
+        'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/models',
+                  'keywords': ['Next Model allows 100 requests per day.']}})
+    return ('pending',) if not row.models and row.quotas[0].families == [row.newcomers[0].family] else ()
+
+
 def _keys(found: re.Match) -> tuple[str, ...]:
     """The keys of a JavaScript object literal, in the order written."""
     return tuple(re.findall(r'"([a-z-]+)":', found.group(1)))
@@ -225,9 +247,10 @@ def _page_family_text(root: Path) -> tuple[str, ...]:
         'models': [{'family': 'science-flash'}],
         'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
                   'keywords': ['100 free requests per day']}})
-    bodies = ['<script>science-flash</script>', '<!-- science-flash -->', '<p>science-flash</p>']
+    bodies = ['<script>science-flash</script>', '<template>science-flash</template>',
+              '<!-- science-flash -->', '<p>science-flash</p>']
     missing = [bool(unevidenced_families(httpx.Response(200, text=b), entry)) for b in bodies]
-    return ('machinery_keywords', 'comments') if missing == [True, True, False] else ()
+    return ('inert templates', 'machinery_keywords', 'comments') if missing == [True, True, True, False] else ()
 
 
 def _unscored_tier_policy(root: Path) -> tuple[str, ...]:
@@ -322,7 +345,7 @@ def _prose_access_fields(root: Path) -> tuple[str, ...]:
 def _empty_app_policy(root: Path) -> tuple[str, ...]:
     import httpx
     from .prober import page_response_ok
-    shell = '<html><head><title>Free offer</title><script type="module" src="/app.js"></script></head><body><div id="root"></div></body></html>'
+    shell = '<html><head><title>Free offer</title><script type="module" src="/app.js"></script></head><body><div id="root"><template>Free offer</template></div></body></html>'
     response = httpx.Response(200, text=shell, headers={'content-type': 'text/html'})
     return ('unreadable' if not page_response_ok(response) else 'readable',)
 
@@ -368,9 +391,18 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
           _browser_coverage_purposes,
           "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),
+    Claim("CONTRIBUTING.md", r"Internal changes with no browser-facing output add (no browser cases)",
+          _internal_browser_policy,
+          "review_browser.browser_scope and browser_plan; internal-change, shared-layout and complete execution-data regressions in tests/test_review.py"),
+    Claim("CONTRIBUTING.md", r"A page-only model's quota can name a (pending) family in `newcomers` without",
+          _pending_quota_policy,
+          "models.Entry._quota_catalog_is_bound_to_the_lane; canonical pending quota, Limits scope and unknown-family controls in tests/test_prose_promotions.py"),
     Claim("CONTRIBUTING.md", r"Pages model orders are `(score)`, `(name)` or `(providers)`",
           lambda root: tuple(option["id"] for option in MODEL_SORT["options"]),
           "render.MODEL_SORT and model-sort.js; ordering and browser history/filter controls"),
+    Claim("CONTRIBUTING.md", r"An automatic free router declares its upstream catalog in `(api.free_routers)`",
+          lambda root: ('api.free_routers',) if 'free_routers' in ApiInfo.model_fields else (),
+          "models.ApiInfo and ModelFamily.router; owning/upstream HTTP eligibility, scoped labels, expiry and measured-pool controls in tests/test_free_routers.py"),
     Claim("assets/model-sort.js", r'if \(mode === "(score)"\) return items.slice\(\);',
           lambda root: (MODEL_SORT["default"],),
           "render.MODEL_SORT; generated score order preserved by model-sort.js and tests/test_search_contract.py"),
@@ -430,7 +462,7 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: tuple(k for cls, k in ((ClientLane, 'model_bindings'), (UsageQuota, 'model_ids'))
                              if k in cls.model_fields),
           "models.Entry._a_client_lane_is_a_lane_its_probe_reads; HTTP identity/allowance failures, unbound-wallet controls and shared expiry in tests/test_page_client_lane.py"),
-    Claim("CONTRIBUTING.md", r'Model names in scripts need explicit `(machinery_keywords)`; (comments) cannot keep\s+a family listed',
+    Claim("CONTRIBUTING.md", r'Model names in scripts and (inert templates) need explicit `(machinery_keywords)`; (comments) cannot keep\s+a family listed',
           _page_family_text,
           "prober.unevidenced_families; HTTP machinery/comment regression and rendered-text control in tests/test_page_family_machinery.py"),
     Claim("CONTRIBUTING.md", r'An explicit catalog operation list must include `(Chat Completions)`',

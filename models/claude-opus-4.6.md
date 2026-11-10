@@ -3,7 +3,7 @@ layout: default
 title: 'claude-opus-4.6 free: 1 provider, limits and ids, provider probes 2026-11-09'
 description: claude-opus-4.6 is served free by Google Antigravity. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-opus-4.6/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: claude-opus-4.6
 ---
 
@@ -39,6 +39,7 @@ Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemi
 </details>
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Google Antigravity's own model list: `Claude Opus 4.6 (thinking)*`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://antigravity.google/terms)).
 
 ## Related models
@@ -49,6 +50,6 @@ Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemi
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

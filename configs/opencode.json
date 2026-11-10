@@ -67,12 +67,6 @@
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
-        "thinkingmachines/inkling:free": {
-          "name": "thinkingmachines/inkling:free"
-        },
-        "thinkingmachines/inkling-small:free": {
-          "name": "thinkingmachines/inkling-small:free"
-        },
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
@@ -97,6 +91,9 @@
             "context": 262144,
             "output": 8192
           }
+        },
+        "thinkingmachines/inkling-2-small:free": {
+          "name": "thinkingmachines/inkling-2-small:free"
         }
       }
     },
@@ -144,9 +141,6 @@
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
-        "liquid/lfm-2.5-2.6b:free": {
-          "name": "liquid/lfm-2.5-2.6b:free"
-        },
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
@@ -156,32 +150,15 @@
         "nvidia/nemotron-3.5-super-vl:free": {
           "name": "nvidia/nemotron-3.5-super-vl:free"
         },
-        "xingchen-agi/xing4.0-29b-a4b:free": {
-          "name": "xingchen-agi/xing4.0-29b-a4b:free"
-        },
-        "recursive/flint-v1.0:free": {
-          "name": "recursive/flint-v1.0:free"
-        },
-        "reflection/beam-free": {
-          "name": "reflection/beam-free",
-          "limit": {
-            "context": 1048576,
-            "output": 131072
-          }
-        },
-        "google/gemma-4-31b-it:free": {
-          "name": "google/gemma-4-31b-it:free",
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
         "liquid/lfm-3-1.7b:free": {
           "name": "liquid/lfm-3-1.7b:free",
           "limit": {
             "context": 262144,
             "output": 8192
           }
+        },
+        "thinkingmachines/inkling-2-small:free": {
+          "name": "thinkingmachines/inkling-2-small:free"
         }
       }
     },
@@ -392,6 +369,13 @@
         },
         "xing4.0-29b-a4b-free": {
           "name": "xing4.0-29b-a4b-free"
+        },
+        "crouton-alpha-free": {
+          "name": "crouton-alpha-free",
+          "limit": {
+            "context": 1048576,
+            "output": 943718
+          }
         }
       }
     },
@@ -507,6 +491,17 @@
           "limit": {
             "context": 262144,
             "output": 262144
+          },
+          "options": {
+            "max_completion_tokens": 8192,
+            "max_tokens": 8192
+          }
+        },
+        "lgai/k-exaone-2.5": {
+          "name": "lgai/k-exaone-2.5",
+          "limit": {
+            "context": 524288,
+            "output": 524288
           },
           "options": {
             "max_completion_tokens": 8192,
@@ -671,9 +666,6 @@
         "nvidia/nemotron-3.5-lightning-free:free": {
           "name": "nvidia/nemotron-3.5-lightning-free:free"
         },
-        "reflection/beam-free:free": {
-          "name": "reflection/beam-free:free"
-        },
         "stealth/glyph-cluster:free": {
           "name": "stealth/glyph-cluster:free"
         },
@@ -768,9 +760,6 @@
         },
         "qwen3.5-9b": {
           "name": "qwen3.5-9b"
-        },
-        "brick-complexity-pro": {
-          "name": "brick-complexity-pro"
         }
       }
     },

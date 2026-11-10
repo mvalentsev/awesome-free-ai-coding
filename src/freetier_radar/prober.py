@@ -189,13 +189,16 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         lane = entry.api or entry.client_lane
         from .client_limits import limit_sources, model_limit_changes
         client_sources = limit_sources(entry)
-        if (lane and lane.model_bindings) or entry.probe.model_exclusions or client_sources:
+        if (lane and lane.model_bindings) or (entry.api and entry.api.free_routers) or entry.probe.model_exclusions or client_sources:
             from .quotes import model_binding_changes, model_exclusion_changes
             bodies = {}
             sources = ([b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids]
                        if lane else [])
             sources.extend(e.source for e in entry.probe.model_exclusions)
             sources.extend(client_sources)
+            if entry.api:
+                sources.extend(router.source for mid, router in entry.api.free_routers.items()
+                               if mid in entry.api.model_ids)
             for source in dict.fromkeys(sources):
                 response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
                 if response is not None:
@@ -1689,7 +1692,7 @@ def _empty_lane(resp: httpx.Response, lane: str) -> str:
     return f"response has no {lane!r} lane"
 
 
-def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
+def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool = True) -> str | None:
     from .models import entry_id_family, is_archived_for_good
     items = _catalog_items(resp, entry.probe.lane)
     if items is None:
@@ -1704,8 +1707,20 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
             and not _is_withdrawn(m) and _is_free(m) for m in items)):
         return "no available free model ids in response"
     missing, withdrawn, priced = [], [], []
+    if entry.api and check_routers:
+        from .quotes import flatten
+        for mid, router in entry.api.free_routers.items():
+            if mid not in entry.api.model_ids:
+                continue
+            matches = [model for model in items if _model_id(model) == mid]
+            if (len(matches) != 1 or _is_withdrawn(matches[0])
+                    or not _is_free(matches[0]) or flatten(router.quote) not in flatten(
+                        str(matches[0].get("description") or matches[0].get("desc") or ""))):
+                missing.append(f"{mid}: free router or forwarding quote unavailable")
     families = [f.family for f in entry.models]
     for family in entry.models:
+        if family.router:
+            continue
         # An id vouches for the most specific family it names: coding-glm-5.2-free
         # is glm-5.2's, and must not keep glm-5 alive after glm-5's own id left.
         matches = [
@@ -1925,10 +1940,12 @@ def _rendered(text: str) -> str:
     2026-09-29). They go after the scripts, so a script that carries the
     characters "<!--" cannot take the text that follows it along.
     """
+    from .page_reader import without_templates
+
     def cut(match: re.Match[str]) -> str:
         attrs = (match.group(1) or "").lower()
         return match.group(0) if "ld+json" in attrs else " "
-    return _COMMENT.sub("", _SCRIPT_OR_STYLE.sub(cut, text))
+    return _COMMENT.sub("", without_templates(_SCRIPT_OR_STYLE.sub(cut, text)))
 
 
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
@@ -2097,12 +2114,14 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
     The probe asks it of a catalog row whose content check failed (see
     probe_entry), and the scout of a generation bump before a human reads it: a
     newer generation this vendor does not serve cannot supersede one it does."""
+    if any(model.family == family and model.router for model in entry.models):
+        return None  # The owning catalog alone cannot verify an upstream member.
     asked = entry.model_copy(update={"models": [ModelFamily(family=family)]})
     if entry.probe.type is ProbeType.API_MODELS:
         items = _catalog_items(resp, entry.probe.lane)
         if items is None or not any(_model_id(m) for m in items):
             return None
-        return _check_api_models(resp, asked) is None
+        return _check_api_models(resp, asked, check_routers=False) is None
     return not unevidenced_families(resp, asked)
 
 
@@ -2244,7 +2263,9 @@ def _catalog_output_limit(model: dict) -> int | None:
     """The smallest positive output cap the catalog publishes for a model."""
     top = model.get("top_provider")
     # gateway.vlm.run/v1/openai/models uses max_output_tokens (checked 2026-10-26).
-    values = [model.get("max_output_tokens"),
+    # AIHubMix's model catalog publishes max_output, independently of token
+    # request parameters: https://aihubmix.com/api/v1/models, checked 2026-11-10.
+    values = [model.get("max_output_tokens"), model.get("max_output"),
               top.get("max_completion_tokens") if isinstance(top, dict) else None]
     # Vercel /v1/models pairs context_window with the maximum output max_tokens:
     # https://vercel.com/ai-gateway/models/ampersand-v0.1, checked 2026-11-07.

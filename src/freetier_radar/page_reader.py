@@ -85,6 +85,57 @@ def browser_challenge(response: httpx.Response) -> bool:
             or any(m in raw for m in ("cf-browser-verification", "window._cf_chl_opt", "vercel security checkpoint")))
 
 
+class _Templates(HTMLParser):
+    """Locate inert template ranges without rewriting surrounding source."""
+
+    def __init__(self, text: str):
+        super().__init__(convert_charrefs=False)
+        self.source = text
+        self.lines = [0, *(m.end() for m in re.finditer("\n", text))]
+        self.depth = 0
+        self.start = 0
+        self.ranges = []
+
+    def _source_position(self):
+        line, column = self.getpos()
+        return self.lines[line - 1] + column
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "template":
+            if not self.depth:
+                self.start = self._source_position()
+            self.depth += 1
+
+    def handle_startendtag(self, tag, attrs):
+        # HTML ignores the self-closing flag on non-void template elements.
+        self.handle_starttag(tag, attrs)
+
+    def handle_endtag(self, tag):
+        if tag == "template" and self.depth:
+            self.depth -= 1
+            if not self.depth:
+                self.ranges.append((self.start, self.source.index(">", self._source_position()) + 1))
+
+
+def without_templates(text: str) -> str:
+    """Remove inert HTML templates, including nested and unclosed manifests.
+
+    Cline's docs ship state in <template data-mint="manifest">, checked
+    2026-11-10. Template content is not rendered until explicitly instantiated:
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/template
+    """
+    if not re.search(r"<template\b", text, re.I):
+        return text
+    parser = _Templates(text)
+    parser.feed(text)
+    parser.close()
+    if parser.depth:
+        parser.ranges.append((parser.start, len(text)))
+    for start, end in reversed(parser.ranges):
+        text = text[:start] + " " + text[end:]
+    return text
+
+
 class _PageShell(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -133,7 +184,7 @@ def empty_framer_page(response: httpx.Response) -> bool:
             or "framer-search-index" not in response.text):
         return False
     parsed = _PageShell()
-    parsed.feed(response.text)
+    parsed.feed(without_templates(response.text))
     if not parsed.seen_body or "".join(parsed.text).strip() or len(parsed.indexes) != 1:
         return False
     index = parsed.indexes[0]
@@ -153,7 +204,7 @@ def empty_app_page(response: httpx.Response) -> bool:
             or "html" not in response.headers.get("content-type", "").lower()):
         return False
     parsed = _PageShell()
-    parsed.feed(response.text)
+    parsed.feed(without_templates(response.text))
     return (parsed.seen_body and parsed.app_mount and parsed.client_bootstrap
             and not "".join(parsed.text).strip())
 

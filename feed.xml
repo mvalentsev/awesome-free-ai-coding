@@ -5,8 +5,36 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-09T17:22:02Z</updated>
+  <updated>2026-11-10T00:15:02Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20261110T001502Z</id>
+    <title>Free models changed: BazaarLink</title>
+    <link rel="alternate" href="https://bazaarlink.ai"/>
+    <updated>2026-11-10T00:15:02Z</updated>
+    <summary type="text">added qwen3.7-flash · free models: deepseek-v4-flash, nemotron-3.5-lightning, qwen3.7-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261110T001502Z</id>
+    <title>Free models changed: Kilo Code</title>
+    <link rel="alternate" href="https://kilo.ai"/>
+    <updated>2026-11-10T00:15:02Z</updated>
+    <summary type="text">dropped beam-1.0 · free models: nemotron-3-ultra, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261110T001502Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-11-10T00:15:02Z</updated>
+    <summary type="text">added beam-1.0, flint-v1.0 · free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, deepseek-v4.1-flash, glm-5.3-flash, nemotron-3.5-super-vl-120b-a12b, flint-v1.0, beam-1.0</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261110T001502Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-11-10T00:15:02Z</updated>
+    <summary type="text">dropped inkling, inkling-small · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261109T172202Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -328,33 +356,5 @@
     <link rel="alternate" href="https://zro.moonmath.ai"/>
     <updated>2026-11-01T01:01:49Z</updated>
     <summary type="text">OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261031T210044Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-10-31T21:00:44Z</updated>
-    <summary type="text">dropped agents-a1, atria-dawn, atria-dawn-preview, intern-s2-397b, sage-a1.5 · free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, minimax-m3.1-flash, nemotron-3.5-super-vl-120b-a12b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder/20261031T184126Z</id>
-    <title>Free models changed: Qoder</title>
-    <link rel="alternate" href="https://qoder.com"/>
-    <updated>2026-10-31T18:41:26Z</updated>
-    <summary type="text">dropped deepseek-v4.1-flash · free models: qwen3.8-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codeant/20261031T141550Z</id>
-    <title>Added: CodeAnt AI</title>
-    <link rel="alternate" href="https://codeant.ai"/>
-    <updated>2026-10-31T14:15:50Z</updated>
-    <summary type="text">Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/coderabbit/20261031T140131Z</id>
-    <title>Added: CodeRabbit</title>
-    <link rel="alternate" href="https://www.coderabbit.ai"/>
-    <updated>2026-10-31T14:01:31Z</updated>
-    <summary type="text">Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial</summary>
   </entry>
 </feed>

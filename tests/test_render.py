@@ -92,6 +92,31 @@ def test_connect_labels_keep_account_conditions_once_and_model_conditions_on_the
     assert 'https://x.ai/special' in connect
 
 
+def test_page_model_promotion_keeps_exact_picker_names_under_connect():
+    from freetier_radar.models import ModelFamily
+    from freetier_radar.render import build_model_page, build_provider_page
+
+    row = make(category='agent-cli', free_part='models',
+        models=[{'family': 'alpha', 'table_name': 'Alpha Free'}],
+        newcomers=[{'family': 'beta', 'table_name': 'Beta Free', 'on': TODAY,
+                    'source': 'https://x.ai/pricing'}],
+        probe={'type': 'page-keywords', 'endpoint': 'https://x.ai/pricing',
+               'keywords': ['Alpha and Beta are free on this platform.'],
+               'model_prices': {'headers': ['Model', 'Input', 'Output'],
+                                'name_column': 'Model', 'price_columns': ['Input', 'Output']}})
+    def choices(entry):
+        page = build_provider_page(entry, [], TODAY)
+        connect = page.split('## Connect\n', 1)[1].split('## Evidence\n', 1)[0]
+        assert connect.count('`Alpha Free`') == connect.count('`Beta Free`') == 1
+        return connect
+    before = choices(row)
+    row.models.append(ModelFamily(family='beta', table_name='Beta Free'))
+    row.newcomers = []
+    assert choices(row) == before
+    model_page = build_model_page('alpha', [row], [], TODAY)
+    assert '`Alpha Free`' in model_page and '`Beta Free`' not in model_page
+
+
 def test_unestablished_upstream_training_does_not_become_a_blanket_no_training_promise():
     from freetier_radar.render import build_provider_page
     source = 'https://gateway.example/terms'

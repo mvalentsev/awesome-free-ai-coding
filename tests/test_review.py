@@ -640,6 +640,48 @@ def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_control
     assert any(case.startswith('320/light/provider/') for case in provider_cases)
 
 
+@pytest.mark.parametrize('path', ['CONTRIBUTING.md', 'src/freetier_radar/prober.py'])
+def test_browser_plan_does_not_repeat_unchanged_ui_for_internal_changes(tmp_path, path):
+    from freetier_radar.review_browser import browser_plan
+
+    repo = repo_at(tmp_path)
+    target = repo / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text('Internal change\n')
+    subprocess.run(['git', '-C', str(repo), 'add', path], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: internal fixture'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    assert scope['rows'] == scope['families'] == []
+    assert browser_plan(bundle)['cases'] == []
+
+
+def test_shared_layout_change_covers_provider_states_without_rechecking_all_content(tmp_path, monkeypatch):
+    from freetier_radar import review_browser
+
+    repo = repo_at(tmp_path)
+    target = repo / '_layouts/default.html'
+    target.parent.mkdir()
+    target.write_text('<main>{{ content }}</main>\n')
+    subprocess.run(['git', '-C', str(repo), 'add', '_layouts'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: layout fixture'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    rows = [{'id': f'vendor-{i}', 'name': f'Vendor {i}', 'models': [],
+             'page': f'https://site.example/providers/vendor-{i}/'} for i in range(40)]
+    rows.append({'id': 'folded', 'name': 'Folded', 'models': [], 'duplicate_of': 'vendor-0',
+                 'page': 'https://site.example/providers/folded/'})
+    monkeypatch.setattr(review_browser, 'index_at', lambda *args, **kwargs: {'entries': rows, 'models': []})
+    plan = review_browser.browser_plan(bundle)
+    assert scope['rows'] == []
+    provider_cases = [case for case in plan['cases'] if '/provider/' in case]
+    assert 0 < len(provider_cases) < len(rows)
+    assert any(case.startswith('375/dark/provider/') for case in provider_cases)
+    assert all(plan['coverage'][case] == 'shared-layout' for case in provider_cases)
+    assert {case.rsplit('/', 1)[-1] for case in provider_cases} <= {row['id'] for row in plan['rows']}
+    assert plan['folded_targets']['vendor-0']['name'] == 'Vendor 0'
+
+
 def test_browser_plan_covers_changed_families_and_import_rejects_partial_or_wrong_runs(tmp_path):
     repo = repo_at(tmp_path)
     bundle = review.Bundle(repo / '.evidence', repo)

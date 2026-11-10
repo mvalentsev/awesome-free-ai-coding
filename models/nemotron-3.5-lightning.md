@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-lightning free: 9 providers, limits and ids, provider probes 2026-11-09'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: nemotron-3.5-lightning
 ---
 
@@ -28,11 +28,12 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 - Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
 
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. Crouton Alpha Free retains data for 30 days without training. Both have model-specific territorial exclusions, including Russia.
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them.
 
 </details>
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In opencode's own model list: `Nemotron 3.5 Lightning Free`
 - What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
@@ -192,7 +193,7 @@ Free models: 20 requests/minute shared across the endpoint
 
 Additional IP guard: Requests allowance: amount not published (period not published) per IP
 
-The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.
+The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. The platform grants free eligibility per model; a regular ID can have a free quota alongside its paid price. After the free quota, paid fallback needs an enabled setting and sufficient account credit.
 
 </details>
 
@@ -210,6 +211,6 @@ The free models share each account's daily weighted allowance, reset at 00:00 UT
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

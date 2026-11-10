@@ -10,9 +10,11 @@ from freetier_radar.prober import ProbeStatus, probe_entry
 
 @pytest.mark.parametrize('model_text, machinery, expected', [
     ('<script>const retiredNavigation = "science-flash";</script>', [], ProbeStatus.STALE_MODELS),
+    ('<template data-mint="manifest">science-flash</template>', [], ProbeStatus.STALE_MODELS),
     ('<!-- science-flash -->', [], ProbeStatus.STALE_MODELS),
     ('<p>science-flash</p>', [], ProbeStatus.PASS),
     ('<script>const currentModel = "science-flash";</script>', ['science-flash'], ProbeStatus.PASS),
+    ('<template data-mint="manifest">science-flash</template>', ['science-flash'], ProbeStatus.PASS),
     ('<!-- science-flash -->', ['science-flash'], ProbeStatus.STALE_MODELS),
 ])
 @respx.mock

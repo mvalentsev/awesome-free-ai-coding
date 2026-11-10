@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'beam-1.0 free: 4 providers, limits and ids, provider probes 2026-11-09'
-description: beam-1.0 is served free by Kilo Code, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+description: beam-1.0 is served free by opencode, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: beam-1.0
 ---
 
@@ -11,26 +11,30 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**4 rows on the list serve `beam-1.0` free:** Kilo Code, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `beam-1.0` free:** opencode, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
 
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
+### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-09 · listed since 2026-10-31
+🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-11-10
 
-Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
+Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
-- Limits, in the vendor's words: 200 requests/hour per IP
+<details markdown="block">
+<summary>Provider-wide limits</summary>
 
-The free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m reflection/beam-free`
-- Callable ids: `reflection/beam-free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+- Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
+
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them.
+
+</details>
+
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In opencode's own model list: `Beam Free`
+- What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
@@ -99,10 +103,11 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ## Rows that listed it before
 
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-10-31 to 2026-11-10
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-10-17 to 2026-10-22
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

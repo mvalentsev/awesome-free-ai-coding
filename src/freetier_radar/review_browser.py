@@ -8,6 +8,7 @@ from jinja2 import Environment
 
 from . import git
 from .indexnow import index_at
+from .layout import Kind, node_for
 from .render import MODEL_SORT, PAGES_URL, REPO_URL
 from .review import Bundle, blob, scoped
 
@@ -44,8 +45,20 @@ def _model_features(model: dict) -> set[str]:
             'multiple-providers' if len(model.get('rows', [])) > 1 else 'single-or-empty'}
 
 
+def browser_scope(paths: list[str]) -> tuple[bool, bool]:
+    """Browser output and shared-layout scope, using the repository map."""
+    shared_layout = any(path.startswith('_layouts/') or path == '_config.yml'
+                        or (path.startswith('assets/') and Path(path).suffix in ('.js', '.css'))
+                        for path in paths)
+    browser_changed = shared_layout or any(
+        node.kind in (Kind.PAGE, Kind.GENERATED)
+        for path in paths if (node := node_for(path)) is not None)
+    return browser_changed, shared_layout
+
+
 def browser_plan(bundle: Bundle) -> dict:
     scope = scoped(bundle)
+    browser_changed, shared_layout = browser_scope(scope['paths'])
     index = index_at(scope['sha'], repo=bundle.repo)
     before = index_at(scope['base'], repo=bundle.repo)
     current = {m['family']: m for m in index['models']}
@@ -55,16 +68,14 @@ def browser_plan(bundle: Bundle) -> dict:
     if not models:
         models = [m for m in index['models'] if m.get('page') and m.get('rows')][:2]
     rows = [e for e in index['entries'] if e['id'] in scope['rows']]
-    folded_ids = {e['duplicate_of'] for e in rows if e.get('duplicate_of')}
-    folded_targets = {e['id']: {'name': e['name'], 'page': e['page']}
-                      for e in index['entries'] if e['id'] in folded_ids}
     old = {e['id']: {m['family'] for m in e.get('models', [])} for e in before['entries']}
     links = [[e['id'], m['family']] for e in rows for m in e.get('models', [])
              if m['family'] not in old.get(e['id'], set())]
     widths, schemes = [1440, 375, 320], ['light', 'dark']
     html = git.show(bundle.repo, scope['sha'], 'index.html') or ''
     config_block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
-    clients = list(json.loads(config_block.group(1))) if config_block else []
+    client_configs = json.loads(config_block.group(1)) if config_block else {}
+    clients = list(client_configs)
     words = {word for key in ('sections', 'filters')
              for item in index.get('search_config', {}).get(key, []) for word in item.get('words', [])}
     named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
@@ -78,10 +89,18 @@ def browser_plan(bundle: Bundle) -> dict:
     readme_models = [current[family] for family in comparison_families if family in current]
     readme_images = [html_text.unescape(alt) for alt in re.findall(
         r'<picture>.*?<img\s[^>]*alt="([^"]+)"', readme, re.S)]
-    row_controls = _representatives(rows, _row_features)
-    model_controls = _representatives(models, _model_features)
-    config_control = max(clients, key=lambda client: len(json.dumps(
-        json.loads(config_block.group(1))[client])), default=None)
+    row_controls = _representatives(
+        [row for row in index['entries'] if row.get('page')] if shared_layout else rows,
+        _row_features)
+    model_controls = _representatives(
+        [model for model in index['models'] if model.get('page')] if shared_layout else models,
+        _model_features)
+    execution_rows = list({row['id']: row for row in [*rows, *row_controls]}.values())
+    execution_models = list({model['family']: model for model in [*models, *model_controls]}.values())
+    folded_ids = {row['duplicate_of'] for row in execution_rows if row.get('duplicate_of')}
+    folded_targets = {row['id']: {'name': row['name'], 'page': row['page']}
+                      for row in index['entries'] if row['id'] in folded_ids}
+    config_control = max(clients, key=lambda client: len(json.dumps(client_configs[client])), default=None)
     coverage = {}
 
     def add(width, scheme, kind, name='', purpose=COVERAGE_PURPOSES[1]):
@@ -120,10 +139,12 @@ def browser_plan(bundle: Bundle) -> dict:
             for kind in ('home', 'index', *(('provider', 'browse') if sort_row else ())):
                 add(width, scheme, 'model-sort', kind, 'user-sort')
         cases = list(coverage)
+    if not browser_changed and not scope['rows'] and not scope['families']:
+        cases, coverage = [], {}
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
             'chart_date': json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['read_on']
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
-            'models': models, 'rows': rows, 'folded_targets': folded_targets,
+            'models': execution_models, 'rows': execution_rows, 'folded_targets': folded_targets,
             'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
             'coverage': coverage,
             'representative_rows': [row['id'] for row in row_controls],

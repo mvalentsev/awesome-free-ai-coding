@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.7-max free: 1 provider, limits and ids, provider probes 2026-11-09'
 description: qwen3.7-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.7-max/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: qwen3.7-max
 ---
 
@@ -43,11 +43,11 @@ Free token grants apply in Singapore (international), independently per model an
 
 ## Related models
 
-- [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/) — free at Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/) — free at Alibaba Cloud Model Studio (DashScope, international) and BazaarLink
 - [`qwen3.7-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -340,6 +340,8 @@ number has been published elsewhere. Freebuff's session quota is derived from
 its existing page catalog rather than recorded twice. Compact allowances appear
 first under the existing Limits section; shared caps do not become model labels.
 Concurrent ceilings, one-time grants and recurring windows remain distinct.
+A page-only model's quota can name a pending family in `newcomers` without
+promoting it into `models`.
 Explicit unmetered usage is separate from an unpublished amount. Model-bound
 caps include their exact API IDs. Indexed documentation uses `follow` to resolve
 the current release before checking its allowance. Ended model promotions retain
@@ -364,8 +366,8 @@ free tier does. Three shapes qualify:
 | an id — the free model's, as the page prints it | `mistral-medium` · `qwen/qwen3.8-27b` |
 | a sentence of 4+ words quoted from the page | `free models through kilo gateway` |
 
-**Keywords are matched against what the page renders**, with `<script>` and
-`<style>` removed — JSON-LD excepted, because structured data is the vendor
+**Keywords are matched against what the page renders**, with `<script>`,
+`<style>` and inert `<template>` content removed — JSON-LD excepted, because structured data is the vendor
 answering a question and one row's whole offer is a JSON-LD FAQ block. A string
 that lives only in a state blob, an OpenAPI enum, a response sample or an i18n
 bundle keeps matching after the offer is gone: Groq's Free Plan Limits table
@@ -472,9 +474,16 @@ vendor keeps its offer on one page and its model list on another, probe the page
 that carries both, or list fewer families: an id that belongs to the free lane but
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
-Model names in scripts need explicit `machinery_keywords`; comments cannot keep
+Model names in scripts and inert templates need explicit `machinery_keywords`; comments cannot keep
 a family listed. A prose-based client lane uses
 its separately checked per-model identity and allowance sources.
+
+**An automatic free router declares its upstream catalog in `api.free_routers`.**
+Each callable router ID carries a `source` and its owning catalog's forwarding
+`quote`. A family reached through that route names the router ID and exact
+upstream model ID in `models[].router`. Both catalogs must confirm free,
+available access. The shared model labels and Connect section disclose that
+the router chooses the model; automatic routes stay outside measured model pools.
 
 **A short gateway ID can have a sourced model identity.** Record it in
 `api.model_bindings[ID]` or `client_lane.model_bindings[ID]`, with `family`,
@@ -1308,6 +1317,8 @@ themes and desktop/mobile widths use representative providers and models,
 including archived, folded and empty states where affected. README images still
 exercise their wide/narrow and light/dark variants. The plan records each case's
 purpose and its representatives; the importer still requires the complete plan.
+Internal changes with no browser-facing output add no browser cases. Shared
+layout changes still cover representative provider and model states.
 
 The report covers collected evidence; source reads and quote matches still need
 vendor judgment, affected API lanes still need controls, and the full diff still

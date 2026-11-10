@@ -245,9 +245,16 @@ def id_family(families: Iterable[str], model_id: str) -> str | None:
     return max(named, key=lambda f: len(_id_squash(f)), default=None)
 
 
+class RouterMember(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    id: str = Field(min_length=1)
+    model_id: str = Field(min_length=1)
+
+
 class ModelFamily(BaseModel):
     family: str
     table_name: str | None = Field(default=None, min_length=1, exclude_if=lambda v: v is None)
+    router: RouterMember | None = Field(default=None, exclude_if=lambda v: v is None)
     # A measurement, never a reputation (CONTRIBUTING, "tier: frontier is a
     # measurement"): how close the model this lane serves scores to the top of
     # the Artificial Analysis Intelligence Index, read by `freetier-tiers`. No
@@ -1104,6 +1111,27 @@ class OutputBudgetSource(BaseModel):
         return value
 
 
+class FreeRouter(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    source: str
+    quote: str
+
+    @field_validator("source")
+    @classmethod
+    def _public_catalog(cls, value):
+        if not valid_source_url(value):
+            raise ValueError("free router source must be a public HTTPS catalog")
+        return value
+
+    @field_validator("quote")
+    @classmethod
+    def _forwarding_statement(cls, value):
+        from .quotes import words
+        if words(value) < ANCHOR_PHRASE_WORDS:
+            raise ValueError("free router quote needs its complete forwarding statement")
+        return ModelBinding._complete_quote(value)
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -1112,6 +1140,7 @@ class ApiInfo(BaseModel):
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
     model_bindings: dict[str, ModelBinding] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    free_routers: dict[str, FreeRouter] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     model_limits: dict[str, ModelLimits] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Chosen OpenCode request budgets; these do not assert vendor model limits.
@@ -1407,7 +1436,8 @@ class LaneIds:
 
 def lane_ids(entry: Entry) -> LaneIds | None:
     if entry.api is not None:
-        return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids, entry.api.no_family_ids,
+        return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids,
+                       list(dict.fromkeys([*entry.api.no_family_ids, *entry.api.free_routers])),
                        entry.api.free_since)
     if entry.client_lane is not None:
         return LaneIds("client_lane", entry.client_lane.model_ids, entry.client_lane.ignored_ids,
@@ -1612,6 +1642,27 @@ class Entry(BaseModel):
     rank: int = 100  # sort key within a category: lower renders higher
 
     @model_validator(mode="after")
+    def _router_members_are_bound(self) -> Entry:
+        for model in self.models:
+            if member := model.router:
+                if (not self.api or self.probe.type is not ProbeType.API_MODELS
+                        or member.id not in self.api.model_ids or member.id not in self.api.free_routers):
+                    raise ValueError("a routed family needs a declared callable API router")
+                if not names_family(model.family, _id_squash(member.model_id), _id_squash):
+                    raise ValueError("router member must name its exact model family")
+        if self.api:
+            if (set(self.api.free_routers) & set(self.api.model_ids)
+                    and self.probe.type is not ProbeType.API_MODELS):
+                raise ValueError("active free routers require their owning API catalog probe")
+            if self.api.free_routers.keys() & self.api.model_bindings.keys():
+                raise ValueError("an automatic router cannot bind a fixed model identity")
+            retained = {mid for mid in self.api.ignored_ids
+                        if (access := self.api.model_access.get(mid)) and access.until}
+            if self.api.free_routers.keys() - set(self.api.model_ids) - retained:
+                raise ValueError("free router metadata needs a callable or retained expired ID")
+        return self
+
+    @model_validator(mode="after")
     def _prose_model_conditions_are_scoped(self) -> Entry:
         if not self.model_access and not self.expired_models:
             return self
@@ -1646,9 +1697,10 @@ class Entry(BaseModel):
             if quota.families:
                 if self.api or self.client_lane or self.page_catalog:
                     raise ValueError('use model_ids for quotas on an API or client lane')
-                known = {model.family for model in self.models} | set(self.expired_models)
+                known = ({model.family for model in self.models}
+                         | {model.family for model in self.newcomers} | set(self.expired_models))
                 if set(quota.families) - known:
-                    raise ValueError('a family quota needs an active or expired prose family')
+                    raise ValueError('a family quota needs an active, pending or expired prose family')
             if quota.read == "catalog":
                 if quota.source not in (self.probe.endpoint, self.probe.catalog):
                     raise ValueError("catalog quota source must be this row's checked catalog")
@@ -1922,6 +1974,8 @@ def live_families(entry: Entry) -> list[str]:
 
 def entry_id_family(entry: Entry, model_id: str, families: Iterable[str] | None = None) -> str | None:
     """Resolve a row's exact ID before applying the common name matcher."""
+    if entry.api and model_id in entry.api.free_routers:
+        return None
     names = list(families) if families is not None else live_families(entry)
     lane = entry.api or entry.client_lane
     binding = lane.model_bindings.get(model_id) if lane else None
@@ -1949,6 +2003,7 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
     """The least restrictive surviving ID: a free variant keeps a family free."""
     lane = lane_ids(entry)
     ids = [i for i in lane.model_ids if entry_id_family(entry, i) == family] if lane else []
+    ids += [model.router.id for model in entry.models if model.family == family and model.router]
     if entry.page_catalog:
         ids = [m.name for m in entry.page_catalog.models if m.model and m.model.family == family
                and entry.page_catalog.independently_free(m)]
@@ -2052,6 +2107,8 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
         families = live_families(e)
         affected = {entry_id_family(e, i, families) for i in expired}
         kept = {entry_id_family(e, i, families) for i in surviving}
+        affected |= {model.family for model in e.models if model.router and model.router.id in expired}
+        kept |= {model.family for model in e.models if model.router and model.router.id in surviving}
         updates = {"model_ids": surviving,
                    "ignored_ids": list(dict.fromkeys([*block.ignored_ids, *sorted(expired)])),
                    "no_family_ids": [i for i in block.no_family_ids if i not in expired],
@@ -2062,7 +2119,8 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
         current = block.model_copy(update=updates)
         entry_updates = {
             "api" if e.api else "client_lane": current,
-            "models": [m for m in e.models if m.family not in affected or m.family in kept]}
+            "models": [m.model_copy(update={"router": None}) if m.router and m.router.id in expired else m
+                       for m in e.models if m.family not in affected or m.family in kept]}
         if not surviving and e.free_part is FreePart.MODELS:
             if e.remaining_free:
                 # The new prose probe cannot recheck undated price-catalog

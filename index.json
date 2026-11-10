@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-09",
+  "generated": "2026-11-10",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -306,14 +306,6 @@
           "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "inkling-small",
-          "aa_model": "inkling-small"
-        },
-        {
-          "family": "inkling",
-          "aa_model": "inkling"
-        },
-        {
           "family": "nemotron-3-ultra",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
@@ -356,15 +348,14 @@
           "google/gemma-4-31b-it:free",
           "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
-          "thinkingmachines/inkling:free",
-          "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
           "liquid/lfm-2.5-2.6b:free",
           "openrouter/free",
           "nvidia/nemotron-3.5-super-vl:free",
           "xingchen-agi/xing4.0-29b-a4b:free",
           "recursive/flint-v1.0:free",
-          "liquid/lfm-3-1.7b:free"
+          "liquid/lfm-3-1.7b:free",
+          "thinkingmachines/inkling-2-small:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -435,8 +426,6 @@
           "gemma-4-26b-a4b",
           "north-mini-code",
           "nemotron-3.5-lightning",
-          "inkling",
-          "inkling-small",
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
@@ -449,15 +438,14 @@
           "google/gemma-4-31b-it:free",
           "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
-          "thinkingmachines/inkling:free",
-          "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
           "liquid/lfm-2.5-2.6b:free",
           "openrouter/free",
           "nvidia/nemotron-3.5-super-vl:free",
           "xingchen-agi/xing4.0-29b-a4b:free",
           "recursive/flint-v1.0:free",
-          "liquid/lfm-3-1.7b:free"
+          "liquid/lfm-3-1.7b:free",
+          "thinkingmachines/inkling-2-small:free"
         ],
         "what": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
         "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
@@ -469,8 +457,6 @@
           "gemma-4-26b-a4b": "",
           "north-mini-code": "",
           "nemotron-3.5-lightning": "",
-          "inkling": "",
-          "inkling-small": "",
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
@@ -1539,11 +1525,13 @@
         "https://opencode.ai/v2/docs/console/models/",
         "https://opencode.ai/docs/",
         "https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001",
-        "https://dev.meta.ai/docs/reasoning.md"
+        "https://dev.meta.ai/docs/reasoning.md",
+        "https://opencode.ai/inference/v1/models",
+        "https://huggingface.co/RecursiveSI/flint/raw/main/README.md"
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. Crouton Alpha Free retains data for 30 days without training. Both have model-specific territorial exclusions, including Russia.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nLongCat 2.5 Free: 100 requests/day; scope not published; for `longcat-2.5`\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them.",
       "quotas": [
         {
           "unit": "usage",
@@ -1554,6 +1542,20 @@
           "reviewed_on": "2026-11-09",
           "amount": null,
           "period": null
+        },
+        {
+          "amount": 100.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "unspecified",
+          "label": "LongCat 2.5 Free",
+          "source": "https://opencode.ai/v2/docs/console/models/",
+          "quote": "LongCat 2.5 Free is free on OpenCode for a limited time, with a limit of 100 requests per day.",
+          "value_phrase": "100 requests per day",
+          "families": [
+            "longcat-2.5"
+          ],
+          "reviewed_on": "2026-11-09"
         }
       ],
       "free_part": "models",
@@ -1574,39 +1576,46 @@
         },
         {
           "family": "nemotron-3-ultra",
+          "table_name": "Nemotron 3 Ultra Free",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3.5-lightning",
+          "table_name": "Nemotron 3.5 Lightning Free",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "big-pickle"
+          "family": "beam-1.0",
+          "table_name": "Beam Free",
+          "aa_auto": false
+        },
+        {
+          "family": "big-pickle",
+          "table_name": "Big Pickle"
         },
         {
           "family": "deepseek-v4.1-flash",
           "table_name": "DeepSeek V4.1 Flash Free",
           "aa_model": "deepseek-v4-1-flash"
+        },
+        {
+          "family": "flint-v1.0",
+          "table_name": "Flint 40B Free",
+          "aa_auto": false
         }
       ],
       "newcomers": [
-        {
-          "family": "flint-40b",
-          "on": "2026-10-25",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "Flint 40B Free"
-        },
-        {
-          "family": "beam-1.0",
-          "on": "2026-10-19",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "Beam Free"
-        },
         {
           "family": "inkling-2-small",
           "on": "2026-11-07",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "table_name": "Inkling 2 Small Free"
+        },
+        {
+          "family": "longcat-2.5",
+          "on": "2026-11-09",
+          "source": "https://opencode.ai/v2/docs/console/models/",
+          "table_name": "LongCat 2.5 Free"
         }
       ],
       "data_use": {
@@ -1650,18 +1659,12 @@
             "name": "Jev 1.13 Free",
             "source": "https://docs.typesafe.ai/introduction/coding-agents",
             "quote": "It does not generate text, write code, or hold a conversation.",
-            "reviewed_on": "2026-11-03"
+            "reviewed_on": "2026-11-10"
           },
           {
             "name": "Iceman Free",
             "source": "https://opencode.ai/v2/docs/console/models/",
             "quote": "Iceman Free is a stealth model that's free on OpenCode for a limited time.",
-            "reviewed_on": "2026-11-07"
-          },
-          {
-            "name": "Crouton Alpha Free",
-            "source": "https://opencode.ai/v2/docs/console/models/",
-            "quote": "Crouton Alpha Free is a stealth model that's free on OpenCode for a limited time.",
             "reviewed_on": "2026-11-07"
           }
         ]
@@ -1682,11 +1685,13 @@
           "mimo-v2.6-flash",
           "deepseek-v4.1-flash",
           "glm-5.3-flash",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "flint-v1.0",
+          "beam-1.0"
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. Crouton Alpha Free retains data for 30 days without training. Both have model-specific territorial exclusions, including Russia.",
+        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nLongCat 2.5 Free: 100 requests/day; scope not published; for `longcat-2.5`\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -1696,7 +1701,9 @@
           "mimo-v2.6-flash": "",
           "deepseek-v4.1-flash": "",
           "glm-5.3-flash": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "flint-v1.0": "",
+          "beam-1.0": ""
         },
         "section": {
           "id": "agent-cli"
@@ -1717,7 +1724,8 @@
         "https://api.kilo.ai/api/gateway/models",
         "https://kilo.ai/docs/gateway/authentication",
         "https://kilocode.ai",
-        "https://huggingface.co/LiquidAI/LFM3-1.7B"
+        "https://huggingface.co/LiquidAI/LFM3-1.7B",
+        "https://openrouter.ai/docs/cookbook/get-started/free-models-router-playground"
       ],
       "card_required": false,
       "offering": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
@@ -1751,9 +1759,6 @@
           "aa_model": "north-mini-code"
         },
         {
-          "family": "beam-1.0"
-        },
-        {
           "family": "dots-3-note"
         },
         {
@@ -1761,7 +1766,11 @@
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
-          "family": "xing4.0-29b-a4b"
+          "family": "xing4.0-29b-a4b",
+          "router": {
+            "id": "openrouter/free",
+            "model_id": "xingchen-agi/xing4.0-29b-a4b:free"
+          }
         }
       ],
       "api": {
@@ -1776,40 +1785,26 @@
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "cohere/north-mini-code:free",
-          "liquid/lfm-2.5-2.6b:free",
           "dots-studio/dots-3-note-preview:free",
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
-          "xingchen-agi/xing4.0-29b-a4b:free",
-          "recursive/flint-v1.0:free",
-          "reflection/beam-free",
-          "google/gemma-4-31b-it:free",
-          "liquid/lfm-3-1.7b:free"
+          "liquid/lfm-3-1.7b:free",
+          "thinkingmachines/inkling-2-small:free"
         ],
         "model_bindings": {
-          "reflection/beam-free": {
-            "family": "beam-1.0",
-            "source": "https://api.kilo.ai/api/gateway/models",
-            "quote": "Beam 1.0 (free)",
-            "read": "catalog"
-          },
           "nvidia/nemotron-3.5-super-vl:free": {
             "family": "nemotron-3.5-super-vl-120b-a12b",
             "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
             "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
           }
         },
+        "free_routers": {
+          "openrouter/free": {
+            "source": "https://openrouter.ai/api/v1/models",
+            "quote": "openrouter/free is a router that selects free models at random from the models available on OpenRouter."
+          }
+        },
         "model_limits": {
-          "reflection/beam-free": {
-            "context_tokens": 1048576,
-            "output_tokens": 131072,
-            "source": "https://api.kilo.ai/api/gateway/models"
-          },
-          "google/gemma-4-31b-it:free": {
-            "context_tokens": 262144,
-            "output_tokens": 32768,
-            "source": "https://api.kilo.ai/api/gateway/models"
-          },
           "liquid/lfm-3-1.7b:free": {
             "context_tokens": 262144,
             "output_tokens": 8192,
@@ -1824,10 +1819,7 @@
         ],
         "no_family_ids": [
           "kilo-auto/free",
-          "openrouter/free",
-          "liquid/lfm-2.5-2.6b:free",
           "stealth/glyph-cluster",
-          "recursive/flint-v1.0:free",
           "liquid/lfm-3-1.7b:free"
         ],
         "refuses_bearer": true,
@@ -1884,8 +1876,7 @@
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
-          "xing4.0-29b-a4b",
-          "beam-1.0"
+          "xing4.0-29b-a4b"
         ],
         "ids": [
           "openrouter/free",
@@ -1894,15 +1885,11 @@
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "cohere/north-mini-code:free",
-          "liquid/lfm-2.5-2.6b:free",
           "dots-studio/dots-3-note-preview:free",
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
-          "xingchen-agi/xing4.0-29b-a4b:free",
-          "recursive/flint-v1.0:free",
-          "reflection/beam-free",
-          "google/gemma-4-31b-it:free",
-          "liquid/lfm-3-1.7b:free"
+          "liquid/lfm-3-1.7b:free",
+          "thinkingmachines/inkling-2-small:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -1915,8 +1902,7 @@
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "xing4.0-29b-a4b": "",
-          "beam-1.0": ""
+          "xing4.0-29b-a4b": "via openrouter/free; the router chooses the model"
         },
         "section": {
           "id": "agent-cli"
@@ -1925,6 +1911,31 @@
           "nocard",
           "nokey"
         ]
+      },
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "nemotron-3-ultra": "",
+          "north-mini-code": "",
+          "nemotron-3.5-lightning": "",
+          "dots-3-note": "",
+          "nemotron-3-nano-omni": "",
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "xing4.0-29b-a4b": "via openrouter/free; the router chooses the model"
+        },
+        "ids": {
+          "openrouter/free": "",
+          "kilo-auto/free": "",
+          "nvidia/nemotron-3-ultra-550b-a55b:free": "",
+          "nvidia/nemotron-3.5-lightning:free": "",
+          "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": "",
+          "cohere/north-mini-code:free": "",
+          "dots-studio/dots-3-note-preview:free": "",
+          "stealth/glyph-cluster": "",
+          "nvidia/nemotron-3.5-super-vl:free": "",
+          "liquid/lfm-3-1.7b:free": "",
+          "thinkingmachines/inkling-2-small:free": ""
+        }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
     },
@@ -5135,7 +5146,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router",
-      "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.",
+      "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. The platform grants free eligibility per model; a regular ID can have a free quota alongside its paid price. After the free quota, paid fallback needs an enabled setting and sufficient account credit.",
       "quotas": [
         {
           "amount": 10.0,
@@ -5227,6 +5238,10 @@
         {
           "family": "deepseek-v4-flash",
           "aa_model": "deepseek-v4-flash"
+        },
+        {
+          "family": "qwen3.7-flash",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -5238,7 +5253,6 @@
           "deepseek/deepseek-v4-flash-0731free:free",
           "auto:free",
           "nvidia/nemotron-3.5-lightning-free:free",
-          "reflection/beam-free:free",
           "stealth/glyph-cluster:free",
           "qwen/qwen3.7-flash:free"
         ],
@@ -5252,10 +5266,9 @@
         ],
         "no_family_ids": [
           "auto:free",
-          "stealth/glyph-cluster:free",
-          "qwen/qwen3.7-flash:free"
+          "stealth/glyph-cluster:free"
         ],
-        "note": "The listed :free routes use the shared free allowance. auto:free selects a free model and can use paid routing on a funded account \"unless paid fallback is disabled\". Glyph Cluster is a stealth model with an undisclosed identity."
+        "note": "The listed :free routes use the shared free allowance. auto:free uses its own free routing pool and can use paid routing on a funded account \"unless paid fallback is disabled\". Glyph Cluster is a stealth model with an undisclosed identity."
       },
       "border": {
         "left_out": [],
@@ -5284,23 +5297,24 @@
         "name": "BazaarLink",
         "models": [
           "deepseek-v4-flash",
-          "nemotron-3.5-lightning"
+          "nemotron-3.5-lightning",
+          "qwen3.7-flash"
         ],
         "ids": [
           "deepseek/deepseek-v4-flash-0731free:free",
           "auto:free",
           "nvidia/nemotron-3.5-lightning-free:free",
-          "reflection/beam-free:free",
           "stealth/glyph-cluster:free",
           "qwen/qwen3.7-flash:free"
         ],
         "what": "OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router",
-        "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.",
+        "limits": "Without credit: 10 requests/rolling minute; 60 weighted units/day per account\n\nWith credit: 20 requests/rolling minute; 120 weighted units/day per account\n\nFree models: 2 requests at once per account\n\nFree models: 20 requests/minute shared across the endpoint\n\nAdditional IP guard: Requests allowance: amount not published (period not published) per IP\n\nThe free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. The platform grants free eligibility per model; a regular ID can have a free quota alongside its paid price. After the free quota, paid fallback needs an enabled setting and sufficient account credit.",
         "why": "",
         "access": "",
         "modelAccess": {
           "deepseek-v4-flash": "",
-          "nemotron-3.5-lightning": ""
+          "nemotron-3.5-lightning": "",
+          "qwen3.7-flash": ""
         },
         "section": {
           "id": "aggregator"
@@ -6487,7 +6501,8 @@
         "https://aihubmix.com/models/nemotron-3.5-super-vl-free",
         "https://aihubmix.com/models/xing4.0-29b-a4b-free",
         "https://aihubmix.com/models/laguna-s-2.1-free",
-        "https://aihubmix.com/models/laguna-xs-2.1-free"
+        "https://aihubmix.com/models/laguna-xs-2.1-free",
+        "https://docs.aihubmix.com/en/quick-start"
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
@@ -6741,7 +6756,7 @@
           "model_ids": [
             "agents-a1-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6754,7 +6769,7 @@
           "model_ids": [
             "intern-s2-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6767,7 +6782,7 @@
           "model_ids": [
             "dots-3-note-preview-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6780,7 +6795,7 @@
           "model_ids": [
             "lfm-2.5-2.6b-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6793,7 +6808,7 @@
           "model_ids": [
             "nemotron-3.5-lightning-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6806,7 +6821,7 @@
           "model_ids": [
             "nemotron-3-super-120b-a12b-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6819,7 +6834,7 @@
           "model_ids": [
             "nemotron-3-nano-omni-30b-a3b-reasoning-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6832,7 +6847,7 @@
           "model_ids": [
             "nemotron-3-ultra-550b-a55b-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6845,7 +6860,7 @@
           "model_ids": [
             "north-mini-code-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -6858,7 +6873,7 @@
           "model_ids": [
             "mimo-v2-flash-free"
           ],
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-10",
           "amount": null,
           "period": null
         },
@@ -7051,7 +7066,8 @@
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
-          "xing4.0-29b-a4b-free"
+          "xing4.0-29b-a4b-free",
+          "crouton-alpha-free"
         ],
         "model_bindings": {
           "intern-s2-free": {
@@ -7065,6 +7081,13 @@
             "source": "https://aihubmix.com/api/v1/models",
             "quote": "NVIDIA Nemotron 3.5 Super VL is an open, multimodal mixture-of-experts model developed by NVIDIA that features 12 billion active parameters out of 120 billion total.",
             "read": "catalog"
+          }
+        },
+        "model_limits": {
+          "crouton-alpha-free": {
+            "context_tokens": 1048576,
+            "output_tokens": 943718,
+            "source": "https://aihubmix.com/api/v1/models"
           }
         },
         "ignored_ids": [
@@ -7082,7 +7105,8 @@
         ],
         "no_family_ids": [
           "k2.6-code-preview-free",
-          "lfm-2.5-2.6b-free"
+          "lfm-2.5-2.6b-free",
+          "crouton-alpha-free"
         ],
         "anthropic_base_url": "https://aihubmix.com",
         "codex": {
@@ -7183,7 +7207,8 @@
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
-          "xing4.0-29b-a4b-free"
+          "xing4.0-29b-a4b-free",
+          "crouton-alpha-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
         "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
@@ -7968,7 +7993,7 @@
       ],
       "card_required": false,
       "offering": "EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card",
-      "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
+      "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. Brick v1 Beta is a lightweight prompt-complexity classifier for LLM routing pipelines and is excluded from coding configs.",
       "quotas": [
         {
           "amount": 1000000.0,
@@ -8034,13 +8059,9 @@
           "gpt-oss-20b",
           "mistral-small-4-119b",
           "qwen3.5-122b",
-          "qwen3.5-9b",
-          "brick-complexity-pro"
+          "qwen3.5-9b"
         ],
-        "no_family_ids": [
-          "brick-complexity-pro"
-        ],
-        "note": "GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. brick-v1-beta is a zero-priced prompt classifier and is excluded from coding configs. Pricing lists brick-complexity-pro as Core-included, but the public catalog omitted it on 2026-10-31; confirm this router with your account before using it."
+        "note": "GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. Brick v1 Beta is a prompt-complexity classifier and is excluded from coding configs."
       },
       "data_use": {
         "trains": "no",
@@ -8096,11 +8117,10 @@
           "gpt-oss-20b",
           "mistral-small-4-119b",
           "qwen3.5-122b",
-          "qwen3.5-9b",
-          "brick-complexity-pro"
+          "qwen3.5-9b"
         ],
         "what": "EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card",
-        "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
+        "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. Brick v1 Beta is a lightweight prompt-complexity classifier for LLM routing pipelines and is excluded from coding configs.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -9121,7 +9141,8 @@
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "qwen/qwen3.8-max-free"
+          "qwen/qwen3.8-max-free",
+          "lgai/k-exaone-2.5"
         ],
         "model_bindings": {
           "internlm/intern-s2-free": {
@@ -9300,10 +9321,16 @@
             "context_tokens": 262144,
             "output_tokens": 262144,
             "source": "https://llmtr.com/v1/models"
+          },
+          "lgai/k-exaone-2.5": {
+            "context_tokens": 524288,
+            "output_tokens": 524288,
+            "source": "https://llmtr.com/v1/models"
           }
         },
         "opencode_output_tokens": {
-          "qwen/qwen3.8-max-free": 8192
+          "qwen/qwen3.8-max-free": 8192,
+          "lgai/k-exaone-2.5": 8192
         },
         "ignored_ids": [
           "liquid/lfm-2.5-embedding-350m-free",
@@ -9395,7 +9422,8 @@
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "qwen/qwen3.8-max-free"
+          "qwen/qwen3.8-max-free",
+          "lgai/k-exaone-2.5"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
         "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nQwen3.8 Max promotion: 3,000,000 tokens (period not published) per account per model; for `qwen/qwen3.8-max-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
@@ -9434,7 +9462,8 @@
           "nvidia/nemotron-3.5-super-vl-free": "",
           "liquid/lfm3-1.7b-free": "free until 2026-12-30 23:59+03:00",
           "parallel/parallel-free": "free until 2027-01-04 23:59+03:00",
-          "qwen/qwen3.8-max-free": "free until 2026-11-13 03:00+03:00"
+          "qwen/qwen3.8-max-free": "free until 2026-11-13 03:00+03:00",
+          "lgai/k-exaone-2.5": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -20488,20 +20517,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/"
     },
     {
-      "family": "inkling-small",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
-    },
-    {
-      "family": "inkling",
-      "rows": [
-        "openrouter-free"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
-    },
-    {
       "family": "nemotron-3-ultra",
       "rows": [
         "opencode",
@@ -20619,7 +20634,7 @@
     {
       "family": "beam-1.0",
       "rows": [
-        "kilo-code",
+        "opencode",
         "cline",
         "vercel-ai-gateway",
         "nous-portal"
@@ -20761,8 +20776,10 @@
     {
       "family": "flint-v1.0",
       "rows": [
+        "opencode",
         "aihubmix"
-      ]
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/"
     },
     {
       "family": "gemini-2.5",
@@ -21244,7 +21261,8 @@
     {
       "family": "qwen3.7-flash",
       "rows": [
-        "alibaba-model-studio"
+        "alibaba-model-studio",
+        "bazaarlink"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"
     },
@@ -21384,6 +21402,16 @@
       "family": "hy3",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/"
+    },
+    {
+      "family": "inkling",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"
+    },
+    {
+      "family": "inkling-small",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
     },
     {
       "family": "intern-s2-397b",

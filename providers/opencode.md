@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-11-09'
-description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: glm-5.3-flash, mimo-v2.6-flash, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, big-pickle…'
+description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: glm-5.3-flash, mimo-v2.6-flash, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, beam-1.0, big-pickle…'
 permalink: /providers/opencode/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: opencode
 model_sort: true
 ---
@@ -20,13 +20,15 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="big-pickle">`big-pickle`</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span></span>
+<span data-model-sort-inline><span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="big-pickle">`big-pickle`</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span>, <span data-model-family="flint-v1.0">[`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/)</span></span>
 
 ## Limits, in the vendor's words
 
 Free model usage: Usage allowance: amount not published (period not published); scope not published
 
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. Crouton Alpha Free retains data for 30 days without training. Both have model-specific territorial exclusions, including Russia.
+LongCat 2.5 Free: 100 requests/day; scope not published; for `longcat-2.5`
+
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them.
 
 ## Where it is offered
 
@@ -39,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `Flint 40B Free`, `Beam Free`, `Inkling 2 Small Free`
+- In opencode's own model list: `GLM-5.3-Flash Free`, `Nemotron 3.5 Super VL Free`, `Nemotron 3 Ultra Free`, `Nemotron 3.5 Lightning Free`, `Beam Free`, `Big Pickle`, `DeepSeek V4.1 Flash Free`, `Flint 40B Free`, `Inkling 2 Small Free`, `LongCat 2.5 Free`
 
 ## Evidence
 
@@ -48,11 +50,14 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://opencode.ai/docs/>
 - Source: <https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001>
 - Source: <https://dev.meta.ai/docs/reasoning.md>
+- Source: <https://opencode.ai/inference/v1/models>
+- Source: <https://huggingface.co/RecursiveSI/flint/raw/main/README.md>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-10` — Free models changed: added beam-1.0, flint-v1.0
 - `2026-11-02` — Free models changed: added glm-5.3-flash, nemotron-3.5-super-vl-120b-a12b
 - `2026-10-29` — Free models changed: added deepseek-v4.1-flash
 - `2026-10-25` — Free models changed: dropped longcat-2.5-preview, mimo-v2.5
@@ -70,6 +75,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

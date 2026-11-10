@@ -3,7 +3,7 @@ layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-11-09'
 description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.8-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Google Antigravity
 model_sort: true
 ---
@@ -45,6 +45,7 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Google Antigravity's own model list: `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`, `GPT-OSS-120b*`
 
 ## Evidence
 
@@ -65,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

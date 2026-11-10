@@ -3,7 +3,7 @@ layout: default
 title: 'xing4.0-29b-a4b free: 4 providers, limits and ids, provider probes 2026-11-09'
 description: xing4.0-29b-a4b is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/xing4.0-29b-a4b/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: xing4.0-29b-a4b
 ---
 
@@ -52,8 +52,9 @@ Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible 
 The free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m xingchen-agi/xing4.0-29b-a4b:free`
-- Callable ids: `xingchen-agi/xing4.0-29b-a4b:free`
+- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
+- Callable ids: `openrouter/free`
+- `openrouter/free`: the router chooses the model ([conditions](https://openrouter.ai/api/v1/models))
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
@@ -98,6 +99,6 @@ Free models are zero-priced but require real-name verification. Online verificat
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

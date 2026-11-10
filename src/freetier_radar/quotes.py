@@ -140,10 +140,15 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
                  for i, q in enumerate(entry.quotas) if q.condition_quote)
     found.extend((f"probe.model_exclusions[{i}].quote", e.quote)
                  for i, e in enumerate(entry.probe.model_exclusions))
+    if entry.api:
+        found.extend((f"api.free_routers.{mid}.quote", router.quote)
+                     for mid, router in entry.api.free_routers.items() if mid in entry.api.model_ids)
     return found
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if field.startswith('api.free_routers.') and field.endswith('.quote'):
+        return entry.probe.endpoint
     if match := re.fullmatch(r'model_access\.(.+)\.(?:quote|deadline_quote)', field):
         return entry.model_access[match[1]].source
     if (match := re.fullmatch(r"api\.opencode_output_sources\.(.+)\.quote", field)) and entry.api:
@@ -203,6 +208,29 @@ def model_binding_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
             links.feed(body)
             if binding.target not in {urljoin(binding.source,href) for href in links.hrefs}:
                 notes.append(f"model binding {mid}: model-card target no longer linked")
+    if entry.api:
+        from .prober import _catalog_items, _model_id, _is_free, _is_withdrawn
+        pools = {}
+        for mid, router in entry.api.free_routers.items():
+            if mid not in entry.api.model_ids:
+                continue
+            if router.source not in pools:
+                body = bodies.get(router.source)
+                pools[router.source] = _catalog_items(httpx.Response(200, text=body)) if body is not None else None
+            items = pools[router.source]
+            if items is None or not any(_is_free(item) and not _is_withdrawn(item) for item in items):
+                notes.append(f"free router {mid}: upstream free pool could not be established")
+        for model in entry.models:
+            if not model.router:
+                continue
+            source = entry.api.free_routers[model.router.id].source
+            items = pools.get(source)
+            if items is None:
+                notes.append(f"routed model {model.family}: upstream catalog could not be checked")
+                continue
+            matches = [item for item in items if _model_id(item) == model.router.model_id]
+            if len(matches) != 1 or not _is_free(matches[0]) or _is_withdrawn(matches[0]):
+                notes.append(f"routed model {model.family}: upstream member missing, paid, unavailable or ambiguous")
     return notes
 
 
@@ -232,6 +260,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     index to it, the endpoint otherwise — its catalog, the page its word on
     training is quoted from and the page that sets Codex up on its lane."""
     urls = list(entry.source_urls) + [page or entry.probe.endpoint]
+    if entry.api:
+        urls.extend(router.source for mid, router in entry.api.free_routers.items() if mid in entry.api.model_ids)
     if entry.archive_review:
         urls.extend(entry.archive_review.sources)
     urls.extend(q.source for q in entry.quotas)
@@ -268,6 +298,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
 def catalog_urls(entry: Entry) -> set[str]:
     """Known JSON/API reads remain on their original HTTP transport."""
     urls = {entry.probe.catalog} if entry.probe.catalog else set()
+    if entry.api:
+        urls.update(router.source for mid, router in entry.api.free_routers.items() if mid in entry.api.model_ids)
     if lane := entry.api or entry.client_lane:
         urls.update(b.source for b in lane.model_bindings.values() if b.read == "catalog")
     if entry.probe.type is ProbeType.API_MODELS or entry.probe.follow is not None:

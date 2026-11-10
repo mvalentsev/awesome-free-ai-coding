@@ -77,6 +77,23 @@ def test_model_specific_deadline_does_not_leak_onto_an_unaffected_peer_page():
     assert '2026-12-04' in promoted and '18:00' in promoted
 
 
+def test_pending_page_model_keeps_its_numeric_quota_canonical_before_promotion():
+    data = entry(steady=True).model_dump(mode='json')
+    data['newcomers'] = [{'family': 'next-model', 'on': DAY.isoformat(), 'source': SOURCE}]
+    data['quotas'] = [{'amount': 100, 'unit': 'requests', 'period': 'day', 'scope': 'unspecified',
+                       'source': SOURCE, 'quote': 'Next Model has 100 requests per day.',
+                       'families': ['next-model'], 'label': 'Next Model', 'reviewed_on': DAY.isoformat()}]
+    row = Entry.model_validate(data)
+    assert 'next-model' not in {model.family for model in row.models}
+    page = build_provider_page(row, [], DAY)
+    assert page.count('100 requests/day') == 1
+    assert '100 requests' not in page.split('## Free models', 1)[1].split('## Limits', 1)[0]
+    assert build_index([row], DAY)['entries'][0]['quotas'][0]['families'] == ['next-model']
+    data['quotas'][0]['families'] = ['unrecorded-model']
+    with pytest.raises(ValidationError):
+        Entry.model_validate(data)
+
+
 @pytest.mark.parametrize('shared', [False, True])
 def test_expired_family_quota_stays_out_of_current_limits_and_machine_data(shared):
     data = entry(steady=shared).model_dump(mode='json')

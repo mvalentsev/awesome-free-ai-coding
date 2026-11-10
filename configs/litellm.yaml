@@ -8,6 +8,7 @@
 # sets no master_key, so without that flag anyone on your network can spend
 # the keys it reads from the environment (see free-llm.env.example).
 # Entries marked `api_key: none` need no account at all.
+# Automatic routers are excluded from measured model pools.
 # Needs LiteLLM 1.98 or later: every entry carries use_chat_completions_api,
 # which 1.88.3 and earlier send on to the vendor, where a strict one refuses a
 # field it does not know, and every group deployment carries its own
@@ -118,18 +119,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/thinkingmachines/inkling:free
-  litellm_params:
-    model: openai/thinkingmachines/inkling:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
-- model_name: openrouter-free/thinkingmachines/inkling-small:free
-  litellm_params:
-    model: openai/thinkingmachines/inkling-small:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/dots-studio/dots-3-note-preview:free
   litellm_params:
     model: openai/dots-studio/dots-3-note-preview:free
@@ -173,6 +162,12 @@ model_list:
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
     max_tokens: 8192
+- model_name: openrouter-free/thinkingmachines/inkling-2-small:free
+  litellm_params:
+    model: openai/thinkingmachines/inkling-2-small:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -551,6 +546,13 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
+- model_name: aihubmix/crouton-alpha-free
+  litellm_params:
+    model: openai/crouton-alpha-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 943718
 - model_name: zai-glm/glm-4.7-flash
   litellm_params:
     model: openai/glm-4.7-flash
@@ -671,6 +673,13 @@ model_list:
   model_info:
     access: free until 2026-11-13 03:00+03:00
     source: https://llmtr.com/models/qwen/qwen3.8-max-free
+- model_name: llmtr/lgai/k-exaone-2.5
+  litellm_params:
+    model: openai/lgai/k-exaone-2.5
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 524288
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
@@ -900,12 +909,6 @@ model_list:
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
     use_chat_completions_api: true
-- model_name: bazaarlink/reflection/beam-free:free
-  litellm_params:
-    model: openai/reflection/beam-free:free
-    api_base: https://api.bazaarlink.ai/v1
-    api_key: os.environ/BAZAARLINK_API_KEY
-    use_chat_completions_api: true
 - model_name: bazaarlink/stealth/glyph-cluster:free
   litellm_params:
     model: openai/stealth/glyph-cluster:free
@@ -1009,12 +1012,6 @@ model_list:
 - model_name: regolo/qwen3.5-9b
   litellm_params:
     model: openai/qwen3.5-9b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-    use_chat_completions_api: true
-- model_name: regolo/brick-complexity-pro
-  litellm_params:
-    model: openai/brick-complexity-pro
     api_base: https://api.regolo.ai/v1
     api_key: os.environ/REGOLO_API_KEY
     use_chat_completions_api: true

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.7-flash free: 1 provider, limits and ids, provider probes 2026-11-09'
-description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'qwen3.7-flash free: 2 providers, limits and ids, provider probes 2026-11-09'
+description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.7-flash/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: qwen3.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.7-flash
 
 # Where qwen3.7-flash is free
 
-**One row on the list serves `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
+**2 rows on the list serve `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -41,9 +41,32 @@ Free token grants apply in Singapore (international), independently per model an
 - Callable ids: `qwen3.7-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
-## Rows that listed it before
+### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
 
-- [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) — listed 2026-08-03 to 2026-10-19
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-10
+
+OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Without credit: 10 requests/rolling minute; 60 weighted units/day per account
+
+With credit: 20 requests/rolling minute; 120 weighted units/day per account
+
+Free models: 2 requests at once per account
+
+Free models: 20 requests/minute shared across the endpoint
+
+Additional IP guard: Requests allowance: amount not published (period not published) per IP
+
+The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. The platform grants free eligibility per model; a regular ID can have a free quota alongside its paid price. After the free quota, paid fallback needs an enabled setting and sufficient account credit.
+
+</details>
+
+- Base URL: `https://api.bazaarlink.ai/v1`
+- Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
+- Callable ids: `qwen/qwen3.7-flash:free`
 
 ## Related models
 
@@ -52,6 +75,6 @@ Free token grants apply in Singapore (international), independently per model an
 
 ---
 
-Generated from `registry.yaml` on 2026-11-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

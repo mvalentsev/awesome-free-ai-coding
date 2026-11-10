@@ -378,6 +378,7 @@ async def test_flat_token_price_requires_both_published_sides(fields, expected):
 @pytest.mark.parametrize("catalog_limits, detail", [
     ({"context_length": 131042, "top_provider": {"max_completion_tokens": 16384}}, ""),
     ({"context_length": 131042, "max_output_tokens": 16384}, ""),
+    ({"context_length": 131042, "max_output": 16384}, ""),
     ({"context_length": 131042, "max_output_tokens": 8192,
       "top_provider": {"max_completion_tokens": 32768}},
      "output_tokens=8192 (recorded 16384)"),
@@ -3543,6 +3544,23 @@ async def test_a_keyword_that_lives_only_in_the_page_machinery_no_longer_passes(
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.FAIL
     assert "llama-3.3-70b-versatile" in result.detail
+
+
+@pytest.mark.parametrize("manifest", [
+    '<template data-mint="manifest">{"offer":"qwen3-coder on the free tier, no credit card"}</template>',
+    '<template><template>qwen3-coder</template>free tier, no credit card</template>',
+    '<TEMPLATE data-mint="manifest">qwen3-coder on the free tier, no credit card',
+])
+@respx.mock
+async def test_inert_template_manifest_cannot_keep_a_removed_offer_verified(manifest):
+    # Cline's free-model docs use <template data-mint="manifest"> for page
+    # state, checked 2026-11-10. HTML templates are inert:
+    # https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/template
+    respx.get("https://x.ai/pricing").respond(200, text='<h1>Current plans</h1>' + manifest)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "qwen3-coder (in the page's machinery only)" in result.detail
 
 
 @respx.mock
