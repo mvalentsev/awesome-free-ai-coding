@@ -1354,7 +1354,7 @@ def _price_of(model: dict) -> list[float] | None:
     # Infron's catalog publishes minimum ordinary token rates flat; its
     # display-only cards and per-request prices are checked separately below.
     # https://llm.onerouter.pro/v1/models, checked 2026-10-31.
-    for fields in (_FLAT_TOKEN_PRICES, ("min_prompt_price", "min_completion_price")):
+    for fields in _FLAT_TOKEN_PRICE_PAIRS:
         if any(key in model for key in fields):
             prices = [_number(model.get(key)) for key in fields]
             return prices if all(p is not None for p in prices) else None
@@ -1758,7 +1758,11 @@ def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool
 
 
 _FREE_FLAGS = ("isFree", "is_free", "free")
-_FLAT_TOKEN_PRICES = ("price_sc_input", "price_sc_output")
+# Novita publishes both ordinary token rates per million:
+# https://api.novita.ai/openai/v1/models, checked 2026-11-10.
+_FLAT_TOKEN_PRICE_PAIRS = (("price_sc_input", "price_sc_output"),
+                         ("min_prompt_price", "min_completion_price"),
+                         ("input_token_price_per_m", "output_token_price_per_m"))
 
 
 def _free_flag(model: dict) -> bool | None:
@@ -1844,7 +1848,7 @@ def _is_free(model: dict) -> bool:
     flag = _free_flag(model)
     # The SC catalog's tier label is not its billing contract: its two prices
     # are. Do not let a stale free label hide a newly metered input or output.
-    if any(key in model for key in (*_FLAT_TOKEN_PRICES, "min_prompt_price", "min_completion_price")):
+    if any(key in model for pair in _FLAT_TOKEN_PRICE_PAIRS for key in pair):
         prices = _price_of(model)
         return (flag is not False and prices is not None and all(p == 0 for p in prices)
                 and not _charges_elsewhere(model))

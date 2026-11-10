@@ -1403,7 +1403,7 @@ entries:
     label: Agent usage
     source: https://cursor.com/pricing
     quote: Limited Agent requests
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: grok-4.7
@@ -6500,7 +6500,7 @@ entries:
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: Trials include $5 of GPT-6 Luna usage
     value_phrase: Trials include $5 of GPT-6 Luna usage
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   - unit: edit predictions
     period: one-time
     scope: account
@@ -6508,7 +6508,7 @@ entries:
     label: 14-day trial
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: unlimited Edit Predictions for 14 days from when you start the trial
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   - amount: 10.0
     unit: USD
     period: month
@@ -6520,7 +6520,7 @@ entries:
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: $10/month in token credits
     value_phrase: $10/month in token credits
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   - unit: edit predictions
     scope: account
     state: unmetered
@@ -6530,7 +6530,7 @@ entries:
       students.
     source: https://zed.dev/docs/account/plans-and-pricing
     quote: The Zed Student Plan includes unlimited Edit Predictions
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   data_use:
@@ -8326,21 +8326,22 @@ entries:
     openai_compatible: true
     model_ids:
     - apodex/apodex-1.1-mini
+    ignored_ids:
+    - bunny
+    - dev/glm46
+    - nvrouter/auto
+    - nvrouter/fusion
     note: ''
   border:
     left_out: []
     'on': '2026-10-26'
     source: https://novita.ai/legal/terms-of-service
   probe:
-    type: page-keywords
-    endpoint: https://novita.ai/models/model-detail/apodex-apodex-1.1-mini
-    keywords:
-    - apodex/apodex-1.1-mini
-    - Input $0 / M Tokens
-    - Output $0 / M Tokens
+    type: api-models
+    endpoint: https://api.novita.ai/openai/v1/models
+    keywords: []
     free_marker: ''
-    require_zero_price: false
-    catalog: https://api.novita.ai/openai/v1/models
+    require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-11-09'
@@ -10974,13 +10975,13 @@ entries:
     label: Hobby AI reviews
     source: https://graphite.com/pricing
     quote: Limited AI Reviews
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   - unit: messages
     scope: unspecified
     label: Hobby chat
     source: https://graphite.com/pricing
     quote: Limited access to Graphite Chat
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -11033,7 +11034,7 @@ entries:
     label: Public repositories
     source: https://www.sourcery.ai/pricing
     quote: AI reviews on public repos
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -11088,7 +11089,7 @@ entries:
     label: Trial AI Review credits
     source: https://deepsource.com/pricing
     quote: up to $50 in bundled AI Review credits, no credit card required.
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   data_use:
@@ -11144,7 +11145,7 @@ entries:
     label: New workspace credit
     source: https://inference.ai.exchange/docs/quickstart.md
     quote: A new workspace gets a starting credit
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   api:
@@ -11209,7 +11210,7 @@ entries:
     label: Free API allowance
     source: https://docs.llm.kiwi/limits.md
     quote: Free access does not mean unlimited capacity.
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   api:

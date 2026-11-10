@@ -1,10 +1,11 @@
 """Unknown mandatory prices cannot establish a zero-cost catalog offer."""
 from datetime import date
+from pathlib import Path
 
 import httpx
 import pytest
 
-from freetier_radar.models import Entry
+from freetier_radar.models import Entry, load_registry
 from freetier_radar.prober import ProbeStatus, probe_entry
 
 
@@ -137,3 +138,27 @@ async def test_unreadable_authoritative_billing_lines_cannot_confirm_free_access
         result = await probe_entry(client, entry(), attempts=1, backoff=0)
     assert result.status is ProbeStatus.FAIL
     assert "pricing_lines unreadable" in result.detail
+
+
+@pytest.mark.parametrize("prices,free", [
+    ({"input_token_price_per_m": 0, "output_token_price_per_m": 0}, True),
+    ({"input_token_price_per_m": "0", "output_token_price_per_m": "0"}, True),
+    ({"input_token_price_per_m": 0.1, "output_token_price_per_m": 0}, False),
+    ({"input_token_price_per_m": 0, "output_token_price_per_m": 0.2}, False),
+    ({"input_token_price_per_m": 0}, False),
+    ({"input_token_price_per_m": 0, "output_token_price_per_m": None}, False),
+    ({"input_token_price_per_m": False, "output_token_price_per_m": 0}, False),
+])
+async def test_the_published_novita_offer_checks_both_current_catalog_prices(prices, free):
+    row = next(e for e in load_registry(Path("registry.yaml")) if e.id == "novita")
+    model = {"id": "apodex/apodex-1.1-mini", "status": 1, **prices}
+
+    def respond(request):
+        if str(request.url) == "https://api.novita.ai/openai/v1/models":
+            return httpx.Response(200, json={"data": [model]})
+        # The public page can lag behind current API billing.
+        return httpx.Response(200, text="apodex/apodex-1.1-mini Input $0 / M Tokens Output $0 / M Tokens")
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+        result = await probe_entry(client, row, attempts=1, backoff=0)
+    assert (result.status is ProbeStatus.PASS) is free, result.detail

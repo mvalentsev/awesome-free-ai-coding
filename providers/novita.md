@@ -3,7 +3,7 @@ layout: default
 title: 'Novita AI free tier: limits, free models, verified 2026-11-09'
 description: 'Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output. Free models: apodex-1.1-mini. Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required…'
 permalink: /providers/novita/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Novita AI
 ---
 
@@ -48,7 +48,7 @@ curl -s https://api.novita.ai/openai/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://novita.ai/models/model-detail/apodex-apodex-1.1-mini>, anchored on `apodex/apodex-1.1-mini`, `Input $0 / M Tokens`, `Output $0 / M Tokens`; ids checked in <https://api.novita.ai/openai/v1/models>
+- Probe: the models catalog at <https://api.novita.ai/openai/v1/models>, each listed family checked for a zero price
 - Source: <https://novita.ai/pricing>
 - Source: <https://novita.ai/models/model-detail/apodex-apodex-1.1-mini>
 - Source: <https://novita.ai/docs/guides/quickstart>
