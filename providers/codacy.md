@@ -3,7 +3,7 @@ layout: default
 title: 'Codacy free tier: limits, free models, verified 2026-11-09'
 description: AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories. Sign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14…
 permalink: /providers/codacy/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-10
 crumb: Codacy
 ---
 
@@ -25,7 +25,7 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 Open-source AI Reviewer: Reviews allowance: amount not published (period not published); scope not published
 
-Sign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14 days without a card. AI Reviewer can run automatically on the first review of a pull request; later runs are triggered manually. It skips pull requests whose changes plus retrieved context exceed 270,000 tokens. A numerical review allowance and reset are not published. Free local Guardrails and static analysis are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy AI is optional, and its terms exclude training on submitted inputs. They do not establish zero retention; account data and backups have separate retention rules.
+Sign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14 days without a card. AI Reviewer can run automatically on the first review of a pull request; later runs are triggered manually. AI Reviewer skips pull requests above its published "270,000 tokens or a 1 MB diff" limits; the token count includes changes and retrieved context. A numerical review allowance and reset are not published. Free local Guardrails and static analysis are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy AI is optional, and its terms exclude training on submitted inputs. They do not establish zero retention; account data and backups have separate retention rules.
 
 ## Where it is offered
 

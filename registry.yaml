@@ -11338,19 +11338,20 @@ entries:
   limits: Sign in with a Git provider, grant repository access and enable AI Reviewer.
     The Team plan is free for open-source projects; the separate private-repository
     trial lasts 14 days without a card. AI Reviewer can run automatically on the first
-    review of a pull request; later runs are triggered manually. It skips pull requests
-    whose changes plus retrieved context exceed 270,000 tokens. A numerical review
-    allowance and reset are not published. Free local Guardrails and static analysis
-    are separate from bundled AI reviews; agent handoff uses your coding agent. Codacy
-    AI is optional, and its terms exclude training on submitted inputs. They do not
-    establish zero retention; account data and backups have separate retention rules.
+    review of a pull request; later runs are triggered manually. AI Reviewer skips
+    pull requests above its published "270,000 tokens or a 1 MB diff" limits; the
+    token count includes changes and retrieved context. A numerical review allowance
+    and reset are not published. Free local Guardrails and static analysis are separate
+    from bundled AI reviews; agent handoff uses your coding agent. Codacy AI is optional,
+    and its terms exclude training on submitted inputs. They do not establish zero
+    retention; account data and backups have separate retention rules.
   quotas:
   - unit: reviews
     scope: unspecified
     label: Open-source AI Reviewer
     source: https://www.codacy.com/pricing
     quote: Free forever for open-source projects
-    reviewed_on: '2026-11-04'
+    reviewed_on: '2026-11-10'
   free_part: unnamed
   models: []
   data_use:
@@ -11413,7 +11414,7 @@ entries:
     source: https://www.mixedbread.com/docs/platform/billing
     quote: $5 in one-time credits, no card required.
     value_phrase: $5 in one-time credits
-    reviewed_on: '2026-11-04'
+    reviewed_on: '2026-11-10'
   free_part: sum
   models: []
   api:
