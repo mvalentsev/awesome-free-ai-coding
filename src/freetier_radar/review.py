@@ -22,7 +22,7 @@ import yaml
 from . import git
 from .indexnow import index_at
 from .layout import node_for
-from .models import Entry
+from .models import Entry, utc_today
 from .prober import TIMEOUT, UA, _ask, page_response_ok, probe_page_url
 from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
@@ -370,7 +370,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     # diverging historical checks visible without asserting current eligibility.
     from .models import is_archived_for_good
     historical_ids = {entry.id for entry in entries
-                      if is_archived_for_good(entry, datetime.now(timezone.utc).date())}
+                      if is_archived_for_good(entry, utc_today())}
     current_urls = set(extra) | {url for row, selected in by_row.items()
                                 if row not in historical_ids for url in selected}
     historical_urls = {url for row, selected in by_row.items()

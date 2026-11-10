@@ -30,9 +30,10 @@ import httpx
 import yaml
 
 from . import git
-from .models import (Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
+from .models import (utc_today, Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
                      is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
+from .words import weeks
 
 __all__ = ["BAR_DAYS", "Waiting", "arrivals", "vendor_dates", "waiting", "report", "main"]
 
@@ -180,7 +181,7 @@ def report(entries: list[Entry], since: dict[tuple[str, str], date], today: date
     if not rows:
         lines.append("Every id a free lane lists has a family or a reason in `api.no_family_ids`.")
     if due:
-        lines += ["**Due**, a dated promotion or two weeks in the lane: re-read the lane, then add the family, or list "
+        lines += [f"**Due**, a dated promotion or {weeks(BAR_DAYS)} in the lane: re-read the lane, then add the family, or list "
                   "the id in `api.no_family_ids` with the reason in the commit message.", ""]
         lines += [f"- {w.row}: `{w.model_id}`, {_dated(w)} ({(today - w.since).days} days)"
                   for w in due]
@@ -196,13 +197,13 @@ def report(entries: list[Entry], since: dict[tuple[str, str], date], today: date
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=(
-        "Which ids a rotating lane has served free for two weeks without a Models-column "
+        f"Which ids a rotating lane has served free for {weeks(BAR_DAYS)} without a Models-column "
         "family, dated from the registry's git history."))
     ap.add_argument("--repo", type=Path, default=Path("."))
     ap.add_argument("--registry", default="registry.yaml",
                     help="path of the registry inside the repository")
     ap.add_argument("--today", type=date.fromisoformat,
-                    default=datetime.now(timezone.utc).date())
+                    default=utc_today())
     args = ap.parse_args(argv)
     entries = load_registry(args.repo / args.registry)
     with httpx.Client(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:

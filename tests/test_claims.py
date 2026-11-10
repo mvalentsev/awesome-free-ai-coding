@@ -41,13 +41,16 @@ def test_contributing_writer_generates_rule_values_from_the_registered_truth(tmp
     from freetier_radar import claims
     from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
 
-    root = _root(tmp_path, f"A verdict is retained and it expires after 30 days, at which point the scout\n"
+    sentence = "A verdict is retained and it expires after {} days, at which point the scout\n"
+    root = _root(tmp_path, sentence.format(90) + sentence.format(30) +
+                          "The vendor's historical offer lasted 30 days.\n" +
                           f"{MAP_BEGIN}\nold map\n{MAP_END}\n")
     claim = next(c for c in CLAIMS if c.source == "models.WATCH_RECHECK_DAYS")
     monkeypatch.setattr(claims, "WATCH_RECHECK_DAYS", 90)
     assert check_claims(root, (claim,), scheduled=())
     text = render_contributing(root / "CONTRIBUTING.md", root / "CONTRIBUTING.md")
-    assert "expires after 90 days" in text
+    assert text.count("expires after 90 days") == 2
+    assert "The vendor's historical offer lasted 30 days." in text
     assert check_claims(root, (claim,), scheduled=()) == []
 
 
@@ -79,10 +82,6 @@ def test_the_cron_and_the_schedule_the_pages_state_are_one(tmp_path):
 def test_every_claim_names_where_its_truth_lives():
     for claim in CLAIMS:
         assert claim.source and claim.file, claim.pattern
-
-
-def test_the_committed_files_state_what_the_code_applies():
-    assert check_claims(ROOT) == []
 
 
 def test_documented_aa_hold_rejects_an_automatic_writer_that_ignores_it(tmp_path, monkeypatch):

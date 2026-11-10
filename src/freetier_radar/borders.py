@@ -20,7 +20,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from .countries import country_name
-from .models import Border, Category, is_archived, load_registry
+from .models import Border, Category, is_archived, load_registry, utc_today
 
 __all__ = ["SHARED", "YARDSTICK_PATH", "Yardstick", "snapshot_from_csv", "load_yardstick",
            "left_out_of", "beyond_shared", "share", "main"]
@@ -118,7 +118,7 @@ def main() -> None:
                         help="read the Innovation Graph's latest quarter into the committed "
                              "snapshot first")
     args = parser.parse_args()
-    today = date.today()
+    today = utc_today()
     yardstick = _refresh(YARDSTICK_PATH, today) if args.refresh else load_yardstick()
     print(f"Innovation Graph {yardstick.label}: {yardstick.total:,} developers in "
           f"{len(yardstick.developers)} economies, read {yardstick.read_on}; shared "

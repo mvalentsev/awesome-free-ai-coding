@@ -19,6 +19,7 @@ from .page_reader import (browser_challenge, empty_app_page, empty_framer_page,
                           page_evidence, recover_page, recover_page_sync)
 
 from .models import (
+    utc_today,
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
     OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
     Border, _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
@@ -75,6 +76,7 @@ def _defer_inference(response: httpx.Response | _CodexAnswer, *, retrying: bool 
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                       attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS,
                       today: date | None = None) -> ProbeResult:
+    today = today or utc_today()
     try:
         return await _probe_entry(client, entry, attempts, backoff, today)
     except _InferenceCooldown as exc:
@@ -82,7 +84,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
 
 
 async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
-                       attempts: int, backoff: float, today: date | None) -> ProbeResult:
+                       attempts: int, backoff: float, today: date) -> ProbeResult:
     resp, stop = await _read(client, entry.probe.endpoint, attempts, backoff,
         page=entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.follow is None)
     if stop is not None:
@@ -116,7 +118,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         if (entry.api and entry.api.key_kind in ("none", "public")
                 and entry.api.model_ids):
             keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
-                                                 today or date.today())
+                                                 today)
             if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
                 return keyless
         # The offer is evidenced. Whether the Models column is, a catalog
@@ -127,7 +129,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         unevidenced = unevidenced_families(resp, entry)
         if unevidenced:
             column = "listed families the page does not name: " + ", ".join(unevidenced)
-        inventory = model_table_findings(resp, entry, today or date.today())
+        inventory = model_table_findings(resp, entry, today)
 
         def verdict(status: ProbeStatus, note: str = "") -> ProbeResult:
             if inventory:
@@ -209,7 +211,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         if entry.quotas:
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
-                                          today or date.today()))
+                                          today))
         if entry.remaining_free:
             from .quotes import page_texts, quote_found
             response, _ = await _page_beside(client, entry.remaining_free.source,
@@ -1669,7 +1671,7 @@ def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
             announced_day = datetime.strptime(stamp, "%m/%d/%Y").date()
         except ValueError:
             return None, f"unreadable retirement date {stamp!r} for {key}"
-        if announced_day < (today or date.today()):
+        if announced_day < (today or utc_today()):
             return None, (f"announced retirement date {stamp} has passed for {key}; "
                           "current endpoint availability requires review")
     try:
@@ -1701,7 +1703,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool
         if entry.probe.lane is not None:
             return _empty_lane(resp, entry.probe.lane)
         return "no model ids in response"
-    if (not entry.models and not is_archived_for_good(entry, date.today())
+    if (not entry.models and not is_archived_for_good(entry, utc_today())
             and entry.probe.require_zero_price and not any(
             _model_id(m) and entry.probe.carries_marker(_model_id(m))
             and not _is_withdrawn(m) and _is_free(m) for m in items)):
@@ -2462,7 +2464,7 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False,
     # One date for the whole run: a notice's hold is read against it by the probe
     # and the verification it earns is stamped with it, and a run that crosses
     # midnight must not do the two on different days.
-    today = date.today()
+    today = utc_today()
 
     async def bounded(entry: Entry) -> ProbeResult:
         async with sem:

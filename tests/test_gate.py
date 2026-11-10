@@ -381,25 +381,30 @@ def test_the_commit_msg_hook_exits_non_zero_on_a_bad_message(tmp_path, capsys):
     main(["commit-msg", str(message)])
 
 
-def test_each_check_fails_on_a_snapshot_it_should_refuse(tmp_path):
+def test_each_check_fails_on_a_snapshot_it_should_refuse(render_source):
     """A step that runs nothing exits 0 and passes everything — as `python -m`
     does on a module with no `__main__` guard — so the render's step is run on a
-    copy of the repository with a hand-edited README and has to report it."""
+    generated fixture with a hand-edited README and has to report it. Validation
+    must also reject a malformed registry through its actual command."""
     import shutil
     from freetier_radar.gate import CHECKS
-    from freetier_radar.layout import tracked_files
+    from freetier_radar.render import render_all
+    from test_render import TODAY
     root = Path(__file__).resolve().parent.parent
-    snap = tmp_path / "snap"
-    for f in tracked_files(root):
-        (snap / f).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(root / f, snap / f)
+    snap = render_source
+    shutil.copytree(root / 'src', snap / 'src', ignore=shutil.ignore_patterns('__pycache__'))
+    shutil.copytree(root / 'templates', snap / 'templates')
+    shutil.copytree(root / '.github/workflows', snap / '.github/workflows')
+    render_all(snap / 'registry.yaml', snap / 'templates', snap,
+               today=TODAY, contributing_from=root)
     readme = snap / "README.md"
     readme.write_text(readme.read_text(encoding="utf-8").replace("live offers", "live deals"),
                       encoding="utf-8")
     render = dict(CHECKS)["freetier-render --check"]
     assert "stale: README.md" in render(snap)
+    (snap / 'registry.yaml').write_text('entries: [invalid]\n')
     check = dict(CHECKS)["freetier-check"]
-    assert check(snap) == ""
+    assert 'ValidationError' in check(snap)
 
 
 def test_a_snapshot_runs_without_the_git_variables_a_hook_is_handed(tmp_path, monkeypatch):

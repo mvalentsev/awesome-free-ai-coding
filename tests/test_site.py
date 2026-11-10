@@ -261,19 +261,6 @@ def test_the_page_links_the_files_beside_it(tmp_path, path):
     assert f'href="{path}"' in html
 
 
-def test_the_committed_page_is_what_the_committed_registry_renders(tmp_path):
-    """The same contract as the README's: what is served is what the registry
-    says today. `freetier-render --check` enforces it in CI; this catches it
-    before the push, and renders into a temporary directory so a test run never
-    touches a tracked file."""
-    root = Path(__file__).resolve().parent.parent
-    committed = (root / SITE_PAGE).read_text(encoding="utf-8")
-    generated = date.fromisoformat(json.loads(
-        (root / "index.json").read_text(encoding="utf-8"))["generated"])
-    fresh = render_site(root / "registry.yaml", TEMPLATES, tmp_path / SITE_PAGE, today=generated)
-    assert fresh == committed
-
-
 def test_jekyll_leaves_every_markdown_written_for_github_off_the_site():
     """kramdown does not read Markdown inside a block-level <div>, does not know
     GitHub's alert syntax and escapes a <summary> it meets inside a table cell,

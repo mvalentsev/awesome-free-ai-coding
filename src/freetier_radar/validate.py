@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, jsonl_lines, load_history
-from .models import (Entry, FreePart, domain_of, entry_id_family, is_archived, is_blocked,
+from .models import (utc_today, Entry, FreePart, domain_of, entry_id_family, is_archived, is_blocked,
                      is_connectable, lane_ids, load_blocklist, load_dismissed, load_registry,
                      load_sources, load_watchlist, prose_names, save_registry, under)
 
@@ -79,7 +79,7 @@ def _source_key(url: str) -> str:
 
 def check(root: Path, today: date | None = None) -> list[str]:
     """Every problem found, as human-readable lines. Empty means clean."""
-    today = today or date.today()
+    today = today or utc_today()
     problems: list[str] = []
 
     entries: list[Entry] = load_registry(root / "registry.yaml")

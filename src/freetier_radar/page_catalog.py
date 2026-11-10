@@ -14,7 +14,7 @@ from datetime import date
 from html.parser import HTMLParser
 
 from .countries import country_name, quoted_codes
-from .models import Entry, PageCatalog, PageModel, access_words
+from .models import Entry, PageCatalog, PageModel, access_words, utc_today
 
 
 def clean(text: str) -> str:
@@ -153,6 +153,7 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
                        today: date | None = None) -> list[str]:
     """Notes for a reviewer; a changed price does not end the whole service."""
     from .quotes import page_texts, quote_found
+    today = today or utc_today()
     page = _Markdown(body) if catalog.read.format == 'markdown' else _Page(body)
     notes = check_model_eligibility(catalog, {catalog.source: body, **(condition_bodies or {})})
     answer = page.answer(catalog.read.budgets_question)
@@ -234,12 +235,12 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
             notes.append(f"{field} no longer evidenced")
     if (catalog.read.table_heading is None or any(b.amount is None for b in catalog.budgets)) and catalog.reviewed_on:
         from .quotas import UNKNOWN_RECHECK_DAYS
-        if ((today or date.today())-catalog.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+        if (today - catalog.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
             notes.append('unpublished model hour prices or budget amounts need a fresh dated review')
     for key, condition in catalog.conditions.items():
         if condition.note and condition.reviewed_on:
             from .quotas import UNKNOWN_RECHECK_DAYS
-            if ((today or date.today()) - condition.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+            if (today - condition.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
                 notes.append(f"page_catalog.conditions.{key}: manual eligibility needs a fresh dated review")
     return notes
 

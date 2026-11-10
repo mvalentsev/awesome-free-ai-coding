@@ -56,6 +56,28 @@ def test_a_consistent_repository_reports_nothing(tmp_path: Path):
     assert check(build(tmp_path, watched=[WATCHED]), TODAY) == []
 
 
+def test_default_validation_uses_utc_before_local_midnight(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    from freetier_radar import models, validate
+
+    class LocalDate(date):
+        @classmethod
+        def today(cls):
+            return TODAY + timedelta(days=1)
+
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            assert tz is timezone.utc
+            return cls(2026, 8, 14, 23, 30, tzinfo=tz)
+
+    monkeypatch.setattr(validate, 'date', LocalDate)
+    monkeypatch.setattr(models, 'datetime', Clock)
+    row = {**ENTRY, 'last_verified': '2026-08-15'}
+    assert any('last_verified' in p and 'in the future' in p
+               for p in check(build(tmp_path, entries=[row])))
+
+
 def test_an_id_kept_out_of_the_column_is_a_callable_id_no_family_names(tmp_path: Path):
     """`api.no_family_ids` records a decision about an id in `api.model_ids` —
     a router, a stealth codename, a model its developer keeps away from agentic

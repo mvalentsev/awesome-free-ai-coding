@@ -15,7 +15,7 @@ import httpx
 import yaml
 
 from .discovery import Evidence, fetch_page_texts, format_evidence, gather_evidence
-from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
+from .models import (utc_today, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
                      domain_of, is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
@@ -760,7 +760,7 @@ def probe_check_sync(entry: Entry, client: httpx.Client,
         unevidenced = unevidenced_families(resp, entry)
         notes = (["listed families the page does not name: " + ", ".join(unevidenced)]
                  if unevidenced else [])
-        notes.extend(model_table_findings(resp, entry, date.today()))
+        notes.extend(model_table_findings(resp, entry, utc_today()))
         if entry.probe.model_exclusions:
             from .quotes import model_exclusion_changes
             bodies = {}
@@ -1264,9 +1264,10 @@ def main() -> None:
         force=os.environ.get("SCOUT_FORCE_BACKEND"),
     )
 
+    today = utc_today()
     evidence = gather_evidence(DISCOVERY_QUERIES, known_domains(entries), os.environ,
                                time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining,
-                               answered_domains=answered_domains(watchlist, blocklist, date.today()))
+                               answered_domains=answered_domains(watchlist, blocklist, today))
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {evidence.describe_providers() or 'none'}")
     for warning in evidence.feed_warnings:
@@ -1285,7 +1286,7 @@ def main() -> None:
                                partial(fetch_page_texts, time_left=deadline.remaining,
                                        on_unread=lambda warning: print(f"page warning: {warning}",
                                                                        flush=True)),
-                               date.today(),
+                               today,
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client, deadline.remaining),
                                blocklist=blocklist,

@@ -632,7 +632,8 @@ async def test_review_receipts_cannot_pass_a_changed_or_unreadable_catalog(tmp_p
     import yaml
     e = entry()
     monkeypatch.setattr(review, 'blob', lambda *args: yaml.safe_dump({'entries': [_row_payload(e)]}).encode())
-    respx.get(e.probe.endpoint).respond(200 if body else 503, text=body or '')
+    respx.get(e.probe.endpoint).respond(200 if body else 503, text=body or '',
+                                      headers={} if body else {'Retry-After': '120'})
     respx.get(e.page_catalog.models[0].first_free.source).respond(200, text='Dated launch evidence')
     bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
     bundle.save('scope', {'base': 'a'*40, 'sha': 'b'*40, 'rows': [e.id], 'paths': []})

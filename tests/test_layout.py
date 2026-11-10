@@ -80,21 +80,22 @@ def test_the_site_serves_what_the_map_publishes_and_nothing_else():
         "published"]
 
 
-def test_every_committed_file_is_on_the_map():
-    assert check_layout(ROOT) == []
-
-
-def test_the_map_calls_generated_exactly_what_the_render_writes(tmp_path):
+def test_the_map_calls_generated_exactly_what_the_render_writes(tmp_path, render_source):
     """The render's output list and the map's are the same list, so a new
     output reaches the scheduled run's commit and the hand-edit guard by being
     written, not by someone remembering to add it."""
     from freetier_radar.render import render_all
-    render_all(ROOT / "registry.yaml", ROOT / "templates", tmp_path, contributing_from=ROOT)
-    written = {p.relative_to(tmp_path).as_posix() for p in tmp_path.rglob("*") if p.is_file()}
+    from test_render import TODAY
+    out = tmp_path / 'rendered'
+    out.mkdir()
+    render_all(render_source / "registry.yaml", ROOT / "templates", out,
+               today=TODAY, contributing_from=ROOT)
+    written = {p.relative_to(out).as_posix() for p in out.rglob("*") if p.is_file()}
     for f in written:
         assert node_for(f) is not None and "freetier-render" in node_for(f).written_by, f
-    generated = {f for f in tracked_files(ROOT) if node_for(f).kind is Kind.GENERATED}
-    assert generated <= written, generated - written
+    generated = {n.path for n in MAP if n.kind is Kind.GENERATED}
+    covered = {node_for(f).path for f in written if node_for(f).kind is Kind.GENERATED}
+    assert generated == covered
     # CONTRIBUTING.md is written by hand, all but the map section the render prints
     assert {f for f in written if node_for(f).kind is not Kind.GENERATED} == {"CONTRIBUTING.md", ".github/workflows/indexnow.yml"}
 

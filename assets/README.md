@@ -1,26 +1,28 @@
 # Assets
 
-Visual identity of the repository. Everything in the root `README.md` is generated
-from `templates/README.md.j2`, which references these files — regeneration never
-touches them.
+Images and browser assets. `freetier-render` generates `readme/*.svg`;
+the other files are maintained by hand.
 
 | File | Purpose |
 |---|---|
-| `readme/*.svg` | **Generated** — the README's pictures (the radar hero and the strong-models chart, each wide in light and dark and narrow for phones) and `radar.svg`, the hero's radar alone that the website (`index.html`) shows beside its name — drawn by `freetier-render` from the registry (`src/freetier_radar/pictures.py`); never edit them by hand |
+| `readme/*.svg` | **Generated** — the README's hero and model chart, each in wide and narrow layouts with both palettes inside; `radar.svg` is the website's radar. Written by `freetier-render` through [`pictures.py`](../src/freetier_radar/pictures.py); never edit by hand |
 | `social-preview.svg` | Source of the social preview card |
-| `social-preview.png` | 1280×640 render for GitHub's social preview, and every Pages page's preview card (`_config.yml` defaults) |
+| `social-preview.png` | Render of `social-preview.svg` at its declared dimensions, used by GitHub and the Pages preview cards (`_config.yml` defaults) |
 | `favicon.svg` | The site's icon, on `index.html`, `browse.html` and every page `_layouts/default.html` serves |
 | `model-name.js` | Model-name matching shared by the front-page search and the filterable table; preserves version dots |
+| `search.js` | Search and filter matching shared by the home page and Browse |
+| `model-sort.js` | Model ordering shared by the home page, model index, provider pages and Browse; preserves the choice in the URL and local storage |
+| `model-sort.css` | Shared styling for the model-order control |
 
-The radar animates. The beam turns once every 6 seconds, driven by SMIL
-(`animateTransform`).
+The radar beam uses CSS animation; its period is
+`pictures.BEAM_PERIOD`.
 Each dot, a live offer, lights up as the beam reaches its bearing, on a CSS animation
 whose `animation-delay` **is** that arrival time (`pictures._arrival`). Readers who ask
 their system for less motion (`prefers-reduced-motion`) get no flashing and every dot
-lit; the beam keeps its slow turn.
+lit; the beam stays still.
 
 The social preview is a still — it is rendered to PNG — and it carries no counts,
-because a number baked into an image is a claim nothing re-verifies. It is drawn in
+so changes to the registry do not require a new upload. It is drawn in
 the README hero's style: the radar's section colours, the repository's name on one
 line in JetBrains Mono with *free* in the list's green, the rest in Inter.
 
@@ -35,6 +37,5 @@ github.com/JetBrains/JetBrainsMono and github.com/rsms/inter — or a fallback f
 name out wider and it no longer fits on one line:
 
 ```bash
-uvx --from cairosvg cairosvg assets/social-preview.svg -o assets/social-preview.png \
-  --output-width 1280 --output-height 640
+uvx --from cairosvg cairosvg assets/social-preview.svg -o assets/social-preview.png
 ```

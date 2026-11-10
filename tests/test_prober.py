@@ -1111,12 +1111,29 @@ async def test_an_elapsed_deprecation_date_requires_current_endpoint_review():
 
 
 @pytest.mark.parametrize("day,status", [
+    (None, ProbeStatus.PASS),
     (date(2026, 10, 15), ProbeStatus.PASS),
     (date(2026, 10, 19), ProbeStatus.PASS),
     (date(2026, 10, 20), ProbeStatus.INCONCLUSIVE),
 ])
 @respx.mock
-async def test_free_endpoint_announcement_does_not_prematurely_withdraw_it(day, status):
+async def test_free_endpoint_announcement_does_not_prematurely_withdraw_it(day, status, monkeypatch):
+    from datetime import datetime, timezone
+    from freetier_radar import models, prober
+
+    class LocalDate(date):
+        @classmethod
+        def today(cls):
+            return cls(2026, 10, 20)
+
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            assert tz is timezone.utc
+            return cls(2026, 10, 19, 23, 30, tzinfo=tz)
+
+    monkeypatch.setattr(prober, 'date', LocalDate)
+    monkeypatch.setattr(models, 'datetime', Clock)
     mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
              ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
                         ngc_endpoint("z-ai", "glm-5-3", deprecation="10/19/2026")))

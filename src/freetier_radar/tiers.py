@@ -44,7 +44,7 @@ import httpx
 from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-from .models import Entry, Tier, is_archived, load_registry, save_registry
+from .models import Entry, Tier, is_archived, load_registry, save_registry, utc_today
 from .prober import UA
 
 LEADERBOARD_URL = "https://artificialanalysis.ai/leaderboards/models"
@@ -289,14 +289,16 @@ def _checkpoint_date(value: str) -> bool:
     return True
 
 
-def checkpoint_reviews(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[Mark, list[Scored]]]:
+def checkpoint_reviews(entries: list[Entry], models: dict[str, Scored],
+                       today: date | None = None) -> list[tuple[Mark, list[Scored]]]:
     """Dated scores worth reviewing beside an unavailable pinned measurement.
 
     These are candidates, not aliases: the serving checkpoint and effort need
     vendor evidence. Restrict the suffix to a date and optional effort; a new
     generation, parameter count or different model is not a replacement.
     """
-    _, marks = review([e for e in entries if not is_archived(e, date.today())], models)
+    today = today or utc_today()
+    _, marks = review([e for e in entries if not is_archived(e, today)], models)
     findings = []
     for mark in marks:
         if mark.score and not mark.score.deprecated and mark.score.index is not None:
@@ -361,8 +363,9 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
         resp.raise_for_status()
         board = await read_leaderboard(client, resp.text)
         version = index_version(resp.text)
+    today = utc_today()
     top, marks = review(entries, board)
-    live = [e for e in entries if not is_archived(e, date.today())]
+    live = [e for e in entries if not is_archived(e, today)]
     median = index_median(board)
     print(f"Intelligence Index v{version}; top: {top.name}, {top.index:.1f} — frontier from "
           f"{top.index - FRONTIER_WITHIN:.1f}, strong from {top.index - STRONG_WITHIN:.1f}, "
@@ -377,7 +380,7 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
-    checkpoint_findings = checkpoint_reviews(live, board)
+    checkpoint_findings = checkpoint_reviews(live, board, today)
     for mark, candidates in checkpoint_findings:
         reason = ('missing record' if mark.score is None else
                   'deprecated record' if mark.score.deprecated else 'no current score')
@@ -413,7 +416,7 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     # Only where the caller names the file: the command always does, and a test
     # that measures a registry of its own never writes over the list's scores.
     if write and scores is not None:
-        keep_scores(scores, entries, board, date.today(), version)
+        keep_scores(scores, entries, board, today, version)
     print(f"{len(marks)} family bindings checked, {len(moved)} marks "
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
           f"{sum(m.score is not None and m.score.index is None for m in marks)} without a current score, "

@@ -1496,11 +1496,13 @@ def test_the_render_draws_the_pictures_beside_the_readme(tmp_path: Path):
 
 
 def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
+    import shutil
     from freetier_radar.models import save_registry
     from freetier_radar.render import check_rendered, render_all
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="a", name="A")])
     render_all(reg, Path("templates"), tmp_path, today=TODAY, contributing_from=Path("."))
+    shutil.copytree(Path('.github/workflows'), tmp_path / '.github/workflows', dirs_exist_ok=True)
     hero = tmp_path / "assets" / "readme" / "hero.svg"
     hero.write_text(hero.read_text(encoding="utf-8").replace("live offers", "live deals"),
                     encoding="utf-8")

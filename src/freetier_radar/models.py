@@ -2235,6 +2235,11 @@ TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
                  7: "every day"}
 
 
+def utc_today() -> date:
+    """The calendar day used by verification, review and publication."""
+    return datetime.now(timezone.utc).date()
+
+
 def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
     """How often the list says a row is checked, in the words its pages use."""
     return TIMES_A_WEEK[len(set(weekdays))]

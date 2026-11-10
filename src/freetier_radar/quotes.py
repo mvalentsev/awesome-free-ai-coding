@@ -26,7 +26,7 @@ from pathlib import Path
 import httpx
 
 from .page_reader import page_evidence, recover_page
-from .models import ProbeType, Entry, is_archived, load_registry
+from .models import ProbeType, Entry, is_archived, load_registry, utc_today
 from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
@@ -351,7 +351,7 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
                         ) -> tuple[list[Missing], dict[str, list[str]]]:
     missing: list[Missing] = []
     unread: dict[str, list[str]] = {}
-    for entry in live_rows(entries, today or date.today()):
+    for entry in live_rows(entries, today or utc_today()):
         from .quotas import resolved_quota_entry
         entry = await resolved_quota_entry(client,entry)
         quotes = row_quotes(entry)
@@ -415,7 +415,7 @@ async def _amain(registry: Path, ids: list[str], report: bool = False) -> int:
     entries = load_registry(registry)
     if ids:
         entries = [e for e in entries if e.id in ids]
-    today = date.today()
+    today = utc_today()
     with page_evidence(Path("failures/page-reads")):
         async with httpx.AsyncClient(headers=UA) as client:
             missing, unread = await check_entries(entries, client, today)

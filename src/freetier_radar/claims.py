@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility
+from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility, utc_today
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -37,7 +37,7 @@ from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_P
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
-from .pictures import _chart_ticks
+from .pictures import _chart_ticks, _style
 from .validate import PROSE_LIMITS
 # The render's own words for a figure (see words.py).
 from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
@@ -300,7 +300,7 @@ def _checkpoint_review_policy(root: Path) -> tuple[str, ...]:
         'id': 'claim', 'name': 'Claim', 'category': 'api-free-tier',
         'url': 'https://vendor.example', 'offering': 'Free models',
         'provisional': False,
-        'first_seen': '2026-07-19', 'last_verified': date.today(),
+        'first_seen': '2026-07-19', 'last_verified': utc_today(),
         'models': [{'family': 'reviewed-model', 'aa_model': 'reviewed-model'}],
         'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
                   'keywords': ['100 free requests per day']}})
@@ -385,6 +385,13 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("assets/README.md", r"radar beam uses (CSS) animation",
+          lambda root: ('CSS',) if 'animation:turn' in _style() else (),
+          "pictures._style; animation and reduced-motion controls in tests/test_pictures.py"),
+    Claim("assets/README.md", r"the beam stays (still)",
+          lambda root: ('still',) if re.search(
+              r'@media \(prefers-reduced-motion: reduce\).*?\.turning \{ animation: none \}', _style()) else (),
+          "pictures._style; actual generated SVG reduced-motion control in tests/test_pictures.py"),
     Claim(".github/workflows/indexnow.yml", r"(freetier-render) generates this projection",
           lambda root: next(node.written_by for node in MAP if node.path == ".github/workflows/indexnow.yml"),
           "layout.MAP and render.render_indexnow_filter; independent new-file/job-preservation controls in tests/test_layout.py"),
@@ -479,7 +486,7 @@ CLAIMS: tuple[Claim, ...] = (
           "models.ModelTableExclusion and HTTP inventory/exclusion controls in tests/test_model_table_inventory.py"),
     Claim("CONTRIBUTING.md", r'exclusion\s+needs another manual review after (\d+) days',
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
-          "prober.model_table_findings; dated source and exclusion controls in tests/test_model_table_inventory.py"),
+          "prober.model_table_findings; dated source and exclusion controls in tests/test_model_table_inventory.py", generated=True),
     Claim("CONTRIBUTING.md", r'`newcomers\[\]\.(table_name)` binds',
           lambda root: tuple(k for k in Newcomer.model_fields if k == 'table_name'),
           "models.Newcomer; exact eligible row-label check in prober.model_table_findings"),
@@ -488,7 +495,7 @@ CLAIMS: tuple[Claim, ...] = (
           "models.ArchiveReview; canonical current-source and date controls in tests/test_archive_review.py"),
     Claim("CONTRIBUTING.md", r'(?s)manual review is at least (\d+) days old, through `freetier-archive-review`.*?Source collection has a\s+(\d+)-second budget',
           _archive_review_limits,
-          "archive_review.due_entries and collect; scheduled HTTP and exclusion controls in tests/test_archive_review.py"),
+          "archive_review.due_entries and collect; scheduled HTTP and exclusion controls in tests/test_archive_review.py", generated=True),
     Claim("CONTRIBUTING.md", r'history ends in `(removed)` appends `(restored)`',
           lambda root: (EventType.REMOVED.value, EventType.RESTORED.value),
           "history.diff_state and record_changes; legacy return preserves arrival and append-only prefix in tests/test_history.py"),
@@ -598,7 +605,7 @@ CLAIMS: tuple[Claim, ...] = (
           "quotas.UsageQuota and quota_changes; HTTP-boundary regressions in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"semantics require a dated review every (\d+) days",
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
-          "quotas.quota_moved; JSON plan-field review expiry regression in tests/test_quotas.py"),
+          "quotas.quota_moved; JSON plan-field review expiry regression in tests/test_quotas.py", generated=True),
     Claim("CONTRIBUTING.md", r"An unpublished `(amount)` or `(period)` stays null",
           lambda root: tuple(field for field in ('amount','period')
                              if type(None) in get_args(UsageQuota.model_fields[field].annotation)),
@@ -648,6 +655,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
+    Claim("CONTRIBUTING.md", r"The report counts (\w+ weeks|a week)\s+from that date",
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"`offering`, the first (\w+)\s+model families and the date",
           lambda root: (_word(README_MODELS),), "render.README_MODELS", generated=True),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",
@@ -664,9 +673,9 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"recovery, with a (\d+)-second budget,\s+up to (\d+) redirects and an (\d+) MiB body limit",
           lambda root: _page_recovery_limits(), "page_reader recovery limits", generated=True),
     Claim("CONTRIBUTING.md", r"always calls under this\s+project's own `([^`]+)`",
-          lambda root: (UA["User-Agent"],), "prober.UA"),
+          lambda root: (UA["User-Agent"],), "prober.UA", generated=True),
     Claim("CONTRIBUTING.md", r"sends `User-Agent: ([^`]+)`",
-          lambda root: (QUICKSTART_USER_AGENT,), "render.QUICKSTART_USER_AGENT"),
+          lambda root: (QUICKSTART_USER_AGENT,), "render.QUICKSTART_USER_AGENT", generated=True),
     Claim("CONTRIBUTING.md", r"\| a sentence of (\d+)\+ words quoted from the page \|",
           lambda root: (str(ANCHOR_PHRASE_WORDS),), "models.ANCHOR_PHRASE_WORDS", generated=True),
     Claim("CONTRIBUTING.md", r"reports every quote of (\w+) words or more",
@@ -691,10 +700,10 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",
           lambda root: (CODEX_SINCE,), "render.CODEX_SINCE", generated=True),
     Claim("CONTRIBUTING.md", r"Python (\d+\.\d+) to (\d+\.\d+), httpx",
-          _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml"),
+          _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml", generated=True),
     Claim("CONTRIBUTING.md", r"`conformance` workflow runs them every (\w+)",
           _cron_day(".github/workflows/conformance.yml"),
-          ".github/workflows/conformance.yml's cron"),
+          ".github/workflows/conformance.yml's cron", generated=True),
     Claim("CONTRIBUTING.md", r"The (verification) and (expiry) writers explicitly dispatch this workflow",
           _bot_conformance_dispatch,
           "conformance.dispatch and both bot writers; path, dispatch and exact-commit controls in tests/test_conformance_dispatch.py"),
@@ -737,15 +746,16 @@ def render_claims(text: str, file: str, root: Path) -> str:
     for claim in CLAIMS:
         if claim.file != file or not claim.generated:
             continue
-        found = re.search(claim.pattern, text)
-        if found is None:
+        matches = list(re.finditer(claim.pattern, text))
+        if not matches:
             continue
         values = claim.truth(root)
-        if claim.read is not re.Match.groups or len(values) != len(found.groups()):
+        if claim.read is not re.Match.groups or any(len(values) != len(m.groups()) for m in matches):
             raise ValueError(f"{claim.source}: generated claims need one value per plain group")
-        for group, value in reversed(list(enumerate(values, 1))):
-            start, end = found.span(group)
-            text = text[:start] + value + text[end:]
+        for found in reversed(matches):
+            for group, value in reversed(list(enumerate(values, 1))):
+                start, end = found.span(group)
+                text = text[:start] + value + text[end:]
     return text
 
 
@@ -770,23 +780,26 @@ def _cron_weekdays(root: Path) -> tuple[int, ...] | None:
 def check_claims(root: Path, claims: tuple[Claim, ...] = CLAIMS,
                  scheduled: tuple[str, ...] = SCHEDULED) -> list[str]:
     problems = []
+    files = {file: (root / file).read_text(encoding="utf-8")
+             for file in {c.file for c in claims} | set(scheduled)}
     for claim in claims:
-        text = (root / claim.file).read_text(encoding="utf-8")
-        found = re.search(claim.pattern, text)
-        if found is None:
+        text = files[claim.file]
+        matches = list(re.finditer(claim.pattern, text))
+        if not matches:
             problems.append(f"{claim.file} no longer has the sentence stating {claim.source} "
                             f"(claims.CLAIMS: `{claim.pattern}`) — point the claim at the sentence "
                             "that states it now")
             continue
         truth = claim.truth(root)
-        if claim.read(found) != truth:
-            said = " ".join(found.group(0).split())
-            problems.append(f"{claim.file}:{_line(text, found.start())} says `{said}` and "
-                            f"{claim.source} says {', '.join(truth)} — change the sentence or the "
-                            "constant, never one of them alone")
+        for found in matches:
+            if claim.read(found) != truth:
+                said = " ".join(found.group(0).split())
+                problems.append(f"{claim.file}:{_line(text, found.start())} says `{said}` and "
+                                f"{claim.source} says {', '.join(truth)} — change the sentence or the "
+                                "constant, never one of them alone")
     expected = probe_frequency(PROBE_WEEKDAYS)
     for name in scheduled:
-        text = (root / name).read_text(encoding="utf-8")
+        text = files[name]
         for m in _FREQUENCY.finditer(text):
             if m.group(0) != expected:
                 problems.append(f"{name}:{_line(text, m.start())} says `{m.group(0)}` and the "

@@ -18,7 +18,7 @@ from .borders import SHARED, beyond_shared, left_out_of, load_yardstick, share
 from .countries import COUNTRIES, country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
-from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
+from .models import (utc_today, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
                      CODEX_LITELLM_PROFILE, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD,
                      PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
                      WATCH_RECHECK_DAYS, Category, Entry, FreePart,
@@ -1021,7 +1021,7 @@ def _change_rows(events: list[Event], entries: list[Entry] | None = None,
     perfectly good sentence that only this one table would trip over.
     """
     return [{**row, "detail": row["detail"].replace("|", r"\|") or "—"}
-            for row in _site_changes(events, entries, today or datetime.now(timezone.utc).date(), limit)]
+            for row in _site_changes(events, entries, today or utc_today(), limit)]
 
 
 def _rfc3339(stamp: datetime) -> str:
@@ -3177,7 +3177,7 @@ def _github_page_context(registry_path: Path, today: date,
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
                   today: date | None = None, watchlist_path: Path | None = None,
                   scores: dict | None = None) -> str:
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
@@ -3199,7 +3199,7 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     every link in it is written from there. It is rendered from the README's own
     context, so the two pages cannot disagree about a lane.
     """
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template(CONFIGS_TEMPLATE).render(**context)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -3218,7 +3218,7 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     Liquid off with `{% raw %}`, and freetier-check refuses a tag outside
     backticks in the prose they print.
     """
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     env = _env(template_dir, autoescape=True)
     entries, history = load_registry(registry_path), _history_beside(registry_path)
     refuse_deleted_rows(entries, history)
@@ -3251,7 +3251,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     """Everything the render writes besides the README, the site's front page and
     configs/README.md: the feed, the provider and model pages, index.json,
     llms.txt, and the configs with the Codex profiles."""
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     scores = _resolve_scores(scores)
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
@@ -3381,7 +3381,7 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
     check can never compare fewer files than the render writes.
     `contributing_from` is the directory whose CONTRIBUTING.md the map is
     printed into — the repository itself, when the output is not."""
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     scores = _resolve_scores(None)
     render_readme(registry_path, template_dir, root / readme_name, today=today,
                   watchlist_path=watchlist_path, scores=scores)
@@ -3444,7 +3444,7 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     page, in the JSON an LLM reads, in the config a reader pastes — a registry
     that has moved on, until the next scheduled run renders.
     """
-    today = today or datetime.now(timezone.utc).date()
+    today = today or utc_today()
     with tempfile.TemporaryDirectory() as tmp_name:
         tmp = Path(tmp_name)
         pinned = _generated_on(root, today)

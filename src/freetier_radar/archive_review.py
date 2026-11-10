@@ -10,7 +10,7 @@ from pathlib import Path
 
 import httpx
 
-from .models import Entry, is_archived_for_good, is_blocked, load_blocklist, load_registry, site_of
+from .models import Entry, is_archived_for_good, is_blocked, load_blocklist, load_registry, site_of, utc_today
 from .page_reader import RECOVERY_BYTES, RECOVERY_REDIRECTS
 from .prober import (CONCURRENCY, TIMEOUT, UA, check_content, followed_url,
                      join_free_list, page_response_ok)
@@ -166,7 +166,7 @@ def main() -> None:
     args = parser.parse_args()
     bundle = Bundle(args.out, Path.cwd())
     result = asyncio.run(collect(load_registry(args.registry), load_blocklist(args.blocklist),
-                                 date.today(), bundle, all_archived=args.all))
+                                 utc_today(), bundle, all_archived=args.all))
     print(markdown(result), end='')
 
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import date, datetime, timezone
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
@@ -12,7 +12,7 @@ import yaml
 from markdown_it import MarkdownIt
 
 from . import git
-from .models import is_covered, site_of, valid_source_url
+from .models import is_covered, site_of, valid_source_url, utc_today
 
 _ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js|mjs|mp[34]|zip|gz)$', re.I)
 _COMPARISON = re.compile(
@@ -157,7 +157,7 @@ def _links(body: str, *, source: str = '', content_type: str = '',
 def answered_sites(repo: Path, sha: str) -> set[str]:
     """Keep exact source/product decisions and operator-wide blocks separate."""
     known = set()
-    today = datetime.now(timezone.utc).date()
+    today = utc_today()
     for filename in ('registry.yaml', 'watchlist.yaml', 'blocklist.yaml', 'sources.yaml'):
         value = yaml.safe_load(git.show(repo, sha, filename) or '') or []
         if filename == 'registry.yaml':

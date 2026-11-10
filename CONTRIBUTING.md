@@ -863,7 +863,7 @@ cannot print two versions of it.
 | `assets/*.css` | **page** — shared model sorting controls | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
-| `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
+| `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py`, `src/freetier_radar/claims.py`, `.github/workflows/ci.yml`, `.github/workflows/conformance.yml` | `hand`, `freetier-render` |
 | `LICENSE` | **doc** — MIT | — | `hand` |
 | `assets/README.md` | **doc** — what each asset is for · not on the site | — | `hand` |
 | `src/freetier_radar/*.py` | **code** — the probe, the scout, the render and the checks · not on the site | — | `hand` |
