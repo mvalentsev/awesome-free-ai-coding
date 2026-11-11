@@ -62,6 +62,91 @@ def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
     assert push(tmp_path, base, head) == []
 
 
+def test_reused_evidence_has_one_snapshot_across_review_references(tmp_path, monkeypatch):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    proof = tmp_path / '.remember/finding.txt'
+    body = b'Current source and complete review evidence.\n' * 100
+    proof.write_bytes(body)
+    from pathlib import Path
+    read_bytes = Path.read_bytes
+    reads = []
+    def read(path):
+        if path == proof:
+            reads.append(path)
+        return read_bytes(path)
+    monkeypatch.setattr(Path, 'read_bytes', read)
+    bundle.save('sources', {'lead_inventory': [
+        {'id': name, 'url': f'https://{name}.example/docs'}
+        for name in ('first', 'second')]})
+    value['lead_dispositions'] = [
+        {'id': name, 'verdict': 'irrelevant', 'finding': 'Documentation reference, not an offer.',
+         'evidence': [str(proof)]} for name in ('first', 'second')]
+    result = accept_judgment(bundle, value)
+    references = [path for check in result['criteria'].values() for path in check['evidence']]
+    references += [path for lead in result['lead_dispositions'] for path in lead['evidence']]
+    assert len(set(references)) == 1
+    assert reads == [proof]
+    assert (bundle.out / references[0]).read_bytes() == body
+    assert len(result['criteria']) == len(CRITERIA)
+    assert [lead['id'] for lead in result['lead_dispositions']] == ['first', 'second']
+    proof.write_text('A later source does not change the accepted snapshot.')
+    assert push(tmp_path, base, head) == []
+    (bundle.out / references[0]).write_text('Changed imported evidence')
+    assert push(tmp_path, base, head)
+
+
+def test_import_keeps_different_evidence_with_the_same_filename(tmp_path):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    proofs = []
+    for directory, body in [('first', b'First source'), ('second', b'Second source'),
+                            ('alias', b'First source')]:
+        path = tmp_path / '.remember' / directory / 'finding.txt'
+        path.parent.mkdir()
+        path.write_bytes(body)
+        proofs.append(path)
+    for name, path in zip(('reuse', 'diff', 'copy'), proofs):
+        value['criteria'][name]['evidence'] = [str(path)]
+    result = accept_judgment(bundle, value)
+    references = [result['criteria'][name]['evidence'][0] for name in ('reuse', 'diff', 'copy')]
+    assert references[0] != references[1]
+    assert references[0] == references[2]
+    assert [(bundle.out / path).read_bytes() for path in references] == [b'First source', b'Second source', b'First source']
+    assert push(tmp_path, base, head) == []
+
+
+@pytest.mark.parametrize('use_as_evidence', [False, True])
+def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence):
+    base, head = proposal(tmp_path)
+    bundle, value = signoff(tmp_path, base, head)
+    register = tmp_path / '.remember/tasks.json'
+    register.write_text(json.dumps({'tasks': [
+        {'id': name, 'status': 'open', 'next_action': 'Read the current official terms.'}
+        for name in ('first', 'second')]}))
+    if use_as_evidence:
+        value['criteria']['reuse']['evidence'] = [str(register)]
+    bundle.save('sources', {'lead_inventory': [
+        {'id': name, 'url': f'https://{name}.example/docs'}
+        for name in ('first', 'second')]})
+    value['lead_dispositions'] = [
+        {'id': name, 'verdict': 'task', 'finding': 'Free eligibility needs current terms.',
+         'task': {'file': '.remember/tasks.json', 'id': name},
+         'evidence': value['criteria']['reuse']['evidence']}
+        for name in ('first', 'second')]
+    result = accept_judgment(bundle, value)
+    references = [lead['task']['file'] for lead in result['lead_dispositions']]
+    assert references[0] == references[1]
+    if use_as_evidence:
+        assert references[0] == result['criteria']['reuse']['evidence'][0]
+    snapshot = bundle.out / references[0]
+    assert snapshot.read_bytes() == register.read_bytes()
+    register.write_text('{"tasks": []}')
+    assert push(tmp_path, base, head) == []
+    snapshot.write_text('{"tasks": []}')
+    assert push(tmp_path, base, head)
+
+
 def test_unanswered_captured_provider_lead_cannot_receive_a_review_signoff(tmp_path):
     base, head = proposal(tmp_path)
     bundle, value = signoff(tmp_path, base, head)
@@ -239,8 +324,8 @@ def test_a_form_without_actual_review_cannot_create_a_signoff(tmp_path, defect):
 def test_push_rechecks_evidence_and_commit_binding(tmp_path, defect):
     base, head = proposal(tmp_path)
     bundle, value = signoff(tmp_path, base, head)
-    accept_judgment(bundle, value)
-    artifact = bundle.out / 'judgment/reuse/0-finding.txt'
+    result = accept_judgment(bundle, value)
+    artifact = bundle.out / result['criteria']['reuse']['evidence'][0]
     if defect == 'changed-evidence':
         artifact.write_text('changed')
     elif defect == 'missing-evidence':

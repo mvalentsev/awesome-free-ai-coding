@@ -172,39 +172,44 @@ def accept_judgment(bundle, value: dict) -> dict:
     from .review_leads import validate_dispositions
     validate_dispositions(bundle, value)
     # Import evidence rather than leave references to mutable external files.
+    inputs: dict[Path, str] = {}
+    imported: dict[str, str] = {}
+
+    def evidence(source: str | Path, missing: str, *, register: bool = False) -> str:
+        path = Path(source).absolute()
+        if path in inputs:
+            return inputs[path]
+        if not path.is_file():
+            raise ValueError(missing + str(source))
+        body = path.read_bytes()
+        fingerprint = digest(body)
+        if fingerprint not in imported:
+            target = ('judgment/task-registers/' + fingerprint + '.json' if register
+                      else f'judgment/evidence/{fingerprint}-{path.name}')
+            imported[fingerprint] = bundle.write(target, body)
+        inputs[path] = imported[fingerprint]
+        return inputs[path]
+
     criteria = {}
     for name, check in value['criteria'].items():
-        paths = []
-        for index, source in enumerate(check['evidence']):
-            path = Path(source)
-            if not path.is_file():
-                raise ValueError(name + ': evidence does not exist: ' + source)
-            paths.append(bundle.write(f'judgment/{name}/{index}-{path.name}', path.read_bytes()))
+        paths = [evidence(source, name + ': evidence does not exist: ')
+                 for source in check['evidence']]
         criteria[name] = {**check, 'evidence': paths}
     records = []
     for record in value.get('model_eligibility', []):
-        paths = []
-        for index, source in enumerate(record['evidence']):
-            path = Path(source)
-            if not path.is_file():
-                raise ValueError(record['row'] + ': eligibility evidence does not exist: ' + source)
-            paths.append(bundle.write(f"judgment/eligibility-{record['row']}/{index}-{path.name}", path.read_bytes()))
+        paths = [evidence(source, record['row'] + ': eligibility evidence does not exist: ')
+                 for source in record['evidence']]
         records.append({**record, 'evidence': paths})
     leads = []
     for record in value.get('lead_dispositions', []):
-        paths = []
-        for index, source in enumerate(record['evidence']):
-            path = Path(source)
-            if not path.is_file():
-                raise ValueError('lead disposition evidence does not exist: ' + source)
-            paths.append(bundle.write(f"judgment/lead-{record['id']}/{index}-{path.name}", path.read_bytes()))
+        paths = [evidence(source, 'lead disposition evidence does not exist: ')
+                 for source in record['evidence']]
         current = {**record, 'evidence': paths}
         if record['verdict'] == 'task':
             path = Path(record['task']['file'])
             if not path.is_absolute():
                 path = bundle.repo / path
-            body = path.read_bytes()
-            target = bundle.write('judgment/task-registers/' + digest(body) + '.json', body)
+            target = evidence(path, 'task register does not exist: ', register=True)
             current['task'] = {**record['task'], 'file': target}
         leads.append(current)
     result = bundle.save('judgment', {**value, 'criteria': criteria, 'model_eligibility': records,
