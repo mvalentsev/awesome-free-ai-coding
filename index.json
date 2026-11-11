@@ -163,7 +163,8 @@
       "MIAPI",
       "BeatAPI (free models)",
       "OrcaRouter (free models)",
-      "cheapllm.shop"
+      "cheapllm.shop",
+      "Logfare (Standard models)"
     ],
     "sections": [
       {
@@ -19259,6 +19260,285 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/"
+    },
+    {
+      "id": "logfare",
+      "name": "Logfare (Standard models)",
+      "category": "aggregator",
+      "url": "https://logfare.ai",
+      "source_urls": [
+        "https://logfare.ai/",
+        "https://logfare.ai/docs",
+        "https://logfare.ai/v1/models",
+        "https://logfare.ai/tos",
+        "https://logfare.ai/privacy",
+        "https://logfare.ai/register"
+      ],
+      "card_required": false,
+      "offering": "Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers",
+      "limits": "Regular account: 5,000 requests/day; 6 requests at once per account\n\nPremium account: 10,000 requests/day; 12 requests at once per account\n\nPro account: 20,000 requests/day; 24 requests at once per account\n\nNew account: 500 requests/day; 2 requests at once per account\n\nShared network / IP: 40,000 requests/day per IP\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
+      "quotas": [
+        {
+          "amount": 5000.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "label": "Regular account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Regular account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
+          "value_phrase": "5,000 requests per day",
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 6.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "account",
+          "label": "Regular account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Regular account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Scope",
+              "Request budget",
+              "Concurrent requests"
+            ],
+            "column": "Concurrent requests",
+            "rows": [
+              "Regular account"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 10000.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "label": "Premium account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Premium account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
+          "value_phrase": "10,000 requests per day",
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 12.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "account",
+          "label": "Premium account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Premium account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Scope",
+              "Request budget",
+              "Concurrent requests"
+            ],
+            "column": "Concurrent requests",
+            "rows": [
+              "Premium account"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 20000.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "label": "Pro account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Pro account 160 requests per minute 4,000 requests per hour 20,000 requests per day 24",
+          "value_phrase": "20,000 requests per day",
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 24.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "account",
+          "label": "Pro account",
+          "source": "https://logfare.ai/docs",
+          "quote": "Pro account 160 requests per minute 4,000 requests per hour 20,000 requests per day 24",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Scope",
+              "Request budget",
+              "Concurrent requests"
+            ],
+            "column": "Concurrent requests",
+            "rows": [
+              "Pro account"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 500.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "label": "New account",
+          "source": "https://logfare.ai/docs",
+          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 2",
+          "value_phrase": "500 requests per day",
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 2.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "account",
+          "label": "New account",
+          "source": "https://logfare.ai/docs",
+          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 2",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Scope",
+              "Request budget",
+              "Concurrent requests"
+            ],
+            "column": "Concurrent requests",
+            "rows": [
+              "New account"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-11"
+        },
+        {
+          "amount": 40000.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "ip",
+          "label": "Shared network / IP",
+          "source": "https://logfare.ai/docs",
+          "quote": "Shared network / IP 240 requests per minute 8,000 requests per hour 40,000 requests per day",
+          "value_phrase": "40,000 requests per day",
+          "reviewed_on": "2026-11-11"
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://logfare.ai/v1",
+        "key_url": "https://logfare.ai/register",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "qwen-3.8-27b",
+          "economy/deepseek-v4.1-flash",
+          "gemma-4-31b-it",
+          "gemma-4-26b"
+        ],
+        "model_bindings": {
+          "qwen-3.8-27b": {
+            "family": "qwen3.8-27b",
+            "source": "https://logfare.ai/v1/models",
+            "quote": "Qwen: Qwen3.8 27B",
+            "read": "catalog"
+          },
+          "economy/deepseek-v4.1-flash": {
+            "family": "deepseek-v4.1-flash-1017",
+            "source": "https://logfare.ai/v1/models",
+            "quote": "DeepSeek: DeepSeek V4.1 Flash 1017",
+            "read": "catalog"
+          },
+          "gemma-4-31b-it": {
+            "family": "gemma-4-31b",
+            "source": "https://logfare.ai/v1/models",
+            "quote": "Google: Gemma 4 31B",
+            "read": "catalog"
+          },
+          "gemma-4-26b": {
+            "family": "gemma-4-26b-a4b",
+            "source": "https://logfare.ai/v1/models",
+            "quote": "Google: Gemma 4 26B A4B",
+            "read": "catalog"
+          }
+        },
+        "anthropic_base_url": "https://logfare.ai",
+        "note": "These IDs use Standard access without training or data-sale opt-in. Register, link your Discord account and keep server membership; each API key is shown once. Use /chat/completions for chat, tools and streaming, or the documented /v1/messages route. Premium and Pro models need separate data consents and are not configured here."
+      },
+      "data_use": {
+        "trains": "yes",
+        "quote": "If — and only if — you opt in at /consent, your post-scrub request and response content may also be used to train and fine-tune the models we operate.",
+        "url": "https://logfare.ai/privacy"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-11",
+        "source": "https://logfare.ai/tos",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://logfare.ai/docs",
+        "keywords": [
+          "There are three tiers, and every one is free",
+          "New accounts use the new-account budget for their first 24 hours"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "catalog": "https://logfare.ai/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-11",
+      "last_verified": "2026-11-11",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 93,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "Logfare (Standard models)",
+        "models": [],
+        "ids": [
+          "qwen-3.8-27b",
+          "economy/deepseek-v4.1-flash",
+          "gemma-4-31b-it",
+          "gemma-4-26b"
+        ],
+        "what": "Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers",
+        "limits": "Regular account: 5,000 requests/day; 6 requests at once per account\n\nPremium account: 10,000 requests/day; 12 requests at once per account\n\nPro account: 20,000 requests/day; 24 requests at once per account\n\nNew account: 500 requests/day; 2 requests at once per account\n\nShared network / IP: 40,000 requests/day per IP\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "aggregator"
+        },
+        "flags": [
+          "nocard",
+          "claude"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/"
     }
   ],
   "countries": [
@@ -20311,6 +20591,7 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
+      "logfare",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -20385,6 +20666,7 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
+      "logfare",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -20426,6 +20708,7 @@
       "moark",
       "freeinference",
       "fireworks-ai",
+      "logfare",
       "routerplex",
       "abliteration-ai",
       "impossibl",
@@ -20479,6 +20762,7 @@
       "freeinference",
       "hpc-ai",
       "fireworks-ai",
+      "logfare",
       "routerplex",
       "wallaby",
       "abliteration-ai",
@@ -22918,16 +23202,6 @@
       "checked_on": "2026-09-14",
       "reason": "A $1 monthly allowance with no card — \"Free $0.00 /mo ... $1 of model usage / month 10 requests / minute 1 API key Access to all open models\" — on a gateway that markets \"27 frontier models\" and serves seven from its keyless catalog: nemotron-3-ultra, nemotron-3-super, gpt-oss-20b, laguna-xs-2.1, llama-3.2-11b-vision, flux.1-dev and an embedder, ids spelled the way NVIDIA's API catalog spells them. Prices sit above the makers' (DeepSeek V4 Flash at $0.27/$1.10), which is not the relay pattern, but the terms (June 2026) name no company and nothing says whose capacity the allowance spends.",
       "reopen_if": "Speka names its operator and where its models are served, and the catalog carries what the home page claims.",
-      "current": true
-    },
-    {
-      "domains": [
-        "logfare.ai"
-      ],
-      "name": "Logfare",
-      "checked_on": "2026-09-14",
-      "reason": "\"Free LLM Inference. No Limits\", with the price stated plainly — \"In exchange for free inference, we log every request — prompts, completions, and metadata. After PII scrubbing this may be used in our private, internal evaluation datasets\" — and an operator described only as \"an independent research and engineering group\"; /terms and /about answer 404, and the privacy policy names no company. The keyless catalog is 19 ids, and 14 of them — glm-5.3, kimi-k2.6, qwen-3.8-27b, gemma-4-26b, melotts, aura-2-en, nova-3, lucid-origin, phoenix-1.0 and the flux and whisper builds — are Cloudflare Workers AI's names, whose free allocation is 10,000 neurons a day per account. Unlimited free use of it is either paid for by someone unnamed or pooled.",
-      "reopen_if": "Logfare publishes terms naming its operator and a stated quota, or says how the inference is paid for.",
       "current": true
     },
     {

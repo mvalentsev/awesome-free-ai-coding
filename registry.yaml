@@ -12055,3 +12055,233 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 85
+- id: logfare
+  name: Logfare (Standard models)
+  category: aggregator
+  url: https://logfare.ai
+  source_urls:
+  - https://logfare.ai/
+  - https://logfare.ai/docs
+  - https://logfare.ai/v1/models
+  - https://logfare.ai/tos
+  - https://logfare.ai/privacy
+  - https://logfare.ai/register
+  card_required: false
+  offering: Free OpenAI-compatible model gateway operated by Solexsis Research LLC,
+    with a Standard tier and optional data-consent tiers
+  limits: One account per person; Discord verification and continued server membership
+    are required. New-account limits apply for the first 24 hours. Account limits
+    are shared across models, keys and apps; minute/hour, network and provider caps
+    also apply. Some Standard models bypass request allowances, while concurrency
+    and provider caps remain. Automation is allowed; honor Retry-After on 429/503.
+    Standard traffic is logged for internal evaluation, with an evaluation opt-out.
+    Optional Premium requires training consent; Pro additionally requires data-sale
+    consent. Raw prompts reach changing upstream providers under their own policies.
+    The privacy policy says API keys are stored in plain text, while current docs
+    describe fingerprints only.
+  quotas:
+  - amount: 5000.0
+    unit: requests
+    period: day
+    scope: account
+    label: Regular account
+    source: https://logfare.ai/docs
+    quote: Regular account 40 requests per minute 1,000 requests per hour 5,000 requests
+      per day 6
+    value_phrase: 5,000 requests per day
+    reviewed_on: '2026-11-11'
+  - amount: 6.0
+    unit: requests
+    period: concurrent
+    scope: account
+    label: Regular account
+    source: https://logfare.ai/docs
+    quote: Regular account 40 requests per minute 1,000 requests per hour 5,000 requests
+      per day 6
+    read: table
+    table:
+      headers:
+      - Scope
+      - Request budget
+      - Concurrent requests
+      column: Concurrent requests
+      rows:
+      - Regular account
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-11-11'
+  - amount: 10000.0
+    unit: requests
+    period: day
+    scope: account
+    label: Premium account
+    source: https://logfare.ai/docs
+    quote: Premium account 80 requests per minute 2,000 requests per hour 10,000 requests
+      per day 12
+    value_phrase: 10,000 requests per day
+    reviewed_on: '2026-11-11'
+  - amount: 12.0
+    unit: requests
+    period: concurrent
+    scope: account
+    label: Premium account
+    source: https://logfare.ai/docs
+    quote: Premium account 80 requests per minute 2,000 requests per hour 10,000 requests
+      per day 12
+    read: table
+    table:
+      headers:
+      - Scope
+      - Request budget
+      - Concurrent requests
+      column: Concurrent requests
+      rows:
+      - Premium account
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-11-11'
+  - amount: 20000.0
+    unit: requests
+    period: day
+    scope: account
+    label: Pro account
+    source: https://logfare.ai/docs
+    quote: Pro account 160 requests per minute 4,000 requests per hour 20,000 requests
+      per day 24
+    value_phrase: 20,000 requests per day
+    reviewed_on: '2026-11-11'
+  - amount: 24.0
+    unit: requests
+    period: concurrent
+    scope: account
+    label: Pro account
+    source: https://logfare.ai/docs
+    quote: Pro account 160 requests per minute 4,000 requests per hour 20,000 requests
+      per day 24
+    read: table
+    table:
+      headers:
+      - Scope
+      - Request budget
+      - Concurrent requests
+      column: Concurrent requests
+      rows:
+      - Pro account
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-11-11'
+  - amount: 500.0
+    unit: requests
+    period: day
+    scope: account
+    label: New account
+    source: https://logfare.ai/docs
+    quote: New account 10 requests per minute 200 requests per hour 500 requests per
+      day 2
+    value_phrase: 500 requests per day
+    reviewed_on: '2026-11-11'
+  - amount: 2.0
+    unit: requests
+    period: concurrent
+    scope: account
+    label: New account
+    source: https://logfare.ai/docs
+    quote: New account 10 requests per minute 200 requests per hour 500 requests per
+      day 2
+    read: table
+    table:
+      headers:
+      - Scope
+      - Request budget
+      - Concurrent requests
+      column: Concurrent requests
+      rows:
+      - New account
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-11-11'
+  - amount: 40000.0
+    unit: requests
+    period: day
+    scope: ip
+    label: Shared network / IP
+    source: https://logfare.ai/docs
+    quote: Shared network / IP 240 requests per minute 8,000 requests per hour 40,000
+      requests per day
+    value_phrase: 40,000 requests per day
+    reviewed_on: '2026-11-11'
+  free_part: models
+  models: []
+  api:
+    base_url: https://logfare.ai/v1
+    key_url: https://logfare.ai/register
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen-3.8-27b
+    - economy/deepseek-v4.1-flash
+    - gemma-4-31b-it
+    - gemma-4-26b
+    model_bindings:
+      qwen-3.8-27b:
+        family: qwen3.8-27b
+        source: https://logfare.ai/v1/models
+        quote: 'Qwen: Qwen3.8 27B'
+        read: catalog
+      economy/deepseek-v4.1-flash:
+        family: deepseek-v4.1-flash-1017
+        source: https://logfare.ai/v1/models
+        quote: 'DeepSeek: DeepSeek V4.1 Flash 1017'
+        read: catalog
+      gemma-4-31b-it:
+        family: gemma-4-31b
+        source: https://logfare.ai/v1/models
+        quote: 'Google: Gemma 4 31B'
+        read: catalog
+      gemma-4-26b:
+        family: gemma-4-26b-a4b
+        source: https://logfare.ai/v1/models
+        quote: 'Google: Gemma 4 26B A4B'
+        read: catalog
+    anthropic_base_url: https://logfare.ai
+    note: These IDs use Standard access without training or data-sale opt-in. Register,
+      link your Discord account and keep server membership; each API key is shown
+      once. Use /chat/completions for chat, tools and streaming, or the documented
+      /v1/messages route. Premium and Pro models need separate data consents and are
+      not configured here.
+  data_use:
+    trains: 'yes'
+    quote: If — and only if — you opt in at /consent, your post-scrub request and
+      response content may also be used to train and fine-tune the models we operate.
+    url: https://logfare.ai/privacy
+  border:
+    left_out: []
+    'on': '2026-11-11'
+    source: https://logfare.ai/tos
+  probe:
+    type: page-keywords
+    endpoint: https://logfare.ai/docs
+    keywords:
+    - There are three tiers, and every one is free
+    - New accounts use the new-account budget for their first 24 hours
+    free_marker: ''
+    require_zero_price: false
+    catalog: https://logfare.ai/v1/models
+    machinery_keywords: []
+  first_seen: '2026-11-11'
+  last_verified: '2026-11-11'
+  probe_failures: 0
+  provisional: true
+  rank: 93

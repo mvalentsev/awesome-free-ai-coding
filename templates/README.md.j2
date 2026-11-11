@@ -142,12 +142,12 @@ _Nothing verified right now._
 _Empty — the radar is clean._
 {% endif %}
 
-<sub>Pages retain offers, evidence and history. Probe archives return after passing; merged pages point to the retained row. See [archive rules](#-how-this-list-stays-fresh).</sub>
+<sub>Pages retain offers, evidence and history. A passing probe restores probe-archived rows; merged pages link to the retained row. [Archive rules](#-how-this-list-stays-fresh).</sub>
 
 </details>
 
 {% if watchlist %}
-**🔭 Checked and not listed** — {{ watch_count }} services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them]({{ checked_url }}). Nothing there is disqualified, and every verdict expires after {{ watch_recheck_days }} days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
+**🔭 Checked and not listed** — {{ watch_count }} services, with dated reasons and conditions for reconsideration: [the whole list of them]({{ checked_url }}). These reversible verdicts expire after {{ watch_recheck_days }} days. Domains rejected for cause are separate: [`blocklist.yaml`](blocklist.yaml).
 {% endif %}
 
 ## 🔧 Plug it into your agent
@@ -187,11 +187,11 @@ flowchart LR
     class R store
 ```
 
-- **Live probes, {{ schedule }}.** GitHub Actions calls every row's models API or reads its pricing page and re-verifies the offer; a row's verified date is earned by passing, never typed. A probe anchors on something that dies with the offer — a model id, a quota figure, a price row, a sentence quoted from the vendor's own page — never on the word "free", which outlives most free tiers; where a lane needs no key, the probe calls it without one, and a bot wall answering for a vendor counts as "could not check", never as "gone".
-- **Probe-gated discovery.** A scout sweeps Tavily search, Hacker News, GitHub, curated feeds and every models.dev provider that publishes a zero-cost model; an LLM extracts candidates strictly from fetched evidence, and a candidate lands only through a pull request, after passing its own live probe. The LLM never writes to this README or to `main`.
-- **Self-pruning, never silent.** {{ archive_after_failures }} failed probes in a row, {{ archive_after_days }} days without a passing one, a vendor's announced shutdown date or a reviewer's delisting move a row to the [Archive](#-archive) with the reason — and no row is ever deleted. Every arrival, departure and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}). Services checked and found to have nothing free today are on [a page of their own]({{ checked_url }}), each verdict expiring after {{ watch_recheck_days }} days so the question comes back around.
+- **Live probes, {{ schedule }}.** A passing GitHub Actions probe earns the verified date. Model IDs, quotas, prices or vendor sentences anchor the offer; the word "free" alone does not. Keyless lanes receive real keyless requests. Bot walls mean "could not check", not "gone".
+- **Probe-gated discovery.** Tavily, Hacker News, GitHub, curated feeds and zero-cost models.dev providers supply fetched evidence for LLM extraction. Candidates need a passing live probe and a reviewed pull request; the LLM writes neither this README nor `main`.
+- **Self-pruning, never silent.** {{ archive_after_failures }} consecutive failed probes, {{ archive_after_days }} days without a pass, an announced shutdown or a reviewer's delisting move a row to the [Archive](#-archive) with its reason. Rows are never deleted. Arrivals, departures and free-model changes remain in [`history.jsonl`](history.jsonl) and the [Atom feed]({{ feed_url }}).
 
-The whole mechanism, file by file — the scout's sources and their expiry, the blocklist's rules, what a row's prose may say — is in [CONTRIBUTING.md](CONTRIBUTING.md).
+Sources, expiry rules and contribution requirements are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 🤝 Contributing
 

@@ -385,6 +385,12 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("README.md", r"(\d+) consecutive failed probes, (\d+) days without a pass",
+          lambda root: (str(ARCHIVE_AFTER_FAILURES), str(ARCHIVE_AFTER_DAYS)),
+          "models.ARCHIVE_AFTER_FAILURES and ARCHIVE_AFTER_DAYS; archive boundary controls in tests/test_models.py"),
+    Claim("README.md", r"These reversible verdicts expire after (\d+) days",
+          lambda root: (str(WATCH_RECHECK_DAYS),),
+          "models.WATCH_RECHECK_DAYS; current and expired verdict controls in tests/test_discovery.py"),
     Claim("assets/README.md", r"radar beam uses (CSS) animation",
           lambda root: ('CSS',) if 'animation:turn' in _style() else (),
           "pictures._style; animation and reduced-motion controls in tests/test_pictures.py"),

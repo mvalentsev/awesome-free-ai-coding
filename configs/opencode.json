@@ -1264,6 +1264,28 @@
       },
       "models": {}
     },
+    "logfare": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Logfare (Standard models)",
+      "options": {
+        "baseURL": "https://logfare.ai/v1",
+        "apiKey": "{env:LOGFARE_API_KEY}"
+      },
+      "models": {
+        "qwen-3.8-27b": {
+          "name": "qwen-3.8-27b"
+        },
+        "economy/deepseek-v4.1-flash": {
+          "name": "economy/deepseek-v4.1-flash"
+        },
+        "gemma-4-31b-it": {
+          "name": "gemma-4-31b-it"
+        },
+        "gemma-4-26b": {
+          "name": "gemma-4-26b"
+        }
+      }
+    },
     "routerplex": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "RouterPlex",

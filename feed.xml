@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-11T00:01:05Z</updated>
+  <updated>2026-11-11T15:23:20Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/logfare/20261111T152320Z</id>
+    <title>Added: Logfare (Standard models)</title>
+    <link rel="alternate" href="https://logfare.ai"/>
+    <updated>2026-11-11T15:23:20Z</updated>
+    <summary type="text">Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20261111T000105Z</id>
     <title>Free models changed: Google AI Studio (Gemini API)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-11-01T15:17:07Z</updated>
     <summary type="text">dropped laguna-s-2.1, laguna-xs-2.1 · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, xing4.0-29b-a4b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/routeway/20261101T151707Z</id>
-    <title>Free models changed: Routeway</title>
-    <link rel="alternate" href="https://routeway.ai"/>
-    <updated>2026-11-01T15:17:07Z</updated>
-    <summary type="text">dropped deepseek-v4-flash, minimax-m2.7 · free models: muse-glimmer-30b</summary>
   </entry>
 </feed>

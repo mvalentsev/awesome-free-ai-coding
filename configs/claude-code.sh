@@ -189,6 +189,20 @@ claude-fireworks-ai() {
   claude "$@"
 }
 
+# ── Logfare (Standard models) · get a key: https://logfare.ai/register
+#    free ids: qwen-3.8-27b, economy/deepseek-v4.1-flash, gemma-4-31b-it, gemma-4-26b
+claude-logfare() {
+  if [ -z "${LOGFARE_API_KEY:-}" ]; then
+    echo "claude-logfare: set LOGFARE_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
+  ANTHROPIC_BASE_URL="https://logfare.ai" \
+  ANTHROPIC_AUTH_TOKEN="$LOGFARE_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="qwen-3.8-27b" \
+  claude "$@"
+}
+
 # ── RouterPlex · get a key: https://routerplex.com/sign-up
 #    free ids: deepseek-v4-flash, glm-5.3-flash, claude-sonnet-4-6
 claude-routerplex() {

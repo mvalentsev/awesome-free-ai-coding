@@ -2039,25 +2039,6 @@ watched:
       Speka names its operator and where its models are served, and the
       catalog carries what the home page claims.
 
-  - domains: [logfare.ai]
-    name: Logfare
-    checked_on: '2026-09-14'
-    reason: >-
-      "Free LLM Inference. No Limits", with the price stated plainly — "In
-      exchange for free inference, we log every request — prompts,
-      completions, and metadata. After PII scrubbing this may be used in our
-      private, internal evaluation datasets" — and an operator described only
-      as "an independent research and engineering group"; /terms and /about
-      answer 404, and the privacy policy names no company. The keyless catalog
-      is 19 ids, and 14 of them — glm-5.3, kimi-k2.6, qwen-3.8-27b,
-      gemma-4-26b, melotts, aura-2-en, nova-3, lucid-origin, phoenix-1.0 and
-      the flux and whisper builds — are Cloudflare Workers AI's names, whose
-      free allocation is 10,000 neurons a day per account. Unlimited free use
-      of it is either paid for by someone unnamed or pooled.
-    reopen_if: >-
-      Logfare publishes terms naming its operator and a stated quota, or says
-      how the inference is paid for.
-
   - domains: [openadapter.dev, openadapter.in]
     name: OpenAdapter
     checked_on: '2026-09-14'

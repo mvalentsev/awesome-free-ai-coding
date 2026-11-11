@@ -127,6 +127,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-11-09
 - [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-09
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-11-09 · `glm-4.1v-thinking-flash` · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)
+- [Logfare (Standard models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) — verified 2026-11-11
 - [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) — verified 2026-11-09
 - [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) — verified 2026-11-09
 - [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) — verified 2026-11-09
