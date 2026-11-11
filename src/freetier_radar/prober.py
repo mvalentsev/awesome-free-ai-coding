@@ -11,6 +11,7 @@ from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from enum import Enum
+from html.parser import HTMLParser
 from pathlib import Path
 
 import httpx
@@ -1926,6 +1927,14 @@ _SCRIPT_OR_STYLE = re.compile(
 _COMMENT = re.compile(r"<!--.*?-->", re.S)
 
 
+class _ScriptType(HTMLParser):
+    json_ld = False
+
+    def handle_starttag(self, tag, attrs):
+        kind = next((value for key, value in attrs if key == 'type'), None)
+        self.json_ld = tag == 'script' and (kind or '').strip().casefold() == 'application/ld+json'
+
+
 def _rendered(text: str) -> str:
     """The page with its machinery taken out: framework state blobs, OpenAPI
     enums, response samples, i18n bundles — everything a vendor ships to the
@@ -1949,8 +1958,11 @@ def _rendered(text: str) -> str:
     from .page_reader import without_templates
 
     def cut(match: re.Match[str]) -> str:
-        attrs = (match.group(1) or "").lower()
-        return match.group(0) if "ld+json" in attrs else " "
+        if match.group(1) is None:
+            return ' '
+        script = _ScriptType()
+        script.feed('<script' + match.group(1) + '>')
+        return match.group(0) if script.json_ld else ' '
     return _COMMENT.sub("", without_templates(_SCRIPT_OR_STYLE.sub(cut, text)))
 
 

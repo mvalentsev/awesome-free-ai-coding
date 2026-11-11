@@ -96,6 +96,7 @@ def test_the_map_calls_generated_exactly_what_the_render_writes(tmp_path, render
     generated = {n.path for n in MAP if n.kind is Kind.GENERATED}
     covered = {node_for(f).path for f in written if node_for(f).kind is Kind.GENERATED}
     assert generated == covered
+    assert (out / 'llms.txt').read_text(encoding='utf-8').startswith('# awesome-free-ai-coding')
     # CONTRIBUTING.md is written by hand, all but the map section the render prints
     assert {f for f in written if node_for(f).kind is not Kind.GENERATED} == {"CONTRIBUTING.md", ".github/workflows/indexnow.yml"}
 

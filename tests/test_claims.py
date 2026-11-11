@@ -54,6 +54,20 @@ def test_contributing_writer_generates_rule_values_from_the_registered_truth(tmp
     assert check_claims(root, (claim,), scheduled=()) == []
 
 
+def test_contributing_writer_generates_the_evidence_age_and_its_unit(tmp_path, monkeypatch):
+    from freetier_radar import claims
+    from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
+
+    root = _root(tmp_path, 'records older than one day cannot authorize a new push.\n'
+                          f'{MAP_BEGIN}\nold map\n{MAP_END}\n')
+    claim = next(c for c in CLAIMS if c.source.startswith('quality.fresh_eligibility;'))
+    for days, words in [(2, 'two days'), (1, 'one day')]:
+        monkeypatch.setattr(claims, 'ELIGIBILITY_MAX_AGE_DAYS', days)
+        text = render_contributing(root / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
+        assert f'records older than {words} cannot authorize' in text
+        assert check_claims(root, (claim,), scheduled=()) == []
+
+
 def test_a_sentence_rewritten_past_its_claim_is_reported(tmp_path):
     """A claim that stops matching checks nothing, which is how a hand-written
     figure drifts: the sentence is reworded, the figure goes with it."""

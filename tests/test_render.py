@@ -1976,14 +1976,6 @@ def test_llms_txt_says_when_a_row_wants_a_card_or_a_key():
     assert "no key" not in line
 
 
-def test_render_artifacts_writes_llms_txt(tmp_path: Path):
-    from freetier_radar.models import save_registry
-    reg = tmp_path / "registry.yaml"
-    save_registry(reg, [make()])
-    render_artifacts(reg, tmp_path, today=TODAY)
-    assert (tmp_path / "llms.txt").read_text(encoding="utf-8").startswith("# awesome-free-ai-coding")
-
-
 def test_the_readme_links_the_browse_page_and_llms_txt(tmp_path: Path):
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"

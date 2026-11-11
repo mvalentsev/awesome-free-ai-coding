@@ -452,13 +452,15 @@ def test_page_text_is_the_page_and_not_its_machinery():
         '<script type="application/ld+json">{"@type":"Question","name":"Is it free?"}</script>'
         '</head><body><nav>Release notes Deprecations Libraries</nav>'
         '<noscript>Please enable JavaScript</noscript>'
-        '<p>Free tier: 1,000 requests a day</p>'
+        '<p>Free tier: <!-- -->1,000<!-- --> requests a day</p>'
+        '<template data-mint="manifest">This product is discontinued.</template>'
+        '<!-- This product will be retired soon. -->'
         '<footer>Product shut down notices</footer></body></html>')))
     with httpx.Client() as c:
         text = fetch_page_texts(["https://p.dev"], c)["https://p.dev"]
     assert "Free tier: 1,000 requests a day" in text
     assert "Is it free?" in text
-    for noise in ("Deprecations", "retired", "shut down", "enable JavaScript", "color:red"):
+    for noise in ("Deprecations", "retired", "discontinued", "shut down", "enable JavaScript", "color:red"):
         assert noise not in text
 
 

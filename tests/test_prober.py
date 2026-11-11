@@ -3595,20 +3595,26 @@ async def test_a_keyword_the_vendor_only_serves_as_page_data_is_declared():
     assert result.status is ProbeStatus.PASS
 
 
+@pytest.mark.parametrize('attributes,expected', [
+    ('type="application/ld+json"', ProbeStatus.PASS),
+    ('TYPE=" APPLICATION/LD+JSON "', ProbeStatus.PASS),
+    ('data-type="application/ld+json"', ProbeStatus.FAIL),
+    ('''title=' type="application/ld+json"' ''', ProbeStatus.FAIL),
+])
 @respx.mock
-async def test_json_ld_is_the_page_speaking_and_stays_readable():
+async def test_json_ld_is_the_page_speaking_and_stays_readable(attributes, expected):
     """JSON-LD survives the script stripping: structured data is the vendor
     answering a question, and a page can carry part of its evidence nowhere else
     (Freebuff's FAQ answers)."""
     entry = page_entry()
     entry.probe.keywords = ["25 free requests per day"]
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(
-        '<p>Pricing</p><script type="application/ld+json">'
+        '<p>Pricing</p><script ' + attributes + '>'
         '{"@type":"Question","acceptedAnswer":{"text":"25 free requests per day"}}</script>'
     )))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
-    assert result.status is ProbeStatus.PASS
+    assert result.status is expected
 
 
 @respx.mock

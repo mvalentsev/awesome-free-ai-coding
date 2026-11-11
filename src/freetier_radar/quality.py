@@ -11,6 +11,7 @@ from . import git
 CRITERIA = ('existing_behavior', 'reuse', 'copy', 'user_path', 'regression', 'diff', 'eligibility')
 ELIGIBILITY_FIELDS = ('plan', 'payment', 'regions', 'limits', 'deadline', 'conflicts')
 ELIGIBILITY_MAX_AGE_DAYS = 1
+ELIGIBILITY_FUTURE_SKEW_MINUTES = 5
 CONFLICT_STATES = ('none', 'resolved', 'unresolved')
 WITHDRAWAL_VERDICTS = ('ended', 'ineligible')
 SIGNOFFS = '.remember/review-signoffs'
@@ -131,11 +132,20 @@ def validate_judgment(value: dict, scope: dict) -> None:
             raise ValueError(row + ': eligibility needs a timestamp with timezone') from None
 
 
+def _fresh_timestamp(value: str, current: datetime) -> bool:
+    try:
+        checked = datetime.fromisoformat(value)
+        return (checked.tzinfo is not None
+                and current - timedelta(days=ELIGIBILITY_MAX_AGE_DAYS) <= checked
+                <= current + timedelta(minutes=ELIGIBILITY_FUTURE_SKEW_MINUTES))
+    except (TypeError, ValueError):
+        return False
+
+
 def fresh_eligibility(records: list[dict]) -> None:
     current = datetime.now(timezone.utc)
     for record in records:
-        checked = datetime.fromisoformat(record['checked_at'])
-        if checked < current - timedelta(days=ELIGIBILITY_MAX_AGE_DAYS) or checked > current + timedelta(minutes=5):
+        if not _fresh_timestamp(record['checked_at'], current):
             raise ValueError(record['row'] + ': eligibility evidence is stale or future-dated')
 
 
@@ -149,8 +159,7 @@ def current_eligibility_sources(bundle, records: list[dict]) -> None:
             if source is None:
                 raise ValueError(record['row'] + ': eligibility needs successful current source reads')
             try:
-                checked = datetime.fromisoformat(source['attempts'][-1]['at'])
-                if checked.tzinfo is None or checked < current - timedelta(days=ELIGIBILITY_MAX_AGE_DAYS) or checked > current + timedelta(minutes=5):
+                if not _fresh_timestamp(source['attempts'][-1]['at'], current):
                     raise ValueError()
             except (KeyError, IndexError, TypeError, ValueError):
                 raise ValueError(record['row'] + ': eligibility source receipt is missing, stale or future-dated') from None

@@ -249,7 +249,7 @@ def test_withdrawal_must_resolve_every_reviewed_free_access_mode(tmp_path, mode)
 
 
 @pytest.mark.parametrize('defect', ['missing', 'partial-families', 'missing-conflicts',
-                                  'stale', 'unread-source', 'stale-source', 'future', None])
+                                  'stale', 'unread-source', 'stale-source', None])
 def test_eligibility_signoff_requires_current_conditions_for_every_changed_family(tmp_path, defect):
     base, head = proposal(tmp_path)
     (tmp_path / 'index.json').write_text(json.dumps({'entries': [{
@@ -286,8 +286,7 @@ def test_eligibility_signoff_requires_current_conditions_for_every_changed_famil
         bundle.save('sources', {'checks': [{'url': source, 'passed': True,
             'attempts': [{'at': (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()}]}]})
     elif defect:
-        offset = timedelta(days=-2) if defect == 'stale' else timedelta(days=1)
-        record['checked_at'] = (datetime.now(timezone.utc) + offset).isoformat()
+        record['checked_at'] = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
     if defect:
         with pytest.raises(ValueError):
             accept_judgment(bundle, value)
@@ -295,6 +294,39 @@ def test_eligibility_signoff_requires_current_conditions_for_every_changed_famil
     else:
         accept_judgment(bundle, value)
         assert push(tmp_path, base, head) == []
+
+
+@pytest.mark.parametrize('stamp,accepted', [
+    ('2026-11-10T11:59:59+00:00', False),
+    ('2026-11-10T12:00:00+00:00', True),
+    ('2026-11-11T15:00:00+03:00', True),
+    ('2026-11-11T12:05:00+00:00', True),
+    ('2026-11-11T12:05:01+00:00', False),
+    ('2026-11-11T12:00:00', False),
+])
+def test_judgment_and_source_receipts_share_exact_freshness_boundaries(tmp_path, monkeypatch,
+                                                                    stamp, accepted):
+    from freetier_radar import quality
+
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 11, 11, 12, tzinfo=timezone.utc)
+
+    monkeypatch.setattr(quality, 'datetime', Clock)
+    source = 'https://vendor.example/plans'
+    bundle = Bundle(tmp_path, tmp_path)
+    bundle.save('sources', {'checks': [{'url': source, 'passed': True,
+                                      'attempts': [{'at': stamp}]}]})
+    record = {'row': 'vendor', 'checked_at': stamp, 'sources': [source]}
+    checks = [lambda: quality.fresh_eligibility([record]),
+              lambda: quality.current_eligibility_sources(bundle, [record])]
+    for check in checks:
+        if accepted:
+            check()
+        else:
+            with pytest.raises(ValueError, match='stale or future-dated'):
+                check()
 
 
 @pytest.mark.parametrize('defect', ['checkboxes', 'partial-diff', 'wrong-head', 'empty-finding',

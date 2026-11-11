@@ -23,7 +23,7 @@ import httpx
 
 from .page_reader import recover_page_sync
 from .models import domain_of, is_covered, under
-from .prober import UA, page_response_ok
+from .prober import TAG, UA, _rendered, page_response_ok
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 
@@ -339,26 +339,16 @@ def _timeout_within(left: float | None) -> httpx.Timeout:
     return httpx.Timeout(min(TIMEOUT.read, left), connect=min(TIMEOUT.connect, left))
 
 
-# What a reader never sees and a model should not be fed: the site's menus and
-# footer, stylesheets, the JavaScript-required notice, and scripts — except
-# JSON-LD, which is page content in a structured coat (Freebuff prints most of
-# its FAQ answers only there). Left in, they spend PAGE_TEXT_LIMIT before the
-# body text, and a sidebar word can trip the retirement sweep.
-_NOISE_BLOCK = re.compile(r"<(script|style|nav|footer|noscript)\b[^>]*>.*?</\1\s*>", re.S | re.I)
-_LD_JSON = re.compile(r"""type\s*=\s*["']?application/ld\+json""", re.I)
+# Navigation is omitted from the scout's excerpts as well as the machinery
+# excluded by the probe's shared reader. A menu's words are no retirement notice.
+_NOISE_BLOCK = re.compile(r"<(nav|footer|noscript)\b[^>]*>.*?</\1\s*>", re.S | re.I)
 
 
 def page_text(html: str) -> str:
     """The page as prose: noise blocks dropped, tags stripped, whitespace
-    collapsed. What the scout reads and what a quote is verified against, so
-    the two never disagree about what was on the page."""
-    def drop(match: re.Match) -> str:
-        block = match.group(0)
-        opening = block[:block.find(">") + 1]
-        if match.group(1).lower() == "script" and _LD_JSON.search(opening):
-            return block
-        return " "
-    text = re.sub(r"<[^>]+>", " ", _NOISE_BLOCK.sub(drop, html))
+    collapsed. The probe's reader keeps JSON-LD and excludes inert templates;
+    raw-body quote matching remains a separate provenance check."""
+    text = TAG.sub(" ", _NOISE_BLOCK.sub(" ", _rendered(html)))
     return re.sub(r"\s+", " ", text)
 
 

@@ -502,6 +502,25 @@ def test_retirement_evidence_requires_a_successful_http_read(status):
     assert entry.retired_on == (date(2026, 9, 30) if status == 200 else None)
 
 
+@pytest.mark.parametrize('markup,expected', [
+    ('<template>{quote}</template>', False),
+    ('<!-- {quote} -->', False),
+    ('<script data-type="application/ld+json">{quote}</script>', False),
+    ('<p>{quote}</p>', True),
+])
+def test_retirement_evidence_requires_published_prose_beside_a_live_offer(markup, expected):
+    quote = 'The free tier will be permanently shut down on 30 September 2026.'
+    entry = make(source_urls=['https://x.ai/blog'])
+    body = '<p>The free tier is available.</p>' + markup.format(quote=quote)
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=body))
+    with httpx.Client(transport=transport) as client:
+        pages = fetch_page_texts(entry.source_urls, client)
+    applied = apply_retirements([entry], [{'id': entry.id, 'retired_on': '2026-09-30',
+                                          'quote': quote}], pages)
+    assert applied == (['x (2026-09-30)'] if expected else [])
+    assert entry.retired_on == (date(2026, 9, 30) if expected else None)
+
+
 @pytest.mark.parametrize("status", [200, 403])
 def test_retirement_sweep_never_sends_an_http_error_body_to_the_llm(status):
     quote = "The free tier will be permanently shut down on 30 September 2026."
