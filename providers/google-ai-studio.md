@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-11-09'
-description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.8-flash, gemini-3.5-flash-lite, gemini-3-flash, gemini-3.1-flash-lite, gemini-3.6-flash, gemma-4. Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a…'
+description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.8-flash, gemini-3.5-flash-lite, gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3.1-flash-lite, gemini-3.6-flash and 1 more. Free eligibility is priced per…'
 permalink: /providers/google-ai-studio/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-11
 crumb: Google AI Studio (Gemini API)
 model_sort: true
 ---
@@ -20,13 +20,13 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gemini-3.5-flash-lite">[`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/)</span>, <span data-model-family="gemini-3-flash">[`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/)</span>, <span data-model-family="gemini-3.1-flash-lite">[`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/)</span>, <span data-model-family="gemini-3.6-flash">[`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/)</span>, <span data-model-family="gemma-4">`gemma-4`</span></span>
+<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gemini-3.5-flash-lite">[`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/)</span>, <span data-model-family="gemini-2.5-flash">[`gemini-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-flash/)</span>, <span data-model-family="gemini-2.5-flash-lite">`gemini-2.5-flash-lite`</span>, <span data-model-family="gemini-2.5-pro">[`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/)</span>, <span data-model-family="gemini-3-flash">[`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/)</span>, <span data-model-family="gemini-3.1-flash-lite">[`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/)</span>, <span data-model-family="gemini-3.6-flash">[`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/)</span>, <span data-model-family="gemma-4">`gemma-4`</span></span>
 
 ## Limits, in the vendor's words
 
 Usage allowance: see your account for values (period not published) per project per model
 
-Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Access to the 2.5 models is restricted to projects that previously used them. Actual rate limits are visible after signing in to AI Studio. Free-tier prompts and responses may be used to improve Google products; paid usage has different data-use terms. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.
+Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Google is "limiting access to the 2.5 models to users who have actively used them in the past". Actual rate limits are visible after signing in to AI Studio. Unpaid usage may improve Google products. In the EEA, Switzerland and the UK, Paid Services data-use terms exclude training and "apply to all Services, including Google AI Studio and unpaid quota in the Gemini API". Google permits "only Paid Services when making API Clients available to users" in those regions. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.
 
 ## Where it is offered
 
@@ -40,8 +40,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
 - Key: `GOOGLE_AI_STUDIO_API_KEY` — get one at <https://aistudio.google.com/apikey>
-- Callable ids: `gemini-3.8-flash`, `gemini-3.5-flash-lite`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`
-- Note: Pass the key as Bearer. The 2.5 IDs require projects that previously used those models; new projects should choose the current Flash or Gemma IDs.
+- Callable ids: `gemini-3.8-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
+- Note: Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs.
 
 Try it from your terminal with your key in `GOOGLE_AI_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -61,11 +61,14 @@ curl -s https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 - Source: <https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api>
 - Source: <https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash>
 - Source: <https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash>
+- Source: <https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite>
+- Source: <https://ai.google.dev/gemini-api/docs/deprecations>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-11` — Free models changed: added gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro
 - `2026-10-28` — Free models changed: dropped gemini-3.5-flash, gemini-3.7-flash
 - `2026-09-25` — Free models changed: added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4
 - `2026-09-23` — Free models changed: dropped gemini-2.5-pro
@@ -75,6 +78,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-11 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

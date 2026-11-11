@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-10T18:05:16Z</updated>
+  <updated>2026-11-11T00:01:05Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20261111T000105Z</id>
+    <title>Free models changed: Google AI Studio (Gemini API)</title>
+    <link rel="alternate" href="https://aistudio.google.com"/>
+    <updated>2026-11-11T00:01:05Z</updated>
+    <summary type="text">added gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro · free models: gemini-3.8-flash, gemini-3.6-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4, gemini-2.5-pro, gemini-2.5-flash, gemini-2.5-flash-lite</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cheapllm-shop/20261110T180516Z</id>
     <title>Added: cheapllm.shop</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://routeway.ai"/>
     <updated>2026-11-01T15:17:07Z</updated>
     <summary type="text">dropped deepseek-v4-flash, minimax-m2.7 · free models: muse-glimmer-30b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/haimaker/20261101T140254Z</id>
-    <title>Archived: Haimaker</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/"/>
-    <updated>2026-11-01T14:02:54Z</updated>
-    <summary type="text">documented free promotions ended on 2026-11-01</summary>
   </entry>
 </feed>

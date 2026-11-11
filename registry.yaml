@@ -148,23 +148,28 @@ entries:
   - https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api
   - https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash
   - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash
+  - https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite
+  - https://ai.google.dev/gemini-api/docs/deprecations
   card_required: false
   offering: Free tier on the Gemini API, priced model by model rather than as one
     account quota
   limits: Free eligibility is priced per model. The current Flash, Flash-Lite and
     Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash
-    do not. Access to the 2.5 models is restricted to projects that previously used
-    them. Actual rate limits are visible after signing in to AI Studio. Free-tier
-    prompts and responses may be used to improve Google products; paid usage has different
-    data-use terms. Context caching is free on the Flash models and unavailable on
-    the Flash-Lite ones.
+    do not. Google is "limiting access to the 2.5 models to users who have actively
+    used them in the past". Actual rate limits are visible after signing in to AI
+    Studio. Unpaid usage may improve Google products. In the EEA, Switzerland and
+    the UK, Paid Services data-use terms exclude training and "apply to all Services,
+    including Google AI Studio and unpaid quota in the Gemini API". Google permits
+    "only Paid Services when making API Clients available to users" in those regions.
+    Context caching is free on the Flash models and unavailable on the Flash-Lite
+    ones.
   quotas:
   - unit: usage
     scope: project-model
     state: account-specific
     source: https://ai.google.dev/gemini-api/docs/rate-limits
     quote: View your active rate limits in AI Studio
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -179,6 +184,12 @@ entries:
   - family: gemini-3-flash
     aa_model: gemini-3-flash
   - family: gemma-4
+  - family: gemini-2.5-pro
+    aa_auto: false
+  - family: gemini-2.5-flash
+    aa_auto: false
+  - family: gemini-2.5-flash-lite
+    aa_auto: false
   api:
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     key_url: https://aistudio.google.com/apikey
@@ -208,8 +219,8 @@ entries:
         family: gemini-2.5-flash-lite
         source: https://ai.google.dev/gemini-api/docs/pricing
         quote: gemini-2.5-flash-lite
-    note: Pass the key as Bearer. The 2.5 IDs require projects that previously used
-      those models; new projects should choose the current Flash or Gemma IDs.
+    note: Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described
+      under Limits; new projects should choose the current Flash or Gemma IDs.
   data_use:
     trains: 'yes'
     quote: When you use Unpaid Services, including, for example, Google AI Studio
@@ -8935,6 +8946,7 @@ entries:
   - https://cloud.google.com/resources/cloud-express-faqs
   - https://cloud.google.com/free/docs/free-cloud-features
   - https://raw.githubusercontent.com/google-gemini/gemini-cli/HEAD/packages/cli/src/config/auth.ts
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/2-5-flash-lite
   card_required: false
   offering: 'Google Cloud''s express mode: an API key and 90 days of Gemini models
     within the free tier''s quotas, with no billing information, for a new Google
@@ -8943,7 +8955,9 @@ entries:
     information. Stable and Preview model rate policies differ; enabling billing is
     necessary after the trial. Existing Google Cloud accounts do not get this offer.
     The separate $300 Cloud Free Trial needs a payment method. Express is Preview
-    and may not process personal data.
+    and may not process personal data. The Express model list still names gemini-2.5-flash-lite,
+    while its Cloud model card gives a retirement date of "October 20, 2026". The
+    documents give conflicting information about its current availability in Express.
   quotas:
   - unit: requests
     period: minute
@@ -8952,7 +8966,7 @@ entries:
     label: Preview models
     source: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
     quote: gemini-3.1-pro-preview Dynamic
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   - amount: 10.0
     unit: requests
     period: minute
@@ -8980,7 +8994,7 @@ entries:
     model_ids:
     - gemini-2.5-pro
     - gemini-2.5-flash
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-11-10'
   - unit: requests
     period: minute
     scope: project-model
@@ -8994,7 +9008,7 @@ entries:
     model_ids:
     - gemini-3.1-pro-preview
     - gemini-3-flash-preview
-    reviewed_on: '2026-11-03'
+    reviewed_on: '2026-11-10'
   free_part: models
   models:
   - family: gemini-3.1-pro
@@ -9020,7 +9034,8 @@ entries:
         family: gemini-2.5-flash-lite
         source: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
         quote: gemini-2.5-flash-lite
-    note: 'the key stands in for a project and a location: `https://aiplatform.googleapis.com/v1/publishers/google/models/{model}:streamGenerateContent?key={API_KEY}`,
+    note: 'Use the "global endpoint without a project ID or location", with your API
+      key: `https://aiplatform.googleapis.com/v1/publishers/google/models/{model}:streamGenerateContent?key={API_KEY}`,
       Gemini''s own API rather than an OpenAI-compatible one. Clients kept the old
       name: the Google Gen AI SDK takes the key with vertexai=True, and Gemini CLI
       reads it from GOOGLE_API_KEY "if using express mode", with Vertex AI as the

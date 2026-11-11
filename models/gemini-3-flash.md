@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3-flash free: 2 providers, limits and ids, provider probes 2026-11-09'
 description: gemini-3-flash is served free by Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3-flash/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-11
 crumb: gemini-3-flash
 ---
 
@@ -28,7 +28,7 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 - Limits, in the vendor's words: Usage allowance: see your account for values (period not published) per project per model
 
-Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Access to the 2.5 models is restricted to projects that previously used them. Actual rate limits are visible after signing in to AI Studio. Free-tier prompts and responses may be used to improve Google products; paid usage has different data-use terms. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.
+Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Google is "limiting access to the 2.5 models to users who have actively used them in the past". Actual rate limits are visible after signing in to AI Studio. Unpaid usage may improve Google products. In the EEA, Switzerland and the UK, Paid Services data-use terms exclude training and "apply to all Services, including Google AI Studio and unpaid quota in the Gemini API". Google permits "only Paid Services when making API Clients available to users" in those regions. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.
 
 </details>
 
@@ -50,7 +50,7 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 - Limits, in the vendor's words: Preview models: Per-minute requests allowance: amount varies per project per model
 
-The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.
+The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data. The Express model list still names gemini-2.5-flash-lite, while its Cloud model card gives a retirement date of "October 20, 2026". The documents give conflicting information about its current availability in Express.
 
 </details>
 
@@ -63,13 +63,14 @@ The free express trial is for new Google Cloud users and requires no billing inf
 
 - [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
 - [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) — free at Google AI Studio (Gemini API)
-- [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
+- [`gemini-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-flash/) — free at Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
+- [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) — free at Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) — free at Google AI Studio (Gemini API)
 - [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API)
 
 ---
 
-Generated from `registry.yaml` on 2026-11-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-11 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
