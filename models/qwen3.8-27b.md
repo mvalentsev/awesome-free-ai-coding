@@ -144,7 +144,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta
 
-> ⚠️ **Does not work as published since [2026-11-05](https://docs.vlm.run/gateway/authentication).** Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 403 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.
+> ⚠️ **Does not work as published since [2026-11-05](https://docs.vlm.run/gateway/authentication).** Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 401 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>

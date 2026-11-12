@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'The Grid free tier: limits, free models, verified 2026-11-09'
-description: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time. The signup grant is a limited-time offer with no payment step. A first deposit…
+description: OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models. An account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are…
 permalink: /providers/the-grid/
 last_modified_at: 2026-11-12
 crumb: The Grid
@@ -15,7 +15,7 @@ crumb: The Grid
 
 ## What you get
 
-OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time
+OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models
 
 ## Free models
 
@@ -23,11 +23,11 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 ## Limits, in the vendor's words
 
-Promotional signup credit: $25 once per account
+Signup credit: $5 once per account (expires 14 days after signup)
 
 Before first deposit: 100 requests/day; 3 requests at once per account
 
-The signup grant is a limited-time offer with no payment step. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.
+An account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.
 
 ## Where it is offered
 
@@ -52,7 +52,7 @@ curl -s https://api.thegrid.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://thegrid.ai/docs/start-here/quickstart.md>, anchored on `New accounts get a $25 signup credit`; ids checked in <https://api.thegrid.ai/v1/models>
+- Probe: the page at <https://thegrid.ai/llms.txt>, anchored on `$5 signup credit`; ids checked in <https://api.thegrid.ai/v1/models>
 - Source: <https://thegrid.ai/docs/start-here/quickstart.md>
 - Source: <https://thegrid.ai/llms.txt>
 - Source: <https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md>

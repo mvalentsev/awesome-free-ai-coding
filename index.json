@@ -360,7 +360,8 @@
           "xingchen-agi/xing4.0-29b-a4b:free",
           "recursive/flint-v1.0:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free"
+          "thinkingmachines/inkling-2-small:free",
+          "baidu/ernie-5.5-flash-preview:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -373,6 +374,11 @@
           "liquid/lfm-3-1.7b:free": {
             "context_tokens": 262144,
             "output_tokens": 8192,
+            "source": "https://openrouter.ai/api/v1/models"
+          },
+          "baidu/ernie-5.5-flash-preview:free": {
+            "context_tokens": 1024000,
+            "output_tokens": 921600,
             "source": "https://openrouter.ai/api/v1/models"
           }
         },
@@ -450,7 +456,8 @@
           "xingchen-agi/xing4.0-29b-a4b:free",
           "recursive/flint-v1.0:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free"
+          "thinkingmachines/inkling-2-small:free",
+          "baidu/ernie-5.5-flash-preview:free"
         ],
         "what": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
         "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
@@ -1478,7 +1485,7 @@
           "label": "Advertised starter usage",
           "source": "https://ollama.com/blog/transparent-pricing",
           "quote": "Free: a starter amount each month for a set of starter models",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         }
       ],
@@ -1828,7 +1835,10 @@
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free"
+          "thinkingmachines/inkling-2-small:free",
+          "baidu/ernie-5.5-flash-preview:free",
+          "reflection/beam-free",
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1847,6 +1857,11 @@
           "liquid/lfm-3-1.7b:free": {
             "context_tokens": 262144,
             "output_tokens": 8192,
+            "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "baidu/ernie-5.5-flash-preview:free": {
+            "context_tokens": 1024000,
+            "output_tokens": 921600,
             "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
@@ -1929,7 +1944,10 @@
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free"
+          "thinkingmachines/inkling-2-small:free",
+          "baidu/ernie-5.5-flash-preview:free",
+          "reflection/beam-free",
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -1976,7 +1994,10 @@
           "stealth/glyph-cluster": "",
           "nvidia/nemotron-3.5-super-vl:free": "",
           "liquid/lfm-3-1.7b:free": "",
-          "thinkingmachines/inkling-2-small:free": ""
+          "thinkingmachines/inkling-2-small:free": "",
+          "baidu/ernie-5.5-flash-preview:free": "",
+          "reflection/beam-free": "",
+          "nvidia/nemotron-3.5-lightning-free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
@@ -2367,7 +2388,7 @@
           "condition_quote": "free models don't count against your quota at all",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         },
         {
@@ -2379,7 +2400,7 @@
           "condition_quote": "free models don't count against your quota at all",
           "source": "https://docs.devin.ai/desktop/accounts/quota",
           "quote": "daily and weekly allowances",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         },
         {
@@ -2389,7 +2410,7 @@
           "label": "Tab",
           "source": "https://devin.ai/pricing",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         },
@@ -2400,7 +2421,7 @@
           "label": "Inline edits",
           "source": "https://devin.ai/pricing",
           "quote": "Unlimited inline edits",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -3020,7 +3041,7 @@
           "label": "Free plan",
           "source": "https://learn.chatgpt.com/docs/pricing",
           "quote": "Explore Codex capabilities on quick coding tasks",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -4814,7 +4835,7 @@
           "condition_quote": "The 2-week Pro Trial includes 300 credits",
           "source": "https://docs.qoder.com/account/pricing",
           "quote": "Unlimited completions & next edits",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         }
       ],
@@ -5385,7 +5406,7 @@
           "label": "Free route",
           "source": "https://api.tokenrouter.com/api/pricing",
           "quote": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -7110,7 +7131,8 @@
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
           "xing4.0-29b-a4b-free",
-          "crouton-alpha-free"
+          "crouton-alpha-free",
+          "ernie-5.5-flash-preview-free"
         ],
         "model_bindings": {
           "intern-s2-free": {
@@ -7144,7 +7166,10 @@
           "decision-model-preview",
           "elephant-1-free",
           "mammoth-1-free",
-          "span-01-lite-free"
+          "span-01-lite-free",
+          "doubao-seedream-5-5",
+          "dubbing_v1",
+          "dubbing_v2"
         ],
         "no_family_ids": [
           "k2.6-code-preview-free",
@@ -7251,7 +7276,8 @@
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
           "xing4.0-29b-a4b-free",
-          "crouton-alpha-free"
+          "crouton-alpha-free",
+          "ernie-5.5-flash-preview-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
         "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
@@ -9535,7 +9561,7 @@
           "condition_quote": "Free 14 Day Trial no credit card",
           "source": "https://www.qodo.ai/pricing/",
           "quote": "Unlimited credits",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         },
         {
@@ -9546,7 +9572,7 @@
           "condition_quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
           "source": "https://www.qodo.ai/pricing/",
           "quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -9667,7 +9693,7 @@
           "label": "Current promotion",
           "source": "https://www.workbuddy.ai/docs/ide/Account/pricing",
           "quote": "code completion is unlimited",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         },
@@ -10982,7 +11008,7 @@
           "state": "unmetered",
           "source": "https://lp.jetbrains.com/ai-ides-faq/",
           "quote": "Unlimited code completion",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -11395,7 +11421,7 @@
           "label": "Free routes",
           "source": "https://tokenharbor.ai/faq",
           "quote": "Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count, because different models and requests have different costs. Your dashboard shows usage as a percentage.",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         },
         {
@@ -12171,10 +12197,10 @@
           "qwen/qwen3.8-27b": 4096
         },
         "refuses_bearer": true,
-        "note": "Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate 4,096-token request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.",
+        "note": "Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.",
         "notice": {
           "since": "2026-11-05",
-          "text": "Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 403 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.",
+          "text": "Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 401 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.",
           "url": "https://docs.vlm.run/gateway/authentication"
         }
       },
@@ -12564,7 +12590,7 @@
           "label": "Advertised route; free access unconfirmed",
           "source": "https://opper.ai/sign-up/free.md",
           "quote": "gemini/gemma-4-31b is a free model, so this call works before you add a card.",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -12767,7 +12793,7 @@
           "state": "account-specific",
           "source": "https://docs.mixlayer.com/credits-and-limits.md",
           "quote": "Mixlayer does not publish fixed limit values because limits can differ by organization and model",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -13072,7 +13098,7 @@
           "source": "https://impossibl.com/llms.txt",
           "quote": "an agent-created account has $0.05",
           "value_phrase": "an agent-created account has $0.05",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "period": null
         },
         {
@@ -13166,19 +13192,21 @@
         "https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy.md"
       ],
       "card_required": false,
-      "offering": "OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time",
-      "limits": "Promotional signup credit: $25 once per account\n\nBefore first deposit: 100 requests/day; 3 requests at once per account\n\nThe signup grant is a limited-time offer with no payment step. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.",
+      "offering": "OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models",
+      "limits": "Signup credit: $5 once per account (expires 14 days after signup)\n\nBefore first deposit: 100 requests/day; 3 requests at once per account\n\nAn account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.",
       "quotas": [
         {
-          "amount": 25.0,
+          "amount": 5.0,
           "unit": "USD",
           "period": "one-time",
           "scope": "account",
-          "label": "Promotional signup credit",
-          "source": "https://thegrid.ai/docs/start-here/quickstart.md",
-          "quote": "New accounts get a $25 signup credit (limited time)",
-          "value_phrase": "New accounts get a $25 signup credit (limited time)",
-          "reviewed_on": "2026-10-06"
+          "label": "Signup credit",
+          "condition": "expires 14 days after signup",
+          "condition_quote": "All unused signup credits and bonuses expire 14 days after signup.",
+          "source": "https://thegrid.ai/llms.txt",
+          "quote": "$5 signup credit",
+          "value_phrase": "$5 signup credit",
+          "reviewed_on": "2026-11-12"
         },
         {
           "amount": 100.0,
@@ -13189,7 +13217,7 @@
           "source": "https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md",
           "quote": "Free accounts have a daily request limit of 100 requests.",
           "value_phrase": "Free accounts have a daily request limit of 100 requests.",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-12"
         },
         {
           "amount": 3.0,
@@ -13200,7 +13228,7 @@
           "source": "https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md",
           "quote": "3 concurrent requests",
           "value_phrase": "3 concurrent requests",
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-12"
         }
       ],
       "free_part": "unnamed",
@@ -13228,9 +13256,9 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://thegrid.ai/docs/start-here/quickstart.md",
+        "endpoint": "https://thegrid.ai/llms.txt",
         "keywords": [
-          "New accounts get a $25 signup credit"
+          "$5 signup credit"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -13252,8 +13280,8 @@
           "code-prime",
           "agent-max"
         ],
-        "what": "OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time",
-        "limits": "Promotional signup credit: $25 once per account\n\nBefore first deposit: 100 requests/day; 3 requests at once per account\n\nThe signup grant is a limited-time offer with no payment step. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.",
+        "what": "OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models",
+        "limits": "Signup credit: $5 once per account (expires 14 days after signup)\n\nBefore first deposit: 100 requests/day; 3 requests at once per account\n\nAn account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -14562,7 +14590,7 @@
           "label": "Verified free models",
           "source": "https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
           "quote": "免费模型的 Rate Limits 固定",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -14760,7 +14788,7 @@
             "field": "Data.TargetPrefix",
             "suffix": "/dist/magicube/intro/intro_CN.md"
           },
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -15539,7 +15567,7 @@
           "label": "Personal Standard completion",
           "source": "https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a",
           "quote": "智能补全 免费",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null,
           "period": null
         }
@@ -15613,7 +15641,7 @@
           "condition_quote": "Lite 30 days Free claim, 1,000 slots/day",
           "source": "https://atomcode.atomgit.com/docs/en/login.html",
           "quote": "Quota is measured on a rolling 5-hour window",
-          "reviewed_on": "2026-11-03",
+          "reviewed_on": "2026-11-12",
           "amount": null
         }
       ],
@@ -17182,6 +17210,7 @@
       "source_urls": [
         "https://zro.moonmath.ai/pricing",
         "https://zro.moonmath.ai/docs/models",
+        "https://zro.moonmath.ai/docs/models/retired",
         "https://zro.moonmath.ai/docs/quickstart",
         "https://zro.moonmath.ai/docs/api",
         "https://zro.moonmath.ai/privacy",
@@ -17190,7 +17219,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models",
-      "limits": "Free plan: Daily usage allowance: amount not published; scope not published\n\nThe Free plan covers the two named Flash models with a daily allowance; its amount, pooling scope, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs; the general quickstart still asks for a subscription or usage pack. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.",
+      "limits": "Free plan: Daily usage allowance: amount not published; scope not published\n\nThe Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.",
       "quotas": [
         {
           "unit": "usage",
@@ -17198,8 +17227,8 @@
           "scope": "unspecified",
           "label": "Free plan",
           "source": "https://zro.moonmath.ai/pricing",
-          "quote": "Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash. Resets every day.",
-          "reviewed_on": "2026-11-09",
+          "quote": "Free daily usage on DeepSeek V4.1 Flash. Resets every day.",
+          "reviewed_on": "2026-11-12",
           "amount": null
         }
       ],
@@ -17211,10 +17240,9 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "glm-5.3-flash",
           "deepseek-v4.1-flash"
         ],
-        "note": "Create an account and API key for the Free plan and select either listed Flash ID. Other models and auto routing use metered rates. The vendor documents Chat Completions, Responses and Messages; these configurations use Chat Completions. Authenticated generation and Free activation have not been checked here."
+        "note": "Create an account and API key for the Free plan and select the listed Flash ID. Other models and auto routing use metered rates. The vendor documents Chat Completions, Responses and Messages; these configurations use Chat Completions. Authenticated generation and Free activation have not been checked here."
       },
       "data_use": {
         "trains": "no",
@@ -17233,7 +17261,7 @@
         "type": "page-keywords",
         "endpoint": "https://zro.moonmath.ai/pricing",
         "keywords": [
-          "Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash.",
+          "Free daily usage on DeepSeek V4.1 Flash.",
           "Resets every day.",
           "OpenAI-compatible API",
           "Free plan for Flash models. $0 per month"
@@ -17253,11 +17281,10 @@
         "name": "Zro (MoonMath)",
         "models": [],
         "ids": [
-          "glm-5.3-flash",
           "deepseek-v4.1-flash"
         ],
         "what": "OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models",
-        "limits": "Free plan: Daily usage allowance: amount not published; scope not published\n\nThe Free plan covers the two named Flash models with a daily allowance; its amount, pooling scope, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs; the general quickstart still asks for a subscription or usage pack. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.",
+        "limits": "Free plan: Daily usage allowance: amount not published; scope not published\n\nThe Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.",
         "why": "",
         "access": "",
         "modelAccess": {},

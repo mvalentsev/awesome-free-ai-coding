@@ -1,4 +1,5 @@
 import subprocess
+import shutil
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -14,7 +15,9 @@ def git(repo, *args):
                           capture_output=True, text=True).stdout.strip()
 
 
-def proposal(tmp_path):
+@pytest.fixture(scope='module')
+def proposal_template(tmp_path_factory):
+    tmp_path = tmp_path_factory.mktemp('review-proposal')
     git(tmp_path, 'init', '-q', '-b', 'main')
     git(tmp_path, 'config', 'user.name', 'test')
     git(tmp_path, 'config', 'user.email', 'test@example.com')
@@ -29,15 +32,21 @@ def proposal(tmp_path):
     (tmp_path / 'README.md').write_text('after\n')
     git(tmp_path, 'add', '.')
     git(tmp_path, 'commit', '-qm', 'docs: proposal')
-    return base, git(tmp_path, 'rev-parse', 'HEAD')
+    return tmp_path, base, git(tmp_path, 'rev-parse', 'HEAD')
+
+
+def proposal(tmp_path, proposal_template):
+    source, base, head = proposal_template
+    shutil.copytree(source, tmp_path, dirs_exist_ok=True)
+    return base, head
 
 
 def push(repo, base, head):
     return pre_push(repo, [f'HEAD {head} refs/heads/main {base}'], steps=[])
 
 
-def test_normal_push_rejects_a_commit_with_no_independent_review(tmp_path):
-    base, head = proposal(tmp_path)
+def test_normal_push_rejects_a_commit_with_no_independent_review(tmp_path, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     assert any('independent review' in p for p in push(tmp_path, base, head))
 
 
@@ -52,8 +61,8 @@ def signoff(repo, base, head):
     return bundle, value
 
 
-def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
-    base, head = proposal(tmp_path)
+def test_complete_evidenced_review_allows_the_exact_push(tmp_path, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     accept_judgment(bundle, value)
     assert push(tmp_path, base, head) == []
@@ -62,8 +71,8 @@ def test_complete_evidenced_review_allows_the_exact_push(tmp_path):
     assert push(tmp_path, base, head) == []
 
 
-def test_reused_evidence_has_one_snapshot_across_review_references(tmp_path, monkeypatch):
-    base, head = proposal(tmp_path)
+def test_reused_evidence_has_one_snapshot_across_review_references(tmp_path, monkeypatch, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     proof = tmp_path / '.remember/finding.txt'
     body = b'Current source and complete review evidence.\n' * 100
@@ -96,8 +105,8 @@ def test_reused_evidence_has_one_snapshot_across_review_references(tmp_path, mon
     assert push(tmp_path, base, head)
 
 
-def test_import_keeps_different_evidence_with_the_same_filename(tmp_path):
-    base, head = proposal(tmp_path)
+def test_import_keeps_different_evidence_with_the_same_filename(tmp_path, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     proofs = []
     for directory, body in [('first', b'First source'), ('second', b'Second source'),
@@ -117,8 +126,8 @@ def test_import_keeps_different_evidence_with_the_same_filename(tmp_path):
 
 
 @pytest.mark.parametrize('use_as_evidence', [False, True])
-def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence):
-    base, head = proposal(tmp_path)
+def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     register = tmp_path / '.remember/tasks.json'
     register.write_text(json.dumps({'tasks': [
@@ -147,8 +156,8 @@ def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence):
     assert push(tmp_path, base, head)
 
 
-def test_unanswered_captured_provider_lead_cannot_receive_a_review_signoff(tmp_path):
-    base, head = proposal(tmp_path)
+def test_unanswered_captured_provider_lead_cannot_receive_a_review_signoff(tmp_path, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     source = 'https://vendor.example/models'
     raw = bundle.write('http/source.html', b'<a href="/haimaker-ai-alternative">Haimaker alternative</a>')
@@ -161,8 +170,8 @@ def test_unanswered_captured_provider_lead_cannot_receive_a_review_signoff(tmp_p
 
 
 @pytest.mark.parametrize('status', ['open', 'scheduled', 'done', 'cancelled', None])
-def test_captured_lead_needs_a_real_unresolved_task_and_freezes_its_evidence(tmp_path, status):
-    base, head = proposal(tmp_path)
+def test_captured_lead_needs_a_real_unresolved_task_and_freezes_its_evidence(tmp_path, status, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     bundle.save('sources', {'lead_inventory': [{'id': 'candidate', 'url': 'https://candidate.example/'}]})
     ledger = tmp_path / '.remember/task-ledger.json'
@@ -181,8 +190,8 @@ def test_captured_lead_needs_a_real_unresolved_task_and_freezes_its_evidence(tmp
             accept_judgment(bundle, value)
 
 
-def test_claimed_canonical_lead_decision_must_exist_at_the_exact_commit(tmp_path):
-    base, head = proposal(tmp_path)
+def test_claimed_canonical_lead_decision_must_exist_at_the_exact_commit(tmp_path, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     bundle.save('sources', {'lead_inventory': [{'id': 'candidate', 'url': 'https://candidate.example/'}]})
     value['lead_dispositions'] = [{'id': 'candidate', 'verdict': 'canonical',
@@ -193,8 +202,8 @@ def test_claimed_canonical_lead_decision_must_exist_at_the_exact_commit(tmp_path
         accept_judgment(bundle, value)
 
 
-def withdrawal_proposal(repo):
-    base, head = proposal(repo)
+def withdrawal_proposal(repo, proposal_template):
+    base, head = proposal(repo, proposal_template)
     row = {'id': 'vendor', 'models': [], 'free_part': 'unnamed', 'archived': False}
     (repo / 'index.json').write_text(json.dumps({'entries': [row]}))
     git(repo, 'add', 'index.json')
@@ -215,16 +224,16 @@ def withdrawal_proposal(repo):
     return base, head, bundle, value
 
 
-def test_archiving_unnamed_offer_cannot_bypass_eligibility_review(tmp_path):
-    base, head, bundle, value = withdrawal_proposal(tmp_path)
+def test_archiving_unnamed_offer_cannot_bypass_eligibility_review(tmp_path, proposal_template):
+    base, head, bundle, value = withdrawal_proposal(tmp_path, proposal_template)
     with pytest.raises(ValueError, match='eligibility'):
         accept_judgment(bundle, value)
     assert push(tmp_path, base, head)
 
 
 @pytest.mark.parametrize('mode', ['unresolved', 'available', 'ended', 'ineligible'])
-def test_withdrawal_must_resolve_every_reviewed_free_access_mode(tmp_path, mode):
-    base, head, bundle, value = withdrawal_proposal(tmp_path)
+def test_withdrawal_must_resolve_every_reviewed_free_access_mode(tmp_path, mode, proposal_template):
+    base, head, bundle, value = withdrawal_proposal(tmp_path, proposal_template)
     source = 'https://vendor.example/pricing'
     bundle.save('sources', {'checks': [{'url': source, 'passed': True,
         'attempts': [{'at': datetime.now(timezone.utc).isoformat()}]}]})
@@ -250,8 +259,8 @@ def test_withdrawal_must_resolve_every_reviewed_free_access_mode(tmp_path, mode)
 
 @pytest.mark.parametrize('defect', ['missing', 'partial-families', 'missing-conflicts',
                                   'stale', 'unread-source', 'stale-source', None])
-def test_eligibility_signoff_requires_current_conditions_for_every_changed_family(tmp_path, defect):
-    base, head = proposal(tmp_path)
+def test_eligibility_signoff_requires_current_conditions_for_every_changed_family(tmp_path, defect, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     (tmp_path / 'index.json').write_text(json.dumps({'entries': [{
         'id': 'vendor', 'models': [{'family': 'alpha'}, {'family': 'beta'}]}]}))
     git(tmp_path, 'add', 'index.json')
@@ -331,8 +340,8 @@ def test_judgment_and_source_receipts_share_exact_freshness_boundaries(tmp_path,
 
 @pytest.mark.parametrize('defect', ['checkboxes', 'partial-diff', 'wrong-head', 'empty-finding',
                                    'missing-proof', 'unresolved'])
-def test_a_form_without_actual_review_cannot_create_a_signoff(tmp_path, defect):
-    base, head = proposal(tmp_path)
+def test_a_form_without_actual_review_cannot_create_a_signoff(tmp_path, defect, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     if defect == 'checkboxes':
         value['criteria'] = {name: True for name in CRITERIA}
@@ -353,8 +362,8 @@ def test_a_form_without_actual_review_cannot_create_a_signoff(tmp_path, defect):
 
 @pytest.mark.parametrize('defect', ['changed-evidence', 'missing-evidence', 'changed-judgment', 'stale-head', 'stale-base',
                                    'removed-hook'])
-def test_push_rechecks_evidence_and_commit_binding(tmp_path, defect):
-    base, head = proposal(tmp_path)
+def test_push_rechecks_evidence_and_commit_binding(tmp_path, defect, proposal_template):
+    base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     result = accept_judgment(bundle, value)
     artifact = bundle.out / result['criteria']['reuse']['evidence'][0]

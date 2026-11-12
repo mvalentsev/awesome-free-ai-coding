@@ -14,7 +14,7 @@ model_sort: true
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [vlm.run](https://vlm.run) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-> ⚠️ **Does not work as published since [2026-11-05](https://docs.vlm.run/gateway/authentication).** Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 403 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.
+> ⚠️ **Does not work as published since [2026-11-05](https://docs.vlm.run/gateway/authentication).** Anonymous requests to `qwen/qwen3.8-27b`, the listed tool-capable model, currently return HTTP 401 asking for an API key. Its anonymous coding-agent connection is unavailable in the current checks; the other listed IDs are ordinary-chat choices.
 
 ## What you get
 
@@ -39,7 +39,7 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `qwen/qwen3.8-27b`, `google/diffusiongemma-26b-a4b-it`, `qwen/qwen3.5-0.8b`
-- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate 4,096-token request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
+- Note: Omit Authorization; generic bearer tokens return 401. The OpenCode profile uses the catalog context/output limits and a separate request budget for qwen/qwen3.8-27b. Only that ID advertises tool support; the other listed IDs are ordinary-chat choices.
 
 Try it from your terminal — the lane takes no key:
 

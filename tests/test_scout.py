@@ -123,15 +123,32 @@ def test_an_update_keeps_a_family_the_rows_own_probe_still_names():
                         "names — kept"]
 
 
-def test_an_update_drops_a_family_the_probe_cannot_vouch_for():
-    """A family is kept only on a yes: a page that could not be read answers
-    None, and the drop goes through."""
+def test_an_update_keeps_a_family_whose_probe_could_not_be_read():
+    """An unreadable source cannot establish withdrawal; a negative read can
+    still propose a removal for the reviewer."""
     entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}, {"family": "x-old-1"}])]
     applied, rejected = apply_updates(
         entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
         named=lambda e, family: None if family == "x-pro-1" else False)
-    assert applied == ["x"] and rejected == []
-    assert [m.family for m in entries[0].models] == ["x-mini-2"]
+    assert applied == ["x"]
+    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
+    assert rejected == ["x: the update dropped x-pro-1, whose current probe could not "
+                        "be read — kept for review"]
+
+
+@respx.mock
+def test_an_unreadable_family_source_cannot_authorize_a_scout_removal():
+    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}])]
+    route = respx.get("https://x.ai").mock(side_effect=httpx.ConnectTimeout("unavailable"))
+    with httpx.Client() as client:
+        applied, rejected = apply_updates(
+            entries, [{"id": "x", "limits": "corrected limits",
+                       "models": [{"family": "x-mini-2"}]}],
+            named=scout.named_by_row(client))
+    assert applied == ["x"] and entries[0].limits == "corrected limits"
+    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
+    assert len(rejected) == 1 and "could not be read" in rejected[0]
+    assert route.call_count == 1
 
 
 def test_an_update_may_drop_a_family_a_reviewer_marked_superseded():
@@ -644,7 +661,8 @@ def test_retirement_sweep_failure_does_not_sink_the_run():
     assert result["supersede"] == ["x: old → cur"]  # the rest of the scout still ran
 
 
-def test_run_scout_orchestration():
+def test_run_scout_orchestration(monkeypatch):
+    monkeypatch.setattr(scout, "ANCHOR_PHRASE_WORDS", 5)
     llm = StubLLM({
         "FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    limits: fixed\n```",
         "DISCOVER-NEW": "```yaml\nnew_entries:\n"
@@ -666,6 +684,9 @@ def test_run_scout_orchestration():
     assert entries[0].limits == "fixed"
     assert entries[0].models[0].superseded_by is None  # proposed, not written
     assert any("FAILURE: fail — boom" in p for p in llm.prompts)
+    for task in ("FIX-FAILED", "DISCOVER-NEW"):
+        prompt = next(p for p in llm.prompts if task in p)
+        assert "sentence of five or more words" in prompt
 
 
 def test_run_scout_survives_a_bad_fix_and_still_discovers():
@@ -1679,3 +1700,17 @@ def test_an_update_keeps_the_marks_the_registry_measured():
     assert applied == ["x"] and rejected == []
     assert [(m.family, m.tier, m.aa_model) for m in entries[0].models] == [
         ("x-mini-2", "strong", "x-mini-2"), ("x-mini-3", None, None)]
+
+
+@pytest.mark.parametrize("binding", [None, "reviewed-checkpoint"])
+def test_a_scout_update_preserves_the_rows_own_measurement_decision(binding):
+    model = {"family": "x-mini-2", "aa_auto": False, "aa_model": binding,
+             "tier": "strong" if binding else None}
+    entries = [make(models=[model]), make(id="peer", models=[
+        {"family": "x-mini-2", "tier": "strong", "aa_model": "another-checkpoint"}])]
+    before = entries[0].models[0]
+    applied, rejected = apply_updates(entries, [{"id": "x", "models": [
+        {"family": "x-mini-2", "tier": "frontier", "aa_model": "invented"}]}])
+    assert applied == ["x"] and rejected == []
+    assert entries[0].models == [before]
+    assert entries[1].models[0].aa_model == "another-checkpoint"

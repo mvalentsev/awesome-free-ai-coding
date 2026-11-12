@@ -168,6 +168,13 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/baidu/ernie-5.5-flash-preview:free
+  litellm_params:
+    model: openai/baidu/ernie-5.5-flash-preview:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 921600
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -553,6 +560,12 @@ model_list:
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
     max_tokens: 943718
+- model_name: aihubmix/ernie-5.5-flash-preview-free
+  litellm_params:
+    model: openai/ernie-5.5-flash-preview-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
 - model_name: zai-glm/glm-4.7-flash
   litellm_params:
     model: openai/glm-4.7-flash
@@ -1251,12 +1264,6 @@ model_list:
     model: openai/sarvam-105b
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
-    use_chat_completions_api: true
-- model_name: zro/glm-5.3-flash
-  litellm_params:
-    model: openai/glm-5.3-flash
-    api_base: https://zro.moonmath.ai/v1
-    api_key: os.environ/ZRO_API_KEY
     use_chat_completions_api: true
 - model_name: zro/deepseek-v4.1-flash
   litellm_params:

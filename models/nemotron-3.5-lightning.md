@@ -72,7 +72,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m nvidia/nemotron-3.5-lightning:free`
-- Callable ids: `nvidia/nemotron-3.5-lightning:free`
+- Callable ids: `nvidia/nemotron-3.5-lightning-free`, `nvidia/nemotron-3.5-lightning:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)

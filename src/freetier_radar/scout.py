@@ -15,7 +15,7 @@ import httpx
 import yaml
 
 from .discovery import Evidence, fetch_page_texts, format_evidence, gather_evidence
-from .models import (utc_today, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
+from .models import (utc_today, ANCHOR_PHRASE_WORDS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
                      domain_of, is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
@@ -24,7 +24,7 @@ from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, famil
                      for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
                      unevidenced_families, model_table_findings, retry_after_seconds)
 from .page_reader import recover_page_sync
-from .words import clip
+from .words import clip, number
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -136,7 +136,7 @@ write, and an exact id copied out of a catalog is not something to reproduce
 from memory. Read it as evidence about which way the lane
 moved, and answer only with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
-offer — a quota or price figure, a model id, or a sentence of four or more words
+offer — a quota or price figure, a model id, or a sentence of {anchor_phrase_words} or more words
 quoted verbatim from the page below — and it must be in what the page renders:
 keywords are matched with script and style tags stripped out, so a string that
 lives only in a state blob or an OpenAPI enum passes every run and proves
@@ -177,7 +177,7 @@ together with the offer, in one of these three shapes:
     "anonymous users get one request every 15 seconds";
   - an id: the free model's id as the page prints it — "mistral-medium",
     "qwen/qwen3.8-27b";
-  - a sentence of four or more words quoted verbatim from the page and specific
+  - a sentence of {anchor_phrase_words} or more words quoted verbatim from the page and specific
     to this offer — "free models through kilo gateway".
 Keywords are matched against what the page renders, with its script and style
 tags removed (JSON-LD excepted). A string that occurs only inside a state blob,
@@ -780,21 +780,27 @@ def probe_check_sync(entry: Entry, client: httpx.Client,
     return f'bot challenge: page says "{challenge}"' if challenge else problem
 
 
-def _measured_marks(models: object, entries: list[Entry]) -> object:
+def _measured_marks(models: object, entries: list[Entry], current: Entry | None = None) -> object:
     """A proposal's models with the tiers the registry measured, and no others.
 
     A tier is read from Artificial Analysis by freetier-tiers, never taken on a
     model's word, so whatever tier or aa_model a proposal writes is dropped, and
     a family the registry has already measured gets the registry's marks back —
     which also keeps one tier per family in the pull request. Anything that is
-    not a list of mappings is passed through for validation to refuse."""
+    not a list of mappings is passed through for validation to refuse. An
+    existing family keeps this row's reviewed metadata, including its own
+    checkpoint or measurement hold, rather than inheriting another lane's."""
     if not isinstance(models, list):
         return models
     marks = {m.family: (m.tier, m.aa_model) for e in entries for m in e.models if m.aa_model}
+    own = {m.family: m.model_dump(mode="json") for m in current.models} if current else {}
     out = []
     for m in models:
         if not isinstance(m, dict):
             out.append(m)
+            continue
+        if m.get("family") in own:
+            out.append(own[m["family"]])
             continue
         m = {k: v for k, v in m.items() if k not in ("tier", "aa_model")}
         if m.get("family") in marks:
@@ -821,7 +827,8 @@ def apply_updates(entries: list[Entry], updates: list[dict],
     the row's own probe, read the way the run reads it — still finds it, unless
     a reviewer has marked it superseded, and the PR says which. On a page row
     that is presence on the page, as on every run, so a family the page now
-    names only as paid is kept for the reviewer to judge."""
+    names only as paid is kept for the reviewer to judge. An unreadable source
+    also keeps the family: unavailable evidence cannot establish withdrawal."""
     applied, rejected = [], []
     for i, e in enumerate(entries):
         upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
@@ -833,7 +840,7 @@ def apply_updates(entries: list[Entry], updates: list[dict],
         if not changed:
             continue
         if "models" in changed:
-            changed["models"] = _measured_marks(changed["models"], entries)
+            changed["models"] = _measured_marks(changed["models"], entries, current=e)
         try:
             fixed = Entry.model_validate({**e.model_dump(mode="json"), **changed})
         except Exception as exc:
@@ -841,13 +848,18 @@ def apply_updates(entries: list[Entry], updates: list[dict],
             rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"
                             f" — {_why(exc)}")
             continue
-        kept = []
+        kept, unreadable = [], []
         if "models" in changed and named is not None:
             left = {m.family for m in fixed.models}
-            kept = [m for m in e.models if m.family not in left and not m.superseded_by
-                    and named(fixed, m.family) is True]
-            if kept:
-                fixed = fixed.model_copy(update={"models": [*fixed.models, *kept]})
+            for model in e.models:
+                if model.family not in left and not model.superseded_by:
+                    present = named(fixed, model.family)
+                    if present is True:
+                        kept.append(model)
+                    elif present is None:
+                        unreadable.append(model)
+            if kept or unreadable:
+                fixed = fixed.model_copy(update={"models": [*fixed.models, *kept, *unreadable]})
         problem = verifier(fixed) if verifier is not None else None
         if problem:
             print(f"update for {e.id} rejected: {problem}")
@@ -859,6 +871,9 @@ def apply_updates(entries: list[Entry], updates: list[dict],
         if kept:
             rejected.append(f"{e.id}: the update dropped {', '.join(m.family for m in kept)}, "
                             "which the row's own probe still names — kept")
+        if unreadable:
+            rejected.append(f"{e.id}: the update dropped {', '.join(m.family for m in unreadable)}, "
+                            "whose current probe could not be read — kept for review")
     return applied, rejected
 
 
@@ -1126,7 +1141,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             + "\n".join(f"PAGE {u}:\n{pages.get(u, '')}" for u in e.source_urls)
             for e in ctx_entries
         )
-        data = _ask(llm, FIX_PROMPT.format(context=context))
+        data = _ask(llm, FIX_PROMPT.format(context=context,
+                                         anchor_phrase_words=number(ANCHOR_PHRASE_WORDS)))
         result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier,
                                                     named)
         result["rejected"] += rejected
@@ -1150,6 +1166,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         # the fixes the previous phase already made.
         try:
             data = _ask(llm, DISCOVER_PROMPT.format(
+                anchor_phrase_words=number(ANCHOR_PHRASE_WORDS),
                 existing=", ".join(e.id for e in entries),
                 domains=", ".join(sorted({site_of(e.url) for e in entries})),
                 blocked=", ".join(sorted(blocklist)) if blocklist else "none",

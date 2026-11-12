@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-09'
-description: OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. The Free plan covers the two named Flash models with a daily allowance; its amount, pooling scope, reset time and rate limits are not published. An account and API key are required…
+description: OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. The Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid…
 permalink: /providers/zro/
 last_modified_at: 2026-11-12
 crumb: Zro (MoonMath)
@@ -25,7 +25,7 @@ No free model family is currently listed here; callable ids, where the row has t
 
 Free plan: Daily usage allowance: amount not published; scope not published
 
-The Free plan covers the two named Flash models with a daily allowance; its amount, pooling scope, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs; the general quickstart still asks for a subscription or usage pack. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.
+The Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.
 
 ## Where it is offered
 
@@ -39,8 +39,8 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 - Base URL: `https://zro.moonmath.ai/v1`
 - Key: `ZRO_API_KEY` — get one at <https://zro.moonmath.ai/get-started?plan=free>
-- Callable ids: `deepseek-v4.1-flash`, `glm-5.3-flash`
-- Note: Create an account and API key for the Free plan and select either listed Flash ID. Other models and auto routing use metered rates. The vendor documents Chat Completions, Responses and Messages; these configurations use Chat Completions. Authenticated generation and Free activation have not been checked here.
+- Callable ids: `deepseek-v4.1-flash`
+- Note: Create an account and API key for the Free plan and select the listed Flash ID. Other models and auto routing use metered rates. The vendor documents Chat Completions, Responses and Messages; these configurations use Chat Completions. Authenticated generation and Free activation have not been checked here.
 
 Try it from your terminal with your key in `ZRO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -48,14 +48,15 @@ Try it from your terminal with your key in `ZRO_API_KEY` — it goes from your m
 curl -s https://zro.moonmath.ai/v1/chat/completions \
   -H "Authorization: Bearer $ZRO_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"deepseek-v4.1-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the page at <https://zro.moonmath.ai/pricing>, anchored on `Free daily usage on GLM-5.3 Flash and DeepSeek V4.1 Flash.`, `Resets every day.`, `OpenAI-compatible API`, `Free plan for Flash models. $0 per month`
+- Probe: the page at <https://zro.moonmath.ai/pricing>, anchored on `Free daily usage on DeepSeek V4.1 Flash.`, `Resets every day.`, `OpenAI-compatible API`, `Free plan for Flash models. $0 per month`
 - Source: <https://zro.moonmath.ai/pricing>
 - Source: <https://zro.moonmath.ai/docs/models>
+- Source: <https://zro.moonmath.ai/docs/models/retired>
 - Source: <https://zro.moonmath.ai/docs/quickstart>
 - Source: <https://zro.moonmath.ai/docs/api>
 - Source: <https://zro.moonmath.ai/privacy>

@@ -94,6 +94,13 @@
         },
         "thinkingmachines/inkling-2-small:free": {
           "name": "thinkingmachines/inkling-2-small:free"
+        },
+        "baidu/ernie-5.5-flash-preview:free": {
+          "name": "baidu/ernie-5.5-flash-preview:free",
+          "limit": {
+            "context": 1024000,
+            "output": 921600
+          }
         }
       }
     },
@@ -159,6 +166,19 @@
         },
         "thinkingmachines/inkling-2-small:free": {
           "name": "thinkingmachines/inkling-2-small:free"
+        },
+        "baidu/ernie-5.5-flash-preview:free": {
+          "name": "baidu/ernie-5.5-flash-preview:free",
+          "limit": {
+            "context": 1024000,
+            "output": 921600
+          }
+        },
+        "reflection/beam-free": {
+          "name": "reflection/beam-free"
+        },
+        "nvidia/nemotron-3.5-lightning-free": {
+          "name": "nvidia/nemotron-3.5-lightning-free"
         }
       }
     },
@@ -376,6 +396,9 @@
             "context": 1048576,
             "output": 943718
           }
+        },
+        "ernie-5.5-flash-preview-free": {
+          "name": "ernie-5.5-flash-preview-free"
         }
       }
     },
@@ -1071,9 +1094,6 @@
         "apiKey": "{env:ZRO_API_KEY}"
       },
       "models": {
-        "glm-5.3-flash": {
-          "name": "glm-5.3-flash"
-        },
         "deepseek-v4.1-flash": {
           "name": "deepseek-v4.1-flash"
         }
