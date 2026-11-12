@@ -1,13 +1,13 @@
 {
-  "read_on": "2026-11-09",
+  "read_on": "2026-11-12",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "version": "5.0.1",
   "top": {
-    "slug": "gemini-4-carbon",
-    "name": "Gemini 4 Carbon (High)",
-    "index": 60.0
+    "slug": "claude-fable-5-2",
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
+    "index": 64.6
   },
-  "median": 29.9,
+  "median": 29.6,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -54,14 +54,9 @@
       "index": 27.9,
       "estimated": false
     },
-    "inkling": {
-      "slug": "inkling",
-      "index": 12.5,
-      "estimated": false
-    },
-    "inkling-small": {
-      "slug": "inkling-small",
-      "index": 12.9,
+    "gpt-oss-120b": {
+      "slug": "gpt-oss-120b",
+      "index": 3.8,
       "estimated": false
     },
     "ling-3.1-flash": {
@@ -122,6 +117,11 @@
     "qwen3.8-27b": {
       "slug": "qwen3-8-27b",
       "index": 20.1,
+      "estimated": false
+    },
+    "qwen3.8-flash": {
+      "slug": "qwen3-8-flash-next",
+      "index": 28.6,
       "estimated": false
     },
     "qwen3.8-max": {
@@ -228,10 +228,6 @@
       "slug": "gpt-4-1",
       "reason": "deprecated"
     },
-    "gpt-oss-120b": {
-      "slug": "gpt-oss-120b",
-      "reason": "unscored"
-    },
     "gpt-oss-20b": {
       "slug": "gpt-oss-20b",
       "reason": "unscored"
@@ -334,10 +330,6 @@
     },
     "qwen3.8-2.4t-a95b": {
       "slug": "qwen3-8-2-4t-a95b",
-      "reason": "unscored"
-    },
-    "qwen3.8-flash": {
-      "slug": "qwen3-8-flash-next",
       "reason": "unscored"
     },
     "step-3.7-flash": {

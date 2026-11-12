@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-11-09'
+title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients. Free models: glm-5.3, mimo-v2.6-pro, glm-5.3-flash, mimo-v2.6-flash, minimax-m3, nemotron-3-ultra, nemotron-3.5-lightning, gemma-4-31b and 23 more. Free IDs end in -free; paid twins are…'
 permalink: /providers/aihubmix/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: AIHubMix (free models)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # AIHubMix (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-09 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-12 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

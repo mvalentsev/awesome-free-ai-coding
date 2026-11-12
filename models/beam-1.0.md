@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'beam-1.0 free: 4 providers, limits and ids, provider probes 2026-11-09'
+title: 'beam-1.0 free: 4 providers, limits and ids, provider probes 2026-11-12'
 description: beam-1.0 is served free by opencode, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: beam-1.0
 ---
 
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**4 rows on the list serve `beam-1.0` free:** opencode, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `beam-1.0` free:** opencode, Cline, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: beam-1.0
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-11-10
+🤖 Coding agents & CLIs · no card · last probe 2026-11-12 · listed since 2026-11-10
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -38,7 +38,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-11-05
+🤖 Coding agents & CLIs · no card · last probe 2026-11-12 · listed since 2026-11-05
 
 Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 
@@ -57,7 +57,7 @@ Free promotions require a Cline account, with Google, GitHub or email signup and
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-09 · listed since 2026-10-30
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-12 · listed since 2026-10-30
 
 OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 
@@ -83,7 +83,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-02
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-11-02
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 

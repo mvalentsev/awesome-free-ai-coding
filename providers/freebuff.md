@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-11-09'
+title: 'Freebuff free tier: limits, free models, verified 2026-11-12'
 description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: deepseek-v4.1-flash-1017, glm-5.3-flash, mimo-v2.6-flash, solar-mini-4, solar-pro-4. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Freebuff
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Freebuff free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-09 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

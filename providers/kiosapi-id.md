@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Kiosapi.id free tier: limits, free models, verified 2026-11-09'
+title: 'Kiosapi.id free tier: limits, free models, verified 2026-11-12'
 description: Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models. A verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free…
 permalink: /providers/kiosapi-id/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Kiosapi.id
 ---
 
@@ -11,7 +11,7 @@ crumb: Kiosapi.id
 
 # Kiosapi.id free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-09 · [kiosapi.id](https://kiosapi.id) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-12 · [kiosapi.id](https://kiosapi.id) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

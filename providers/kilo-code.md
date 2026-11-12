@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Kilo Code free tier: limits, free models, verified 2026-11-09'
+title: 'Kilo Code free tier: limits, free models, verified 2026-11-12'
 description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, dots-3-note, flint-v1.0, nemotron-3-nano-omni, xing4.0-29b-a4b. The…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: Kilo Code
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Kilo Code free tier
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-09 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-12 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

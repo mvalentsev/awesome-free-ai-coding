@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-11-09'
+title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-11-12'
 description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**4 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4.1-flash
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-10-29
+🤖 Coding agents & CLIs · no card · last probe 2026-11-12 · listed since 2026-10-29
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -38,7 +38,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-09 · listed since 2026-10-02
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-12 · listed since 2026-10-02
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -58,7 +58,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-09 · listed since 2026-09-28
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-12 · listed since 2026-09-28
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
@@ -82,7 +82,7 @@ Free token grants apply in Singapore (international), independently per model an
 
 ### [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-09-16
 
 OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card
 

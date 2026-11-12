@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-11-09'
+title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-11-12'
 description: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a two-week 300-credit trial and 100 credits a day to claim in the desktop app. Claim each daily reward in the CN desktop app between 10:00 and the next day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each…
 permalink: /providers/qoder-cn/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Qoder CN (formerly Lingma)
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder CN (formerly Lingma)
 
 # Qoder CN (formerly Lingma) free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-09 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

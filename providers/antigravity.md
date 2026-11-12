@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Google Antigravity free tier: limits, free models, verified 2026-11-09'
-description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.8-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
+title: 'Google Antigravity free tier: limits, free models, verified 2026-11-12'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.8-flash, gpt-oss-120b, claude-opus-4.6, claude-sonnet-4.6. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: Google Antigravity
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Google Antigravity free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-11-09 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-11-12 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -20,7 +20,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span></span>
+<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -45,7 +45,7 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Google Antigravity's own model list: `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`, `GPT-OSS-120b*`
+- In Google Antigravity's own model list: `GPT-OSS-120b*`, `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`
 
 ## Evidence
 

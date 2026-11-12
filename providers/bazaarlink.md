@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'BazaarLink free tier: limits, free models, verified 2026-11-09'
+title: 'BazaarLink free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: nemotron-3.5-lightning, deepseek-v4-flash, qwen3.7-flash. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account…'
 permalink: /providers/bazaarlink/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: BazaarLink
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # BazaarLink free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-09 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-12 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

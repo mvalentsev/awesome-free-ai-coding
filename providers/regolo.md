@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Regolo AI free tier: limits, free models, verified 2026-11-09'
-description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: qwen3.8-27b, gemma-4-31b, mistral-small-4, apertus-70b, glm-5.2, gpt-oss-20b, gpt-oss-120b, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
+title: 'Regolo AI free tier: limits, free models, verified 2026-11-12'
+description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: qwen3.8-27b, gemma-4-31b, mistral-small-4, gpt-oss-120b, apertus-70b, glm-5.2, gpt-oss-20b, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
 permalink: /providers/regolo/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: Regolo AI
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Regolo AI free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-09 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-12 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -20,7 +20,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</span>, <span data-model-family="mistral-small-4">`mistral-small-4`</span>, <span data-model-family="apertus-70b">`apertus-70b`</span>, <span data-model-family="glm-5.2">[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/)</span>, <span data-model-family="gpt-oss-20b">[`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="qwen3.5-9b">[`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/)</span>, <span data-model-family="qwen3.5-122b-a10b">[`qwen3.5-122b-a10b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/)</span></span>
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</span>, <span data-model-family="mistral-small-4">`mistral-small-4`</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="apertus-70b">`apertus-70b`</span>, <span data-model-family="glm-5.2">[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/)</span>, <span data-model-family="gpt-oss-20b">[`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)</span>, <span data-model-family="qwen3.5-9b">[`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/)</span>, <span data-model-family="qwen3.5-122b-a10b">[`qwen3.5-122b-a10b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
-- Callable ids: `qwen3.8-27b`, `gemma4-31b`, `mistral-small-4-119b`, `apertus-70b`, `glm5.2`, `gpt-oss-20b`, `gpt-oss-120b`, `qwen3.5-9b`, `qwen3.5-122b`
+- Callable ids: `qwen3.8-27b`, `gemma4-31b`, `mistral-small-4-119b`, `gpt-oss-120b`, `apertus-70b`, `glm5.2`, `gpt-oss-20b`, `qwen3.5-9b`, `qwen3.5-122b`
 - Note: GET /v1/models is public and publishes IDs without prices; use pricing for trial eligibility. Brick v1 Beta is a prompt-complexity classifier and is excluded from coding configs.
 
 Try it from your terminal with your key in `REGOLO_API_KEY` — it goes from your machine to the vendor and nowhere else:

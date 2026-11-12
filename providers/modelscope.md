@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-11-09'
+title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-11-12'
 description: Alibaba model community with a free daily API inference allowance measured in credits, after Alibaba Cloud real-name verification. API inference requires a bound Alibaba Cloud account with real-name verification; spending Magicube also requires a verified personal email. Calls cost 0.5, 1 or 2…
 permalink: /providers/modelscope/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: ModelScope API-Inference (Alibaba)
 ---
 
@@ -11,7 +11,7 @@ crumb: ModelScope API-Inference (Alibaba)
 
 # ModelScope API-Inference (Alibaba) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-11-09 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-11-12 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

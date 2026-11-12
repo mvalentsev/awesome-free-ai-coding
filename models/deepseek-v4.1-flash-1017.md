@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash-1017 free: 1 provider, limits and ids, provider probes 2026-11-09'
+title: 'deepseek-v4.1-flash-1017 free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: deepseek-v4.1-flash-1017 is served free by Freebuff. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash-1017/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: deepseek-v4.1-flash-1017
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash-1017
 
 # Where deepseek-v4.1-flash-1017 is free
 
-**One row on the list serves `deepseek-v4.1-flash-1017` free:** Freebuff. It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
+**One row on the list serves `deepseek-v4.1-flash-1017` free:** Freebuff. It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4.1-flash-1017
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-09 · listed since 2026-11-08
+🤖 Coding agents & CLIs · no card · last probe 2026-11-12 · listed since 2026-11-08
 
 Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access
 

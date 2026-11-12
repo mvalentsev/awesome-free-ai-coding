@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'swe-2-flash-medium free: 1 provider, limits and ids, provider probes 2026-11-05'
+title: 'swe-2-flash-medium free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: swe-2-flash-medium is served free by Devin Desktop (formerly Windsurf). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/swe-2-flash-medium/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: swe-2-flash-medium
 ---
 
@@ -11,7 +11,7 @@ crumb: swe-2-flash-medium
 
 # Where swe-2-flash-medium is free
 
-**One row on the list serves `swe-2-flash-medium` free:** Devin Desktop (formerly Windsurf). It asks for no card. The provider's last scheduled probe was on 2026-11-05; its offer is rechecked twice a week.
+**One row on the list serves `swe-2-flash-medium` free:** Devin Desktop (formerly Windsurf). It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: swe-2-flash-medium
 
 ### [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/)
 
-🤖 Coding agents & CLIs · no card · free until 2026-12-04 18:00+00:00 · last probe 2026-11-05 · listed since 2026-11-09
+🤖 Coding agents & CLIs · no card · free until 2026-12-04 18:00+00:00 · last probe 2026-11-12 · listed since 2026-11-09
 
 Free plan of Cognition's desktop and terminal coding agents, alongside its paid plans
 

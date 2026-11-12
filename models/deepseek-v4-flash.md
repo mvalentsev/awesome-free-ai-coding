@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4-flash free: 4 providers, limits and ids, provider probes 2026-11-09'
+title: 'deepseek-v4-flash free: 4 providers, limits and ids, provider probes 2026-11-12'
 description: deepseek-v4-flash is served free by Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-flash/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: deepseek-v4-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4-flash
 
 # Where deepseek-v4-flash is free
 
-**4 rows on the list serve `deepseek-v4-flash` free:** Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `deepseek-v4-flash` free:** Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4-flash
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-09 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-12 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
@@ -43,7 +43,7 @@ Free token grants apply in Singapore (international), independently per model an
 
 ### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-09-28
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-09-28
 
 OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
 
@@ -70,7 +70,7 @@ The free models share each account's daily weighted allowance, reset at 00:00 UT
 
 ### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-09 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · last probe 2026-11-12 · listed since 2026-09-27
 
 Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
 
@@ -87,7 +87,7 @@ Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per 
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-09 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · last probe 2026-11-12 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

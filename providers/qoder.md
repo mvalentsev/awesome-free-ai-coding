@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-11-09'
+title: 'Qoder free tier: limits, free models, verified 2026-11-12'
 description: A separately documented free allowance continues after the named model promotions. If you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits. Current model IDs and account eligibility must be confirmed with the…
 permalink: /providers/qoder/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Qoder
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder
 
 # Qoder free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-09 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

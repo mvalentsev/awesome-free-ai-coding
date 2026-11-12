@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'IteraCompute free tier: limits, free models, verified 2026-11-09'
+title: 'IteraCompute free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router. Free models: qwen3.8-27b. Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. "Context includes input and…'
 permalink: /providers/iteracompute/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: IteraCompute
 ---
 
@@ -11,7 +11,7 @@ crumb: IteraCompute
 
 # IteraCompute free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

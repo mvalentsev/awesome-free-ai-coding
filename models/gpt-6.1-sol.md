@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-6.1-sol free: no current listing'
 description: No row currently lists gpt-6.1-sol under Free models. Each row's page gives its current offer.
 permalink: /models/gpt-6.1-sol/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: gpt-6.1-sol
 ---
 
@@ -18,8 +18,8 @@ crumb: gpt-6.1-sol
 ## Related models
 
 - [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — free at Codex (ChatGPT Free)
-- [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
 - [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints
+- [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
 
 ---
 

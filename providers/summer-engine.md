@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Summer Engine free tier: limits, free models, verified 2026-11-09'
+title: 'Summer Engine free tier: limits, free models, verified 2026-11-12'
 description: Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects. An account is required for hosted AI. The editor can import an existing project and edit its GDScript and scenes; plugin and project compatibility must be checked separately. The daily message…
 permalink: /providers/summer-engine/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Summer Engine
 ---
 
@@ -11,7 +11,7 @@ crumb: Summer Engine
 
 # Summer Engine free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-09 · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-12 · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

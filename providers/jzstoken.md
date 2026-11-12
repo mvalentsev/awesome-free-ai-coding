@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'JZS Token free tier: limits, free models, verified 2026-11-09'
+title: 'JZS Token free tier: limits, free models, verified 2026-11-12'
 description: A temporary free model API with a dedicated key and prepaid account. Credits do not expire and there is no monthly subscription. Any top-up fee is unpublished. The gateway forwards API content to upstream providers under their own policies; its no-content-storage statement covers the gateway…
 permalink: /providers/jzstoken/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: JZS Token
 ---
 
@@ -11,7 +11,7 @@ crumb: JZS Token
 
 # JZS Token free tier
 
-🧭 Aggregators (one key, many providers) · no card · requires $1.5 one-time top-up · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-09 · [jzstoken.com](https://jzstoken.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · requires $1.5 one-time top-up · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-12 · [jzstoken.com](https://jzstoken.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

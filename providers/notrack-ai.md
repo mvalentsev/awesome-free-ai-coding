@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'NoTrack API free tier: limits, free models, verified 2026-11-09'
+title: 'NoTrack API free tier: limits, free models, verified 2026-11-12'
 description: Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model. The API pages describe the trial before any top-up; an account and confirmed email are required. Paid keys have separate higher rate and concurrency limits. The combined input and output…
 permalink: /providers/notrack-ai/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: NoTrack API
 ---
 
@@ -11,7 +11,7 @@ crumb: NoTrack API
 
 # NoTrack API free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-09 · [notrack.ai](https://notrack.ai/api) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-02, a regular row from the first probe it passes on or after 2026-11-16 · **live** — last verified by a probe on 2026-11-12 · [notrack.ai](https://notrack.ai/api) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

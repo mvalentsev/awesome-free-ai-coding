@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'MegaNova free tier: limits, free models, verified 2026-11-09'
+title: 'MegaNova free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit. Free models: glm-4.7-flash, mistral-small-3.2. Tier 1 registration needs no card. A $1 deposit unlocks Tier 2''s separate per-model free allowances. Daily quotas reset at…'
 permalink: /providers/meganova/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: MegaNova
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # MegaNova free tier
 
-🧭 Aggregators (one key, many providers) · no card · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · **live** — last verified by a probe on 2026-11-09 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · **live** — last verified by a probe on 2026-11-12 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Logfare (Standard models) free tier: limits, free models, verified 2026-11-11'
+title: 'Logfare (Standard models) free tier: limits, free models, verified 2026-11-12'
 description: Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers. One account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across…
 permalink: /providers/logfare/
-last_modified_at: 2026-11-11
+last_modified_at: 2026-11-12
 crumb: Logfare (Standard models)
 ---
 
@@ -11,7 +11,7 @@ crumb: Logfare (Standard models)
 
 # Logfare (Standard models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-11, a regular row from the first probe it passes on or after 2026-11-25 · **live** — last verified by a probe on 2026-11-11 · [logfare.ai](https://logfare.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-11, a regular row from the first probe it passes on or after 2026-11-25 · **live** — last verified by a probe on 2026-11-12 · [logfare.ai](https://logfare.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

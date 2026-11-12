@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'CodeRabbit free tier: limits, free models, verified 2026-11-09'
+title: 'CodeRabbit free tier: limits, free models, verified 2026-11-12'
 description: Code reviews for local Git changes through an installed CLI or VS Code extension, with an ongoing Free plan alongside a separate introductory trial. Sign-in is required. New organizations start with a separate "14-day Advanced trial". Free PR access provides summaries; open-source PR reviews have…
 permalink: /providers/coderabbit/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: CodeRabbit
 ---
 
@@ -11,7 +11,7 @@ crumb: CodeRabbit
 
 # CodeRabbit free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-09 · [coderabbit.ai](https://www.coderabbit.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-10-31, a regular row from the first probe it passes on or after 2026-11-14 · **live** — last verified by a probe on 2026-11-12 · [coderabbit.ai](https://www.coderabbit.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

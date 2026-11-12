@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-11-09'
+title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-11-12'
 description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: glm-5.3-flash, minimax-m3, deepseek-v4-flash, qwen3.6. No card. This is an experimental research service with…'
 permalink: /providers/freeinference/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: FreeInference (Harvard SEAS)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # FreeInference (Harvard SEAS) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [freeinference.org](https://freeinference.org) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [freeinference.org](https://freeinference.org) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

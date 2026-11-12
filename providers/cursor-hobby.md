@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cursor (Free) free tier: limits, free models, verified 2026-11-09'
+title: 'Cursor (Free) free tier: limits, free models, verified 2026-11-12'
 description: 'Free coding plan of the Cursor AI IDE, with limited Agent and Chat usage. Free models: composer-2.5, grok-4.5, grok-4.6, grok-4.7. Free includes limited Agent, Chat and Tab usage with Cursor''s first-party models; numerical allowances are unpublished and third-party models are not included. The…'
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Cursor (Free)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Cursor (Free) free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-09 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

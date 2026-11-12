@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'xing4.0-29b-a4b free: 4 providers, limits and ids, provider probes 2026-11-09'
+title: 'xing4.0-29b-a4b free: 4 providers, limits and ids, provider probes 2026-11-12'
 description: xing4.0-29b-a4b is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/xing4.0-29b-a4b/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: xing4.0-29b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: xing4.0-29b-a4b
 
 # Where xing4.0-29b-a4b is free
 
-**4 rows on the list serve `xing4.0-29b-a4b` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**4 rows on the list serve `xing4.0-29b-a4b` free:** OpenRouter (free models), Kilo Code, AIHubMix (free models) and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: xing4.0-29b-a4b
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-10-31
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-10-31
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-09 · listed since 2026-10-31
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-12 · listed since 2026-10-31
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -59,7 +59,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-09
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-11-09
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -78,7 +78,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-11-09 · listed since 2026-10-31
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-11-12 · listed since 2026-10-31
 
 Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents
 

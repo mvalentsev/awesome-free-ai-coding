@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-11-09'
+title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-11-12'
 description: 'EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card. Free models: qwen3.8-27b, gpt-oss-120b, qwen3.6. The documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model''s anonymous…'
 permalink: /providers/ovh-ai-endpoints/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: OVHcloud AI Endpoints
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # OVHcloud AI Endpoints free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

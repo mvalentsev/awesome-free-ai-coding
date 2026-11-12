@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'laguna-s-2.1 free: 1 provider, limits and ids, provider probes 2026-11-09'
+title: 'laguna-s-2.1 free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: laguna-s-2.1 is served free by Vercel AI Gateway. It asks for a card on file. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/laguna-s-2.1/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: laguna-s-2.1
 ---
 
@@ -11,7 +11,7 @@ crumb: laguna-s-2.1
 
 # Where laguna-s-2.1 is free
 
-**One row on the list serves `laguna-s-2.1` free:** Vercel AI Gateway. It asks for a card on file. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
+**One row on the list serves `laguna-s-2.1` free:** Vercel AI Gateway. It asks for a card on file. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: laguna-s-2.1
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-09 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-12 · listed since 2026-08-14
 
 OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 

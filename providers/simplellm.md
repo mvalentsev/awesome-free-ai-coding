@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'SimpleLLM free tier: limits, free models, verified 2026-11-09'
+title: 'SimpleLLM free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit. Free models: gemma-4-e4b, llama-3.1-8b. An account and API key are required. The free request slot is shared across all free models and account keys, for streaming and…'
 permalink: /providers/simplellm/
-last_modified_at: 2026-11-10
+last_modified_at: 2026-11-12
 crumb: SimpleLLM
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # SimpleLLM free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [simplellm.eu](https://simplellm.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [simplellm.eu](https://simplellm.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

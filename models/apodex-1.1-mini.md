@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'apodex-1.1-mini free: 1 provider, limits and ids, provider probes 2026-11-09'
+title: 'apodex-1.1-mini free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: apodex-1.1-mini is served free by Novita AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/apodex-1.1-mini/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: apodex-1.1-mini
 ---
 
@@ -11,7 +11,7 @@ crumb: apodex-1.1-mini
 
 # Where apodex-1.1-mini is free
 
-**One row on the list serves `apodex-1.1-mini` free:** Novita AI. It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
+**One row on the list serves `apodex-1.1-mini` free:** Novita AI. It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: apodex-1.1-mini
 
 ### [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-09 · listed since 2026-11-09
+🔌 LLM APIs with free tier · no card · last probe 2026-11-12 · listed since 2026-11-09
 
 Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output
 

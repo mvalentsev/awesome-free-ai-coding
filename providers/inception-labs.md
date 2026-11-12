@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-11-09'
+title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-11-12'
 description: A one-time signup token balance on Mercury diffusion models, including the current Mercury 3 chat model and earlier chat and code-edit models. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute…
 permalink: /providers/inception-labs/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Inception Labs (Mercury)
 ---
 
@@ -11,7 +11,7 @@ crumb: Inception Labs (Mercury)
 
 # Inception Labs (Mercury) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-09 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-12 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

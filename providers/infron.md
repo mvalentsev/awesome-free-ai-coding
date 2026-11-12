@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Infron free tier: limits, free models, verified 2026-11-09'
+title: 'Infron free tier: limits, free models, verified 2026-11-12'
 description: OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance. Keep at least $5 in account credit to use standard :free models. Free requests do not consume that balance. New accounts start at $0. Top-ups add a 5% platform fee plus $0.35 per…
 permalink: /providers/infron/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Infron
 ---
 
@@ -11,7 +11,7 @@ crumb: Infron
 
 # Infron free tier
 
-🔌 LLM APIs with free tier · no card · requires $5 one-time top-up + 5% fee · provisional — added on 2026-11-01, a regular row from the first probe it passes on or after 2026-11-15 · **live** — last verified by a probe on 2026-11-09 · [infron.ai](https://infron.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · requires $5 one-time top-up + 5% fee · provisional — added on 2026-11-01, a regular row from the first probe it passes on or after 2026-11-15 · **live** — last verified by a probe on 2026-11-12 · [infron.ai](https://infron.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

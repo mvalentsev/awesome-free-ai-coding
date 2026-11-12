@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-2.4t-a95b free: 1 provider, limits and ids, provider probes 2026-11-09'
+title: 'qwen3.8-2.4t-a95b free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: qwen3.8-2.4t-a95b is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-2.4t-a95b/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: qwen3.8-2.4t-a95b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-2.4t-a95b
 
 # Where qwen3.8-2.4t-a95b is free
 
-**One row on the list serves `qwen3.8-2.4t-a95b` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-09; its offer is rechecked twice a week.
+**One row on the list serves `qwen3.8-2.4t-a95b` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.8-2.4t-a95b
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-09 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-12 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
@@ -44,8 +44,8 @@ Free token grants apply in Singapore (international), independently per model an
 ## Related models
 
 - [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — free at LLMTR (until 2026-11-13) and Alibaba Cloud Model Studio (DashScope, international)
-- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (until 2026-11-24), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
 - [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — free at Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — free at Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute (until 2026-11-24), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints
 
 ---
 

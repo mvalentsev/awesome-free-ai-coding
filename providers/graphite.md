@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Graphite free tier: limits, free models, verified 2026-11-09'
+title: 'Graphite free tier: limits, free models, verified 2026-11-12'
 description: AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial. GitHub sign-in and repository permissions are required. Hobby covers personal-account repositories; organization repositories require a paid plan. AI…
 permalink: /providers/graphite/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Graphite
 ---
 
@@ -11,7 +11,7 @@ crumb: Graphite
 
 # Graphite free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-09 · [graphite.com](https://graphite.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-12 · [graphite.com](https://graphite.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

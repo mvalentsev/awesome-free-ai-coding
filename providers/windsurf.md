@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-11-05'
+title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-11-12'
 description: 'Free plan of Cognition''s desktop and terminal coding agents, alongside its paid plans. Free models: swe-1.6, swe-2-flash-medium. Windsurf is now Devin Desktop. Free models do not consume the plan''s usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after…'
 permalink: /providers/windsurf/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Devin Desktop (formerly Windsurf)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Devin Desktop (formerly Windsurf) free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-05; the probe since has not found that evidence, and 3 misses in a row archive the row · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

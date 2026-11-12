@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'MIAPI free tier: limits, free models, verified 2026-11-09'
+title: 'MIAPI free tier: limits, free models, verified 2026-11-12'
 description: A monthly free API allowance for web-grounded answers with citations. The Free plan covers all endpoints. Query packs are a separate paid mode and do not expire. Questions are limited to 2,000 characters and output budgets to 50–2,000 tokens; no token-based context limit is published. The public…
 permalink: /providers/miapi/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: MIAPI
 ---
 
@@ -11,7 +11,7 @@ crumb: MIAPI
 
 # MIAPI free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-09 · [miapi.uk](https://miapi.uk) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-12 · [miapi.uk](https://miapi.uk) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

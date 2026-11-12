@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Kiro free tier: limits, free models, verified 2026-11-09'
+title: 'Kiro free tier: limits, free models, verified 2026-11-12'
 description: 'Perpetual free tier of AWS''s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. Free models: claude-sonnet-4, claude-sonnet-4.5, deepseek-v3.2, glm-5, minimax-m2.1, minimax-m2.5, qwen3-coder-next. Requires social login or AWS Builder ID. Credits do not…'
 permalink: /providers/kiro/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Kiro
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Kiro free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-09 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-12 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

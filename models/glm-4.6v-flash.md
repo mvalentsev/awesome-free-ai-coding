@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-4.6v-flash free: 2 providers, limits and ids, provider probes 2026-11-09'
+title: 'glm-4.6v-flash free: 2 providers, limits and ids, provider probes 2026-11-12'
 description: glm-4.6v-flash is served free by Z.ai (Zhipu GLM) and NovAI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.6v-flash/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: glm-4.6v-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-4.6v-flash
 
 # Where glm-4.6v-flash is free
 
-**2 rows on the list serve `glm-4.6v-flash` free:** Z.ai (Zhipu GLM) and NovAI. None asks for a card. The providers' last scheduled probes were on 2026-11-09; their offers are rechecked twice a week.
+**2 rows on the list serve `glm-4.6v-flash` free:** Z.ai (Zhipu GLM) and NovAI. None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-4.6v-flash
 
 ### [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-09 · listed since 2026-08-14
+🔌 LLM APIs with free tier · no card · last probe 2026-11-12 · listed since 2026-08-14
 
 GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)
 
@@ -40,7 +40,7 @@ GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output price
 
 ### [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-09 · listed since 2026-11-05
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-11-05
 
 Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit
 

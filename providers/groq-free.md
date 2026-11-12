@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Groq free tier: limits, free models, verified 2026-11-09'
-description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: qwen3.8-27b, gpt-oss-20b, gpt-oss-120b. These are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits…'
+title: 'Groq free tier: limits, free models, verified 2026-11-12'
+description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: qwen3.8-27b, gpt-oss-120b, gpt-oss-20b. These are the Free Plan limits for the coding models, shared by keys in the same organization. Classifiers, guardrails, speech and voice models have separate limits…'
 permalink: /providers/groq-free/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Groq
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Groq free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-09 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-12 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -20,7 +20,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="gpt-oss-20b">[`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span></span>
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="gpt-oss-20b">[`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “For clarity
 
 - Base URL: `https://api.groq.com/openai/v1`
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
-- Callable ids: `qwen/qwen3.8-27b`, `openai/gpt-oss-20b`, `openai/gpt-oss-120b`
+- Callable ids: `qwen/qwen3.8-27b`, `openai/gpt-oss-120b`, `openai/gpt-oss-20b`
 - Note: the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out
 
 Try it from your terminal with your key in `GROQ_API_KEY` — it goes from your machine to the vendor and nowhere else:

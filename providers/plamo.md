@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'PLaMo API (Preferred Networks) free tier: limits, free models, verified 2026-11-09'
+title: 'PLaMo API (Preferred Networks) free tier: limits, free models, verified 2026-11-12'
 description: Preferred Networks model API with a Free plan for eligible users in Japan. Registration and use are limited to adults resident in Japan or Japanese entities. Free inputs and outputs are stored and used for training; personal information must not be submitted. Usage and rate limits apply; the…
 permalink: /providers/plamo/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: PLaMo API (Preferred Networks)
 ---
 
@@ -11,7 +11,7 @@ crumb: PLaMo API (Preferred Networks)
 
 # PLaMo API (Preferred Networks) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in Japan · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-09 · [plamo.preferredai.jp](https://plamo.preferredai.jp/api) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in Japan · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-12 · [plamo.preferredai.jp](https://plamo.preferredai.jp/api) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
