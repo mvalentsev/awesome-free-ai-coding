@@ -2430,12 +2430,12 @@ def load_sources(path: Path) -> list[Source]:
 def is_source_current(source: Source, today: date) -> bool:
     """Whether the verdict is at most SOURCE_RECHECK_DAYS old. Past that it is
     not wrong, only old enough to be worth asking again."""
-    return (today - source.checked_on).days <= SOURCE_RECHECK_DAYS
+    return 0 <= (today - source.checked_on).days <= SOURCE_RECHECK_DAYS
 
 
 def is_watch_current(watched: Watched, today: date) -> bool:
     """Is this verdict still young enough to answer for the service?"""
-    return (today - watched.checked_on).days <= WATCH_RECHECK_DAYS
+    return 0 <= (today - watched.checked_on).days <= WATCH_RECHECK_DAYS
 
 
 def watch_match(domain: str, watchlist: list[Watched], today: date) -> Watched | None:

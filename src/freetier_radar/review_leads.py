@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
@@ -12,7 +11,8 @@ import yaml
 from markdown_it import MarkdownIt
 
 from . import git
-from .models import is_covered, site_of, valid_source_url, utc_today
+from .models import (Source, Watched, is_covered, is_source_current, is_watch_current,
+                     site_of, valid_source_url, utc_today)
 
 _ASSET = re.compile(r'\.(?:png|jpe?g|gif|webp|svg|ico|woff2?|ttf|css|js|mjs|mp[34]|zip|gz)$', re.I)
 _COMPARISON = re.compile(
@@ -171,17 +171,19 @@ def answered_sites(repo: Path, sha: str) -> set[str]:
         elif filename == 'blocklist.yaml':
             known.update(r['domain'] for r in value)
         elif filename == 'watchlist.yaml':
-            for row in value.get('watched', []) if isinstance(value, dict) else []:
-                if (today - date.fromisoformat(str(row['checked_on']))).days <= 90:
+            for record in (value.get('watched') if isinstance(value, dict) else value) or []:
+                row = Watched.model_validate(record)
+                if is_watch_current(row, today):
                     # A dated offer decision does not answer every product
                     # or directory sharing the vendor's host.
-                    known.update('https://' + domain for domain in row['domains'])
+                    known.update('https://' + domain for domain in row.domains)
         else:
-            for row in value.get('read', []) if isinstance(value, dict) else []:
-                if (today - date.fromisoformat(str(row['checked_on']))).days <= 180:
+            for record in (value.get('read') if isinstance(value, dict) else value) or []:
+                row = Source.model_validate(record)
+                if is_source_current(row, today):
                     # A directory verdict names a URL, not every repository
                     # published by its host or owner.
-                    known.add(row['url'].rstrip('/'))
+                    known.add(row.url.rstrip('/'))
     return known
 
 

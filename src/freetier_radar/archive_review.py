@@ -15,6 +15,7 @@ from .page_reader import RECOVERY_BYTES, RECOVERY_REDIRECTS
 from .prober import (CONCURRENCY, TIMEOUT, UA, check_content, followed_url,
                      join_free_list, page_response_ok)
 from .quotes import row_urls
+from .quotas import review_due
 from .review import Bundle
 from .source_urls import valid_source_url
 
@@ -28,7 +29,7 @@ def due_entries(entries: list[Entry], blocklist: dict[str, str], today: date,
     return [e for e in entries if is_archived_for_good(e, today)
             and not e.duplicate_of and not is_blocked(site_of(e.url), blocklist)
             and (all_archived or e.archive_review is None
-                 or (today - e.archive_review.checked_on).days >= ARCHIVE_RECHECK_DAYS)]
+                 or review_due(e.archive_review.checked_on, today, days=ARCHIVE_RECHECK_DAYS))]
 
 
 async def collect(entries: list[Entry], blocklist: dict[str, str], today: date,

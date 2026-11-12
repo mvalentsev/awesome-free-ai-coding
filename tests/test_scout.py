@@ -1405,7 +1405,7 @@ def watch(domain: str = "n.ai", checked_on: str = "2026-07-01") -> Watched:
         "reopen_if": "a zero-priced row appears"})
 
 
-def source(name: str = "someone/a-list", checked_on: str = "2026-08-01") -> Source:
+def source(name: str = "someone/a-list", checked_on: str = TODAY.isoformat()) -> Source:
     return Source.model_validate({
         "url": f"https://github.com/{name}", "name": name, "checked_on": checked_on,
         "reason": "carries no provider-level data", "reopen_if": "it starts publishing endpoints"})
@@ -1486,9 +1486,11 @@ def test_run_scout_reports_sources_due_for_a_re_read():
     """Nothing else reopens sources.yaml, and the scout does not read those
     lists, so it carries the question to the PR body for a human."""
     expired = (TODAY - timedelta(days=SOURCE_RECHECK_DAYS + 1)).isoformat()
+    future = (TODAY + timedelta(days=1)).isoformat()
     result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
-                             sources=[source(), source("stale/list", checked_on=expired)])
-    assert result["stale_sources"] == [f"stale/list (read {expired})"]
+                             sources=[source(), source("stale/list", checked_on=expired),
+                                      source("future/list", checked_on=future)])
+    assert result["stale_sources"] == [f"stale/list (read {expired})", f"future/list (read {future})"]
 
 
 EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],

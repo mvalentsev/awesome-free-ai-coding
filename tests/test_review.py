@@ -44,6 +44,70 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     assert json.loads((bundle.out / 'scope.json').read_text())['sha'] == scope['sha']
 
 
+@pytest.mark.parametrize('bare', [False, True])
+@respx.mock
+async def test_source_review_reuses_current_decisions_and_their_canonical_deadlines(tmp_path, monkeypatch, bare):
+    from datetime import date, timedelta
+    from freetier_radar import models, review_leads
+
+    repo = repo_at(tmp_path)
+    today = date(2026, 11, 12)
+    monkeypatch.setattr(review_leads, 'utc_today', lambda: today)
+    monkeypatch.setattr(models, 'WATCH_RECHECK_DAYS', 2)
+    monkeypatch.setattr(models, 'SOURCE_RECHECK_DAYS', 4)
+    targets = []
+    for filename, key, limit in [('watchlist.yaml', 'watched', models.WATCH_RECHECK_DAYS),
+                                 ('sources.yaml', 'read', models.SOURCE_RECHECK_DAYS)]:
+        rows = []
+        for state, age in [('current', limit), ('expired', limit+1), ('future', -1)]:
+            host = f'{key}-{state}.example'
+            url = f'https://{host}'
+            targets.append((url, state))
+            rows.append({'name': host, 'checked_on': str(today-timedelta(days=age)),
+                         'reason': 'No free offer', 'reopen_if': 'A free offer is published',
+                         **({'domains': [host]} if key == 'watched' else {'url': url})})
+        (repo / filename).write_text(json.dumps(rows if bare else {key: rows}))
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture decisions'], check=True)
+    # Uncommitted decisions must not replace the exact reviewed tree.
+    (repo / 'watchlist.yaml').write_text('watched: []\n')
+    (repo / 'sources.yaml').write_text('read: []\n')
+    bundle = review.Bundle(repo / '.evidence/deadlines', repo)
+    review.prepare(repo, 'HEAD', 'HEAD', bundle)
+    source = 'https://directory.example/list'
+    respx.get(source).respond(200, text=''.join(f'<a href="{url}">Offer</a>' for url, _ in targets))
+    result = await review.sources(bundle, [source])
+    assert result['passed']
+    assert len(respx.calls) == 1
+    assert {r['url'] for r in result['lead_inventory']} == {url for url, state in targets if state != 'current'}
+
+
+@pytest.fixture(scope='module')
+def product_scope_repo(tmp_path_factory):
+    """Committed decisions shared read-only; HTTP and evidence stay per case."""
+    repo = repo_at(tmp_path_factory.mktemp('product-scope'))
+    # These decisions are identical on both sides: only the source read is new.
+    (repo / 'registry.yaml').write_text(json.dumps({'entries': [
+        {'id': 'copilot', 'url': 'https://github.com/features/copilot',
+         'source_urls': ['https://docs.github.com/en/copilot/get-started/plans']},
+        {'id': 'cline', 'url': 'https://cline.bot',
+         'source_urls': ['https://github.com/cline/cline']},
+        {'id': 'extension', 'url': 'https://marketplace.visualstudio.com/items?itemName=known.extension',
+         'source_urls': []},
+    ]}))
+    (repo / 'watchlist.yaml').write_text(json.dumps({'watched': [
+        {'domains': ['figma.com'], 'name': 'Figma Make', 'checked_on': review.now()[:10],
+         'reason': 'No bundled API quota', 'reopen_if': 'A bundled API quota is published'},
+    ]}))
+    (repo / 'blocklist.yaml').write_text(json.dumps([{'domain': 'blocked.example'}]))
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture decisions'], check=True)
+    (repo / 'marker').write_text('Source review\n')
+    subprocess.run(['git', '-C', str(repo), 'add', 'marker'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture review'], check=True)
+    return repo
+
+
 @pytest.mark.parametrize('source,target,expected', [
     ('https://directory.example/list', 'https://docs.github.com/en/github-models', True),
     ('https://directory.example/list', 'https://developers.figma.com/docs/figma-mcp-server/', True),
@@ -61,27 +125,9 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     ('https://vendor.example/first', 'https://vendor.example/pricing?product=second', True),
 ])
 @respx.mock
-async def test_source_collection_keeps_product_and_repository_scope(tmp_path, source, target, expected):
-    repo = repo_at(tmp_path)
-    # These decisions are identical on both sides: only the source read is new.
-    (repo / 'registry.yaml').write_text(json.dumps({'entries': [
-        {'id': 'copilot', 'url': 'https://github.com/features/copilot',
-         'source_urls': ['https://docs.github.com/en/copilot/get-started/plans']},
-        {'id': 'cline', 'url': 'https://cline.bot',
-         'source_urls': ['https://github.com/cline/cline']},
-        {'id': 'extension', 'url': 'https://marketplace.visualstudio.com/items?itemName=known.extension',
-         'source_urls': []},
-    ]}))
-    (repo / 'watchlist.yaml').write_text(json.dumps({'watched': [
-        {'domains': ['figma.com'], 'name': 'Figma Make', 'checked_on': review.now()[:10]},
-    ]}))
-    (repo / 'blocklist.yaml').write_text(json.dumps([{'domain': 'blocked.example'}]))
-    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
-    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture decisions'], check=True)
-    (repo / 'marker').write_text('Source review\n')
-    subprocess.run(['git', '-C', str(repo), 'add', 'marker'], check=True)
-    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture review'], check=True)
-    bundle = review.Bundle(repo / '.evidence/product-scope', repo)
+async def test_source_collection_keeps_product_and_repository_scope(product_scope_repo, tmp_path, source, target, expected):
+    repo = product_scope_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     assert review.prepare(repo, 'HEAD~1', 'HEAD', bundle)['rows'] == []
     body = f'<a href="{target}">Read the linked product</a>'
     respx.get(source).respond(200, text=body)

@@ -16,9 +16,9 @@ if TYPE_CHECKING:
 UNKNOWN_RECHECK_DAYS = 7
 
 
-def review_due(reviewed_on: date, today: date) -> bool:
+def review_due(reviewed_on: date, today: date, *, days: int = UNKNOWN_RECHECK_DAYS) -> bool:
     """Whether a manual review is future-dated or its review window has ended."""
-    return not 0 <= (today - reviewed_on).days < UNKNOWN_RECHECK_DAYS
+    return not 0 <= (today - reviewed_on).days < days
 
 
 class QuotaCatalogField(BaseModel):

@@ -26,13 +26,13 @@ def archived(**changes):
     return Entry.model_validate(row)
 
 
-@pytest.mark.parametrize('age,due', [(None, True), (0, False), (6, False), (7, True), (8, True)])
+@pytest.mark.parametrize('age,due', [(None, True), (-1, True), (0, False),
+    (ARCHIVE_RECHECK_DAYS-1, False), (ARCHIVE_RECHECK_DAYS, True), (ARCHIVE_RECHECK_DAYS+1, True)])
 def test_manual_review_date_controls_the_archive_deadline(age, due):
     review = ArchiveReview(checked_on=TODAY-timedelta(days=age), sources=['https://vendor.example/current']) if age is not None else None
     entry = archived(archive_review=review)
     assert bool(due_entries([entry], {}, TODAY)) is due
     assert due_entries([entry], {}, TODAY, all_archived=True) == [entry]
-    assert ARCHIVE_RECHECK_DAYS == 7
 
 
 @pytest.mark.parametrize('kind', ['live', 'future-retirement', 'duplicate', 'blocked', 'blocked-subdomain'])
@@ -66,9 +66,10 @@ def test_manual_review_stamp_requires_an_already_archived_row(changes):
         archived(**{'archive_review':{'checked_on':TODAY,'sources':['https://vendor.example/current']},**changes})
 
 
+@pytest.mark.parametrize('age', [ARCHIVE_RECHECK_DAYS, -1])
 @respx.mock
-async def test_review_reads_current_conditions_beyond_the_last_offer_sources(tmp_path):
-    entry = archived(archive_review={'checked_on':TODAY-timedelta(days=7),
+async def test_review_reads_current_conditions_beyond_the_last_offer_sources(tmp_path, age):
+    entry = archived(archive_review={'checked_on':TODAY-timedelta(days=age),
                                     'sources':['https://vendor.example/current']})
     respx.get(entry.probe.endpoint).respond(200,text='An old page')
     current = respx.get('https://vendor.example/current').respond(200,text='A new separate free mode')
@@ -76,7 +77,7 @@ async def test_review_reads_current_conditions_beyond_the_last_offer_sources(tmp
         report = await collect([entry],{},TODAY,Bundle(tmp_path/'evidence',Path.cwd()),client=client)
     assert current.call_count == 1
     assert 'https://vendor.example/current' in report['rows'][0]['sources']
-    assert entry.archive_review.checked_on == TODAY-timedelta(days=7)
+    assert entry.archive_review.checked_on == TODAY-timedelta(days=age)
 
 
 @pytest.mark.parametrize('sources', [[], ['http://vendor.example'], ['https://user:secret@vendor.example']])
