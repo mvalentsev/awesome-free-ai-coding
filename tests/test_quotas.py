@@ -33,8 +33,6 @@ async def test_spelled_concurrency_counts_follow_the_http_source(quote, changed)
     source = respx.get(QUOTA['source']).respond(
         200, text=(quote.replace('one ', 'two ') if changed else quote) + ' ' + period)
     async with httpx.AsyncClient() as client:
-        await client.get(QUOTA['source'])
-        assert source.called
         entry = Entry.model_validate({**BASE, 'quotas': [{
             **QUOTA, 'amount': 1, 'period': 'concurrent', 'scope': 'account',
             'quote': quote, 'value_phrase': quote, 'period_quote': period,
@@ -42,6 +40,7 @@ async def test_spelled_concurrency_counts_follow_the_http_source(quote, changed)
         respx.get(BASE['probe']['endpoint']).respond(200, text='Recurring free quota for chat')
         result = await probe_entry(client, entry, attempts=1, backoff=0)
     assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+    assert source.call_count == 1
 
 
 def test_spelled_count_does_not_cross_an_unrelated_model_description():
@@ -77,6 +76,13 @@ def test_indonesian_period_words_do_not_match_the_wrong_window(period, quote):
         UsageQuota.model_validate({**QUOTA, 'amount': 50, 'period': period, 'quote': quote})
 
 
+@pytest.fixture(scope='module')
+def trae_script_entry():
+    from freetier_radar.models import load_registry
+    original = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'trae')
+    return original.model_copy(update={'quotas': original.quotas[1:], 'data_use': None, 'border': None})
+
+
 @pytest.mark.parametrize(('change', 'changed'), [
     ('current', False), ('paid-only-changed', False),
     ('completion', True), ('tasks', True), ('price', True),
@@ -85,12 +91,10 @@ def test_indonesian_period_words_do_not_match_the_wrong_window(period, quote):
     ('expired-review', True),
 ])
 @respx.mock
-async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(change, changed):
-    from freetier_radar.models import load_registry
+async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(trae_script_entry, change, changed):
     # TRAE serves these same Free-SKU values in regional page variants whose
     # numeric comparison is not rendered (https://www.trae.ai/pricing, 2026-11-01).
-    original = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'trae')
-    entry = original.model_copy(update={'quotas': original.quotas[1:], 'data_use': None, 'border': None})
+    entry = trae_script_entry.model_copy(deep=True)
     free = {'display_price': '$0', 'id': '1', 'name': 'Free', 'product_extra': {'subscription_extra': {
         'quota': {'advanced_model_request_limit': 1000, 'auto_completion_limit': 5000,
                   'solo_agent_parallel_limit': 2}}}}
@@ -174,6 +178,23 @@ async def test_review_quota_tracks_the_free_cli_cell_at_http_boundary(free_cli, 
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, e, attempts=1, backoff=0)
     assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+
+
+@pytest.mark.parametrize('table', [
+    '<table><tr><th>MODEL ID</th><th>RPM</th></tr><tr><td>coding-model</td><td>30</td></tr></table>',
+    '\n| MODEL ID | RPM |\n|---|---|\n| coding-model | 30 |\n',
+])
+@respx.mock
+async def test_an_inert_table_cannot_confirm_a_current_quota(table):
+    q = {**QUOTA, 'amount': 30, 'period': 'minute', 'read': 'table', 'quote': 'Free Plan Limits',
+         'table': {'headers': ['MODEL ID', 'RPM'], 'column': 'RPM', 'rows': ['coding-model']}}
+    e = Entry.model_validate({**BASE, 'quotas': [q]})
+    respx.get(e.probe.endpoint).respond(200, text='Recurring free quota for chat')
+    respx.get(q['source']).respond(200, text='<p>Free Plan Limits</p><template>' + table + '</template>')
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, e, attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'quota table coding-model' in result.detail
 
 
 def test_single_review_quote_keeps_its_unit_and_amount():
@@ -331,8 +352,10 @@ async def test_an_unpublished_amount_expires_for_review_without_becoming_zero():
     async with httpx.AsyncClient() as client:
         fresh=await probe_entry(client,e,attempts=1,backoff=0,today=date(2026,10,1))
         due=await probe_entry(client,e,attempts=1,backoff=0,today=date(2026,10,1+UNKNOWN_RECHECK_DAYS))
+        future=await probe_entry(client,e,attempts=1,backoff=0,today=date(2026,9,30))
     assert fresh.status is ProbeStatus.PASS
     assert due.status is ProbeStatus.STALE_IDS and 'fresh dated review' in due.detail
+    assert future.status is ProbeStatus.STALE_IDS and 'fresh dated review' in future.detail
     assert 'amount not published' in quota_summary(e) and '0 requests' not in quota_summary(e)
 
 

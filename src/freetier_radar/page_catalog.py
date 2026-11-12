@@ -15,6 +15,7 @@ from html.parser import HTMLParser
 
 from .countries import country_name, quoted_codes
 from .models import Entry, PageCatalog, PageModel, access_words, utc_today
+from .quotas import review_due
 
 
 def clean(text: str) -> str:
@@ -23,6 +24,7 @@ def clean(text: str) -> str:
 
 class _Page(HTMLParser):
     def __init__(self, body: str):
+        from .page_reader import without_templates
         super().__init__(convert_charrefs=True)
         self.position = 0
         self.open: list[dict] = []
@@ -32,7 +34,7 @@ class _Page(HTMLParser):
         self.script: list[str] | None = None
         self.structured = False
         self.style = False
-        self.feed(body)
+        self.feed(without_templates(body))
         self.close()
 
     def handle_starttag(self, tag, attrs):
@@ -234,13 +236,11 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
         if not quote_found(quote, current):
             notes.append(f"{field} no longer evidenced")
     if (catalog.read.table_heading is None or any(b.amount is None for b in catalog.budgets)) and catalog.reviewed_on:
-        from .quotas import UNKNOWN_RECHECK_DAYS
-        if (today - catalog.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+        if review_due(catalog.reviewed_on, today):
             notes.append('unpublished model hour prices or budget amounts need a fresh dated review')
     for key, condition in catalog.conditions.items():
         if condition.note and condition.reviewed_on:
-            from .quotas import UNKNOWN_RECHECK_DAYS
-            if (today - condition.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+            if review_due(condition.reviewed_on, today):
                 notes.append(f"page_catalog.conditions.{key}: manual eligibility needs a fresh dated review")
     return notes
 

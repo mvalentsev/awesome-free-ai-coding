@@ -1997,9 +1997,10 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
 
 def _table_models(body: str, headers: list[str], name_column: str,
                   value_columns: list[str], included_value: str) -> list[str]:
+    from .page_reader import without_templates
     from .quotas import _Tables
     parser = _Tables()
-    parser.feed(body)
+    parser.feed(without_templates(body))
     tables = [table for table in parser.tables if set(headers) <= set(table['headers'])]
     if len(tables) != 1:
         return []
@@ -2029,7 +2030,7 @@ def free_table_models(resp: httpx.Response, entry: Entry) -> list[str] | None:
 
 def model_table_findings(resp: httpx.Response, entry: Entry, today: date) -> list[str]:
     """Account for every eligible row without promoting a waiting family."""
-    from .quotas import UNKNOWN_RECHECK_DAYS
+    from .quotas import review_due
     from .quotes import prose_model_access_changes
     notes = prose_model_access_changes(entry, {entry.probe.endpoint: resp.text})
     free = free_table_models(resp, entry)
@@ -2074,7 +2075,7 @@ def model_table_findings(resp: httpx.Response, entry: Entry, today: date) -> lis
     for excluded in entry.probe.model_exclusions:
         if _squash(excluded.name) not in names:
             notes.append("model table: exclusion no longer names an eligible row: " + excluded.name)
-        elif excluded.reviewed_on > today or (today - excluded.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+        elif review_due(excluded.reviewed_on, today):
             notes.append("model table: exclusion needs a dated review: " + excluded.name)
     if not free:
         notes.append("model table: no unambiguous eligible rows; complete inventory could not be checked")

@@ -16,6 +16,11 @@ if TYPE_CHECKING:
 UNKNOWN_RECHECK_DAYS = 7
 
 
+def review_due(reviewed_on: date, today: date) -> bool:
+    """Whether a manual review is future-dated or its review window has ended."""
+    return not 0 <= (today - reviewed_on).days < UNKNOWN_RECHECK_DAYS
+
+
 class QuotaCatalogField(BaseModel):
     model_config = ConfigDict(extra='forbid')
     collection: str = Field(pattern=r'^[A-Za-z_][\w]*$')
@@ -176,6 +181,8 @@ class _Tables(HTMLParser):
 
 def table_values(body: str, binding: QuotaTable) -> list[tuple[str, str]]:
     """Resolve exact model/plan cells; missing or duplicate cells stay visible."""
+    from .page_reader import without_templates
+    body = without_templates(body)
     parser = _Tables()
     try:parser.feed(body)
     except (ValueError,TypeError):return []
@@ -469,8 +476,7 @@ def quota_review_changes(quota: UsageQuota, today: date) -> list[str]:
     unresolved = (quota.read == 'script-field' or quota.amount is None
                   or quota.period is None or quota.state
                   or quota.scope in ('unspecified', 'disputed'))
-    if (quota.reviewed_on and unresolved
-            and (today - quota.reviewed_on).days >= UNKNOWN_RECHECK_DAYS):
+    if quota.reviewed_on and unresolved and review_due(quota.reviewed_on, today):
         return ['unresolved quota needs a fresh dated review']
     return []
 

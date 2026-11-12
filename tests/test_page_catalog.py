@@ -7,7 +7,7 @@ import httpx
 import pytest
 import respx
 
-from freetier_radar.models import Entry
+from freetier_radar.models import Entry, utc_today
 from freetier_radar.prober import ProbeStatus, probe_entry
 
 
@@ -221,7 +221,7 @@ async def test_regional_budget_amount_is_rechecked_on_its_own_plan_source():
     from freetier_radar.quotes import row_quote_source, row_urls
     data = session_catalog_data()
     data['read'].update(format='markdown', table_heading=None)
-    data['reviewed_on'] = date.today().isoformat()
+    data['reviewed_on'] = utc_today().isoformat()
     plans = 'https://vendor.example/plans'
     amount_quote = 'Free plan includes 100 Credits a day.'
     data['budgets'] = [
@@ -279,7 +279,7 @@ async def test_markdown_faq_checks_budgets_without_inventing_model_hour_prices(t
     from freetier_radar.models import load_registry,save_registry
     data=session_catalog_data()
     data['read'].update(format='markdown',table_heading=None)
-    data['reviewed_on']=date.today().isoformat()
+    data['reviewed_on']=utc_today().isoformat()
     data['conditions']['wallet']={'kind':'wallet','quote':'Credits buy one-hour model sessions.'}
     for model in data['models'][:2]:model.update(hours=None,condition='wallet',listed=True)
     body='''# Vendor
@@ -304,11 +304,13 @@ Gamma needs a paid plan.
         respx.get(data['source']).respond(200,text=body.replace('US: 100','US: 150'))
         bad=await probe_entry(client,entry(data),attempts=1,backoff=0)
         respx.get(data['source']).respond(200,text=body)
-        expired=await probe_entry(client,entry(data),attempts=1,backoff=0,today=date.today()+timedelta(days=7))
+        expired=await probe_entry(client,entry(data),attempts=1,backoff=0,today=utc_today()+timedelta(days=7))
+        future=await probe_entry(client,entry(data),attempts=1,backoff=0,today=utc_today()-timedelta(days=1))
     assert good.status is ProbeStatus.PASS
     assert bad.status is ProbeStatus.STALE_IDS and 'budget US' in bad.detail
     assert expired.status is ProbeStatus.STALE_IDS and 'fresh dated review' in expired.detail
-    row=build_index([entry(data)],date.today())['entries'][0]
+    assert future.status is ProbeStatus.STALE_IDS and 'fresh dated review' in future.detail
+    row=build_index([entry(data)],utc_today())['entries'][0]
     assert [m['family'] for m in row['models']]==['alpha','beta']
     assert 'hour prices are not published' not in row['limits']
     assert "Check your account's picker for current model hour prices" in row['limits']
@@ -335,7 +337,7 @@ async def test_unpublished_regional_amount_and_quoted_limited_budgets(tmp_path):
     from freetier_radar.render import build_index
     data = session_catalog_data()
     data['read'].update(format='markdown', table_heading=None)
-    data['reviewed_on'] = date.today().isoformat()
+    data['reviewed_on'] = utc_today().isoformat()
     data['budgets'] = [
         {'id': 'full', 'amount': None, 'countries': ['US', 'CA'], 'quote': 'Full access covers US and CA.'},
         {'id': 'else', 'amount': 25, 'scope': 'else', 'quote': 'free limited allowance is 25 Credits a day'},
@@ -366,7 +368,7 @@ Gamma needs a paid plan.
         bad = await probe_entry(client, entry(data), attempts=1, backoff=0)
     assert good.status is ProbeStatus.PASS
     assert bad.status is ProbeStatus.STALE_IDS and 'budgets[1].quote' in bad.detail
-    published = build_index([entry(data)], date.today())['entries'][0]
+    published = build_index([entry(data)], utc_today())['entries'][0]
     assert published['page_catalog']['budgets'][0]['amount'] is None
     limits = published['limits']
     assert 'amount not published (Credits per day)' in limits
@@ -398,6 +400,37 @@ async def test_unchanged_catalog_is_checked_without_authentication_or_extra_requ
     assert result.status is ProbeStatus.PASS
     assert route.call_count == 1
     assert "authorization" not in route.calls[0].request.headers
+
+
+@pytest.mark.parametrize('age,status', [(-1, ProbeStatus.STALE_IDS), (0, ProbeStatus.PASS),
+                                       (6, ProbeStatus.PASS), (7, ProbeStatus.STALE_IDS)])
+@respx.mock
+async def test_manual_catalog_conditions_require_a_review_that_has_occurred(age, status):
+    data = catalog_data()
+    data['conditions']['plan'] = {
+        'kind': 'paid', 'note': 'Gamma requires a separate paid plan.',
+        'source': data['source'], 'reviewed_on': '2026-10-01',
+    }
+    respx.get(data['source']).respond(200, text=page())
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry(data), attempts=1, backoff=0,
+                                   today=date(2026, 10, 1) + timedelta(days=age))
+    assert result.status is status
+    assert ('manual eligibility needs a fresh dated review' in result.detail) is (status is ProbeStatus.STALE_IDS)
+
+
+@respx.mock
+async def test_catalog_hours_inside_an_inert_template_are_not_a_current_table():
+    body = page()
+    start = body.index('<h2>Model hours</h2>')
+    end = body.index('<h2>Other features</h2>')
+    body = body[:start] + '<template><template>' + body[start:end] + '</template></template>' + body[end:]
+    body += '<p>Credits every day for free.</p>'
+    respx.get('https://vendor.example/pricing').respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'hours table unreadable' in result.detail
 
 
 @pytest.mark.parametrize("old_copy", ["", "<p>Earlier allowance: 6 one-hour sessions per day.</p>"])

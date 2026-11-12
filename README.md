@@ -16,7 +16,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [Logfare](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) · [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) · [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) · [BeatAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) · [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [MIAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) · [OrcaRouter](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) · [PLaMo API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) · [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/)
+🆕 **New this week:** [Logfare](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) · [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) · [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) · [BeatAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) · [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [MIAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) · [OrcaRouter](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) · [PLaMo API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/)
 
 ## 🚀 Start here
 

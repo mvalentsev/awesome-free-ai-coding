@@ -6199,7 +6199,7 @@ entries:
   - https://api.cline.bot/api/v1/ai/cline/recommended-models
   - https://docs.cline.bot/getting-started/cline-provider
   - https://docs.cline.bot/usage/cline-desktop
-  - https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts
+  - https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts
   - https://raw.githubusercontent.com/cline/cline/main/sdk/packages/llms/src/catalog/catalog.generated.ts
   card_required: false
   offering: Open-source coding agent for VS Code, JetBrains, the terminal and Cline
@@ -6217,9 +6217,9 @@ entries:
     period: day
     scope: account-model
     label: Free model promotions
-    source: https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts
+    source: https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts
     quote: You've reached today's free usage limit for this model.
-    reviewed_on: '2026-11-05'
+    reviewed_on: '2026-11-12'
   free_part: models
   models:
   - family: solar-mini-4

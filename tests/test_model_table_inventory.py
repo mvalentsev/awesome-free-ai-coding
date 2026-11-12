@@ -2,7 +2,7 @@
 import httpx
 import pytest
 
-from freetier_radar.models import Entry
+from freetier_radar.models import Entry, utc_today
 from freetier_radar.prober import ProbeStatus, for_a_human, probe_entry
 from datetime import date, timedelta
 
@@ -72,6 +72,17 @@ async def test_known_waiting_offer_does_not_promote_or_flag_paid_only_choices(ki
 
 
 @pytest.mark.parametrize('kind', ['prices', 'plan'])
+async def test_a_free_table_in_an_inert_template_cannot_qualify_a_model(kind):
+    entry = table_entry(kind, newcomers=['beta-2'])
+    body = '<p>alpha-1</p><template><template>' + html(kind) + '</template></template>'
+    async with httpx.AsyncClient(transport=httpx.MockTransport(
+            lambda request: httpx.Response(200, text=body))) as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert 'alpha-1' in result.detail
+
+
+@pytest.mark.parametrize('kind', ['prices', 'plan'])
 async def test_exact_vendor_label_tracks_waiting_access_without_guessing_model_identity(kind):
     value = table_entry(kind, newcomers=['beta-2-chat']).model_dump()
     value['newcomers'][0]['table_name'] = 'Beta 2'
@@ -88,7 +99,7 @@ def excluded_entry(kind, *, age=0):
     value['probe']['model_exclusions'] = [{'name': 'Beta 2',
         'source': 'https://vendor.example/decision-model',
         'quote': 'This decision model does not generate text or code.',
-        'reviewed_on': date.today() - timedelta(days=age)}]
+        'reviewed_on': utc_today() - timedelta(days=age)}]
     return Entry.model_validate(value)
 
 
@@ -157,11 +168,11 @@ def test_current_waiting_choices_remain_visible_without_entering_the_qualified_f
     value = table_entry('prices',newcomers=['beta-2']).model_dump()
     value['newcomers'][0]['table_name'] = 'Beta 2 Free'
     entry = Entry.model_validate(value)
-    body = build_provider_page(entry,[],date.today(),registry=[entry])
+    body = build_provider_page(entry,[],utc_today(),registry=[entry])
     assert 'Beta 2 Free' in body.split('## Connect',1)[1].split('\n## ',1)[0]
     assert 'Beta 2 Free' not in body.split('## Free models',1)[1].split('\n## ',1)[0]
     assert [m.family for m in entry.models] == ['alpha-1']
-    model_page = build_model_page('alpha-1',[entry],[],date.today())
+    model_page = build_model_page('alpha-1',[entry],[],utc_today())
     assert 'Beta 2 Free' not in model_page
 
 
@@ -202,7 +213,7 @@ async def test_plain_page_waiting_choices_stay_visible_and_missing_names_request
         result=await probe_entry(client,entry,attempts=1,backoff=0)
     assert result.status is (ProbeStatus.PASS if present else ProbeStatus.STALE_IDS)
     if present:
-        rendered=build_provider_page(entry,[],date.today(),registry=[entry])
+        rendered=build_provider_page(entry,[],utc_today(),registry=[entry])
         assert 'beta-2' in rendered.split('## Connect',1)[1].split('\n## ',1)[0]
     else:assert for_a_human(result.detail)==result.detail and 'beta-2' in result.detail
 

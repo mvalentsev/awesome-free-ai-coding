@@ -3,7 +3,7 @@ layout: default
 title: 'Cline free tier: limits, free models, verified 2026-11-09'
 description: 'Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: nemotron-3.5-super-vl-120b-a12b…'
 permalink: /providers/cline/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-12
 crumb: Cline
 model_sort: true
 ---
@@ -48,7 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://api.cline.bot/api/v1/ai/cline/recommended-models>
 - Source: <https://docs.cline.bot/getting-started/cline-provider>
 - Source: <https://docs.cline.bot/usage/cline-desktop>
-- Source: <https://raw.githubusercontent.com/cline/cline/d3ecc4890e8f9bcb77182b96c77fa90575e8e145/apps/cli/src/utils/cline-pass-errors.ts>
+- Source: <https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts>
 - Source: <https://raw.githubusercontent.com/cline/cline/main/sdk/packages/llms/src/catalog/catalog.generated.ts>
 
 ## History
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-11 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-12 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
