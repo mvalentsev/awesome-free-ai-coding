@@ -250,6 +250,7 @@ def validate_dispositions(bundle, value: dict, *, imported: bool = False) -> Non
     if sorted(r.get('id', '') for r in records) != sorted(r['id'] for r in inventory):
         raise ValueError('lead dispositions must cover every captured provider/source lead')
     scope = bundle.load('scope')
+    registers, decisions = {}, {}
     for record in records:
         if record.get('verdict') not in LEAD_VERDICTS:
             raise ValueError('lead disposition needs a canonical decision, persistent task or irrelevant finding')
@@ -265,11 +266,12 @@ def validate_dispositions(bundle, value: dict, *, imported: bool = False) -> Non
             filename = target.get('file')
             if filename not in ('registry.yaml', 'watchlist.yaml', 'blocklist.yaml', 'sources.yaml'):
                 raise ValueError('lead canonical disposition needs a curated decision file')
-            current = yaml.safe_load(git.show(bundle.repo, scope['sha'], filename) or '') or []
-            if isinstance(current, dict):
-                current = current.get({'registry.yaml': 'entries', 'watchlist.yaml': 'watched', 'sources.yaml': 'read'}[filename], [])
-            keys = {str(r.get('id', r.get('name', r.get('domain', r.get('url', ''))))) for r in current}
-            if target.get('key') not in keys:
+            if filename not in decisions:
+                current = yaml.safe_load(git.show(bundle.repo, scope['sha'], filename) or '') or []
+                if isinstance(current, dict):
+                    current = current.get({'registry.yaml': 'entries', 'watchlist.yaml': 'watched', 'sources.yaml': 'read'}[filename], [])
+                decisions[filename] = {str(r.get('id', r.get('name', r.get('domain', r.get('url', ''))))) for r in current}
+            if target.get('key') not in decisions[filename]:
                 raise ValueError('lead canonical decision does not exist at the reviewed commit')
         if record['verdict'] == 'task':
             task = record.get('task', {})
@@ -279,10 +281,12 @@ def validate_dispositions(bundle, value: dict, *, imported: bool = False) -> Non
                 path = bundle.repo / path
             if imported and filename not in bundle.files:
                 raise ValueError('lead task evidence is not registered')
-            if not path.is_file():
-                raise ValueError('lead disposition needs an existing persistent task register')
-            import json
-            tasks = json.loads(path.read_text()).get('tasks', [])
+            if path not in registers:
+                if not path.is_file():
+                    raise ValueError('lead disposition needs an existing persistent task register')
+                import json
+                registers[path] = json.loads(path.read_text()).get('tasks', [])
+            tasks = registers[path]
             matches = [t for t in tasks if t.get('id') == task.get('id')]
             states = {'open', 'scheduled', 'recurring', 'conditional', 'deferred', 'decision', 'idea'}
             if len(matches) != 1 or matches[0].get('status') not in states or not matches[0].get('next_action'):

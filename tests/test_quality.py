@@ -126,7 +126,8 @@ def test_import_keeps_different_evidence_with_the_same_filename(tmp_path, propos
 
 
 @pytest.mark.parametrize('use_as_evidence', [False, True])
-def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence, proposal_template):
+def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence, proposal_template,
+                                             monkeypatch):
     base, head = proposal(tmp_path, proposal_template)
     bundle, value = signoff(tmp_path, base, head)
     register = tmp_path / '.remember/tasks.json'
@@ -143,7 +144,16 @@ def test_task_register_reuses_a_frozen_snapshot(tmp_path, use_as_evidence, propo
          'task': {'file': '.remember/tasks.json', 'id': name},
          'evidence': value['criteria']['reuse']['evidence']}
         for name in ('first', 'second')]
+    from pathlib import Path
+    read_text = Path.read_text
+    reads = []
+    def read(path, *args, **kwargs):
+        if path == register:
+            reads.append(path)
+        return read_text(path, *args, **kwargs)
+    monkeypatch.setattr(Path, 'read_text', read)
     result = accept_judgment(bundle, value)
+    assert reads == [register]
     references = [lead['task']['file'] for lead in result['lead_dispositions']]
     assert references[0] == references[1]
     if use_as_evidence:
