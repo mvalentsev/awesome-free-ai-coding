@@ -38,6 +38,8 @@ class QuotaScriptField(BaseModel):
 
 
 def _script_value(body: str, binding: QuotaScriptField):
+    from .page_reader import without_templates
+
     class Scripts(HTMLParser):
         def __init__(self):
             super().__init__()
@@ -66,7 +68,7 @@ def _script_value(body: str, binding: QuotaScriptField):
         return value
 
     parser = Scripts()
-    parser.feed(body)
+    parser.feed(without_templates(body))
     if parser.matches != 1 or len(parser.values) != 1:
         return None
     try:

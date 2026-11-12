@@ -88,6 +88,7 @@ def trae_script_entry():
     ('completion', True), ('tasks', True), ('price', True),
     ('duplicate', True), ('missing-free', True), ('boolean', True),
     ('missing-script', True), ('duplicate-script', True), ('invalid-json', True),
+    ('inert-script', True), ('inert-copy', False),
     ('expired-review', True),
 ])
 @respx.mock
@@ -114,6 +115,8 @@ async def test_trae_free_quota_stays_bound_to_its_zero_price_sku(trae_script_ent
     script = '<script type="application/json" id="__MODERN_ROUTER_DATA__">' + payload + '</script>'
     if change == 'missing-script': script = ''
     if change == 'duplicate-script': script += script
+    if change == 'inert-script': script = '<template>' + script + '</template>'
+    if change == 'inert-copy': script += '<template>' + script + '</template>'
     respx.get(entry.probe.endpoint).respond(200, text='<p>Free plan with limited usage</p>' + script)
     # This control isolates the quotas from the independent current page anchors.
     entry.probe = entry.probe.model_copy(update={'keywords': [], 'machinery_keywords': []})

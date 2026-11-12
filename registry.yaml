@@ -901,10 +901,9 @@ entries:
     - stealth/glyph-cluster
     - nvidia/nemotron-3.5-super-vl:free
     - liquid/lfm-3-1.7b:free
-    - thinkingmachines/inkling-2-small:free
     - baidu/ernie-5.5-flash-preview:free
     - reflection/beam-free
-    - nvidia/nemotron-3.5-lightning-free
+    - apodex/apodex-1.1-mini:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -924,11 +923,17 @@ entries:
         context_tokens: 1024000
         output_tokens: 921600
         source: https://api.kilo.ai/api/gateway/models
+      apodex/apodex-1.1-mini:free:
+        context_tokens: 262144
+        output_tokens: 235929
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free
     - thinkingmachines/inkling-small:free
     - thinkingmachines/inkling:free
+    - thinkingmachines/inkling-2-small:free
+    - nvidia/nemotron-3.5-lightning-free
     no_family_ids:
     - kilo-auto/free
     - stealth/glyph-cluster

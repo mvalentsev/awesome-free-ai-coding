@@ -5,6 +5,7 @@ import argparse
 import asyncio
 import hashlib
 import json
+import math
 import os
 import re
 import subprocess
@@ -28,6 +29,8 @@ from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row
 from .render import PAGES_URL, REPO_URL
 
 PUSH_BASE_FLAG = '--push-base'
+WORKFLOW_POLL_SECONDS = 15
+WORKFLOW_WAIT_SECONDS = 900
 PRODUCER_WORKFLOWS = {'verification': ('update.yml', 'verification'),
                       'expiry': ('expire.yml', 'expire model promotions')}
 
@@ -445,7 +448,11 @@ def gh(*args: str) -> str:
     return result.stdout
 
 
-def wait_workflows(bundle: Bundle, every: float = 15, timeout: float = 900) -> dict:
+def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
+                   timeout: float = WORKFLOW_WAIT_SECONDS) -> dict:
+    if not math.isfinite(every) or every < 1 or not math.isfinite(timeout) or timeout < 0:
+        raise ValueError('poll interval must be finite and at least one second; '
+                         'timeout must be finite and nonnegative')
     scope = scoped(bundle)
     deadline, previous = time.monotonic() + timeout, None
     required = set(scope['workflows'])
@@ -468,9 +475,10 @@ def wait_workflows(bundle: Bundle, every: float = 15, timeout: float = 900) -> d
         if progress != previous:
             print(json.dumps({'phase': 'workflows', 'state': state, 'runs': progress}), flush=True)
             previous = progress
-        if state != 'waiting' or time.monotonic() >= deadline:
+        remaining = deadline - time.monotonic()
+        if state != 'waiting' or remaining <= 0:
             break
-        time.sleep(every)
+        time.sleep(min(every, remaining))
     selected = [chosen[n] for n in sorted(required) if n in chosen]
     for run in selected:
         if run['status'] == 'completed':
@@ -724,8 +732,9 @@ def main() -> None:
     prepare_parser.add_argument(PUSH_BASE_FLAG, help='commit immediately before the final human push; defaults to --base')
     prepare_parser.add_argument('--verification-run', type=int, help='successful verification or expiry run that produced this bot commit')
     source_parser = sub.add_parser('sources'); source_parser.add_argument('--url', action='append', default=[])
-    publish_parser = sub.add_parser('publication'); publish_parser.add_argument('--every', type=float, default=15)
-    publish_parser.add_argument('--timeout', type=float, default=900)
+    publish_parser = sub.add_parser('publication')
+    publish_parser.add_argument('--every', type=float, default=WORKFLOW_POLL_SECONDS)
+    publish_parser.add_argument('--timeout', type=float, default=WORKFLOW_WAIT_SECONDS)
     browser_parser = sub.add_parser('browser'); browser_parser.add_argument('--result', type=Path)
     judgment_parser = sub.add_parser('judgment', help='record an independent review of this exact diff')
     judgment_parser.add_argument('--result', type=Path, required=True)
@@ -745,8 +754,6 @@ def main() -> None:
         elif args.phase == 'sources':
             result = asyncio.run(sources(bundle, args.url))
         elif args.phase == 'publication':
-            if args.every < 1 or args.timeout < 0:
-                raise ValueError('poll interval must be at least one second; timeout cannot be negative')
             result = wait_workflows(bundle, args.every, args.timeout)
             if result['passed']:
                 result = asyncio.run(publication(bundle))

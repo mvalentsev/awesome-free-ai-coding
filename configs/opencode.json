@@ -164,9 +164,6 @@
             "output": 8192
           }
         },
-        "thinkingmachines/inkling-2-small:free": {
-          "name": "thinkingmachines/inkling-2-small:free"
-        },
         "baidu/ernie-5.5-flash-preview:free": {
           "name": "baidu/ernie-5.5-flash-preview:free",
           "limit": {
@@ -177,8 +174,12 @@
         "reflection/beam-free": {
           "name": "reflection/beam-free"
         },
-        "nvidia/nemotron-3.5-lightning-free": {
-          "name": "nvidia/nemotron-3.5-lightning-free"
+        "apodex/apodex-1.1-mini:free": {
+          "name": "apodex/apodex-1.1-mini:free",
+          "limit": {
+            "context": 262144,
+            "output": 235929
+          }
         }
       }
     },

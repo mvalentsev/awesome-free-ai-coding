@@ -83,9 +83,15 @@ async def test_source_review_reuses_current_decisions_and_their_canonical_deadli
 
 
 @pytest.fixture(scope='module')
-def product_scope_repo(tmp_path_factory):
+def source_history_repo(tmp_path_factory):
+    """Read-only history; source responses and evidence remain per case."""
+    return repo_at(tmp_path_factory.mktemp('source-history'))
+
+
+@pytest.fixture(scope='module')
+def product_scope_repo(tmp_path_factory, source_history_repo):
     """Committed decisions shared read-only; HTTP and evidence stay per case."""
-    repo = repo_at(tmp_path_factory.mktemp('product-scope'))
+    repo = shutil.copytree(source_history_repo, tmp_path_factory.mktemp('product-scope') / 'repo')
     # These decisions are identical on both sides: only the source read is new.
     (repo / 'registry.yaml').write_text(json.dumps({'entries': [
         {'id': 'copilot', 'url': 'https://github.com/features/copilot',
@@ -148,9 +154,9 @@ async def test_source_collection_keeps_product_and_repository_scope(product_scop
     '/comparison/coding-tool-vs-another-tool',
 ])
 @respx.mock
-async def test_source_collection_retains_unanswered_same_site_provider_comparisons(tmp_path, path):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/leads', repo)
+async def test_source_collection_retains_unanswered_same_site_provider_comparisons(source_history_repo, tmp_path, path):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     source = 'https://vendor.example/models'
     respx.get(source).respond(200, text=f'<a href="{path}">Other provider</a>')
@@ -178,9 +184,9 @@ async def test_source_collection_retains_unanswered_same_site_provider_compariso
      '<a href="/compare/main...release">Compare revisions</a>', None),
 ])
 @respx.mock
-async def test_source_collection_retains_prose_comparisons_and_source_directories(tmp_path, body, path):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/prose-leads', repo)
+async def test_source_collection_retains_prose_comparisons_and_source_directories(source_history_repo, tmp_path, body, path):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     source = 'https://vendor.example/models'
     respx.get(source).respond(200, text=body)
@@ -200,9 +206,9 @@ async def test_source_collection_retains_prose_comparisons_and_source_directorie
     '<div data-example="[Model comparisons directory](/fake)">Example</div>',
 ])
 @respx.mock
-async def test_source_collection_does_not_parse_html_literals_as_markdown_links(tmp_path, literal):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/literal-leads', repo)
+async def test_source_collection_does_not_parse_html_literals_as_markdown_links(source_history_repo, tmp_path, literal):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     source = 'https://vendor.example/tool-a-vs-tool-b/'
     body = literal+'\n\n<a href="/privacy">Privacy</a>\n\n'+(
@@ -219,9 +225,9 @@ async def test_source_collection_does_not_parse_html_literals_as_markdown_links(
 @pytest.mark.parametrize('preamble', ['', '<!doctype html>', '\ufeff<!-- document -->'])
 @pytest.mark.parametrize('indent', ['', '    '])
 @respx.mock
-async def test_source_collection_does_not_parse_document_javascript_as_markdown(tmp_path, preamble, indent):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/html-document', repo)
+async def test_source_collection_does_not_parse_document_javascript_as_markdown(source_history_repo, tmp_path, preamble, indent):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     source = 'https://vendor.example/offer'
     # https://one.google.com/offer/freetrial, checked 2026-11-04: a JavaScript regexp
@@ -269,9 +275,9 @@ async def test_source_collection_does_not_parse_document_javascript_as_markdown(
      [('https://vendor.example/real-directory', 'comparison')]),
 ])
 @respx.mock
-async def test_source_collection_respects_the_response_format(tmp_path, source, mime, body, expected):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/response-format', repo)
+async def test_source_collection_respects_the_response_format(source_history_repo, tmp_path, source, mime, body, expected):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     respx.get(source).respond(200, text=body, headers={'Content-Type': mime})
     result = await review.sources(bundle, [source])
@@ -289,9 +295,9 @@ async def test_source_collection_respects_the_response_format(tmp_path, source, 
     ('javascript:invalid', 'https://unknown.example/free', 'https://unknown.example/free'),
 ])
 @respx.mock
-async def test_source_links_use_the_document_base_and_keep_requested_provenance(tmp_path, base, href, expected):
-    repo = repo_at(tmp_path)
-    bundle = review.Bundle(repo / '.evidence/document-base', repo)
+async def test_source_links_use_the_document_base_and_keep_requested_provenance(source_history_repo, tmp_path, base, href, expected):
+    repo = source_history_repo
+    bundle = review.Bundle(tmp_path / 'evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     source = 'https://directory.example/start'
     base_tag = f'<base href="{base}"><base href="https://ignored.example/">' if base else ''
@@ -477,6 +483,30 @@ def test_workflow_rerun_uses_the_newest_attempt_and_not_an_older_green_run():
            'status': 'completed', 'conclusion': 'success'}
     new = {**old, 'databaseId': 2, 'status': 'in_progress', 'conclusion': ''}
     assert review.workflow_state([old, new], 'a' * 40, {'ci'}) == 'waiting'
+
+
+@pytest.mark.parametrize('every,timeout', [(float('nan'), 900), (15, float('inf')),
+                                           (0, 900), (15, -1)])
+def test_invalid_workflow_wait_bounds_fail_before_network_access(monkeypatch, every, timeout):
+    monkeypatch.setattr(review, 'scoped', lambda bundle: {'sha': 'a' * 40, 'workflows': ['ci']})
+    monkeypatch.setattr(review, 'gh', lambda *args: pytest.fail('invalid bounds queried GitHub'))
+    with pytest.raises(ValueError, match='poll interval|timeout'):
+        review.wait_workflows(None, every=every, timeout=timeout)
+
+
+@pytest.mark.parametrize('timeout', [0, 2])
+def test_workflow_polling_does_not_sleep_past_its_deadline(tmp_path, monkeypatch, timeout):
+    clock = [0.0]
+    def advance(seconds):
+        clock[0] += seconds
+    monkeypatch.setattr(review.time, 'monotonic', lambda: clock[0])
+    monkeypatch.setattr(review.time, 'sleep', advance)
+    monkeypatch.setattr(review, 'scoped', lambda bundle: {'sha': 'a' * 40, 'workflows': ['ci']})
+    monkeypatch.setattr(review, 'gh', lambda *args: '[]')
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    result = review.wait_workflows(bundle, every=15, timeout=timeout)
+    assert result['state'] == 'waiting' and result['passed'] is False
+    assert clock[0] == timeout
 
 
 @respx.mock

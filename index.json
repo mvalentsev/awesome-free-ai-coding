@@ -1835,10 +1835,9 @@
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "nvidia/nemotron-3.5-lightning-free"
+          "apodex/apodex-1.1-mini:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1863,13 +1862,20 @@
             "context_tokens": 1024000,
             "output_tokens": 921600,
             "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "apodex/apodex-1.1-mini:free": {
+            "context_tokens": 262144,
+            "output_tokens": 235929,
+            "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
         "ignored_ids": [
           "nvidia/nemotron-3.5-content-safety:free",
           "inclusionai/ling-3.1-flash-1019-free",
           "thinkingmachines/inkling-small:free",
-          "thinkingmachines/inkling:free"
+          "thinkingmachines/inkling:free",
+          "thinkingmachines/inkling-2-small:free",
+          "nvidia/nemotron-3.5-lightning-free"
         ],
         "no_family_ids": [
           "kilo-auto/free",
@@ -1944,10 +1950,9 @@
           "stealth/glyph-cluster",
           "nvidia/nemotron-3.5-super-vl:free",
           "liquid/lfm-3-1.7b:free",
-          "thinkingmachines/inkling-2-small:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "nvidia/nemotron-3.5-lightning-free"
+          "apodex/apodex-1.1-mini:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -1994,10 +1999,9 @@
           "stealth/glyph-cluster": "",
           "nvidia/nemotron-3.5-super-vl:free": "",
           "liquid/lfm-3-1.7b:free": "",
-          "thinkingmachines/inkling-2-small:free": "",
           "baidu/ernie-5.5-flash-preview:free": "",
           "reflection/beam-free": "",
-          "nvidia/nemotron-3.5-lightning-free": ""
+          "apodex/apodex-1.1-mini:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
