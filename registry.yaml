@@ -66,7 +66,6 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
-  - family: xing4.0-29b-a4b
   - family: flint-v1.0
   api:
     base_url: https://openrouter.ai/api/v1
@@ -1570,9 +1569,7 @@ entries:
     aa_model: gpt-oss-20b
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
-  - family: diffusiongemma
   - family: llama-3.2-90b-vision
-  - family: llama-3.2-11b-vision
   - family: deepseek-v4.1-flash
     aa_model: deepseek-v4-1-flash
   - family: nemotron-3.5-super-vl-120b-a12b
@@ -2620,7 +2617,6 @@ entries:
     reviewed_on: '2026-11-09'
   free_part: models
   models:
-  - family: laguna-s-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: beam-1.0
@@ -3056,12 +3052,8 @@ entries:
   models:
   - family: nemotron-3-ultra
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
     aa_model: gemma-4-31b
-  - family: ling-3.0-tiny
-    aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
@@ -5207,13 +5199,13 @@ entries:
   models:
   - family: nemotron-3-ultra
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: agnes-3.0-flash
-  - family: agnes-2.5-flash
   - family: qwen3.8-27b
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: qwen3.8-max
+    tier: notable
+    aa_model: qwen3-8-max
     aa_auto: false
   api:
     base_url: https://llmtr.com/v1
@@ -6227,7 +6219,7 @@ entries:
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: nemotron-3.5-lightning
-  - family: beam-1.0
+    aa_model: nemotron-3-5-lightning
   client_lane:
     model_ids:
     - cline-free/solar-mini4
@@ -6738,7 +6730,6 @@ entries:
   - family: step-3.7-flash
     aa_model: step-3-7-flash
   - family: solar-mini-4
-  - family: beam-1.0
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com

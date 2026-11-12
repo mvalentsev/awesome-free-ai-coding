@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'agnes-2.5-flash free: 2 providers, limits and ids, provider probes 2026-11-12'
-description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'agnes-2.5-flash free: 1 provider, limits and ids, provider probes 2026-11-12'
+description: agnes-2.5-flash is served free by Agnes AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-2.5-flash/
 last_modified_at: 2026-11-12
 crumb: agnes-2.5-flash
@@ -11,29 +11,11 @@ crumb: agnes-2.5-flash
 
 # Where agnes-2.5-flash is free
 
-**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
+**One row on the list serves `agnes-2.5-flash` free:** Agnes AI. It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-09-28
-
-Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
-
-</details>
-
-- Base URL: `https://llmtr.com/v1`
-- Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `agnes/agnes-2.5-flash`
-- What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
 
 ### [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/)
 
@@ -55,9 +37,13 @@ The Flash models' input, cached input and output are currently zero-priced; Pro 
 - Callable ids: `agnes-2.5-flash`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://wiki.agnes-ai.com/en/docs/privacy-policy)).
 
+## Rows that listed it before
+
+- [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-09-28 to 2026-11-12
+
 ## Related models
 
-- [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) — free at LLMTR and Agnes AI
+- [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) — free at Agnes AI
 
 ---
 

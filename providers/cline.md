@@ -20,7 +20,7 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span></span>
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/nemotron-3.5-super-vl`, `reflection/beam-free`, `nvidia/nemotron-3.5-lightning-free`, `cline-free/solar-mini4`
+- In Cline's own model list: `cline-free/nemotron-3.5-super-vl`, `nvidia/nemotron-3.5-lightning-free`, `cline-free/solar-mini4`, `reflection/beam-free`
 
 ## Evidence
 
@@ -55,6 +55,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-12` — Free models changed: dropped beam-1.0
 - `2026-11-05` — Free models changed: added beam-1.0
 - `2026-11-05` — Free models changed: added nemotron-3.5-lightning
 - `2026-10-29` — Free models changed: added nemotron-3.5-super-vl-120b-a12b

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-11-12'
-description: 'OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes. Free models: nemotron-3.5-lightning, beam-1.0, laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise requests return `403…'
+description: 'OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes. Free models: nemotron-3.5-lightning, beam-1.0. A team must add a valid payment method before using free credit; otherwise requests return `403…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-11-12
 crumb: Vercel AI Gateway
@@ -20,7 +20,7 @@ OpenAI-compatible model gateway with recurring free credit after adding a paymen
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="laguna-s-2.1">[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)</span></span>
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -46,7 +46,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `nvidia/nemotron-3.5-lightning-free`, `reflection/beam-free`, `poolside/laguna-s-2.1-free`, `humansand/ampersand-v0.1`, `stealth/glyph-cluster`
+- Callable ids: `nvidia/nemotron-3.5-lightning-free`, `reflection/beam-free`, `humansand/ampersand-v0.1`, `poolside/laguna-s-2.1-free`, `stealth/glyph-cluster`
 - Note: Use the IDs listed here; a zero catalog price can depend on the provider and change after a promotion. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -81,6 +81,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-12` — Free models changed: dropped laguna-s-2.1
 - `2026-10-30` — Free models changed: added beam-1.0
 - `2026-10-29` — Free models changed: added nemotron-3.5-lightning
 - `2026-10-15` — Free models changed: dropped ling-3.1-flash
