@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'The Grid free tier: limits, free models, verified 2026-11-09'
+title: 'The Grid free tier: limits, free models, verified 2026-11-12'
 description: OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models. An account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are…
 permalink: /providers/the-grid/
 last_modified_at: 2026-11-12
@@ -11,7 +11,7 @@ crumb: The Grid
 
 # The Grid free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-09; the probe since has not found that evidence, and 3 misses in a row archive the row · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-12 · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

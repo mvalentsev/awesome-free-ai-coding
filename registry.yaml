@@ -7910,8 +7910,8 @@ entries:
     catalog: https://api.thegrid.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-11-09'
-  probe_failures: 1
+  last_verified: '2026-11-12'
+  probe_failures: 0
   provisional: false
   rank: 86
 - id: hpc-ai
@@ -10664,8 +10664,8 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-01'
-  last_verified: '2026-11-09'
-  probe_failures: 1
+  last_verified: '2026-11-12'
+  probe_failures: 0
   provisional: true
   rank: 88
 - id: infron

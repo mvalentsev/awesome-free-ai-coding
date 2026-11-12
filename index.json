@@ -13266,8 +13266,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-09",
-      "probe_failures": 1,
+      "last_verified": "2026-11-12",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 86,
       "no_account": false,
@@ -17271,8 +17271,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-01",
-      "last_verified": "2026-11-09",
-      "probe_failures": 1,
+      "last_verified": "2026-11-12",
+      "probe_failures": 0,
       "provisional": true,
       "rank": 88,
       "no_account": false,

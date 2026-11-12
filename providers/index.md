@@ -61,7 +61,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-11-12
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-11-12
 - [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) — verified 2026-11-12 · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)
-- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-09
+- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-12
 - [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) — verified 2026-11-12
 - [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) — verified 2026-11-12
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-11-12 · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
@@ -92,7 +92,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) — verified 2026-11-12 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · `qwen3-vl-8b-instruct`
 - [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-11-12 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-11-12
-- [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-09
+- [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-12
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-11-12
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-11-12
 - [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) — verified 2026-11-12
