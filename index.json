@@ -361,7 +361,8 @@
           "recursive/flint-v1.0:free",
           "liquid/lfm-3-1.7b:free",
           "thinkingmachines/inkling-2-small:free",
-          "baidu/ernie-5.5-flash-preview:free"
+          "baidu/ernie-5.5-flash-preview:free",
+          "particle-ai/particle-1:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -379,6 +380,11 @@
           "baidu/ernie-5.5-flash-preview:free": {
             "context_tokens": 1024000,
             "output_tokens": 921600,
+            "source": "https://openrouter.ai/api/v1/models"
+          },
+          "particle-ai/particle-1:free": {
+            "context_tokens": 1048576,
+            "output_tokens": 131072,
             "source": "https://openrouter.ai/api/v1/models"
           }
         },
@@ -457,7 +463,8 @@
           "recursive/flint-v1.0:free",
           "liquid/lfm-3-1.7b:free",
           "thinkingmachines/inkling-2-small:free",
-          "baidu/ernie-5.5-flash-preview:free"
+          "baidu/ernie-5.5-flash-preview:free",
+          "particle-ai/particle-1:free"
         ],
         "what": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
         "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
@@ -1837,7 +1844,7 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "apodex/apodex-1.1-mini:free"
+          "particle-ai/particle-1:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1867,6 +1874,11 @@
             "context_tokens": 262144,
             "output_tokens": 235929,
             "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "particle-ai/particle-1:free": {
+            "context_tokens": 1048576,
+            "output_tokens": 131072,
+            "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
         "ignored_ids": [
@@ -1875,7 +1887,8 @@
           "thinkingmachines/inkling-small:free",
           "thinkingmachines/inkling:free",
           "thinkingmachines/inkling-2-small:free",
-          "nvidia/nemotron-3.5-lightning-free"
+          "nvidia/nemotron-3.5-lightning-free",
+          "apodex/apodex-1.1-mini:free"
         ],
         "no_family_ids": [
           "kilo-auto/free",
@@ -1952,7 +1965,7 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "apodex/apodex-1.1-mini:free"
+          "particle-ai/particle-1:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -2001,7 +2014,7 @@
           "liquid/lfm-3-1.7b:free": "",
           "baidu/ernie-5.5-flash-preview:free": "",
           "reflection/beam-free": "",
-          "apodex/apodex-1.1-mini:free": ""
+          "particle-ai/particle-1:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
@@ -6570,11 +6583,16 @@
         "https://aihubmix.com/models/xing4.0-29b-a4b-free",
         "https://aihubmix.com/models/laguna-s-2.1-free",
         "https://aihubmix.com/models/laguna-xs-2.1-free",
-        "https://docs.aihubmix.com/en/quick-start"
+        "https://docs.aihubmix.com/en/quick-start",
+        "https://aihubmix.com/models/retirements",
+        "https://aihubmix.com/models/particle-1-free",
+        "https://aihubmix.com/models/lfm-3-1.7b-free",
+        "https://huggingface.co/LiquidAI/LFM3-1.7B",
+        "https://aihubmix.com/models/crouton-alpha-free"
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
       "quotas": [
         {
           "amount": 5.0,
@@ -6955,7 +6973,7 @@
           "model_ids": [
             "gemma-4-26b-a4b-it-free"
           ],
-          "reviewed_on": "2026-11-09",
+          "reviewed_on": "2026-11-13",
           "amount": null,
           "period": null
         },
@@ -6969,7 +6987,36 @@
           "model_ids": [
             "gemma-4-31b-it-free"
           ],
-          "reviewed_on": "2026-11-09",
+          "reviewed_on": "2026-11-13",
+          "amount": null,
+          "period": null
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Other free routes",
+          "source": "https://aihubmix.com/api/v1/models",
+          "quote": "Particle-1 is a token-efficient agentic coding model from Particle AI, post-trained on DeepSeek V4.1 Flash.",
+          "read": "catalog",
+          "model_ids": [
+            "particle-1-free"
+          ],
+          "reviewed_on": "2026-11-13",
+          "amount": null,
+          "period": null
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "LFM3 free route",
+          "condition": "Prompts and outputs may be retained and used",
+          "condition_quote": "Please note that prompts and outputs may be retained and used.",
+          "source": "https://aihubmix.com/models/lfm-3-1.7b-free",
+          "quote": "Developed by Liquid, lfm-3-1.7b-free is a compact 1.7B-parameter text model featuring an expansive 256K-token context window.",
+          "model_ids": [
+            "lfm-3-1.7b-free"
+          ],
+          "reviewed_on": "2026-11-13",
           "amount": null,
           "period": null
         }
@@ -7091,9 +7138,6 @@
         },
         {
           "family": "nemotron-3.5-super-vl-120b-a12b"
-        },
-        {
-          "family": "xing4.0-29b-a4b"
         }
       ],
       "api": {
@@ -7134,9 +7178,9 @@
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
-          "xing4.0-29b-a4b-free",
-          "crouton-alpha-free",
-          "ernie-5.5-flash-preview-free"
+          "ernie-5.5-flash-preview-free",
+          "particle-1-free",
+          "lfm-3-1.7b-free"
         ],
         "model_bindings": {
           "intern-s2-free": {
@@ -7173,12 +7217,14 @@
           "span-01-lite-free",
           "doubao-seedream-5-5",
           "dubbing_v1",
-          "dubbing_v2"
+          "dubbing_v2",
+          "xing4.0-29b-a4b-free",
+          "crouton-alpha-free"
         ],
         "no_family_ids": [
           "k2.6-code-preview-free",
           "lfm-2.5-2.6b-free",
-          "crouton-alpha-free"
+          "lfm-3-1.7b-free"
         ],
         "anthropic_base_url": "https://aihubmix.com",
         "codex": {
@@ -7243,8 +7289,7 @@
           "gemma-4-26b-a4b",
           "gemma-4-31b",
           "flint-v1.0",
-          "nemotron-3.5-super-vl-120b-a12b",
-          "xing4.0-29b-a4b"
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "coding-glm-5.2-free",
@@ -7279,12 +7324,12 @@
           "gemma-4-31b-it-free",
           "flint-v1.0-free",
           "nemotron-3.5-super-vl-free",
-          "xing4.0-29b-a4b-free",
-          "crouton-alpha-free",
-          "ernie-5.5-flash-preview-free"
+          "ernie-5.5-flash-preview-free",
+          "particle-1-free",
+          "lfm-3-1.7b-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.",
+        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -7317,8 +7362,7 @@
           "gemma-4-26b-a4b": "",
           "gemma-4-31b": "",
           "flint-v1.0": "",
-          "nemotron-3.5-super-vl-120b-a12b": "",
-          "xing4.0-29b-a4b": ""
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "aggregator"
@@ -9096,11 +9140,14 @@
         "https://llmtr.com/models/poolside/laguna-xs-2.1",
         "https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b",
         "https://llmtr.com/models/liquid/lfm3-1.7b-free",
-        "https://llmtr.com/models/parallel/parallel-free"
+        "https://llmtr.com/models/parallel/parallel-free",
+        "https://llmtr.com/models/agnes/agnes-3.0-flash",
+        "https://llmtr.com/models/agnes/agnes-2.5-flash",
+        "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`\n\nERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -9133,17 +9180,16 @@
         {
           "unit": "tokens",
           "period": "one-time",
-          "scope": "account-model",
-          "state": "variable",
+          "scope": "unspecified",
           "label": "LFM3",
-          "condition": "About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out",
+          "condition": "Input and output count together; does not renew; can end early if the free allocation runs out",
           "condition_quote": "LFM3-1.7B (Ücretsiz), Liquid AI'nin 1,7 milyar parametreli dil modelinin 30 Aralık 2026 23:59'a (TSİ) kadar ücretsiz sunulan sürümüdür; ücretsiz kullanım için ayrılan kota daha önce biterse o tarihten önce kapanır.",
           "source": "https://llmtr.com/models/liquid/lfm3-1.7b-free",
-          "quote": "Ücretsiz hak hesap başına yaklaşık 2 milyon tokendir, girdi ve çıktı oranına göre değişir ve dönem içinde yenilenmez.",
+          "quote": "Ücretsiz kullanım bir hakla sınırlıdır; hak girdi ve çıktıyı birlikte sayar ve dönem içinde yenilenmez.",
           "model_ids": [
             "liquid/lfm3-1.7b-free"
           ],
-          "reviewed_on": "2026-11-07",
+          "reviewed_on": "2026-11-13",
           "amount": null
         },
         {
@@ -9160,6 +9206,34 @@
           "reviewed_on": "2026-11-07",
           "amount": null,
           "period": null
+        },
+        {
+          "unit": "tokens",
+          "period": "one-time",
+          "scope": "unspecified",
+          "label": "ERNIE 5.5 Flash promotion",
+          "condition": "Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted",
+          "condition_quote": "Model her istekte düşünür; düşünme kapatılamaz ve seviyesi ayarlanamaz.",
+          "source": "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free",
+          "quote": "Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır; girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem içinde yenilenmez.",
+          "model_ids": [
+            "baidu/ernie-5.5-flash-preview-free"
+          ],
+          "reviewed_on": "2026-11-13",
+          "amount": null
+        },
+        {
+          "unit": "requests",
+          "period": "day",
+          "scope": "unspecified",
+          "label": "ERNIE 5.5 Flash promotion",
+          "source": "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free",
+          "quote": "Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır; girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem içinde yenilenmez.",
+          "model_ids": [
+            "baidu/ernie-5.5-flash-preview-free"
+          ],
+          "reviewed_on": "2026-11-13",
+          "amount": null
         }
       ],
       "free_part": "models",
@@ -9177,10 +9251,8 @@
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
-          "family": "agnes-2.5-flash"
-        },
-        {
-          "family": "agnes-3.0-flash"
+          "family": "ernie-5.5-flash-preview",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -9191,12 +9263,11 @@
         "model_ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
           "qwen/qwen3.8-27b-free",
-          "agnes/agnes-3.0-flash",
-          "agnes/agnes-2.5-flash",
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "lgai/k-exaone-2.5"
+          "lgai/k-exaone-2.5",
+          "baidu/ernie-5.5-flash-preview-free"
         ],
         "model_bindings": {
           "internlm/intern-s2-free": {
@@ -9293,6 +9364,10 @@
           "qwen/qwen3.8-max-free": {
             "source": "https://llmtr.com/models/qwen/qwen3.8-max-free",
             "until": "2026-11-13T03:00:00+03:00"
+          },
+          "baidu/ernie-5.5-flash-preview-free": {
+            "source": "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free",
+            "until": "2026-11-18T00:00:00+03:00"
           }
         },
         "model_limits": {
@@ -9380,6 +9455,11 @@
             "context_tokens": 524288,
             "output_tokens": 524288,
             "source": "https://llmtr.com/v1/models"
+          },
+          "baidu/ernie-5.5-flash-preview-free": {
+            "context_tokens": 1024000,
+            "output_tokens": 1024000,
+            "source": "https://llmtr.com/v1/models"
           }
         },
         "opencode_output_tokens": {
@@ -9423,7 +9503,9 @@
           "ifm/jais-3-mova-36b-a4b",
           "ifm/k2-horizon-375b-a23b",
           "parallel/search-free",
-          "qwen/qwen3.8-max-free"
+          "qwen/qwen3.8-max-free",
+          "agnes/agnes-3.0-flash",
+          "agnes/agnes-2.5-flash"
         ],
         "no_family_ids": [
           "liquid/lfm3-1.7b-free",
@@ -9463,31 +9545,28 @@
         "name": "LLMTR",
         "models": [
           "nemotron-3-ultra",
-          "agnes-3.0-flash",
-          "agnes-2.5-flash",
           "qwen3.8-27b",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "ernie-5.5-flash-preview"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
           "qwen/qwen3.8-27b-free",
-          "agnes/agnes-3.0-flash",
-          "agnes/agnes-2.5-flash",
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "lgai/k-exaone-2.5"
+          "lgai/k-exaone-2.5",
+          "baidu/ernie-5.5-flash-preview-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`\n\nERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
-          "agnes-3.0-flash": "",
-          "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "ernie-5.5-flash-preview": "until 2026-11-18"
         },
         "section": {
           "id": "aggregator"
@@ -9500,20 +9579,18 @@
         "offer": "",
         "models": {
           "nemotron-3-ultra": "",
-          "agnes-3.0-flash": "",
-          "agnes-2.5-flash": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "ernie-5.5-flash-preview": "until 2026-11-18"
         },
         "ids": {
           "nvidia/nemotron-3-ultra-550b-a55b": "",
           "qwen/qwen3.8-27b-free": "",
-          "agnes/agnes-3.0-flash": "",
-          "agnes/agnes-2.5-flash": "",
           "nvidia/nemotron-3.5-super-vl-free": "",
           "liquid/lfm3-1.7b-free": "free until 2026-12-30 23:59+03:00",
           "parallel/parallel-free": "free until 2027-01-04 23:59+03:00",
-          "lgai/k-exaone-2.5": ""
+          "lgai/k-exaone-2.5": "",
+          "baidu/ernie-5.5-flash-preview-free": "free until 2026-11-18 00:00+03:00"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -21041,7 +21118,6 @@
     {
       "family": "agnes-2.5-flash",
       "rows": [
-        "llmtr",
         "agnes-ai"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/"
@@ -21049,7 +21125,6 @@
     {
       "family": "agnes-3.0-flash",
       "rows": [
-        "llmtr",
         "agnes-ai"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/"
@@ -21202,6 +21277,13 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
+    },
+    {
+      "family": "ernie-5.5-flash-preview",
+      "rows": [
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/"
     },
     {
       "family": "fantail",
@@ -21788,7 +21870,6 @@
       "rows": [
         "openrouter-free",
         "kilo-code",
-        "aihubmix",
         "siliconflow-cn"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/"

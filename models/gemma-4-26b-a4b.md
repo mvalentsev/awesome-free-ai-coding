@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-26b-a4b free: 2 providers, limits and ids, provider probes 2026-11-12'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-13
 crumb: gemma-4-26b-a4b
 ---
 
@@ -52,7 +52,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the lfm-2.5-2.6b-free developer advises against agentic coding use.
+- Limits, in the vendor's words: Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.
 
 </details>
 

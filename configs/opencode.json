@@ -101,6 +101,13 @@
             "context": 1024000,
             "output": 921600
           }
+        },
+        "particle-ai/particle-1:free": {
+          "name": "particle-ai/particle-1:free",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          }
         }
       }
     },
@@ -174,11 +181,11 @@
         "reflection/beam-free": {
           "name": "reflection/beam-free"
         },
-        "apodex/apodex-1.1-mini:free": {
-          "name": "apodex/apodex-1.1-mini:free",
+        "particle-ai/particle-1:free": {
+          "name": "particle-ai/particle-1:free",
           "limit": {
-            "context": 262144,
-            "output": 235929
+            "context": 1048576,
+            "output": 131072
           }
         }
       }
@@ -388,18 +395,14 @@
         "nemotron-3.5-super-vl-free": {
           "name": "nemotron-3.5-super-vl-free"
         },
-        "xing4.0-29b-a4b-free": {
-          "name": "xing4.0-29b-a4b-free"
-        },
-        "crouton-alpha-free": {
-          "name": "crouton-alpha-free",
-          "limit": {
-            "context": 1048576,
-            "output": 943718
-          }
-        },
         "ernie-5.5-flash-preview-free": {
           "name": "ernie-5.5-flash-preview-free"
+        },
+        "particle-1-free": {
+          "name": "particle-1-free"
+        },
+        "lfm-3-1.7b-free": {
+          "name": "lfm-3-1.7b-free"
         }
       }
     },
@@ -491,12 +494,6 @@
             "output": 16384
           }
         },
-        "agnes/agnes-3.0-flash": {
-          "name": "agnes/agnes-3.0-flash"
-        },
-        "agnes/agnes-2.5-flash": {
-          "name": "agnes/agnes-2.5-flash"
-        },
         "nvidia/nemotron-3.5-super-vl-free": {
           "name": "nvidia/nemotron-3.5-super-vl-free"
         },
@@ -519,6 +516,13 @@
           "options": {
             "max_completion_tokens": 8192,
             "max_tokens": 8192
+          }
+        },
+        "baidu/ernie-5.5-flash-preview-free": {
+          "name": "baidu/ernie-5.5-flash-preview-free (until 2026-11-18)",
+          "limit": {
+            "context": 1024000,
+            "output": 1024000
           }
         }
       }

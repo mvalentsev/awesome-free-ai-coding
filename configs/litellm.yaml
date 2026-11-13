@@ -175,6 +175,13 @@ model_list:
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
     max_tokens: 921600
+- model_name: openrouter-free/particle-ai/particle-1:free
+  litellm_params:
+    model: openai/particle-ai/particle-1:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 131072
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -547,22 +554,21 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/xing4.0-29b-a4b-free
-  litellm_params:
-    model: openai/xing4.0-29b-a4b-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-- model_name: aihubmix/crouton-alpha-free
-  litellm_params:
-    model: openai/crouton-alpha-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 943718
 - model_name: aihubmix/ernie-5.5-flash-preview-free
   litellm_params:
     model: openai/ernie-5.5-flash-preview-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/particle-1-free
+  litellm_params:
+    model: openai/particle-1-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/lfm-3-1.7b-free
+  litellm_params:
+    model: openai/lfm-3-1.7b-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
@@ -639,18 +645,6 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 16384
-- model_name: llmtr/agnes/agnes-3.0-flash
-  litellm_params:
-    model: openai/agnes/agnes-3.0-flash
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-- model_name: llmtr/agnes/agnes-2.5-flash
-  litellm_params:
-    model: openai/agnes/agnes-2.5-flash
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtr/nvidia/nemotron-3.5-super-vl-free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-super-vl-free
@@ -683,6 +677,16 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 524288
+- model_name: llmtr/baidu/ernie-5.5-flash-preview-free
+  litellm_params:
+    model: openai/baidu/ernie-5.5-flash-preview-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 1024000
+  model_info:
+    access: free until 2026-11-18 00:00+03:00
+    source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free

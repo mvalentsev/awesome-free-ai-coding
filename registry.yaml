@@ -89,6 +89,7 @@ entries:
     - liquid/lfm-3-1.7b:free
     - thinkingmachines/inkling-2-small:free
     - baidu/ernie-5.5-flash-preview:free
+    - particle-ai/particle-1:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -102,6 +103,10 @@ entries:
       baidu/ernie-5.5-flash-preview:free:
         context_tokens: 1024000
         output_tokens: 921600
+        source: https://openrouter.ai/api/v1/models
+      particle-ai/particle-1:free:
+        context_tokens: 1048576
+        output_tokens: 131072
         source: https://openrouter.ai/api/v1/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
@@ -903,7 +908,7 @@ entries:
     - liquid/lfm-3-1.7b:free
     - baidu/ernie-5.5-flash-preview:free
     - reflection/beam-free
-    - apodex/apodex-1.1-mini:free
+    - particle-ai/particle-1:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -927,6 +932,10 @@ entries:
         context_tokens: 262144
         output_tokens: 235929
         source: https://api.kilo.ai/api/gateway/models
+      particle-ai/particle-1:free:
+        context_tokens: 1048576
+        output_tokens: 131072
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free
@@ -934,6 +943,7 @@ entries:
     - thinkingmachines/inkling:free
     - thinkingmachines/inkling-2-small:free
     - nvidia/nemotron-3.5-lightning-free
+    - apodex/apodex-1.1-mini:free
     no_family_ids:
     - kilo-auto/free
     - stealth/glyph-cluster
@@ -3435,6 +3445,11 @@ entries:
   - https://aihubmix.com/models/laguna-s-2.1-free
   - https://aihubmix.com/models/laguna-xs-2.1-free
   - https://docs.aihubmix.com/en/quick-start
+  - https://aihubmix.com/models/retirements
+  - https://aihubmix.com/models/particle-1-free
+  - https://aihubmix.com/models/lfm-3-1.7b-free
+  - https://huggingface.co/LiquidAI/LFM3-1.7B
+  - https://aihubmix.com/models/crouton-alpha-free
   card_required: false
   offering: OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format
     endpoint for coding clients
@@ -3442,8 +3457,8 @@ entries:
     request and token caps are independent per account and model, rather than a pool
     to split across models. Published caps apply to their named model IDs; the remaining
     routes have no numerical budget published. Request limits and campaign durations
-    apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; the
-    lfm-2.5-2.6b-free developer advises against agentic coding use.
+    apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI
+    advises against agentic coding with the listed LFM models.
   quotas:
   - amount: 5.0
     unit: requests
@@ -3788,7 +3803,7 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-26b-a4b-it-free
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-13'
   - unit: usage
     scope: unspecified
     label: Gemma 4 free routes
@@ -3801,7 +3816,28 @@ entries:
     read: catalog
     model_ids:
     - gemma-4-31b-it-free
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-13'
+  - unit: usage
+    scope: unspecified
+    label: Other free routes
+    source: https://aihubmix.com/api/v1/models
+    quote: Particle-1 is a token-efficient agentic coding model from Particle AI,
+      post-trained on DeepSeek V4.1 Flash.
+    read: catalog
+    model_ids:
+    - particle-1-free
+    reviewed_on: '2026-11-13'
+  - unit: usage
+    scope: unspecified
+    label: LFM3 free route
+    condition: Prompts and outputs may be retained and used
+    condition_quote: Please note that prompts and outputs may be retained and used.
+    source: https://aihubmix.com/models/lfm-3-1.7b-free
+    quote: Developed by Liquid, lfm-3-1.7b-free is a compact 1.7B-parameter text model
+      featuring an expansive 256K-token context window.
+    model_ids:
+    - lfm-3-1.7b-free
+    reviewed_on: '2026-11-13'
   free_part: models
   models:
   - family: glm-5.3
@@ -3860,7 +3896,6 @@ entries:
     aa_model: gemma-4-31b
   - family: flint-v1.0
   - family: nemotron-3.5-super-vl-120b-a12b
-  - family: xing4.0-29b-a4b
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://console.aihubmix.com/workspaces/default/keys
@@ -3899,9 +3934,9 @@ entries:
     - gemma-4-31b-it-free
     - flint-v1.0-free
     - nemotron-3.5-super-vl-free
-    - xing4.0-29b-a4b-free
-    - crouton-alpha-free
     - ernie-5.5-flash-preview-free
+    - particle-1-free
+    - lfm-3-1.7b-free
     model_bindings:
       intern-s2-free:
         family: intern-s2-preview-35b
@@ -3936,10 +3971,12 @@ entries:
     - doubao-seedream-5-5
     - dubbing_v1
     - dubbing_v2
+    - xing4.0-29b-a4b-free
+    - crouton-alpha-free
     no_family_ids:
     - k2.6-code-preview-free
     - lfm-2.5-2.6b-free
-    - crouton-alpha-free
+    - lfm-3-1.7b-free
     anthropic_base_url: https://aihubmix.com
     codex:
       base_url: https://aihubmix.com/v1
@@ -5030,6 +5067,9 @@ entries:
   - https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b
   - https://llmtr.com/models/liquid/lfm3-1.7b-free
   - https://llmtr.com/models/parallel/parallel-free
+  - https://llmtr.com/models/agnes/agnes-3.0-flash
+  - https://llmtr.com/models/agnes/agnes-2.5-flash
+  - https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -5183,20 +5223,19 @@ entries:
     reviewed_on: '2026-10-30'
   - unit: tokens
     period: one-time
-    scope: account-model
-    state: variable
+    scope: unspecified
     label: LFM3
-    condition: About 2,000,000 tokens; varies with input/output mix and does not renew;
-      can end early if the free allocation runs out
+    condition: Input and output count together; does not renew; can end early if the
+      free allocation runs out
     condition_quote: LFM3-1.7B (Ücretsiz), Liquid AI'nin 1,7 milyar parametreli dil
       modelinin 30 Aralık 2026 23:59'a (TSİ) kadar ücretsiz sunulan sürümüdür; ücretsiz
       kullanım için ayrılan kota daha önce biterse o tarihten önce kapanır.
     source: https://llmtr.com/models/liquid/lfm3-1.7b-free
-    quote: Ücretsiz hak hesap başına yaklaşık 2 milyon tokendir, girdi ve çıktı oranına
-      göre değişir ve dönem içinde yenilenmez.
+    quote: Ücretsiz kullanım bir hakla sınırlıdır; hak girdi ve çıktıyı birlikte sayar
+      ve dönem içinde yenilenmez.
     model_ids:
     - liquid/lfm3-1.7b-free
-    reviewed_on: '2026-11-07'
+    reviewed_on: '2026-11-13'
   - unit: usage
     scope: account-model
     label: Parallel
@@ -5224,16 +5263,41 @@ entries:
     model_ids:
     - qwen/qwen3.8-max-free
     reviewed_on: '2026-11-09'
+  - unit: tokens
+    period: one-time
+    scope: unspecified
+    label: ERNIE 5.5 Flash promotion
+    condition: Input, output and cached input count together; does not renew; thinking
+      cannot be disabled or adjusted
+    condition_quote: Model her istekte düşünür; düşünme kapatılamaz ve seviyesi ayarlanamaz.
+    source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
+    quote: Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır;
+      girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem
+      içinde yenilenmez.
+    model_ids:
+    - baidu/ernie-5.5-flash-preview-free
+    reviewed_on: '2026-11-13'
+  - unit: requests
+    period: day
+    scope: unspecified
+    label: ERNIE 5.5 Flash promotion
+    source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
+    quote: Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır;
+      girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem
+      içinde yenilenmez.
+    model_ids:
+    - baidu/ernie-5.5-flash-preview-free
+    reviewed_on: '2026-11-13'
   free_part: models
   models:
   - family: nemotron-3-ultra
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: agnes-3.0-flash
-  - family: agnes-2.5-flash
   - family: qwen3.8-27b
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
+  - family: ernie-5.5-flash-preview
+    aa_auto: false
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5242,12 +5306,11 @@ entries:
     model_ids:
     - nvidia/nemotron-3-ultra-550b-a55b
     - qwen/qwen3.8-27b-free
-    - agnes/agnes-3.0-flash
-    - agnes/agnes-2.5-flash
     - nvidia/nemotron-3.5-super-vl-free
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
     - lgai/k-exaone-2.5
+    - baidu/ernie-5.5-flash-preview-free
     model_bindings:
       internlm/intern-s2-free:
         family: intern-s2-397b
@@ -5321,6 +5384,9 @@ entries:
       qwen/qwen3.8-max-free:
         source: https://llmtr.com/models/qwen/qwen3.8-max-free
         until: '2026-11-13T03:00:00+03:00'
+      baidu/ernie-5.5-flash-preview-free:
+        source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
+        until: '2026-11-18T00:00:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -5390,6 +5456,10 @@ entries:
         context_tokens: 524288
         output_tokens: 524288
         source: https://llmtr.com/v1/models
+      baidu/ernie-5.5-flash-preview-free:
+        context_tokens: 1024000
+        output_tokens: 1024000
+        source: https://llmtr.com/v1/models
     opencode_output_tokens:
       qwen/qwen3.8-max-free: 8192
       lgai/k-exaone-2.5: 8192
@@ -5431,6 +5501,8 @@ entries:
     - ifm/k2-horizon-375b-a23b
     - parallel/search-free
     - qwen/qwen3.8-max-free
+    - agnes/agnes-3.0-flash
+    - agnes/agnes-2.5-flash
     no_family_ids:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free

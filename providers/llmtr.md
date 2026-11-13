@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-12'
-description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, agnes-2.5-flash, agnes-3.0-flash. Free chat rows can be called on a new account with zero…'
+description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, ernie-5.5-flash-preview. Free chat rows can be called on a new account with zero balance…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-11-13
 crumb: LLMTR
@@ -20,7 +20,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="agnes-2.5-flash">[`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)</span>, <span data-model-family="agnes-3.0-flash">[`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</span></span>
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="ernie-5.5-flash-preview">[`ernie-5.5-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/) (until 2026-11-18)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -28,9 +28,13 @@ Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; sco
 
 Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`
 
-LFM3: One-time tokens allowance: amount varies per account per model (About 2,000,000 tokens; varies with input/output mix and does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`
+LFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`
 
 Parallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`
+
+ERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`
+
+ERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`
 
 Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
 
@@ -46,7 +50,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `qwen/qwen3.8-27b-free`, `nvidia/nemotron-3.5-super-vl-free`, `nvidia/nemotron-3-ultra-550b-a55b`, `agnes/agnes-2.5-flash`, `agnes/agnes-3.0-flash`, `lgai/k-exaone-2.5`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
+- Callable ids: `qwen/qwen3.8-27b-free`, `nvidia/nemotron-3.5-super-vl-free`, `nvidia/nemotron-3-ultra-550b-a55b`, `baidu/ernie-5.5-flash-preview-free`, `lgai/k-exaone-2.5`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
+- `baidu/ernie-5.5-flash-preview-free`: free until 2026-11-18 00:00+03:00 ([conditions](https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free))
 - `liquid/lfm3-1.7b-free`: free until 2026-12-30 23:59+03:00 ([conditions](https://llmtr.com/models/liquid/lfm3-1.7b-free))
 - `parallel/parallel-free`: free until 2027-01-04 23:59+03:00 ([conditions](https://llmtr.com/models/parallel/parallel-free))
 - Note: New accounts have a lower free allowance for 24 hours. Nemotron3.5 VL: omit reasoning_effort; reasoning: false disables thinking.
@@ -109,11 +114,15 @@ curl -s https://llmtr.com/v1/chat/completions \
 - Source: <https://llmtr.com/models/nvidia/nemotron-3-super-120b-a12b>
 - Source: <https://llmtr.com/models/liquid/lfm3-1.7b-free>
 - Source: <https://llmtr.com/models/parallel/parallel-free>
+- Source: <https://llmtr.com/models/agnes/agnes-3.0-flash>
+- Source: <https://llmtr.com/models/agnes/agnes-2.5-flash>
+- Source: <https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-13` — Free models changed: added ernie-5.5-flash-preview; dropped agnes-2.5-flash, agnes-3.0-flash
 - `2026-11-13` — Free models changed: dropped qwen3.8-max
 - `2026-11-09` — Free models changed: added qwen3.8-max
 - `2026-11-06` — Free models changed: dropped jais-3-mova-36b-a4b, k2-horizon-375b-a23b
