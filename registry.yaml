@@ -5234,8 +5234,6 @@ entries:
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
-  - family: qwen3.8-max
-    aa_auto: false
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5249,7 +5247,6 @@ entries:
     - nvidia/nemotron-3.5-super-vl-free
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
-    - qwen/qwen3.8-max-free
     - lgai/k-exaone-2.5
     model_bindings:
       internlm/intern-s2-free:
@@ -5433,6 +5430,7 @@ entries:
     - ifm/jais-3-mova-36b-a4b
     - ifm/k2-horizon-375b-a23b
     - parallel/search-free
+    - qwen/qwen3.8-max-free
     no_family_ids:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free

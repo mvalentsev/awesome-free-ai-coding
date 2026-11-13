@@ -510,17 +510,6 @@
             "output": 20000
           }
         },
-        "qwen/qwen3.8-max-free": {
-          "name": "qwen/qwen3.8-max-free (until 2026-11-13)",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "options": {
-            "max_completion_tokens": 8192,
-            "max_tokens": 8192
-          }
-        },
         "lgai/k-exaone-2.5": {
           "name": "lgai/k-exaone-2.5",
           "limit": {

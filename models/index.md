@@ -3,7 +3,7 @@ layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-09 or later'
 description: 133 model families the list's 111 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-13
 model_sort: true
 sortable_model_index: true
 ---
@@ -18,7 +18,7 @@ sortable_model_index: true
 
 | Model | Free at |
 |---|---|
-| [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) <small>Index 33.7</small> · notable | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-11-13), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
+| [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) <small>Index 33.7</small> · notable | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) <small>Index 32.6</small> · notable | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) <small>Index 31.7</small> · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) |
 | [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) <small>Index 30.8</small> · notable | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/), [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |

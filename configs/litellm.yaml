@@ -676,16 +676,6 @@ model_list:
   model_info:
     access: free until 2027-01-04 23:59+03:00
     source: https://llmtr.com/models/parallel/parallel-free
-- model_name: llmtr/qwen/qwen3.8-max-free
-  litellm_params:
-    model: openai/qwen/qwen3.8-max-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 262144
-  model_info:
-    access: free until 2026-11-13 03:00+03:00
-    source: https://llmtr.com/models/qwen/qwen3.8-max-free
 - model_name: llmtr/lgai/k-exaone-2.5
   litellm_params:
     model: openai/lgai/k-exaone-2.5
