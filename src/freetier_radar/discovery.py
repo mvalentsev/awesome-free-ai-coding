@@ -85,6 +85,12 @@ CURATED_FEEDS = [
     "https://raw.githubusercontent.com/alihesari/awesome-ai-coding-agents/HEAD/README.md#cli-agents:agent-harnesses",
     "https://raw.githubusercontent.com/bradagi/awesome-cli-coding-agents/HEAD/README.md#closed-source:harnesses",
     "https://raw.githubusercontent.com/tomgranot/awesome-ai-coding/HEAD/README.md#ide-based:learning-resources",
+    # Chinese-language allowance leads with eligibility, expiry, review dates
+    # and destination links (Markdown page checked 2026-11-14). Consumer, audio
+    # and image tools are mixed in; coding/API scope still needs vendor proof.
+    # Two bounded sections keep the offers within the existing excerpt budget.
+    "https://aihot.news/free-tokens.md#每天都能领:其他福利",
+    "https://aihot.news/free-tokens.md#其他福利:回答提示",
 ]
 
 # A machine catalog rather than a list: one object per model with a published
