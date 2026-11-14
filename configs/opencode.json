@@ -108,6 +108,13 @@
             "context": 1048576,
             "output": 131072
           }
+        },
+        "inclusionai/ling-3.2-flash:free": {
+          "name": "inclusionai/ling-3.2-flash:free",
+          "limit": {
+            "context": 1048576,
+            "output": 262144
+          }
         }
       }
     },
@@ -186,6 +193,13 @@
           "limit": {
             "context": 1048576,
             "output": 131072
+          }
+        },
+        "inclusionai/ling-3.2-flash:free": {
+          "name": "inclusionai/ling-3.2-flash:free",
+          "limit": {
+            "context": 1048576,
+            "output": 262144
           }
         }
       }
@@ -403,6 +417,9 @@
         },
         "lfm-3-1.7b-free": {
           "name": "lfm-3-1.7b-free"
+        },
+        "ling-3.2-flash-free": {
+          "name": "ling-3.2-flash-free"
         }
       }
     },

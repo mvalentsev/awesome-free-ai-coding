@@ -423,6 +423,13 @@ unavailable page remains inconclusive. Known offer deadlines belong in
 claim and marks the ended offer while retaining wallet and source evidence. The
 catalog source must be the row's directly probed page. This records the
 advertised selection; it does not establish an authenticated completion.
+An offer still available through a saved selection can set `in_picker: false`.
+Its model-specific condition needs its source and a checked quote or dated
+review naming that model. The picker comparison omits it; its access evidence,
+free-family qualification and review remain required.
+An offer that uses no hours can use an `unmetered` condition with a model-specific quote
+on its source. The probe rechecks the quote alongside picker and limited-mode
+membership; the family's own first-free date still sets its waiting period.
 
 A page catalog's `free-session` condition needs `eligibility`: a named `plan`,
 an exact model/plan `table` binding, the free cell's `value`, and a `plan_price`

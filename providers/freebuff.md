@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-11-12'
-description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: deepseek-v4.1-flash-1017, glm-5.3-flash, mimo-v2.6-flash, solar-mini-4, solar-pro-4. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created…'
+description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: deepseek-v4.1-flash-1017, mimo-v2.6-flash, solar-mini-4, solar-pro-4. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-14
 crumb: Freebuff
 model_sort: true
 ---
@@ -20,21 +20,21 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
+<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
 
 ## Limits, in the vendor's words
 
 Session-based limited mode: 6 one-hour sessions per day per account
 
-The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.
+The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app. “We also share a hashed form of a verified number with advertising and measurement providers, as described in Personalized Advertising above, unless you have opted out of ad personalization or your browser sends a Global Privacy Control signal.”
 
 Daily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.
 
-Check your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.
+Check your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo v2.6 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Slow: shared daily hours; available in limited mode; Beam 1.0: unmetered offer; available in limited mode; Nemotron 3.5 Lightning: unmetered offer; available in limited mode; Glyph Cluster: unmetered offer; available in limited mode; GPT-6 Luna: paid plan; Muse Spark 1.3: paid plan; Muse Ember: paid plan; Claude Haiku 5.5 · 100k context: paid plan; GPT-6.1 Terra: paid plan; GLM 5.3 Flash: offer ended 2026-11-06 05:00+00:00; Gemini 4 Argon: offer ended 2026-10-27 UTC; Gemini 3.8 Flash: offer ended 2026-10-27 UTC; MiMo 2.6 Pro: offer ended 2026-10-29 UTC; GPT-6.1 Sol: offer ended 2026-11-04 UTC; DeepSeek V4.1 Flash Fast 10/17: offer ended 2026-11-08 UTC; Gemini 3.1 Flash Lite: specialist tasks only.
 
-Your balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).
+Your balance is measured in hours. GPT-6 Luna, Muse Spark 1.3, Muse Ember, Claude Haiku 5.5 · 100k context: These models require a paid plan for newer accounts; earlier accounts retain eligible selections until retirement. (source: https://freebuff.com/plans). GPT-6.1 Terra: OpenAI's model, on paid plans, two sessions a day. MiMo v2.6 Flash Fast: MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Beam 1.0: Free experimental model that uses none of your hours. Nemotron 3.5 Lightning: Free experimental model that uses none of your hours. Glyph Cluster: Free experimental model that uses none of your hours.
 
-DeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).
+DeepSeek V4.1 Flash Fast is the default at full access. At limited access the default is DeepSeek V4.1 Flash Slow, or DeepSeek V4.1 Flash with a paid plan. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).
 
 ## Where it is offered
 
@@ -42,11 +42,12 @@ The vendor names no country it keeps the offer from ([source](https://freebuff.c
 
 ## What happens to what you send
 
-What you send may be used to train or improve models. In the vendor's words: “DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.” ([source](https://freebuff.com/llms.txt)).
+What you send may be used to train or improve models. In the vendor's words: “DeepSeek V4.1 Flash: The same DeepSeek model at a steady speed, for fewer hours. May use data for AI training.” ([source](https://freebuff.com/llms.txt)).
 
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Freebuff's own model list: `beam-1.0`, `nemotron-3.5-lightning`
 
 ## Evidence
 
@@ -59,11 +60,13 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://freebuff.com/llms.txt>
 - Source: <https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts>
 - Source: <https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts>
+- Source: <https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-14` — Free models changed: dropped glm-5.3-flash
 - `2026-11-08` — Free models changed: added deepseek-v4.1-flash-1017; dropped deepseek-v4.1-flash
 - `2026-10-13` — Free models changed: dropped gpt-6.1-sol
 - `2026-10-13` — Free models changed: added gpt-6.1-sol

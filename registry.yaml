@@ -90,6 +90,7 @@ entries:
     - thinkingmachines/inkling-2-small:free
     - baidu/ernie-5.5-flash-preview:free
     - particle-ai/particle-1:free
+    - inclusionai/ling-3.2-flash:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -107,6 +108,10 @@ entries:
       particle-ai/particle-1:free:
         context_tokens: 1048576
         output_tokens: 131072
+        source: https://openrouter.ai/api/v1/models
+      inclusionai/ling-3.2-flash:free:
+        context_tokens: 1048576
+        output_tokens: 262144
         source: https://openrouter.ai/api/v1/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
@@ -837,7 +842,7 @@ entries:
       source: https://opencode.ai/v2/docs/console/models/
       quote: Iceman Free is a stealth model that's free on OpenCode for a limited
         time.
-      reviewed_on: '2026-11-07'
+      reviewed_on: '2026-11-14'
   first_seen: '2026-07-19'
   last_verified: '2026-11-12'
   probe_failures: 0
@@ -909,6 +914,7 @@ entries:
     - baidu/ernie-5.5-flash-preview:free
     - reflection/beam-free
     - particle-ai/particle-1:free
+    - inclusionai/ling-3.2-flash:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -935,6 +941,10 @@ entries:
       particle-ai/particle-1:free:
         context_tokens: 1048576
         output_tokens: 131072
+        source: https://api.kilo.ai/api/gateway/models
+      inclusionai/ling-3.2-flash:free:
+        context_tokens: 1048576
+        output_tokens: 262144
         source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
@@ -2682,6 +2692,7 @@ entries:
     - baseten/elephant-1
     - baseten/mammoth-1
     - inclusionai/ling-3.1-flash-1019
+    - parallel/parallel-decisions-fast
     no_family_ids:
     - stealth/glyph-cluster
     anthropic_base_url: https://ai-gateway.vercel.sh
@@ -3450,6 +3461,7 @@ entries:
   - https://aihubmix.com/models/lfm-3-1.7b-free
   - https://huggingface.co/LiquidAI/LFM3-1.7B
   - https://aihubmix.com/models/crouton-alpha-free
+  - https://aihubmix.com/models/ling-3.2-flash-free
   card_required: false
   offering: OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format
     endpoint for coding clients
@@ -3838,6 +3850,16 @@ entries:
     model_ids:
     - lfm-3-1.7b-free
     reviewed_on: '2026-11-13'
+  - unit: usage
+    scope: unspecified
+    label: Ling 3.2 Flash free route
+    source: https://aihubmix.com/models/ling-3.2-flash-free
+    quote: Ling 3.2 Flash is a hybrid reasoning model from inclusionAI that accepts
+      text and image input, with a 1M-token context window and up to 200 images per
+      request.
+    model_ids:
+    - ling-3.2-flash-free
+    reviewed_on: '2026-11-14'
   free_part: models
   models:
   - family: glm-5.3
@@ -3937,6 +3959,7 @@ entries:
     - ernie-5.5-flash-preview-free
     - particle-1-free
     - lfm-3-1.7b-free
+    - ling-3.2-flash-free
     model_bindings:
       intern-s2-free:
         family: intern-s2-preview-35b
@@ -4602,6 +4625,7 @@ entries:
   - https://freebuff.com/llms.txt
   - https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
   - https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
+  - https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
   card_required: false
   offering: Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily
     regional allowances and conditional free-session access
@@ -4610,7 +4634,10 @@ entries:
     depend on the app, account and access level. “Promotional prices are temporary,
     and any price may change.” “Freebuff collects prompts, messages, code, files,
     repository data, and agent traces when you use features that need them”. Check
-    the balance and picker in your app.
+    the balance and picker in your app. “We also share a hashed form of a verified
+    number with advertising and measurement providers, as described in Personalized
+    Advertising above, unless you have opted out of ad personalization or your browser
+    sends a Global Privacy Control signal.”
   free_part: models
   page_catalog:
     source: https://freebuff.com/llms.txt
@@ -4662,43 +4689,45 @@ entries:
       models_question: What models do you use?
       budgets_question: What is limited mode?
       limited_question: What is limited mode?
-      limited_prefix: limited mode includes
-      limited_suffix: ', with'
+      limited_prefix: 'Without a plan it opens '
+      limited_suffix: ; a paid plan
     conditions:
       wallet:
         kind: wallet
         quote: Your balance is measured in hours.
-      paid-gemini:
+      paid:
         kind: paid
-        quote: PAID-ONLY row
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
-      paid-sol:
-        kind: paid
-        note: The public Free-plan comparison requires a paid plan; paid plans allow
-          one one-hour session per day.
-        reviewed_on: '2026-11-09'
+        note: These models require a paid plan for newer accounts; earlier accounts
+          retain eligible selections until retirement.
+        reviewed_on: '2026-11-14'
         source: https://freebuff.com/plans
+      terra:
+        kind: paid
+        quote: 'GPT-6.1 Terra: OpenAI''s model, on paid plans, two sessions a day.'
+        source: https://freebuff.com/llms.txt
+      legacy-mimo:
+        kind: wallet
+        note: MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker
+          lists it.
+        reviewed_on: '2026-11-14'
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
       specialist:
         kind: specialist
         quote: Gemini 3.1 Flash Lite handles specialist tasks such as file finding
           and research.
-      muse-full:
-        kind: wallet
-        note: Credit-funded at full access; a paid plan is required at limited access.
-        reviewed_on: '2026-11-09'
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
-      terra-full:
-        kind: wallet
-        quote: Included with a paid plan (Pro on limited access). Two sessions a day
-          on every plan.
-        reviewed_on: '2026-11-07'
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
-      luna-account:
-        kind: wallet
-        note: The current plan comparison and client rules require a paid plan. Retained
-          account access follows the condition above.
-        reviewed_on: '2026-11-07'
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
+      beam-1.0:
+        kind: unmetered
+        quote: 'Beam 1.0: Free experimental model that uses none of your hours.'
+        source: https://freebuff.com/llms.txt
+      nemotron-3.5-lightning:
+        kind: unmetered
+        quote: 'Nemotron 3.5 Lightning: Free experimental model that uses none of
+          your hours.'
+        source: https://freebuff.com/llms.txt
+      glyph-cluster:
+        kind: unmetered
+        quote: 'Glyph Cluster: Free experimental model that uses none of your hours.'
+        source: https://freebuff.com/llms.txt
     models:
     - name: Solar Pro 4
       model:
@@ -4718,27 +4747,18 @@ entries:
         'on': '2026-09-26'
         source: https://web.archive.org/web/20260926080857/https://freebuff.com/
       listed: true
-    - name: MiMo V2.6 Flash Fast
+    - name: MiMo v2.6 Flash Fast
       model:
         family: mimo-v2.6-flash
         aa_model: mimo-v2-6-flash
       limited: true
-      condition: wallet
+      condition: legacy-mimo
       first_free:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
       listed: true
-    - name: GLM 5.3 Flash
-      model:
-        family: glm-5.3-flash
-        aa_model: glm-5-3-flash
-      limited: true
-      condition: wallet
-      first_free:
-        'on': '2026-09-22'
-        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
-      listed: true
-    - name: DeepSeek V4.1 Flash 10/17
+      in_picker: false
+    - name: DeepSeek V4.1 Flash
       model:
         family: deepseek-v4.1-flash-1017
         tier: notable
@@ -4749,50 +4769,120 @@ entries:
         'on': '2026-10-23'
         source: https://freebuff.com/llms.txt
       listed: true
+    - name: DeepSeek V4.1 Flash Fast
+      limited: true
+      condition: wallet
+    - name: DeepSeek V4.1 Flash Slow
+      limited: true
+      condition: wallet
+    - name: Beam 1.0
+      model:
+        family: beam-1.0
+        aa_auto: false
+      limited: true
+      condition: beam-1.0
+      first_free:
+        'on': '2026-11-14'
+        source: https://freebuff.com/llms.txt
+    - name: Nemotron 3.5 Lightning
+      model:
+        family: nemotron-3.5-lightning
+        aa_auto: false
+      limited: true
+      condition: nemotron-3.5-lightning
+      first_free:
+        'on': '2026-11-14'
+        source: https://freebuff.com/llms.txt
+    - name: Glyph Cluster
+      limited: true
+      condition: glyph-cluster
     - name: GPT-6 Luna
       model:
         family: gpt-6-luna
-      condition: luna-account
+      condition: paid
+    - name: Muse Spark 1.3
+      model:
+        family: muse-spark-1.3-contributor
+      condition: paid
+    - name: Muse Ember
+      condition: paid
+    - name: Claude Haiku 5.5 · 100k context
+      model:
+        family: claude-haiku-5.5
+      condition: paid
+    - name: GPT-6.1 Terra
+      model:
+        family: gpt-6.1-terra
+      condition: terra
+    - name: GLM 5.3 Flash
+      model:
+        family: glm-5.3-flash
+        aa_model: glm-5-3-flash
+      limited: true
+      condition: wallet
+      first_free:
+        'on': '2026-09-22'
+        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+      expired: true
+    - name: Gemini 4 Argon
+      condition: wallet
+      expired: true
+    - name: Gemini 3.8 Flash
+      model:
+        family: gemini-3.8-flash
+      condition: wallet
+      expired: true
     - name: MiMo 2.6 Pro
       model:
         family: mimo-v2.6-pro
       condition: wallet
+      expired: true
+    - name: GPT-6.1 Sol
+      model:
+        family: gpt-6.1-sol
+      condition: wallet
+      expired: true
     - name: DeepSeek V4.1 Flash Fast 10/17
       model:
         family: deepseek-v4.1-flash-1017
       condition: wallet
-    - name: GPT-6.1 Terra
-      model:
-        family: gpt-6.1-terra
-      condition: terra-full
-    - name: GPT-6.1 Sol
-      model:
-        family: gpt-6.1-sol
-      condition: paid-sol
-    - name: Gemini 4 Argon
-      condition: paid-sol
-    - name: Gemini 3.8 Flash
-      model:
-        family: gemini-3.8-flash
-      condition: paid-gemini
-    - name: Muse Spark 1.3
-      model:
-        family: muse-spark-1.3-contributor
-      condition: muse-full
+      expired: true
     - name: Gemini 3.1 Flash Lite
       model:
         family: gemini-3.1-flash-lite
       condition: specialist
+    model_access:
+      GLM 5.3 Flash:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-11-06T05:00:00Z'
+      Gemini 4 Argon:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-10-27'
+      Gemini 3.8 Flash:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-10-27'
+      MiMo 2.6 Pro:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-10-29'
+      GPT-6.1 Sol:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-11-04'
+      DeepSeek V4.1 Flash Fast 10/17:
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts
+        until: '2026-11-08'
     limited_allowance: 6 one-hour sessions per day
     notes:
-    - DeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud.
+    - DeepSeek V4.1 Flash Fast is the default at full access.
+    - At limited access the default is DeepSeek V4.1 Flash Slow, or DeepSeek V4.1
+      Flash with a paid plan.
     - Daily hours refill at midnight in your local timezone and unused daily hours
       do not carry over.
     - Older app versions show the same balance as Freebucks, five to an hour.
-    reviewed_on: '2026-11-07'
+    reviewed_on: '2026-11-14'
   data_use:
     trains: 'yes'
-    quote: 'DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.'
+    quote: 'DeepSeek V4.1 Flash: The same DeepSeek model at a steady speed, for fewer
+      hours. May use data for AI training.'
     url: https://freebuff.com/llms.txt
   border:
     left_out: []

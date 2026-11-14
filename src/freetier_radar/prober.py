@@ -2116,6 +2116,9 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     # source. Both sources are checked below in probe_entry, including failures.
     bound = {b.family for mid, b in entry.client_lane.model_bindings.items()
              if mid in entry.client_lane.model_ids} if entry.client_lane else set()
+    if entry.page_catalog:
+        bound.update(m.model.family for m in entry.page_catalog.models
+                     if m.model and m.listed and not m.expired and not m.in_picker)
     labels = {model.model.family: model.name for model in entry.page_catalog.models
               if model.model and model.listed and not model.expired} if entry.page_catalog else {}
     return [m.family for m in entry.models

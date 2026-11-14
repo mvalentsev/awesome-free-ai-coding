@@ -182,6 +182,13 @@ model_list:
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
     max_tokens: 131072
+- model_name: openrouter-free/inclusionai/ling-3.2-flash:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.2-flash:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 262144
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -569,6 +576,12 @@ model_list:
 - model_name: aihubmix/lfm-3-1.7b-free
   litellm_params:
     model: openai/lfm-3-1.7b-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+- model_name: aihubmix/ling-3.2-flash-free
+  litellm_params:
+    model: openai/ling-3.2-flash-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true

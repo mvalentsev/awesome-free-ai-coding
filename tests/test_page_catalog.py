@@ -217,6 +217,69 @@ async def test_catalog_picker_alias_cannot_hide_a_missing_or_changed_offer():
 
 
 @respx.mock
+async def test_unlisted_saved_access_keeps_its_family_but_requires_current_source_evidence():
+    data = session_catalog_data()
+    data['read']['table_heading'] = None
+    data['reviewed_on'] = utc_today().isoformat()
+    quote = 'Alpha remains free for saved selections but is absent from every picker.'
+    source = 'https://vendor.example/model-policy'
+    data['conditions']['saved'] = {'kind': 'wallet', 'source': source, 'quote': quote}
+    data['conditions']['wallet'] = {'kind': 'wallet', 'quote': 'Beta uses Credits.'}
+    data['models'][0].update(hours=None, condition='saved', in_picker=False, listed=True)
+    data['models'][1].update(hours=None, condition='wallet')
+    body = page(names=('Beta', 'Gamma'), limited='Beta') + '<p>Beta uses Credits.</p>'
+    respx.get(data['source']).respond(200, text=body)
+    policy = respx.get(source).respond(200, text=quote)
+    e = entry(data)
+    async with httpx.AsyncClient() as client:
+        current = await probe_entry(client, e, attempts=1, backoff=0)
+        policy.respond(200, text='Alpha has now been withdrawn for every account.')
+        withdrawn = await probe_entry(client, e, attempts=1, backoff=0)
+        policy.respond(404, text='Policy unavailable')
+        unavailable = await probe_entry(client, e, attempts=1, backoff=0)
+    assert current.status is ProbeStatus.PASS
+    assert [m.family for m in e.models] == ['alpha']
+    assert withdrawn.status is ProbeStatus.STALE_IDS
+    assert 'conditions.saved.quote no longer evidenced' in withdrawn.detail
+    assert unavailable.status is ProbeStatus.STALE_IDS
+    assert 'unlisted access source unreadable' in unavailable.detail
+
+
+def test_unlisted_catalog_access_cannot_hide_a_row_without_a_model_specific_source():
+    data = session_catalog_data()
+    data['read']['table_heading'] = None
+    data['reviewed_on'] = utc_today().isoformat()
+    data['conditions']['wallet'] = {'kind': 'wallet', 'quote': 'Shared credits remain.'}
+    data['models'][0].update(hours=None, condition='wallet', in_picker=False)
+    data['models'][1].update(hours=None, condition='wallet')
+    with pytest.raises(ValueError, match='unlisted model needs its own sourced condition'):
+        entry(data)
+
+
+@respx.mock
+async def test_zero_hour_offer_keeps_its_own_age_and_requires_its_current_model_quote():
+    data = session_catalog_data()
+    data['read']['table_heading'] = None
+    data['reviewed_on'] = utc_today().isoformat()
+    quote = 'Alpha is free and uses none of your hours.'
+    data['conditions']['no-hours'] = {'kind': 'unmetered', 'source': data['source'], 'quote': quote}
+    data['conditions']['wallet'] = {'kind': 'wallet', 'quote': 'Beta uses Credits.'}
+    data['models'][0].update(hours=None, condition='no-hours')
+    data['models'][1].update(hours=None, condition='wallet')
+    e = entry(data)
+    route = respx.get(data['source']).respond(200, text=page() + quote + ' Beta uses Credits.')
+    async with httpx.AsyncClient() as client:
+        current = await probe_entry(client, e, attempts=1, backoff=0)
+        route.respond(200, text=page() + 'Alpha now needs a paid plan. Beta uses Credits.')
+        paid = await probe_entry(client, e, attempts=1, backoff=0)
+    assert current.status is ProbeStatus.PASS
+    assert e.models == []
+    assert next(n for n in e.newcomers if n.family == 'alpha').on == date(2026, 9, 1)
+    assert paid.status is ProbeStatus.STALE_IDS
+    assert 'conditions.no-hours.quote no longer evidenced' in paid.detail
+
+
+@respx.mock
 async def test_regional_budget_amount_is_rechecked_on_its_own_plan_source():
     from freetier_radar.quotes import row_quote_source, row_urls
     data = session_catalog_data()
@@ -637,6 +700,18 @@ def test_weekly_budget_keeps_its_period_in_all_presentations():
     for text in (catalog_words(e.page_catalog), build_provider_page(e, [], date(2026, 10, 6))):
         assert 'Weekly allowance' in text and 'Shared weekly credits'.lower() in text.lower()
         assert 'daily' not in text.lower()
+
+
+def test_ended_catalog_offer_states_its_deadline_once():
+    from freetier_radar.models import expire_entries
+    from freetier_radar.page_catalog import catalog_words
+    data = catalog_data()
+    data['model_access'] = {'Alpha': {'source': data['source'], 'until': '2026-10-05'}}
+    ended = expire_entries([entry(data)], datetime(2026, 10, 6, tzinfo=timezone.utc))[0]
+    text = catalog_words(ended.page_catalog)
+    assert 'Alpha: offer ended 2026-10-05 UTC' in text
+    assert 'Alpha: offer ended; offer ended' not in text
+    assert text.count(data['source']) == 1
 
 
 @pytest.mark.parametrize("period,expected", [

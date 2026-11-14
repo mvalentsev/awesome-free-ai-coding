@@ -3,7 +3,7 @@ layout: default
 title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-11-12'
 description: 'OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients. Free models: glm-5.3, mimo-v2.6-pro, glm-5.3-flash, mimo-v2.6-flash, minimax-m3, nemotron-3-ultra, nemotron-3.5-lightning, gemma-4-31b and 22 more. Free IDs end in -free; paid twins are…'
 permalink: /providers/aihubmix/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-14
 crumb: AIHubMix (free models)
 model_sort: true
 ---
@@ -34,6 +34,8 @@ Gemma 4 free routes: Usage allowance: amount not published (period not published
 
 LFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`
 
+Ling 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`
+
 Free IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.
 
 ## Where it is offered
@@ -46,7 +48,7 @@ The vendor names no country it keeps the offer from ([source](https://aihubmix.c
 - Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
-- Callable ids: `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-minimax-m3-free`, `nemotron-3-ultra-550b-a55b-free`, `nemotron-3.5-lightning-free`, `gemma-4-31b-it-free`, `north-mini-code-free`, `agents-a1-free`, `dots-3-note-preview-free`, `flint-v1.0-free`, `gemma-4-26b-a4b-it-free`, `coding-glm-4.6-free`, `coding-glm-4.7-free`, `glm-4.7-flash-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.1-free`, `coding-glm-5.2-free`, `intern-s2-free`, `kimi-for-coding-free`, `coding-kimi-k3-free`, `mimo-v2-flash-free`, `coding-minimax-m2-free`, `coding-minimax-m2.1-free`, `coding-minimax-m2.5-free`, `coding-minimax-m2.7-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3.5-super-vl-free`, `ernie-5.5-flash-preview-free`, `k2.6-code-preview-free`, `lfm-2.5-2.6b-free`, `lfm-3-1.7b-free`, `particle-1-free`
+- Callable ids: `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-minimax-m3-free`, `nemotron-3-ultra-550b-a55b-free`, `nemotron-3.5-lightning-free`, `gemma-4-31b-it-free`, `north-mini-code-free`, `agents-a1-free`, `dots-3-note-preview-free`, `flint-v1.0-free`, `gemma-4-26b-a4b-it-free`, `coding-glm-4.6-free`, `coding-glm-4.7-free`, `glm-4.7-flash-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.1-free`, `coding-glm-5.2-free`, `intern-s2-free`, `kimi-for-coding-free`, `coding-kimi-k3-free`, `mimo-v2-flash-free`, `coding-minimax-m2-free`, `coding-minimax-m2.1-free`, `coding-minimax-m2.5-free`, `coding-minimax-m2.7-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3.5-super-vl-free`, `ernie-5.5-flash-preview-free`, `k2.6-code-preview-free`, `lfm-2.5-2.6b-free`, `lfm-3-1.7b-free`, `ling-3.2-flash-free`, `particle-1-free`
 - Note: The listed -free IDs are zero-priced. intern-s2-free serves Intern-S2-Preview 35B; k2.6-code-preview-free describes kimi-for-coding. For Claude Code, use https://aihubmix.com as ANTHROPIC_BASE_URL.
 
 Try it from your terminal with your key in `AIHUBMIX_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -80,6 +82,7 @@ curl -s https://aihubmix.com/v1/chat/completions \
 - Source: <https://aihubmix.com/models/lfm-3-1.7b-free>
 - Source: <https://huggingface.co/LiquidAI/LFM3-1.7B>
 - Source: <https://aihubmix.com/models/crouton-alpha-free>
+- Source: <https://aihubmix.com/models/ling-3.2-flash-free>
 
 ## History
 

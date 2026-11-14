@@ -158,6 +158,11 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     today = today or utc_today()
     page = _Markdown(body) if catalog.read.format == 'markdown' else _Page(body)
     notes = check_model_eligibility(catalog, {catalog.source: body, **(condition_bodies or {})})
+    for model in catalog.models:
+        if not model.in_picker and not model.expired:
+            condition = catalog.conditions[model.condition]
+            if condition.source != catalog.source and condition.source not in (condition_bodies or {}):
+                notes.append(f'{model.name} unlisted access source unreadable')
     answer = page.answer(catalog.read.budgets_question)
     actual = _budgets(answer, catalog) if answer is not None else None
     expected = {key: b.amount for b in catalog.budgets
@@ -203,7 +208,7 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     if not roster or len(set(roster)) != len(roster):
         notes.append("model picker unreadable in the configured FAQ answer")
     else:
-        expected_roster = {m.name.casefold() for m in catalog.models if not m.expired and (
+        expected_roster = {m.name.casefold() for m in catalog.models if m.in_picker and not m.expired and (
             m.condition is None or catalog.conditions[m.condition].kind != "specialist")}
         notes += _differences("model picker", expected_roster, set(roster))
 
@@ -215,7 +220,7 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     else:
         limited = {clean(n) for n in re.split(r",\s*|\s+and\s+", selected) if clean(n)}
         notes += _differences("limited-access models", {m.name.casefold() for m in catalog.models
-                                                       if m.limited and not m.expired}, limited)
+                                                       if m.limited and m.in_picker and not m.expired}, limited)
     evidence = [" ".join(page.visible), *[answer for answers in page.faq.values() for answer in answers]]
     pages = [text for part in evidence for text in page_texts(part)]
     for field, quote in catalog_quotes(catalog):
@@ -310,7 +315,13 @@ def offer_access(catalog: PageCatalog, model: PageModel) -> str:
         return ""
     text = access_words(access)
     if model.expired:
-        text = text.replace("free until ", "offer ended ")
+        payment, _, deadline = text.rpartition('; ')
+        text = deadline.replace('free until ', 'offer ended ')
+        if payment:
+            text += '; ' + payment
+    cited = {catalog.source, *(condition.source for condition in catalog.conditions.values())}
+    if model.expired and access.source in cited:
+        return text
     return f"{text} (terms: {access.source})"
 
 
@@ -337,7 +348,7 @@ def catalog_words(catalog: PageCatalog, *, include_session: bool = True) -> str:
         if kind in ("wallet", "unmetered"):
             text += "; available in limited mode" if m.limited else "; full access only"
         if access := offer_access(catalog, m):
-            text += "; " + access
+            text = f'{m.name}: {access}' if m.expired else text + '; ' + access
         offers.append(text)
     intro=(f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
            if any(m.hours is not None for m in catalog.models)

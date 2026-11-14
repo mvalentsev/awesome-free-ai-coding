@@ -25,7 +25,7 @@ from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
 from .layout import MAP, Kind
-from .models import ApiInfo, ArchiveReview, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, Probe, SessionEligibility, utc_today
+from .models import ApiInfo, ArchiveReview, CatalogCondition, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, PageModel, Probe, SessionEligibility, utc_today
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
@@ -620,6 +620,12 @@ CLAIMS: tuple[Claim, ...] = (
           "quotas.UsageQuota; nullable-window regression in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
           _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
+    Claim("CONTRIBUTING.md", r"saved selection can set `(in_picker: false)`",
+          lambda root: ('in_picker: false',) if PageModel.model_fields['in_picker'].default is True else (),
+          "models.PageCatalog source/identity validation; prober.unevidenced_families and page_catalog.check_page_catalog; HTTP saved-access and withdrawal controls in tests/test_page_catalog.py"),
+    Claim("CONTRIBUTING.md", r"an `(unmetered)` condition with a model-specific quote",
+          lambda root: ('unmetered',) if 'unmetered' in get_args(CatalogCondition.model_fields['kind'].annotation) else (),
+          "models.CatalogCondition and PageCatalog.independently_free; HTTP zero-hour offer and changed-source controls in tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",
           _review_push_base, "review.PUSH_BASE_FLAG and prepare; push-range regressions in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"For a bot (verification) or (expiry) commit, add `prepare --verification-run",

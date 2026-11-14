@@ -362,7 +362,8 @@
           "liquid/lfm-3-1.7b:free",
           "thinkingmachines/inkling-2-small:free",
           "baidu/ernie-5.5-flash-preview:free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -385,6 +386,11 @@
           "particle-ai/particle-1:free": {
             "context_tokens": 1048576,
             "output_tokens": 131072,
+            "source": "https://openrouter.ai/api/v1/models"
+          },
+          "inclusionai/ling-3.2-flash:free": {
+            "context_tokens": 1048576,
+            "output_tokens": 262144,
             "source": "https://openrouter.ai/api/v1/models"
           }
         },
@@ -464,7 +470,8 @@
           "liquid/lfm-3-1.7b:free",
           "thinkingmachines/inkling-2-small:free",
           "baidu/ernie-5.5-flash-preview:free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "what": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
         "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
@@ -1711,7 +1718,7 @@
             "name": "Iceman Free",
             "source": "https://opencode.ai/v2/docs/console/models/",
             "quote": "Iceman Free is a stealth model that's free on OpenCode for a limited time.",
-            "reviewed_on": "2026-11-07"
+            "reviewed_on": "2026-11-14"
           }
         ]
       },
@@ -1844,7 +1851,8 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1878,6 +1886,11 @@
           "particle-ai/particle-1:free": {
             "context_tokens": 1048576,
             "output_tokens": 131072,
+            "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "inclusionai/ling-3.2-flash:free": {
+            "context_tokens": 1048576,
+            "output_tokens": 262144,
             "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
@@ -1965,7 +1978,8 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -2014,7 +2028,8 @@
           "liquid/lfm-3-1.7b:free": "",
           "baidu/ernie-5.5-flash-preview:free": "",
           "reflection/beam-free": "",
-          "particle-ai/particle-1:free": ""
+          "particle-ai/particle-1:free": "",
+          "inclusionai/ling-3.2-flash:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
@@ -5142,7 +5157,8 @@
           "minimax/minimax-m3.1-flash",
           "baseten/elephant-1",
           "baseten/mammoth-1",
-          "inclusionai/ling-3.1-flash-1019"
+          "inclusionai/ling-3.1-flash-1019",
+          "parallel/parallel-decisions-fast"
         ],
         "no_family_ids": [
           "stealth/glyph-cluster"
@@ -6588,11 +6604,12 @@
         "https://aihubmix.com/models/particle-1-free",
         "https://aihubmix.com/models/lfm-3-1.7b-free",
         "https://huggingface.co/LiquidAI/LFM3-1.7B",
-        "https://aihubmix.com/models/crouton-alpha-free"
+        "https://aihubmix.com/models/crouton-alpha-free",
+        "https://aihubmix.com/models/ling-3.2-flash-free"
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
       "quotas": [
         {
           "amount": 5.0,
@@ -7019,6 +7036,19 @@
           "reviewed_on": "2026-11-13",
           "amount": null,
           "period": null
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Ling 3.2 Flash free route",
+          "source": "https://aihubmix.com/models/ling-3.2-flash-free",
+          "quote": "Ling 3.2 Flash is a hybrid reasoning model from inclusionAI that accepts text and image input, with a 1M-token context window and up to 200 images per request.",
+          "model_ids": [
+            "ling-3.2-flash-free"
+          ],
+          "reviewed_on": "2026-11-14",
+          "amount": null,
+          "period": null
         }
       ],
       "free_part": "models",
@@ -7180,7 +7210,8 @@
           "nemotron-3.5-super-vl-free",
           "ernie-5.5-flash-preview-free",
           "particle-1-free",
-          "lfm-3-1.7b-free"
+          "lfm-3-1.7b-free",
+          "ling-3.2-flash-free"
         ],
         "model_bindings": {
           "intern-s2-free": {
@@ -7326,10 +7357,11 @@
           "nemotron-3.5-super-vl-free",
           "ernie-5.5-flash-preview-free",
           "particle-1-free",
-          "lfm-3-1.7b-free"
+          "lfm-3-1.7b-free",
+          "ling-3.2-flash-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
+        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -8274,21 +8306,18 @@
         "https://freebuff.com/privacy-policy",
         "https://freebuff.com/llms.txt",
         "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts",
-        "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts"
+        "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts",
+        "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts"
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nDeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app. “We also share a hashed form of a verified number with advertising and measurement providers, as described in Personalized Advertising above, unless you have opted out of ad personalization or your browser sends a Global Privacy Control signal.”\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo v2.6 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Slow: shared daily hours; available in limited mode; Beam 1.0: unmetered offer; available in limited mode; Nemotron 3.5 Lightning: unmetered offer; available in limited mode; Glyph Cluster: unmetered offer; available in limited mode; GPT-6 Luna: paid plan; Muse Spark 1.3: paid plan; Muse Ember: paid plan; Claude Haiku 5.5 · 100k context: paid plan; GPT-6.1 Terra: paid plan; GLM 5.3 Flash: offer ended 2026-11-06 05:00+00:00; Gemini 4 Argon: offer ended 2026-10-27 UTC; Gemini 3.8 Flash: offer ended 2026-10-27 UTC; MiMo 2.6 Pro: offer ended 2026-10-29 UTC; GPT-6.1 Sol: offer ended 2026-11-04 UTC; DeepSeek V4.1 Flash Fast 10/17: offer ended 2026-11-08 UTC; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. GPT-6 Luna, Muse Spark 1.3, Muse Ember, Claude Haiku 5.5 · 100k context: These models require a paid plan for newer accounts; earlier accounts retain eligible selections until retirement. (source: https://freebuff.com/plans). GPT-6.1 Terra: OpenAI's model, on paid plans, two sessions a day. MiMo v2.6 Flash Fast: MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Beam 1.0: Free experimental model that uses none of your hours. Nemotron 3.5 Lightning: Free experimental model that uses none of your hours. Glyph Cluster: Free experimental model that uses none of your hours.\n\nDeepSeek V4.1 Flash Fast is the default at full access. At limited access the default is DeepSeek V4.1 Flash Slow, or DeepSeek V4.1 Flash with a paid plan. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
           "family": "deepseek-v4.1-flash-1017",
           "tier": "notable",
           "aa_model": "deepseek-v4-1-flash-1017"
-        },
-        {
-          "family": "glm-5.3-flash",
-          "aa_model": "glm-5-3-flash"
         },
         {
           "family": "mimo-v2.6-flash",
@@ -8299,6 +8328,18 @@
         },
         {
           "family": "solar-pro-4"
+        }
+      ],
+      "newcomers": [
+        {
+          "family": "beam-1.0",
+          "on": "2026-11-14",
+          "source": "https://freebuff.com/llms.txt"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "on": "2026-11-14",
+          "source": "https://freebuff.com/llms.txt"
         }
       ],
       "page_catalog": {
@@ -8358,46 +8399,49 @@
           "models_question": "What models do you use?",
           "budgets_question": "What is limited mode?",
           "limited_question": "What is limited mode?",
-          "limited_prefix": "limited mode includes",
-          "limited_suffix": ", with"
+          "limited_prefix": "Without a plan it opens ",
+          "limited_suffix": "; a paid plan"
         },
         "conditions": {
           "wallet": {
             "kind": "wallet",
             "quote": "Your balance is measured in hours."
           },
-          "paid-gemini": {
+          "paid": {
             "kind": "paid",
-            "quote": "PAID-ONLY row",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
-          },
-          "paid-sol": {
-            "kind": "paid",
-            "note": "The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day.",
-            "reviewed_on": "2026-11-09",
+            "note": "These models require a paid plan for newer accounts; earlier accounts retain eligible selections until retirement.",
+            "reviewed_on": "2026-11-14",
             "source": "https://freebuff.com/plans"
+          },
+          "terra": {
+            "kind": "paid",
+            "quote": "GPT-6.1 Terra: OpenAI's model, on paid plans, two sessions a day.",
+            "source": "https://freebuff.com/llms.txt"
+          },
+          "legacy-mimo": {
+            "kind": "wallet",
+            "note": "MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.",
+            "reviewed_on": "2026-11-14",
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts"
           },
           "specialist": {
             "kind": "specialist",
             "quote": "Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research."
           },
-          "muse-full": {
-            "kind": "wallet",
-            "note": "Credit-funded at full access; a paid plan is required at limited access.",
-            "reviewed_on": "2026-11-09",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
+          "beam-1.0": {
+            "kind": "unmetered",
+            "quote": "Beam 1.0: Free experimental model that uses none of your hours.",
+            "source": "https://freebuff.com/llms.txt"
           },
-          "terra-full": {
-            "kind": "wallet",
-            "quote": "Included with a paid plan (Pro on limited access). Two sessions a day on every plan.",
-            "reviewed_on": "2026-11-07",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts"
+          "nemotron-3.5-lightning": {
+            "kind": "unmetered",
+            "quote": "Nemotron 3.5 Lightning: Free experimental model that uses none of your hours.",
+            "source": "https://freebuff.com/llms.txt"
           },
-          "luna-account": {
-            "kind": "wallet",
-            "note": "The current plan comparison and client rules require a paid plan. Retained account access follows the condition above.",
-            "reviewed_on": "2026-11-07",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
+          "glyph-cluster": {
+            "kind": "unmetered",
+            "quote": "Glyph Cluster: Free experimental model that uses none of your hours.",
+            "source": "https://freebuff.com/llms.txt"
           }
         },
         "models": [
@@ -8428,35 +8472,22 @@
             "listed": true
           },
           {
-            "name": "MiMo V2.6 Flash Fast",
+            "name": "MiMo v2.6 Flash Fast",
             "model": {
               "family": "mimo-v2.6-flash",
               "aa_model": "mimo-v2-6-flash"
             },
             "limited": true,
-            "condition": "wallet",
+            "condition": "legacy-mimo",
             "first_free": {
               "on": "2026-09-22",
               "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
             },
-            "listed": true
+            "listed": true,
+            "in_picker": false
           },
           {
-            "name": "GLM 5.3 Flash",
-            "model": {
-              "family": "glm-5.3-flash",
-              "aa_model": "glm-5-3-flash"
-            },
-            "limited": true,
-            "condition": "wallet",
-            "first_free": {
-              "on": "2026-09-22",
-              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
-            },
-            "listed": true
-          },
-          {
-            "name": "DeepSeek V4.1 Flash 10/17",
+            "name": "DeepSeek V4.1 Flash",
             "model": {
               "family": "deepseek-v4.1-flash-1017",
               "tier": "notable",
@@ -8471,57 +8502,128 @@
             "listed": true
           },
           {
+            "name": "DeepSeek V4.1 Flash Fast",
+            "limited": true,
+            "condition": "wallet"
+          },
+          {
+            "name": "DeepSeek V4.1 Flash Slow",
+            "limited": true,
+            "condition": "wallet"
+          },
+          {
+            "name": "Beam 1.0",
+            "model": {
+              "family": "beam-1.0",
+              "aa_auto": false
+            },
+            "limited": true,
+            "condition": "beam-1.0",
+            "first_free": {
+              "on": "2026-11-14",
+              "source": "https://freebuff.com/llms.txt"
+            }
+          },
+          {
+            "name": "Nemotron 3.5 Lightning",
+            "model": {
+              "family": "nemotron-3.5-lightning",
+              "aa_auto": false
+            },
+            "limited": true,
+            "condition": "nemotron-3.5-lightning",
+            "first_free": {
+              "on": "2026-11-14",
+              "source": "https://freebuff.com/llms.txt"
+            }
+          },
+          {
+            "name": "Glyph Cluster",
+            "limited": true,
+            "condition": "glyph-cluster"
+          },
+          {
             "name": "GPT-6 Luna",
             "model": {
               "family": "gpt-6-luna"
             },
-            "condition": "luna-account"
-          },
-          {
-            "name": "MiMo 2.6 Pro",
-            "model": {
-              "family": "mimo-v2.6-pro"
-            },
-            "condition": "wallet"
-          },
-          {
-            "name": "DeepSeek V4.1 Flash Fast 10/17",
-            "model": {
-              "family": "deepseek-v4.1-flash-1017"
-            },
-            "condition": "wallet"
-          },
-          {
-            "name": "GPT-6.1 Terra",
-            "model": {
-              "family": "gpt-6.1-terra"
-            },
-            "condition": "terra-full"
-          },
-          {
-            "name": "GPT-6.1 Sol",
-            "model": {
-              "family": "gpt-6.1-sol"
-            },
-            "condition": "paid-sol"
-          },
-          {
-            "name": "Gemini 4 Argon",
-            "condition": "paid-sol"
-          },
-          {
-            "name": "Gemini 3.8 Flash",
-            "model": {
-              "family": "gemini-3.8-flash"
-            },
-            "condition": "paid-gemini"
+            "condition": "paid"
           },
           {
             "name": "Muse Spark 1.3",
             "model": {
               "family": "muse-spark-1.3-contributor"
             },
-            "condition": "muse-full"
+            "condition": "paid"
+          },
+          {
+            "name": "Muse Ember",
+            "condition": "paid"
+          },
+          {
+            "name": "Claude Haiku 5.5 · 100k context",
+            "model": {
+              "family": "claude-haiku-5.5"
+            },
+            "condition": "paid"
+          },
+          {
+            "name": "GPT-6.1 Terra",
+            "model": {
+              "family": "gpt-6.1-terra"
+            },
+            "condition": "terra"
+          },
+          {
+            "name": "GLM 5.3 Flash",
+            "model": {
+              "family": "glm-5.3-flash",
+              "aa_model": "glm-5-3-flash"
+            },
+            "limited": true,
+            "condition": "wallet",
+            "first_free": {
+              "on": "2026-09-22",
+              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+            },
+            "expired": true
+          },
+          {
+            "name": "Gemini 4 Argon",
+            "condition": "wallet",
+            "expired": true
+          },
+          {
+            "name": "Gemini 3.8 Flash",
+            "model": {
+              "family": "gemini-3.8-flash"
+            },
+            "condition": "wallet",
+            "expired": true
+          },
+          {
+            "name": "MiMo 2.6 Pro",
+            "model": {
+              "family": "mimo-v2.6-pro"
+            },
+            "condition": "wallet",
+            "expired": true
+          },
+          {
+            "name": "GPT-6.1 Sol",
+            "model": {
+              "family": "gpt-6.1-sol"
+            },
+            "condition": "wallet",
+            "expired": true
+          },
+          {
+            "name": "DeepSeek V4.1 Flash Fast 10/17",
+            "model": {
+              "family": "deepseek-v4.1-flash-1017"
+            },
+            "condition": "wallet",
+            "expired": true
           },
           {
             "name": "Gemini 3.1 Flash Lite",
@@ -8531,17 +8633,44 @@
             "condition": "specialist"
           }
         ],
+        "model_access": {
+          "GLM 5.3 Flash": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-11-06T05:00:00Z"
+          },
+          "Gemini 4 Argon": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-10-27"
+          },
+          "Gemini 3.8 Flash": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-10-27"
+          },
+          "MiMo 2.6 Pro": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-10-29"
+          },
+          "GPT-6.1 Sol": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-11-04"
+          },
+          "DeepSeek V4.1 Flash Fast 10/17": {
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts",
+            "until": "2026-11-08"
+          }
+        },
         "limited_allowance": "6 one-hour sessions per day",
         "notes": [
-          "DeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud.",
+          "DeepSeek V4.1 Flash Fast is the default at full access.",
+          "At limited access the default is DeepSeek V4.1 Flash Slow, or DeepSeek V4.1 Flash with a paid plan.",
           "Daily hours refill at midnight in your local timezone and unused daily hours do not carry over.",
           "Older app versions show the same balance as Freebucks, five to an hour."
         ],
-        "reviewed_on": "2026-11-07"
+        "reviewed_on": "2026-11-14"
       },
       "data_use": {
         "trains": "yes",
-        "quote": "DeepSeek V4.1 Flash 10/17: Smart & Fast. May use data for AI training.",
+        "quote": "DeepSeek V4.1 Flash: The same DeepSeek model at a steady speed, for fewer hours. May use data for AI training.",
         "url": "https://freebuff.com/llms.txt"
       },
       "border": {
@@ -8587,19 +8716,17 @@
           "solar-pro-4",
           "solar-mini-4",
           "mimo-v2.6-flash",
-          "glm-5.3-flash",
           "deepseek-v4.1-flash-1017"
         ],
         "ids": [],
         "what": "Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access",
-        "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo V2.6 Flash Fast: shared daily hours; available in limited mode; GLM 5.3 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash 10/17: shared daily hours; available in limited mode; GPT-6 Luna: shared daily hours; full access only; MiMo 2.6 Pro: shared daily hours; full access only; DeepSeek V4.1 Flash Fast 10/17: shared daily hours; full access only; GPT-6.1 Terra: shared daily hours; full access only; GPT-6.1 Sol: paid plan; Gemini 4 Argon: paid plan; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily hours; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol, Gemini 4 Argon: The public Free-plan comparison requires a paid plan; paid plans allow one one-hour session per day. (source: https://freebuff.com/plans). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: Credit-funded at full access; a paid plan is required at limited access. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Terra: “Included with a paid plan (Pro on limited access). Two sessions a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). GPT-6 Luna: The current plan comparison and client rules require a paid plan. Retained account access follows the condition above. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nDeepSeek V4.1 Flash 10/17 is the default on CLI, Desktop, Web, and Cloud. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
+        "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\nThe Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3 keep their other models until those are retired.” Available models depend on the app, account and access level. “Promotional prices are temporary, and any price may change.” “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app. “We also share a hashed form of a verified number with advertising and measurement providers, as described in Personalized Advertising above, unless you have opted out of ad personalization or your browser sends a Global Privacy Control signal.”\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 30 hours per day; Other countries: 5 hours per day; VPN or proxy: 4 hours per day.\n\nCheck your account's picker for current model hour prices. Solar Pro 4: shared daily hours; available in limited mode; Solar Mini 4: shared daily hours; available in limited mode; MiMo v2.6 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Fast: shared daily hours; available in limited mode; DeepSeek V4.1 Flash Slow: shared daily hours; available in limited mode; Beam 1.0: unmetered offer; available in limited mode; Nemotron 3.5 Lightning: unmetered offer; available in limited mode; Glyph Cluster: unmetered offer; available in limited mode; GPT-6 Luna: paid plan; Muse Spark 1.3: paid plan; Muse Ember: paid plan; Claude Haiku 5.5 · 100k context: paid plan; GPT-6.1 Terra: paid plan; GLM 5.3 Flash: offer ended 2026-11-06 05:00+00:00; Gemini 4 Argon: offer ended 2026-10-27 UTC; Gemini 3.8 Flash: offer ended 2026-10-27 UTC; MiMo 2.6 Pro: offer ended 2026-10-29 UTC; GPT-6.1 Sol: offer ended 2026-11-04 UTC; DeepSeek V4.1 Flash Fast 10/17: offer ended 2026-11-08 UTC; Gemini 3.1 Flash Lite: specialist tasks only.\n\nYour balance is measured in hours. GPT-6 Luna, Muse Spark 1.3, Muse Ember, Claude Haiku 5.5 · 100k context: These models require a paid plan for newer accounts; earlier accounts retain eligible selections until retirement. (source: https://freebuff.com/plans). GPT-6.1 Terra: OpenAI's model, on paid plans, two sessions a day. MiMo v2.6 Flash Fast: MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it. (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-model-retirement-schedule.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Beam 1.0: Free experimental model that uses none of your hours. Nemotron 3.5 Lightning: Free experimental model that uses none of your hours. Glyph Cluster: Free experimental model that uses none of your hours.\n\nDeepSeek V4.1 Flash Fast is the default at full access. At limited access the default is DeepSeek V4.1 Flash Slow, or DeepSeek V4.1 Flash with a paid plan. Daily hours refill at midnight in your local timezone and unused daily hours do not carry over. Older app versions show the same balance as Freebucks, five to an hour. (source: https://freebuff.com/llms.txt).",
         "why": "",
         "access": "",
         "modelAccess": {
           "solar-pro-4": "",
           "solar-mini-4": "",
           "mimo-v2.6-flash": "",
-          "glm-5.3-flash": "",
           "deepseek-v4.1-flash-1017": ""
         },
         "section": {
@@ -8615,7 +8742,6 @@
           "solar-pro-4": "",
           "solar-mini-4": "",
           "mimo-v2.6-flash": "",
-          "glm-5.3-flash": "",
           "deepseek-v4.1-flash-1017": ""
         },
         "ids": {}
@@ -20960,7 +21086,6 @@
       "rows": [
         "opencode",
         "nvidia-nim",
-        "freebuff",
         "aihubmix",
         "zcode",
         "freeinference"

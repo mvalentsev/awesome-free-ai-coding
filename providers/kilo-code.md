@@ -3,7 +3,7 @@ layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-11-12'
 description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, dots-3-note, flint-v1.0, nemotron-3-nano-omni, xing4.0-29b-a4b. The…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-14
 crumb: Kilo Code
 model_sort: true
 ---
@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `dots-studio/dots-3-note-preview:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `baidu/ernie-5.5-flash-preview:free`, `kilo-auto/free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `particle-ai/particle-1:free`, `reflection/beam-free`, `stealth/glyph-cluster`
+- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `dots-studio/dots-3-note-preview:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `baidu/ernie-5.5-flash-preview:free`, `inclusionai/ling-3.2-flash:free`, `kilo-auto/free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `particle-ai/particle-1:free`, `reflection/beam-free`, `stealth/glyph-cluster`
 - `openrouter/free`: the router chooses the model ([conditions](https://openrouter.ai/api/v1/models))
 - Note: Use free IDs without a key; metered IDs require sign-in. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with the listed LFM models.
 

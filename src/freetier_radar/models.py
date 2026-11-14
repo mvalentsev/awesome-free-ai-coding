@@ -860,7 +860,7 @@ class SessionEligibility(BaseModel):
 
 class CatalogCondition(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    kind: Literal["free-session", "paid", "specialist", "wallet"]
+    kind: Literal["free-session", "unmetered", "paid", "specialist", "wallet"]
     quote: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
     note: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
     reviewed_on: date | None = Field(default=None, exclude_if=lambda v: v is None)
@@ -880,6 +880,8 @@ class CatalogCondition(BaseModel):
             raise ValueError("a manual condition needs its source and review date; it cannot establish a free session")
         if self.eligibility and (self.kind != "free-session" or not self.source):
             raise ValueError("session eligibility needs a free-session condition and its source")
+        if self.kind == 'unmetered' and (not self.quote or not self.source):
+            raise ValueError('an unmetered offer needs its checked source quote')
         return self
 
 
@@ -895,7 +897,7 @@ class DatedSource(BaseModel):
 
 
 class PageModel(BaseModel):
-    """One current picker row, including models bought with a shared budget."""
+    """One catalog offer, including saved access absent from the current picker."""
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=100)
     model: ModelFamily | None = None
@@ -905,6 +907,7 @@ class PageModel(BaseModel):
     first_free: DatedSource | None = None
     listed: bool = Field(default=False, exclude_if=lambda v: not v)
     expired: bool = Field(default=False, exclude_if=lambda v: not v)
+    in_picker: bool = Field(default=True, exclude_if=lambda v: v)
 
     @field_validator("hours", mode="before")
     @classmethod
@@ -950,7 +953,7 @@ class PageCatalog(BaseModel):
 
     def independently_free(self, model: PageModel) -> bool:
         return not model.expired and (model.hours == "unlimited" or (
-            model.condition is not None and self.conditions[model.condition].kind == "free-session") or (
+            model.condition is not None and self.conditions[model.condition].kind in ('free-session', 'unmetered')) or (
             model.limited and self.limited_allowance is not None
             and (model.hours is not None or (model.condition and self.conditions[model.condition].kind == 'wallet'))
             and (model.model is None or model.first_free is not None)))
@@ -1001,6 +1004,14 @@ class PageCatalog(BaseModel):
         published = []
         for m in self.models:
             free = self.independently_free(m)
+            if not m.in_picker:
+                condition = self.conditions.get(m.condition)
+                if (condition is None or not condition.source
+                        or m.name.casefold() not in (condition.quote or condition.note).casefold()):
+                    raise ValueError('an unlisted model needs its own sourced condition')
+            if m.condition and self.conditions[m.condition].kind == 'unmetered':
+                if m.name.casefold() not in self.conditions[m.condition].quote.casefold():
+                    raise ValueError('an unmetered offer needs a model-specific source quote')
             if m.expired and not ((a := self.model_access.get(m.name)) and a.until):
                 raise ValueError("an expired catalog offer needs its model_access.until")
             if m.listed and (m.model is None or not free):
