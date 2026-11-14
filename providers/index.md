@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-14
 ---
 
 {% raw %}
@@ -34,9 +34,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-11-12
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-11-12
 - [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) — verified 2026-11-12
-- [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) — verified 2026-11-12
-- [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) — verified 2026-11-12
-- [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-11-12
+- [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) — verified 2026-11-14
+- [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) — verified 2026-11-14
+- [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-11-14
 - [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-12
 - [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-12
 - [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-12
@@ -105,7 +105,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-12
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-12
 - [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-12
-- [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-12
+- [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-14
 - [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-12
 - [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-12
 

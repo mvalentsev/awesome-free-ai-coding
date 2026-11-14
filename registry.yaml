@@ -10500,9 +10500,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-10-31'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-14'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 85
 - id: greptile
   name: Greptile
@@ -10552,9 +10552,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-10-31'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-14'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 87
 - id: cubic
   name: cubic
@@ -10616,9 +10616,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-10-31'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-14'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 86
 - id: codeant
   name: CodeAnt AI
@@ -10667,9 +10667,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-10-31'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-14'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 100
 - id: zro
   name: Zro (MoonMath)
