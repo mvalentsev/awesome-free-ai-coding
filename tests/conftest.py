@@ -1,4 +1,6 @@
 """Hermetic HTTP and small shared repository fixtures."""
+from pathlib import Path
+
 import curl_cffi
 import pytest
 
@@ -10,6 +12,15 @@ def no_unmocked_profile_http(monkeypatch):
         raise OSError('profile HTTP must be explicitly mocked in unit tests')
     monkeypatch.setattr(curl_cffi, 'get', deny)
     monkeypatch.setattr(page_reader, '_addresses', lambda host: ['1.1.1.1'])
+
+
+@pytest.fixture(scope='session')
+def registry_entry():
+    """Read the committed vendor fixtures once; each caller gets an isolated row."""
+    from freetier_radar.models import load_registry
+
+    rows = {entry.id: entry for entry in load_registry(Path(__file__).resolve().parents[1] / 'registry.yaml')}
+    return lambda ident: rows[ident].model_copy(deep=True)
 
 
 @pytest.fixture

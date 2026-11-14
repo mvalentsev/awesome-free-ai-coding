@@ -68,6 +68,23 @@ def test_contributing_writer_generates_the_evidence_age_and_its_unit(tmp_path, m
         assert check_claims(root, (claim,), scheduled=()) == []
 
 
+def test_dated_promotion_and_rotating_wait_copy_share_the_bar_constant(tmp_path, monkeypatch):
+    from freetier_radar import claims
+    from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
+
+    root = _root(tmp_path, 'An undated model on a rotating lane waits two weeks.\n'
+                          'A dated promotion qualifies even if it ends within two weeks.\n'
+                          f'{MAP_BEGIN}\nold map\n{MAP_END}\n')
+    rules = tuple(c for c in CLAIMS if c.source == 'bars.BAR_DAYS'
+                  and ('rotating lane waits' in c.pattern or 'ends within' in c.pattern))
+    monkeypatch.setattr(claims, 'BAR_DAYS', 21)
+    assert check_claims(root, rules, scheduled=())
+    text = render_contributing(root / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
+    assert 'waits three weeks' in text
+    assert 'ends within three weeks' in text
+    assert check_claims(root, rules, scheduled=()) == []
+
+
 def test_a_sentence_rewritten_past_its_claim_is_reported(tmp_path):
     """A claim that stops matching checks nothing, which is how a hand-written
     figure drifts: the sentence is reworded, the figure goes with it."""

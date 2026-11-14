@@ -667,6 +667,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_PICKS),), "render.README_PICKS", generated=True),
     Claim("CONTRIBUTING.md", r"An undated model on a rotating lane waits (\w+ weeks|a week)",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
+    Claim("CONTRIBUTING.md", r"even if it ends within (\w+ weeks|a week)",
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"The report counts (\w+ weeks|a week)\s+from that date",

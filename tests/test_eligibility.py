@@ -10,11 +10,10 @@ from test_page_catalog import entry, page, session_catalog_data
 
 @respx.mock
 @pytest.mark.parametrize('changed', [False, True])
-async def test_cursor_free_eligibility_is_bound_to_the_exact_versions_in_the_free_clause(changed):
+async def test_cursor_free_eligibility_is_bound_to_the_exact_versions_in_the_free_clause(registry_entry, changed):
     from datetime import date
-    from pathlib import Path
-    from freetier_radar.models import ModelFamily, load_registry
-    registered = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'cursor-hobby')
+    from freetier_radar.models import ModelFamily
+    registered = registry_entry('cursor-hobby')
     row = registered.model_copy(update={
         'models': [ModelFamily(family=f) for f in ['grok-4.7', 'grok-4.6', 'grok-4.5', 'composer-2.5']],
         'newcomers': [], 'quotas': [], 'border': None, 'data_use': None,

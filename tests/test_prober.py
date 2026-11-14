@@ -56,11 +56,11 @@ def page_entry() -> Entry:
     (("A free plan with limited capacity.", "A paid plan with limited capacity."), ProbeStatus.FAIL),
 ])
 @respx.mock
-async def test_ibm_lite_uses_the_reachable_official_article_and_keeps_its_limits(change, expected):
+async def test_ibm_lite_uses_the_reachable_official_article_and_keeps_its_limits(registry_entry, change, expected):
     # IBM's official Cloud docs embed the same Lite article as page data:
     # https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx
     # Checked 2026-11-01: the www.ibm.com alias returns 403 from Actions.
-    entry = next(e for e in load_registry(Path("registry.yaml")) if e.id == "ibm-watsonx-ai")
+    entry = registry_entry('ibm-watsonx-ai')
     entry = entry.model_copy(update={"data_use": None, "border": None})
     article = ("<h1>watsonx.ai Runtime plans</h1><dl><dt>Lite plan</dt>"
                "<dd>A free plan with limited capacity.</dd></dl>"
@@ -3070,11 +3070,10 @@ async def test_a_retry_after_stops_inference_before_trying_another_model(retry_a
     ('100', 'free', 'paid', ProbeStatus.FAIL),
 ])
 async def test_sarvam_current_signup_grant_keeps_amount_and_eligibility(
-        amount, kind, eligibility, expected):
+        registry_entry, amount, kind, eligibility, expected):
     # https://docs.sarvam.ai/api/getting-started/pricing.md, checked 2026-11-01:
     # the current grant still exists after rewording.
-    registered = next(e for e in load_registry(Path(__file__).resolve().parents[1] / 'registry.yaml')
-                      if e.id == 'sarvam')
+    registered = registry_entry('sarvam')
     entry = registered.model_copy(update={'api': None, 'quotas': [], 'border': None, 'data_use': None})
     body = (f'Sarvam offers **₹{amount} worth of {kind} credits** '
             f'for every {eligibility} user on signup.')

@@ -1,7 +1,6 @@
 import httpx
 import json
 from datetime import timedelta
-from pathlib import Path
 import pytest
 import respx
 from freetier_radar.models import Entry
@@ -77,9 +76,8 @@ def test_indonesian_period_words_do_not_match_the_wrong_window(period, quote):
 
 
 @pytest.fixture(scope='module')
-def trae_script_entry():
-    from freetier_radar.models import load_registry
-    original = next(e for e in load_registry(Path('registry.yaml')) if e.id == 'trae')
+def trae_script_entry(registry_entry):
+    original = registry_entry('trae')
     return original.model_copy(update={'quotas': original.quotas[1:], 'data_use': None, 'border': None})
 
 
@@ -198,6 +196,33 @@ async def test_an_inert_table_cannot_confirm_a_current_quota(table):
         result = await probe_entry(client, e, attempts=1, backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
     assert 'quota table coding-model' in result.detail
+
+
+@pytest.mark.parametrize('changed', [False, True])
+@respx.mock
+async def test_requests_per_second_table_tracks_the_exact_http_cell(changed):
+    q = {**QUOTA, 'amount': 2, 'period': 'second', 'read': 'table', 'quote': 'Free Plan Limits',
+         'table': {'headers': ['Model', 'RPS'], 'column': 'RPS', 'rows': ['coding-model']}}
+    e = Entry.model_validate({**BASE, 'quotas': [q]})
+    respx.get(e.probe.endpoint).respond(200, text='Recurring free quota for chat')
+    source = respx.get(q['source']).respond(200, text=(
+        '<p>Free Plan Limits</p><table><tr><th>Model</th><th>RPS</th></tr>'
+        f'<tr><td>coding-model</td><td>{1 if changed else 2}</td></tr>'
+        '<tr><td>paid-model</td><td>2</td></tr></table>'))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, e, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+    assert source.call_count == 1
+
+
+@pytest.mark.parametrize('change', [{'unit': 'tokens'}, {'period': 'minute'}, {'window': 2}])
+def test_requests_per_second_header_cannot_bind_a_different_unit_or_window(change):
+    from freetier_radar.quotas import UsageQuota
+    with pytest.raises(ValueError, match='must match the table column'):
+        UsageQuota.model_validate({**QUOTA, 'amount': 2, 'period': 'second', 'read': 'table',
+                                  'quote': 'Free Plan Limits, 2 seconds', **change,
+                                  'table': {'headers': ['Model', 'RPS'], 'column': 'RPS',
+                                            'rows': ['coding-model']}})
 
 
 def test_single_review_quote_keeps_its_unit_and_amount():

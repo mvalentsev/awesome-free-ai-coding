@@ -1,11 +1,10 @@
 """Unknown mandatory prices cannot establish a zero-cost catalog offer."""
 from datetime import date
-from pathlib import Path
 
 import httpx
 import pytest
 
-from freetier_radar.models import Entry, load_registry
+from freetier_radar.models import Entry
 from freetier_radar.prober import ProbeStatus, probe_entry
 
 
@@ -149,8 +148,8 @@ async def test_unreadable_authoritative_billing_lines_cannot_confirm_free_access
     ({"input_token_price_per_m": 0, "output_token_price_per_m": None}, False),
     ({"input_token_price_per_m": False, "output_token_price_per_m": 0}, False),
 ])
-async def test_the_published_novita_offer_checks_both_current_catalog_prices(prices, free):
-    row = next(e for e in load_registry(Path("registry.yaml")) if e.id == "novita")
+async def test_the_published_novita_offer_checks_both_current_catalog_prices(registry_entry, prices, free):
+    row = registry_entry('novita')
     model = {"id": "apodex/apodex-1.1-mini", "status": 1, **prices}
 
     def respond(request):

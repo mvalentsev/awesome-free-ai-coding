@@ -2698,9 +2698,6 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     elif e.free_part is FreePart.UNNAMED:
         named = ("The vendor does not identify which models the free offer includes. "
                  "See Limits for the published conditions.")
-    elif e.newcomers:
-        named = ("No free model family is listed yet; new offers must clear the two-week bar "
-                 "before entering this section.")
     else:
         named = ("No free model family is currently listed here; callable ids, where the row "
                  "has them, are under Connect.")

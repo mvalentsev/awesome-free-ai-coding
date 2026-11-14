@@ -183,10 +183,14 @@ def test_a_provider_page_says_why_its_row_names_no_model():
     assert "names no free model" not in auto
     page = build_provider_page(make(id="page", free_part="models"), [], TODAY)
     assert "No free model family is currently listed" in page
+    pending = build_provider_page(make(id="pending", free_part="models", newcomers=[{
+        'family': 'next-model', 'on': TODAY, 'source': 'https://x.ai/models'}]), [], TODAY)
 
-    for rendered in (credit, auto, page):
+    for rendered in (credit, auto, page, pending):
         section = rendered.split("## Free models\n", 1)[1].split("\n## ", 1)[0]
         assert "column" not in section
+    assert pending.split("## Free models\n", 1)[1].split("\n## ", 1)[0] == \
+           page.split("## Free models\n", 1)[1].split("\n## ", 1)[0]
 
 
 def test_a_page_verified_callable_offer_does_not_infer_that_the_vendor_names_no_model():

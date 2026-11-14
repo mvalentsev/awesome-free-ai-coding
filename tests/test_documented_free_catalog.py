@@ -3,18 +3,15 @@
 Source: https://doc.freeinference.org/models. The explicit Free table provides
 the public entitlement; authenticated catalogs determine each key's access.
 """
-from pathlib import Path
-
 import httpx
 import pytest
 
-from freetier_radar.models import load_registry
 from freetier_radar.prober import ProbeStatus, probe_entry
 
 
 @pytest.mark.parametrize('minimax_access,expected', [('Free',ProbeStatus.PASS),('Pro',ProbeStatus.STALE_MODELS)])
-async def test_documented_free_table_controls_models_when_catalog_is_access_filtered(minimax_access, expected):
-    entry=next(e for e in load_registry(Path('registry.yaml')) if e.id=='freeinference')
+async def test_documented_free_table_controls_models_when_catalog_is_access_filtered(registry_entry, minimax_access, expected):
+    entry=registry_entry('freeinference')
     entry=entry.model_copy(update={'quotas':[],'border':None,'data_use':None,
                                   'api':entry.api.model_copy(update={'anthropic_base_url':None,'codex':None})})
     items=[('glm-5.3-flash','Free'),('deepseek-v4-flash','Free'),('minimax-m3',minimax_access),('qwen3.6-35b','Free'),('glm-5.2','Pro'),('kimi-k2.7-code','Pro')]

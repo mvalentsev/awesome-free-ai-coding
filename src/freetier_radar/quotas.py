@@ -14,6 +14,9 @@ if TYPE_CHECKING:
     from .models import Entry
 
 UNKNOWN_RECHECK_DAYS = 7
+RATE_UNITS = {'RPM': ('requests', 'minute'), 'RPD': ('requests', 'day'),
+              'RPS': ('requests', 'second'), 'TPM': ('tokens', 'minute'),
+              'TPD': ('tokens', 'day')}
 
 
 def review_due(reviewed_on: date, today: date, *, days: int = UNKNOWN_RECHECK_DAYS) -> bool:
@@ -378,10 +381,8 @@ class UsageQuota(BaseModel):
         if self.read == 'table':
             if not self.table or self.amount is None:
                 raise ValueError('table quotas need an amount and a cell binding')
-            units = {'RPM':('requests','minute'),'RPD':('requests','day'),
-                     'TPM':('tokens','minute'),'TPD':('tokens','day')}
-            if self.table.column in units:
-                if units[self.table.column] != (self.unit,self.period) or self.window != 1:
+            if self.table.column in RATE_UNITS:
+                if RATE_UNITS[self.table.column] != (self.unit,self.period) or self.window != 1:
                     raise ValueError('quota unit and period must match the table column')
             else:
                 # The fragment includes the table's unit/window heading when
@@ -399,9 +400,7 @@ class UsageQuota(BaseModel):
         if self.read == 'catalog-field':
             if not self.catalog_field or not self.model_ids or self.amount is None:
                 raise ValueError('catalog fields need a numeric cap, exact models and tier selector')
-            units = {'rpm':('requests','minute'),'rpd':('requests','day'),'rps':('requests','second'),
-                     'tpm':('tokens','minute'),'tpd':('tokens','day')}
-            if units[self.catalog_field.field] != (self.unit,self.period) or self.window != 1:
+            if RATE_UNITS[self.catalog_field.field.upper()] != (self.unit,self.period) or self.window != 1:
                 raise ValueError('quota unit and period must match the catalog field')
         elif self.catalog_field is not None:
             raise ValueError('quota.catalog_field requires read=catalog-field')
