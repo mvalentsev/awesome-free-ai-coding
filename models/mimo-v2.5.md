@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.5 free: no current listing, last listed 2026-10-25'
 description: No row currently lists mimo-v2.5 under Free models. The list carried it at opencode, AIHubMix (free models), Freebuff, Token Harbor and MiMo Code until 2026-10-25. Each row's page gives its current offer.
 permalink: /models/mimo-v2.5/
-last_modified_at: 2026-11-09
+last_modified_at: 2026-11-14
 crumb: mimo-v2.5
 ---
 
@@ -26,7 +26,7 @@ crumb: mimo-v2.5
 ## Related models
 
 - [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — free at AIHubMix (free models)
-- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff, AIHubMix (free models) and Token Harbor
+- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff (MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.), AIHubMix (free models) and Token Harbor
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
 
 ---

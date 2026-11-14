@@ -239,6 +239,8 @@ async def test_unlisted_saved_access_keeps_its_family_but_requires_current_sourc
         unavailable = await probe_entry(client, e, attempts=1, backoff=0)
     assert current.status is ProbeStatus.PASS
     assert [m.family for m in e.models] == ['alpha']
+    from freetier_radar.render import build_index
+    assert build_index([e], utc_today())['entries'][0]['access_labels']['models']['alpha'] == quote
     assert withdrawn.status is ProbeStatus.STALE_IDS
     assert 'conditions.saved.quote no longer evidenced' in withdrawn.detail
     assert unavailable.status is ProbeStatus.STALE_IDS

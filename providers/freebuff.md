@@ -20,7 +20,7 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
+<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) (MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
 
 ## Limits, in the vendor's words
 

@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.6-pro free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: mimo-v2.6-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-pro/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-14
 crumb: mimo-v2.6-pro
 ---
 
@@ -44,7 +44,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ## Related models
 
-- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff, AIHubMix (free models) and Token Harbor
+- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff (MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.), AIHubMix (free models) and Token Harbor
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
 
 ---

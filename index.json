@@ -8726,7 +8726,7 @@
         "modelAccess": {
           "solar-pro-4": "",
           "solar-mini-4": "",
-          "mimo-v2.6-flash": "",
+          "mimo-v2.6-flash": "MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.",
           "deepseek-v4.1-flash-1017": ""
         },
         "section": {
@@ -8741,7 +8741,7 @@
         "models": {
           "solar-pro-4": "",
           "solar-mini-4": "",
-          "mimo-v2.6-flash": "",
+          "mimo-v2.6-flash": "MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.",
           "deepseek-v4.1-flash-1017": ""
         },
         "ids": {}

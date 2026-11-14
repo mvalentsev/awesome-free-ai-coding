@@ -37,7 +37,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-12 · listed since 2026-10-06
+🤖 Coding agents & CLIs · no card · MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it. · last probe 2026-11-12 · listed since 2026-10-06
 
 Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access
 

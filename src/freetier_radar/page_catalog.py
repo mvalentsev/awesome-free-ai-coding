@@ -394,7 +394,8 @@ def catalog_index(catalog: PageCatalog) -> dict:
 def family_condition(entry: Entry, family: str) -> str:
     if entry.page_catalog:
         for m in entry.page_catalog.models:
-            if m.model and m.model.family == family and m.listed and m.condition and entry.page_catalog.conditions[m.condition].kind != 'wallet':
+            if m.model and m.model.family == family and m.listed and m.condition and (
+                    not m.in_picker or entry.page_catalog.conditions[m.condition].kind != 'wallet'):
                 condition = entry.page_catalog.conditions[m.condition]
                 return condition.quote or condition.note
     return ""
