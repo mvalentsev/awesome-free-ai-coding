@@ -6023,6 +6023,14 @@
           "aa_model": "claude-sonnet-4-6"
         }
       ],
+      "newcomers": [
+        {
+          "family": "gemini-4-hydrogen",
+          "on": "2026-11-15",
+          "source": "https://antigravity.google/docs/models",
+          "table_name": "Gemini 4 Hydrogen"
+        }
+      ],
       "data_use": {
         "trains": "opt-out",
         "quote": "We use Interactions to evaluate, develop, and improve Google and Alphabet research, products, services and machine learning technologies. … If you don’t want your Interactions used in this way, navigate to settings to change your preference on how such data is used.",
