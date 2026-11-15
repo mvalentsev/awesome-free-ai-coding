@@ -10829,9 +10829,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-01'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-15'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 88
 - id: infron
   name: Infron
@@ -10906,9 +10906,9 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-11-01'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-15'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 90
 - id: kiosapi-id
   name: Kiosapi.id

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-12'
+title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-15'
 description: OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. The Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid…
 permalink: /providers/zro/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-15
 crumb: Zro (MoonMath)
 ---
 
@@ -11,7 +11,7 @@ crumb: Zro (MoonMath)
 
 # Zro (MoonMath) free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-01, a regular row from the first probe it passes on or after 2026-11-15 · **live** — last verified by a probe on 2026-11-12 · [zro.moonmath.ai](https://zro.moonmath.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-15 · [zro.moonmath.ai](https://zro.moonmath.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-14 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-15 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

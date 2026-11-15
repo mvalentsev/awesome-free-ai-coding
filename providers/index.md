@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-14
+last_modified_at: 2026-11-15
 ---
 
 {% raw %}
@@ -61,9 +61,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-11-12
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-11-12
 - [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) — verified 2026-11-12 · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)
-- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-12
+- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-15
 - [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) — verified 2026-11-12
-- [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) — verified 2026-11-12
+- [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) — verified 2026-11-15
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-11-12 · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-11-12
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-11-12 · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
