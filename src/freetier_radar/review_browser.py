@@ -56,6 +56,12 @@ def browser_scope(paths: list[str]) -> tuple[bool, bool]:
     return browser_changed, shared_layout
 
 
+def _client_configs(bundle: Bundle, revision: str) -> dict:
+    html = git.show(bundle.repo, revision, 'index.html') or ''
+    block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
+    return json.loads(block.group(1)) if block else {}
+
+
 def browser_plan(bundle: Bundle) -> dict:
     scope = scoped(bundle)
     browser_changed, shared_layout = browser_scope(scope['paths'])
@@ -72,10 +78,16 @@ def browser_plan(bundle: Bundle) -> dict:
     links = [[e['id'], m['family']] for e in rows for m in e.get('models', [])
              if m['family'] not in old.get(e['id'], set())]
     widths, schemes = [1440, 375, 320], ['light', 'dark']
-    html = git.show(bundle.repo, scope['sha'], 'index.html') or ''
-    config_block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
-    client_configs = json.loads(config_block.group(1)) if config_block else {}
+    client_configs = _client_configs(bundle, scope['sha'])
+    old_configs = _client_configs(bundle, scope['base'])
+    client_ui_changed = shared_layout or any(path in scope['paths'] for path in
+                                            ('templates/site.html.j2', 'src/freetier_radar/render.py'))
     clients = list(client_configs)
+    client_content_rows = {}
+    for client, configs in client_configs.items():
+        old_rows = {row['id']: row for row in old_configs.get(client, [])}
+        client_content_rows[client] = [row['id'] for row in configs
+                                      if client_ui_changed or row != old_rows.get(row['id'])]
     words = {word for key in ('sections', 'filters')
              for item in index.get('search_config', {}).get(key, []) for word in item.get('words', [])}
     named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
@@ -115,7 +127,9 @@ def browser_plan(bundle: Bundle) -> dict:
     for row in rows:
         add(1440, 'light', 'provider', row['id'], COVERAGE_PURPOSES[0])
     for client in clients:
-        add(1440, 'light', 'config', client, 'client-content')
+        purpose = ('client-content' if client_ui_changed or client_configs[client] != old_configs.get(client)
+                   else COVERAGE_PURPOSES[1])
+        add(1440, 'light', 'config', client, purpose)
     for width, scheme in ((1440, 'light'), (1440, 'dark'), (375, 'light'), (375, 'dark'), (320, 'light')):
         for row in row_controls:
             add(width, scheme, 'provider', row['id'])
@@ -151,6 +165,7 @@ def browser_plan(bundle: Bundle) -> dict:
             'representative_models': [model['family'] for model in model_controls],
             'model_sort': index.get('model_sort'), 'models_catalog': index['models'], 'sort_row': sort_row,
             'clients': clients,
+            'client_content_rows': client_content_rows,
             'readme_model_list': readme_model_list, 'readme_images': readme_images,
             'readme_models': readme_models,
             'readme_providers': {row['id']: row['name'] for row in index['entries'] if row.get('name')},

@@ -24,7 +24,7 @@ from . import git
 from .indexnow import index_at
 from .layout import node_for
 from .models import Entry, utc_today
-from .prober import TIMEOUT, UA, _ask, page_response_ok, probe_page_url
+from .prober import CONCURRENCY, TIMEOUT, UA, _ask, page_response_ok, probe_page_url
 from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
 
@@ -282,6 +282,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         client.event_hooks['response'] = [capture]
         from .quotas import resolved_quota_entry
         entries = [await resolved_quota_entry(client,e) for e in entries]
+        catalogs_read.update(url for entry in entries for url in catalog_urls(entry))
         for entry in entries:
             page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
             probe_urls[entry.id] = page or entry.probe.endpoint
@@ -293,7 +294,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         client.event_hooks['response'] = []
         if 'src/freetier_radar/intelligence-index.json' in scope['paths']:
             urls.add(json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['source'])
-        sem = asyncio.Semaphore(8)
+        sem = asyncio.Semaphore(CONCURRENCY)
         async def one(url):
             async with sem:
                 return await fetch(client, url, bundle, page=url not in catalogs_read)
@@ -511,7 +512,7 @@ async def publication(bundle: Bundle) -> dict:
     cached = {r['url']: r for r in previous.get('checks', []) if r.get('kind') == 'source'}
     raw = REPO_URL.replace('github.com', 'raw.githubusercontent.com') + '/' + scope['sha'] + '/'
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT) as client:
-        sem = asyncio.Semaphore(8)
+        sem = asyncio.Semaphore(CONCURRENCY)
         async def one(kind, path):
             deleted = path in scope.get('deleted_paths', [])
             expected = None if deleted else blob(bundle.repo, scope['sha'], path)

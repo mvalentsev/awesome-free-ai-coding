@@ -77,12 +77,13 @@ def test_dated_promotion_and_rotating_wait_copy_share_the_bar_constant(tmp_path,
                           f'{MAP_BEGIN}\nold map\n{MAP_END}\n')
     rules = tuple(c for c in CLAIMS if c.source == 'bars.BAR_DAYS'
                   and ('rotating lane waits' in c.pattern or 'ends within' in c.pattern))
-    monkeypatch.setattr(claims, 'BAR_DAYS', 21)
-    assert check_claims(root, rules, scheduled=())
-    text = render_contributing(root / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
-    assert 'waits three weeks' in text
-    assert 'ends within three weeks' in text
-    assert check_claims(root, rules, scheduled=()) == []
+    for days, words in [(21, 'three weeks'), (1, '1 day'), (10, '10 days')]:
+        monkeypatch.setattr(claims, 'BAR_DAYS', days)
+        assert check_claims(root, rules, scheduled=())
+        text = render_contributing(root / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
+        assert f'waits {words}' in text
+        assert f'ends within {words}' in text
+        assert check_claims(root, rules, scheduled=()) == []
 
 
 def test_a_sentence_rewritten_past_its_claim_is_reported(tmp_path):

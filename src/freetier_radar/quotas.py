@@ -285,7 +285,7 @@ class UsageQuota(BaseModel):
 
     @model_validator(mode='after')
     def _one_model_namespace(self):
-        if self.families and (self.model_ids or self.read in ('catalog', 'catalog-field')):
+        if self.families and (self.model_ids or self.is_catalog):
             raise ValueError('family quotas do not name callable catalog IDs')
         if len(set(self.families)) != len(self.families):
             raise ValueError('quota families must be distinct')
@@ -294,6 +294,10 @@ class UsageQuota(BaseModel):
     @property
     def subjects(self) -> list[str]:
         return self.model_ids or self.families
+
+    @property
+    def is_catalog(self) -> bool:
+        return self.read in ('catalog', 'catalog-field')
 
     @field_validator('amount', mode='before')
     @classmethod
@@ -513,7 +517,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
         q = active_quota(entry,q)
         if q is None:continue
         if q.source not in pages:
-            pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff, page=q.read != "catalog")
+            pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff)
         page, failure = pages[q.source]
         if page is None:
             notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')

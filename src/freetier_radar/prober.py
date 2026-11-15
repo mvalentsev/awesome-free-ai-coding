@@ -1252,6 +1252,8 @@ async def _page_beside(client: httpx.AsyncClient, url: str, entry: Entry,
     `_fetch_page`'s, or why it could not be read."""
     if url == entry.probe.endpoint and entry.probe.follow is None:
         return probed, ""
+    from .quotes import catalog_urls
+    page = page and url not in catalog_urls(entry)
     return await _fetch_page(client, url, attempts, backoff, page=page)
 
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-11-12'
-description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, provider probes 2026-11-12 or later'
+description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-15
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**4 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
+**5 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. The providers' last scheduled probes were on 2026-11-12 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -105,6 +105,20 @@ Enable explicit :free routes in the dashboard before calling them; the rotating 
 - Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
 - Callable ids: `deepseek-v4.1-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://tokenharbor.ai/terms)).
+
+### [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/)
+
+🔌 LLM APIs with free tier · no card · last probe 2026-11-15 · listed since 2026-11-15
+
+OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models
+
+- Limits, in the vendor's words: Free plan: Daily usage allowance: amount not published; scope not published
+
+Reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe or the US. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.
+- Base URL: `https://zro.moonmath.ai/v1`
+- Key: `ZRO_API_KEY` — get one at <https://zro.moonmath.ai/get-started?plan=free>
+- Callable ids: `deepseek-v4.1-flash`
+- What you send is not used to train models ([the vendor's words](https://zro.moonmath.ai/privacy)).
 
 ## Rows that listed it before
 

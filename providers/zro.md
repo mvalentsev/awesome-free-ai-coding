@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-15'
-description: OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. The Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid…
+description: 'OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. Free models: deepseek-v4.1-flash. Reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage…'
 permalink: /providers/zro/
 last_modified_at: 2026-11-15
 crumb: Zro (MoonMath)
@@ -19,17 +19,17 @@ OpenAI-compatible inference for coding agents from MoonMath, with a recurring Fr
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 
 Free plan: Daily usage allowance: amount not published; scope not published
 
-The Free plan has a daily allowance; its amount, reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe, the US, or both as selected per key; unavailable allowed regions fail rather than falling back elsewhere. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.
+Reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage packs. Inference passes through an EU gateway and runs in Europe or the US. Zro says it retains no request bodies and uses no requests or logs for training without separate explicit consent; account, billing and operational metadata are retained. Inference providers follow their own operational logging terms. Optional agent tools have separate prices.
 
 ## Where it is offered
 
-The vendor names no country it keeps the offer from ([source](https://zro.moonmath.ai/terms), read 2026-10-31).
+The vendor names no country it keeps the offer from ([source](https://zro.moonmath.ai/terms), read 2026-11-15).
 
 ## What happens to what you send
 
@@ -61,12 +61,14 @@ curl -s https://zro.moonmath.ai/v1/chat/completions \
 - Source: <https://zro.moonmath.ai/docs/api>
 - Source: <https://zro.moonmath.ai/privacy>
 - Source: <https://zro.moonmath.ai/terms>
-- Source: <https://zro.moonmath.ai/docs/regions>
+- Source: <https://zro.moonmath.ai/docs/models/deepseek-v4.1-flash>
+- Source: <https://zro.moonmath.ai/docs/key-controls>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-15` — Free models changed: added deepseek-v4.1-flash
 - `2026-11-01` — Added: OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models
 
 ---

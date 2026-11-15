@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v4-pro free: 1 provider, limits and ids, provider probes 2026-11-12'
 description: deepseek-v4-pro is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-pro/
-last_modified_at: 2026-11-12
+last_modified_at: 2026-11-15
 crumb: deepseek-v4-pro
 ---
 
@@ -50,7 +50,7 @@ Free token grants apply in Singapore (international), independently per model an
 - [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — free at Freebuff
 - [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) — free at Kiro
 - [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — free at Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS)
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international) and Token Harbor
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath)
 
 ---
 

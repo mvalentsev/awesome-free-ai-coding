@@ -10,7 +10,8 @@ def test_a_figure_is_a_word_up_to_ten_and_digits_past_it():
 
 
 def test_a_span_is_weeks_where_it_is_whole_weeks():
-    assert [weeks(d) for d in (7, 14, 10)] == ["a week", "two weeks", "10 days"]
+    assert [weeks(d) for d in (7, 14, 10, 35, 1)] == [
+        "a week", "two weeks", "10 days", "five weeks", "1 day"]
 
 
 def test_a_run_of_names_joins_the_last_with_its_conjunction():

@@ -143,7 +143,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[SEA-LION (AI Singapore)](https://sea-lion.ai)** — AI Singapore's OpenAI-compatible API for its Southeast Asian language models<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) · [🔑 key](https://playground.sea-lion.ai/key-manager)</sub>
 - **[OpenTyphoon (SCB 10X)](https://opentyphoon.ai)** 👁 — Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) · [🔑 key](https://playground.opentyphoon.ai/api-key)</sub>
 - **[Agnes AI](https://agnes-ai.com)** 👁 — Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) · [🔑 key](https://platform.agnes-ai.com) · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</sub>
-- **[Zro (MoonMath)](https://zro.moonmath.ai)** — OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models<br><sub>[verified 2026-11-15](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) · [🔑 key](https://zro.moonmath.ai/get-started?plan=free)</sub>
+- **[Zro (MoonMath)](https://zro.moonmath.ai)** — OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models<br><sub>[verified 2026-11-15](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) · [🔑 key](https://zro.moonmath.ai/get-started?plan=free) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</sub>
 - **[Merkium](https://www.merkium.nl)** 🧪 — Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) · [🔑 key](https://chat.merkium.nl)</sub>
 - **[Infron](https://infron.ai)** (requires $5 top-up + 5% fee) 👁 — OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance<br><sub>[verified 2026-11-15](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) · [🔑 key](https://infron.ai/dashboard/apiKeys)</sub>
 - **[FreeInference (Harvard SEAS)](https://freeinference.org)** — Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) · [🔑 key](https://freeinference.org) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)</sub>
@@ -227,6 +227,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-15` | 🔄 Free models changed **[Zro (MoonMath)](https://zro.moonmath.ai)** | <sub>added deepseek-v4.1-flash</sub> |
 | `2026-11-14` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>dropped glm-5.3-flash</sub> |
 | `2026-11-13` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>dropped xing4.0-29b-a4b</sub> |
 | `2026-11-13` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added ernie-5.5-flash-preview; dropped agnes-2.5-flash, agnes-3.0-flash</sub> |
@@ -236,7 +237,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-11-10` | ➕ Added **[cheapllm.shop](https://cheapllm.shop)** | <sub>OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier</sub> |
 | `2026-11-10` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added flint-v1.0</sub> |
 | `2026-11-10` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added flint-v1.0</sub> |
-| `2026-11-10` | 🔄 Free models changed **[BazaarLink](https://bazaarlink.ai)** | <sub>added qwen3.7-flash</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

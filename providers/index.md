@@ -61,7 +61,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-11-12
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-11-12
 - [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) — verified 2026-11-12 · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)
-- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-15
+- [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) — verified 2026-11-15 · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 - [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) — verified 2026-11-12
 - [Infron](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) — verified 2026-11-15
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-11-12 · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)

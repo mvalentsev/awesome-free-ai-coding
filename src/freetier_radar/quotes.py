@@ -298,13 +298,15 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
 def catalog_urls(entry: Entry) -> set[str]:
     """Known JSON/API reads remain on their original HTTP transport."""
     urls = {entry.probe.catalog} if entry.probe.catalog else set()
+    if entry.probe.free_list:
+        urls.add(entry.probe.free_list)
     if entry.api:
         urls.update(router.source for mid, router in entry.api.free_routers.items() if mid in entry.api.model_ids)
     if lane := entry.api or entry.client_lane:
         urls.update(b.source for b in lane.model_bindings.values() if b.read == "catalog")
     if entry.probe.type is ProbeType.API_MODELS or entry.probe.follow is not None:
         urls.add(entry.probe.endpoint)
-    urls.update(q.source for q in entry.quotas if q.read == "catalog")
+    urls.update(q.source for q in entry.quotas if q.is_catalog or q.follow is not None)
     return urls
 
 

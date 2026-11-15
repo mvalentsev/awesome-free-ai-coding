@@ -15,7 +15,6 @@ _NUMBERS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "
             8: "eight", 9: "nine", 10: "ten"}
 _ORDINALS = {1: "first", 2: "second", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth",
              7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth"}
-_WEEKS = {7: "a week", 14: "two weeks", 21: "three weeks", 28: "four weeks"}
 
 
 def number(n: int) -> str:
@@ -33,7 +32,10 @@ def ordinal(n: int) -> str:
 
 def weeks(days: int) -> str:
     """"two weeks"; a span that is not whole weeks as days."""
-    return _WEEKS.get(days, f"{days} days")
+    count, remainder = divmod(days, 7)
+    if count > 0 and not remainder:
+        return "a week" if count == 1 else f"{number(count)} weeks"
+    return f"{days} {'day' if days == 1 else 'days'}"
 
 
 def series(names: list[str], conjunction: str = "and") -> str:

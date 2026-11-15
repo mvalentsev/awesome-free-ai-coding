@@ -32,8 +32,8 @@ def repo_at(tmp_path):
     return repo
 
 
-def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree(tmp_path):
-    repo = repo_at(tmp_path)
+def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree(tmp_path, history_repo):
+    repo = history_repo
     (repo / 'index.json').write_text('corrupt uncommitted text')
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
@@ -46,11 +46,11 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
 
 @pytest.mark.parametrize('bare', [False, True])
 @respx.mock
-async def test_source_review_reuses_current_decisions_and_their_canonical_deadlines(tmp_path, monkeypatch, bare):
+async def test_source_review_reuses_current_decisions_and_their_canonical_deadlines(tmp_path, monkeypatch, bare, history_repo):
     from datetime import date, timedelta
     from freetier_radar import models, review_leads
 
-    repo = repo_at(tmp_path)
+    repo = history_repo
     today = date(2026, 11, 12)
     monkeypatch.setattr(review_leads, 'utc_today', lambda: today)
     monkeypatch.setattr(models, 'WATCH_RECHECK_DAYS', 2)
@@ -86,6 +86,121 @@ async def test_source_review_reuses_current_decisions_and_their_canonical_deadli
 def source_history_repo(tmp_path_factory):
     """Read-only history; source responses and evidence remain per case."""
     return repo_at(tmp_path_factory.mktemp('source-history'))
+
+
+@pytest.fixture
+def history_repo(tmp_path, source_history_repo):
+    """Reuse committed history; each test keeps its own worktree, refs and evidence."""
+    return shutil.copytree(source_history_repo, tmp_path / 'repo')
+
+
+@pytest.fixture(scope='module')
+def quota_transport_repo(tmp_path_factory, source_history_repo):
+    from freetier_radar.models import utc_today
+
+    repo = shutil.copytree(source_history_repo, tmp_path_factory.mktemp('quota-transport') / 'repo')
+    rows = []
+    for ident in ('direct', 'followed'):
+        quota = {'amount': 5, 'unit': 'requests', 'period': 'minute', 'scope': 'account-model',
+                 'source': 'https://vendor.example/quota-catalog', 'quote': 'Free tier L0',
+                 'read': 'catalog-field', 'model_ids': ['coding'],
+                 'catalog_field': {'collection': 'tiers', 'where': {'id': 'L0'}, 'field': 'rpm'}}
+        if ident == 'followed':
+            quota.update(source='https://vendor.example/docs-index',
+                         follow={'field': 'release', 'suffix': '/quota-catalog'})
+        rows.append({'id': ident, 'name': ident, 'category': 'api-free-tier',
+                     'url': 'https://vendor.example', 'offering': 'A recurring free allowance',
+                     'first_seen': str(utc_today()), 'last_verified': str(utc_today()),
+                     'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
+                               'keywords': ['A recurring free allowance for coding']}, 'quotas': [quota]})
+    (repo / 'registry.yaml').write_text(json.dumps({'entries': rows}))
+    subprocess.run(['git', '-C', str(repo), 'add', 'registry.yaml'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: quota transports'], check=True)
+    return repo
+
+
+@pytest.fixture(scope='module')
+def client_config_repo(tmp_path_factory, source_history_repo):
+    repo = shutil.copytree(source_history_repo, tmp_path_factory.mktemp('client-config') / 'repo')
+    configs = {client: [{'id': ident, 'models': [{'id': 'alpha'}]} for ident in ('vendor', 'peer')]
+               for client in ('opencode', 'codex')}
+    (repo / 'index.html').write_text('<script type="application/json" id="client-configs">' +
+                                    json.dumps(configs) + '</script>')
+    subprocess.run(['git', '-C', str(repo), 'add', 'index.html'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: client config baseline'], check=True)
+    return repo
+
+
+@pytest.mark.parametrize('change', ['listing', 'one-client', 'client-ui'])
+def test_browser_client_content_tracks_actual_config_changes(tmp_path, client_config_repo, change):
+    from freetier_radar.review_browser import browser_plan
+
+    repo = shutil.copytree(client_config_repo, tmp_path / 'repo')
+    if change == 'one-client':
+        html = (repo / 'index.html').read_text().replace('"alpha"', '"beta"', 1)
+        (repo / 'index.html').write_text(html)
+    elif change == 'client-ui':
+        template = repo / 'templates/site.html.j2'
+        template.parent.mkdir()
+        template.write_text('Changed client selection interface\n')
+        (repo / 'index.html').write_text((repo / 'index.html').read_text() + '<button>Changed client control</button>')
+    else:
+        (repo / 'index.html').write_text((repo / 'index.html').read_text() + '<p>New verification date</p>')
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: reviewed change'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    plan = browser_plan(bundle)
+    coverage = plan['coverage']
+    for client in ('opencode', 'codex'):
+        expected = ('client-content' if change == 'client-ui' or
+                    (change == 'one-client' and client == 'opencode') else 'shared-layout')
+        assert coverage['1440/light/config/' + client] == expected
+        assert plan['client_content_rows'][client] == (
+            ['vendor', 'peer'] if change == 'client-ui' else
+            ['vendor'] if change == 'one-client' and client == 'opencode' else [])
+    assert any(key.startswith('375/light/config/') and value == 'shared-layout'
+               for key, value in coverage.items())
+
+
+@pytest.mark.parametrize('consumer', ['probe', 'quotes', 'review'])
+@respx.mock
+async def test_catalog_quota_sources_keep_original_transport(quota_transport_repo, tmp_path, monkeypatch, consumer):
+    import curl_cffi
+    from types import SimpleNamespace
+    from freetier_radar.models import load_registry
+    from freetier_radar.prober import ProbeStatus, probe_entry
+    from freetier_radar.quotes import check_entries
+
+    calls = []
+    def alternate(url, **kwargs):
+        calls.append(url)
+        return SimpleNamespace(status_code=200, url=url, headers={'content-type': 'application/json'},
+                               content=json.dumps({'data': [{'id': 'coding', 'description': 'Free tier L0',
+                                   'tiers': [{'id': 'L0', 'rpm': 5}]}]}).encode())
+    monkeypatch.setattr(curl_cffi, 'get', alternate)
+    respx.get('https://vendor.example/pricing').respond(200, text='A recurring free allowance for coding')
+    respx.get('https://vendor.example/docs-index').respond(200, json={'release': 'https://vendor.example/current'})
+    for url in ('https://vendor.example/quota-catalog', 'https://vendor.example/current/quota-catalog'):
+        respx.get(url).respond(403, text='<html>Checking your browser</html>',
+                               headers={'content-type': 'text/html'})
+    entries = load_registry(quota_transport_repo / 'registry.yaml')
+    async with httpx.AsyncClient() as client:
+        if consumer == 'probe':
+            for entry in entries:
+                result = await probe_entry(client, entry, attempts=1, backoff=0)
+                assert result.status is ProbeStatus.STALE_IDS and 'could not be checked' in result.detail
+        elif consumer == 'quotes':
+            missing, unread = await check_entries(entries, client)
+            assert len(missing) == 2 and all(m.unverified for m in missing)
+            assert set(unread) == {'direct', 'followed'}
+        else:
+            bundle = review.Bundle(tmp_path / 'evidence', quota_transport_repo)
+            review.prepare(quota_transport_repo, 'HEAD~1', 'HEAD', bundle)
+            result = await review.sources(bundle, [])
+            assert not result['passed']
+            assert sum(not check['passed'] for check in result['checks']) == 2
+    assert calls == []
 
 
 @pytest.fixture(scope='module')
@@ -442,15 +557,15 @@ def test_push_base_must_be_between_review_base_and_head(tmp_path):
         review.prepare(repo, push_base, 'HEAD', review.Bundle(repo / '.evidence', repo), push_base=base)
 
 
-def test_bot_verification_cannot_rebind_its_push_base(tmp_path):
-    repo = repo_at(tmp_path)
+def test_bot_verification_cannot_rebind_its_push_base(tmp_path, history_repo):
+    repo = history_repo
     with pytest.raises(ValueError, match='verification run'):
         review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / '.evidence', repo),
                        verification_run=123, push_base='HEAD~1')
 
 
-def test_evidence_cannot_overwrite_a_tracked_file_or_a_publishable_directory(tmp_path):
-    repo = repo_at(tmp_path)
+def test_evidence_cannot_overwrite_a_tracked_file_or_a_publishable_directory(tmp_path, history_repo):
+    repo = history_repo
     for path in (repo, repo / 'public-evidence', repo / 'index.json', repo / '.git' / 'notes'):
         with pytest.raises(ValueError):
             review.Bundle(path, repo)
@@ -694,10 +809,10 @@ def test_report_keeps_missing_phases_and_failed_live_calls_visible(tmp_path):
     assert result['human_review_required']
 
 
-def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_controls(tmp_path, monkeypatch):
+def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_controls(tmp_path, monkeypatch, history_repo):
     from freetier_radar import review_browser
 
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     rows = [{'id': f'vendor-{i}', 'name': f'Vendor {i}', 'models': [],
@@ -717,10 +832,10 @@ def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_control
 
 
 @pytest.mark.parametrize('path', ['CONTRIBUTING.md', 'src/freetier_radar/prober.py'])
-def test_browser_plan_does_not_repeat_unchanged_ui_for_internal_changes(tmp_path, path):
+def test_browser_plan_does_not_repeat_unchanged_ui_for_internal_changes(tmp_path, path, history_repo):
     from freetier_radar.review_browser import browser_plan
 
-    repo = repo_at(tmp_path)
+    repo = history_repo
     target = repo / path
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text('Internal change\n')
@@ -732,10 +847,10 @@ def test_browser_plan_does_not_repeat_unchanged_ui_for_internal_changes(tmp_path
     assert browser_plan(bundle)['cases'] == []
 
 
-def test_shared_layout_change_covers_provider_states_without_rechecking_all_content(tmp_path, monkeypatch):
+def test_shared_layout_change_covers_provider_states_without_rechecking_all_content(tmp_path, monkeypatch, history_repo):
     from freetier_radar import review_browser
 
-    repo = repo_at(tmp_path)
+    repo = history_repo
     target = repo / '_layouts/default.html'
     target.parent.mkdir()
     target.write_text('<main>{{ content }}</main>\n')
@@ -758,8 +873,8 @@ def test_shared_layout_change_covers_provider_states_without_rechecking_all_cont
     assert plan['folded_targets']['vendor-0']['name'] == 'Vendor 0'
 
 
-def test_browser_plan_covers_changed_families_and_import_rejects_partial_or_wrong_runs(tmp_path):
-    repo = repo_at(tmp_path)
+def test_browser_plan_covers_changed_families_and_import_rejects_partial_or_wrong_runs(tmp_path, history_repo):
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     from freetier_radar.review_browser import browser_plan, accept_browser
@@ -816,8 +931,8 @@ def test_report_rejects_present_but_unproven_phases(tmp_path):
     assert not review.report(bundle)['complete']
 
 
-def test_browser_import_rejects_a_complete_stale_plan(tmp_path):
-    repo = repo_at(tmp_path)
+def test_browser_import_rejects_a_complete_stale_plan(tmp_path, history_repo):
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     from freetier_radar.review_browser import browser_plan, accept_browser
@@ -878,9 +993,9 @@ async def test_network_errors_are_retained_before_a_successful_retry(tmp_path):
     assert result['attempts'][0]['error']
 
 
-def test_real_prepare_cli_links_to_the_artifact_it_created(tmp_path):
+def test_real_prepare_cli_links_to_the_artifact_it_created(tmp_path, history_repo):
     import sys
-    repo = repo_at(tmp_path)
+    repo = history_repo
     out = repo / '.evidence'
     run = subprocess.run([sys.executable, '-c', 'from freetier_radar.review import main; main()',
                           '--root', str(repo), '--out', str(out), 'prepare', '--base', 'HEAD~1'],
@@ -891,9 +1006,9 @@ def test_real_prepare_cli_links_to_the_artifact_it_created(tmp_path):
     assert summary['sha'] == json.loads((out / 'scope.json').read_text())['sha']
 
 
-def test_prepare_cli_can_retry_a_failed_first_attempt_in_the_same_directory(tmp_path):
+def test_prepare_cli_can_retry_a_failed_first_attempt_in_the_same_directory(tmp_path, history_repo):
     import sys
-    repo = repo_at(tmp_path)
+    repo = history_repo
     out = repo / '.evidence'
     command = [sys.executable, '-c', 'from freetier_radar.review import main; main()',
                '--root', str(repo), '--out', str(out), 'prepare', '--base']
@@ -905,9 +1020,9 @@ def test_prepare_cli_can_retry_a_failed_first_attempt_in_the_same_directory(tmp_
     assert json.loads(retry.stdout)['sha'] == review.revision(repo, 'HEAD')
 
 
-def test_failed_prepare_preserves_its_existing_commit_binding_and_invalidates_the_phase(tmp_path):
+def test_failed_prepare_preserves_its_existing_commit_binding_and_invalidates_the_phase(tmp_path, history_repo):
     import sys
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     original = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     command = [sys.executable, '-c', 'from freetier_radar.review import main; main()',
@@ -925,9 +1040,9 @@ def test_failed_prepare_preserves_its_existing_commit_binding_and_invalidates_th
     assert review.scoped(review.Bundle(bundle.out, repo))['base'] == original['base']
 
 
-def test_prepare_error_does_not_reregister_a_tampered_scope_as_valid_evidence(tmp_path):
+def test_prepare_error_does_not_reregister_a_tampered_scope_as_valid_evidence(tmp_path, history_repo):
     import sys
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     (bundle.out / 'scope.json').write_text('corrupt scope')
@@ -962,9 +1077,9 @@ def test_existing_unregistered_phase_cannot_be_used_as_evidence(tmp_path):
         bundle.load('sources')
 
 
-def test_failed_cli_replaces_an_older_green_phase_with_a_persisted_error(tmp_path):
+def test_failed_cli_replaces_an_older_green_phase_with_a_persisted_error(tmp_path, history_repo):
     import sys
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     bundle.save('browser', {'sha': scope['sha'], 'passed': True})
@@ -979,16 +1094,16 @@ def test_failed_cli_replaces_an_older_green_phase_with_a_persisted_error(tmp_pat
     assert 'generate the browser plan first' in saved['error']
 
 
-def test_prepare_cannot_reuse_green_evidence_for_a_wider_scope_at_the_same_head(tmp_path):
-    repo = repo_at(tmp_path)
+def test_prepare_cannot_reuse_green_evidence_for_a_wider_scope_at_the_same_head(tmp_path, history_repo):
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, 'HEAD', 'HEAD', bundle)
     with pytest.raises(ValueError, match='different commits'):
         review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
 
 
-def test_browser_rejects_malformed_json_objects_instead_of_raising_attribute_error(tmp_path):
-    repo = repo_at(tmp_path)
+def test_browser_rejects_malformed_json_objects_instead_of_raising_attribute_error(tmp_path, history_repo):
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     from freetier_radar.review_browser import browser_plan, accept_browser
@@ -999,8 +1114,8 @@ def test_browser_rejects_malformed_json_objects_instead_of_raising_attribute_err
             accept_browser(bundle, result, plan)
 
 
-def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path):
-    repo = repo_at(tmp_path)
+def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path, history_repo):
+    repo = history_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     for phase in ('sources','workflows','publication','browser'):
@@ -1030,8 +1145,8 @@ def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path):
     assert any('independent review' in p for p in report['integrity_problems'])
 
 
-def test_verification_log_must_prove_the_exact_produced_commit(tmp_path):
-    repo = repo_at(tmp_path)
+def test_verification_log_must_prove_the_exact_produced_commit(tmp_path, history_repo):
+    repo = history_repo
     sha = review.revision(repo, 'HEAD')
     run = {'name': 'update', 'status': 'completed', 'conclusion': 'success',
            'headSha': review.revision(repo, 'HEAD~1'), 'databaseId': 3, 'attempt': 1}
@@ -1052,9 +1167,9 @@ def test_verification_log_must_prove_the_exact_produced_commit(tmp_path):
     ('expire.yml', 'expire promotions', 'expire model promotions'),
 ])
 def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeypatch,
-                                                              filename, name, subject):
+                                                              filename, name, subject, history_repo):
     import yaml
-    repo = repo_at(tmp_path)
+    repo = history_repo
     workflows = repo / '.github/workflows'
     workflows.mkdir(parents=True)
     for file, workflow_name in [('update.yml', 'update'), ('expire.yml', 'expire promotions'),
@@ -1095,8 +1210,8 @@ def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeyp
                            verification_run=3)
 
 
-def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path):
-    repo = repo_at(tmp_path)
+def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path, history_repo):
+    repo = history_repo
     index = json.loads((repo / 'index.json').read_text())
     index['entries'][0]['archived'] = True
     (repo / 'index.json').write_text(json.dumps(index))
@@ -1113,8 +1228,8 @@ def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path):
     assert 'vendor' in plan['representative_rows']
 
 
-def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_path):
-    repo = repo_at(tmp_path)
+def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_path, history_repo):
+    repo = history_repo
     (repo / 'registry.yaml').write_text('entries:\n  - id: vendor\n    probe:\n      endpoint: https://new.vendor.example/\n')
     env = {**os.environ, 'GIT_AUTHOR_NAME':'a reviewer','GIT_AUTHOR_EMAIL':'t@example.com',
            'GIT_COMMITTER_NAME':'a reviewer','GIT_COMMITTER_EMAIL':'t@example.com'}
@@ -1126,9 +1241,9 @@ def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_pat
 
 @respx.mock
 @pytest.mark.parametrize('target_changed', [False, True])
-async def test_sources_recheck_a_bound_model_card_beside_a_matching_identity_quote(tmp_path, target_changed):
+async def test_sources_recheck_a_bound_model_card_beside_a_matching_identity_quote(tmp_path, target_changed, history_repo):
     from freetier_radar.models import Entry, save_registry
-    repo=repo_at(tmp_path)
+    repo=history_repo
     source='https://vendor.example/identity';target='https://maker.example/science-397b'
     entry=Entry.model_validate({
         'id':'vendor','name':'Vendor','url':'https://vendor.example','category':'aggregator',
@@ -1155,9 +1270,9 @@ async def test_sources_recheck_a_bound_model_card_beside_a_matching_identity_quo
 
 @respx.mock
 @pytest.mark.parametrize('archived', [False, True])
-async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path, archived):
+async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path, archived, history_repo):
     from freetier_radar.models import Entry, save_registry
-    repo = repo_at(tmp_path)
+    repo = history_repo
     entry = Entry.model_validate({
         'id':'vendor','name':'Vendor','url':'https://vendor.example','category':'api-free-tier',
         'offering':'A free quota','first_seen':'2026-09-01','last_verified':'2026-10-05',
@@ -1281,9 +1396,9 @@ async def test_unread_historical_sources_stay_visible_without_certifying_current
     assert all(r["passed"] for r in result["model_checks"])
 
 
-def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_path):
+def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_path, history_repo):
     from freetier_radar.review_browser import accept_browser, browser_plan, browser_script
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo/'.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     full = browser_plan(bundle)
@@ -1297,9 +1412,9 @@ def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_
         browser_script(bundle, cases=['unknown'])
 
 
-def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_path):
+def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_path, history_repo):
     from freetier_radar.review_browser import browser_script
-    repo = repo_at(tmp_path)
+    repo = history_repo
     bundle = review.Bundle(repo/'.evidence', repo)
     review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     whole = browser_script(bundle)
@@ -1309,12 +1424,12 @@ def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_pat
 
 
 @pytest.mark.parametrize('mode', ['no-strong', 'measured', 'measured-without-strong', 'unmeasured'])
-def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, mode):
+def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, mode, history_repo):
     from datetime import date
     from freetier_radar.models import Entry, save_registry
     from freetier_radar.render import render_readme
     from freetier_radar.review_browser import browser_plan, browser_script
-    repo = repo_at(tmp_path)
+    repo = history_repo
     row = Entry.model_validate({
         'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier',
         'url': 'https://vendor.example', 'offering': 'Free models',
@@ -1348,8 +1463,8 @@ def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, m
     assert browser_plan(bundle)['readme_images'] == plan['readme_images']
 
 
-def test_browser_plan_keeps_folded_targets_outside_the_changed_rows(tmp_path):
-    repo = repo_at(tmp_path)
+def test_browser_plan_keeps_folded_targets_outside_the_changed_rows(tmp_path, history_repo):
+    repo = history_repo
     index = json.loads((repo / 'index.json').read_text())
     index['entries'].append({'id': 'holder', 'name': 'Canonical service',
                              'page': 'https://example.com/providers/holder/', 'models': []})
@@ -1402,9 +1517,9 @@ def test_browser_folded_contract_accepts_the_native_page_and_rejects_broken_navi
 
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock
-async def test_sources_collect_and_recheck_client_limits_outside_source_urls(tmp_path, changed):
+async def test_sources_collect_and_recheck_client_limits_outside_source_urls(tmp_path, changed, history_repo):
     from freetier_radar.models import Entry, save_registry
-    repo = repo_at(tmp_path)
+    repo = history_repo
     source = 'https://vendor.example/client-guide'
     row = Entry.model_validate({
         'id': 'vendor', 'name': 'Vendor', 'url': 'https://vendor.example', 'category': 'trial',

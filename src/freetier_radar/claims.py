@@ -50,6 +50,8 @@ from .review_leads import LEAD_VERDICTS
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims", "render_claims"]
 
+_DURATION = r"\w+ weeks|a week|\d+ days?"
+
 @dataclass(frozen=True)
 class Claim:
     """A sentence in a hand-written file, found by `pattern`, whose groups — or
@@ -665,13 +667,13 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_STARTERS),), "render.README_STARTERS", generated=True),
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",
           lambda root: (_word(README_PICKS),), "render.README_PICKS", generated=True),
-    Claim("CONTRIBUTING.md", r"An undated model on a rotating lane waits (\w+ weeks|a week)",
+    Claim("CONTRIBUTING.md", rf"An undated model on a rotating lane waits ({_DURATION})",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
-    Claim("CONTRIBUTING.md", r"even if it ends within (\w+ weeks|a week)",
+    Claim("CONTRIBUTING.md", rf"even if it ends within ({_DURATION})",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
-    Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
+    Claim("CONTRIBUTING.md", rf"and joins `models\[\]` ({_DURATION}) later",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
-    Claim("CONTRIBUTING.md", r"The report counts (\w+ weeks|a week)\s+from that date",
+    Claim("CONTRIBUTING.md", rf"The report counts ({_DURATION})\s+from that date",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS", generated=True),
     Claim("CONTRIBUTING.md", r"`offering`, the first (\w+)\s+model families and the date",
           lambda root: (_word(README_MODELS),), "render.README_MODELS", generated=True),
@@ -731,7 +733,7 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",
           lambda root: (_series(sorted(country_name(c) for c in SHARED)),), "borders.SHARED",
           read=lambda found: (" ".join(found.group(1).split()),)),
-    Claim("browse.html", r"listed for less than (\w+ weeks|a week)",
+    Claim("browse.html", rf"listed for less than ({_DURATION})",
           lambda root: (_weeks(PROVISIONAL_PROMOTE_DAYS),),
           "prober.PROVISIONAL_PROMOTE_DAYS"),
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',

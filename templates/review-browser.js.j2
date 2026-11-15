@@ -50,7 +50,9 @@ async (page) => {
           const longest=!content ? rows.flatMap(row=>row.models.map(model=>({row,model,
             length:[row.name,model.model,model.command,model.route,model.access].filter(Boolean).join(' ').length
           }))).reduce((best,item)=>!best||item.length>best.length?item:best,null) : null;
-          const checkedRows=content?rows:longest?[longest.row]:[];
+          const changed=new Set(plan.client_content_rows[client]);
+          const checkedRows=content?rows.filter(row=>changed.has(row.id)):longest?[longest.row]:[];
+          if(content&&checkedRows.length!==changed.size) throw Error('Changed client configuration missing');
           let checkedModels=0;
           for(const row of checkedRows) {
             await page.locator('#config-provider').selectOption(row.id);

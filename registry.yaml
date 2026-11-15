@@ -10773,18 +10773,18 @@ entries:
   - https://zro.moonmath.ai/docs/api
   - https://zro.moonmath.ai/privacy
   - https://zro.moonmath.ai/terms
-  - https://zro.moonmath.ai/docs/regions
+  - https://zro.moonmath.ai/docs/models/deepseek-v4.1-flash
+  - https://zro.moonmath.ai/docs/key-controls
   card_required: false
   offering: OpenAI-compatible inference for coding agents from MoonMath, with a recurring
     Free plan on selected Flash models
-  limits: The Free plan has a daily allowance; its amount, reset time and rate limits
-    are not published. An account and API key are required. The pricing page offers
-    Free separately from paid plans and usage packs. Inference passes through an EU
-    gateway and runs in Europe, the US, or both as selected per key; unavailable allowed
-    regions fail rather than falling back elsewhere. Zro says it retains no request
-    bodies and uses no requests or logs for training without separate explicit consent;
-    account, billing and operational metadata are retained. Inference providers follow
-    their own operational logging terms. Optional agent tools have separate prices.
+  limits: Reset time and rate limits are not published. An account and API key are
+    required. The pricing page offers Free separately from paid plans and usage packs.
+    Inference passes through an EU gateway and runs in Europe or the US. Zro says
+    it retains no request bodies and uses no requests or logs for training without
+    separate explicit consent; account, billing and operational metadata are retained.
+    Inference providers follow their own operational logging terms. Optional agent
+    tools have separate prices.
   quotas:
   - unit: usage
     period: day
@@ -10792,9 +10792,11 @@ entries:
     label: Free plan
     source: https://zro.moonmath.ai/pricing
     quote: Free daily usage on DeepSeek V4.1 Flash. Resets every day.
-    reviewed_on: '2026-11-12'
+    reviewed_on: '2026-11-15'
   free_part: models
-  models: []
+  models:
+  - family: deepseek-v4.1-flash
+    aa_auto: false
   api:
     base_url: https://zro.moonmath.ai/v1
     key_url: https://zro.moonmath.ai/get-started?plan=free
@@ -10802,6 +10804,11 @@ entries:
     openai_compatible: true
     model_ids:
     - deepseek-v4.1-flash
+    model_bindings:
+      deepseek-v4.1-flash:
+        family: deepseek-v4.1-flash
+        source: https://zro.moonmath.ai/docs/models/deepseek-v4.1-flash
+        quote: Model ID deepseek-v4.1-flash
     note: Create an account and API key for the Free plan and select the listed Flash
       ID. Other models and auto routing use metered rates. The vendor documents Chat
       Completions, Responses and Messages; these configurations use Chat Completions.
@@ -10814,7 +10821,7 @@ entries:
     url: https://zro.moonmath.ai/privacy
   border:
     left_out: []
-    'on': '2026-10-31'
+    'on': '2026-11-15'
     source: https://zro.moonmath.ai/terms
     read: none
   probe:
@@ -10871,7 +10878,7 @@ entries:
     quote: 1000 requests per day per account
     value_phrase: 1000 requests
     period_quote: per day
-    reviewed_on: '2026-10-31'
+    reviewed_on: '2026-11-15'
   free_part: models
   models: []
   api:
@@ -10884,10 +10891,11 @@ entries:
     - qwen/qwen3.8-27b-abliterated-cyber:free
     - internlm/atria-dawn-preview:free
     - apodex/apodex-1.1-mini:free
-    note: Use exact :free IDs with an Infron account key; the OneRouter API domain
-      is documented by Infron. Their daily request pool is shared, and the required
-      balance is held rather than spent on free calls. Catalog availability is public;
-      authenticated generation and account eligibility have not been checked here.
+    note: Use an Infron account key and exact :free IDs. Among these four retained
+      IDs, the public catalog currently lists only qwen/qwen3.8-27b:free, labelled
+      Uncensored; availability of the other three is unconfirmed. Free requests share
+      the daily pool and retain the required balance. Authenticated generation and
+      account eligibility have not been checked here.
   data_use:
     trains: opt-out
     quote: If you opt out of training in your account settings, Infron AI will not
@@ -10895,7 +10903,7 @@ entries:
     url: https://infronai.gitbook.io/docs/support/privacy-logging
   border:
     left_out: []
-    'on': '2026-10-31'
+    'on': '2026-11-15'
     source: https://infron.ai/terms-of-use
     read: none
   probe:
