@@ -10996,9 +10996,9 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-11-02'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-16'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 89
 - id: onemin-ai
   name: 1min.AI
@@ -11073,9 +11073,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-02'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-16'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 95
 - id: notrack-ai
   name: NoTrack API
@@ -11163,9 +11163,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-02'
-  last_verified: '2026-11-12'
+  last_verified: '2026-11-16'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 95
 - id: graphite
   name: Graphite

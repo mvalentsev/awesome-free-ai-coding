@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-15
+last_modified_at: 2026-11-16
 ---
 
 {% raw %}
@@ -102,7 +102,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Wallaby](https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/) — verified 2026-11-12
 - [abliteration.ai](https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/) — verified 2026-11-12
 - [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) — verified 2026-11-12
-- [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-12
+- [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-16
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-12
 - [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-12
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-14
@@ -125,10 +125,10 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) — verified 2026-11-12 · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)
 - [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) — verified 2026-11-12 · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up) · `mistral-small-3.2`
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-11-12
-- [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-12
+- [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-16
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-11-12 · `glm-4.1v-thinking-flash` · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)
 - [Logfare (Standard models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) — verified 2026-11-12
-- [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) — verified 2026-11-12
+- [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) — verified 2026-11-16
 - [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/) — verified 2026-11-12
 - [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/) — verified 2026-11-12
 - [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) — verified 2026-11-12
