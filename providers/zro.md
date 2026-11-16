@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-15'
+title: 'Zro (MoonMath) free tier: limits, free models, verified 2026-11-16'
 description: 'OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models. Free models: deepseek-v4.1-flash. Reset time and rate limits are not published. An account and API key are required. The pricing page offers Free separately from paid plans and usage…'
 permalink: /providers/zro/
-last_modified_at: 2026-11-15
+last_modified_at: 2026-11-16
 crumb: Zro (MoonMath)
 ---
 
@@ -11,7 +11,7 @@ crumb: Zro (MoonMath)
 
 # Zro (MoonMath) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-15 · [zro.moonmath.ai](https://zro.moonmath.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-16 · [zro.moonmath.ai](https://zro.moonmath.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

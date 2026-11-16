@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'CodeAnt AI free tier: limits, free models, verified 2026-11-14'
+title: 'CodeAnt AI free tier: limits, free models, verified 2026-11-16'
 description: Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial. A trial is advertised without a card; confirm its duration and allowance before starting. The CLI authenticates with your code-host account. Paid plans are offered after the trial. The…
 permalink: /providers/codeant/
-last_modified_at: 2026-11-14
+last_modified_at: 2026-11-16
 crumb: CodeAnt AI
 ---
 
@@ -11,7 +11,7 @@ crumb: CodeAnt AI
 
 # CodeAnt AI free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-14 · [codeant.ai](https://codeant.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-16 · [codeant.ai](https://codeant.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

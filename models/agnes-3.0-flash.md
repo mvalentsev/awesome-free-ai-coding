@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'agnes-3.0-flash free: 1 provider, limits and ids, provider probes 2026-11-12'
+title: 'agnes-3.0-flash free: 1 provider, limits and ids, provider probes 2026-11-16'
 description: agnes-3.0-flash is served free by Agnes AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-3.0-flash/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-16
 crumb: agnes-3.0-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: agnes-3.0-flash
 
 # Where agnes-3.0-flash is free
 
-**One row on the list serves `agnes-3.0-flash` free:** Agnes AI. It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
+**One row on the list serves `agnes-3.0-flash` free:** Agnes AI. It asks for no card. The provider's last scheduled probe was on 2026-11-16; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: agnes-3.0-flash
 
 ### [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-12 · listed since 2026-09-14
+🔌 LLM APIs with free tier · no card · last probe 2026-11-16 · listed since 2026-09-14
 
 Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 

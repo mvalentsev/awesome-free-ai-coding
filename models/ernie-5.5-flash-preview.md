@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ernie-5.5-flash-preview free: 1 provider, limits and ids, provider probes 2026-11-12'
+title: 'ernie-5.5-flash-preview free: 1 provider, limits and ids, provider probes 2026-11-16'
 description: ernie-5.5-flash-preview is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ernie-5.5-flash-preview/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-16
 crumb: ernie-5.5-flash-preview
 ---
 
@@ -11,7 +11,7 @@ crumb: ernie-5.5-flash-preview
 
 # Where ernie-5.5-flash-preview is free
 
-**One row on the list serves `ernie-5.5-flash-preview` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-12; its offer is rechecked twice a week.
+**One row on the list serves `ernie-5.5-flash-preview` free:** LLMTR. It asks for no card. The provider's last scheduled probe was on 2026-11-16; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ernie-5.5-flash-preview
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-12 · listed since 2026-11-13
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-13
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
