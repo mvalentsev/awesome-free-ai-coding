@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-4.7-flash free: 4 providers, limits and ids, provider probes 2026-11-12'
-description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM), NovAI and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-4.7-flash free: 5 providers, limits and ids, provider probes 2026-11-12 or later'
+description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM), Kiosapi.id, NovAI and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-11-14
+last_modified_at: 2026-11-16
 crumb: glm-4.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**4 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM), NovAI and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
+**5 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM), Kiosapi.id, NovAI and MegaNova. Free usage is subject to the access conditions below. The providers' last scheduled probes were on 2026-11-12 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -62,6 +62,27 @@ GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output price
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.z.ai/api/anthropic`
 - Callable ids: `glm-4.7-flash`
 - What you send is not used to train models ([the vendor's words](https://docs.z.ai/legal-agreement/terms-of-use)).
+
+### [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/)
+
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-16
+
+Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free models: 50 requests/day per account. 07:00 WIB
+
+Free rate limit: 5 requests/minute; scope not published
+
+A verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.
+
+</details>
+
+- Base URL: `https://api.kiosapi.id/v1`
+- Key: `KIOSAPI_ID_API_KEY` — get one at <https://kiosapi.id/dashboard/keys>
+- Callable ids: `zai/glm-4.7-flash`
 
 ### [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/)
 

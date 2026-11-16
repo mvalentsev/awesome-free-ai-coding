@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-15T12:59:22Z</updated>
+  <updated>2026-11-16T06:15:21Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiosapi-id/20261116T061521Z</id>
+    <title>Free models changed: Kiosapi.id</title>
+    <link rel="alternate" href="https://kiosapi.id"/>
+    <updated>2026-11-16T06:15:21Z</updated>
+    <summary type="text">added gemma-4-26b-a4b, glm-4.7-flash, llama-3.1-8b, qwen3-30b, sea-lion-27b · free models: glm-4.7-flash, qwen3-30b, gemma-4-26b-a4b, llama-3.1-8b, sea-lion-27b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/zro/20261115T125922Z</id>
     <title>Free models changed: Zro (MoonMath)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://portal.nousresearch.com"/>
     <updated>2026-11-02T08:48:37Z</updated>
     <summary type="text">added beam-1.0 · free models: step-3.7-flash, solar-mini-4, beam-1.0</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/onemin-ai/20261102T084837Z</id>
-    <title>Added: 1min.AI</title>
-    <link rel="alternate" href="https://1min.ai"/>
-    <updated>2026-11-02T08:48:37Z</updated>
-    <summary type="text">Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance</summary>
   </entry>
 </feed>

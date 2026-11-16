@@ -10933,6 +10933,7 @@ entries:
   - https://kiosapi.id/docs/agents
   - https://kiosapi.id/terms
   - https://kiosapi.id/privacy
+  - https://ai.google.dev/gemma/docs/core/model_card_4
   card_required: false
   offering: Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a
     daily free allowance on selected open models, independent of its prepaid models
@@ -10951,12 +10952,6 @@ entries:
     source: https://kiosapi.id/docs
     quote: 'Free tier: 50 request/hari per akun (reset 07:00 WIB), wajib email terverifikasi.'
     value_phrase: 50 request/hari
-    model_ids:
-    - zai/glm-4.7-flash
-    - qwen/qwen3-30b
-    - google/gemma-4-26b
-    - meta/llama-3.1-8b
-    - aisingapore/sea-lion-27b
   - amount: 5.0
     unit: requests
     period: minute
@@ -10967,7 +10962,17 @@ entries:
     value_phrase: 5 req/menit
     reviewed_on: '2026-11-16'
   free_part: models
-  models: []
+  models:
+  - family: glm-4.7-flash
+    aa_auto: false
+  - family: qwen3-30b
+    aa_auto: false
+  - family: gemma-4-26b-a4b
+    aa_auto: false
+  - family: llama-3.1-8b
+    aa_auto: false
+  - family: sea-lion-27b
+    aa_auto: false
   api:
     base_url: https://api.kiosapi.id/v1
     key_url: https://kiosapi.id/dashboard/keys
@@ -10979,6 +10984,11 @@ entries:
     - google/gemma-4-26b
     - meta/llama-3.1-8b
     - aisingapore/sea-lion-27b
+    model_bindings:
+      google/gemma-4-26b:
+        family: gemma-4-26b-a4b
+        source: https://ai.google.dev/gemma/docs/core/model_card_4
+        quote: Gemma 4 26B A4B
     note: Use a live key. Test keys return fixed mock responses without calling a
       model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions
       is separate. The public catalog marks function tools available on GLM, Qwen

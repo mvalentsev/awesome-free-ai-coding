@@ -17628,11 +17628,12 @@
         "https://kiosapi.id/pricing",
         "https://kiosapi.id/docs/agents",
         "https://kiosapi.id/terms",
-        "https://kiosapi.id/privacy"
+        "https://kiosapi.id/privacy",
+        "https://ai.google.dev/gemma/docs/core/model_card_4"
       ],
       "card_required": false,
       "offering": "Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models",
-      "limits": "Free models: 50 requests/day per account; for `zai/glm-4.7-flash`, `qwen/qwen3-30b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `aisingapore/sea-lion-27b`. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
+      "limits": "Free models: 50 requests/day per account. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
       "quotas": [
         {
           "amount": 50.0,
@@ -17643,14 +17644,7 @@
           "reset": "07:00 WIB",
           "source": "https://kiosapi.id/docs",
           "quote": "Free tier: 50 request/hari per akun (reset 07:00 WIB), wajib email terverifikasi.",
-          "value_phrase": "50 request/hari",
-          "model_ids": [
-            "zai/glm-4.7-flash",
-            "qwen/qwen3-30b",
-            "google/gemma-4-26b",
-            "meta/llama-3.1-8b",
-            "aisingapore/sea-lion-27b"
-          ]
+          "value_phrase": "50 request/hari"
         },
         {
           "amount": 5.0,
@@ -17665,7 +17659,28 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "gemma-4-26b-a4b",
+          "aa_auto": false
+        },
+        {
+          "family": "glm-4.7-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "llama-3.1-8b",
+          "aa_auto": false
+        },
+        {
+          "family": "qwen3-30b",
+          "aa_auto": false
+        },
+        {
+          "family": "sea-lion-27b",
+          "aa_auto": false
+        }
+      ],
       "api": {
         "base_url": "https://api.kiosapi.id/v1",
         "key_url": "https://kiosapi.id/dashboard/keys",
@@ -17678,6 +17693,13 @@
           "meta/llama-3.1-8b",
           "aisingapore/sea-lion-27b"
         ],
+        "model_bindings": {
+          "google/gemma-4-26b": {
+            "family": "gemma-4-26b-a4b",
+            "source": "https://ai.google.dev/gemma/docs/core/model_card_4",
+            "quote": "Gemma 4 26B A4B"
+          }
+        },
         "note": "Use a live key. Test keys return fixed mock responses without calling a model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions is separate. The public catalog marks function tools available on GLM, Qwen and Gemma, but not Llama or SEA-LION."
       },
       "border": {
@@ -17705,7 +17727,13 @@
       "archived": false,
       "search": {
         "name": "Kiosapi.id",
-        "models": [],
+        "models": [
+          "glm-4.7-flash",
+          "qwen3-30b",
+          "gemma-4-26b-a4b",
+          "llama-3.1-8b",
+          "sea-lion-27b"
+        ],
         "ids": [
           "zai/glm-4.7-flash",
           "qwen/qwen3-30b",
@@ -17714,10 +17742,16 @@
           "aisingapore/sea-lion-27b"
         ],
         "what": "Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models",
-        "limits": "Free models: 50 requests/day per account; for `zai/glm-4.7-flash`, `qwen/qwen3-30b`, `google/gemma-4-26b`, `meta/llama-3.1-8b`, `aisingapore/sea-lion-27b`. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
+        "limits": "Free models: 50 requests/day per account. 07:00 WIB\n\nFree rate limit: 5 requests/minute; scope not published\n\nA verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "glm-4.7-flash": "",
+          "qwen3-30b": "",
+          "gemma-4-26b-a4b": "",
+          "llama-3.1-8b": "",
+          "sea-lion-27b": ""
+        },
         "section": {
           "id": "aggregator"
         },
@@ -21519,7 +21553,8 @@
       "family": "gemma-4-26b-a4b",
       "rows": [
         "openrouter-free",
-        "aihubmix"
+        "aihubmix",
+        "kiosapi-id"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
     },
@@ -21574,6 +21609,7 @@
       "rows": [
         "aihubmix",
         "zai-glm",
+        "kiosapi-id",
         "novai",
         "meganova"
       ],
@@ -21696,8 +21732,10 @@
     {
       "family": "llama-3.1-8b",
       "rows": [
-        "simplellm"
-      ]
+        "simplellm",
+        "kiosapi-id"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/"
     },
     {
       "family": "llama-3.2-11b-vision",
@@ -21804,6 +21842,12 @@
         "siliconflow-cn"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/"
+    },
+    {
+      "family": "qwen3-30b",
+      "rows": [
+        "kiosapi-id"
+      ]
     },
     {
       "family": "qwen3-coder-flash",
@@ -21973,6 +22017,12 @@
       "family": "qwen-plus",
       "rows": [
         "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "sea-lion-27b",
+      "rows": [
+        "kiosapi-id"
       ]
     },
     {

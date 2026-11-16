@@ -56,7 +56,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Mistral Studio](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) — verified 2026-11-12
 - [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) — verified 2026-11-12 · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) · `qwen3.5-0.8b`
 - [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) — verified 2026-11-12 · [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · `command-a` · `command-a-reasoning` · `command-a-vision` · `command-r` · `command-r7b` · `command-r-plus`
-- [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) — verified 2026-11-12 · `gemma-4-e4b` · `llama-3.1-8b`
+- [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) — verified 2026-11-12 · `gemma-4-e4b` · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/)
 - [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) — verified 2026-11-12
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-11-12
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-11-12
@@ -125,7 +125,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) — verified 2026-11-12 · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)
 - [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) — verified 2026-11-12 · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up) · `mistral-small-3.2`
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-11-12
-- [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-16
+- [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-16 · [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/) · `qwen3-30b` · `sea-lion-27b`
 - [NovAI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) — verified 2026-11-12 · `glm-4.1v-thinking-flash` · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)
 - [Logfare (Standard models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) — verified 2026-11-12
 - [1min.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) — verified 2026-11-16

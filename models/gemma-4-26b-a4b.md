@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-26b-a4b free: 2 providers, limits and ids, provider probes 2026-11-12'
-description: gemma-4-26b-a4b is served free by OpenRouter (free models) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'gemma-4-26b-a4b free: 3 providers, limits and ids, provider probes 2026-11-12 or later'
+description: gemma-4-26b-a4b is served free by OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-11-13
+last_modified_at: 2026-11-16
 crumb: gemma-4-26b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-26b-a4b
 
 # Where gemma-4-26b-a4b is free
 
-**2 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models) and AIHubMix (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-12; their offers are rechecked twice a week.
+**3 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. The providers' last scheduled probes were on 2026-11-12 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -61,6 +61,27 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m gemma-4-26b-a4b-it-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `gemma-4-26b-a4b-it-free`
+
+### [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/)
+
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-16
+
+Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free models: 50 requests/day per account. 07:00 WIB
+
+Free rate limit: 5 requests/minute; scope not published
+
+A verified email is required. Free requests do not spend prepaid credit and need no top-up. The daily allowance is shared across Free models. Free requests have approximately 24k input characters and 2,048 output tokens. Paid models spend the separate rupiah balance. Free inference uses Cloudflare Workers AI; upstream data policies apply. Encrypted web-chat storage does not encrypt inference processing.
+
+</details>
+
+- Base URL: `https://api.kiosapi.id/v1`
+- Key: `KIOSAPI_ID_API_KEY` — get one at <https://kiosapi.id/dashboard/keys>
+- Callable ids: `google/gemma-4-26b`
 
 ## Related models
 

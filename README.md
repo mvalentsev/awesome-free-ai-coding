@@ -3,7 +3,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
-  <img alt="awesome-free-ai-coding — 111 live offers, 107 need no card, 134 free models, 77 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
+  <img alt="awesome-free-ai-coding — 111 live offers, 107 need no card, 136 free models, 77 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -63,7 +63,7 @@
 
 </details>
 
-[All 134 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
+[All 136 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
 
 **Or pick by what you need:**
 
@@ -138,7 +138,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Mistral Studio](https://mistral.ai)** 👁 — Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) · [🔑 key](https://console.mistral.ai/api-keys)</sub>
 - **[VLM Run Gateway](https://vlm.run)** — OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) · `qwen3.5-0.8b`</sub>
 - **[Cohere (trial keys)](https://cohere.com)** 👁 — Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) · [🔑 key](https://dashboard.cohere.com/api-keys) · [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · `command-a` · `command-a-reasoning` · `command-a-vision` · `command-r` · `command-r7b` · `command-r-plus`</sub>
-- **[SimpleLLM](https://simplellm.eu)** — OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) · [🔑 key](https://simplellm.eu/docs/) · `gemma-4-e4b` · `llama-3.1-8b`</sub>
+- **[SimpleLLM](https://simplellm.eu)** — OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) · [🔑 key](https://simplellm.eu/docs/) · `gemma-4-e4b` · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/)</sub>
 - **[cheapllm.shop](https://cheapllm.shop)** 🧪 — OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) · [🔑 key](https://cheapllm.shop/signup)</sub>
 - **[SEA-LION (AI Singapore)](https://sea-lion.ai)** — AI Singapore's OpenAI-compatible API for its Southeast Asian language models<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) · [🔑 key](https://playground.sea-lion.ai/key-manager)</sub>
 - **[OpenTyphoon (SCB 10X)](https://opentyphoon.ai)** 👁 — Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) · [🔑 key](https://playground.opentyphoon.ai/api-key)</sub>
@@ -209,7 +209,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Opper](https://opper.ai)** — EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) · [🔑 key](https://platform.opper.ai/settings/api-keys) · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)</sub>
 - **[MegaNova](https://meganova.ai)** — OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) · [🔑 key](https://www.meganova.ai/api-keys) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up) · `mistral-small-3.2`</sub>
 - **[Moark (Gitee AI)](https://moark.com)** — Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) · [🔑 key](https://moark.com/dashboard/tokens)</sub>
-- **[Kiosapi.id](https://kiosapi.id)** — Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [🔑 key](https://kiosapi.id/dashboard/keys)</sub>
+- **[Kiosapi.id](https://kiosapi.id)** — Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) · [🔑 key](https://kiosapi.id/dashboard/keys) · [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/) · `qwen3-30b` · `sea-lion-27b`</sub>
 - **[NovAI](https://aiapi-pro.com)** — Hong Kong OpenAI-compatible gateway with a recurring free allowance on selected text and vision models, separate from its signup credit<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novai/) · [🔑 key](https://aiapi-pro.com/register.html) · `glm-4.1v-thinking-flash` · [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/)</sub>
 - **[Logfare (Standard models)](https://logfare.ai)** 👁 🧪 — Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/) · [🔑 key](https://logfare.ai/register)</sub>
 - **[1min.AI](https://1min.ai)** — Multi-provider AI platform with a no-card Free plan, credits obtainable without purchase, and an OpenAI-compatible API that spends the same credit balance<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/onemin-ai/) · [🔑 key](https://app.1min.ai/)</sub>
@@ -219,7 +219,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 - **[JZS Token](https://jzstoken.com)** (requires $1.5 top-up) 🧪 — A temporary free model API with a dedicated key and prepaid account<br><sub>[verified 2026-11-12](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [🔑 key](https://jzstoken.com/dashboard/keys)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 134 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 136 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -227,6 +227,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-16` | 🔄 Free models changed **[Kiosapi.id](https://kiosapi.id)** | <sub>added gemma-4-26b-a4b, glm-4.7-flash, llama-3.1-8b, qwen3-30b, sea-lion-27b</sub> |
 | `2026-11-15` | 🔄 Free models changed **[Zro (MoonMath)](https://zro.moonmath.ai)** | <sub>added deepseek-v4.1-flash</sub> |
 | `2026-11-14` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>dropped glm-5.3-flash</sub> |
 | `2026-11-13` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>dropped xing4.0-29b-a4b</sub> |
@@ -236,7 +237,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-11-11` | 🔄 Free models changed **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>added gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro</sub> |
 | `2026-11-10` | ➕ Added **[cheapllm.shop](https://cheapllm.shop)** | <sub>OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier</sub> |
 | `2026-11-10` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added flint-v1.0</sub> |
-| `2026-11-10` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added flint-v1.0</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
