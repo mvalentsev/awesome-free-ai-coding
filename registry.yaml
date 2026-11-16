@@ -66,7 +66,6 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
-  - family: xing4.0-29b-a4b
   - family: flint-v1.0
   api:
     base_url: https://openrouter.ai/api/v1
@@ -1607,9 +1606,6 @@ entries:
     aa_model: gpt-oss-20b
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
-  - family: diffusiongemma
-  - family: llama-3.2-90b-vision
-  - family: llama-3.2-11b-vision
   - family: deepseek-v4.1-flash
     aa_model: deepseek-v4-1-flash
   - family: nemotron-3.5-super-vl-120b-a12b
@@ -2657,7 +2653,6 @@ entries:
     reviewed_on: '2026-11-09'
   free_part: models
   models:
-  - family: laguna-s-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: beam-1.0
@@ -3094,12 +3089,8 @@ entries:
   models:
   - family: nemotron-3-ultra
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: nemotron-3-super
-    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
     aa_model: gemma-4-31b
-  - family: ling-3.0-tiny
-    aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
@@ -4157,6 +4148,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-11-16'
+  retired_on: '2026-12-29'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -6413,7 +6405,6 @@ entries:
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: nemotron-3.5-lightning
-  - family: beam-1.0
   client_lane:
     model_ids:
     - cline-free/solar-mini4
@@ -6924,7 +6915,6 @@ entries:
   - family: step-3.7-flash
     aa_model: step-3-7-flash
   - family: solar-mini-4
-  - family: beam-1.0
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -12487,3 +12477,31 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 93
+- id: meshcode
+  name: MeshCode
+  category: agent-cli
+  url: https://meshcode.ai
+  source_urls:
+  - https://meshcode.ai/blog/is-there-a-free-ai-coding-agent-that-actually-works
+  card_required: false
+  offering: Native desktop AI coding agent for macOS and Windows; free to start with
+    no credit card required using the built-in meshcode model.
+  limits: Free to start with no credit card required; after free usage, prepaid pay-as-you-go
+    from $1 with a 5% + $0.50 flat service fee at top-up.
+  free_part: models
+  models:
+  - family: meshcode
+  probe:
+    type: page-keywords
+    endpoint: https://meshcode.ai/blog/is-there-a-free-ai-coding-agent-that-actually-works
+    keywords:
+    - start using the built-in meshcode model
+    - free
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-16'
+  last_verified: '2026-11-16'
+  probe_failures: 0
+  provisional: true
+  rank: 100

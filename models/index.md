@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-09 or later'
-description: 136 model families the list's 111 live rows serve free, and every row that serves each one; 88 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 132 model families the list's 112 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-11-16
 model_sort: true
@@ -12,7 +12,7 @@ sortable_model_index: true
 
 # Every free model on the list
 
-136 model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+132 model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -48,7 +48,7 @@ sortable_model_index: true
 | [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) | [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) |
 | `apertus-70b` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | [`apodex-1.1-mini`](https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/) | [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) |
-| [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/), [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳, [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
+| [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳 |
 | `big-pickle` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
@@ -65,7 +65,7 @@ sortable_model_index: true
 | [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/), [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/), [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/), [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/), [Zro (MoonMath)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) |
-| [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
+| [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) | [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
 | [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`ernie-5.5-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/) | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-11-18) |
 | `fantail` | [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) |
@@ -100,14 +100,11 @@ sortable_model_index: true
 | `intern-s2-preview-35b` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `kimi-for-coding` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
-| [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳 |
 | [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `leanstral-1.5` | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
-| [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
 | [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/) | [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/), [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) |
-| `llama-3.2-11b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
-| `llama-3.2-90b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `mellum` | [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
+| `meshcode` | [MeshCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meshcode/) |
 | [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
@@ -116,7 +113,6 @@ sortable_model_index: true
 | `mistral-small-3.2` | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) |
 | [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
 | [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) |
-| [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
 | `nemotron-3.5-bolt-e4b` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `qwen2.5-7b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 | [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
@@ -153,12 +149,15 @@ sortable_model_index: true
 | [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
 | [`swe-2-flash-medium`](https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/) | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) (until 2026-12-04) |
-| [`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/) | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) (via openrouter/free; the router chooses the model), [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
+| [`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/) | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) (via openrouter/free; the router chooses the model), [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 
 ## Previously listed models
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
+| [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) | 2026-11-16 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/), [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) |
+| [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) | 2026-11-16 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
+| [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) | 2026-11-16 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/), [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/), [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/), [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/), [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) | 2026-11-10 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/), [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
 | [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) | 2026-11-10 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) |
 | [`k2-horizon-375b-a23b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/k2-horizon-375b-a23b/) | 2026-11-06 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |

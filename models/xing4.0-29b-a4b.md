@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'xing4.0-29b-a4b free: 3 providers, limits and ids, provider probes 2026-11-16'
-description: xing4.0-29b-a4b is served free by OpenRouter (free models), Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'xing4.0-29b-a4b free: 2 providers, limits and ids, provider probes 2026-11-16'
+description: xing4.0-29b-a4b is served free by Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/xing4.0-29b-a4b/
 last_modified_at: 2026-11-16
 crumb: xing4.0-29b-a4b
@@ -11,35 +11,11 @@ crumb: xing4.0-29b-a4b
 
 # Where xing4.0-29b-a4b is free
 
-**3 rows on the list serve `xing4.0-29b-a4b` free:** OpenRouter (free models), Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**2 rows on the list serve `xing4.0-29b-a4b` free:** Kilo Code and SiliconFlow (China). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
-
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-10-31
-
-One API key for a rotating set of :free model variants, open-weight and stealth models among them
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: 50 requests/day; 20 requests/minute per account
-
-1,000 requests/day per account (after 10 credits purchased all-time)
-
-OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27). The docs define the daily counter as "Free-model requests recorded so far in the current UTC day". The higher daily ceiling is granted "starting one credit below the table’s threshold" to absorb rounding and top-up fees.
-
-</details>
-
-- Base URL: `https://openrouter.ai/api/v1`
-- Key: `OPENROUTER_API_KEY` — get one at <https://openrouter.ai/settings/keys>
-- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://openrouter.ai/api`
-- Codex CLI: [`configs/codex/openrouter-free.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/openrouter-free.config.toml) — copy it to `~/.codex/`, then `codex -p openrouter-free -m xingchen-agi/xing4.0-29b-a4b:free`; set up on the lane by the vendor's own page, <https://openrouter.ai/docs/cookbook/coding-agents/codex-cli>: "Configure Codex for OpenRouter"
-- Callable ids: `xingchen-agi/xing4.0-29b-a4b:free`
-- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://openrouter.ai/docs/guides/privacy/provider-logging)).
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
@@ -80,6 +56,7 @@ Free models are zero-priced but require real-name verification. Online verificat
 
 ## Rows that listed it before
 
+- [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) — listed 2026-10-31 to 2026-11-16
 - [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) — listed 2026-11-09 to 2026-11-13
 
 ---

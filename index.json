@@ -164,7 +164,8 @@
       "BeatAPI (free models)",
       "OrcaRouter (free models)",
       "cheapllm.shop",
-      "Logfare (Standard models)"
+      "Logfare (Standard models)",
+      "MeshCode"
     ],
     "sections": [
       {
@@ -336,9 +337,6 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
-        },
-        {
-          "family": "xing4.0-29b-a4b"
         }
       ],
       "api": {
@@ -451,7 +449,6 @@
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
-          "xing4.0-29b-a4b",
           "flint-v1.0"
         ],
         "ids": [
@@ -486,7 +483,6 @@
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "xing4.0-29b-a4b": "",
           "flint-v1.0": ""
         },
         "section": {
@@ -3426,20 +3422,11 @@
           "aa_model": "deepseek-v4-1-flash"
         },
         {
-          "family": "diffusiongemma"
-        },
-        {
           "family": "gpt-oss-20b",
           "aa_model": "gpt-oss-20b"
         },
         {
           "family": "laguna-xs-2.1"
-        },
-        {
-          "family": "llama-3.2-11b-vision"
-        },
-        {
-          "family": "llama-3.2-90b-vision"
         },
         {
           "family": "nemotron-3-nano-omni",
@@ -3548,9 +3535,6 @@
           "gemma-4-31b",
           "gpt-oss-20b",
           "nemotron-3-nano-omni",
-          "diffusiongemma",
-          "llama-3.2-90b-vision",
-          "llama-3.2-11b-vision",
           "deepseek-v4.1-flash",
           "nemotron-3.5-super-vl-120b-a12b",
           "step-5-preview-600b-a27b",
@@ -3589,9 +3573,6 @@
           "gemma-4-31b": "",
           "gpt-oss-20b": "",
           "nemotron-3-nano-omni": "",
-          "diffusiongemma": "",
-          "llama-3.2-90b-vision": "",
-          "llama-3.2-11b-vision": "",
           "deepseek-v4.1-flash": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "step-5-preview-600b-a27b": "",
@@ -5117,9 +5098,6 @@
         },
         {
           "family": "beam-1.0"
-        },
-        {
-          "family": "laguna-s-2.1"
         }
       ],
       "api": {
@@ -5202,7 +5180,6 @@
       "search": {
         "name": "Vercel AI Gateway",
         "models": [
-          "laguna-s-2.1",
           "nemotron-3.5-lightning",
           "beam-1.0"
         ],
@@ -5218,7 +5195,6 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "laguna-s-2.1": "",
           "nemotron-3.5-lightning": "",
           "beam-1.0": ""
         },
@@ -5824,19 +5800,11 @@
           "family": "leanstral-1.5"
         },
         {
-          "family": "ling-3.0-tiny",
-          "aa_model": "ling-3-0-tiny"
-        },
-        {
           "family": "nemotron-3-nano-30b"
         },
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
-        },
-        {
-          "family": "nemotron-3-super",
-          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         }
       ],
       "api": {
@@ -5894,9 +5862,7 @@
         "name": "Requesty",
         "models": [
           "nemotron-3-ultra",
-          "nemotron-3-super",
           "gemma-4-31b",
-          "ling-3.0-tiny",
           "muse-glimmer-30b",
           "nemotron-3.5-lightning",
           "leanstral-1.5",
@@ -5922,9 +5888,7 @@
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
-          "nemotron-3-super": "",
           "gemma-4-31b": "",
-          "ling-3.0-tiny": "",
           "muse-glimmer-30b": "",
           "nemotron-3.5-lightning": "",
           "leanstral-1.5": "",
@@ -7560,6 +7524,7 @@
       },
       "first_seen": "2026-08-14",
       "last_verified": "2026-11-16",
+      "retired_on": "2026-12-29",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -10850,9 +10815,6 @@
           "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "beam-1.0"
-        },
-        {
           "family": "nemotron-3.5-lightning"
         },
         {
@@ -10913,8 +10875,7 @@
         "models": [
           "solar-mini-4",
           "nemotron-3.5-super-vl-120b-a12b",
-          "nemotron-3.5-lightning",
-          "beam-1.0"
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "cline-free/solar-mini4",
@@ -10929,8 +10890,7 @@
         "modelAccess": {
           "solar-mini-4": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "nemotron-3.5-lightning": "",
-          "beam-1.0": ""
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "agent-cli"
@@ -11797,9 +11757,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "beam-1.0"
-        },
-        {
           "family": "solar-mini-4"
         },
         {
@@ -11859,8 +11816,7 @@
         "name": "Nous Portal (Hermes Agent)",
         "models": [
           "step-3.7-flash",
-          "solar-mini-4",
-          "beam-1.0"
+          "solar-mini-4"
         ],
         "ids": [
           "stepfun/step-3.7-flash:free",
@@ -11874,8 +11830,7 @@
         "access": "",
         "modelAccess": {
           "step-3.7-flash": "",
-          "solar-mini-4": "",
-          "beam-1.0": ""
+          "solar-mini-4": ""
         },
         "section": {
           "id": "aggregator"
@@ -19809,6 +19764,63 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/"
+    },
+    {
+      "id": "meshcode",
+      "name": "MeshCode",
+      "category": "agent-cli",
+      "url": "https://meshcode.ai",
+      "source_urls": [
+        "https://meshcode.ai/blog/is-there-a-free-ai-coding-agent-that-actually-works"
+      ],
+      "card_required": false,
+      "offering": "Native desktop AI coding agent for macOS and Windows; free to start with no credit card required using the built-in meshcode model.",
+      "limits": "Free to start with no credit card required; after free usage, prepaid pay-as-you-go from $1 with a 5% + $0.50 flat service fee at top-up.",
+      "free_part": "models",
+      "models": [
+        {
+          "family": "meshcode"
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://meshcode.ai/blog/is-there-a-free-ai-coding-agent-that-actually-works",
+        "keywords": [
+          "start using the built-in meshcode model",
+          "free"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-16",
+      "last_verified": "2026-11-16",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "MeshCode",
+        "models": [
+          "meshcode"
+        ],
+        "ids": [],
+        "what": "Native desktop AI coding agent for macOS and Windows; free to start with no credit card required using the built-in meshcode model.",
+        "limits": "Free to start with no credit card required; after free usage, prepaid pay-as-you-go from $1 with a 5% + $0.50 flat service fee at top-up.",
+        "why": "",
+        "access": "",
+        "modelAccess": {
+          "meshcode": ""
+        },
+        "section": {
+          "id": "agent-cli"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/meshcode/"
     }
   ],
   "countries": [
@@ -21330,9 +21342,7 @@
       "family": "beam-1.0",
       "rows": [
         "opencode",
-        "cline",
-        "vercel-ai-gateway",
-        "nous-portal"
+        "vercel-ai-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
     },
@@ -21449,7 +21459,6 @@
     {
       "family": "diffusiongemma",
       "rows": [
-        "nvidia-nim",
         "vlm-run-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
@@ -21703,13 +21712,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
-      "family": "laguna-s-2.1",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
       "family": "laguna-xs-2.1",
       "rows": [
         "nvidia-nim"
@@ -21723,13 +21725,6 @@
       ]
     },
     {
-      "family": "ling-3.0-tiny",
-      "rows": [
-        "requesty"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"
-    },
-    {
       "family": "llama-3.1-8b",
       "rows": [
         "simplellm",
@@ -21738,21 +21733,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/"
     },
     {
-      "family": "llama-3.2-11b-vision",
-      "rows": [
-        "nvidia-nim"
-      ]
-    },
-    {
-      "family": "llama-3.2-90b-vision",
-      "rows": [
-        "nvidia-nim"
-      ]
-    },
-    {
       "family": "mellum",
       "rows": [
         "jetbrains-ai"
+      ]
+    },
+    {
+      "family": "meshcode",
+      "rows": [
+        "meshcode"
       ]
     },
     {
@@ -21816,13 +21805,6 @@
         "tokenrouter"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
-    },
-    {
-      "family": "nemotron-3-super",
-      "rows": [
-        "requesty"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
       "family": "nemotron-3.5-bolt-e4b",
@@ -22069,7 +22051,6 @@
     {
       "family": "xing4.0-29b-a4b",
       "rows": [
-        "openrouter-free",
         "kilo-code",
         "siliconflow-cn"
       ],
@@ -22146,6 +22127,11 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
     },
     {
+      "family": "laguna-s-2.1",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
+    },
+    {
       "family": "ling-3.0-flash",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
@@ -22159,6 +22145,11 @@
       "family": "ling-3.0-flash-sante",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "ling-3.0-tiny",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"
     },
     {
       "family": "longcat-2.0",
@@ -22209,6 +22200,11 @@
       "family": "muse-spark-1.3-contributor",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
+    },
+    {
+      "family": "nemotron-3-super",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
       "family": "qwen3-max",
