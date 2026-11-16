@@ -10965,7 +10965,7 @@ entries:
     source: https://kiosapi.id/docs
     quote: 'Rate limit free: 5 req/menit'
     value_phrase: 5 req/menit
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-16'
   free_part: models
   models: []
   api:
@@ -11032,7 +11032,7 @@ entries:
     source: https://1min.ai/free-credits
     quote: 1min.AI offers numerous ways for users to obtain free credits without making
       a purchase, and these credits never expire.
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-16'
   - amount: 60.0
     unit: requests
     period: minute
@@ -11112,7 +11112,7 @@ entries:
       to integrate and test.
     value_phrase: $0.50 of free credit
     period_quote: Trial keys (before the first top-up)
-    reviewed_on: '2026-11-09'
+    reviewed_on: '2026-11-16'
   - amount: 60.0
     unit: requests
     period: minute

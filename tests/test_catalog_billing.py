@@ -159,5 +159,8 @@ async def test_the_published_novita_offer_checks_both_current_catalog_prices(reg
         return httpx.Response(200, text="apodex/apodex-1.1-mini Input $0 / M Tokens Output $0 / M Tokens")
 
     async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
-        result = await probe_entry(client, row, attempts=1, backoff=0)
+        # Saved billing responses belong to the fixture's review date; quota
+        # expiry has separate HTTP controls in test_quotas.py.
+        review_day = max(q.reviewed_on for q in row.quotas if q.reviewed_on)
+        result = await probe_entry(client, row, attempts=1, backoff=0, today=review_day)
     assert (result.status is ProbeStatus.PASS) is free, result.detail
