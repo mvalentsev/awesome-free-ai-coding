@@ -3,7 +3,7 @@ layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-11-16'
 description: A one-time signup token balance on Mercury diffusion models, including the current Mercury 3 chat model and earlier chat and code-edit models. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute…
 permalink: /providers/inception-labs/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Inception Labs (Mercury)
 ---
 
@@ -25,7 +25,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 100,000,000 tokens once; 1,000 requests/minute; 1,000,000 input tokens/minute; 100,000 output tokens/minute per account
 
-No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute traffic limits. After it, usage is pay-as-you-go at the model's current token prices; a launch discount is not a separate free model.
+No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute traffic limits. After it, usage is pay-as-you-go at the model's current token prices; a launch discount is not a separate free model. The Mercury API and platform dashboard remain available through December 28, 2026; retrieve needed data before the announced wind-down.
 
 ## Where it is offered
 
@@ -58,6 +58,7 @@ curl -s https://api.inceptionlabs.ai/v1/chat/completions \
 - Source: <https://docs.inceptionlabs.ai/resources/faq>
 - Source: <https://docs.inceptionlabs.ai/get-started/models>
 - Source: <https://docs.inceptionlabs.ai/get-started/rate-limits>
+- Source: <https://docs.inceptionlabs.ai/support/wind-down>
 
 ## History
 
@@ -69,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

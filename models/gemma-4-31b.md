@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-31b free: 6 providers, limits and ids, provider probes 2026-11-16'
-description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'gemma-4-31b free: 7 providers, limits and ids, provider probes 2026-11-16'
+description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR, Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: gemma-4-31b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-31b
 
 # Where gemma-4-31b is free
 
-**6 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Regolo AI and Opper. None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**7 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR, Regolo AI and Opper. None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -97,6 +97,27 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m gemma-4-31b-it-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
 - Callable ids: `gemma-4-31b-it-free`
 
+### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
+
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-17
+
+Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
+
+- Limits, in the vendor's words: Creekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
+
+</details>
+
+- Base URL: `https://llmtr.com/v1`
+- Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
+- Callable ids: `creekside/gemma-4-31b-it-creekside-free`
+- `creekside/gemma-4-31b-it-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
+- What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
+
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
 🎁 Trials (no card when possible) · no card · last probe 2026-11-16 · listed since 2026-09-27
@@ -139,6 +160,6 @@ The signup guide advertises a free US-hosted Gemma route before adding a card, b
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

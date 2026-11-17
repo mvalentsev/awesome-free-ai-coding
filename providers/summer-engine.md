@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Summer Engine free tier: limits, free models, verified 2026-11-12'
-description: Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects. An account is required for hosted AI. The editor can import an existing project and edit its GDScript and scenes; plugin and project compatibility must be checked separately. The daily message…
+description: Desktop game editor with a one-time, no-card credit for AI edits to scripts and scenes. An account is required for hosted AI. The one-time welcome credit is separate from the free editor, manual game export and MCP tools that use your own AI provider. Existing projects can be imported; check…
 permalink: /providers/summer-engine/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Summer Engine
 ---
 
@@ -11,11 +11,11 @@ crumb: Summer Engine
 
 # Summer Engine free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-12; the probe since has not found that evidence, and 3 misses in a row archive the row · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-03, a regular row from the first probe it passes on or after 2026-11-17 · **live** — last verified by a probe on 2026-11-12; the probe since has not found that evidence, and 3 misses in a row archive the row · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects
+Desktop game editor with a one-time, no-card credit for AI edits to scripts and scenes
 
 ## Free models
 
@@ -23,9 +23,9 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 ## Limits, in the vendor's words
 
-Hosted AI: 5 messages/day; 30 messages/month per account
+Hosted AI welcome credit: $6 once per account
 
-An account is required for hosted AI. The editor can import an existing project and edit its GDScript and scenes; plugin and project compatibility must be checked separately. The daily message limit also has a monthly ceiling. Free MCP and agent tools use your own AI provider and do not add hosted messages. Free lacks Privacy Mode. Documentation permits retention and training by default; AI Terms separately say training requires opt-in, while Privacy lists exceptions. These policies conflict, so treat Free prompts and code as potentially retained and used for training. Paid Privacy Mode promises must not be applied to Free.
+An account is required for hosted AI. The one-time welcome credit is separate from the free editor, manual game export and MCP tools that use your own AI provider. Existing projects can be imported; check plugin and project compatibility. Free lacks Privacy Mode. Documentation permits retention and training by default; AI Terms separately say training requires opt-in, while Privacy lists exceptions. These policies conflict, so treat Free prompts and code as potentially retained and used for training. Paid Privacy Mode promises do not apply to Free.
 
 ## Where it is offered
 
@@ -37,7 +37,7 @@ The vendor names no country it keeps the offer from ([source](https://www.summer
 
 ## Evidence
 
-- Probe: the page at <https://www.summerengine.com/pricing>, anchored on `Free App`, `No credit card needed`, `5 free AI messages a day, up to 30 a month`
+- Probe: the page at <https://www.summerengine.com/pricing>, anchored on `Free App`, `$6 in one-time welcome credits for hosted AI`, `No credit card needed`
 - Source: <https://www.summerengine.com/pricing>
 - Source: <https://docs.summerengine.com/migration/godot.md>
 - Source: <https://docs.summerengine.com/essentials/installation.md>
@@ -54,6 +54,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

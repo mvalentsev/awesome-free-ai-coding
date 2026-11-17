@@ -181,12 +181,6 @@ dismissed:
       at 0/0 among the twelve free rows the free plan is restricted to. Lightning
       is a candidate for this row's Models column on its own merits once it has
       stood two weeks in that lane — it is not a reason to remove Ultra.
-  - entry: requesty
-    family: nemotron-3-super
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      The same read, the same twelve free rows: Super is one of them.
   - entry: llmtr
     family: nemotron-3-ultra
     superseded_by: nemotron-3.5-lightning

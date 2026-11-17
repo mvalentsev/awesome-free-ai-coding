@@ -3,7 +3,7 @@ layout: default
 title: 'Aion Labs free tier: limits, free models, verified 2026-11-16'
 description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required. The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms…
 permalink: /providers/aion-labs/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Aion Labs
 ---
 
@@ -25,7 +25,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account
 
-The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn.
+The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.
 
 ## Where it is offered
 
@@ -70,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

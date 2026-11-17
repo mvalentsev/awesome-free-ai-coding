@@ -3,7 +3,7 @@ layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-11-16'
 description: 'OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes. Free models: nemotron-3.5-lightning, beam-1.0, laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise requests return `403…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Vercel AI Gateway
 model_sort: true
 ---
@@ -46,8 +46,8 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `nvidia/nemotron-3.5-lightning-free`, `reflection/beam-free`, `poolside/laguna-s-2.1-free`, `humansand/ampersand-v0.1`, `stealth/glyph-cluster`
-- Note: Use the IDs listed here; a zero catalog price can depend on the provider and change after a promotion. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty.
+- Callable ids: `nvidia/nemotron-3.5-lightning-free`, `reflection/beam-free`, `poolside/laguna-s-2.1-free`, `humansand/ampersand-v0.1`, `recursive/flint-v1.0`, `stealth/glyph-cluster`
+- Note: Use the IDs listed here; a zero catalog price can depend on the provider and change after a promotion. For Beam, use reflection/beam-free: it stops when free access ends. The regular reflection/beam route can charge at provider rates. Reflection's terms and privacy policy apply. For Claude Code, set ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh and leave ANTHROPIC_API_KEY empty. Laguna Free is absent from the API catalog despite its zero-price model page; availability is unconfirmed.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -76,6 +76,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 - Source: <https://vercel.com/ai-gateway/models/ampersand-v0.1>
 - Source: <https://ampersand.humansand.ai/terms>
 - Source: <https://ampersand.humansand.ai/privacy>
+- Source: <https://vercel.com/ai-gateway/models/flint-v1.0>
 
 ## History
 
@@ -97,6 +98,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

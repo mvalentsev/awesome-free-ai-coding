@@ -37,8 +37,9 @@ import statistics
 import sys
 from dataclasses import dataclass, replace
 from datetime import date, datetime
+from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 import httpx
 from cryptography.exceptions import InvalidTag
@@ -67,6 +68,7 @@ INDEX_VERSION = "5.0.1"
 _FLIGHT_CHUNK = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
 _MODELS_ARRAY = re.compile(r'"(?:models|initialModels)"\s*:\s*(\[)')
 _MANIFEST = re.compile(r'"manifest"\s*:\s*')
+_FLIGHT_PROPS = re.compile(r'\[\s*"\$"\s*,\s*"[^"]+"\s*,\s*null\s*,\s*(\{)')
 _INDEX_VERSION = re.compile(
     r'"name"\s*:\s*"Artificial Analysis Intelligence Index v(\d+(?:\.\d+)+)"')
 TABLE_BYTES = 8 * 1024 * 1024
@@ -145,15 +147,7 @@ def parse_leaderboard(page: str) -> dict[str, Scored]:
     return best
 
 
-async def read_leaderboard(client: httpx.AsyncClient, page: str) -> dict[str, Scored]:
-    """Read the full table when the initial HTML contains only current models."""
-    payload = _flight_payload(page)
-    matches = list(_MANIFEST.finditer(payload))
-    if not matches:
-        return parse_leaderboard(page)
-    if len(matches) != 1:
-        raise ValueError("leaderboard carries ambiguous table manifests")
-    manifest, _ = json.JSONDecoder().raw_decode(payload, matches[0].end())
+async def _manifest_rows(client: httpx.AsyncClient, manifest: object) -> object:
     if not isinstance(manifest, dict):
         raise ValueError("leaderboard manifest has an unsupported shape")
     path, key_hex = manifest.get("path"), manifest.get("key")
@@ -179,7 +173,89 @@ async def read_leaderboard(client: httpx.AsyncClient, page: str) -> dict[str, Sc
             raise ValueError("leaderboard data could not be decoded and authenticated") from exc
         if len(body) > TABLE_BYTES:
             raise ValueError("decoded leaderboard data exceeds the read budget")
-    board = _scored_models(json.loads(body))
+    data = json.loads(body)
+    return data.get("models") if isinstance(data, dict) else data
+
+
+def _variant_records(rows: object) -> dict[str, tuple]:
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("leaderboard variant table is empty or unsupported")
+    result = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("leaderboard variant record has an unsupported shape")
+        ident, release, score = row.get("id"), row.get("release"), row.get("intelligenceIndex")
+        if (not isinstance(ident, str) or not ident or ident in result
+                or not isinstance(release, dict) or not isinstance(release.get("slug"), str)
+                or not release["slug"] or not isinstance(row.get("name"), str)
+                or "intelligenceIndex" not in row or type(row.get("deprecated")) is not bool
+                or (score is not None and type(score) not in (int, float))):
+            raise ValueError("leaderboard carries invalid or duplicate variant identities")
+        result[ident] = (release["slug"], row["name"], row.get("suffix"), score, row["deprecated"])
+    return result
+
+
+async def _linked_variant_rows(client: httpx.AsyncClient, page: str, rows: list) -> object:
+    # AA's leaderboard and linked model charts, checked 2026-11-16: compact
+    # rows omit variant slugs; the chart manifest retains them under models.
+    # Match every source ID and score instead of deriving an effort or alias.
+    compact = _variant_records(rows)
+    releases = {record[0] for record in compact.values()}
+    links = []
+
+    class Links(HTMLParser):
+        def handle_starttag(self, tag, attrs):
+            if tag != "a":
+                return
+            href = dict(attrs).get("href", "")
+            url = urlsplit(urljoin(LEADERBOARD_URL, href))
+            match = re.fullmatch(r'/models/([a-z0-9]+(?:-[a-z0-9]+)*)', url.path)
+            if (url.scheme == "https" and url.netloc == "artificialanalysis.ai"
+                    and not url.query and not url.fragment and match and match[1] in releases):
+                links.append(url.geturl())
+
+    Links().feed(page)
+    if not links:
+        raise ValueError("leaderboard variant table has no linked model chart")
+    response = await client.get(links[0], follow_redirects=False)
+    response.raise_for_status()
+    if len(response.content) > TABLE_BYTES:
+        raise ValueError("leaderboard variant chart exceeds the read budget")
+    index_version(response.text)
+    payload = _flight_payload(response.text)
+    decoder = json.JSONDecoder()
+    manifests = []
+    for match in _FLIGHT_PROPS.finditer(payload):
+        try:
+            props, _ = decoder.raw_decode(payload, match.start(1))
+        except ValueError:
+            continue
+        if "manifest" in props and isinstance(props.get("defaultModels"), (list, str)):
+            manifests.append(props["manifest"])
+    if len(manifests) != 1:
+        raise ValueError("leaderboard variant chart has no unambiguous model manifest")
+    detailed = await _manifest_rows(client, manifests[0])
+    if _variant_records(detailed) != compact:
+        raise ValueError("leaderboard variant identities or scores disagree with the model chart")
+    if any(not isinstance(row.get("slug"), str) or not row["slug"] for row in detailed):
+        raise ValueError("leaderboard variant chart omits exact variant slugs")
+    return detailed
+
+
+async def read_leaderboard(client: httpx.AsyncClient, page: str) -> dict[str, Scored]:
+    """Read the complete table, retaining the publisher's exact variant slugs."""
+    payload = _flight_payload(page)
+    matches = list(_MANIFEST.finditer(payload))
+    if not matches:
+        return parse_leaderboard(page)
+    if len(matches) != 1:
+        raise ValueError("leaderboard carries ambiguous table manifests")
+    manifest, _ = json.JSONDecoder().raw_decode(payload, matches[0].end())
+    rows = await _manifest_rows(client, manifest)
+    if (isinstance(rows, list) and rows
+            and all(isinstance(row, dict) and "slug" not in row and "release" in row for row in rows)):
+        rows = await _linked_variant_rows(client, page, rows)
+    board = _scored_models(rows)
     if not any(m.index is not None and not m.deprecated for m in board.values()):
         raise ValueError("leaderboard manifest carries no scored models")
     return board

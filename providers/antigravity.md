@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-11-16'
-description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.8-flash, gpt-oss-120b, claude-opus-4.6, claude-sonnet-4.6. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gpt-oss-120b, claude-opus-4.6, claude-sonnet-4.6, gemini-3.8-flash. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Google Antigravity
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span></span>
+<span data-model-sort-inline><span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span>, <span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -66,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

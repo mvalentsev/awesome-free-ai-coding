@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-max free: 1 provider, limits and ids, provider probes 2026-11-16'
 description: qwen3.8-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.8-max/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: qwen3.8-max
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-max
 
 # Where qwen3.8-max is free
 
-**One row on the list serves `qwen3.8-max` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-16; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-max), below its strong bar.
+**One row on the list serves `qwen3.8-max` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-16; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,16 +23,16 @@ crumb: qwen3.8-max
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
+- Limits, in the vendor's words: Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `qwen3.8-max`, `deepseek-v4-pro`
+
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
 - Limits, in the vendor's words: Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)
 
-Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; no new grants)
-
 Separate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)
 
-Free token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. Some older models and snapshots no longer receive new grants; previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.
+Free token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. New grants exclude Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3. Previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.
 
 </details>
 
@@ -53,6 +53,6 @@ Free token grants apply in Singapore (international), independently per model an
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

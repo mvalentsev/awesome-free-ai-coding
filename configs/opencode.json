@@ -70,17 +70,11 @@
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
         },
-        "liquid/lfm-2.5-2.6b:free": {
-          "name": "liquid/lfm-2.5-2.6b:free"
-        },
         "openrouter/free": {
           "name": "openrouter/free"
         },
         "nvidia/nemotron-3.5-super-vl:free": {
           "name": "nvidia/nemotron-3.5-super-vl:free"
-        },
-        "xingchen-agi/xing4.0-29b-a4b:free": {
-          "name": "xingchen-agi/xing4.0-29b-a4b:free"
         },
         "recursive/flint-v1.0:free": {
           "name": "recursive/flint-v1.0:free"
@@ -194,13 +188,6 @@
             "context": 1048576,
             "output": 131072
           }
-        },
-        "inclusionai/ling-3.2-flash:free": {
-          "name": "inclusionai/ling-3.2-flash:free",
-          "limit": {
-            "context": 1048576,
-            "output": 262144
-          }
         }
       }
     },
@@ -215,17 +202,11 @@
         "nvidia/nemotron-3-ultra-550b-a55b": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b"
         },
-        "nvidia/nemotron-3-super-120b-a12b": {
-          "name": "nvidia/nemotron-3-super-120b-a12b"
-        },
         "nvidia/nemotron-3-nano-30b-a3b": {
           "name": "nvidia/nemotron-3-nano-30b-a3b"
         },
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
-        },
-        "novita/inclusionai/ling-3.0-tiny": {
-          "name": "novita/inclusionai/ling-3.0-tiny"
         },
         "google/gemma-4-31b-it": {
           "name": "google/gemma-4-31b-it"
@@ -541,6 +522,34 @@
             "context": 1024000,
             "output": 1024000
           }
+        },
+        "creekside/qwen3.8-27b-creekside-free": {
+          "name": "creekside/qwen3.8-27b-creekside-free (until 2026-11-24)",
+          "options": {
+            "max_completion_tokens": 32768,
+            "max_tokens": 32768
+          }
+        },
+        "creekside/qwen3.6-35b-a3b-creekside-free": {
+          "name": "creekside/qwen3.6-35b-a3b-creekside-free (until 2026-11-24)",
+          "options": {
+            "max_completion_tokens": 32768,
+            "max_tokens": 32768
+          }
+        },
+        "creekside/gemma-4-31b-it-creekside-free": {
+          "name": "creekside/gemma-4-31b-it-creekside-free (until 2026-11-24)",
+          "options": {
+            "max_completion_tokens": 32768,
+            "max_tokens": 32768
+          }
+        },
+        "creekside/muse-glimmer-30b-creekside-free": {
+          "name": "creekside/muse-glimmer-30b-creekside-free (until 2026-11-24)",
+          "options": {
+            "max_completion_tokens": 32768,
+            "max_tokens": 32768
+          }
         }
       }
     },
@@ -570,6 +579,9 @@
             "context": 1000000,
             "output": 32768
           }
+        },
+        "recursive/flint-v1.0": {
+          "name": "recursive/flint-v1.0"
         }
       }
     },
@@ -735,15 +747,15 @@
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
         },
-        "reflection/beam-1.0-501b-a23b:free": {
-          "name": "reflection/beam-1.0-501b-a23b:free",
-          "limit": {
-            "context": 262144,
-            "output": 131072
-          }
-        },
         "meituan/longcat-2.5:free": {
           "name": "meituan/longcat-2.5:free"
+        },
+        "tencent/hy4-flash:free": {
+          "name": "tencent/hy4-flash:free",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          }
         }
       }
     },
@@ -902,22 +914,6 @@
         },
         "command-r7b-12-2024": {
           "name": "command-r7b-12-2024"
-        }
-      }
-    },
-    "upstage": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Upstage (Solar API)",
-      "options": {
-        "baseURL": "https://api.upstage.ai/v1",
-        "apiKey": "{env:UPSTAGE_API_KEY}"
-      },
-      "models": {
-        "solar-pro4": {
-          "name": "solar-pro4"
-        },
-        "solar-mini4": {
-          "name": "solar-mini4"
         }
       }
     },
@@ -1306,9 +1302,6 @@
         "qwen-3.8-27b": {
           "name": "qwen-3.8-27b"
         },
-        "economy/deepseek-v4.1-flash": {
-          "name": "economy/deepseek-v4.1-flash"
-        },
         "gemma-4-31b-it": {
           "name": "gemma-4-31b-it"
         },
@@ -1346,6 +1339,12 @@
       "models": {
         "kimi-k3": {
           "name": "kimi-k3"
+        },
+        "kimi-k3.1-pro": {
+          "name": "kimi-k3.1-pro"
+        },
+        "kimi-k3.1-pro-highspeed": {
+          "name": "kimi-k3.1-pro-highspeed"
         }
       }
     },
@@ -1689,6 +1688,32 @@
       "models": {
         "qwen/qwen3.5-4b-free": {
           "name": "qwen/qwen3.5-4b-free"
+        }
+      }
+    },
+    "teapotrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Teapot Router",
+      "options": {
+        "baseURL": "https://api.teapotrouter.com/v1",
+        "apiKey": "{env:TEAPOTROUTER_API_KEY}"
+      },
+      "models": {
+        "gpt-6.1-sol": {
+          "name": "gpt-6.1-sol"
+        }
+      }
+    },
+    "upstage": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Upstage (Solar API)",
+      "options": {
+        "baseURL": "https://api.upstage.ai/v1",
+        "apiKey": "{env:UPSTAGE_API_KEY}"
+      },
+      "models": {
+        "solar-pro4": {
+          "name": "solar-pro4 (until 2027-03-31)"
         }
       }
     },

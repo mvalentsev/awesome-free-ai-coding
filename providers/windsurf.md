@@ -3,7 +3,7 @@ layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-11-16'
 description: 'Free plan of Cognition''s desktop and terminal coding agents, alongside its paid plans. Free models: swe-1.6, swe-2-flash-medium. Windsurf is now Devin Desktop. Free models do not consume the plan''s usage quota. Metered models consume daily and weekly token budgets; Free must wait for a reset after…'
 permalink: /providers/windsurf/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Devin Desktop (formerly Windsurf)
 model_sort: true
 ---
@@ -38,7 +38,7 @@ The vendor names no country it keeps the offer from ([source](https://cognition.
 
 ## What happens to what you send
 
-What you send may be used to train or improve models. In the vendor's words: “By default, we may use your data for model training purposes to improve and enhance the Services. If you’re on a paid plan, you can opt out at any time on the Data Controls settings page.” ([source](https://docs.devin.ai/admin/security)).
+What you send may be used to train or improve models. In the vendor's words: “By default, we may use your data for model training purposes to improve and enhance the Services. If you’re on a paid plan, you can opt out at any time by turning on Disable training under Data controls & privacy in Settings > General.” ([source](https://docs.devin.ai/admin/security)).
 
 ## Connect
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

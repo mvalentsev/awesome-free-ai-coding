@@ -748,6 +748,23 @@ def test_opencode_output_budget_is_positive_and_bound_to_a_rechecked_id(tmp_path
         Entry.model_validate(row)
 
 
+@pytest.mark.parametrize("quote,valid", [
+    ("Without max_tokens, an answer is at most 32,768 tokens.", True),
+    ("max_tokens defaults to 32768 tokens.", True),
+    ("max_tokens defaults to 132768 tokens.", False),
+    ("max_tokens defaults to 32,769 tokens.", False),
+    ("max_tokens defaults to 32768.5 tokens.", False),
+])
+def test_output_budget_source_requires_the_whole_formatted_token_count(quote, valid):
+    value = {"base_url": "https://api.x.ai/v1", "model_ids": ["alpha"], "opencode_output_tokens": {"alpha": 32768},
+             "opencode_output_sources": {"alpha": {"source": "https://x.ai/limits", "quote": quote}}}
+    if valid:
+        assert ApiInfo.model_validate(value).opencode_output_tokens["alpha"] == 32768
+    else:
+        with pytest.raises(ValidationError, match="chosen token count"):
+            ApiInfo.model_validate(value)
+
+
 def test_page_model_price_binding_rejects_nonzero_and_ambiguous_columns():
     from freetier_radar.models import ModelPriceTable
     binding = {"headers": ["Model", "Input", "Output"], "name_column": "Model",

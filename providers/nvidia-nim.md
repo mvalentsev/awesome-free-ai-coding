@@ -3,7 +3,7 @@ layout: default
 title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-11-16'
 description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: minimax-m3.1-flash, step-5-preview-600b-a27b, glm-5.3-flash…'
 permalink: /providers/nvidia-nim/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: NVIDIA NIM (build.nvidia.com)
 model_sort: true
 ---
@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://integrate.api.nvidia.com/v1`
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
 - Callable ids: `minimaxai/minimax-m3.1-flash`, `stepfun-ai/step-5-preview`, `z-ai/glm-5.3-flash`, `nvidia/nemotron-3.5-super-vl-120b-a12b`, `nvidia/nemotron-3-ultra-550b-a55b`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `google/gemma-4-31b-it`, `deepseek-ai/deepseek-v4.1-flash`, `google/diffusiongemma-26b-a4b-it`, `openai/gpt-oss-20b`, `poolside/laguna-xs-2.1`, `meta/llama-3.2-11b-vision-instruct`, `meta/llama-3.2-90b-vision-instruct`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `nvidia/nemotron-3.5-bolt-e4b`, `mistralai/mistral-large-4-1t-a52b`
-- Note: Use available chat endpoints marked Free Endpoint. /v1/models also lists older IDs without a free mark, so catalog membership alone does not establish free access.
+- Note: Use available chat endpoints marked Free Endpoint. /v1/models also lists older IDs without a free mark, so catalog membership alone does not establish free access. DiffusionGemma and both Llama3.2 Vision IDs are absent from the current API and NGC lists; their hosted availability is unconfirmed.
 
 Try it from your terminal with your key in `NVIDIA_NIM_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -88,6 +88,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

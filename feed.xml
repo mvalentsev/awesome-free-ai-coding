@@ -5,8 +5,57 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-16T06:15:21Z</updated>
+  <updated>2026-11-17T01:08:35Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261117T010835Z</id>
+    <title>Free models changed: Kilo Code</title>
+    <link rel="alternate" href="https://kilo.ai"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">dropped xing4.0-29b-a4b · free models: nemotron-3-ultra, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, flint-v1.0</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261117T010835Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">added gemma-4-31b, muse-glimmer-30b, qwen3.6-35b-a3b · free models: nemotron-3-ultra, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, ernie-5.5-flash-preview, qwen3.6-35b-a3b, gemma-4-31b, muse-glimmer-30b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261117T010835Z</id>
+    <title>Free models changed: Nous Portal (Hermes Agent)</title>
+    <link rel="alternate" href="https://portal.nousresearch.com"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">dropped beam-1.0 · free models: step-3.7-flash, solar-mini-4</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261117T010835Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">dropped xing4.0-29b-a4b · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, north-mini-code, nemotron-3.5-lightning, dots-3-note, nemotron-3-nano-omni, nemotron-3.5-super-vl-120b-a12b, flint-v1.0</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20261117T010835Z</id>
+    <title>Free models changed: Requesty</title>
+    <link rel="alternate" href="https://www.requesty.ai"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">dropped ling-3.0-tiny, nemotron-3-super · free models: nemotron-3-ultra, gemma-4-31b, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni, ling-3.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/teapotrouter/20261117T010835Z</id>
+    <title>Added: Teapot Router</title>
+    <link rel="alternate" href="https://teapotrouter.com"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">Independent API gateway advertising signup trial credit before optional prepaid use</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/upstage/20261117T010835Z</id>
+    <title>Free models changed: Upstage (Solar API)</title>
+    <link rel="alternate" href="https://www.upstage.ai/events/ai-initiative-2025-en"/>
+    <updated>2026-11-17T01:08:35Z</updated>
+    <summary type="text">added solar-pro-4 · free models: solar-pro-4</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiosapi-id/20261116T061521Z</id>
     <title>Free models changed: Kiosapi.id</title>
@@ -307,54 +356,5 @@
     <link rel="alternate" href="https://www.summerengine.com"/>
     <updated>2026-11-03T21:59:13Z</updated>
     <summary type="text">Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cursor-hobby/20261103T065419Z</id>
-    <title>Free models changed: Cursor (Free)</title>
-    <link rel="alternate" href="https://cursor.com/"/>
-    <updated>2026-11-03T06:54:19Z</updated>
-    <summary type="text">added composer-2.5, grok-4.5, grok-4.6, grok-4.7 · free models: grok-4.7, grok-4.6, grok-4.5, composer-2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261103T065419Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-11-03T06:54:19Z</updated>
-    <summary type="text">added minimax-m3.1-flash · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash, nemotron-3.5-super-vl-120b-a12b, step-5-preview-600b-a27b, minimax-m3.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261102T233729Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-11-02T23:37:29Z</updated>
-    <summary type="text">dropped minimax-m3.1-flash · free models: nemotron-3-ultra, agnes-3.0-flash, agnes-2.5-flash, qwen3.8-27b, jais-3-mova-36b-a4b, k2-horizon-375b-a23b, nemotron-3.5-super-vl-120b-a12b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/notrack-ai/20261102T124250Z</id>
-    <title>Added: NoTrack API</title>
-    <link rel="alternate" href="https://notrack.ai/api"/>
-    <updated>2026-11-02T12:42:50Z</updated>
-    <summary type="text">Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20261102T084837Z</id>
-    <title>Free models changed: BazaarLink</title>
-    <link rel="alternate" href="https://bazaarlink.ai"/>
-    <updated>2026-11-02T08:48:37Z</updated>
-    <summary type="text">added nemotron-3.5-lightning · free models: deepseek-v4-flash, nemotron-3.5-lightning</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/kiosapi-id/20261102T084837Z</id>
-    <title>Added: Kiosapi.id</title>
-    <link rel="alternate" href="https://kiosapi.id"/>
-    <updated>2026-11-02T08:48:37Z</updated>
-    <summary type="text">Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nous-portal/20261102T084837Z</id>
-    <title>Free models changed: Nous Portal (Hermes Agent)</title>
-    <link rel="alternate" href="https://portal.nousresearch.com"/>
-    <updated>2026-11-02T08:48:37Z</updated>
-    <summary type="text">added beam-1.0 · free models: step-3.7-flash, solar-mini-4, beam-1.0</summary>
   </entry>
 </feed>

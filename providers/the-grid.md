@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'The Grid free tier: limits, free models, verified 2026-11-12'
-description: OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models. An account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are…
+description: OpenAI- and Anthropic-compatible inference market with Free-account limits; signup-credit issuance is unconfirmed. An account and API key are required. Current onboarding requires a funded balance; signup-credit issuance and amount are unconfirmed. Rate-limit docs still describe Free accounts, and…
 permalink: /providers/the-grid/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: The Grid
 ---
 
@@ -15,7 +15,7 @@ crumb: The Grid
 
 ## What you get
 
-OpenAI- and Anthropic-compatible inference market with signup credit; instruments select quality tiers rather than fixed models
+OpenAI- and Anthropic-compatible inference market with Free-account limits; signup-credit issuance is unconfirmed
 
 ## Free models
 
@@ -23,11 +23,11 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 ## Limits, in the vendor's words
 
-Signup credit: $5 once per account (expires 14 days after signup)
+Signup credit: One-time USD allowance: see your account for values per account (current issuance and amount are unconfirmed; unused signup credits expire 14 days after signup)
 
 Before first deposit: 100 requests/day; 3 requests at once per account
 
-An account and API key are required. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.
+An account and API key are required. Current onboarding requires a funded balance; signup-credit issuance and amount are unconfirmed. Rate-limit docs still describe Free accounts, and Terms retain signup-credit expiry. A first deposit lifts the daily cap; concurrency counts deposits, excluding bonuses. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Instruments buy quality specifications, so the underlying model can change between calls.
 
 ## Where it is offered
 
@@ -52,7 +52,7 @@ curl -s https://api.thegrid.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://thegrid.ai/llms.txt>, anchored on `$5 signup credit`; ids checked in <https://api.thegrid.ai/v1/models>
+- Probe: the page at <https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md>, anchored on `Free accounts have a daily request limit of 100 requests.`, `Make your first deposit to lift all daily request limits.`; ids checked in <https://api.thegrid.ai/v1/models>
 - Source: <https://thegrid.ai/docs/start-here/quickstart.md>
 - Source: <https://thegrid.ai/llms.txt>
 - Source: <https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md>
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

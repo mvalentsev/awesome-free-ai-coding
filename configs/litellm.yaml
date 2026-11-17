@@ -125,12 +125,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/liquid/lfm-2.5-2.6b:free
-  litellm_params:
-    model: openai/liquid/lfm-2.5-2.6b:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/openrouter/free
   litellm_params:
     model: openai/openrouter/free
@@ -140,12 +134,6 @@ model_list:
 - model_name: openrouter-free/nvidia/nemotron-3.5-super-vl:free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-super-vl:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
-- model_name: openrouter-free/xingchen-agi/xing4.0-29b-a4b:free
-  litellm_params:
-    model: openai/xingchen-agi/xing4.0-29b-a4b:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
@@ -213,12 +201,6 @@ model_list:
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
     use_chat_completions_api: true
-- model_name: requesty/nvidia/nemotron-3-super-120b-a12b
-  litellm_params:
-    model: openai/nvidia/nemotron-3-super-120b-a12b
-    api_base: https://router.requesty.ai/v1
-    api_key: os.environ/REQUESTY_API_KEY
-    use_chat_completions_api: true
 - model_name: requesty/nvidia/nemotron-3-nano-30b-a3b
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-30b-a3b
@@ -228,12 +210,6 @@ model_list:
 - model_name: requesty/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
-    api_base: https://router.requesty.ai/v1
-    api_key: os.environ/REQUESTY_API_KEY
-    use_chat_completions_api: true
-- model_name: requesty/novita/inclusionai/ling-3.0-tiny
-  litellm_params:
-    model: openai/novita/inclusionai/ling-3.0-tiny
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
     use_chat_completions_api: true
@@ -700,6 +676,42 @@ model_list:
   model_info:
     access: free until 2026-11-18 00:00+03:00
     source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
+- model_name: llmtr/creekside/qwen3.8-27b-creekside-free
+  litellm_params:
+    model: openai/creekside/qwen3.8-27b-creekside-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-24 00:00+03:00
+    source: https://llmtr.com/docs/en/gateway/creekside/
+- model_name: llmtr/creekside/qwen3.6-35b-a3b-creekside-free
+  litellm_params:
+    model: openai/creekside/qwen3.6-35b-a3b-creekside-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-24 00:00+03:00
+    source: https://llmtr.com/docs/en/gateway/creekside/
+- model_name: llmtr/creekside/gemma-4-31b-it-creekside-free
+  litellm_params:
+    model: openai/creekside/gemma-4-31b-it-creekside-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-24 00:00+03:00
+    source: https://llmtr.com/docs/en/gateway/creekside/
+- model_name: llmtr/creekside/muse-glimmer-30b-creekside-free
+  litellm_params:
+    model: openai/creekside/muse-glimmer-30b-creekside-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2026-11-24 00:00+03:00
+    source: https://llmtr.com/docs/en/gateway/creekside/
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
@@ -731,6 +743,12 @@ model_list:
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
     max_tokens: 32768
+- model_name: vercel-ai-gateway/recursive/flint-v1.0
+  litellm_params:
+    model: openai/recursive/flint-v1.0
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
 - model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8
   litellm_params:
     model: openai/Qwen/Qwen3.6-35B-A3B-FP8
@@ -959,19 +977,19 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
-- model_name: nous-portal/reflection/beam-1.0-501b-a23b:free
-  litellm_params:
-    model: openai/reflection/beam-1.0-501b-a23b:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 131072
 - model_name: nous-portal/meituan/longcat-2.5:free
   litellm_params:
     model: openai/meituan/longcat-2.5:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
+- model_name: nous-portal/tencent/hy4-flash:free
+  litellm_params:
+    model: openai/tencent/hy4-flash:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 65536
 - model_name: iteracompute/qwen/qwen3.8-27b
   litellm_params:
     model: openai/qwen/qwen3.8-27b
@@ -1121,18 +1139,6 @@ model_list:
     model: openai/command-r7b-12-2024
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
-    use_chat_completions_api: true
-- model_name: upstage/solar-pro4
-  litellm_params:
-    model: openai/solar-pro4
-    api_base: https://api.upstage.ai/v1
-    api_key: os.environ/UPSTAGE_API_KEY
-    use_chat_completions_api: true
-- model_name: upstage/solar-mini4
-  litellm_params:
-    model: openai/solar-mini4
-    api_base: https://api.upstage.ai/v1
-    api_key: os.environ/UPSTAGE_API_KEY
     use_chat_completions_api: true
 - model_name: opper/gemini/gemma-4-31b
   litellm_params:
@@ -1488,12 +1494,6 @@ model_list:
     api_base: https://logfare.ai/v1
     api_key: os.environ/LOGFARE_API_KEY
     use_chat_completions_api: true
-- model_name: logfare/economy/deepseek-v4.1-flash
-  litellm_params:
-    model: openai/economy/deepseek-v4.1-flash
-    api_base: https://logfare.ai/v1
-    api_key: os.environ/LOGFARE_API_KEY
-    use_chat_completions_api: true
 - model_name: logfare/gemma-4-31b-it
   litellm_params:
     model: openai/gemma-4-31b-it
@@ -1527,6 +1527,18 @@ model_list:
 - model_name: wallaby/kimi-k3
   litellm_params:
     model: openai/kimi-k3
+    api_base: https://api.wallabytoken.com/v1
+    api_key: os.environ/WALLABY_API_KEY
+    use_chat_completions_api: true
+- model_name: wallaby/kimi-k3.1-pro
+  litellm_params:
+    model: openai/kimi-k3.1-pro
+    api_base: https://api.wallabytoken.com/v1
+    api_key: os.environ/WALLABY_API_KEY
+    use_chat_completions_api: true
+- model_name: wallaby/kimi-k3.1-pro-highspeed
+  litellm_params:
+    model: openai/kimi-k3.1-pro-highspeed
     api_base: https://api.wallabytoken.com/v1
     api_key: os.environ/WALLABY_API_KEY
     use_chat_completions_api: true
@@ -1771,6 +1783,21 @@ model_list:
     api_base: https://models.mixlayer.ai/v1
     api_key: os.environ/MIXLAYER_API_KEY
     use_chat_completions_api: true
+- model_name: teapotrouter/gpt-6.1-sol
+  litellm_params:
+    model: openai/gpt-6.1-sol
+    api_base: https://api.teapotrouter.com/v1
+    api_key: os.environ/TEAPOTROUTER_API_KEY
+    use_chat_completions_api: true
+- model_name: upstage/solar-pro4
+  litellm_params:
+    model: openai/solar-pro4
+    api_base: https://api.upstage.ai/v1
+    api_key: os.environ/UPSTAGE_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2027-03-31 23:00+09:00
+    source: https://www.upstage.ai/events/ai-initiative-2025-en
 - model_name: jzstoken/jzs-max-3.0
   litellm_params:
     model: openai/jzs-max-3.0

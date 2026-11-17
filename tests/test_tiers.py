@@ -11,7 +11,7 @@ import pytest
 import respx
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-from freetier_radar.models import Entry, Tier, load_registry, save_registry
+from freetier_radar.models import Entry, Tier, load_registry, save_registry, utc_today
 from freetier_radar.tiers import (FRONTIER_WITHIN, INDEX_VERSION, LEADERBOARD_URL, STRONG_WITHIN, Scored, _amain,
                                   index_median, index_top, measured_tier, parse_leaderboard,
                                   review)
@@ -145,6 +145,72 @@ def manifest_page(key):
         props["manifest"]["key"] = key.hex()
     payload = '0:["$","div",null,' + json.dumps(props) + ']\n'
     return '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
+
+
+@pytest.mark.parametrize("damage", [None, "missing-variant", "changed-score", "changed-release",
+                                   "missing-slug", "external-link", "ambiguous-chart"])
+@respx.mock
+async def test_compact_variant_board_uses_the_linked_complete_model_table(tmp_path, damage):
+    """AA's 2026-11-16 leaderboard omits per-variant slugs; its linked model
+    charts retain them. Join by source IDs without selecting a reasoning mode."""
+    detailed = [dict(SCORED[i], id=f"model-{i}", release={"slug": SCORED[i]["slug"]})
+                for i in (0, 1, 2, 6)]
+    detailed.append(dict(detailed[2], id="model-low", slug="glm-5-3-low",
+                         name="GLM-5.3 (low)", intelligenceIndex=31.1))
+    compact = [{k: row[k] for k in ("id", "release", "name", "deprecated", "intelligenceIndex")}
+               for row in detailed]
+    props = {"initialModels": compact, "manifest": {"path": "/data/compact.json"}}
+    payload = json.dumps({"name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}"})
+    payload += '0:["$","div",null,' + json.dumps(props) + ']\n'
+    page_body = '<a href="/models/glm-5-3">GLM-5.3</a>'
+    if damage == "external-link":
+        page_body = '<a href="https://other.example/models/glm-5-3">GLM-5.3</a>'
+    page_body += '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page_body))
+    respx.get("https://artificialanalysis.ai/data/compact.json").mock(
+        return_value=httpx.Response(200, json=compact))
+    chart = {"defaultModels": "$models", "manifest": {"path": "/data/complete.json"}}
+    model_payload = json.dumps({"name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}"})
+    children = [
+            ["$", "$ProviderTable", None, {"manifest": {"path": "/data/providers.json"}}],
+            ["$", "$ModelCharts", None, chart],
+    ]
+    if damage == "ambiguous-chart":
+        children.append(["$", "$OtherCharts", None, chart])
+    model_payload += '1:["$","div",null,' + json.dumps({"children": children}) + ']\n'
+    model_body = '<script>self.__next_f.push([1,' + json.dumps(model_payload) + '])</script>'
+    respx.get("https://artificialanalysis.ai/models/glm-5-3").mock(
+        return_value=httpx.Response(200, text=model_body))
+    providers = respx.get("https://artificialanalysis.ai/data/providers.json").mock(
+        return_value=httpx.Response(200, json=SCORED))
+    if damage == "missing-variant":
+        detailed.pop()
+    elif damage == "changed-score":
+        detailed[-1]["intelligenceIndex"] = 99
+    elif damage == "changed-release":
+        detailed[-1]["release"] = {"slug": "another-release"}
+    elif damage == "missing-slug":
+        detailed[-1].pop("slug")
+    respx.get("https://artificialanalysis.ai/data/complete.json").mock(
+        return_value=httpx.Response(200, json={"models": detailed}))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [entry("a", {"family": "glm-5.3", "aa_model": "glm-5-3"},
+                                  {"family": "glm-low", "aa_model": "glm-5-3-low"})])
+    previous = registry.read_bytes()
+    scores.write_text("previous scores")
+    if damage:
+        with pytest.raises(ValueError, match="variant"):
+            await _amain(registry, write=True, scores=scores)
+        assert registry.read_bytes() == previous
+        assert scores.read_text() == "previous scores"
+    else:
+        assert await _amain(registry, write=True, scores=scores) == 0
+        measured = json.loads(scores.read_text())
+        assert measured["families"]["glm-5.3"]["index"] == 44.9
+        assert measured["families"]["glm-low"]["index"] == 31.1
+        assert measured["median"] == 44.9
+        assert measured["top"]["slug"] == "claude-fable-5-1"
+    assert providers.call_count == 0
 
 
 @pytest.mark.parametrize("encrypted", [False, True])
@@ -311,7 +377,7 @@ def test_the_median_counts_current_models_only():
 def entry(id: str, *families: dict) -> Entry:
     return Entry.model_validate({
         "id": id, "name": id, "category": "aggregator", "url": f"https://{id}.example",
-        "offering": "stuff", "first_seen": date(2026, 9, 1), "last_verified": date(2026, 9, 17),
+        "offering": "stuff", "first_seen": date(2026, 9, 1), "last_verified": utc_today(),
         "models": list(families),
         "probe": {"type": "page-keywords", "endpoint": f"https://{id}.example", "keywords": ["x-mini-2"]}})
 
@@ -568,7 +634,7 @@ async def test_write_keeps_every_score_it_read_for_the_readme_to_draw(tmp_path: 
 
     await _amain(registry, write=True, scores=scores)
     kept = json.loads(scores.read_text(encoding="utf-8"))
-    assert kept["read_on"] == date.today().isoformat()
+    assert kept["read_on"] == utc_today().isoformat()
     assert kept["source"] == LEADERBOARD_URL
     assert kept["version"] == INDEX_VERSION
     assert kept['unscored']['renamed'] == {'slug':'no-longer-listed','reason':'missing'}

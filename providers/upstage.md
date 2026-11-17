@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-11-09'
-description: Upstage Solar LLM API with free signup credit, no card. See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
+description: 'Approved schools, universities, hospitals and nonprofits get free API model access for up to one year. Free models: solar-pro-4. Institutional approval is required; apply to the program and receive instructions by email. Access lasts up to one year within the program usage period ending March 31…'
 permalink: /providers/upstage/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Upstage (Solar API)
 ---
 
@@ -11,21 +11,21 @@ crumb: Upstage (Solar API)
 
 # Upstage (Solar API) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-09; the 2 probes since have not found that evidence, and 3 misses in a row archive the row · [console.upstage.ai](https://console.upstage.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-09; the 2 probes since have not found that evidence, and 3 misses in a row archive the row · [upstage.ai](https://www.upstage.ai/events/ai-initiative-2025-en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Upstage Solar LLM API with free signup credit, no card
+Approved schools, universities, hospitals and nonprofits get free API model access for up to one year
 
 ## Free models
 
-The free offer is a budget for model usage across the catalog. See Limits for its conditions and Connect for API details, where available.
+[`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)
 
 ## Limits, in the vendor's words
 
-Signup credit: $10 once per account
+Approved institutional access: Usage allowance: amount not published (period not published); scope not published (up to one year within the program usage period, after approval)
 
-See the console for credit validity. After the signup credit is spent, continue with prepaid credit or pay-as-you-go billing.
+Institutional approval is required; apply to the program and receive instructions by email. Access lasts up to one year within the program usage period ending March 31, 2027. Numerical usage limits are not published. General API signup credit is unconfirmed; browser-only free testing and document-agent runs are separate from coding-model API access.
 
 ## Where it is offered
 
@@ -39,7 +39,8 @@ What you send is not used to train models. In the vendor's words: “The Company
 
 - Base URL: `https://api.upstage.ai/v1`
 - Key: `UPSTAGE_API_KEY` — get one at <https://console.upstage.ai/api-keys>
-- Callable ids: `solar-mini4`, `solar-pro4`
+- Callable ids: `solar-pro4`
+- `solar-pro4`: free until 2027-03-31 23:00+09:00 ([conditions](https://www.upstage.ai/events/ai-initiative-2025-en))
 
 Try it from your terminal with your key in `UPSTAGE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -52,20 +53,24 @@ curl -s https://api.upstage.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on `$10 in free credit` in the page's own data
+- Probe: the page at <https://www.upstage.ai/events/ai-initiative-2025-en>, anchored on `Free access to AI models`, `Solar Pro 4`, `internal review and approval`, `March 31, 2027`
 - Source: <https://console.upstage.ai/docs/getting-started>
 - Source: <https://console.upstage.ai/>
+- Source: <https://www.upstage.ai/events/ai-initiative-2025-en>
+- Source: <https://www.upstage.ai/pricing>
+- Source: <https://console.upstage.ai/docs/resources/faq>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-17` — Free models changed: added solar-pro-4
 - `2026-09-25` — Free models changed: dropped solar-mini, solar-pro-3
 - `2026-07-19` — Free models changed: added solar-mini, solar-pro-3
 - `2026-07-19` — Added: Upstage Solar LLM API; $10 free credit on signup, no card
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

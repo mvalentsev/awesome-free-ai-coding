@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Wallaby free tier: limits, free models, verified 2026-11-16'
-description: OpenAI-compatible Kimi K3 API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment. One trial per person or organisation, with a verified email and human check. The trial credit does not expire; requests stop when it is exhausted. For…
+description: OpenAI-compatible Kimi API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment. One trial per person or organisation, with a verified email and human check. The trial credit does not expire; requests stop when it is exhausted. For optional…
 permalink: /providers/wallaby/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Wallaby
 ---
 
@@ -15,7 +15,7 @@ crumb: Wallaby
 
 ## What you get
 
-OpenAI-compatible Kimi K3 API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment
+OpenAI-compatible Kimi API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment
 
 ## Free models
 
@@ -37,8 +37,8 @@ The vendor names no country it keeps the offer from ([source](https://wallabytok
 
 - Base URL: `https://api.wallabytoken.com/v1`
 - Key: `WALLABY_API_KEY` — get one at <https://api.wallabytoken.com/register>
-- Callable ids: `kimi-k3`
-- Note: Create an account, verify your email and create a token under Tokens → Add token. The official API docs name kimi-k3, support streaming, function tools and structured outputs. The catalog requires a key; the signup credit is a spending balance, not an individually free model.
+- Callable ids: `kimi-k3`, `kimi-k3.1-pro`, `kimi-k3.1-pro-highspeed`
+- Note: Create an account, verify your email and create a token under Tokens → Add token. The docs demonstrate trial calls with kimi-k3.1-pro, streaming, tools and structured output. Both K3.1 Pro IDs accept low, high or max reasoning_effort. The catalog requires a key; trial credit is a spending balance.
 
 Try it from your terminal with your key in `WALLABY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

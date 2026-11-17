@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-11-12",
+  "read_on": "2026-11-17",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "version": "5.0.1",
   "top": {
@@ -7,7 +7,7 @@
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "index": 64.6
   },
-  "median": 29.6,
+  "median": 29.9,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -27,11 +27,6 @@
     "gemini-3.5-flash-lite": {
       "slug": "gemini-3-5-flash-lite",
       "index": 11.7,
-      "estimated": false
-    },
-    "gemini-3.8-flash": {
-      "slug": "gemini-3-8-flash",
-      "index": 30.8,
       "estimated": false
     },
     "gemma-4-31b": {
@@ -57,11 +52,6 @@
     "gpt-oss-120b": {
       "slug": "gpt-oss-120b",
       "index": 3.8,
-      "estimated": false
-    },
-    "ling-3.1-flash": {
-      "slug": "ling-3-1-flash-1019",
-      "index": 29.6,
       "estimated": false
     },
     "mimo-v2.6-flash": {
@@ -122,11 +112,6 @@
     "qwen3.8-flash": {
       "slug": "qwen3-8-flash-next",
       "index": 28.6,
-      "estimated": false
-    },
-    "qwen3.8-max": {
-      "slug": "qwen3-8-max",
-      "index": 33.7,
       "estimated": false
     },
     "step-5-preview-600b-a27b": {
@@ -192,6 +177,10 @@
       "slug": "gemini-3-6-flash",
       "reason": "deprecated"
     },
+    "gemini-3.8-flash": {
+      "slug": "gemini-3-8-flash",
+      "reason": "deprecated"
+    },
     "gemma-4-26b-a4b": {
       "slug": "gemma-4-26b-a4b",
       "reason": "unscored"
@@ -236,9 +225,9 @@
       "slug": "kimi-k3",
       "reason": "deprecated"
     },
-    "ling-3.0-tiny": {
-      "slug": "ling-3-0-tiny",
-      "reason": "unscored"
+    "ling-3.1-flash": {
+      "slug": "ling-3-1-flash-1019",
+      "reason": "missing"
     },
     "longcat-2.0": {
       "slug": "longcat-2-0",
@@ -331,6 +320,10 @@
     "qwen3.8-2.4t-a95b": {
       "slug": "qwen3-8-2-4t-a95b",
       "reason": "unscored"
+    },
+    "qwen3.8-max": {
+      "slug": "qwen3-8-max",
+      "reason": "deprecated"
     },
     "step-3.7-flash": {
       "slug": "step-3-7-flash",

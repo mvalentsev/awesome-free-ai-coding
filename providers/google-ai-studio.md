@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-11-16'
-description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.8-flash, gemini-3.5-flash-lite, gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3.1-flash-lite, gemini-3.6-flash and 1 more. Free eligibility is priced per…'
+description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.5-flash-lite, gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3.1-flash-lite, gemini-3.6-flash, gemini-3.8-flash and 1 more. Free eligibility is priced per…'
 permalink: /providers/google-ai-studio/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Google AI Studio (Gemini API)
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gemini-3.5-flash-lite">[`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/)</span>, <span data-model-family="gemini-2.5-flash">[`gemini-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-flash/)</span>, <span data-model-family="gemini-2.5-flash-lite">`gemini-2.5-flash-lite`</span>, <span data-model-family="gemini-2.5-pro">[`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/)</span>, <span data-model-family="gemini-3-flash">[`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/)</span>, <span data-model-family="gemini-3.1-flash-lite">[`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/)</span>, <span data-model-family="gemini-3.6-flash">[`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/)</span>, <span data-model-family="gemma-4">`gemma-4`</span></span>
+<span data-model-sort-inline><span data-model-family="gemini-3.5-flash-lite">[`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/)</span>, <span data-model-family="gemini-2.5-flash">[`gemini-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-flash/)</span>, <span data-model-family="gemini-2.5-flash-lite">`gemini-2.5-flash-lite`</span>, <span data-model-family="gemini-2.5-pro">[`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/)</span>, <span data-model-family="gemini-3-flash">[`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/)</span>, <span data-model-family="gemini-3.1-flash-lite">[`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/)</span>, <span data-model-family="gemini-3.6-flash">[`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/)</span>, <span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span>, <span data-model-family="gemma-4">`gemma-4`</span></span>
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
 - Key: `GOOGLE_AI_STUDIO_API_KEY` — get one at <https://aistudio.google.com/apikey>
-- Callable ids: `gemini-3.8-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
+- Callable ids: `gemini-3.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemini-3.8-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
 - Note: Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs.
 
 Try it from your terminal with your key in `GOOGLE_AI_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -78,6 +78,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

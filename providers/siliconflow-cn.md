@@ -3,7 +3,7 @@ layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-11-16'
 description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: deepseek-r1-0528-qwen3-8b, glm-4-9b-0414, glm-z1-9b-0414, qwen2.5-7b, qwen3-8b, qwen3.5-4b, xing4.0-29b-a4b. Free models are zero-priced but…'
 permalink: /providers/siliconflow-cn/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: SiliconFlow (China)
 model_sort: true
 ---
@@ -24,9 +24,9 @@ Zero-priced small chat models on SiliconFlow China, after real-name verification
 
 ## Limits, in the vendor's words
 
-Verified free models: Usage allowance: see your account for values (period not published) per account per model
+Verified free models: Usage allowance: see your account for values (period not published) per account per model (fixed limits unless dynamic rate limiting is enabled for the model)
 
-Free models are zero-priced but require real-name verification. Online verification uses an Alipay face scan and accepted mainland, Hong Kong, Macau, Taiwan or Chinese permanent-residence documents; other applicants must contact staff. Sign in by SMS or email. Per-model fixed rate values are shown in the client-rendered model square, rather than public docs.
+Free models are zero-priced but require real-name verification. Online verification uses an Alipay face scan and accepted mainland, Hong Kong, Macau, Taiwan or Chinese permanent-residence documents; other applicants must contact staff. Sign in by SMS or email. The model square shows each model's current limits. Models enrolled in dynamic rate limiting vary with load and replace L0-L5 tier entitlements; other free models keep fixed limits.
 
 ## Where it is offered
 
@@ -72,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

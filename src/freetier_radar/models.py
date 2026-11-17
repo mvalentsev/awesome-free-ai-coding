@@ -14,7 +14,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .words import number
-from .quotas import UsageQuota, QuotaTable
+from .quotas import UsageQuota, QuotaTable, _numbers
 from .source_urls import valid_source_url
 from .countries import quoted_codes
 
@@ -1246,7 +1246,7 @@ class ApiInfo(BaseModel):
             opencode_output_sources=self.opencode_output_sources)
         for mid, source in self.opencode_output_sources.items():
             tokens = self.opencode_output_tokens.get(mid)
-            if tokens is None or not re.search(rf"(?<![\d]){tokens}(?![\d])", source.quote):
+            if tokens is None or tokens not in _numbers(source.quote):
                 raise ValueError("output budget source must quote its chosen token count")
             if not re.search(r"\bmax_(?:completion_)?tokens\b|\bmax_output_tokens\b", source.quote):
                 raise ValueError("output budget source must name an output-token parameter")

@@ -3,7 +3,7 @@ layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-11-16'
 description: 'Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access. Free models: deepseek-v4.1-flash-1017, mimo-v2.6-flash, solar-mini-4, solar-pro-4. The Free plan names DeepSeek V4.1 Flash variants. “Accounts created before November 3…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Freebuff
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regiona
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) (MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">`solar-pro-4`</span></span>
+<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash-1017">[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) (MiMo v2.6 Flash Fast remains admitted for saved selections, but no picker lists it.)</span>, <span data-model-family="solar-mini-4">[`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/)</span>, <span data-model-family="solar-pro-4">[`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -82,6 +82,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

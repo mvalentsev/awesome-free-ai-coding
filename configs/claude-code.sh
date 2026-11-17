@@ -8,7 +8,7 @@
 # gateway the next credential it holds, your own sign-in included.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, liquid/lfm-2.5-2.6b:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free, xingchen-agi/xing4.0-29b-a4b:free, recursive/flint-v1.0:free, liquid/lfm-3-1.7b:free, thinkingmachines/inkling-2-small:free, baidu/ernie-5.5-flash-preview:free, particle-ai/particle-1:free, inclusionai/ling-3.2-flash:free
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, dots-studio/dots-3-note-preview:free, openrouter/free, nvidia/nemotron-3.5-super-vl:free, recursive/flint-v1.0:free, liquid/lfm-3-1.7b:free, thinkingmachines/inkling-2-small:free, baidu/ernie-5.5-flash-preview:free, particle-ai/particle-1:free, inclusionai/ling-3.2-flash:free
 claude-openrouter-free() {
   if [ -z "${OPENROUTER_API_KEY:-}" ]; then
     echo "claude-openrouter-free: set OPENROUTER_API_KEY first (configs/free-llm.env.example)" >&2
@@ -22,7 +22,7 @@ claude-openrouter-free() {
 }
 
 # ── Requesty · get a key: https://app.requesty.ai/api-keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b, novita/ling-3.1-flash
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, google/gemma-4-31b-it, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b, novita/ling-3.1-flash
 claude-requesty() {
   if [ -z "${REQUESTY_API_KEY:-}" ]; then
     echo "claude-requesty: set REQUESTY_API_KEY first (configs/free-llm.env.example)" >&2
@@ -64,7 +64,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, stealth/glyph-cluster, nvidia/nemotron-3.5-lightning-free, reflection/beam-free, humansand/ampersand-v0.1
+#    free ids: poolside/laguna-s-2.1-free, stealth/glyph-cluster, nvidia/nemotron-3.5-lightning-free, reflection/beam-free, humansand/ampersand-v0.1, recursive/flint-v1.0
 claude-vercel-ai-gateway() {
   if [ -z "${VERCEL_AI_GATEWAY_API_KEY:-}" ]; then
     echo "claude-vercel-ai-gateway: set VERCEL_AI_GATEWAY_API_KEY first (configs/free-llm.env.example)" >&2
@@ -190,7 +190,7 @@ claude-fireworks-ai() {
 }
 
 # ── Logfare (Standard models) · get a key: https://logfare.ai/register
-#    free ids: qwen-3.8-27b, economy/deepseek-v4.1-flash, gemma-4-31b-it, gemma-4-26b
+#    free ids: qwen-3.8-27b, gemma-4-31b-it, gemma-4-26b
 claude-logfare() {
   if [ -z "${LOGFARE_API_KEY:-}" ]; then
     echo "claude-logfare: set LOGFARE_API_KEY first (configs/free-llm.env.example)" >&2

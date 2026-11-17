@@ -3,7 +3,7 @@ layout: default
 title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-11-16'
 description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: solar-mini-4
 ---
 
@@ -82,8 +82,12 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 - Callable ids: `upstage/solar-mini4:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
 
+## Related models
+
+- [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) — free at Freebuff and Upstage (Solar API) (until 2027-03-31)
+
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

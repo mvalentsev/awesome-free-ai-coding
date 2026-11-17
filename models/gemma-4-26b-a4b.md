@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-26b-a4b free: 3 providers, limits and ids, provider probes 2026-11-16'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: gemma-4-26b-a4b
 ---
 
@@ -85,10 +85,10 @@ A verified email is required. Free requests do not spend prepaid credit and need
 
 ## Related models
 
-- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Regolo AI and Opper
+- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR (until 2026-11-24), Regolo AI and Opper
 
 ---
 
-Generated from `registry.yaml` on 2026-11-16 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
