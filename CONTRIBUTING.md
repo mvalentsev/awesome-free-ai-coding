@@ -866,7 +866,8 @@ cannot print two versions of it.
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
-| `assets/*.js` | **page** — shared browser search, model matching and sorting | — | `hand` |
+| `assets/*.js` | **page** — shared browser search, model matching, sorting and heading permalinks | — | `hand` |
+| `assets/anchorjs-LICENSE.txt` | **doc** — MIT license for the heading permalink library | — | `hand` |
 | `assets/*.css` | **page** — shared model sorting controls | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |

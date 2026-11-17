@@ -13,6 +13,7 @@ the other files are maintained by hand.
 | `search.js` | Search and filter matching shared by the home page and Browse |
 | `model-sort.js` | Model ordering shared by the home page, model index, provider pages and Browse; preserves the choice in the URL and local storage |
 | `model-sort.css` | Shared styling for the model-order control |
+| `anchor.min.js` | Pinned heading permalink library used by the Markdown page layout; its license is in `anchorjs-LICENSE.txt` |
 
 The radar beam uses CSS animation; its period is
 `pictures.BEAM_PERIOD`.

@@ -38,6 +38,7 @@ on:
       - "assets/*.svg"
       - "assets/*.png"
       - "assets/*.js"
+      - "assets/anchorjs-LICENSE.txt"
       - "assets/*.css"
       - "eb68c254f1e03877b906ccc800002691.txt"
       - "CONTRIBUTING.md"

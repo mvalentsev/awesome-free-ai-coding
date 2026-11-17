@@ -11,6 +11,8 @@ claim that matches nothing checks nothing.
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import json
 import re
 from dataclasses import dataclass
@@ -84,6 +86,21 @@ def _internal_browser_policy(root: Path) -> tuple[str, ...]:
     internal = browser_scope(['CONTRIBUTING.md', 'src/freetier_radar/prober.py'])
     layout = browser_scope(['_layouts/default.html'])
     return ('no browser cases',) if internal == (False, False) and layout == (True, True) else ()
+
+
+def _local_heading_links(root: Path) -> tuple[str, ...]:
+    asset, license = root / 'assets/anchor.min.js', root / 'assets/anchorjs-LICENSE.txt'
+    layout = root / '_layouts/default.html'
+    if not all(path.is_file() for path in (asset, license, layout)):
+        return ()
+    for script in re.findall(r'<script\b[^>]*>', layout.read_text()):
+        if 'src="{{ "/assets/anchor.min.js" | relative_url }}"' not in script:
+            continue
+        integrity = re.search(r'integrity="sha256-([^"]+)"', script)
+        checksum = base64.b64encode(hashlib.sha256(asset.read_bytes()).digest()).decode()
+        if integrity and integrity[1] == checksum and license.read_text().strip():
+            return (asset.name, license.name)
+    return ()
 
 
 def _pending_quota_policy(root: Path) -> tuple[str, ...]:
@@ -387,6 +404,8 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("assets/README.md", r"`(anchor\.min\.js)` \| Pinned heading permalink library used by the Markdown page layout; its license is in `(anchorjs-LICENSE\.txt)`",
+          _local_heading_links, "the layout's local heading library, SRI checksum and bundled license"),
     Claim("README.md", r"(\d+) consecutive failed probes, (\d+) days without a pass",
           lambda root: (str(ARCHIVE_AFTER_FAILURES), str(ARCHIVE_AFTER_DAYS)),
           "models.ARCHIVE_AFTER_FAILURES and ARCHIVE_AFTER_DAYS; archive boundary controls in tests/test_models.py"),
