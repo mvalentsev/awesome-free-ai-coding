@@ -45,3 +45,19 @@ def test_removing_the_existing_setup_action_is_also_rejected(tmp_path, monkeypat
                       '<nav><a href="#plug">Plug it in</a></nav>')
     (root / surface).write_text('<div align="center"></div><main></main>')
     assert any(surface in p and 'setup' in p for p in check_repository(root))
+
+
+@pytest.mark.parametrize('extra', [0, 1])
+def test_repository_check_enforces_the_readme_byte_budget(tmp_path, monkeypatch, extra):
+    from freetier_radar.render import README_BUDGET
+
+    root = repository(tmp_path, monkeypatch, '[Plug it in](#-plug-it-into-your-agent)',
+                      '<nav><a href="#plug">Plug it in</a></nav>')
+    readme = root / 'README.md'
+    text = readme.read_text()
+    room = README_BUDGET - len(text.encode('utf-8')) + extra
+    readme.write_text(text + 'é' * (room // 2) + 'x' * (room % 2), encoding='utf-8')
+    problems = check_repository(root)
+    assert problems == ([f'presentation: README.md is {README_BUDGET + extra} bytes, '
+                         f'over {README_BUDGET} — keep the full reference on the site.']
+                        if extra else [])

@@ -1093,6 +1093,8 @@ rules and registry field names. Full payment, fee and deadline details are shown
 with callable ids; list labels use the same access metadata in shorter form.
 Shared limits appear under Provider-wide limits on model pages. The README
 prints `offering`, models and the date; quotas stay on the row page and site.
+`freetier-check` caps `README.md` at 80,000 UTF-8 bytes; the site carries the full
+offer reference.
 
 **A row of free models leaves them to its Models line.** For `free_part: models`,
 `freetier-check` rejects an `offering` that names a live model family or one of

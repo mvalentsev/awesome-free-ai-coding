@@ -102,7 +102,7 @@ README_LIMITS_COLLAPSE = 260
 # line, so the page grows a line per row, and the budget keeps what the site
 # carries — the limits, the connection table, the index of every model — from
 # creeping back: what the page carries has to grow with the rows and no faster.
-# A test renders the committed registry against it.
+# freetier-check holds the committed README to this byte budget.
 README_BUDGET = 80_000
 # Where the README's pictures are drawn, beside the README and relative to it:
 # GitHub serves an image the README names by a relative path from the same

@@ -2227,19 +2227,6 @@ def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
     assert "do not edit" in text.lower()
 
 
-def test_the_published_readme_stays_a_landing_page(tmp_path: Path):
-    """A visitor scrolls the README on GitHub; the site is where a row is read
-    whole. The committed registry renders a README within README_BUDGET, which
-    keeps the reference job from creeping back as the list grows a row at a
-    time."""
-    import json
-    from freetier_radar.render import README_BUDGET
-    pinned = date.fromisoformat(json.loads(Path("index.json").read_text(encoding="utf-8"))["generated"])
-    text = render_readme(Path("registry.yaml"), Path("templates"), tmp_path / "README.md",
-                         today=pinned)
-    assert len(text.encode("utf-8")) <= README_BUDGET
-
-
 def test_a_provider_page_offers_the_call_that_checks_a_key_in_the_readers_own_terminal():
     """"Does my key work here?" is answered by a command the reader runs, with
     the key read from their own environment — never by a page that asks for

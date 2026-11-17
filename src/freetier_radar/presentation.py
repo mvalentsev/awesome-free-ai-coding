@@ -25,6 +25,8 @@ def is_setup(target: str) -> bool:
 
 
 def check_presentation(root: Path) -> list[str]:
+    from .render import README_BUDGET
+
     readme = (root / 'README.md').read_text(encoding='utf-8')
     centered = re.search(r'<div\s+align="center">(.*?)</div>', readme, re.S)
     top = centered.group(1) if centered else ''
@@ -32,6 +34,10 @@ def check_presentation(root: Path) -> list[str]:
     site = (root / 'index.html').read_text(encoding='utf-8')
     site_top = re.split(r'<main\b', site, maxsplit=1)[0]
     problems = []
+    size = len(readme.encode('utf-8'))
+    if size > README_BUDGET:
+        problems.append(f'README.md is {size} bytes, over {README_BUDGET} — '
+                        'keep the full reference on the site.')
     for name, links in (('README.md', readme_links), ('index.html', Links(site_top).targets)):
         count = sum(is_setup(link) for link in links)
         if count != 1:

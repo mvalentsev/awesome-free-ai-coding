@@ -36,7 +36,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT,
-                     PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
+                     PAGES_URL, QUICKSTART_USER_AGENT, README_BUDGET, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
 from .pictures import _chart_ticks, _style
@@ -682,6 +682,8 @@ CLAIMS: tuple[Claim, ...] = (
           r"\s+`api.note` to ([\d,]+)",
           lambda root: tuple(f"{PROSE_LIMITS[f]:,}" for f in ("offering", "limits", "api.note")),
           "validate.PROSE_LIMITS", generated=True),
+    Claim("CONTRIBUTING.md", r"`freetier-check` caps `README.md` at ([\d,]+) UTF-8 bytes",
+          lambda root: (f"{README_BUDGET:,}",), "render.README_BUDGET", generated=True),
     Claim("CONTRIBUTING.md", r"The first (\w+) no-card agents are also the top of the README",
           lambda root: (_word(README_STARTERS),), "render.README_STARTERS", generated=True),
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",

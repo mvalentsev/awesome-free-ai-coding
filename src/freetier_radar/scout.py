@@ -20,7 +20,7 @@ from .models import (utc_today, ANCHOR_PHRASE_WORDS, SOURCE_RECHECK_DAYS, WATCH_
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      probe_frequency, watch_match)
-from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
+from .prober import (TIMEOUT, UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
                      unevidenced_families, model_table_findings, retry_after_seconds)
 from .page_reader import recover_page_sync
@@ -1293,12 +1293,9 @@ def main() -> None:
         print(f"page warning: {warning}")
 
     try:
-        with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
-                          headers=UA) as probe_client:
-            # Bound here rather than inside run_scout, which knows the fetcher
-            # only as a callable: the retirement sweep asks for one page per live
-            # entry, each at its own 30s read timeout, inside a phase that checks
-            # the budget once, before any of them.
+        with httpx.Client(timeout=TIMEOUT, headers=UA) as probe_client:
+            # The fetcher also bounds each page read by the remaining phase
+            # budget; run_scout only knows it as a callable.
             result = run_scout(llm, entries, failures,
                                partial(fetch_page_texts, time_left=deadline.remaining,
                                        on_unread=lambda warning: print(f"page warning: {warning}",

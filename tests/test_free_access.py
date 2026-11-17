@@ -41,6 +41,21 @@ def test_payment_and_deadline_survive_the_registry_and_reach_consumers(tmp_path)
     assert "$5" not in models["steady"]["name"]
 
 
+def test_detailed_access_labels_preserve_the_exact_deadline_precision():
+    for until, label in [
+        ('2026-10-06T23:59:00+03:00', '2026-10-06 23:59+03:00'),
+        ('2026-10-06T23:59:37+03:00', '2026-10-06 23:59:37+03:00'),
+        ('2026-10-06T23:59:37.125000+03:00', '2026-10-06 23:59:37.125000+03:00'),
+        ('2026-10-06', '2026-10-06 UTC'),
+    ]:
+        row = entry(api={'base_url': 'https://vendor.example/v1',
+                         'model_ids': ['steady', 'preview'],
+                         'model_access': {'preview': {**PAID, 'until': until}}})
+        page = build_provider_page(row, [], DAY)
+        assert f'free until {label}' in page
+        assert build_index([row], DAY)['entries'][0]['api']['model_access']['preview']['until'] == until
+
+
 @pytest.mark.parametrize("access", [
     {**PAID, "initial_payment_usd": 0},
     {**PAID, "initial_payment_usd": -1},

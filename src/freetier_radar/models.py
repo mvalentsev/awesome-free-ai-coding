@@ -2037,8 +2037,9 @@ def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
             words[-1] += f" + {access.topup_fee_percent:g}% fee"
     if access.until:
         if isinstance(access.until, datetime):
+            precision = 'auto' if access.until.second or access.until.microsecond else 'minutes'
             words.append(f"until {access.until.date().isoformat()}" if compact else
-                         f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
+                         f"free until {access.until.isoformat(sep=' ', timespec=precision)}")
         else:
             words.append(f"until {access.until.isoformat()}" if compact else
                          f"free until {access.until.isoformat()} UTC")
