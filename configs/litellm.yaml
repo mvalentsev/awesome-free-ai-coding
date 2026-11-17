@@ -83,6 +83,12 @@ model_list:
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
     use_chat_completions_api: true
+- model_name: google-ai-studio/gemini-4-hydrogen
+  litellm_params:
+    model: openai/gemini-4-hydrogen
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+    use_chat_completions_api: true
 - model_name: openrouter-free/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b:free

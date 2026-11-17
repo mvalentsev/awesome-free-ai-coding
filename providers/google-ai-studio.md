@@ -40,8 +40,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
 - Key: `GOOGLE_AI_STUDIO_API_KEY` — get one at <https://aistudio.google.com/apikey>
-- Callable ids: `gemini-3.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemini-3.8-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`
-- Note: Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs.
+- Callable ids: `gemini-3.5-flash-lite`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.5-pro`, `gemini-3-flash-preview`, `gemini-3.1-flash-lite`, `gemini-3.6-flash`, `gemini-3.8-flash`, `gemma-4-26b-a4b-it`, `gemma-4-31b-it`, `gemini-4-hydrogen`
+- Note: Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs. Hydrogen supports implicit caching only; explicit caching is unavailable.
 
 Try it from your terminal with your key in `GOOGLE_AI_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -63,6 +63,8 @@ curl -s https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
 - Source: <https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash>
 - Source: <https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite>
 - Source: <https://ai.google.dev/gemini-api/docs/deprecations>
+- Source: <https://ai.google.dev/gemini-api/docs/models/gemini-4-hydrogen>
+- Source: <https://ai.google.dev/gemini-api/docs/openai>
 
 ## History
 

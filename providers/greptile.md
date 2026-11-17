@@ -3,7 +3,7 @@ layout: default
 title: 'Greptile free tier: limits, free models, verified 2026-11-16'
 description: AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan. Starter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate…
 permalink: /providers/greptile/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-17
 crumb: Greptile
 ---
 
@@ -24,6 +24,10 @@ The vendor does not identify which models the free offer includes. See Limits fo
 ## Limits, in the vendor's words
 
 Starter: 50 credits/month; scope not published
+
+Qualified open-source projects: Usage allowance: amount not published (period not published); scope not published (qualified non-commercial project with an OSI-approved license; application required)
+
+Startup program: 500 credits/month; scope not published (for 6 months; pre-Series A, at most 20 employees and under $2M revenue in the past 12 months; application required)
 
 Starter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate "14-day free trial" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.
 

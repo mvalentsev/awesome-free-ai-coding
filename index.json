@@ -503,7 +503,9 @@
         "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
         "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash",
         "https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite",
-        "https://ai.google.dev/gemini-api/docs/deprecations"
+        "https://ai.google.dev/gemini-api/docs/deprecations",
+        "https://ai.google.dev/gemini-api/docs/models/gemini-4-hydrogen",
+        "https://ai.google.dev/gemini-api/docs/openai"
       ],
       "card_required": false,
       "offering": "Free tier on the Gemini API, priced model by model rather than as one account quota",
@@ -515,7 +517,7 @@
           "state": "account-specific",
           "source": "https://ai.google.dev/gemini-api/docs/rate-limits",
           "quote": "View your active rate limits in AI Studio",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -573,7 +575,8 @@
           "gemma-4-26b-a4b-it",
           "gemini-2.5-pro",
           "gemini-2.5-flash",
-          "gemini-2.5-flash-lite"
+          "gemini-2.5-flash-lite",
+          "gemini-4-hydrogen"
         ],
         "model_bindings": {
           "gemini-2.5-pro": {
@@ -592,7 +595,14 @@
             "quote": "gemini-2.5-flash-lite"
           }
         },
-        "note": "Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs."
+        "free_since": [
+          {
+            "id": "gemini-4-hydrogen",
+            "on": "2026-11-12",
+            "source": "https://ai.google.dev/gemini-api/docs/changelog"
+          }
+        ],
+        "note": "Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs. Hydrogen supports implicit caching only; explicit caching is unavailable."
       },
       "data_use": {
         "trains": "yes",
@@ -879,7 +889,8 @@
           "gemma-4-26b-a4b-it",
           "gemini-2.5-pro",
           "gemini-2.5-flash",
-          "gemini-2.5-flash-lite"
+          "gemini-2.5-flash-lite",
+          "gemini-4-hydrogen"
         ],
         "what": "Free tier on the Gemini API, priced model by model rather than as one account quota",
         "limits": "Usage allowance: see your account for values (period not published) per project per model\n\nFree eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Google is \"limiting access to the 2.5 models to users who have actively used them in the past\". Actual rate limits are visible after signing in to AI Studio. Unpaid usage may improve Google products. In the EEA, Switzerland and the UK, Paid Services data-use terms exclude training and \"apply to all Services, including Google AI Studio and unpaid quota in the Gemini API\". Google permits \"only Paid Services when making API Clients available to users\" in those regions. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.",
@@ -2952,7 +2963,7 @@
           "label": "Agent usage",
           "source": "https://cursor.com/pricing",
           "quote": "Limited Agent requests",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -5332,7 +5343,7 @@
           "label": "Additional IP guard",
           "source": "https://bazaarlink.ai/free",
           "quote": "with an additional IP guard",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -5960,7 +5971,7 @@
           "label": "Gemini agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Gemini models Weekly limit remaining",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -5970,7 +5981,7 @@
           "label": "Claude and GPT agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Claude and GPT models Weekly limit remaining",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -5980,7 +5991,7 @@
           "label": "Tab",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -5991,7 +6002,7 @@
           "label": "Command",
           "source": "https://antigravity.google/pricing",
           "quote": "Unlimited Command requests",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -6862,7 +6873,7 @@
           "model_ids": [
             "agents-a1-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6875,7 +6886,7 @@
           "model_ids": [
             "intern-s2-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6888,7 +6899,7 @@
           "model_ids": [
             "dots-3-note-preview-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6901,7 +6912,7 @@
           "model_ids": [
             "lfm-2.5-2.6b-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6914,7 +6925,7 @@
           "model_ids": [
             "nemotron-3.5-lightning-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6927,7 +6938,7 @@
           "model_ids": [
             "nemotron-3-super-120b-a12b-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6940,7 +6951,7 @@
           "model_ids": [
             "nemotron-3-nano-omni-30b-a3b-reasoning-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6953,7 +6964,7 @@
           "model_ids": [
             "nemotron-3-ultra-550b-a55b-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6966,7 +6977,7 @@
           "model_ids": [
             "north-mini-code-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -6979,7 +6990,7 @@
           "model_ids": [
             "mimo-v2-flash-free"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         },
@@ -10067,7 +10078,7 @@
           "state": "variable",
           "source": "https://freeinference.org/terms",
           "quote": "Quotas, rate limits, model access, and usage limits may change based on usage, demand, infrastructure capacity, abuse prevention, operational needs, and individual or aggregate activity",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -11594,7 +11605,7 @@
           "label": "14-day trial",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "unlimited Edit Predictions for 14 days from when you start the trial",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -11619,7 +11630,7 @@
           "condition_quote": "The plan is available free for one year to verified university students.",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "The Zed Student Plan includes unlimited Edit Predictions",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -15188,7 +15199,7 @@
           "label": "Preview models",
           "source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview",
           "quote": "gemini-3.1-pro-preview Dynamic",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -15240,7 +15251,7 @@
             "gemini-3.1-pro-preview",
             "gemini-3-flash-preview"
           ],
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         }
       ],
@@ -15744,7 +15755,7 @@
           "label": "Basic-model fallback",
           "source": "https://docs.qoder.cn/product-overview/billing-description",
           "quote": "有限次数的补全",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -16534,7 +16545,7 @@
           "label": "General",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "general requests-per-minute counters",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -16545,7 +16556,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -16556,7 +16567,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -16567,7 +16578,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         },
         {
@@ -16578,7 +16589,7 @@
           "label": "Free models",
           "source": "https://simplellm.eu/docs/limits.md",
           "quote": "free-model hourly/daily request and token counters",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         }
       ],
@@ -16904,7 +16915,7 @@
           "condition_quote": "none on accounts with any completed top-up; 5 requests/min before the first top-up (model providers may still throttle at peak hours, and those 429s name the provider)",
           "source": "https://aiapi-pro.com/transparency.html",
           "quote": "unlimited free-model calls after the first top-up",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         }
       ],
@@ -17254,7 +17265,7 @@
       ],
       "card_required": false,
       "offering": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
-      "limits": "Starter: 50 credits/month; scope not published\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+      "limits": "Starter: 50 credits/month; scope not published\n\nQualified open-source projects: Usage allowance: amount not published (period not published); scope not published (qualified non-commercial project with an OSI-approved license; application required)\n\nStartup program: 500 credits/month; scope not published (for 6 months; pre-Series A, at most 20 employees and under $2M revenue in the past 12 months; application required)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
       "quotas": [
         {
           "amount": 50.0,
@@ -17264,7 +17275,33 @@
           "label": "Starter",
           "source": "https://www.greptile.com/pricing",
           "quote": "50 free credits per month",
-          "reviewed_on": "2026-11-10"
+          "reviewed_on": "2026-11-17"
+        },
+        {
+          "unit": "usage",
+          "scope": "unspecified",
+          "label": "Qualified open-source projects",
+          "condition": "qualified non-commercial project with an OSI-approved license; application required",
+          "condition_quote": "Greptile is free for qualified non-commercial projects with an OSI-approved license.",
+          "source": "https://www.greptile.com/pricing",
+          "quote": "Greptile is free for qualified non-commercial projects with an OSI-approved license.",
+          "reviewed_on": "2026-11-17",
+          "amount": null,
+          "period": null
+        },
+        {
+          "amount": 500.0,
+          "unit": "credits",
+          "period": "month",
+          "scope": "unspecified",
+          "label": "Startup program",
+          "condition": "for 6 months; pre-Series A, at most 20 employees and under $2M revenue in the past 12 months; application required",
+          "condition_quote": "Pre-Series A startups with 20 or fewer employees and under $2M revenue in the past 12 months get 500 free credits a month for 6 months.",
+          "source": "https://www.greptile.com/pricing",
+          "quote": "500 free credits a month for 6 months",
+          "value_phrase": "500 free credits",
+          "period_quote": "a month",
+          "reviewed_on": "2026-11-17"
         }
       ],
       "free_part": "unnamed",
@@ -17306,7 +17343,7 @@
         "models": [],
         "ids": [],
         "what": "AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan",
-        "limits": "Starter: 50 credits/month; scope not published\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
+        "limits": "Starter: 50 credits/month; scope not published\n\nQualified open-source projects: Usage allowance: amount not published (period not published); scope not published (qualified non-commercial project with an OSI-approved license; application required)\n\nStartup program: 500 credits/month; scope not published (for 6 months; pre-Series A, at most 20 employees and under $2M revenue in the past 12 months; application required)\n\nStarter permits one active developer and unlimited repositories. Its credits do not cover CLI reviews; new CLI organizations receive a separate \"14-day free trial\" with no payment method required. De-identified customer data can be used for AI training; organization admins can turn this off in Data & Privacy.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -17353,7 +17390,7 @@
           "label": "Interactive CLI during alpha",
           "source": "https://docs.cubic.dev/ide/cli-review",
           "quote": "CLI usage is unlimited during alpha, subject to rate limits that ensure fair access.",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
@@ -17432,7 +17469,7 @@
           "scope": "account",
           "source": "https://codeant.ai/cli",
           "quote": "Start Free Trial",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null
         }
       ],
@@ -18614,7 +18651,7 @@
           "label": "Open-source AI Reviewer",
           "source": "https://www.codacy.com/pricing",
           "quote": "Free forever for open-source projects",
-          "reviewed_on": "2026-11-10",
+          "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
         }
