@@ -519,13 +519,6 @@
             "max_tokens": 8192
           }
         },
-        "baidu/ernie-5.5-flash-preview-free": {
-          "name": "baidu/ernie-5.5-flash-preview-free (until 2026-11-18)",
-          "limit": {
-            "context": 1024000,
-            "output": 1024000
-          }
-        },
         "creekside/qwen3.8-27b-creekside-free": {
           "name": "creekside/qwen3.8-27b-creekside-free (until 2026-11-24)",
           "options": {

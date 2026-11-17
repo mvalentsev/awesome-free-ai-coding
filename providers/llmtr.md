@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-11-16'
-description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, ernie-5.5-flash-preview, gemma-4-31b, muse-glimmer-30b, qwen3.6-35b-a3b. Free chat rows can…'
+description: 'Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up. Free models: qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, gemma-4-31b, muse-glimmer-30b, qwen3.6-35b-a3b. Free chat rows can be called on a new…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-11-17
 crumb: LLMTR
@@ -20,7 +20,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="ernie-5.5-flash-preview">[`ernie-5.5-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/) (until 2026-11-18)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) (until 2026-11-24)</span>, <span data-model-family="muse-glimmer-30b">[`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) (until 2026-11-24)</span>, <span data-model-family="qwen3.6-35b-a3b">[`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) (until 2026-11-24)</span></span>
+<span data-model-sort-inline><span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="gemma-4-31b">[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) (until 2026-11-24)</span>, <span data-model-family="muse-glimmer-30b">[`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) (until 2026-11-24)</span>, <span data-model-family="qwen3.6-35b-a3b">[`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) (until 2026-11-24)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -31,10 +31,6 @@ Nemotron3.5 Super VL: Daily usage allowance: amount not published; scope not pub
 LFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`
 
 Parallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`
-
-ERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`
-
-ERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`
 
 Creekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`
 
@@ -52,9 +48,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `creekside/qwen3.8-27b-creekside-free`, `qwen/qwen3.8-27b-free`, `nvidia/nemotron-3.5-super-vl-free`, `nvidia/nemotron-3-ultra-550b-a55b`, `baidu/ernie-5.5-flash-preview-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `lgai/k-exaone-2.5`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
+- Callable ids: `creekside/qwen3.8-27b-creekside-free`, `qwen/qwen3.8-27b-free`, `nvidia/nemotron-3.5-super-vl-free`, `nvidia/nemotron-3-ultra-550b-a55b`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `lgai/k-exaone-2.5`, `liquid/lfm3-1.7b-free`, `parallel/parallel-free`
 - `creekside/qwen3.8-27b-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
-- `baidu/ernie-5.5-flash-preview-free`: free until 2026-11-18 00:00+03:00 ([conditions](https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free))
 - `creekside/gemma-4-31b-it-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
 - `creekside/muse-glimmer-30b-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
 - `creekside/qwen3.6-35b-a3b-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
@@ -133,6 +128,7 @@ curl -s https://llmtr.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-17` — Free models changed: dropped ernie-5.5-flash-preview
 - `2026-11-17` — Free models changed: added gemma-4-31b, muse-glimmer-30b, qwen3.6-35b-a3b
 - `2026-11-13` — Free models changed: added ernie-5.5-flash-preview; dropped agnes-2.5-flash, agnes-3.0-flash
 - `2026-11-13` — Free models changed: dropped qwen3.8-max

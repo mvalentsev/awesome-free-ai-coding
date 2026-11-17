@@ -672,16 +672,6 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 524288
-- model_name: llmtr/baidu/ernie-5.5-flash-preview-free
-  litellm_params:
-    model: openai/baidu/ernie-5.5-flash-preview-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 1024000
-  model_info:
-    access: free until 2026-11-18 00:00+03:00
-    source: https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free
 - model_name: llmtr/creekside/qwen3.8-27b-creekside-free
   litellm_params:
     model: openai/creekside/qwen3.8-27b-creekside-free

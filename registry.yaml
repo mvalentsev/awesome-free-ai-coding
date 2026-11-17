@@ -5428,8 +5428,6 @@ entries:
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
-  - family: ernie-5.5-flash-preview
-    aa_auto: false
   - family: qwen3.6-35b-a3b
     aa_auto: false
   - family: gemma-4-31b
@@ -5448,7 +5446,6 @@ entries:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
     - lgai/k-exaone-2.5
-    - baidu/ernie-5.5-flash-preview-free
     - creekside/qwen3.8-27b-creekside-free
     - creekside/qwen3.6-35b-a3b-creekside-free
     - creekside/gemma-4-31b-it-creekside-free
@@ -5678,6 +5675,7 @@ entries:
     - qwen/qwen3.8-max-free
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
+    - baidu/ernie-5.5-flash-preview-free
     no_family_ids:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free

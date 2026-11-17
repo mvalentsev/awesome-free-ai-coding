@@ -9294,7 +9294,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`\n\nERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -9355,34 +9355,6 @@
           "period": null
         },
         {
-          "unit": "tokens",
-          "period": "one-time",
-          "scope": "unspecified",
-          "label": "ERNIE 5.5 Flash promotion",
-          "condition": "Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted",
-          "condition_quote": "Model her istekte düşünür; düşünme kapatılamaz ve seviyesi ayarlanamaz.",
-          "source": "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free",
-          "quote": "Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır; girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem içinde yenilenmez.",
-          "model_ids": [
-            "baidu/ernie-5.5-flash-preview-free"
-          ],
-          "reviewed_on": "2026-11-13",
-          "amount": null
-        },
-        {
-          "unit": "requests",
-          "period": "day",
-          "scope": "unspecified",
-          "label": "ERNIE 5.5 Flash promotion",
-          "source": "https://llmtr.com/models/baidu/ernie-5.5-flash-preview-free",
-          "quote": "Ücretsiz kullanım bir token hakkı ve günlük istek hakkıyla sınırlıdır; girdi, çıktı ve önbellekten okunan girdi birlikte sayılır, token hakkı dönem içinde yenilenmez.",
-          "model_ids": [
-            "baidu/ernie-5.5-flash-preview-free"
-          ],
-          "reviewed_on": "2026-11-13",
-          "amount": null
-        },
-        {
           "unit": "usage",
           "scope": "unspecified",
           "label": "Creekside Free models",
@@ -9416,10 +9388,6 @@
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
-          "family": "ernie-5.5-flash-preview",
-          "aa_auto": false
-        },
-        {
           "family": "gemma-4-31b",
           "aa_auto": false
         },
@@ -9444,7 +9412,6 @@
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
           "lgai/k-exaone-2.5",
-          "baidu/ernie-5.5-flash-preview-free",
           "creekside/qwen3.8-27b-creekside-free",
           "creekside/qwen3.6-35b-a3b-creekside-free",
           "creekside/gemma-4-31b-it-creekside-free",
@@ -9724,7 +9691,8 @@
           "parallel/search-free",
           "qwen/qwen3.8-max-free",
           "agnes/agnes-3.0-flash",
-          "agnes/agnes-2.5-flash"
+          "agnes/agnes-2.5-flash",
+          "baidu/ernie-5.5-flash-preview-free"
         ],
         "no_family_ids": [
           "liquid/lfm3-1.7b-free",
@@ -9766,7 +9734,6 @@
           "nemotron-3-ultra",
           "qwen3.8-27b",
           "nemotron-3.5-super-vl-120b-a12b",
-          "ernie-5.5-flash-preview",
           "qwen3.6-35b-a3b",
           "gemma-4-31b",
           "muse-glimmer-30b"
@@ -9778,21 +9745,19 @@
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
           "lgai/k-exaone-2.5",
-          "baidu/ernie-5.5-flash-preview-free",
           "creekside/qwen3.8-27b-creekside-free",
           "creekside/qwen3.6-35b-a3b-creekside-free",
           "creekside/gemma-4-31b-it-creekside-free",
           "creekside/muse-glimmer-30b-creekside-free"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nERNIE 5.5 Flash promotion: One-time tokens allowance: amount not published; scope not published (Input, output and cached input count together; does not renew; thinking cannot be disabled or adjusted); for `baidu/ernie-5.5-flash-preview-free`\n\nERNIE 5.5 Flash promotion: Daily requests allowance: amount not published; scope not published; for `baidu/ernie-5.5-flash-preview-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
           "qwen3.8-27b": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "ernie-5.5-flash-preview": "until 2026-11-18",
           "qwen3.6-35b-a3b": "until 2026-11-24",
           "gemma-4-31b": "until 2026-11-24",
           "muse-glimmer-30b": "until 2026-11-24"
@@ -9810,7 +9775,6 @@
           "nemotron-3-ultra": "",
           "qwen3.8-27b": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "ernie-5.5-flash-preview": "until 2026-11-18",
           "qwen3.6-35b-a3b": "until 2026-11-24",
           "gemma-4-31b": "until 2026-11-24",
           "muse-glimmer-30b": "until 2026-11-24"
@@ -9822,7 +9786,6 @@
           "liquid/lfm3-1.7b-free": "free until 2026-12-30 23:59+03:00",
           "parallel/parallel-free": "free until 2027-01-04 23:59+03:00",
           "lgai/k-exaone-2.5": "",
-          "baidu/ernie-5.5-flash-preview-free": "free until 2026-11-18 00:00+03:00",
           "creekside/qwen3.8-27b-creekside-free": "free until 2026-11-24 00:00+03:00",
           "creekside/qwen3.6-35b-a3b-creekside-free": "free until 2026-11-24 00:00+03:00",
           "creekside/gemma-4-31b-it-creekside-free": "free until 2026-11-24 00:00+03:00",
@@ -21658,13 +21621,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
     },
     {
-      "family": "ernie-5.5-flash-preview",
-      "rows": [
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/"
-    },
-    {
       "family": "fantail",
       "rows": [
         "autohand-code"
@@ -22285,6 +22241,11 @@
       "family": "claude-haiku-5.5",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/"
+    },
+    {
+      "family": "ernie-5.5-flash-preview",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/"
     },
     {
       "family": "gemini-3.5-flash",

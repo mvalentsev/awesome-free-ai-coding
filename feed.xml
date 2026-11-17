@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-17T01:08:35Z</updated>
+  <updated>2026-11-17T21:44:36Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261117T214436Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-11-17T21:44:36Z</updated>
+    <summary type="text">dropped ernie-5.5-flash-preview · free models: nemotron-3-ultra, qwen3.8-27b, nemotron-3.5-super-vl-120b-a12b, qwen3.6-35b-a3b, gemma-4-31b, muse-glimmer-30b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261117T010835Z</id>
     <title>Free models changed: Kilo Code</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://www.sourcery.ai"/>
     <updated>2026-11-03T21:59:13Z</updated>
     <summary type="text">AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/summer-engine/20261103T215913Z</id>
-    <title>Added: Summer Engine</title>
-    <link rel="alternate" href="https://www.summerengine.com"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">Desktop game editor with bundled Free hosted AI messages that edit scripts and scenes in local projects</summary>
   </entry>
 </feed>
