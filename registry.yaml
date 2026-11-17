@@ -12608,25 +12608,28 @@ entries:
   - https://teapotrouter.com/en/pricing
   - https://teapotrouter.com/en/terms
   - https://teapotrouter.com/en/privacy
+  - https://github.com/mvalentsev/awesome-free-ai-coding/issues/57
   card_required: false
-  offering: Independent API gateway advertising signup trial credit before optional
+  offering: Independent API gateway with a one-time signup credit grant and optional
     prepaid use
-  limits: Email verification and an account key are required. The homepage advertises
-    signup trial credit; billing docs instead ask an administrator to add test credit,
-    so automatic issuance is unconfirmed. No numerical public grant or trial rate
-    is established. The vendor says balance does not expire; optional top-ups start
-    at $3. Models and channels depend on account access. Requests go to configured
-    upstream providers; usage, billing and audit records are retained for operational,
-    accounting, security and legal needs. Upstream retention and training rules are
-    not established.
+  limits: Email verification and an account key are required. No card, daily check-in
+    or tasks are required for the signup grant. Credits are the site's own units,
+    not a USD balance. No numerical public trial rate is established. The vendor says
+    balance does not expire; optional top-ups start at $3. Models and channels depend
+    on account access. Requests go to configured upstream providers; usage, billing
+    and audit records are retained for operational, accounting, security and legal
+    needs. Upstream retention and training rules are not established.
   quotas:
-  - unit: credits
+  - amount: 40000.0
+    unit: credits
     period: one-time
     scope: account
-    state: account-specific
-    label: Signup trial credit
-    source: https://teapotrouter.com
-    quote: Sign-up includes a small amount of trial credit
+    label: Signup trial credit (operator statement)
+    condition: Automatically after email verification
+    condition_quote: the signup grant is issued automatically on email verification,
+      no admin step
+    source: https://github.com/mvalentsev/awesome-free-ai-coding/issues/57
+    quote: A one-time grant of 40,000 site credits at account creation
     reviewed_on: '2026-11-17'
   free_part: sum
   models: []

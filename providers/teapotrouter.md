@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Teapot Router free tier: limits, free models, verified 2026-11-17'
-description: Independent API gateway advertising signup trial credit before optional prepaid use. Email verification and an account key are required. The homepage advertises signup trial credit; billing docs instead ask an administrator to add test credit, so automatic issuance is unconfirmed. No numerical…
+description: Independent API gateway with a one-time signup credit grant and optional prepaid use. Email verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is…
 permalink: /providers/teapotrouter/
 last_modified_at: 2026-11-17
 crumb: Teapot Router
@@ -15,7 +15,7 @@ crumb: Teapot Router
 
 ## What you get
 
-Independent API gateway advertising signup trial credit before optional prepaid use
+Independent API gateway with a one-time signup credit grant and optional prepaid use
 
 ## Free models
 
@@ -23,9 +23,9 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ## Limits, in the vendor's words
 
-Signup trial credit: One-time credits allowance: see your account for values per account
+Signup trial credit (operator statement): 40,000 credits once per account (Automatically after email verification)
 
-Email verification and an account key are required. The homepage advertises signup trial credit; billing docs instead ask an administrator to add test credit, so automatic issuance is unconfirmed. No numerical public grant or trial rate is established. The vendor says balance does not expire; optional top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
+Email verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is established. The vendor says balance does not expire; optional top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
 
 ## Where it is offered
 
@@ -59,6 +59,7 @@ curl -s https://api.teapotrouter.com/v1/chat/completions \
 - Source: <https://teapotrouter.com/en/pricing>
 - Source: <https://teapotrouter.com/en/terms>
 - Source: <https://teapotrouter.com/en/privacy>
+- Source: <https://github.com/mvalentsev/awesome-free-ai-coding/issues/57>
 
 ## History
 
