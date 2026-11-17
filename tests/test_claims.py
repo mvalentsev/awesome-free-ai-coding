@@ -1,7 +1,6 @@
-"""Hand-written files state figures the code applies — how long a verdict
-lasts, how often the run probes, how a row leaves. The pages print them from
-the constants; these files cannot, so each such sentence is held to its
-constant and the day the two part is a failed check."""
+"""Registered assertions follow their shared rules. Numerical values can be
+generated; missing or rewritten sentences and values that drift still fail
+validation."""
 from pathlib import Path
 
 import pytest

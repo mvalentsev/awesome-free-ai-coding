@@ -15,12 +15,24 @@ def no_unmocked_profile_http(monkeypatch):
 
 
 @pytest.fixture(scope='session')
-def registry_entry():
-    """Read the committed vendor fixtures once; each caller gets an isolated row."""
+def _registry_rows():
+    """Parse the committed registry once; expose it only through copying fixtures."""
     from freetier_radar.models import load_registry
 
-    rows = {entry.id: entry for entry in load_registry(Path(__file__).resolve().parents[1] / 'registry.yaml')}
+    return tuple(load_registry(Path(__file__).resolve().parents[1] / 'registry.yaml'))
+
+
+@pytest.fixture(scope='session')
+def registry_entry(_registry_rows):
+    """Each caller gets an isolated vendor row."""
+    rows = {entry.id: entry for entry in _registry_rows}
     return lambda ident: rows[ident].model_copy(deep=True)
+
+
+@pytest.fixture
+def committed_registry(_registry_rows):
+    """Each whole-registry check gets independent rows from the same parsed input."""
+    return [entry.model_copy(deep=True) for entry in _registry_rows]
 
 
 @pytest.fixture

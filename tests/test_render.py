@@ -31,10 +31,9 @@ def make(**kw) -> Entry:
     return Entry.model_validate(d)
 
 
-def test_every_provider_uses_the_shared_section_contract():
-    from freetier_radar.models import load_registry
+def test_every_provider_uses_the_shared_section_contract(committed_registry):
     from freetier_radar.render import build_provider_page
-    entries = load_registry(Path(__file__).resolve().parents[1] / "registry.yaml")
+    entries = committed_registry
     today = max(e.last_verified for e in entries)
     for e in entries:
         if e.duplicate_of:

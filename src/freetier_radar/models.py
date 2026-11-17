@@ -747,10 +747,14 @@ class FreeAccess(BaseModel):
         return self
 
 
+# Maximum characters in stored source quotations and catalog notes.
+SOURCE_TEXT_LIMIT = 1200
+
+
 class ProseModelAccess(FreeAccess):
     """Free model conditions on a page without a callable API or client ID."""
-    quote: str = Field(min_length=12, max_length=1200)
-    deadline_quote: str | None = Field(default=None, min_length=12, max_length=1200,
+    quote: str = Field(min_length=12, max_length=SOURCE_TEXT_LIMIT)
+    deadline_quote: str | None = Field(default=None, min_length=12, max_length=SOURCE_TEXT_LIMIT,
                                        exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
@@ -766,7 +770,7 @@ class RemainingFree(BaseModel):
     """A separately sourced free mode that survives the last model promotion."""
     model_config = ConfigDict(extra="forbid")
     source: str
-    quote: str = Field(min_length=12, max_length=1200)
+    quote: str = Field(min_length=12, max_length=SOURCE_TEXT_LIMIT)
     free_part: Literal[FreePart.SUM, FreePart.UNNAMED]
     access: FreeAccess | None = None
 
@@ -800,9 +804,9 @@ class CreditBudget(BaseModel):
     model_config = ConfigDict(extra="forbid")
     id: str = Field(pattern=r"^[a-z0-9-]+$")
     amount: int | None = Field(default=None, gt=0, strict=True)
-    quote: str | None = Field(default=None, min_length=3, max_length=1200)
+    quote: str | None = Field(default=None, min_length=3, max_length=SOURCE_TEXT_LIMIT)
     amount_source: str | None = Field(default=None, exclude_if=lambda v: v is None)
-    amount_quote: str | None = Field(default=None, min_length=3, max_length=1200,
+    amount_quote: str | None = Field(default=None, min_length=3, max_length=SOURCE_TEXT_LIMIT,
                                      exclude_if=lambda v: v is None)
     scope: Literal["countries", "else", "vpn"] = Field(
         default="countries", exclude_if=lambda v: v == "countries")
@@ -861,8 +865,8 @@ class SessionEligibility(BaseModel):
 class CatalogCondition(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["free-session", "unmetered", "paid", "specialist", "wallet"]
-    quote: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
-    note: str | None = Field(default=None, min_length=3, max_length=1200, exclude_if=lambda v: v is None)
+    quote: str | None = Field(default=None, min_length=3, max_length=SOURCE_TEXT_LIMIT, exclude_if=lambda v: v is None)
+    note: str | None = Field(default=None, min_length=3, max_length=SOURCE_TEXT_LIMIT, exclude_if=lambda v: v is None)
     reviewed_on: date | None = Field(default=None, exclude_if=lambda v: v is None)
     source: str | None = None
     eligibility: SessionEligibility | None = Field(default=None, exclude_if=lambda v: v is None)
@@ -994,8 +998,8 @@ class PageCatalog(BaseModel):
             raise ValueError("example_budget must name a budget")
         if any(m.hours is not None for m in self.models) and next(b for b in self.budgets if b.id == self.example_budget).amount is None:
             raise ValueError('model hour examples need a published example budget amount')
-        if any(not note.strip() or len(note) > 1200 for note in self.notes):
-            raise ValueError("catalog notes must be nonempty sourced sentences of at most 1200 characters")
+        if any(not note.strip() or len(note) > SOURCE_TEXT_LIMIT for note in self.notes):
+            raise ValueError(f"catalog notes must be nonempty sourced sentences of at most {SOURCE_TEXT_LIMIT} characters")
         used = {m.condition for m in self.models if m.condition is not None}
         if used != self.conditions.keys():
             raise ValueError("every catalog condition must be defined and used")
@@ -1073,7 +1077,7 @@ class ModelBinding(BaseModel):
     model_config = ConfigDict(extra="forbid")
     family: str
     source: str
-    quote: str = Field(min_length=3, max_length=1200)
+    quote: str = Field(min_length=3, max_length=SOURCE_TEXT_LIMIT)
     read: Literal["page", "catalog"] = Field(default="page", exclude_if=lambda v: v == "page")
     target: str | None = Field(default=None, exclude_if=lambda v: v is None)
 

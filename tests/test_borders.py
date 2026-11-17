@@ -2,7 +2,6 @@
 words — and everything read off it: the names on a vendor's page, the share of
 developers it leaves out, the line the pages print and the run's re-read."""
 from datetime import date
-from pathlib import Path
 
 import httpx
 import pytest
@@ -409,16 +408,13 @@ def test_a_border_read_for_its_quote_has_one():
 
 # ---- the registry --------------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parent.parent
-
-
-def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows():
+def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows(committed_registry):
     """CONTRIBUTING: the countries under comprehensive US embargo "set no row
     apart", since a sanctions clause covers them unnamed. A country outside
     that set which most live rows leave out in their own words would be one
     the rule has to name too, and this fails when one appears."""
-    from freetier_radar.models import is_archived, load_registry
-    live = [e for e in load_registry(ROOT / "registry.yaml") if not is_archived(e, TODAY)]
+    from freetier_radar.models import is_archived
+    live = [e for e in committed_registry if not is_archived(e, TODAY)]
     counts: dict[str, int] = {}
     for e in live:
         b = e.border
