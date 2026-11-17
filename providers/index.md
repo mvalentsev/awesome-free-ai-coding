@@ -37,8 +37,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [CodeRabbit](https://mvalentsev.github.io/awesome-free-ai-coding/providers/coderabbit/) — verified 2026-11-16
 - [cubic](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cubic/) — verified 2026-11-16
 - [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-11-16
-- [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-16
-- [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-16
+- [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-17
+- [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-17
 - [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) — verified 2026-11-16
 
 ## 🔌 LLM APIs with free tier
@@ -66,7 +66,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) — verified 2026-11-16 · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
 - [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) — verified 2026-11-16
 - [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) — verified 2026-11-16 · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)
-- [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) — verified 2026-11-16
+- [LLM.kiwi](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm-kiwi/) — verified 2026-11-17
 - [MIAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/miapi/) — verified 2026-11-16
 - [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) — verified 2026-11-16 · [`apodex-1.1-mini`](https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/)
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) 💳 — verified 2026-11-16
@@ -92,7 +92,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-11-16
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-12
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-11-16
-- [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-12
+- [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-17
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-11-16
 - [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) — verified 2026-11-16
 - [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) — verified 2026-11-16
@@ -107,8 +107,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/) — verified 2026-11-17
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-11-09 · [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-16
-- [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-16
-- [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-16
+- [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-17
+- [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-17
 
 ## 🧭 Aggregators (one key, many providers)
 

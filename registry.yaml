@@ -11347,9 +11347,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-17'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 88
 - id: sourcery
   name: Sourcery
@@ -11401,9 +11401,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-17'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 89
 - id: deepsource
   name: DeepSource
@@ -11455,9 +11455,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-17'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 101
 - id: liquid-inference
   name: Liquid Inference
@@ -11518,9 +11518,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-17'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 109
 - id: llm-kiwi
   name: LLM.kiwi
@@ -11585,9 +11585,9 @@ entries:
     catalog: https://api.llm.kiwi/v1/models
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-17'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 96
 - id: summer-engine
   name: Summer Engine
@@ -11640,9 +11640,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-03'
-  last_verified: '2026-11-12'
-  probe_failures: 1
-  provisional: true
+  last_verified: '2026-11-17'
+  probe_failures: 0
+  provisional: false
   rank: 87
 - id: codacy
   name: Codacy
