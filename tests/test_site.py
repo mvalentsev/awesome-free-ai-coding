@@ -285,17 +285,14 @@ def test_a_card_cell_breaks_a_token_with_no_space_in_it():
 def _render_everything(entries, tmp_path, watchlist=None, today=TODAY) -> dict[str, str]:
     """Every file the render writes, by path, rendered from one registry the way
     `freetier-render` renders the repository."""
-    from freetier_radar.render import CONFIGS_README, render_artifacts, render_configs_readme
+    from freetier_radar.render import render_all
     tmp_path.mkdir(parents=True, exist_ok=True)
     registry = tmp_path / "registry.yaml"
     save_registry(registry, entries)
     if watchlist is not None:
         (tmp_path / "watchlist.yaml").write_text(yaml.safe_dump({"watched": watchlist}),
                                                  encoding="utf-8")
-    render_readme(registry, TEMPLATES, tmp_path / "README.md", today=today)
-    render_site(registry, TEMPLATES, tmp_path / SITE_PAGE, today=today)
-    render_configs_readme(registry, TEMPLATES, tmp_path / CONFIGS_README, today=today)
-    render_artifacts(registry, tmp_path, today=today)
+    render_all(registry, TEMPLATES, tmp_path, today=today)
     inputs = {registry, tmp_path / "watchlist.yaml"}
     return {p.relative_to(tmp_path).as_posix(): p.read_text(encoding="utf-8")
             for p in tmp_path.rglob("*") if p.is_file() and p not in inputs}

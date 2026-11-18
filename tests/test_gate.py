@@ -419,6 +419,17 @@ def test_a_snapshot_runs_without_the_git_variables_a_hook_is_handed(tmp_path, mo
     assert _run(tmp_path, "-c", leaked) == ""
 
 
+def test_the_gate_refuses_a_snapshot_check_that_exits_without_output(tmp_path):
+    from freetier_radar.gate import _run
+
+    steps = [("quiet check", lambda snap: _run(snap, "-c", "raise SystemExit(17)"))]
+    repo = _repo(tmp_path)
+    assert pre_commit(repo, steps=steps) == [
+        "quiet check failed on what is about to be committed:\n"
+        "Process exited with status 17 without output."
+    ]
+
+
 # ---- a page the site published
 
 def test_a_page_the_site_published_is_never_deleted(tmp_path):

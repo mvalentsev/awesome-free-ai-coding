@@ -43,6 +43,10 @@ def test_generated_client_command_changes_trigger_the_real_client_conformance_ru
 def test_opencode_output_budget_checks_both_wire_fields(fields, valid):
     records = [{"model": "alpha", "tools": True, **fields}]
     assert check_opencode_output_budget(records, "alpha", 8000)["passed"] is valid
+
+
+def test_opencode_output_budget_needs_a_record_for_the_requested_model():
+    records = [{"model": "alpha", "tools": True, "max_completion_tokens": 8000}]
     assert not check_opencode_output_budget(records, "other-model", 8000)["passed"]
     assert not check_opencode_output_budget([], "alpha", 8000)["passed"]
 

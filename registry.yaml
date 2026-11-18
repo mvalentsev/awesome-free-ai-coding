@@ -3202,16 +3202,9 @@ entries:
     scope: account
     state: unmetered
     label: Tab
-    source: https://antigravity.google/pricing
+    source: https://antigravity.google/docs/plans
     quote: Unlimited Tab completions
-    reviewed_on: '2026-11-17'
-  - unit: requests
-    scope: account
-    state: unmetered
-    label: Command
-    source: https://antigravity.google/pricing
-    quote: Unlimited Command requests
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-18'
   free_part: models
   models:
   - family: gemini-3.8-flash
@@ -3225,11 +3218,6 @@ entries:
   - family: gpt-oss-120b
     table_name: GPT-OSS-120b*
     aa_model: gpt-oss-120b
-  newcomers:
-  - family: gemini-4-hydrogen
-    'on': '2026-11-15'
-    source: https://antigravity.google/docs/models
-    table_name: Gemini 4 Hydrogen
   data_use:
     trains: opt-out
     quote: We use Interactions to evaluate, develop, and improve Google and Alphabet

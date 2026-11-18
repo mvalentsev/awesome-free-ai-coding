@@ -15,6 +15,7 @@ import base64
 import hashlib
 import json
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -30,7 +31,7 @@ from .layout import MAP, Kind
 from .models import ApiInfo, ArchiveReview, CatalogCondition, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, PageModel, Probe, SessionEligibility, utc_today
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
-                     CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
+                     CODEX_LITELLM_PROFILE, Entry, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
                      load_registry, probe_frequency)
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
@@ -53,25 +54,42 @@ from .review_leads import LEAD_VERDICTS
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims", "render_claims"]
 
 _DURATION = r"\w+ weeks|a week|\d+ days?"
+_FREQUENCY = "|".join(map(re.escape, TIMES_A_WEEK.values()))
 
 @dataclass(frozen=True)
-class Claim:
+class Claim[Input]:
     """A sentence in a hand-written file, found by `pattern`, whose groups — or
     what `read` takes out of the match — state the values `truth` returns."""
     file: str
     pattern: str
-    truth: Callable[[Path], tuple[str, ...]]
+    truth: Callable[[Input], tuple[str, ...]]
     source: str
     read: Callable[[re.Match], tuple[str, ...]] = re.Match.groups
     generated: bool = False
 
 
-def _no_row_sets(field: str) -> Callable[[Path], tuple[str, ...]]:
+class RegistryClaim(Claim[list[Entry]]):
+    """A claim checked against the registry snapshot used by validation."""
+
+
+class _ClaimInputs:
+    def __init__(self, root: Path, entries: list[Entry] | None = None):
+        self.root = root
+        self.entries = entries
+
+    def truth(self, claim: Claim[Path] | RegistryClaim) -> tuple[str, ...]:
+        if not isinstance(claim, RegistryClaim):
+            return claim.truth(self.root)
+        if self.entries is None:
+            self.entries = load_registry(self.root / "registry.yaml")
+        return claim.truth(self.entries)
+
+
+def _no_row_sets(field: str) -> Callable[[list[Entry]], tuple[str, ...]]:
     """The truth of "No row sets the field today": "No" while no row sets
     `field`, else the ids of the rows that do."""
-    def truth(root: Path) -> tuple[str, ...]:
-        rows = [e.id for e in load_registry(root / "registry.yaml")
-                if e.api and getattr(e.api, field)]
+    def truth(entries: list[Entry]) -> tuple[str, ...]:
+        rows = [e.id for e in entries if e.api and getattr(e.api, field)]
         return ("No",) if not rows else (", ".join(rows),)
     return truth
 
@@ -210,9 +228,9 @@ def _unpriced_catalog_tier(root: Path) -> tuple[str, ...]:
     return ()
 
 
-def _page_catalog_views(root: Path) -> tuple[str, ...]:
+def _page_catalog_views(entries: list[Entry]) -> tuple[str, ...]:
     from .models import _row_payload
-    rows = [e for e in load_registry(root / "registry.yaml") if e.page_catalog]
+    rows = [e for e in entries if e.page_catalog]
     if rows and all(e.models == e.page_catalog.published()
                     and e.newcomers == e.page_catalog.waiting()
                     and not {"models", "newcomers"} & _row_payload(e).keys() for e in rows):
@@ -403,7 +421,10 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
             end.tzname(), end.strftime('%H:%M'))
 
 
-CLAIMS: tuple[Claim, ...] = (
+CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
+    Claim("CONTRIBUTING.md", rf"scheduled run does this ({_FREQUENCY})\b",
+          lambda root: (probe_frequency(PROBE_WEEKDAYS),),
+          "models.PROBE_WEEKDAYS", generated=True),
     Claim("assets/README.md", r"`(anchor\.min\.js)` \| Pinned heading permalink library used by the Markdown page layout; its license is in `(anchorjs-LICENSE\.txt)`",
           _local_heading_links, "the layout's local heading library, SRI checksum and bundled license"),
     Claim("README.md", r"(\d+) consecutive failed probes, (\d+) days without a pass",
@@ -639,8 +660,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: tuple(field for field in ('amount','period')
                              if type(None) in get_args(UsageQuota.model_fields[field].annotation)),
           "quotas.UsageQuota; nullable-window regression in tests/test_quotas.py"),
-    Claim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
-          _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
+    RegistryClaim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
+                  _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"saved selection can set `(in_picker: false)`",
           lambda root: ('in_picker: false',) if PageModel.model_fields['in_picker'].default is True else (),
           "models.PageCatalog source/identity validation; prober.unevidenced_families and page_catalog.check_page_catalog; HTTP saved-access and withdrawal controls in tests/test_page_catalog.py"),
@@ -749,8 +770,8 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"An unpriced catalog may use `tier: (free)`",
           _unpriced_catalog_tier,
           "prober._is_free; current HTTP and stale-price controls in tests/test_prober.py"),
-    Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
-          _no_row_sets("session_header"), "the rows that set api.session_header"),
+    RegistryClaim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
+                  _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",
           lambda root: (_series(sorted(country_name(c) for c in SHARED)),), "borders.SHARED",
           read=lambda found: (" ".join(found.group(1).split()),)),
@@ -773,7 +794,7 @@ CLAIMS: tuple[Claim, ...] = (
 
 # The hand-written files that say how often the list is checked.
 SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/social-preview.svg")
-_FREQUENCY = re.compile(r"\b(?:" + "|".join(map(re.escape, TIMES_A_WEEK.values())) + r")\b")
+_FREQUENCY_PHRASE = re.compile(rf"\b(?:{_FREQUENCY})\b")
 
 
 def render_claims(text: str, file: str, root: Path) -> str:
@@ -782,13 +803,14 @@ def render_claims(text: str, file: str, root: Path) -> str:
     Missing/reworded assertions still fail check_claims; this writer cannot
     invent prose, rewrite external quotes or renew dated vendor evidence.
     """
+    inputs = _ClaimInputs(root)
     for claim in CLAIMS:
         if claim.file != file or not claim.generated:
             continue
         matches = list(re.finditer(claim.pattern, text))
         if not matches:
             continue
-        values = claim.truth(root)
+        values = inputs.truth(claim)
         if claim.read is not re.Match.groups or any(len(values) != len(m.groups()) for m in matches):
             raise ValueError(f"{claim.source}: generated claims need one value per plain group")
         for found in reversed(matches):
@@ -802,7 +824,7 @@ def _line(text: str, at: int) -> int:
     return text.count("\n", 0, at) + 1
 
 
-def _cron_weekdays(root: Path) -> tuple[int, ...] | None:
+def _cron_weekdays(root: Path) -> tuple[int, ...]:
     workflow = yaml.safe_load((root / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     # PyYAML reads a bare `on:` as the boolean true.
     trigger = workflow.get("on", workflow.get(True)) or {}
@@ -813,11 +835,13 @@ def _cron_weekdays(root: Path) -> tuple[int, ...] | None:
             days |= set(range(7))
         else:
             days |= {int(d) % 7 for d in field.split(",")}
-    return tuple(sorted(days)) or None
+    return tuple(sorted(days))
 
 
-def check_claims(root: Path, claims: tuple[Claim, ...] = CLAIMS,
-                 scheduled: tuple[str, ...] = SCHEDULED) -> list[str]:
+def check_claims(root: Path, claims: Sequence[Claim[Path] | RegistryClaim] = CLAIMS,
+                 scheduled: tuple[str, ...] = SCHEDULED, *,
+                 entries: list[Entry] | None = None) -> list[str]:
+    inputs = _ClaimInputs(root, entries)
     problems = []
     files = {file: (root / file).read_text(encoding="utf-8")
              for file in {c.file for c in claims} | set(scheduled)}
@@ -829,7 +853,7 @@ def check_claims(root: Path, claims: tuple[Claim, ...] = CLAIMS,
                             f"(claims.CLAIMS: `{claim.pattern}`) — point the claim at the sentence "
                             "that states it now")
             continue
-        truth = claim.truth(root)
+        truth = inputs.truth(claim)
         for found in matches:
             if claim.read(found) != truth:
                 said = " ".join(found.group(0).split())
@@ -839,12 +863,14 @@ def check_claims(root: Path, claims: tuple[Claim, ...] = CLAIMS,
     expected = probe_frequency(PROBE_WEEKDAYS)
     for name in scheduled:
         text = files[name]
-        for m in _FREQUENCY.finditer(text):
+        for m in _FREQUENCY_PHRASE.finditer(text):
             if m.group(0) != expected:
                 problems.append(f"{name}:{_line(text, m.start())} says `{m.group(0)}` and the "
                                 f"scheduled run probes {expected} (models.PROBE_WEEKDAYS)")
     cron = _cron_weekdays(root)
-    if cron is not None and set(cron) != set(PROBE_WEEKDAYS):
+    if not cron:
+        problems.append(".github/workflows/update.yml has no scheduled verification")
+    elif set(cron) != set(PROBE_WEEKDAYS):
         problems.append(
             f".github/workflows/update.yml runs on weekdays {','.join(map(str, cron))} and "
             f"models.PROBE_WEEKDAYS says {','.join(map(str, PROBE_WEEKDAYS))} — the pages would "

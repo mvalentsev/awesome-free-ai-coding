@@ -6,8 +6,9 @@ from freetier_radar.validate import check_repository
 def repository(tmp_path, monkeypatch, readme, site):
     # Isolate presentation at the real repository-check boundary.
     monkeypatch.setattr('freetier_radar.layout.check_layout', lambda root: [])
-    monkeypatch.setattr('freetier_radar.claims.check_claims', lambda root: [])
-    monkeypatch.setattr('freetier_radar.validate.registry_form_problems', lambda root: [])
+    monkeypatch.setattr('freetier_radar.validate.load_registry', lambda path: [])
+    monkeypatch.setattr('freetier_radar.claims.check_claims', lambda root, *, entries: [])
+    monkeypatch.setattr('freetier_radar.validate.registry_form_problems', lambda root, *, entries: [])
     from freetier_radar.render import MAP_BEGIN, MAP_END
     (tmp_path / 'CONTRIBUTING.md').write_text(MAP_BEGIN + '\n' + MAP_END)
     (tmp_path / 'README.md').write_text('<div align="center">\n' + readme + '\n</div>')

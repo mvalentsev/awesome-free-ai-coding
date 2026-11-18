@@ -598,9 +598,7 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     configs and the provider pages advertising what the registry stopped
     saying, until the next scheduled run renders."""
     from freetier_radar.models import save_registry
-    from freetier_radar.render import (
-        CONFIGS_README, SITE_PAGE, check_rendered, render_configs_readme, render_site,
-    )
+    from freetier_radar.render import CONFIGS_README, SITE_PAGE, check_rendered, render_all
 
     from freetier_radar.history import record_changes
 
@@ -608,28 +606,27 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     save_registry(reg, [api_entry(id="x", name="X"), make(id="gone", name="Gone")])
     record_changes(reg, tmp_path / "history.jsonl", TODAY,
                    datetime(2026, 7, 19, 9, 30, tzinfo=timezone.utc))
-    render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)
-    render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
-    render_artifacts(reg, tmp_path, today=TODAY)
-    assert check_rendered(reg, Path("templates"), tmp_path) == []
+    render_all(reg, Path("templates"), tmp_path, today=TODAY)
 
     # The date the artifacts carry is what the check renders against, so a
     # repository nobody has touched does not go red on the calendar alone.
     assert check_rendered(reg, Path("templates"), tmp_path, today=TODAY + timedelta(days=30)) == []
+    # A self-consistent set of artifacts dated tomorrow cannot set the check's clock.
+    assert "index.json" in check_rendered(reg, Path("templates"), tmp_path,
+                                          today=TODAY - timedelta(days=1))
 
     # A row renamed in the registry and nowhere else.
     save_registry(reg, [api_entry(id="x", name="Renamed"), make(id="gone", name="Gone")])
+    # A page no row renders any more is still served: check both directions
+    # of the file comparison in the same run.
+    (tmp_path / "providers" / "stray.md").write_text("# Stray\n", encoding="utf-8")
     stale = check_rendered(reg, Path("templates"), tmp_path)
     assert "README.md" in stale and "index.json" in stale and "providers/x.md" in stale
     # The site's front page is generated and committed like the rest of them,
     # and so is the connection table beside the configs.
     assert SITE_PAGE in stale and CONFIGS_README in stale
 
-    # A page no row renders any more is still served: the check has to see a
-    # file the render no longer makes, not only the ones whose bytes moved.
-    (tmp_path / "providers" / "stray.md").write_text("# Stray\n", encoding="utf-8")
-    assert "providers/stray.md" in check_rendered(reg, Path("templates"), tmp_path)
+    assert "providers/stray.md" in stale
 
 
 def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):

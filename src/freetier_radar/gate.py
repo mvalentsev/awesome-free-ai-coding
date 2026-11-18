@@ -273,7 +273,11 @@ def _run(snap: Path, *argv: str) -> str:
            "TZ": "UTC", "PYTHONPATH": str(snap / "src"), "PYTHONDONTWRITEBYTECODE": "1"}
     done = subprocess.run([sys.executable, *argv], cwd=snap, env=env, capture_output=True,
                           text=True)
-    return "" if done.returncode == 0 else (done.stdout + done.stderr).strip()
+    if done.returncode == 0:
+        return ""
+    return (done.stdout + done.stderr).strip() or (
+        f"Process exited with status {done.returncode} without output."
+    )
 
 
 def _command(module: str, *args: str) -> tuple[str, ...]:

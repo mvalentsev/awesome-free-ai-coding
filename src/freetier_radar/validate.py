@@ -77,12 +77,14 @@ def _source_key(url: str) -> str:
     return f"{host}{parsed.path.rstrip('/')}".lower()
 
 
-def check(root: Path, today: date | None = None) -> list[str]:
+def check(root: Path, today: date | None = None, *,
+          entries: list[Entry] | None = None) -> list[str]:
     """Every problem found, as human-readable lines. Empty means clean."""
     today = today or utc_today()
     problems: list[str] = []
 
-    entries: list[Entry] = load_registry(root / "registry.yaml")
+    if entries is None:
+        entries = load_registry(root / "registry.yaml")
     blocklist = load_blocklist(root / "blocklist.yaml")
     dismissed = load_dismissed(root / "dismissed.yaml")
     watchlist = load_watchlist(root / "watchlist.yaml")
@@ -537,22 +539,24 @@ def check(root: Path, today: date | None = None) -> list[str]:
     return problems
 
 
-def registry_form_problems(root: Path) -> list[str]:
+def registry_form_problems(root: Path, *, entries: list[Entry] | None = None) -> list[str]:
     """registry.yaml is rewritten whole by every command that saves it — the
     run, the scout, freetier-tiers — so it is kept in the form save_registry
     writes, and a hand edit in another layout is the next run's diff of every
     line it re-wrapped."""
     path = root / "registry.yaml"
+    if entries is None:
+        entries = load_registry(path)
     with tempfile.TemporaryDirectory() as tmp:
         again = Path(tmp) / "registry.yaml"
-        save_registry(again, load_registry(path))
+        save_registry(again, entries)
         if again.read_bytes() == path.read_bytes():
             return []
     return ["registry: registry.yaml is not in the form save_registry writes — run "
             "`uv run freetier-check --normalize` and commit the result"]
 
 
-def check_repository(root: Path) -> list[str]:
+def check_repository(root: Path, *, entries: list[Entry] | None = None) -> list[str]:
     """The rules about the repository as a whole, beyond the curated files: the
     map (layout.MAP), what the hand-written files state (claims.CLAIMS), the
     map's own section in CONTRIBUTING.md and the registry's form."""
@@ -561,14 +565,16 @@ def check_repository(root: Path) -> list[str]:
     from .layout import check_layout
     from .presentation import check_presentation
     from .render import CONTRIBUTING, MAP_BEGIN, MAP_END
+    if entries is None:
+        entries = load_registry(root / "registry.yaml")
     problems = [f"layout: {p}" for p in check_layout(root)]
-    problems += [f"claims: {p}" for p in check_claims(root)]
+    problems += [f"claims: {p}" for p in check_claims(root, entries=entries)]
     problems += [f"presentation: {p}" for p in check_presentation(root)]
     text = (root / CONTRIBUTING).read_text(encoding="utf-8")
     if MAP_BEGIN not in text or MAP_END not in text:
         problems.append(f"layout: {CONTRIBUTING} has lost the lines the map section is printed "
                         "between — put them back and run `uv run freetier-render`")
-    return problems + registry_form_problems(root)
+    return problems + registry_form_problems(root, entries=entries)
 
 
 def main() -> None:
@@ -587,7 +593,8 @@ def main() -> None:
         save_registry(path, load_registry(path))
         print(f"rewrote {path} in the form save_registry writes")
         return
-    problems = check(args.root) + check_repository(args.root)
+    entries = load_registry(args.root / "registry.yaml")
+    problems = check(args.root, entries=entries) + check_repository(args.root, entries=entries)
     for p in problems:
         print(f"✗ {p}")
     if problems:

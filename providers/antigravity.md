@@ -3,7 +3,7 @@ layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-11-16'
 description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gpt-oss-120b, claude-opus-4.6, claude-sonnet-4.6, gemini-3.8-flash. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: Google Antigravity
 model_sort: true
 ---
@@ -30,8 +30,6 @@ Claude and GPT agent allowance: Weekly usage allowance: amount not published per
 
 Tab: Unmetered completions per account
 
-Command: Unmetered requests per account
-
 Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice "Will be removed on November 18, 2026." No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 ## Where it is offered
@@ -45,7 +43,7 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Google Antigravity's own model list: `GPT-OSS-120b*`, `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`, `Gemini 4 Hydrogen`
+- In Google Antigravity's own model list: `GPT-OSS-120b*`, `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`
 
 ## Evidence
 

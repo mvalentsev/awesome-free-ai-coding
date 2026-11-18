@@ -3441,16 +3441,15 @@ def render_repository(registry_path: Path, template_dir: Path, root: Path,
 
 
 def _generated_on(root: Path, today: date) -> date:
-    """The day the committed artifacts were rendered on, read back off them.
+    """Use the index's render day, capped at the current UTC day.
 
-    Rendering stamps the day into index.json, the feed and every provider
-    page's footer, so a re-render on a later day would differ on the date alone.
-    The check renders on the day the artifacts carry, and asks whether the
-    registry as it stands renders to what that day's render produced.
+    The check allows older artifacts to retain their render day so elapsed
+    time alone does not make them stale. An index carrying a future render day
+    must differ from a render on any valid day.
     """
     try:
         stamped = json.loads((root / "index.json").read_text(encoding="utf-8"))["generated"]
-        return date.fromisoformat(stamped)
+        return min(date.fromisoformat(stamped), today)
     except (OSError, ValueError, KeyError, TypeError):
         return today
 

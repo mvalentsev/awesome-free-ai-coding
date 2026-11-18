@@ -110,6 +110,26 @@ def test_the_cron_and_the_schedule_the_pages_state_are_one(tmp_path):
         "1,4 — the pages would say twice a week"]
 
 
+def test_a_manual_only_update_workflow_breaks_the_scheduled_claim(tmp_path):
+    root = _root(tmp_path, '')
+    (root / '.github/workflows/update.yml').write_text('on:\n  workflow_dispatch:\n')
+    assert check_claims(root, (), scheduled=()) == [
+        '.github/workflows/update.yml has no scheduled verification'
+    ]
+
+
+def test_the_contribution_guide_generates_the_verification_frequency(tmp_path, monkeypatch):
+    from freetier_radar import claims
+    from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
+
+    root = _root(tmp_path, 'The scheduled run does this twice a week.\n'
+                          f'{MAP_BEGIN}\nold map\n{MAP_END}\n', cron='23 5 * * *')
+    monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', tuple(range(7)))
+    guide = root / 'CONTRIBUTING.md'
+    rendered = render_contributing(guide, guide)
+    assert rendered.startswith('The scheduled run does this every day.\n')
+
+
 def test_every_claim_names_where_its_truth_lives():
     for claim in CLAIMS:
         assert claim.source and claim.file, claim.pattern

@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-120b free: 4 providers, limits and ids, provider probes 2026-11-16'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-120b/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-18
 crumb: gpt-oss-120b
 ---
 
@@ -51,8 +51,6 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 Claude and GPT agent allowance: Weekly usage allowance: amount not published per account
 
 Tab: Unmetered completions per account
-
-Command: Unmetered requests per account
 
 Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice "Will be removed on November 18, 2026." No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
