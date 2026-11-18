@@ -1638,20 +1638,6 @@ watched:
       A model priced at zero on the promotions page again, or a grant to
       anyone who signs up, without an invitation.
 
-  - domains: [developer.amd.com.cn]
-    name: AMD Token Factory (China developer site)
-    checked_on: '2026-09-05'
-    reason: >-
-      A Chinese list credits it with a daily $10-equivalent quota on
-      AMD-hosted open models, OpenAI-compatible, no card, run with ZZ.ai and
-      limited-time. The page at /radeon/tokenfactory is client-rendered: the
-      readable part (2026-09-05) is a help notice for the "AMD AI 开发者计划",
-      the Developer Cloud and a joint ModelScope incentive program, with no
-      quota, model, endpoint or sign-up term in it. The domain is AMD's China
-      developer site.
-    reopen_if: >-
-      A server-rendered page with the quota and the sign-up terms.
-
   - domains: [bigmodel.cn]
     name: Zhipu BigModel (China console of Z.ai)
     checked_on: '2026-09-05'

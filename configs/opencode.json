@@ -879,6 +879,43 @@
         }
       }
     },
+    "amd-token-factory": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "AMD Radeon Cloud Token Factory",
+      "options": {
+        "baseURL": "https://developer.amd.com.cn/radeon/api/v1",
+        "apiKey": "{env:AMD_TOKEN_FACTORY_API_KEY}"
+      },
+      "models": {
+        "MiMo-V2.6-Flash": {
+          "name": "MiMo-V2.6-Flash"
+        },
+        "DeepSeek-V4.1-Flash": {
+          "name": "DeepSeek-V4.1-Flash"
+        },
+        "DeepSeek-V4-Flash": {
+          "name": "DeepSeek-V4-Flash"
+        },
+        "GLM-5.3-Flash": {
+          "name": "GLM-5.3-Flash"
+        },
+        "Qwen3.8-27B": {
+          "name": "Qwen3.8-27B"
+        },
+        "Gemma-4-31B-IT": {
+          "name": "Gemma-4-31B-IT"
+        },
+        "MiniCPM-V-4.7-35B-A3B": {
+          "name": "MiniCPM-V-4.7-35B-A3B"
+        },
+        "MiniCPM-V-4.7-1B": {
+          "name": "MiniCPM-V-4.7-1B"
+        },
+        "MiniCPM5-2B": {
+          "name": "MiniCPM5-2B"
+        }
+      }
+    },
     "cohere": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Cohere (trial keys)",

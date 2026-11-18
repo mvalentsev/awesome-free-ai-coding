@@ -603,15 +603,16 @@ def test_the_provider_index_and_the_checked_page_are_lists_a_phone_can_read():
     """A table with a run of models in one cell, or of paragraph-long reasons,
     stands wider than a phone, so each is a list: the index a list per section,
     each row's models as its README line names them."""
-    from freetier_radar.render import build_checked_page, build_providers_index
+    from freetier_radar.render import README_MODELS, build_checked_page, build_providers_index
     from test_render import watched
     entries = [make(id="a", name="A", category="agent-cli",
                     models=[{"family": f"m-{i}"} for i in range(1, 11)])]
     index = build_providers_index(entries, TODAY)
     assert "| Provider |" not in index
     assert "## 🤖 Coding agents & CLIs" in index
-    assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19\u00a0· `m-1`\u00a0· `m-2`\u00a0· `m-3`\u00a0· "
-            f"`m-4`\u00a0· `m-5`\u00a0· `m-6`\u00a0· `m-7`\u00a0· `m-8`\u00a0· [+2\u00a0more]({PAGES_URL}/providers/a/)") in index
+    preview = '\u00a0· '.join(f'`m-{i}`' for i in range(1, README_MODELS + 1))
+    assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19\u00a0· {preview}\u00a0· "
+            f"[+{10 - README_MODELS}\u00a0more]({PAGES_URL}/providers/a/)") in index
     checked = build_checked_page([watched("New", TODAY.isoformat())], TODAY)
     assert "| Service |" not in checked
     assert ("- **New**, checked `2026-07-19` — no free tier today <sub>**Reopens if:** they "

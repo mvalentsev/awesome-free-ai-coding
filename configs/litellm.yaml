@@ -1088,6 +1088,60 @@ model_list:
     api_base: https://api.mistral.ai/v1
     api_key: os.environ/MISTRAL_API_KEY
     use_chat_completions_api: true
+- model_name: amd-token-factory/MiMo-V2.6-Flash
+  litellm_params:
+    model: openai/MiMo-V2.6-Flash
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/DeepSeek-V4.1-Flash
+  litellm_params:
+    model: openai/DeepSeek-V4.1-Flash
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/DeepSeek-V4-Flash
+  litellm_params:
+    model: openai/DeepSeek-V4-Flash
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/GLM-5.3-Flash
+  litellm_params:
+    model: openai/GLM-5.3-Flash
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/Qwen3.8-27B
+  litellm_params:
+    model: openai/Qwen3.8-27B
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/Gemma-4-31B-IT
+  litellm_params:
+    model: openai/Gemma-4-31B-IT
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/MiniCPM-V-4.7-35B-A3B
+  litellm_params:
+    model: openai/MiniCPM-V-4.7-35B-A3B
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/MiniCPM-V-4.7-1B
+  litellm_params:
+    model: openai/MiniCPM-V-4.7-1B
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
+- model_name: amd-token-factory/MiniCPM5-2B
+  litellm_params:
+    model: openai/MiniCPM5-2B
+    api_base: https://developer.amd.com.cn/radeon/api/v1
+    api_key: os.environ/AMD_TOKEN_FACTORY_API_KEY
+    use_chat_completions_api: true
 - model_name: cohere/north-mini-code-1-0
   litellm_params:
     model: openai/north-mini-code-1-0

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-11-16'
-description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, ling-3.1-flash, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni. No credit card for the Free plan…'
+description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, ling-3.1-flash, leanstral-1.5 and 2 more. No credit card for the Free plan, which serves free models only…'
 permalink: /providers/requesty/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: Requesty
 model_sort: true
 ---
@@ -76,6 +76,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -29,9 +29,9 @@ def _parts(text: str) -> tuple[dict, str]:
 def content_hash(text: str) -> str:
     fields, body = _parts(text)
     fields.pop(MODIFIED, None)
-    # Only the writer's daily stamp is incidental. Verification dates, changes
-    # to wording around it, titles, source URLs and limits remain substantive.
-    body = re.sub(r"(Generated from `registry\.yaml` on )\d{4}-\d{2}-\d{2}", r"\1", body)
+    # Legacy daily generation stamps are incidental, including their removal.
+    # Verification dates, titles, source URLs and limits remain substantive.
+    body = re.sub(r"(Generated from `registry\.yaml`) on \d{4}-\d{2}-\d{2}", r"\1", body)
     content = json.dumps(fields, default=str, sort_keys=True, ensure_ascii=False) + "\n" + body
     return hashlib.sha256(content.encode()).hexdigest()
 

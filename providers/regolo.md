@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-11-16'
-description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: qwen3.8-27b, gemma-4-31b, mistral-small-4, gpt-oss-120b, apertus-70b, glm-5.2, gpt-oss-20b, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
+description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: qwen3.8-27b, gemma-4-31b, mistral-small-4, gpt-oss-120b, apertus-70b, glm-5.2 and 3 more. "Start your 30-day free trial ... No credit card required, no commitment": the trial card…'
 permalink: /providers/regolo/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-18
 crumb: Regolo AI
 model_sort: true
 ---
@@ -73,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

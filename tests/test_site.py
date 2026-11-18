@@ -370,25 +370,27 @@ def _readme_row(readme: str) -> str:
     return next(line for line in readme.splitlines() if line.startswith("- **[X]"))
 
 
-def test_a_readme_row_names_eight_families_and_links_the_rest(tmp_path):
+def test_a_readme_row_previews_families_and_links_the_rest(tmp_path):
     """A README row is one list item, and a rotating lane names every model it
-    has served free for two weeks, so the README shows the first eight in the
+    has served free for two weeks, so the README shows a short preview in the
     row's own order and links the rest to the row's page. The row's page and
     the site, its model index included, keep every family."""
+    from freetier_radar.render import README_MODELS
     pages = _render_everything([make(id="gw", category="aggregator", models=TEN)], tmp_path)
     row = _readme_row(pages["README.md"])
-    assert "`m-8`" in row and "`m-9`" not in row
-    assert "[+2\u00a0more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gw/)" in row
+    assert f"`m-{README_MODELS}`" in row and f"`m-{README_MODELS + 1}`" not in row
+    assert f"[+{len(TEN) - README_MODELS}\u00a0more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gw/)" in row
     reference = pages["README.md"].split("## 📋 The list")[1]
     assert "`m-10`" not in reference
     assert ">m-10<" in pages[SITE_PAGE]
     assert "`m-10`" in pages["providers/gw.md"]
 
 
-def test_eight_families_or_fewer_are_all_on_the_readme_row(tmp_path):
-    pages = _render_everything([make(id="gw", category="aggregator", models=TEN[:8])], tmp_path)
+def test_families_within_the_preview_are_all_on_the_readme_row(tmp_path):
+    from freetier_radar.render import README_MODELS
+    pages = _render_everything([make(id="gw", category="aggregator", models=TEN[:README_MODELS])], tmp_path)
     row = _readme_row(pages["README.md"])
-    assert "`m-8`" in row and "more](" not in row
+    assert f"`m-{README_MODELS}`" in row and "more](" not in row
 
 
 def test_an_agent_in_the_start_block_names_the_same_families_on_both_pages(tmp_path):

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="820" viewBox="0 0 600 820" role="img" aria-labelledby="title">
-<title id="title">awesome-free-ai-coding — 112 live offers, 108 need no card, 133 free models, 78 OpenAI-compatible; every offer probed twice a week; one dot per live offer</title>
+<title id="title">awesome-free-ai-coding — 113 live offers, 109 need no card, 133 free models, 79 OpenAI-compatible; every offer probed twice a week; one dot per live offer</title>
 <style>.card{fill:#ffffff;stroke:#d1d9e0}.t{fill:#1f2328}.m{fill:#59636e}.ring{stroke:#1a7f37}.hub{fill:#1a7f37}.beam{stroke:#1a7f37}.s0,.s1,.g0,.g1{stop-color:#1a7f37}.a0{stop-color:#1a7f37}.a1{stop-color:#0969da}.dot.agents,.key.agents{fill:#1a7f37}.rim.agents{stroke:#1a7f37}.dot.apis,.key.apis{fill:#0969da}.rim.apis{stroke:#0969da}.dot.trials,.key.trials{fill:#9a6700}.rim.trials{stroke:#9a6700}.dot.aggregators,.key.aggregators{fill:#8250df}.rim.aggregators{stroke:#8250df}@media (prefers-color-scheme: dark) {.card{fill:#0d1117;stroke:#3d444d}.t{fill:#f0f6fc}.m{fill:#9198a1}.ring{stroke:#3fb950}.hub{fill:#3fb950}.beam{stroke:#3fb950}.s0,.s1,.g0,.g1{stop-color:#3fb950}.a0{stop-color:#3fb950}.a1{stop-color:#4493f8}.dot.agents,.key.agents{fill:#3fb950}.rim.agents{stroke:#3fb950}.dot.apis,.key.apis{fill:#4493f8}.rim.apis{stroke:#4493f8}.dot.trials,.key.trials{fill:#d29922}.rim.trials{stroke:#d29922}.dot.aggregators,.key.aggregators{fill:#ab7df8}.rim.aggregators{stroke:#ab7df8}}.rim{fill:none}.s0{stop-opacity:.5}.s1,.g1{stop-opacity:0}.g0{stop-opacity:.12}.dot{opacity:.45;animation:ping 6s linear infinite}@keyframes ping{0%,4%{opacity:1}55%,100%{opacity:.45}}.turning{animation:turn 6s linear infinite}@keyframes turn{to{transform:rotate(360deg)}}@media (prefers-reduced-motion: reduce) {.dot { animation: none; opacity: 1 } .turning { animation: none }}</style>
 <defs><linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="540" y2="0"><stop class="a0" offset="0"/><stop class="a1" offset="1"/></linearGradient></defs>
 <rect class="card" x="1" y="1" width="598" height="818" rx="18" stroke-width="2"/>
@@ -9,136 +9,137 @@
 <circle class="ring" cx="300.0" cy="200.0" r="106.7" fill="none" stroke-width="2" stroke-opacity=".35"/>
 <circle class="ring" cx="300.0" cy="200.0" r="160.0" fill="none" stroke-width="2" stroke-opacity=".25"/>
 <path class="ring" d="M140.0 200.0H460.0M300.0 40.0V360.0" stroke-width="2" stroke-opacity=".15"/>
-<path class="rim agents" d="M303.6 29.5A170.5 170.5 0 0 1 469.0 177.4" stroke-width="5" stroke-linecap="round"/>
-<path class="rim apis" d="M469.8 184.5A170.5 170.5 0 0 1 229.3 355.1" stroke-width="5" stroke-linecap="round"/>
-<path class="rim trials" d="M222.8 352.0A170.5 170.5 0 0 1 135.2 156.2" stroke-width="5" stroke-linecap="round"/>
-<path class="rim aggregators" d="M137.2 149.4A170.5 170.5 0 0 1 296.4 29.5" stroke-width="5" stroke-linecap="round"/>
+<path class="rim agents" d="M303.6 29.5A170.5 170.5 0 0 1 468.7 175.2" stroke-width="5" stroke-linecap="round"/>
+<path class="rim apis" d="M469.6 182.3A170.5 170.5 0 0 1 225.6 353.4" stroke-width="5" stroke-linecap="round"/>
+<path class="rim trials" d="M219.2 350.2A170.5 170.5 0 0 1 135.7 154.4" stroke-width="5" stroke-linecap="round"/>
+<path class="rim aggregators" d="M137.8 147.5A170.5 170.5 0 0 1 296.4 29.5" stroke-width="5" stroke-linecap="round"/>
 <defs><linearGradient id="sweep" gradientUnits="userSpaceOnUse" x1="300.0" y1="88.0" x2="228.0" y2="114.2"><stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>
 <g class="turning" style="transform-origin:300.0px 200.0px"><path fill="url(#sweep)" d="M300.0 200.0L197.2 77.4A160.0 160.0 0 0 1 300.0 40.0Z"/><line class="beam" x1="300.0" y1="200.0" x2="300.0" y2="40.0" stroke-width="3" stroke-linecap="round"/></g>
-<circle class="dot agents" cx="343.5" cy="164.4" r="5.5" style="animation-delay:0.85s"/>
-<circle class="dot agents" cx="324.9" cy="137.8" r="5.5" style="animation-delay:0.36s"/>
-<circle class="dot agents" cx="369.2" cy="172.8" r="5.5" style="animation-delay:1.14s"/>
-<circle class="dot agents" cx="351.3" cy="138.2" r="5.5" style="animation-delay:0.66s"/>
+<circle class="dot agents" cx="343.2" cy="164.0" r="5.5" style="animation-delay:0.84s"/>
+<circle class="dot agents" cx="324.7" cy="137.8" r="5.5" style="animation-delay:0.36s"/>
+<circle class="dot agents" cx="368.9" cy="172.0" r="5.5" style="animation-delay:1.13s"/>
+<circle class="dot agents" cx="350.9" cy="137.9" r="5.5" style="animation-delay:0.66s"/>
 <circle class="dot agents" cx="316.0" cy="116.0" r="5.5" style="animation-delay:0.18s"/>
-<circle class="dot agents" cx="376.1" cy="151.6" r="5.5" style="animation-delay:0.96s"/>
-<circle class="dot agents" cx="345.3" cy="117.2" r="5.5" style="animation-delay:0.48s"/>
-<circle class="dot agents" cx="395.1" cy="175.2" r="5.5" style="animation-delay:1.26s"/>
-<circle class="dot agents" cx="374.0" cy="129.8" r="5.5" style="animation-delay:0.77s"/>
-<circle class="dot agents" cx="331.9" cy="99.5" r="5.5" style="animation-delay:0.29s"/>
-<circle class="dot agents" cx="398.0" cy="152.9" r="5.5" style="animation-delay:1.07s"/>
-<circle class="dot agents" cx="364.9" cy="108.9" r="5.5" style="animation-delay:0.59s"/>
+<circle class="dot agents" cx="375.6" cy="150.9" r="5.5" style="animation-delay:0.95s"/>
+<circle class="dot agents" cx="344.9" cy="117.0" r="5.5" style="animation-delay:0.47s"/>
+<circle class="dot agents" cx="394.8" cy="174.0" r="5.5" style="animation-delay:1.24s"/>
+<circle class="dot agents" cx="373.5" cy="129.3" r="5.5" style="animation-delay:0.77s"/>
+<circle class="dot agents" cx="331.7" cy="99.4" r="5.5" style="animation-delay:0.29s"/>
+<circle class="dot agents" cx="397.5" cy="151.9" r="5.5" style="animation-delay:1.06s"/>
+<circle class="dot agents" cx="364.4" cy="108.6" r="5.5" style="animation-delay:0.59s"/>
 <circle class="dot agents" cx="313.2" cy="85.9" r="5.5" style="animation-delay:0.11s"/>
-<circle class="dot agents" cx="394.4" cy="129.7" r="5.5" style="animation-delay:0.89s"/>
-<circle class="dot agents" cx="349.8" cy="90.3" r="5.5" style="animation-delay:0.41s"/>
-<circle class="dot agents" cx="416.5" cy="160.2" r="5.5" style="animation-delay:1.19s"/>
-<circle class="dot agents" cx="384.6" cy="107.0" r="5.5" style="animation-delay:0.70s"/>
-<circle class="dot agents" cx="329.8" cy="75.3" r="5.5" style="animation-delay:0.22s"/>
-<circle class="dot agents" cx="413.3" cy="134.9" r="5.5" style="animation-delay:1.00s"/>
-<circle class="dot agents" cx="369.0" cy="86.3" r="5.5" style="animation-delay:0.52s"/>
-<circle class="dot agents" cx="432.4" cy="171.8" r="5.5" style="animation-delay:1.30s"/>
-<circle class="dot agents" cx="404.0" cy="109.9" r="5.5" style="animation-delay:0.82s"/>
-<circle class="dot agents" cx="348.4" cy="68.8" r="5.5" style="animation-delay:0.34s"/>
-<circle class="dot agents" cx="430.6" cy="144.4" r="5.5" style="animation-delay:1.12s"/>
-<circle class="dot agents" cx="388.9" cy="86.6" r="5.5" style="animation-delay:0.63s"/>
-<circle class="dot agents" cx="323.4" cy="55.7" r="5.5" style="animation-delay:0.15s"/>
-<circle class="dot apis" cx="320.0" cy="249.8" r="5.5" style="animation-delay:2.64s"/>
-<circle class="dot apis" cx="356.9" cy="226.0" r="5.5" style="animation-delay:1.91s"/>
-<circle class="dot apis" cx="293.9" cy="268.4" r="5.5" style="animation-delay:3.08s"/>
-<circle class="dot apis" cx="345.9" cy="257.6" r="5.5" style="animation-delay:2.36s"/>
-<circle class="dot apis" cx="377.2" cy="210.7" r="5.5" style="animation-delay:1.63s"/>
-<circle class="dot apis" cx="316.4" cy="280.1" r="5.5" style="animation-delay:2.81s"/>
-<circle class="dot apis" cx="370.0" cy="248.7" r="5.5" style="animation-delay:2.08s"/>
-<circle class="dot apis" cx="276.6" cy="285.4" r="5.5" style="animation-delay:3.26s"/>
-<circle class="dot apis" cx="343.3" cy="280.6" r="5.5" style="animation-delay:2.53s"/>
-<circle class="dot apis" cx="389.7" cy="229.4" r="5.5" style="animation-delay:1.80s"/>
-<circle class="dot apis" cx="302.2" cy="297.1" r="5.5" style="animation-delay:2.98s"/>
-<circle class="dot apis" cx="370.4" cy="270.6" r="5.5" style="animation-delay:2.25s"/>
-<circle class="dot apis" cx="402.1" cy="202.7" r="5.5" style="animation-delay:1.53s"/>
-<circle class="dot apis" cx="332.2" cy="299.5" r="5.5" style="animation-delay:2.70s"/>
-<circle class="dot apis" cx="393.9" cy="250.9" r="5.5" style="animation-delay:1.97s"/>
-<circle class="dot apis" cx="283.0" cy="307.7" r="5.5" style="animation-delay:3.15s"/>
-<circle class="dot apis" cx="363.1" cy="291.5" r="5.5" style="animation-delay:2.42s"/>
-<circle class="dot apis" cx="410.9" cy="223.2" r="5.5" style="animation-delay:1.70s"/>
-<circle class="dot apis" cx="315.4" cy="314.3" r="5.5" style="animation-delay:2.87s"/>
-<circle class="dot apis" cx="391.5" cy="273.4" r="5.5" style="animation-delay:2.15s"/>
-<circle class="dot apis" cx="260.6" cy="312.5" r="5.5" style="animation-delay:3.32s"/>
-<circle class="dot apis" cx="349.8" cy="310.3" r="5.5" style="animation-delay:2.59s"/>
-<circle class="dot apis" cx="413.8" cy="246.2" r="5.5" style="animation-delay:1.87s"/>
-<circle class="dot apis" cx="294.3" cy="324.5" r="5.5" style="animation-delay:3.04s"/>
-<circle class="dot apis" cx="382.9" cy="295.4" r="5.5" style="animation-delay:2.32s"/>
-<circle class="dot apis" cx="427.5" cy="212.1" r="5.5" style="animation-delay:1.59s"/>
-<circle class="dot apis" cx="331.4" cy="325.9" r="5.5" style="animation-delay:2.77s"/>
-<circle class="dot apis" cx="411.0" cy="270.4" r="5.5" style="animation-delay:2.04s"/>
-<circle class="dot apis" cx="270.2" cy="329.7" r="5.5" style="animation-delay:3.22s"/>
-<circle class="dot apis" cx="368.7" cy="315.8" r="5.5" style="animation-delay:2.49s"/>
-<circle class="dot apis" cx="431.1" cy="236.9" r="5.5" style="animation-delay:1.76s"/>
-<circle class="dot apis" cx="309.0" cy="337.5" r="5.5" style="animation-delay:2.94s"/>
-<circle class="dot apis" cx="402.4" cy="294.4" r="5.5" style="animation-delay:2.21s"/>
-<circle class="dot apis" cx="440.7" cy="197.7" r="5.5" style="animation-delay:1.48s"/>
-<circle class="dot apis" cx="349.5" cy="333.3" r="5.5" style="animation-delay:2.66s"/>
-<circle class="dot apis" cx="429.1" cy="263.0" r="5.5" style="animation-delay:1.93s"/>
-<circle class="dot apis" cx="283.4" cy="344.1" r="5.5" style="animation-delay:3.11s"/>
-<circle class="dot apis" cx="388.2" cy="316.9" r="5.5" style="animation-delay:2.38s"/>
-<circle class="dot trials" cx="245.5" cy="215.2" r="5.5" style="animation-delay:4.24s"/>
-<circle class="dot trials" cx="250.8" cy="246.2" r="5.5" style="animation-delay:3.78s"/>
-<circle class="dot trials" cx="225.0" cy="198.0" r="5.5" style="animation-delay:4.53s"/>
-<circle class="dot trials" cx="227.2" cy="235.7" r="5.5" style="animation-delay:4.06s"/>
-<circle class="dot trials" cx="248.9" cy="269.7" r="5.5" style="animation-delay:3.60s"/>
-<circle class="dot trials" cx="210.0" cy="214.3" r="5.5" style="animation-delay:4.35s"/>
-<circle class="dot trials" cx="223.5" cy="257.0" r="5.5" style="animation-delay:3.89s"/>
-<circle class="dot trials" cx="201.5" cy="186.1" r="5.5" style="animation-delay:4.63s"/>
-<circle class="dot trials" cx="202.8" cy="234.6" r="5.5" style="animation-delay:4.17s"/>
-<circle class="dot trials" cx="227.6" cy="278.3" r="5.5" style="animation-delay:3.71s"/>
-<circle class="dot trials" cx="190.1" cy="204.8" r="5.5" style="animation-delay:4.46s"/>
-<circle class="dot trials" cx="202.1" cy="256.9" r="5.5" style="animation-delay:4.00s"/>
-<circle class="dot trials" cx="238.0" cy="298.4" r="5.5" style="animation-delay:3.54s"/>
-<circle class="dot trials" cx="183.9" cy="227.0" r="5.5" style="animation-delay:4.28s"/>
-<circle class="dot trials" cx="207.5" cy="279.6" r="5.5" style="animation-delay:3.82s"/>
-<circle class="dot trials" cx="175.6" cy="191.3" r="5.5" style="animation-delay:4.57s"/>
-<circle class="dot trials" cx="183.3" cy="251.1" r="5.5" style="animation-delay:4.11s"/>
-<circle class="dot trials" cx="218.7" cy="301.4" r="5.5" style="animation-delay:3.65s"/>
-<circle class="dot trials" cx="168.4" cy="215.1" r="5.5" style="animation-delay:4.39s"/>
-<circle class="dot trials" cx="188.4" cy="275.8" r="5.5" style="animation-delay:3.93s"/>
-<circle class="dot trials" cx="165.1" cy="174.9" r="5.5" style="animation-delay:4.68s"/>
-<circle class="dot trials" cx="166.6" cy="241.0" r="5.5" style="animation-delay:4.21s"/>
-<circle class="dot trials" cx="199.3" cy="299.8" r="5.5" style="animation-delay:3.75s"/>
-<circle class="dot trials" cx="156.0" cy="200.1" r="5.5" style="animation-delay:4.50s"/>
-<circle class="dot trials" cx="170.6" cy="267.8" r="5.5" style="animation-delay:4.04s"/>
-<circle class="dot aggregators" cx="272.1" cy="150.1" r="5.5" style="animation-delay:5.51s"/>
-<circle class="dot aggregators" cx="244.3" cy="160.1" r="5.5" style="animation-delay:5.09s"/>
-<circle class="dot aggregators" cx="282.0" cy="125.7" r="5.5" style="animation-delay:5.77s"/>
-<circle class="dot aggregators" cx="248.1" cy="135.5" r="5.5" style="animation-delay:5.35s"/>
-<circle class="dot aggregators" cx="220.6" cy="161.3" r="5.5" style="animation-delay:4.93s"/>
-<circle class="dot aggregators" cx="263.2" cy="114.3" r="5.5" style="animation-delay:5.61s"/>
-<circle class="dot aggregators" cx="226.9" cy="135.1" r="5.5" style="animation-delay:5.19s"/>
-<circle class="dot aggregators" cx="286.4" cy="99.0" r="5.5" style="animation-delay:5.87s"/>
-<circle class="dot aggregators" cx="242.6" cy="111.1" r="5.5" style="animation-delay:5.45s"/>
-<circle class="dot aggregators" cx="207.1" cy="142.1" r="5.5" style="animation-delay:5.03s"/>
-<circle class="dot aggregators" cx="266.4" cy="92.2" r="5.5" style="animation-delay:5.71s"/>
-<circle class="dot aggregators" cx="221.5" cy="114.2" r="5.5" style="animation-delay:5.29s"/>
-<circle class="dot aggregators" cx="189.5" cy="154.6" r="5.5" style="animation-delay:4.87s"/>
-<circle class="dot aggregators" cx="244.6" cy="90.8" r="5.5" style="animation-delay:5.55s"/>
-<circle class="dot aggregators" cx="201.0" cy="122.9" r="5.5" style="animation-delay:5.13s"/>
-<circle class="dot aggregators" cx="274.8" cy="74.2" r="5.5" style="animation-delay:5.81s"/>
-<circle class="dot aggregators" cx="222.0" cy="94.7" r="5.5" style="animation-delay:5.39s"/>
-<circle class="dot aggregators" cx="182.3" cy="136.6" r="5.5" style="animation-delay:4.97s"/>
-<circle class="dot aggregators" cx="251.2" cy="72.7" r="5.5" style="animation-delay:5.65s"/>
-<circle class="dot aggregators" cx="199.9" cy="103.8" r="5.5" style="animation-delay:5.23s"/>
+<circle class="dot agents" cx="393.8" cy="128.9" r="5.5" style="animation-delay:0.88s"/>
+<circle class="dot agents" cx="349.5" cy="90.2" r="5.5" style="animation-delay:0.40s"/>
+<circle class="dot agents" cx="416.1" cy="158.9" r="5.5" style="animation-delay:1.17s"/>
+<circle class="dot agents" cx="384.0" cy="106.4" r="5.5" style="animation-delay:0.70s"/>
+<circle class="dot agents" cx="329.6" cy="75.2" r="5.5" style="animation-delay:0.22s"/>
+<circle class="dot agents" cx="412.7" cy="133.8" r="5.5" style="animation-delay:0.99s"/>
+<circle class="dot agents" cx="368.5" cy="85.9" r="5.5" style="animation-delay:0.52s"/>
+<circle class="dot agents" cx="432.0" cy="170.1" r="5.5" style="animation-delay:1.29s"/>
+<circle class="dot agents" cx="403.3" cy="109.1" r="5.5" style="animation-delay:0.81s"/>
+<circle class="dot agents" cx="348.0" cy="68.7" r="5.5" style="animation-delay:0.33s"/>
+<circle class="dot agents" cx="430.0" cy="143.0" r="5.5" style="animation-delay:1.11s"/>
+<circle class="dot agents" cx="388.2" cy="86.0" r="5.5" style="animation-delay:0.63s"/>
+<circle class="dot agents" cx="323.3" cy="55.7" r="5.5" style="animation-delay:0.15s"/>
+<circle class="dot apis" cx="319.5" cy="249.9" r="5.5" style="animation-delay:2.64s"/>
+<circle class="dot apis" cx="356.8" cy="225.6" r="5.5" style="animation-delay:1.90s"/>
+<circle class="dot apis" cx="292.7" cy="267.9" r="5.5" style="animation-delay:3.10s"/>
+<circle class="dot apis" cx="345.4" cy="257.5" r="5.5" style="animation-delay:2.36s"/>
+<circle class="dot apis" cx="376.8" cy="209.9" r="5.5" style="animation-delay:1.62s"/>
+<circle class="dot apis" cx="315.3" cy="279.8" r="5.5" style="animation-delay:2.82s"/>
+<circle class="dot apis" cx="369.6" cy="248.3" r="5.5" style="animation-delay:2.08s"/>
+<circle class="dot apis" cx="274.9" cy="284.2" r="5.5" style="animation-delay:3.28s"/>
+<circle class="dot apis" cx="342.4" cy="280.4" r="5.5" style="animation-delay:2.54s"/>
+<circle class="dot apis" cx="389.2" cy="228.6" r="5.5" style="animation-delay:1.80s"/>
+<circle class="dot apis" cx="300.6" cy="296.4" r="5.5" style="animation-delay:2.99s"/>
+<circle class="dot apis" cx="369.7" cy="270.3" r="5.5" style="animation-delay:2.25s"/>
+<circle class="dot apis" cx="401.4" cy="201.5" r="5.5" style="animation-delay:1.51s"/>
+<circle class="dot apis" cx="330.9" cy="299.0" r="5.5" style="animation-delay:2.71s"/>
+<circle class="dot apis" cx="393.3" cy="250.2" r="5.5" style="animation-delay:1.97s"/>
+<circle class="dot apis" cx="281.0" cy="306.5" r="5.5" style="animation-delay:3.17s"/>
+<circle class="dot apis" cx="362.1" cy="291.1" r="5.5" style="animation-delay:2.43s"/>
+<circle class="dot apis" cx="410.2" cy="222.0" r="5.5" style="animation-delay:1.69s"/>
+<circle class="dot apis" cx="313.6" cy="313.5" r="5.5" style="animation-delay:2.89s"/>
+<circle class="dot apis" cx="390.7" cy="272.8" r="5.5" style="animation-delay:2.15s"/>
+<circle class="dot apis" cx="258.4" cy="310.6" r="5.5" style="animation-delay:3.34s"/>
+<circle class="dot apis" cx="348.4" cy="309.8" r="5.5" style="animation-delay:2.60s"/>
+<circle class="dot apis" cx="413.1" cy="245.2" r="5.5" style="animation-delay:1.86s"/>
+<circle class="dot apis" cx="292.1" cy="323.3" r="5.5" style="animation-delay:3.06s"/>
+<circle class="dot apis" cx="381.8" cy="294.9" r="5.5" style="animation-delay:2.32s"/>
+<circle class="dot apis" cx="426.5" cy="210.7" r="5.5" style="animation-delay:1.58s"/>
+<circle class="dot apis" cx="329.6" cy="325.2" r="5.5" style="animation-delay:2.78s"/>
+<circle class="dot apis" cx="410.1" cy="269.6" r="5.5" style="animation-delay:2.04s"/>
+<circle class="dot apis" cx="267.8" cy="327.9" r="5.5" style="animation-delay:3.24s"/>
+<circle class="dot apis" cx="367.3" cy="315.2" r="5.5" style="animation-delay:2.50s"/>
+<circle class="dot apis" cx="430.2" cy="235.7" r="5.5" style="animation-delay:1.76s"/>
+<circle class="dot apis" cx="306.7" cy="336.3" r="5.5" style="animation-delay:2.95s"/>
+<circle class="dot apis" cx="401.3" cy="293.7" r="5.5" style="animation-delay:2.21s"/>
+<circle class="dot apis" cx="439.4" cy="196.0" r="5.5" style="animation-delay:1.47s"/>
+<circle class="dot apis" cx="347.7" cy="332.6" r="5.5" style="animation-delay:2.67s"/>
+<circle class="dot apis" cx="428.2" cy="262.0" r="5.5" style="animation-delay:1.93s"/>
+<circle class="dot apis" cx="280.9" cy="342.5" r="5.5" style="animation-delay:3.13s"/>
+<circle class="dot apis" cx="386.9" cy="316.3" r="5.5" style="animation-delay:2.39s"/>
+<circle class="dot apis" cx="444.8" cy="222.5" r="5.5" style="animation-delay:1.65s"/>
+<circle class="dot trials" cx="245.3" cy="214.3" r="5.5" style="animation-delay:4.26s"/>
+<circle class="dot trials" cx="249.9" cy="245.2" r="5.5" style="animation-delay:3.80s"/>
+<circle class="dot trials" cx="225.1" cy="197.0" r="5.5" style="animation-delay:4.54s"/>
+<circle class="dot trials" cx="226.5" cy="234.4" r="5.5" style="animation-delay:4.08s"/>
+<circle class="dot trials" cx="247.4" cy="268.5" r="5.5" style="animation-delay:3.63s"/>
+<circle class="dot trials" cx="209.8" cy="213.0" r="5.5" style="animation-delay:4.36s"/>
+<circle class="dot trials" cx="222.3" cy="255.5" r="5.5" style="animation-delay:3.91s"/>
+<circle class="dot trials" cx="201.7" cy="184.9" r="5.5" style="animation-delay:4.65s"/>
+<circle class="dot trials" cx="202.2" cy="233.0" r="5.5" style="animation-delay:4.19s"/>
+<circle class="dot trials" cx="225.9" cy="276.8" r="5.5" style="animation-delay:3.73s"/>
+<circle class="dot trials" cx="190.0" cy="203.3" r="5.5" style="animation-delay:4.47s"/>
+<circle class="dot trials" cx="201.1" cy="255.0" r="5.5" style="animation-delay:4.02s"/>
+<circle class="dot trials" cx="235.7" cy="296.9" r="5.5" style="animation-delay:3.56s"/>
+<circle class="dot trials" cx="183.5" cy="225.1" r="5.5" style="animation-delay:4.30s"/>
+<circle class="dot trials" cx="205.9" cy="277.7" r="5.5" style="animation-delay:3.84s"/>
+<circle class="dot trials" cx="175.7" cy="189.7" r="5.5" style="animation-delay:4.58s"/>
+<circle class="dot trials" cx="182.4" cy="249.0" r="5.5" style="animation-delay:4.12s"/>
+<circle class="dot trials" cx="216.5" cy="299.5" r="5.5" style="animation-delay:3.67s"/>
+<circle class="dot trials" cx="168.2" cy="213.2" r="5.5" style="animation-delay:4.40s"/>
+<circle class="dot trials" cx="187.0" cy="273.6" r="5.5" style="animation-delay:3.95s"/>
+<circle class="dot trials" cx="165.4" cy="173.3" r="5.5" style="animation-delay:4.69s"/>
+<circle class="dot trials" cx="166.0" cy="238.8" r="5.5" style="animation-delay:4.23s"/>
+<circle class="dot trials" cx="197.2" cy="297.7" r="5.5" style="animation-delay:3.77s"/>
+<circle class="dot trials" cx="156.0" cy="198.1" r="5.5" style="animation-delay:4.51s"/>
+<circle class="dot trials" cx="169.4" cy="265.5" r="5.5" style="animation-delay:4.06s"/>
+<circle class="dot aggregators" cx="272.3" cy="150.0" r="5.5" style="animation-delay:5.52s"/>
+<circle class="dot aggregators" cx="244.6" cy="159.6" r="5.5" style="animation-delay:5.10s"/>
+<circle class="dot aggregators" cx="282.1" cy="125.7" r="5.5" style="animation-delay:5.77s"/>
+<circle class="dot aggregators" cx="248.5" cy="135.2" r="5.5" style="animation-delay:5.36s"/>
+<circle class="dot aggregators" cx="221.0" cy="160.4" r="5.5" style="animation-delay:4.94s"/>
+<circle class="dot aggregators" cx="263.5" cy="114.2" r="5.5" style="animation-delay:5.62s"/>
+<circle class="dot aggregators" cx="227.4" cy="134.6" r="5.5" style="animation-delay:5.20s"/>
+<circle class="dot aggregators" cx="286.5" cy="99.0" r="5.5" style="animation-delay:5.87s"/>
+<circle class="dot aggregators" cx="243.0" cy="110.8" r="5.5" style="animation-delay:5.46s"/>
+<circle class="dot aggregators" cx="207.7" cy="141.2" r="5.5" style="animation-delay:5.04s"/>
+<circle class="dot aggregators" cx="266.7" cy="92.1" r="5.5" style="animation-delay:5.71s"/>
+<circle class="dot aggregators" cx="222.1" cy="113.7" r="5.5" style="animation-delay:5.30s"/>
+<circle class="dot aggregators" cx="190.0" cy="153.4" r="5.5" style="animation-delay:4.88s"/>
+<circle class="dot aggregators" cx="245.0" cy="90.5" r="5.5" style="animation-delay:5.56s"/>
+<circle class="dot aggregators" cx="201.7" cy="122.1" r="5.5" style="animation-delay:5.14s"/>
+<circle class="dot aggregators" cx="274.9" cy="74.2" r="5.5" style="animation-delay:5.81s"/>
+<circle class="dot aggregators" cx="222.6" cy="94.3" r="5.5" style="animation-delay:5.40s"/>
+<circle class="dot aggregators" cx="182.9" cy="135.5" r="5.5" style="animation-delay:4.98s"/>
+<circle class="dot aggregators" cx="251.6" cy="72.6" r="5.5" style="animation-delay:5.65s"/>
+<circle class="dot aggregators" cx="200.6" cy="103.1" r="5.5" style="animation-delay:5.24s"/>
 <circle class="dot aggregators" cx="286.7" cy="59.3" r="5.5" style="animation-delay:5.91s"/>
-<circle class="dot aggregators" cx="226.9" cy="76.3" r="5.5" style="animation-delay:5.49s"/>
-<circle class="dot aggregators" cx="179.3" cy="117.8" r="5.5" style="animation-delay:5.07s"/>
+<circle class="dot aggregators" cx="227.5" cy="76.0" r="5.5" style="animation-delay:5.49s"/>
+<circle class="dot aggregators" cx="180.0" cy="116.8" r="5.5" style="animation-delay:5.08s"/>
 <circle class="hub" cx="300.0" cy="200.0" r="6.5"/>
 <text class="m" x="300.0" y="412" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22"><tspan class="key agents">●</tspan> agents <tspan class="key apis">●</tspan> APIs <tspan class="key trials">●</tspan> trials <tspan class="key aggregators">●</tspan> aggregators</text>
 <text class="t" x="300.0" y="478" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="38" font-weight="700">awesome-free-ai-coding</text>
 <rect x="100.0" y="494" width="400" height="5" rx="2.5" fill="url(#accent)"/>
 <text class="t" x="300.0" y="540" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26">Legal free LLM APIs &amp; coding agents</text>
 <text class="m" x="300.0" y="574" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22">probed twice a week</text>
-<text class="t" x="165.0" y="668" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">112</text>
+<text class="t" x="165.0" y="668" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">113</text>
 <text class="m" x="165.0" y="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22">live offers</text>
-<text class="t" x="435.0" y="668" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">108</text>
+<text class="t" x="435.0" y="668" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">109</text>
 <text class="m" x="435.0" y="700" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22">need no card</text>
 <text class="t" x="165.0" y="772" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">133</text>
 <text class="m" x="165.0" y="804" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22">free models</text>
-<text class="t" x="435.0" y="772" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">78</text>
+<text class="t" x="435.0" y="772" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="60" font-weight="700">79</text>
 <text class="m" x="435.0" y="804" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22">OpenAI-compatible</text>
 </svg>

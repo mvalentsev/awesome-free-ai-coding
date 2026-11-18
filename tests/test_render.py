@@ -31,6 +31,37 @@ def make(**kw) -> Entry:
     return Entry.model_validate(d)
 
 
+def test_daily_writer_keeps_unchanged_pages_byte_identical_and_records_real_changes(tmp_path):
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_all
+
+    rows = [make(id='a', models=[{'family': 'alpha'}], limits='10 requests/day'),
+            make(id='b', models=[{'family': 'alpha'}]),
+            make(id='old', delisted={'on': TODAY, 'reason': 'free plan ended'}),
+            make(id='folded', duplicate_of='a',
+                 delisted={'on': TODAY, 'reason': 'same service as a'})]
+    registry = tmp_path / 'registry.yaml'
+    save_registry(registry, rows)
+
+    def pages():
+        return {str(p.relative_to(tmp_path)): p.read_bytes()
+                for folder in ('providers', 'models') for p in (tmp_path / folder).glob('*.md')}
+
+    render_all(registry, Path('templates'), tmp_path, today=TODAY, contributing_from=Path('.'))
+    before = pages()
+    tomorrow = TODAY + timedelta(days=1)
+    render_all(registry, Path('templates'), tmp_path, today=tomorrow, contributing_from=Path('.'))
+    assert pages() == before
+
+    rows[0].limits = '20 requests/day'
+    save_registry(registry, rows)
+    render_all(registry, Path('templates'), tmp_path, today=tomorrow, contributing_from=Path('.'))
+    after = pages()
+    assert {p for p in before if before[p] != after[p]} == {'providers/a.md', 'models/alpha.md'}
+    assert f'last_modified_at: {tomorrow}' in after['providers/a.md'].decode()
+    assert f'verified {TODAY}' in after['providers/a.md'].decode()
+
+
 def test_every_provider_uses_the_shared_section_contract(committed_registry):
     from freetier_radar.render import build_provider_page
     entries = committed_registry
@@ -1735,6 +1766,7 @@ def test_the_render_records_a_change_before_it_writes_the_pages(tmp_path: Path):
 
 
 def test_repository_render_uses_the_utc_day_before_a_local_midnight_retirement(tmp_path, monkeypatch):
+    import json
     import freetier_radar.render as render_module
     from freetier_radar.models import save_registry
 
@@ -1751,7 +1783,7 @@ def test_repository_render_uses_the_utc_day_before_a_local_midnight_retirement(t
     page = (tmp_path / 'providers/x.md').read_text()
     assert '## What you get' in page
     assert '## Connect' in page
-    assert 'Generated from `registry.yaml` on 2026-07-19' in page
+    assert json.loads((tmp_path / 'index.json').read_text())['generated'] == '2026-07-19'
     assert '"event": "archived"' not in (tmp_path / 'history.jsonl').read_text()
 
 

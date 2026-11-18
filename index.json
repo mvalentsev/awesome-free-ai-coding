@@ -165,7 +165,8 @@
       "OrcaRouter (free models)",
       "cheapllm.shop",
       "Logfare (Standard models)",
-      "Teapot Router"
+      "Teapot Router",
+      "AMD Radeon Cloud Token Factory"
     ],
     "sections": [
       {
@@ -19979,6 +19980,225 @@
         ]
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/"
+    },
+    {
+      "id": "amd-token-factory",
+      "name": "AMD Radeon Cloud Token Factory",
+      "category": "api-free-tier",
+      "url": "https://developer.amd.com.cn/radeon/tokenfactory",
+      "source_urls": [
+        "https://amd-aim.github.io/radeon-cloud-docs/guides/token-factory/",
+        "https://amd-aim.github.io/radeon-cloud-docs/api/rate-limits/",
+        "https://amd-aim.github.io/radeon-cloud-docs/api/usage/",
+        "https://amd-aim.github.io/radeon-cloud-docs/api/terms/",
+        "https://amd-aim.github.io/radeon-cloud-docs/guides/login/",
+        "https://amd-aim.github.io/radeon-cloud-docs/api/messages/",
+        "https://amd-aim.github.io/radeon-cloud-docs/models/overview/",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AMiMo-V2.6-Flash",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3ADeepSeek-V4.1-Flash",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3ADeepSeek-V4-Flash",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AGLM-5.3-Flash",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AQwen3.8-27B",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AGemma-4-31B-IT",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3Ad3",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3Ad3-flash",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AClef",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AMiniCPM-V-4.7-35B-A3B",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AMiniCPM-V-4.7-1B",
+        "https://developer.amd.com.cn/radeon/api/tokenfactory/model?id=model_gateway%3AMiniCPM5-2B"
+      ],
+      "card_required": false,
+      "offering": "Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance",
+      "limits": "Shared API usage: Daily points allowance: see your account for values per account. 00:00 Beijing time\n\nTypical gateway limit: 20 requests/minute per account (typical; current limits are returned in response headers)\n\nTypical platform limit: 30 requests/minute; 8 requests at once per key (typical; current limits are returned in response headers)\n\nChina-site AMD AI Developer Program account and API key required. Registration asks for name, email and phone, with email or phone verification; some accounts need approval before receiving a key. Points meter shared API usage, carry no monetary value and are separate from GPU-instance credits. All models share the daily cap and rate limits; response headers and the usage endpoint report current allowances. For evaluation, prototyping and development; production workloads and reselling access are prohibited. Prompts and outputs are logged for two days, with longer retention for abuse or legal investigations; metadata is retained longer.",
+      "quotas": [
+        {
+          "unit": "points",
+          "period": "day",
+          "scope": "account",
+          "state": "account-specific",
+          "label": "Shared API usage",
+          "reset": "00:00 Beijing time",
+          "source": "https://amd-aim.github.io/radeon-cloud-docs/api/usage/",
+          "quote": "Limits differ between accounts",
+          "reviewed_on": "2026-11-18",
+          "amount": null
+        },
+        {
+          "amount": 20.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "account",
+          "label": "Typical gateway limit",
+          "condition": "typical; current limits are returned in response headers",
+          "condition_quote": "Typical value",
+          "source": "https://amd-aim.github.io/radeon-cloud-docs/api/rate-limits/",
+          "quote": "Requests per minute Per account 20, on a 60-second sliding window",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Scope",
+              "Typical value"
+            ],
+            "column": "Typical value",
+            "rows": [
+              "Requests per minute"
+            ],
+            "row_column": 0,
+            "where": {
+              "Scope": "Per account"
+            },
+            "cell_part": "20, on a",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-18"
+        },
+        {
+          "amount": 30.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "key",
+          "label": "Typical platform limit",
+          "condition": "typical; current limits are returned in response headers",
+          "condition_quote": "Typical value",
+          "source": "https://amd-aim.github.io/radeon-cloud-docs/api/rate-limits/",
+          "quote": "Requests per minute Per API key 30",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Scope",
+              "Typical value"
+            ],
+            "column": "Typical value",
+            "rows": [
+              "Requests per minute"
+            ],
+            "row_column": 0,
+            "where": {
+              "Scope": "Per API key"
+            },
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-18"
+        },
+        {
+          "amount": 8.0,
+          "unit": "requests",
+          "period": "concurrent",
+          "scope": "key",
+          "label": "Typical platform limit",
+          "condition": "typical; current limits are returned in response headers",
+          "condition_quote": "Typical value",
+          "source": "https://amd-aim.github.io/radeon-cloud-docs/api/rate-limits/",
+          "quote": "Concurrent requests Per API key 8",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Scope",
+              "Typical value"
+            ],
+            "column": "Typical value",
+            "rows": [
+              "Concurrent requests"
+            ],
+            "row_column": 0,
+            "where": {
+              "Scope": "Per API key"
+            },
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-11-18"
+        }
+      ],
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://developer.amd.com.cn/radeon/api/v1",
+        "key_url": "https://developer.amd.com.cn/radeon/tokenfactory",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "MiMo-V2.6-Flash",
+          "DeepSeek-V4.1-Flash",
+          "DeepSeek-V4-Flash",
+          "GLM-5.3-Flash",
+          "Qwen3.8-27B",
+          "Gemma-4-31B-IT",
+          "MiniCPM-V-4.7-35B-A3B",
+          "MiniCPM-V-4.7-1B",
+          "MiniCPM5-2B"
+        ],
+        "anthropic_base_url": "https://developer.amd.com.cn/radeon/api",
+        "note": "Use the exact listed model IDs; dated card titles can differ. Chat Completions and Anthropic Messages share the account allowance."
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "We do not train models on your data",
+        "url": "https://amd-aim.github.io/radeon-cloud-docs/api/terms/"
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-18",
+        "source": "https://amd-aim.github.io/radeon-cloud-docs/guides/login/",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://amd-aim.github.io/radeon-cloud-docs/guides/token-factory/",
+        "keywords": [
+          "Token Factory is free, but usage is capped",
+          "no credits to spend",
+          "OpenAI-compatible API",
+          "00:00 Beijing time"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-18",
+      "last_verified": "2026-11-18",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 80,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "AMD Radeon Cloud Token Factory",
+        "models": [],
+        "ids": [
+          "MiMo-V2.6-Flash",
+          "DeepSeek-V4.1-Flash",
+          "DeepSeek-V4-Flash",
+          "GLM-5.3-Flash",
+          "Qwen3.8-27B",
+          "Gemma-4-31B-IT",
+          "MiniCPM-V-4.7-35B-A3B",
+          "MiniCPM-V-4.7-1B",
+          "MiniCPM5-2B"
+        ],
+        "what": "Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance",
+        "limits": "Shared API usage: Daily points allowance: see your account for values per account. 00:00 Beijing time\n\nTypical gateway limit: 20 requests/minute per account (typical; current limits are returned in response headers)\n\nTypical platform limit: 30 requests/minute; 8 requests at once per key (typical; current limits are returned in response headers)\n\nChina-site AMD AI Developer Program account and API key required. Registration asks for name, email and phone, with email or phone verification; some accounts need approval before receiving a key. Points meter shared API usage, carry no monetary value and are separate from GPU-instance credits. All models share the daily cap and rate limits; response headers and the usage endpoint report current allowances. For evaluation, prototyping and development; production workloads and reselling access are prohibited. Prompts and outputs are logged for two days, with longer retention for abuse or legal investigations; metadata is retained longer.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "api-free-tier"
+        },
+        "flags": [
+          "nocard",
+          "claude"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/"
     }
   ],
   "countries": [
@@ -21009,6 +21229,7 @@
       "tokenrouter",
       "mistral-free",
       "vlm-run-gateway",
+      "amd-token-factory",
       "cohere",
       "opper",
       "simplellm",
@@ -21085,6 +21306,7 @@
       "token-harbor",
       "tokenrouter",
       "mistral-free",
+      "amd-token-factory",
       "cohere",
       "opper",
       "simplellm",
@@ -21144,6 +21366,7 @@
       "vercel-ai-gateway",
       "inferbase",
       "token-harbor",
+      "amd-token-factory",
       "opper",
       "cheapllm-shop",
       "the-grid",
@@ -21182,6 +21405,7 @@
       "token-harbor",
       "tokenrouter",
       "mistral-free",
+      "amd-token-factory",
       "cohere",
       "opper",
       "simplellm",
@@ -23414,16 +23638,6 @@
       "checked_on": "2026-09-18",
       "reason": "Nothing free is left. b.ai itself still renders the word BAI and nothing else, but docs.b.ai is server-rendered and its sitemap lists the LLM service's pages. \"Promotions and Pricing Updates\" ended the free models the Chinese list credited it with: for Qwen3.8-Flash, Hy3 and MiMo-V2.5 \"The current free offer changes to a limited-time discount at 17:00 on September 16, 2026 (Singapore Time, UTC+8)\", billed from then \"at 10% of the standard reference price\", and every model in \"Pricing and Usage\" carries a price. What remains is a referral gift, not a sign-up one: a friend who registers through an invitation link \"can claim a dedicated invitation registration gift of 300,000 Credits\" — $0.30 at 1,000,000 Credits to the dollar — valid 30 days. Login is by Web3 wallet or Google, and api.b.ai/v1/models answers 401 without a key (2026-09-18).",
       "reopen_if": "A model priced at zero on the promotions page again, or a grant to anyone who signs up, without an invitation.",
-      "current": true
-    },
-    {
-      "domains": [
-        "developer.amd.com.cn"
-      ],
-      "name": "AMD Token Factory (China developer site)",
-      "checked_on": "2026-09-05",
-      "reason": "A Chinese list credits it with a daily $10-equivalent quota on AMD-hosted open models, OpenAI-compatible, no card, run with ZZ.ai and limited-time. The page at /radeon/tokenfactory is client-rendered: the readable part (2026-09-05) is a help notice for the \"AMD AI 开发者计划\", the Developer Cloud and a joint ModelScope incentive program, with no quota, model, endpoint or sign-up term in it. The domain is AMD's China developer site.",
-      "reopen_if": "A server-rendered page with the quota and the sign-up terms.",
       "current": true
     },
     {

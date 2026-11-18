@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-11-16'
-description: 'Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible. Free models: glm-5.3, qwen3.8-flash, deepseek-v4-pro, qwen3.8-27b, deepseek-v4-flash, deepseek-v4.1-flash, glm-5.1, glm-5.2 and 20…'
+description: 'Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible. Free models: glm-5.3, qwen3.8-flash, deepseek-v4-pro, qwen3.8-27b, deepseek-v4-flash, deepseek-v4.1-flash and 22 more. Free token…'
 permalink: /providers/alibaba-model-studio/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: Alibaba Cloud Model Studio (DashScope, international)
 model_sort: true
 ---
@@ -75,6 +75,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -755,9 +755,9 @@ a green workflow does not establish that every vendor fact is current.
 
 The README is the landing page, and the site is the reference. The README
 carries the hero, recent additions, picks, comparison, quickstart and one
-unfolded list item per live row: its name, `offering`, the first eight
+unfolded list item per live row: its name, `offering`, the first six
 model families and the date. Quotas live on provider pages and `index.html`,
-with every family past the eighth, one click from their count. The comparison shows at most 20 families;
+with every family past the sixth, one click from their count. The comparison shows at most 20 families;
 measured scores lead, followed by retained-tier and natural model-name order.
 Unavailable scores do not become zeros. The comparison axis starts at 0 and scales to the free models,
 with labelled, equally spaced ticks, a round upper bound and the same scale at

@@ -38,6 +38,7 @@ def test_daily_rerender_and_new_empty_state_fallback_do_not_freshen_content(tmp_
         "providers/a.md", page(day="2026-10-24", modified="2026-10-24"))
     assert fields(second)["last_modified_at"] == date(2026, 10, 21)
     assert content_hash(second) == content_hash(first)
+    assert content_hash(second) == content_hash(first.replace(' on 2026-10-21', ''))
 
 
 @pytest.mark.parametrize("change", ["limit", "source", "description", "deadline"])

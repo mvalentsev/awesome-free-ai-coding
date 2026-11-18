@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-17T21:44:36Z</updated>
+  <updated>2026-11-18T13:47:21Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/amd-token-factory/20261118T134721Z</id>
+    <title>Added: AMD Radeon Cloud Token Factory</title>
+    <link rel="alternate" href="https://developer.amd.com.cn/radeon/tokenfactory"/>
+    <updated>2026-11-18T13:47:21Z</updated>
+    <summary type="text">Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261117T214436Z</id>
     <title>Free models changed: LLMTR</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://llm.kiwi"/>
     <updated>2026-11-03T21:59:13Z</updated>
     <summary type="text">Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sourcery/20261103T215913Z</id>
-    <title>Added: Sourcery</title>
-    <link rel="alternate" href="https://www.sourcery.ai"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories</summary>
   </entry>
 </feed>

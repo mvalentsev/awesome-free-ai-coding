@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-11-16'
-description: 'Cohere''s Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Free models: command-a-plus, north-mini-code, command-a, command-a-reasoning, command-a-vision, command-r, command-r7b, command-r-plus. Trial keys are…'
+description: 'Cohere''s Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Free models: command-a-plus, north-mini-code, command-a, command-a-reasoning, command-a-vision, command-r and 2 more. Trial keys are for evaluation, not…'
 permalink: /providers/cohere/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-18
 crumb: Cohere (trial keys)
 model_sort: true
 ---
@@ -74,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

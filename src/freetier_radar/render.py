@@ -149,7 +149,7 @@ README_PICKS = 3
 # How many of a row's model families a README line names before it links the
 # rest: a lane that rotates names every model it has served free for two weeks,
 # and a README row is one line. The row's page and the site name them all.
-README_MODELS = 8
+README_MODELS = 6
 # The separator between names on a line. The no-break space keeps the dot with the
 # name before it, so a wrapped line never starts with one.
 DOT = "\u00a0· "
@@ -2597,7 +2597,7 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
            f"a word."]
     out += _history_section(e, events)
     out += ["", "---", "",
-            f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row any "
+            "Generated from `registry.yaml`. No probe reads this row any "
             f"more — the list keeps one row per service; the full list, the Atom feed and the "
             f"machinery are at <{REPO_URL}>."]
     return _page(head, out)
@@ -2719,13 +2719,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     out += _evidence_section(e, blocked)
     out += _history_section(e, events)
     if not archived:
-        standing = (f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
+        standing = ("Generated from `registry.yaml` and re-verified "
                     f"{_schedule()}")
     elif is_archived_for_good(e, today):
-        standing = (f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row "
+        standing = ("Generated from `registry.yaml`. No probe reads this row "
                     "any more — it left the list for good unless a reviewer brings it back")
     else:
-        standing = (f"Generated from `registry.yaml` on {today.isoformat()}. A probe still reads it "
+        standing = ("Generated from `registry.yaml`. A probe still reads it "
                     f"{_schedule()}, and the first probe it passes brings it back to the list")
     out += ["", "---", "",
             f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>."]
@@ -2999,7 +2999,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                   "last_modified_at": max(changed, default=today),
                   "crumb": family},
                  [*body, "---", "",
-                  f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
+                  "Generated from `registry.yaml` and re-verified "
                   f"{_schedule()}; every free model on the list is at <{models_index_url()}>, and "
                   f"the full list, the Atom feed and the machinery at <{REPO_URL}>."])
 
