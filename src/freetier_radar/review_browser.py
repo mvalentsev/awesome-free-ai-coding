@@ -156,6 +156,7 @@ def browser_plan(bundle: Bundle) -> dict:
     if not browser_changed and not scope['rows'] and not scope['families']:
         cases, coverage = [], {}
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
+            'readme_url': f"{REPO_URL}/tree/{scope['sha']}",
             'chart_date': json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['read_on']
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
             'models': execution_models, 'rows': execution_rows, 'folded_targets': folded_targets,

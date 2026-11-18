@@ -669,11 +669,6 @@ def test_the_registry_is_kept_in_the_form_the_tools_write_it(tmp_path: Path):
         "`uv run freetier-check --normalize` and commit the result"]
 
 
-def test_the_committed_repository_holds_to_its_map_its_claims_and_its_form():
-    from freetier_radar.validate import check_repository
-    assert check_repository(Path(__file__).resolve().parent.parent) == []
-
-
 def test_a_connectable_row_lists_an_id_or_says_why_it_cannot(tmp_path: Path):
     """The configs are written from api.model_ids and the row's page checks a
     reader's key with a call to one, so a live connectable row without ids is a

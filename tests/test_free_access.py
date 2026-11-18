@@ -105,8 +105,8 @@ def test_utc_calendar_deadline_archives_a_sole_promotion_with_the_right_reason()
     assert archive_reason(current, date(2026, 12, 1)) == "documented free promotions ended on 2026-12-01"
 
 
-def test_expired_api_quota_cannot_return_through_the_raw_machine_payload():
-    from freetier_radar.models import expire_entries
+def test_expired_api_quota_cannot_return_through_the_raw_machine_payload(tmp_path):
+    from freetier_radar.render import render_repository
     row = entry(models=[{'family': 'preview'}], api={
         'model_ids': ['preview'], 'model_access': {'preview': {
             'source': 'https://vendor.example/promo', 'until': '2026-11-30'}}},
@@ -116,7 +116,12 @@ def test_expired_api_quota_cannot_return_through_the_raw_machine_payload():
                  'model_ids': ['preview'], 'source': 'https://vendor.example/promo',
                  'quote': 'Preview allows 20 requests per day.'}])
     now = datetime(2026, 12, 1, tzinfo=timezone.utc)
-    ended = expire_entries([row], now)[0]
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [row])
+    render_repository(registry, Path("templates"), tmp_path, now=now)
+    ended = load_registry(registry)[0]
+    assert ended.api.model_ids == [] and ended.api.no_ids == ""
+    assert ended.probe.catalog == row.probe.endpoint
     assert ended.quotas[0].amount == 20
     assert build_index([ended], now.date())['entries'][0]['quotas'] == []
 
@@ -389,28 +394,47 @@ def test_model_name_list_and_monthly_digest_disclose_the_same_conditions():
         assert '$5' in text and '2026-10-06 23:59+03:00' in text
 
 
-def test_real_expiry_command_archives_an_ended_offer_and_keeps_its_page(tmp_path):
-    import subprocess
+def test_expiry_command_uses_one_instant_for_deadlines_history_and_pages(tmp_path, monkeypatch):
+    import json
     import sys
     from datetime import timedelta
-    from freetier_radar.render import render_repository
-    from freetier_radar.history import archive_reason
-    ended = datetime.now(timezone.utc) - timedelta(seconds=5)
-    access = {**PAID, "until": ended.isoformat()}
-    row = entry(models=[{"family": "preview"}], first_seen=ended.date(), last_verified=ended.date(),
-                api={"base_url": "https://vendor.example/v1", "model_ids": ["preview"],
-                     "model_access": {"preview": access}})
+
+    from freetier_radar import render
+    from freetier_radar.history import archive_reason, load_history
+
+    ended = datetime(2026, 10, 6, 23, 59, tzinfo=timezone.utc)
+    later = ended + timedelta(minutes=2)
+
+    def offer(ident, deadline):
+        return entry(id=ident, models=[{"family": "preview"}],
+                     api={"base_url": f"https://{ident}.example/v1", "model_ids": ["preview"],
+                          "model_access": {"preview": {**PAID, "until": deadline.isoformat()}}})
+
     path = tmp_path / "registry.yaml"
-    save_registry(path, [row])
-    before = ended - timedelta(seconds=1)
-    render_repository(path, Path("templates"), tmp_path, today=before.date(), now=before)
-    result = subprocess.run([sys.executable, '-m', 'freetier_radar.render', '--registry', str(path),
-                             '--out', str(tmp_path / 'README.md'), '--expire-only'],
-                            capture_output=True, text=True)
-    assert result.returncode == 0, result.stderr
-    current = load_registry(path)[0]
+    save_registry(path, [offer("gateway", ended), offer("other", later)])
+    render.render_repository(path, Path("templates"), tmp_path, now=ended - timedelta(seconds=1))
+
+    class DriftingClock(datetime):
+        instants = iter((ended, later))
+
+        @classmethod
+        def now(cls, tz=None):
+            return next(cls.instants).astimezone(tz)
+
+    monkeypatch.setattr(render, "datetime", DriftingClock)
+    monkeypatch.setattr(sys, "argv", ["freetier-render", "--registry", str(path), "--out",
+                                    str(tmp_path / "README.md"), "--expire-only"])
+    render.main()
+
+    current, other = load_registry(path)
     assert current.retired_on == ended.date()
-    assert archive_reason(current, ended.date()).startswith('documented free promotions ended')
-    assert 'no current listing' in (tmp_path / 'models/preview.md').read_text()
-    assert '"archived"' in (tmp_path / 'history.jsonl').read_text()
-    assert 'gateway' not in build_opencode_config([current], ended.date())['provider']
+    assert archive_reason(current, ended.date()).startswith("documented free promotions ended")
+    assert other.api.model_ids == ["preview"]
+    assert (tmp_path / "models/preview.md").is_file()
+    history = load_history(tmp_path / "history.jsonl")
+    assert history[-1].id == "gateway" and history[-1].event.value == "archived"
+    assert history[-1].ts == ended
+    index = json.loads((tmp_path / "index.json").read_text())
+    assert index["generated"] == ended.date().isoformat()
+    config = json.loads((tmp_path / "configs/opencode.json").read_text())
+    assert set(config["provider"]) == {"other"}

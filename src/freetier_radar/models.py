@@ -1943,15 +1943,15 @@ class Entry(BaseModel):
         """`probe.catalog` is read once, to check `api.model_ids` on a row whose
         probe reads prose. An api-models probe already reads its endpoint as
         the catalog, so a second one there is two answers to one question; and
-        a page row with no ids has nothing for the catalog to check. Either way
-        the field would sit in the registry doing nothing."""
+        a page row without an API lane or retained promotion IDs has nothing
+        for the catalog to check."""
         if self.probe.catalog is None:
             return self
         if self.probe.type is not ProbeType.PAGE_KEYWORDS:
             raise ValueError(
                 f"{self.id}: probe.catalog belongs on a page-keywords probe — an "
                 "api-models probe reads its endpoint as the catalog")
-        if self.api is None or not (self.api.model_ids or self.api.no_ids):
+        if self.api is None or not (self.api.model_ids or self.api.no_ids or self.api.ignored_ids):
             raise ValueError(
                 f"{self.id}: probe.catalog has nothing to check without api.model_ids")
         return self
@@ -2094,7 +2094,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
                 else:
                     ended_on = max(id_access(e, family).ends_at for family in expired).astimezone(timezone.utc).date()
                     updates['retired_on'] = min(e.retired_on, ended_on) if e.retired_on else ended_on
-            out.append(e.model_copy(update=updates))
+            out.append(Entry.model_validate(_row_payload(e.model_copy(update=updates))))
             continue
         if e.page_catalog:
             expired_names = {m.name for m in e.page_catalog.models if not m.expired
@@ -2129,9 +2129,8 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
                    "ignored_ids": list(dict.fromkeys([*block.ignored_ids, *sorted(expired)])),
                    "no_family_ids": [i for i in block.no_family_ids if i not in expired],
                    "free_since": [s for s in block.free_since if s.id not in expired]}
-        if e.api:
-            if not surviving:
-                updates["no_ids"] = "the documented free promotions have ended; no current free ID is listed"
+        if e.api and e.api.base_url and not surviving:
+            updates["no_ids"] = "the documented free promotions have ended; no current free ID is listed"
         current = block.model_copy(update=updates)
         entry_updates = {
             "api" if e.api else "client_lane": current,
@@ -2167,7 +2166,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
             else:
                 ended_on = max(id_access(e, i).ends_at for i in expired).astimezone(timezone.utc).date()
                 entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
-        out.append(e.model_copy(update=entry_updates))
+        out.append(Entry.model_validate(_row_payload(e.model_copy(update=entry_updates))))
     return out
 
 

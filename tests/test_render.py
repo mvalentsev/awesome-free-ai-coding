@@ -529,6 +529,38 @@ def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(t
     assert f"every row verified <b>{day}</b>" in html
 
 
+def test_repository_render_keeps_one_registry_snapshot_for_every_surface(tmp_path, monkeypatch):
+    import json
+
+    from freetier_radar import render
+    from freetier_radar.models import save_registry
+
+    registry = tmp_path / "registry.yaml"
+    original = make(id="original", name="Original Gateway", api={
+        "base_url": "https://original.example/v1", "model_ids": ["alpha"]})
+    replacement = make(id="replacement", name="Replacement Gateway", api={
+        "base_url": "https://replacement.example/v1", "model_ids": ["beta"]})
+    save_registry(registry, [original])
+    load = render.load_registry
+
+    def load_then_replace(path):
+        rows = load(path)
+        save_registry(path, [replacement])
+        return rows
+
+    monkeypatch.setattr(render, "load_registry", load_then_replace)
+    render.render_all(registry, Path("templates"), tmp_path, today=TODAY)
+
+    assert "Original Gateway" in (tmp_path / "README.md").read_text()
+    assert "Original Gateway" in (tmp_path / "index.html").read_text()
+    assert "Original Gateway" in (tmp_path / render.CONFIGS_README).read_text()
+    assert (tmp_path / "providers/original.md").is_file()
+    index = json.loads((tmp_path / "index.json").read_text())
+    assert [row["id"] for row in index["entries"]] == ["original"]
+    config = json.loads((tmp_path / "configs/opencode.json").read_text())
+    assert set(config["provider"]) == {"original"}
+
+
 def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(tmp_path: Path):
     """Every file this repository publishes is generated and committed, so a
     registry edit that skipped the render leaves the README, the index, the

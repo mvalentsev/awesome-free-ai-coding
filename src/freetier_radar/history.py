@@ -261,7 +261,7 @@ def _unstamped(events: list[Event]) -> list[dict]:
 
 
 def record_changes(registry_path: Path, history_path: Path, today: date, now: datetime,
-                   committed: str | None = None) -> list[Event]:
+                   committed: str | None = None, *, entries: list[Entry] | None = None) -> list[Event]:
     """Compare the registry against the history, write the difference and
     return its lines.
 
@@ -273,9 +273,10 @@ def record_changes(registry_path: Path, history_path: Path, today: date, now: da
     second render changes no byte. Invalid unpublished clocks are rebuilt.
     Without it, or where the file does not start with
     it, the difference from the file as it stands is appended. A deleted row
-    raises before anything is written (see deleted_rows).
+    raises before anything is written (see deleted_rows). The publication
+    writer can supply the registry rows it is about to render.
     """
-    entries = load_registry(registry_path)
+    entries = load_registry(registry_path) if entries is None else entries
     text = history_path.read_text(encoding="utf-8") if history_path.exists() else ""
     if committed is None or not text.startswith(committed):
         committed = text

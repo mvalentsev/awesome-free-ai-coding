@@ -7,6 +7,7 @@ import shlex
 import unicodedata
 import tempfile
 import textwrap
+from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -3161,22 +3162,40 @@ def _markdown_env(template_dir: Path) -> Environment:
     return env
 
 
-def _github_page_context(registry_path: Path, today: date,
-                         watchlist_path: Path | None, scores: dict | None = None) -> dict:
-    entries, history = load_registry(registry_path), _history_beside(registry_path)
-    # The page is where a deleted row would quietly disappear from.
-    refuse_deleted_rows(entries, history)
-    return build_context(entries, today, _watchlist_beside(registry_path, watchlist_path),
-                         history, model_pages(entries, history, today,
-                                              _published_beside(registry_path)), scores)
+@dataclass(frozen=True)
+class _RenderInputs:
+    entries: list[Entry]
+    today: date
+    watchlist: list[Watched]
+    history: list[Event]
+    pages: set[str]
+    scores: dict
+
+    @classmethod
+    def load(cls, registry_path: Path, today: date | None, watchlist_path: Path | None,
+             scores: dict | None = None, *, entries: list[Entry] | None = None) -> _RenderInputs:
+        today = today or utc_today()
+        entries = load_registry(registry_path) if entries is None else entries
+        history = _history_beside(registry_path)
+        refuse_deleted_rows(entries, history)
+        return cls(entries, today, _watchlist_beside(registry_path, watchlist_path), history,
+                   model_pages(entries, history, today, _published_beside(registry_path)),
+                   _resolve_scores(scores))
+
+    def github_context(self) -> dict:
+        return build_context(self.entries, self.today, self.watchlist, self.history,
+                             self.pages, self.scores)
 
 
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
                   today: date | None = None, watchlist_path: Path | None = None,
                   scores: dict | None = None) -> str:
-    today = today or utc_today()
-    context = _github_page_context(registry_path, today, watchlist_path, scores)
-    text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path, scores)
+    return _write_readme(_markdown_env(template_dir), out_path, inputs.github_context())
+
+
+def _write_readme(env: Environment, out_path: Path, context: dict) -> str:
+    text = env.get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
     _write_files(out_path.parent / README_PICTURES, "*.svg",
                  {Path(rel).name: svg
@@ -3196,9 +3215,12 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     every link in it is written from there. It is rendered from the README's own
     context, so the two pages cannot disagree about a lane.
     """
-    today = today or utc_today()
-    context = _github_page_context(registry_path, today, watchlist_path, scores)
-    text = _markdown_env(template_dir).get_template(CONFIGS_TEMPLATE).render(**context)
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path, scores)
+    return _write_configs_readme(_markdown_env(template_dir), out_path, inputs.github_context())
+
+
+def _write_configs_readme(env: Environment, out_path: Path, context: dict) -> str:
+    text = env.get_template(CONFIGS_TEMPLATE).render(**context)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(text, encoding="utf-8")
     return text
@@ -3215,14 +3237,14 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     Liquid off with `{% raw %}`, and freetier-check refuses a tag outside
     backticks in the prose they print.
     """
-    today = today or utc_today()
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path, scores)
+    return _write_site(template_dir, out_path, inputs)
+
+
+def _write_site(template_dir: Path, out_path: Path, inputs: _RenderInputs) -> str:
     env = _env(template_dir, autoescape=True)
-    entries, history = load_registry(registry_path), _history_beside(registry_path)
-    refuse_deleted_rows(entries, history)
-    context = build_site_context(entries, today,
-                                 _watchlist_beside(registry_path, watchlist_path), history,
-                                 model_pages(entries, history, today,
-                                             _published_beside(registry_path)), scores)
+    context = build_site_context(inputs.entries, inputs.today, inputs.watchlist, inputs.history,
+                                 inputs.pages, inputs.scores)
     text = env.get_template(SITE_TEMPLATE).render(**context)
     out_path.write_text(text, encoding="utf-8")
     return text
@@ -3248,16 +3270,14 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     """Everything the render writes besides the README, the site's front page and
     configs/README.md: the feed, the provider and model pages, index.json,
     llms.txt, and the configs with the Codex profiles."""
-    today = today or utc_today()
-    scores = _resolve_scores(scores)
-    entries = load_registry(registry_path)
-    watchlist = _watchlist_beside(registry_path, watchlist_path)
-    history = _history_beside(registry_path)
-    refuse_deleted_rows(entries, history)
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path, scores)
+    _write_artifacts(registry_path, root, inputs)
+
+
+def _write_artifacts(registry_path: Path, root: Path, inputs: _RenderInputs) -> None:
+    entries, today, watchlist, history = inputs.entries, inputs.today, inputs.watchlist, inputs.history
+    pages, scores = inputs.pages, inputs.scores
     blocklist = _blocklist_beside(registry_path)
-    # The model pages, worked out once for every file that links one: the
-    # rule's, and every page already published beside the registry.
-    pages = model_pages(entries, history, today, _published_beside(registry_path))
     dates = PageDates(registry_path.parent, today)
     (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
     # A page per row, the checked page and the index.
@@ -3378,15 +3398,18 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
     check can never compare fewer files than the render writes.
     `contributing_from` is the directory whose CONTRIBUTING.md the map is
     printed into — the repository itself, when the output is not."""
-    today = today or utc_today()
-    scores = _resolve_scores(None)
-    render_readme(registry_path, template_dir, root / readme_name, today=today,
-                  watchlist_path=watchlist_path, scores=scores)
-    render_site(registry_path, template_dir, root / SITE_PAGE, today=today,
-                watchlist_path=watchlist_path, scores=scores)
-    render_configs_readme(registry_path, template_dir, root / CONFIGS_README, today=today,
-                          watchlist_path=watchlist_path, scores=scores)
-    render_artifacts(registry_path, root, today=today, watchlist_path=watchlist_path, scores=scores)
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path)
+    _write_all(registry_path, template_dir, root, readme_name, inputs, contributing_from)
+
+
+def _write_all(registry_path: Path, template_dir: Path, root: Path, readme_name: str,
+               inputs: _RenderInputs, contributing_from: Path | None = None) -> None:
+    env = _markdown_env(template_dir)
+    github = inputs.github_context()
+    _write_readme(env, root / readme_name, github)
+    _write_site(template_dir, root / SITE_PAGE, inputs)
+    _write_configs_readme(env, root / CONFIGS_README, github)
+    _write_artifacts(registry_path, root, inputs)
     render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
     render_indexnow_filter((contributing_from or registry_path.parent) / ".github/workflows/indexnow.yml",
                           root / ".github/workflows/indexnow.yml")
@@ -3395,22 +3418,25 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
 def render_repository(registry_path: Path, template_dir: Path, root: Path,
                       readme_name: str = "README.md", today: date | None = None,
                       now: datetime | None = None, watchlist_path: Path | None = None,
-                      committed: str | None = None) -> list[Event]:
+                      committed: str | None = None, *, expire_only: bool = False) -> list[Event] | None:
     """What `freetier-render` does: record every change the registry makes in
     history.jsonl beside it, then write every page — so the commit that makes a
     change carries its line, and the pages it publishes already show it.
     `committed` is the log the commit will be made on (`gate.committed_log`);
-    the lines recorded are the ones it will add."""
+    the lines recorded are the ones it will add. An expiry-only run returns
+    None and writes nothing when there is no promotion to withdraw."""
     now = now or datetime.now(timezone.utc)
     today = today or now.astimezone(timezone.utc).date()
     entries = load_registry(registry_path)
     current = expire_entries(entries, now)
     if current != entries:
         save_registry(registry_path, current)
+    elif expire_only:
+        return None
     recorded = record_changes(registry_path, _history_path(registry_path), today,
-                              now, committed=committed)
-    render_all(registry_path, template_dir, root, readme_name, today=today,
-               watchlist_path=watchlist_path)
+                              now, committed=committed, entries=current)
+    inputs = _RenderInputs.load(registry_path, today, watchlist_path, entries=current)
+    _write_all(registry_path, template_dir, root, readme_name, inputs)
     return recorded
 
 
@@ -3448,15 +3474,15 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
         # Only the outputs move: the registry, its watchlist and its history are
         # read from where they live, so this is the committed files against the
         # curated ones and not against a copy of them.
-        render_all(registry_path, template_dir, tmp, readme_name, today=pinned,
-                   watchlist_path=watchlist_path, contributing_from=root)
+        inputs = _RenderInputs.load(registry_path, pinned, watchlist_path)
+        _write_all(registry_path, template_dir, tmp, readme_name, inputs, contributing_from=root)
         fresh = {p.relative_to(tmp).as_posix(): p.read_bytes()
                  for p in tmp.rglob("*") if p.is_file()}
     stale = [rel for rel, data in fresh.items()
              if not (root / rel).is_file() or (root / rel).read_bytes() != data]
     # The log is the render's to write too: a registry that moves on and a log
     # that does not would publish a change no page lists and no feed announces.
-    if pending_changes(load_registry(registry_path), _history_beside(registry_path), pinned):
+    if pending_changes(inputs.entries, inputs.history, pinned):
         stale.append(HISTORY)
     # render_artifacts removes a page it no longer writes only in the directory
     # it wrote to; a page left behind in the repository is still served, so the
@@ -3498,14 +3524,13 @@ def main() -> None:
             print("run `TZ=UTC uv run freetier-render` and commit what it writes")
             raise SystemExit(1)
         return
-    if args.expire_only:
-        entries = load_registry(args.registry)
-        if expire_entries(entries, datetime.now(timezone.utc)) == entries:
-            print("no model promotion has ended")
-            return
     recorded = render_repository(args.registry, args.templates, root, args.out.name,
                                  watchlist_path=args.watchlist,
-                                 committed=committed_log(_history_path(args.registry)))
+                                 committed=committed_log(_history_path(args.registry)),
+                                 expire_only=args.expire_only)
+    if recorded is None:
+        print("no model promotion has ended")
+        return
     for ev in recorded:
         print(f"history: {ev.event.value} {ev.id}")
     print(f"rendered {written}")

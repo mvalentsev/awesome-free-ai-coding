@@ -288,7 +288,7 @@ async (page) => {
           await record(id,{models:initial.length});
         }
         if(width!==320&&(selected.has(prefix+'readme')||plan.readme_images.some((_,i)=>selected.has(prefix+'readme-image/'+i)))) {
-          await go(plan.repository+'?review='+plan.sha);
+          await go(plan.readme_url);
           await page.locator('react-app[app-name="code-view"].loaded').waitFor();
           const body=page.locator('article.markdown-body').first();await body.waitFor();
           const list=body.locator('details').filter({has:page.locator('summary',{hasText:'Where each one is free'})});

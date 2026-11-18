@@ -1456,6 +1456,8 @@ def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, m
     assert any(alt.startswith('awesome-free-ai-coding') for alt in plan['readme_images'])
     assert sum('/readme-image/' in case for case in plan['cases']) == 4 * len(plan['readme_images'])
     script = browser_script(bundle)
+    assert plan['readme_url'] == f"{plan['repository']}/tree/{plan['sha']}"
+    assert 'await go(plan.readme_url);' in script
     assert ('await list.waitFor()' in script) == mode.startswith('measured')
     assert 'getByAltText' in script and 'Unexpected README picture count' in script
     # A dirty worktree cannot hide the committed measured fold or invent one.
