@@ -6464,7 +6464,7 @@ entries:
     label: Free model promotions
     source: https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts
     quote: You've reached today's free usage limit for this model.
-    reviewed_on: '2026-11-12'
+    reviewed_on: '2026-11-18'
   free_part: models
   models:
   - family: solar-mini-4

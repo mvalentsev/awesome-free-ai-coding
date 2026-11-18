@@ -66,7 +66,15 @@ def test_real_client_budget_uses_sourced_model_limit_and_smaller_explicit_budget
     assert opencode_output_budget(Entry.model_construct(api=None), 'alpha') is None
 
 
-def test_output_budget_recorder_preserves_requests_and_stops_after_429():
+@pytest.mark.parametrize('status,retry_after,deferred', [
+    (429, '60', True),
+    (503, '60', True),
+    (503, 'Wed, 25 Nov 2026 00:00:00 GMT', True),
+    (503, 'invalid', True),
+    (503, None, False),
+    (503, '0', False),
+])
+def test_output_budget_recorder_preserves_requests_and_honors_upstream_waits(status, retry_after, deferred):
     received = []
 
     class Upstream(BaseHTTPRequestHandler):
@@ -75,8 +83,9 @@ def test_output_budget_recorder_preserves_requests_and_stops_after_429():
 
         def do_POST(self):
             received.append((self.path, self.rfile.read(int(self.headers["Content-Length"]))))
-            self.send_response(429 if len(received) == 2 else 200)
-            self.send_header("Retry-After", "60")
+            self.send_response(status if len(received) == 2 else 200)
+            if retry_after is not None:
+                self.send_header("Retry-After", retry_after)
             self.end_headers()
             self.wfile.write(b'{"upstream":true}')
 
@@ -91,12 +100,16 @@ def test_output_budget_recorder_preserves_requests_and_stops_after_429():
                 response = client.post(base + "/chat/completions", content=body)
                 assert response.status_code == 200
                 assert response.json() == {"upstream": True}
-                assert response.headers["retry-after"] == "60"
-                assert client.post(base + "/chat/completions", content=body).status_code == 429
-                assert client.post(base + "/chat/completions", content=body).status_code == 429
-        assert received == [("/v1/chat/completions", body)] * 2
-        assert not result["passed"] and result["rate_limited"]
-        assert result["checked_requests"] == 2
+                assert response.headers.get("retry-after") == retry_after
+                response = client.post(base + "/chat/completions", content=body)
+                assert response.status_code == status
+                assert response.headers.get("retry-after") == retry_after
+                assert client.post(base + "/chat/completions", content=body).status_code == (429 if deferred else 200)
+        expected_requests = 2 if deferred else 3
+        assert received == [("/v1/chat/completions", body)] * expected_requests
+        assert result["passed"] is (not deferred)
+        assert result["rate_limited"] is deferred
+        assert result["checked_requests"] == expected_requests
         assert all("authorization" not in record for record in result["records"])
     finally:
         server.shutdown()

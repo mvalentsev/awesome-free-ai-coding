@@ -10872,7 +10872,7 @@
           "label": "Free model promotions",
           "source": "https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts",
           "quote": "You've reached today's free usage limit for this model.",
-          "reviewed_on": "2026-11-12",
+          "reviewed_on": "2026-11-18",
           "amount": null
         }
       ],
@@ -25235,7 +25235,7 @@
         "avian.io"
       ],
       "name": "Avian",
-      "checked_on": "2026-11-03",
+      "checked_on": "2026-11-18",
       "reason": "Current pricing and documentation describe prepaid token-metered inference and dedicated GPU compute, alongside a Get Started Free button. The historical third-party trial amount is not current grant proof. Obtainable introductory API credit, card requirements and expiry remain unconfirmed; paid model rates do not disprove a separate grant. Sources: https://avian.io/pricing and https://avian.io/docs.",
       "reopen_if": "A current grant policy or an existing authorized account establishes a usable no-card API allowance, including amount, expiry, eligible models and activation. Keep inference and dedicated-compute credits separate.",
       "current": true

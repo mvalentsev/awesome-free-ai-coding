@@ -46,7 +46,7 @@ from typing import Iterator
 import httpx
 import yaml
 
-from .prober import CODEX_DONE, codex_probe_body
+from .prober import CODEX_DONE, codex_probe_body, retry_after_seconds
 from . import git
 from .models import Entry, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, load_registry
 from .render import CODEX_SINCE, FREE_GROUPS, MEASURED_POOLS, LITELLM_BRIDGE_SINCE, REPO_URL, litellm_command
@@ -202,7 +202,8 @@ def record_opencode_output_budget(base_url: str, model: str, tokens: int):
                 with httpx.Client(timeout=httpx.Timeout(95, connect=10)) as client:
                     response = client.post(base_url.rstrip("/") + self.path[len(prefix):],
                                            content=body, headers=headers)
-                if response.status_code == 429:
+                if (response.status_code == 429
+                        or response.status_code >= 500 and retry_after_seconds(response) != 0):
                     limited.set()
                 records.append({**{k: payload[k] for k in ("model", OPENCODE_LEGACY_OUTPUT_FIELD, OPENCODE_OUTPUT_FIELD)
                                    if k in payload}, "tools": bool(payload.get("tools")),

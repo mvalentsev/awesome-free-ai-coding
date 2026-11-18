@@ -3857,7 +3857,7 @@ watched:
 
   - domains: [avian.io]
     name: Avian
-    checked_on: '2026-11-03'
+    checked_on: '2026-11-18'
     reason: >-
       Current pricing and documentation describe prepaid token-metered inference and dedicated GPU
       compute, alongside a Get Started Free button. The historical third-party trial amount is not
