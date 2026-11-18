@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Codacy free tier: limits, free models, verified 2026-11-16'
+title: 'Codacy free tier: limits, free models, verified 2026-11-18'
 description: AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories. Sign in with a Git provider, grant repository access and enable AI Reviewer. The Team plan is free for open-source projects; the separate private-repository trial lasts 14…
 permalink: /providers/codacy/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-18
 crumb: Codacy
 ---
 
@@ -11,7 +11,7 @@ crumb: Codacy
 
 # Codacy free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-11-04, a regular row from the first probe it passes on or after 2026-11-18 · **live** — last verified by a probe on 2026-11-16 · [codacy.com](https://www.codacy.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-18 · [codacy.com](https://www.codacy.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -58,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-11-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-11-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

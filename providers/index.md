@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 ---
 
 {% raw %}
@@ -39,7 +39,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Greptile](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/) — verified 2026-11-16
 - [Graphite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/) — verified 2026-11-17
 - [Sourcery](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/) — verified 2026-11-17
-- [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) — verified 2026-11-16
+- [Codacy](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/) — verified 2026-11-18
 
 ## 🔌 LLM APIs with free tier
 
@@ -103,7 +103,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) — verified 2026-11-16
 - [NoTrack API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) — verified 2026-11-16
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-16
-- [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-16
+- [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-18
 - [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/) — verified 2026-11-17
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-11-09 · [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-16

@@ -16,7 +16,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/) · [Logfare](https://mvalentsev.github.io/awesome-free-ai-coding/providers/logfare/)
+🆕 **New this week:** [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/)
 
 ## 🚀 Start here
 
@@ -120,7 +120,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Greptile](https://www.greptile.com)** 👁 — AI pull-request reviews on existing repositories with recurring Starter credits; installed CLI reviews use a separate no-card trial or a paid plan<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/greptile/)</sub>
 - **[Graphite](https://graphite.com)** — AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial<br><sub>[verified 2026-11-17](https://mvalentsev.github.io/awesome-free-ai-coding/providers/graphite/)</sub>
 - **[Sourcery](https://www.sourcery.ai)** — AI pull-request reviews, security checks and suggested fixes for public repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-17](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sourcery/)</sub>
-- **[Codacy](https://www.codacy.com)** 🧪 — AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/)</sub>
+- **[Codacy](https://www.codacy.com)** — AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-18](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/)</sub>
 
 ### 🔌 LLM APIs with free tier
 <sub>**38** live · **36** of them ask for no card · sorted by how much work you can get done for free</sub>
@@ -186,7 +186,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Impossibl](https://impossibl.com)** — Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) · [🔑 key](https://impossibl.com/dashboard)</sub>
 - **[NoTrack API](https://notrack.ai/api)** — Operator-hosted OpenAI-compatible API with a first-key trial budget for its single NoTrack Uncensored model<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/notrack-ai/) · [🔑 key](https://notrack.ai/api-keys)</sub>
 - **[Standard Compute](https://standardcompute.com)** — A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) · [🔑 key](https://standardcompute.com/signup)</sub>
-- **[Mixedbread](https://www.mixedbread.com)** 🧪 — OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) · [🔑 key](https://platform.mixedbread.com/platform?next=api-keys)</sub>
+- **[Mixedbread](https://www.mixedbread.com)** — OpenAI-compatible API for the Toast 1 knowledge and search model, with one-time Starter credit and no card required<br><sub>[verified 2026-11-18](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) · [🔑 key](https://platform.mixedbread.com/platform?next=api-keys)</sub>
 - **[Teapot Router](https://teapotrouter.com)** 🧪 — Independent API gateway with a one-time signup credit grant and optional prepaid use<br><sub>[verified 2026-11-17](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/) · [🔑 key](https://teapotrouter.com/en/register)</sub>
 - **[Upstage (Solar API)](https://www.upstage.ai/events/ai-initiative-2025-en)** — Approved schools, universities, hospitals and nonprofits get free API model access for up to one year<br><sub>[verified 2026-11-09](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) · [🔑 key](https://console.upstage.ai/api-keys) · [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)</sub>
 - **[CodeAnt AI](https://codeant.ai)** — Installed CLI for AI pull-request review and suggested fixes on existing code, with a no-card introductory trial<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/)</sub>

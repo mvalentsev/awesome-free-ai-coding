@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17",
+  "generated": "2026-11-18",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -18647,9 +18647,9 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-04",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-18",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 90,
       "no_account": false,
       "archived": false,
@@ -18754,9 +18754,9 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-04",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-18",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 97,
       "no_account": false,
       "archived": false,
