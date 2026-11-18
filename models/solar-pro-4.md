@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'solar-pro-4 free: 2 providers, limits and ids, provider probes 2026-11-09 or later'
+title: 'solar-pro-4 free: 2 providers, limits and ids, provider probes 2026-11-16 or later'
 description: solar-pro-4 is served free by Freebuff and Upstage (Solar API). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-pro-4/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: solar-pro-4
 ---
 
@@ -11,7 +11,7 @@ crumb: solar-pro-4
 
 # Where solar-pro-4 is free
 
-**2 rows on the list serve `solar-pro-4` free:** Freebuff and Upstage (Solar API). None asks for a card. The providers' last scheduled probes were on 2026-11-09 or later; their offers are rechecked twice a week.
+**2 rows on the list serve `solar-pro-4` free:** Freebuff and Upstage (Solar API). None asks for a card. The providers' last scheduled probes were on 2026-11-16 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -45,7 +45,7 @@ DeepSeek V4.1 Flash Fast is the default at full access. At limited access the de
 
 ### [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-09 · listed since 2026-11-17
+🎁 Trials (no card when possible) · no card · last probe 2026-11-18 · listed since 2026-11-17
 
 Approved schools, universities, hospitals and nonprofits get free API model access for up to one year
 

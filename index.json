@@ -4568,8 +4568,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-09",
-      "probe_failures": 2,
+      "last_verified": "2026-11-18",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 99,
       "no_account": false,
@@ -13520,8 +13520,8 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-12",
-      "probe_failures": 1,
+      "last_verified": "2026-11-18",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 86,
       "no_account": false,

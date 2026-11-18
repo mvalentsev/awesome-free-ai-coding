@@ -90,7 +90,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) — verified 2026-11-16 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · `qwen3-vl-8b-instruct`
 - [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-11-16 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-11-16
-- [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-12
+- [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-11-18
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-11-16
 - [Summer Engine](https://mvalentsev.github.io/awesome-free-ai-coding/providers/summer-engine/) — verified 2026-11-17
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — verified 2026-11-16
@@ -105,7 +105,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) — verified 2026-11-16
 - [Mixedbread](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixedbread/) — verified 2026-11-18
 - [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/) — verified 2026-11-17
-- [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-11-09 · [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)
+- [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-11-18 · [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) (until 2027-03-31)
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-16
 - [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-17
 - [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-17
