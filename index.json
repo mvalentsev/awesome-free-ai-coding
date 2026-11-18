@@ -1610,11 +1610,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "glm-5.3-flash",
-          "table_name": "GLM-5.3-Flash Free",
-          "aa_model": "glm-5-3-flash"
-        },
-        {
           "family": "mimo-v2.6-flash",
           "aa_model": "mimo-v2-6-flash"
         },
@@ -1665,12 +1660,6 @@
           "on": "2026-11-09",
           "source": "https://opencode.ai/v2/docs/console/models/",
           "table_name": "LongCat 2.5 Free"
-        },
-        {
-          "family": "minimax-m3.1-flash",
-          "on": "2026-11-10",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "MiniMax M3.1 Flash Free"
         },
         {
           "family": "hy4-flash",
@@ -1745,7 +1734,6 @@
           "nemotron-3.5-lightning",
           "mimo-v2.6-flash",
           "deepseek-v4.1-flash",
-          "glm-5.3-flash",
           "nemotron-3.5-super-vl-120b-a12b",
           "flint-v1.0",
           "beam-1.0"
@@ -1761,7 +1749,6 @@
           "nemotron-3.5-lightning": "",
           "mimo-v2.6-flash": "",
           "deepseek-v4.1-flash": "",
-          "glm-5.3-flash": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "flint-v1.0": "",
           "beam-1.0": ""
@@ -3933,7 +3920,7 @@
       ],
       "card_required": false,
       "offering": "Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible",
-      "limits": "Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)\n\nRemoved model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `qwen3.8-max`, `deepseek-v4-pro`\n\nSeparate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)\n\nFree token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. New grants exclude Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3. Previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.",
+      "limits": "Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)\n\nRemoved model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `deepseek-v4-pro`\n\nSeparate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)\n\nFree token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. New grants exclude Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3. Previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.",
       "quotas": [
         {
           "amount": 1000000.0,
@@ -3959,7 +3946,6 @@
           "source": "https://www.alibabacloud.com/help/en/model-studio/new-free-quota",
           "quote": "After removal, new users will no longer receive a free quota for the model; quotas already issued to existing users remain available until they expire or are exhausted.",
           "model_ids": [
-            "qwen3.8-max",
             "deepseek-v4-pro"
           ],
           "reviewed_on": "2026-11-17",
@@ -4147,7 +4133,7 @@
         "endpoint": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
         "keywords": [
           "free quota",
-          "valid for 90 days"
+          "Validity: Within 90 days"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -4223,7 +4209,7 @@
           "glm-5.1"
         ],
         "what": "Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible",
-        "limits": "Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)\n\nRemoved model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `qwen3.8-max`, `deepseek-v4-pro`\n\nSeparate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)\n\nFree token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. New grants exclude Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3. Previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.",
+        "limits": "Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)\n\nRemoved model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `deepseek-v4-pro`\n\nSeparate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)\n\nFree token grants apply in Singapore (international), independently per model and dated snapshot. Current pricing tables decide new-grant eligibility. New grants exclude Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3. Previously issued quotas remain usable until expiry or exhaustion. Check the console for each model's remaining quota. Kimi and glm-5.2-fast-preview have no API-key grant. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default. OAuth has a separate allowance; its eligible models and reset time are not established here.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -21515,7 +21501,6 @@
     {
       "family": "glm-5.3-flash",
       "rows": [
-        "opencode",
         "nvidia-nim",
         "aihubmix",
         "zcode",

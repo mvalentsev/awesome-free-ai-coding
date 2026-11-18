@@ -26,7 +26,7 @@ Model-specific free token grants in Singapore, typically one million tokens vali
 
 Typical model token grant: 1,000,000 tokens once per account per model (Where granted; valid for 90 days from activation, model release or approval, whichever is later)
 
-Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `qwen3.8-max`, `deepseek-v4-pro`
+Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `deepseek-v4-pro`
 
 Separate OAuth allowance: 2,000 requests/day; scope not published (separate from API-key token grants)
 
@@ -58,7 +58,7 @@ curl -s https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions 
 
 ## Evidence
 
-- Probe: the page at <https://www.alibabacloud.com/help/en/model-studio/model-pricing>, anchored on `free quota`, `valid for 90 days`
+- Probe: the page at <https://www.alibabacloud.com/help/en/model-studio/model-pricing>, anchored on `free quota`, `Validity: Within 90 days`
 - Source: <https://www.alibabacloud.com/help/en/model-studio/model-pricing>
 - Source: <https://www.alibabacloud.com/help/en/model-studio/new-free-quota>
 

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-18T13:47:21Z</updated>
+  <updated>2026-11-18T14:03:37Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261118T140337Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-11-18T14:03:37Z</updated>
+    <summary type="text">dropped glm-5.3-flash · free models: big-pickle, nemotron-3-ultra, nemotron-3.5-lightning, mimo-v2.6-flash, deepseek-v4.1-flash, nemotron-3.5-super-vl-120b-a12b, flint-v1.0, beam-1.0</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/amd-token-factory/20261118T134721Z</id>
     <title>Added: AMD Radeon Cloud Token Factory</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://inference.ai.exchange"/>
     <updated>2026-11-03T21:59:13Z</updated>
     <summary type="text">Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llm-kiwi/20261103T215913Z</id>
-    <title>Added: LLM.kiwi</title>
-    <link rel="alternate" href="https://llm.kiwi"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">Hosted OpenAI-compatible API with a no-card Free plan and an automatic model router</summary>
   </entry>
 </feed>

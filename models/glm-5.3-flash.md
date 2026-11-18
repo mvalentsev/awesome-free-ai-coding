@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 5 providers, limits and ids, provider probes 2026-11-16'
-description: glm-5.3-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-5.3-flash free: 4 providers, limits and ids, provider probes 2026-11-16'
+description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: glm-5.3-flash
 ---
 
@@ -11,30 +11,11 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**5 rows on the list serve `glm-5.3-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**4 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
-
-🤖 Coding agents & CLIs · no card · last probe 2026-11-16 · listed since 2026-11-02
-
-Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
-
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them. Hy4 flash Free's provider states zero retention and no training on your data.
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `GLM-5.3-Flash Free`
-- What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
@@ -127,6 +108,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ## Rows that listed it before
 
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-11-02 to 2026-11-18
 - [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-10-06, 2026-10-06 to 2026-11-14
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25

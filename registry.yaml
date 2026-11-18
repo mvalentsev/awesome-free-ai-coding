@@ -785,9 +785,6 @@ entries:
   - family: deepseek-v4.1-flash
     table_name: DeepSeek V4.1 Flash Free
     aa_model: deepseek-v4-1-flash
-  - family: glm-5.3-flash
-    table_name: GLM-5.3-Flash Free
-    aa_model: glm-5-3-flash
   - family: nemotron-3.5-super-vl-120b-a12b
     table_name: Nemotron 3.5 Super VL Free
     aa_model: nemotron-3-5-super-vl
@@ -806,10 +803,6 @@ entries:
     'on': '2026-11-09'
     source: https://opencode.ai/v2/docs/console/models/
     table_name: LongCat 2.5 Free
-  - family: minimax-m3.1-flash
-    'on': '2026-11-10'
-    source: https://opencode.ai/v2/docs/console/models/
-    table_name: MiniMax M3.1 Flash Free
   - family: hy4-flash
     'on': '2026-11-17'
     source: https://opencode.ai/v2/docs/console/models/
@@ -1927,7 +1920,6 @@ entries:
       quotas already issued to existing users remain available until they expire or
       are exhausted.
     model_ids:
-    - qwen3.8-max
     - deepseek-v4-pro
     reviewed_on: '2026-11-17'
   - amount: 2000.0
@@ -2051,7 +2043,7 @@ entries:
     endpoint: https://www.alibabacloud.com/help/en/model-studio/model-pricing
     keywords:
     - free quota
-    - valid for 90 days
+    - 'Validity: Within 90 days'
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

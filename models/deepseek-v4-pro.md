@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v4-pro free: 1 provider, limits and ids, provider probes 2026-11-16'
 description: deepseek-v4-pro is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-pro/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: deepseek-v4-pro
 ---
 
@@ -23,7 +23,7 @@ crumb: deepseek-v4-pro
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 
-- Limits, in the vendor's words: Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `qwen3.8-max`, `deepseek-v4-pro`
+- Limits, in the vendor's words: Removed model-grant campaigns: Usage allowance: see your account for values (period not published) per account per model (only previously issued quotas, until expiry or exhaustion; the November 15 list includes Qwen3.8 Max 0902, DeepSeek V4.1 Flash 1017, DeepSeek V4 Pro and Kimi K3); for `deepseek-v4-pro`
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-11-16'
-description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: glm-5.3-flash, mimo-v2.6-flash, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, beam-1.0 and 3 more. Free…'
+description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: mimo-v2.6-flash, nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, beam-1.0, big-pickle and 2 more. Free…'
 permalink: /providers/opencode/
 last_modified_at: 2026-11-18
 crumb: opencode
@@ -20,7 +20,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span>, <span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="big-pickle">`big-pickle`</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span>, <span data-model-family="flint-v1.0">[`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/)</span></span>
+<span data-model-sort-inline><span data-model-family="mimo-v2.6-flash">[`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)</span>, <span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="big-pickle">`big-pickle`</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span>, <span data-model-family="flint-v1.0">[`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `GLM-5.3-Flash Free`, `Nemotron 3.5 Super VL Free`, `Nemotron 3 Ultra Free`, `Nemotron 3.5 Lightning Free`, `Beam Free`, `Big Pickle`, `DeepSeek V4.1 Flash Free`, `Flint 40B Free`, `Inkling 2 Small Free`, `LongCat 2.5 Free`, `MiniMax M3.1 Flash Free`, `Hy4 flash Free`
+- In opencode's own model list: `Nemotron 3.5 Super VL Free`, `Nemotron 3 Ultra Free`, `Nemotron 3.5 Lightning Free`, `Beam Free`, `Big Pickle`, `DeepSeek V4.1 Flash Free`, `Flint 40B Free`, `Inkling 2 Small Free`, `LongCat 2.5 Free`, `Hy4 flash Free`
 
 ## Evidence
 
@@ -57,6 +57,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-18` — Free models changed: dropped glm-5.3-flash
 - `2026-11-10` — Free models changed: added beam-1.0, flint-v1.0
 - `2026-11-02` — Free models changed: added glm-5.3-flash, nemotron-3.5-super-vl-120b-a12b
 - `2026-10-29` — Free models changed: added deepseek-v4.1-flash
