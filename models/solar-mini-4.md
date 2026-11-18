@@ -3,7 +3,7 @@ layout: default
 title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-11-16'
 description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-18
 crumb: solar-mini-4
 ---
 
@@ -54,7 +54,7 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 
 - Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
 
-Free promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
+Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
 
 </details>
 
