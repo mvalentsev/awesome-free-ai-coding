@@ -1724,9 +1724,9 @@ model_list:
     api_base: https://api.beatapi.io/v1
     api_key: os.environ/BEATAPI_API_KEY
     use_chat_completions_api: true
-- model_name: beatapi/hy4-free
+- model_name: beatapi/hy4-flash-free
   litellm_params:
-    model: openai/hy4-free
+    model: openai/hy4-flash-free
     api_base: https://api.beatapi.io/v1
     api_key: os.environ/BEATAPI_API_KEY
     use_chat_completions_api: true

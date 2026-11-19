@@ -26,7 +26,7 @@ from pathlib import Path
 import httpx
 
 from .page_reader import page_evidence, recover_page
-from .models import ProbeType, Entry, is_archived, load_registry, utc_today
+from .models import ProbeType, Entry, RemainingFree, is_archived, load_registry, utc_today
 from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
@@ -244,6 +244,14 @@ def quote_found(quote: str, pages: list[str]) -> bool:
     return all(any(f in page for page in pages) for f in fragments)
 
 
+def remaining_free_finding(offer: RemainingFree, body: str | None) -> str | None:
+    if body is None:
+        return "remaining free offer: source could not be checked"
+    if not quote_found(offer.quote, page_texts(body)):
+        return "remaining free offer: eligibility quote no longer on its source"
+    return None
+
+
 def model_exclusion_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
     notes = []
     for excluded in entry.probe.model_exclusions:
@@ -284,7 +292,7 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         if entry.remaining_free.access:
             urls.append(entry.remaining_free.access.source)
     if lane := entry.api or entry.client_lane:
-        urls.extend(a.source for a in lane.model_access.values())
+        urls.extend(a.source for mid, a in lane.model_access.items() if mid in lane.model_ids)
         urls.extend(b.source for mid,b in lane.model_bindings.items() if mid in lane.model_ids)
     if entry.page_catalog:
         from .page_catalog import catalog_sources

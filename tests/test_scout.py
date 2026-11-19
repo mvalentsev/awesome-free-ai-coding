@@ -109,57 +109,20 @@ def test_apply_updates_refuses_a_fix_that_leaves_the_row_failing():
     assert entries[0].models == []  # left as it was
 
 
-def test_an_update_keeps_a_family_the_rows_own_probe_still_names():
-    """A shorter Models column always passes the verifier, so a family the update
-    drops is kept, and reported, while the row's own probe still names it."""
-    entries = [make(models=[{"family": "x-mini-2", "tier": "strong"},
-                            {"family": "x-pro-1"}, {"family": "x-old-1"}])]
-    applied, rejected = apply_updates(
-        entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
-        named=lambda e, family: family != "x-old-1")
-    assert applied == ["x"]
-    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
-    assert rejected == ["x: the update dropped x-pro-1, which the row's own probe still "
-                        "names — kept"]
-
-
-def test_an_update_keeps_a_family_whose_probe_could_not_be_read():
-    """An unreadable source cannot establish withdrawal; a negative read can
-    still propose a removal for the reviewer."""
-    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}, {"family": "x-old-1"}])]
-    applied, rejected = apply_updates(
-        entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
-        named=lambda e, family: None if family == "x-pro-1" else False)
-    assert applied == ["x"]
-    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
-    assert rejected == ["x: the update dropped x-pro-1, whose current probe could not "
-                        "be read — kept for review"]
-
-
-@respx.mock
-def test_an_unreadable_family_source_cannot_authorize_a_scout_removal():
-    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}])]
-    route = respx.get("https://x.ai").mock(side_effect=httpx.ConnectTimeout("unavailable"))
-    with httpx.Client() as client:
-        applied, rejected = apply_updates(
-            entries, [{"id": "x", "limits": "corrected limits",
-                       "models": [{"family": "x-mini-2"}]}],
-            named=scout.named_by_row(client))
-    assert applied == ["x"] and entries[0].limits == "corrected limits"
-    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
-    assert len(rejected) == 1 and "could not be read" in rejected[0]
-    assert route.call_count == 1
-
-
-def test_an_update_may_drop_a_family_a_reviewer_marked_superseded():
+@pytest.mark.parametrize("replacement", ["x-mini-3", "x-mini-4"])
+def test_an_update_may_only_use_the_exact_reviewed_replacement(replacement):
     """A family carrying `superseded_by` is one a human already said to replace,
     and replacing it is what the stale-models flag on such a row asks for."""
     entries = [make(models=[{"family": "x-mini-2", "superseded_by": "x-mini-3"}])]
     applied, rejected = apply_updates(
-        entries, [{"id": "x", "models": [{"family": "x-mini-3"}]}],
-        named=lambda e, family: True)
-    assert applied == ["x"] and rejected == []
-    assert [m.family for m in entries[0].models] == ["x-mini-3"]
+        entries, [{"id": "x", "models": [{"family": replacement}]}])
+    if replacement == "x-mini-3":
+        assert applied == ["x"] and rejected == []
+        assert [m.family for m in entries[0].models] == [replacement]
+    else:
+        assert applied == []
+        assert rejected == ["x: withdrawing x-mini-2 needs review of every free access mode"]
+        assert [m.family for m in entries[0].models] == ["x-mini-2"]
 
 
 def test_apply_updates_verifies_the_corrected_entry_and_not_the_old_one():
@@ -271,6 +234,24 @@ def test_probe_check_accepts_a_family_the_page_spells_differently():
         200, text="X Mini 2 is free for everyone, and x-mini-2 is its id"))
     with httpx.Client() as client:
         assert scout.probe_check_sync(e, client) is None
+
+
+@pytest.mark.parametrize("eligible", [False, True])
+@respx.mock
+def test_a_refreshed_probe_keyword_cannot_replace_the_remaining_free_offer(eligible):
+    offer = "Free-plan users can claim recurring credits."
+    entry = make(
+        probe={"type": "page-keywords", "endpoint": "https://x.ai",
+               "keywords": ["100 credits per claim"]},
+        remaining_free={"source": "https://x.ai", "quote": offer, "free_part": "sum"},
+    )
+    page = offer if eligible else "Only active trial users can claim recurring credits."
+    route = respx.get("https://x.ai").respond(200, text=f"{page} 100 credits per claim.")
+    with httpx.Client() as client:
+        result = scout.probe_check_sync(entry, client)
+    assert result == (None if eligible else
+                      "remaining free offer: eligibility quote no longer on its source")
+    assert route.call_count == 1
 
 
 @respx.mock
@@ -753,7 +734,8 @@ def test_a_repaired_row_keeps_its_ids_half_on_the_unfixed_list():
     human's to act on."""
     llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n"
                                  "    models: [{family: x-mini-2}]\n```"})
-    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-old-1"}])]
+    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-old-1",
+                                                   "superseded_by": "x-mini-2"}])]
     ids_half = ("api.model_ids the catalog no longer answers for: "
                 "vendor/x-old-1 is not in the catalog")
     result = run_scout(llm, entries,
@@ -765,18 +747,24 @@ def test_a_repaired_row_keeps_its_ids_half_on_the_unfixed_list():
     assert result["unfixed"] == [f"x: {ids_half}"]
 
 
-def test_the_fix_phase_asks_the_rows_probe_before_a_family_goes():
+@respx.mock
+def test_the_fix_phase_reports_a_missing_family_without_withdrawing_it():
     llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n"
                                  "    models: [{family: x-mini-2}]\n```"})
     entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}])]
-    result = run_scout(llm, entries,
-                       [{"id": "x", "status": "fail", "detail": "missing families: x-old-1"}],
-                       lambda urls: {u: "page text" for u in urls}, TODAY,
-                       evidence=None, verifier=lambda e: None,
-                       named=lambda e, family: True)
+    route = respx.get("https://x.ai").respond(200, text="x-mini-2 is free")
+    with httpx.Client() as client:
+        result = run_scout(
+            llm, entries, [{"id": "x", "status": "fail", "detail": "missing families: x-pro-1"}],
+            lambda urls: {u: "x-mini-2 is free" for u in urls}, TODAY,
+            verifier=lambda entry: scout.probe_check_sync(entry, client),
+            named=scout.named_by_row(client),
+        )
     assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
-    assert result["rejected"] == ["x: the update dropped x-pro-1, which the row's own probe "
-                                  "still names — kept"]
+    assert result["updates"] == []
+    assert result["rejected"] == ["x: withdrawing x-pro-1 needs review of every free access mode"]
+    assert result["unfixed"] == ["x: fail — missing families: x-pro-1"]
+    assert route.call_count == 0
 
 
 def test_a_stale_ids_row_is_reported_rather_than_handed_to_the_model():
@@ -1710,7 +1698,8 @@ def test_a_scout_update_preserves_the_rows_own_measurement_decision(binding):
         {"family": "x-mini-2", "tier": "strong", "aa_model": "another-checkpoint"}])]
     before = entries[0].models[0]
     applied, rejected = apply_updates(entries, [{"id": "x", "models": [
-        {"family": "x-mini-2", "tier": "frontier", "aa_model": "invented"}]}])
-    assert applied == ["x"] and rejected == []
+        {"family": "x-mini-2", "tier": "frontier", "aa_model": "invented"}]}],
+        verifier=lambda entry: pytest.fail("unchanged entry should not be re-probed"))
+    assert applied == [] and rejected == []
     assert entries[0].models == [before]
     assert entries[1].models[0].aa_model == "another-checkpoint"

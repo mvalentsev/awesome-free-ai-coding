@@ -7,7 +7,7 @@ import respx
 
 from freetier_radar.models import Entry, expire_entries, load_registry, save_registry, requires_payment
 from freetier_radar.prober import ProbeStatus, probe_entry
-from freetier_radar.quotes import row_urls, row_quotes, row_quote_source
+from freetier_radar.quotes import check_entries, row_urls, row_quotes, row_quote_source
 
 SOURCE = 'https://vendor.example/free-terms'
 QUOTE = 'Recharged users retain their monthly free allowance after model replacement.'
@@ -62,6 +62,23 @@ def test_last_model_expiry_preserves_the_other_mode_payment_and_sources(tmp_path
     assert ('remaining_free.quote', QUOTE) in row_quotes(current)
     assert SOURCE in row_urls(current)
     assert expire_entries([current], datetime(2026, 11, 25, tzinfo=timezone.utc))[0] == current
+
+
+@respx.mock(assert_all_called=False)
+async def test_the_current_offer_does_not_need_the_expired_promotion_page(respx_mock):
+    row = entry()
+    old_source = 'https://vendor.example/past-promotion'
+    row.api.model_access['science-flash'].source = old_source
+    old_page = respx_mock.get(old_source).respond(404)
+    respx_mock.get(row.probe.endpoint).respond(200, json={'data': [{'id': 'science-flash'}]})
+    respx_mock.get(SOURCE).respond(200, text=QUOTE)
+    today = datetime(2026, 11, 24, 8, tzinfo=timezone.utc)
+    current = expire_entries([row], today)[0]
+    async with httpx.AsyncClient() as client:
+        assert await check_entries([current], client, today.date()) == ([], {})
+    assert old_page.call_count == 0
+    assert current.api.model_access['science-flash'].source == old_source
+    assert old_source in row_urls(row)
 
 
 def test_continuing_mode_drops_unrecheckable_undated_catalog_exclusions(tmp_path):

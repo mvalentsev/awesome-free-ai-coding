@@ -44,10 +44,19 @@ def test_workflow_passes_exact_provider_ids_as_arguments(tmp_path, selection, ex
 def test_targeted_workflow_does_not_start_unrelated_mutations_or_outreach():
     data = yaml.safe_load(Path('.github/workflows/update.yml').read_text())
     steps = data['jobs']['update']['steps']
+    scout = next(step for step in steps if step.get('id') == 'scout')
+    report_check = next(step for step in steps if step.get('id') == 'scout_checks')
+    assert '!inputs.provider_ids' in scout['if']
+    assert report_check['if'] == "steps.scout.outputs.changed == 'true'"
     for step in steps:
         name = step.get('name', '')
-        if ('scout' in name.lower() or name in ('Announce what changed',
-                'Re-read tier marks from the Artificial Analysis index')):
+        if name == "Record the scout's changes and render every page":
+            assert step['if'] == report_check['if']
+        elif name == 'Open scout PR':
+            assert step['if'] == "${{ !inputs.dry_run && steps.scout_checks.outcome == 'success' }}"
+        elif (step not in (scout, report_check) and
+              ('scout' in name.lower() or name in ('Announce what changed',
+               'Re-read tier marks from the Artificial Analysis index'))):
             assert '!inputs.provider_ids' in str(step.get('if', '')), name
 
 

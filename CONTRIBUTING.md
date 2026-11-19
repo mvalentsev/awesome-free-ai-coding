@@ -1078,8 +1078,8 @@ still checks each new commit for earned fields. A push to `main` protects its
 remote tip. CI checks the logs again on every
 push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,
 so the run checks its logs, the curated files, the render and the tests before it commits,
-and checks the scout's branch, earned fields and tests included, before it opens the pull
-request. Historical repairs ratified by the owner are named, with their reasons,
+and checks the scout's proposed changes, earned fields and tests included, before it opens a
+pull request. Historical repairs ratified by the owner are named, with their reasons,
 in `gate.RATIFIED`; subsequent gates use them as baselines. Ordinary changes
 must pass the hooks and preserve the log and earned fields.
 
@@ -1140,8 +1140,9 @@ space-separated provider IDs for targeted verification. Only those rows earn
 verification fields; unknown or permanently archived IDs stop the run. Resolve
 the delisting or retirement first. Targeted runs skip tier changes, scouting and
 announcements, and stop if a selected offer fails or cannot be checked. An empty
-input retains the complete scheduled run. `dry_run` runs every selected phase and
-writes nothing (the scout's report lands in the run summary instead of a PR),
+input retains the complete scheduled run. `dry_run` checks the verification and
+scout changes on the runner and publishes no commits or PR (the scout's report
+lands in the run summary),
 and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 

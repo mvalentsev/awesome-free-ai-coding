@@ -1552,8 +1552,8 @@
         "deepseek-v4.1-flash-free": {
           "name": "deepseek-v4.1-flash-free"
         },
-        "hy4-free": {
-          "name": "hy4-free"
+        "hy4-flash-free": {
+          "name": "hy4-flash-free"
         }
       }
     },

@@ -214,13 +214,13 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
                                           today))
         if entry.remaining_free:
-            from .quotes import page_texts, quote_found
+            from .quotes import remaining_free_finding
             response, _ = await _page_beside(client, entry.remaining_free.source,
                                             entry, page, attempts, backoff)
-            if response is None:
-                moved.append("remaining free offer: source could not be checked")
-            elif not quote_found(entry.remaining_free.quote, page_texts(response.text)):
-                moved.append("remaining free offer: eligibility quote no longer on its source")
+            finding = remaining_free_finding(
+                entry.remaining_free, response.text if response is not None else None)
+            if finding:
+                moved.append(finding)
         if entry.page_catalog is not None:
             from .page_catalog import check_page_catalog, check_model_eligibility, catalog_sources
             condition_bodies={}

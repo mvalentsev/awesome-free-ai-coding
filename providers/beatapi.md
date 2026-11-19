@@ -37,7 +37,7 @@ The vendor names no country it keeps the offer from ([source](https://beatapi.io
 
 - Base URL: `https://api.beatapi.io/v1`
 - Key: `BEATAPI_API_KEY` — get one at <https://beatapi.io/dashboard/apikeys>
-- Callable ids: `deepseek-v4.1-flash-free`, `glm-5.3-flash-free`, `hy4-free`
+- Callable ids: `deepseek-v4.1-flash-free`, `glm-5.3-flash-free`, `hy4-flash-free`
 - Note: Use a key in the default auto group and the exact -free ID. A zero balance is allowed. All three listed Free IDs support Chat Completions; the Free catalog does not promise Responses. Reasoning consumes the output budget; the Free guide recommends "2000 or more" tokens.
 
 Try it from your terminal with your key in `BEATAPI_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -51,7 +51,7 @@ curl -s https://api.beatapi.io/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.beatapi.io/free-models>, anchored on `A zero balance is fine, and so is an account that has never topped up`, `glm-5.3-flash-free`, `deepseek-v4.1-flash-free`, `hy4-free`; ids checked in <https://api.beatapi.io/v1/text/models>
+- Probe: the page at <https://docs.beatapi.io/free-models>, anchored on `A zero balance is fine, and so is an account that has never topped up`, `glm-5.3-flash-free`, `deepseek-v4.1-flash-free`, `hy4-flash-free`; ids checked in <https://api.beatapi.io/v1/text/models>
 - Source: <https://beatapi.io/pricing>
 - Source: <https://beatapi.io/terms-of-service>
 - Source: <https://docs.beatapi.io/free-models>

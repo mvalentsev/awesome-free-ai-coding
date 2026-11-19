@@ -138,6 +138,29 @@ def test_the_run_checks_what_ci_would_before_it_commits():
     assert "pytest" in scout["run"]
 
 
+@pytest.mark.parametrize("failed", [False, True])
+def test_scout_branch_check_reports_failure_and_returns_its_status(tmp_path, failed):
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text())
+    steps = workflow["jobs"]["update"]["steps"]
+    check = next(s for s in steps if s.get("name") == "Check the scout's branch")
+    report = tmp_path / "scout-pr.md"
+    report.write_text("## Scout proposals\n")
+    fake_uv = f'''
+uv() {{
+    if [ "$2" = freetier-check ] && [ "{int(failed)}" = 1 ]; then
+        echo "suppression matches nothing"
+        return 1
+    fi
+}}
+'''
+    result = subprocess.run(["bash", "-eo", "pipefail", "-c", fake_uv + check["run"]],
+                            cwd=tmp_path, capture_output=True, text=True)
+    assert result.returncode == int(failed)
+    body = report.read_text()
+    assert "## Scout proposals" in body and "✓ `pytest -q`" in body
+    assert ("suppression matches nothing" in body) is failed
+
+
 def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_oldest():
     """The oldest Python CI runs is requires-python, no minor between it and
     the newest is skipped, the matrix syncs to uv.lock as committed, and the

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-11-16'
-description: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a two-week 300-credit trial and 100 credits a day to claim in the desktop app. Claim each daily reward in the CN desktop app between 10:00 and the next day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each…
+description: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with limited free usage and an introductory Pro trial. The Free plan keeps limited completion and coding-agent chat after the trial. Users on the Free plan can spend previously claimed promotional credits until their original expiry…
 permalink: /providers/qoder-cn/
 last_modified_at: 2026-11-19
 crumb: Qoder CN (formerly Lingma)
@@ -15,21 +15,21 @@ crumb: Qoder CN (formerly Lingma)
 
 ## What you get
 
-Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a two-week 300-credit trial and 100 credits a day to claim in the desktop app
+Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with limited free usage and an introductory Pro trial
 
 ## Free models
 
-The free offer is a budget for model usage across the catalog. See Limits for its conditions and Connect for API details, where available.
+The vendor does not identify which models the free offer includes. See Limits for the published conditions.
 
 ## Limits, in the vendor's words
 
 Pro trial: 300 credits once per account (Valid for 2 weeks)
 
-Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+Claimable trial or paid-plan bonus: 100 credits/day per account (During trial, on an eligible paid individual plan or with a membership card. Each claim is valid for 30 days)
 
 Basic-model fallback: Completions allowance: amount not published (period not published) per account
 
-Claim each daily reward in the CN desktop app between 10:00 and the next day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each claimed reward expires after 30 days. Credits work across the CN apps and are spent at each model's current rate. The reward campaign's end is "结束时间：另行公告" (to be announced). After trial credit runs out, a basic model still provides limited completion. Signup requires an Alibaba Cloud account bound to a phone number; real-name verification is needed for purchases. Qoder and Qoder CN are "separate product systems"; their accounts, tasks and data are not interoperable. The former Qwen3.8-Flash free-model promotion ended on November 7, 2026 at 00:00 Beijing time (UTC+8); discounted calls now consume Credits.
+The Free plan keeps limited completion and coding-agent chat after the trial. Users on the Free plan can spend previously claimed promotional credits until their original expiry. Eligible accounts claim in Qoder CN Desktop, Mobile or IDE. Signup requires an Alibaba Cloud account bound to a phone number. Real-name verification is required for purchases. Qoder and Qoder CN are "separate product systems" with separate accounts, tasks and data.
 
 ## Where it is offered
 
@@ -41,12 +41,11 @@ The vendor names no country it keeps the offer from ([source](https://docs.qoder
 
 ## Evidence
 
-- Probe: the page at <https://docs.qoder.cn/events/100credits>, anchored on `2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。`
+- Probe: the page at <https://docs.qoder.cn/product-overview/billing-description>, anchored on `编码智能体对话 50 轮次/月 有限次数的补全`
 - Source: <https://docs.qoder.cn/product-overview/billing-description>
 - Source: <https://docs.qoder.cn/product-overview/credits>
 - Source: <https://docs.qoder.cn/events/100credits>
 - Source: <https://docs.qoder.cn/product-overview/account-and-subscription>
-- Source: <https://docs.qoder.cn/events/flashoffer>
 - Source: <https://docs.qoder.com/product-series/quick-start>
 
 ## History

@@ -187,7 +187,7 @@ def test_scheduled_collection_runs_before_any_writer_or_backend_and_preserves_ev
     position=next(i for i,s in enumerate(steps) if s.get('name')=='Collect archived offers due for manual review')
     step=steps[position]
     assert '!inputs.provider_ids' in step['if']
-    assert position < next(i for i,s in enumerate(steps) if s.get('name')=='Commit verification results to main')
+    assert position < next(i for i,s in enumerate(steps) if s.get('id')=='commit')
     assert position < next(i for i,s in enumerate(steps) if s.get('name','').startswith('Scout ('))
     upload=next(s for s in steps if s.get('name')=='Preserve archived-offer review evidence')
     assert 'always()' in upload['if'] and '!inputs.provider_ids' in upload['if']

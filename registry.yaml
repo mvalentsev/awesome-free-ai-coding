@@ -2429,19 +2429,17 @@ entries:
   - https://docs.qoder.com/account/pricing
   - https://docs.qoder.com/events/100credits
   - https://docs.qoder.com/release-notes/lite-model-tier-retirement-notice
-  - https://docs.qoder.com/events/flashoffer
-  - https://docs.qoder.com/events/deepseek-flash-free
   card_required: false
   remaining_free:
     source: https://docs.qoder.com/account/pricing
     quote: If you choose to continue using the Free plan, don’t worry—we will continue
       to serve you with basic models, subject to daily and monthly limits.
     free_part: unnamed
-  offering: A separately documented free allowance continues after the named model
-    promotions
-  limits: If you choose to continue using the Free plan, don’t worry—we will continue
-    to serve you with basic models, subject to daily and monthly limits. Current model
-    IDs and account eligibility must be confirmed with the provider.
+  offering: A coding agent with a Free plan for basic models and an introductory Pro
+    trial
+  limits: The Free plan keeps access to basic models under daily and monthly limits.
+    Promotional credits claimed before eligibility changed remain usable until their
+    original expiry.
   quotas:
   - amount: 300.0
     unit: credits
@@ -2458,14 +2456,15 @@ entries:
     unit: credits
     period: day
     scope: account
-    label: Claimed promotional credit
-    condition: Each claim valid for 30 days
-    condition_quote: Each reward is valid for 30 days
+    label: Claimable trial or paid-plan bonus
+    condition: During a Pro trial or on an eligible paid individual plan. Each claim
+      is valid for 30 days
+    condition_quote: only users in a Pro trial or on a paid individual plan (Lite,
+      Pro, Pro+, or Ultra) can claim the daily 100 general-purpose Credits. Free users
+      can no longer claim the reward. Credits claimed before the change remain available
+      for their original 30-day validity periods.
     source: https://docs.qoder.com/events/100credits
-    quote: individual users of Qoder International can claim 100 Credits every day
-      in the Qoder desktop app.
-    value_phrase: individual users of Qoder International can claim 100 Credits every
-      day in the Qoder desktop app.
+    quote: claim the daily 100 general-purpose Credits
     reviewed_on: '2026-10-06'
   - unit: completions
     period: one-time
@@ -2476,7 +2475,7 @@ entries:
     condition_quote: The 2-week Pro Trial includes 300 credits
     source: https://docs.qoder.com/account/pricing
     quote: Unlimited completions & next edits
-    reviewed_on: '2026-11-12'
+    reviewed_on: '2026-11-19'
   - unit: requests
     period: day
     scope: account-model
@@ -9563,27 +9562,20 @@ entries:
   - https://docs.qoder.cn/product-overview/credits
   - https://docs.qoder.cn/events/100credits
   - https://docs.qoder.cn/product-overview/account-and-subscription
-  - https://docs.qoder.cn/events/flashoffer
   - https://docs.qoder.com/product-series/quick-start
   card_required: false
   remaining_free:
-    source: https://docs.qoder.cn/events/100credits
-    quote: 2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
-      。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits
-      可跨天保留 。
-    free_part: sum
-  offering: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with a
-    two-week 300-credit trial and 100 credits a day to claim in the desktop app
-  limits: Claim each daily reward in the CN desktop app between 10:00 and the next
-    day at 10:00 Beijing time (UTC+8). Unclaimed credit does not accumulate; each
-    claimed reward expires after 30 days. Credits work across the CN apps and are
-    spent at each model's current rate. The reward campaign's end is "结束时间：另行公告" (to
-    be announced). After trial credit runs out, a basic model still provides limited
-    completion. Signup requires an Alibaba Cloud account bound to a phone number;
-    real-name verification is needed for purchases. Qoder and Qoder CN are "separate
-    product systems"; their accounts, tasks and data are not interoperable. The former
-    Qwen3.8-Flash free-model promotion ended on November 7, 2026 at 00:00 Beijing
-    time (UTC+8); discounted calls now consume Credits.
+    source: https://docs.qoder.cn/product-overview/billing-description
+    quote: 编码智能体对话 50 轮次/月 有限次数的补全
+    free_part: unnamed
+  offering: Alibaba Cloud's coding apps for China, formerly Tongyi Lingma, with limited
+    free usage and an introductory Pro trial
+  limits: The Free plan keeps limited completion and coding-agent chat after the trial.
+    Users on the Free plan can spend previously claimed promotional credits until
+    their original expiry. Eligible accounts claim in Qoder CN Desktop, Mobile or
+    IDE. Signup requires an Alibaba Cloud account bound to a phone number. Real-name
+    verification is required for purchases. Qoder and Qoder CN are "separate product
+    systems" with separate accounts, tasks and data.
   quotas:
   - amount: 300.0
     unit: credits
@@ -9600,12 +9592,13 @@ entries:
     unit: credits
     period: day
     scope: account
-    label: Claimed promotional credit
-    condition: Each claim valid for 30 days
-    condition_quote: 自领取之日起 30 天内有效
+    label: Claimable trial or paid-plan bonus
+    condition: During trial, on an eligible paid individual plan or with a membership
+      card. Each claim is valid for 30 days
+    condition_quote: 每日领取 100 通用 Credits 仅面向试用期用户，专业版、高级版、旗舰版个人付费订阅用户，以及会员卡用户。体验版（免费）用户不再开放领取。调整前已领取的
+      Credits 不受影响，在各自 30 天有效期内照常可用。
     source: https://docs.qoder.cn/events/100credits
-    quote: Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
-    value_phrase: Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits
+    quote: 每日领取 100 通用 Credits
     reviewed_on: '2026-11-10'
   - unit: completions
     scope: account
@@ -9622,7 +9615,7 @@ entries:
     model_ids:
     - Qwen3.8-Flash
     reviewed_on: '2026-11-10'
-  free_part: sum
+  free_part: unnamed
   models: []
   client_lane:
     model_ids: []
@@ -9637,18 +9630,17 @@ entries:
         until: '2026-11-07T00:00:00+08:00'
     ignored_ids:
     - Qwen3.8-Flash
-    note: The Qwen3.8-Flash free-model promotion has ended; continuing shared Credits
-      are spent at each model's current rate.
+    note: The named free-model promotion has ended. Eligible credits are spent at
+      current model rates.
   border:
     left_out: []
     'on': '2026-09-27'
     source: https://docs.qoder.cn/product-overview/account-and-subscription
   probe:
     type: page-keywords
-    endpoint: https://docs.qoder.cn/events/100credits
+    endpoint: https://docs.qoder.cn/product-overview/billing-description
     keywords:
-    - 2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在
-      Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。
+    - 编码智能体对话 50 轮次/月 有限次数的补全
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -12179,7 +12171,7 @@ entries:
     model_ids:
     - glm-5.3-flash-free
     - deepseek-v4.1-flash-free
-    - hy4-free
+    - hy4-flash-free
     note: Use a key in the default auto group and the exact -free ID. A zero balance
       is allowed. All three listed Free IDs support Chat Completions; the Free catalog
       does not promise Responses. Reasoning consumes the output budget; the Free guide
@@ -12195,7 +12187,7 @@ entries:
     - A zero balance is fine, and so is an account that has never topped up
     - glm-5.3-flash-free
     - deepseek-v4.1-flash-free
-    - hy4-free
+    - hy4-flash-free
     free_marker: ''
     require_zero_price: false
     catalog: https://api.beatapi.io/v1/text/models

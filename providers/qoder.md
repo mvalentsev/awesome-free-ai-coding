@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qoder free tier: limits, free models, verified 2026-11-19'
-description: A separately documented free allowance continues after the named model promotions. If you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits. Current model IDs and account eligibility must be confirmed with the…
+description: A coding agent with a Free plan for basic models and an introductory Pro trial. The Free plan keeps access to basic models under daily and monthly limits. Promotional credits claimed before eligibility changed remain usable until their original expiry.
 permalink: /providers/qoder/
 last_modified_at: 2026-11-19
 crumb: Qoder
@@ -15,7 +15,7 @@ crumb: Qoder
 
 ## What you get
 
-A separately documented free allowance continues after the named model promotions
+A coding agent with a Free plan for basic models and an introductory Pro trial
 
 ## Free models
 
@@ -25,11 +25,11 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 Pro trial: 300 credits once per account (Valid for 2 weeks)
 
-Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+Claimable trial or paid-plan bonus: 100 credits/day per account (During a Pro trial or on an eligible paid individual plan. Each claim is valid for 30 days)
 
 Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
 
-If you choose to continue using the Free plan, don’t worry—we will continue to serve you with basic models, subject to daily and monthly limits. Current model IDs and account eligibility must be confirmed with the provider.
+The Free plan keeps access to basic models under daily and monthly limits. Promotional credits claimed before eligibility changed remain usable until their original expiry.
 
 ## Where it is offered
 
@@ -45,8 +45,6 @@ The vendor names no country it keeps the offer from ([source](https://qoder.com/
 - Source: <https://docs.qoder.com/account/pricing>
 - Source: <https://docs.qoder.com/events/100credits>
 - Source: <https://docs.qoder.com/release-notes/lite-model-tier-retirement-notice>
-- Source: <https://docs.qoder.com/events/flashoffer>
-- Source: <https://docs.qoder.com/events/deepseek-flash-free>
 
 ## History
 

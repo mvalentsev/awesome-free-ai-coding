@@ -116,18 +116,13 @@ A "stale-models" failure means the probe passed and the offer is alive, but the
 entry's model list is in doubt — every family listed for it was marked
 superseded, the page no longer names a family the entry lists, or the catalog
 no longer serves one of its families free while it still serves another. The
-failure detail says which. Reply with a models list naming only families the
-page text below names itself, and leave the probe alone.
-A "missing families" detail, on that verdict or on a plain failure, names
-families the entry lists and the evidence no longer backs. The list you reply
-with replaces the old one whole: keep the families that still stand, drop the
-one that went, and add the ones that replaced it where the page names them in
-its place — a reply that only deletes turns a swapped generation into a model
-the readers lose. Where the probe type is api-models the page text IS the
-vendor's catalog, and a family counts only where the catalog still carries a
-FREE id for it: an id matching the entry's free marker, and free by the
-catalog's own flag or by a zero price where it publishes one. A family whose
-only ids are metered is not a free model and fails the same probe next run.
+failure detail says which. Leave the probe alone. Only replace an existing
+family when its reviewed superseded_by field names the exact replacement and
+the current source supports it. Other suspected withdrawals go to the reviewer
+to check across every free access mode. New family proposals need an explicit
+free offer. Where the probe type is api-models the page text is the catalog;
+the proposed family needs an ID matching the entry's free marker and the
+catalog's own free flag or zero price where it publishes one.
 A failure detail can carry more after " | " about api.model_ids or
 client_lane.model_ids, free ids the catalog, its free list or its lane names, the
 keyless lane, the Anthropic or Codex route, the public key, the data-use sentence or
@@ -761,17 +756,28 @@ def probe_check_sync(entry: Entry, client: httpx.Client,
         notes = (["listed families the page does not name: " + ", ".join(unevidenced)]
                  if unevidenced else [])
         notes.extend(model_table_findings(resp, entry, utc_today()))
-        if entry.probe.model_exclusions:
-            from .quotes import model_exclusion_changes
+        sources = [exclusion.source for exclusion in entry.probe.model_exclusions]
+        if entry.remaining_free:
+            sources.append(entry.remaining_free.source)
+        if sources:
+            from .quotes import model_exclusion_changes, remaining_free_finding
             bodies = {}
-            for source in dict.fromkeys(e.source for e in entry.probe.model_exclusions):
+            for source in dict.fromkeys(sources):
                 try:
-                    source_response = resp if source == entry.probe.endpoint else client.get(source, follow_redirects=True)
+                    if source == entry.probe.endpoint and entry.probe.follow is None:
+                        source_response = resp
+                    else:
+                        source_response = client.get(source, follow_redirects=True)
                 except httpx.HTTPError:
                     continue
                 if page_response_ok(source_response):
                     bodies[source] = source_response.text
             notes.extend(model_exclusion_changes(entry, bodies))
+            if entry.remaining_free:
+                finding = remaining_free_finding(
+                    entry.remaining_free, bodies.get(entry.remaining_free.source))
+                if finding:
+                    notes.append(finding)
         return " | ".join(notes) or None
     # Name a bot wall in the rejection: "missing keywords" reads as a bad
     # proposal, while "bot challenge" tells the reviewer the endpoint walls off
@@ -812,7 +818,6 @@ def _measured_marks(models: object, entries: list[Entry], current: Entry | None 
 
 def apply_updates(entries: list[Entry], updates: list[dict],
                   verifier: Callable[[Entry], str | None] | None = None,
-                  named: Callable[[Entry, str], bool | None] | None = None,
                   ) -> tuple[list[str], list[str]]:
     """Apply the LLM's corrections to flagged entries.
 
@@ -822,13 +827,9 @@ def apply_updates(entries: list[Entry], updates: list[dict],
     passes — a fix that leaves the row failing is refused, the row keeps its
     values, and the reason goes to the PR.
 
-    A shorter Models column always passes, so the verifier cannot see a reply
-    that drops too much. A family the reply drops is kept wherever `named` —
-    the row's own probe, read the way the run reads it — still finds it, unless
-    a reviewer has marked it superseded, and the PR says which. On a page row
-    that is presence on the page, as on every run, so a family the page now
-    names only as paid is kept for the reviewer to judge. An unreadable source
-    also keeps the family: unavailable evidence cannot establish withdrawal."""
+    One probe cannot establish withdrawal across every free access mode.
+    Removing a family requires a reviewer, or an exact replacement already
+    authorized by that family's superseded_by field."""
     applied, rejected = [], []
     for i, e in enumerate(entries):
         upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
@@ -848,18 +849,16 @@ def apply_updates(entries: list[Entry], updates: list[dict],
             rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"
                             f" — {_why(exc)}")
             continue
-        kept, unreadable = [], []
-        if "models" in changed and named is not None:
+        if "models" in changed:
             left = {m.family for m in fixed.models}
-            for model in e.models:
-                if model.family not in left and not model.superseded_by:
-                    present = named(fixed, model.family)
-                    if present is True:
-                        kept.append(model)
-                    elif present is None:
-                        unreadable.append(model)
-            if kept or unreadable:
-                fixed = fixed.model_copy(update={"models": [*fixed.models, *kept, *unreadable]})
+            withdrawn = [m.family for m in e.models
+                         if m.family not in left and m.superseded_by not in left]
+            if withdrawn:
+                rejected.append(f"{e.id}: withdrawing {', '.join(withdrawn)} "
+                                "needs review of every free access mode")
+                continue
+        if fixed == e:
+            continue
         problem = verifier(fixed) if verifier is not None else None
         if problem:
             print(f"update for {e.id} rejected: {problem}")
@@ -868,12 +867,6 @@ def apply_updates(entries: list[Entry], updates: list[dict],
             continue
         entries[i] = fixed
         applied.append(e.id)
-        if kept:
-            rejected.append(f"{e.id}: the update dropped {', '.join(m.family for m in kept)}, "
-                            "which the row's own probe still names — kept")
-        if unreadable:
-            rejected.append(f"{e.id}: the update dropped {', '.join(m.family for m in unreadable)}, "
-                            "whose current probe could not be read — kept for review")
     return applied, rejected
 
 
@@ -1143,8 +1136,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         )
         data = _ask(llm, FIX_PROMPT.format(context=context,
                                          anchor_phrase_words=number(ANCHOR_PHRASE_WORDS)))
-        result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier,
-                                                    named)
+        result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier)
         result["rejected"] += rejected
 
     # Everything the probe flagged that the run did not repair goes into the PR
