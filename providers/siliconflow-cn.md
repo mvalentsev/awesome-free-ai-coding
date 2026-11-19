@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-11-16'
+title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-11-19'
 description: 'Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents. Free models: deepseek-r1-0528-qwen3-8b, glm-4-9b-0414, glm-z1-9b-0414, qwen2.5-7b, qwen3-8b, qwen3.5-4b and 1 more. Free models are zero-priced but require…'
 permalink: /providers/siliconflow-cn/
-last_modified_at: 2026-11-18
+last_modified_at: 2026-11-19
 crumb: SiliconFlow (China)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # SiliconFlow (China) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · **live** — last verified by a probe on 2026-11-16 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · **live** — last verified by a probe on 2026-11-19 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

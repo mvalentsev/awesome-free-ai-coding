@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Teapot Router free tier: limits, free models, verified 2026-11-17'
+title: 'Teapot Router free tier: limits, free models, verified 2026-11-19'
 description: Independent API gateway with a one-time signup credit grant and optional prepaid use. Email verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is…
 permalink: /providers/teapotrouter/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-19
 crumb: Teapot Router
 ---
 
@@ -11,7 +11,7 @@ crumb: Teapot Router
 
 # Teapot Router free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-17, a regular row from the first probe it passes on or after 2026-12-01 · **live** — last verified by a probe on 2026-11-17 · [teapotrouter.com](https://teapotrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-11-17, a regular row from the first probe it passes on or after 2026-12-01 · **live** — last verified by a probe on 2026-11-19 · [teapotrouter.com](https://teapotrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-26b-a4b free: 3 providers, limits and ids, provider probes 2026-11-16'
+title: 'gemma-4-26b-a4b free: 3 providers, limits and ids, provider probes 2026-11-19'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-19
 crumb: gemma-4-26b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-26b-a4b
 
 # Where gemma-4-26b-a4b is free
 
-**3 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**3 rows on the list serve `gemma-4-26b-a4b` free:** OpenRouter (free models), AIHubMix (free models) and Kiosapi.id. None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemma-4-26b-a4b
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-09-25
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -43,7 +43,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-06
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-11-06
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -64,7 +64,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-11-16
 
 Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models
 

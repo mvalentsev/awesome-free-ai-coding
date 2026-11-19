@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-11-17",
+  "read_on": "2026-11-19",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "version": "5.0.1",
   "top": {
@@ -7,7 +7,7 @@
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "index": 64.6
   },
-  "median": 29.9,
+  "median": 28.6,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -32,6 +32,11 @@
     "gemma-4-31b": {
       "slug": "gemma-4-31b",
       "index": 4.4,
+      "estimated": false
+    },
+    "gemma-4-e4b": {
+      "slug": "gemma-4-e4b",
+      "index": 4.8,
       "estimated": false
     },
     "glm-5.3": {
@@ -143,7 +148,7 @@
     },
     "command-a": {
       "slug": "command-a",
-      "reason": "unscored"
+      "reason": "deprecated"
     },
     "deepseek-v3.2": {
       "slug": "deepseek-v3-2",

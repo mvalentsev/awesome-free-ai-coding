@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'llama-3.1-8b free: 2 providers, limits and ids, provider probes 2026-11-16'
+title: 'llama-3.1-8b free: 2 providers, limits and ids, provider probes 2026-11-19'
 description: llama-3.1-8b is served free by SimpleLLM and Kiosapi.id. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/llama-3.1-8b/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-19
 crumb: llama-3.1-8b
 ---
 
@@ -11,7 +11,7 @@ crumb: llama-3.1-8b
 
 # Where llama-3.1-8b is free
 
-**2 rows on the list serve `llama-3.1-8b` free:** SimpleLLM and Kiosapi.id. None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**2 rows on the list serve `llama-3.1-8b` free:** SimpleLLM and Kiosapi.id. None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: llama-3.1-8b
 
 ### [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-16 · listed since 2026-10-28
+🔌 LLM APIs with free tier · no card · last probe 2026-11-19 · listed since 2026-10-28
 
 OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit
 
@@ -42,7 +42,7 @@ An account and API key are required. The free request slot is shared across all 
 
 ### [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-11-16
 
 Indonesian OpenAI-compatible gateway from PT Mura Teras Kreatif with a daily free allowance on selected open models, independent of its prepaid models
 

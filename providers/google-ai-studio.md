@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-11-16'
+title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-11-19'
 description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.5-flash-lite, gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3.1-flash-lite and 3 more. Free eligibility is priced per model. The current Flash, Flash-Lite…'
 permalink: /providers/google-ai-studio/
-last_modified_at: 2026-11-18
+last_modified_at: 2026-11-19
 crumb: Google AI Studio (Gemini API)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Google AI Studio (Gemini API) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · **live** — last verified by a probe on 2026-11-16 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · **live** — last verified by a probe on 2026-11-19 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

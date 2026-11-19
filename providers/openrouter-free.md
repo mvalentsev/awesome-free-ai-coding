@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-11-16'
+title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-11-19'
 description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, gemma-4-31b, north-mini-code, dots-3-note and 3 more. OpenRouter''s FAQ says its free models "have low rate…'
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-11-18
+last_modified_at: 2026-11-19
 crumb: OpenRouter (free models)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # OpenRouter (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-16 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-19 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

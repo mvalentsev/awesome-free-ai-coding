@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.6-35b-a3b free: 2 providers, limits and ids, provider probes 2026-11-16'
+title: 'qwen3.6-35b-a3b free: 2 providers, limits and ids, provider probes 2026-11-19'
 description: qwen3.6-35b-a3b is served free by LLMTR and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.6-35b-a3b/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-19
 crumb: qwen3.6-35b-a3b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.6-35b-a3b
 
 # Where qwen3.6-35b-a3b is free
 
-**2 rows on the list serve `qwen3.6-35b-a3b` free:** LLMTR and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**2 rows on the list serve `qwen3.6-35b-a3b` free:** LLMTR and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.6-35b-a3b
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-11-17
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-11-17
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -40,7 +40,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-16 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-19 · listed since 2026-09-25
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 

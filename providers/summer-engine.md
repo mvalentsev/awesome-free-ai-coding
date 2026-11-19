@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Summer Engine free tier: limits, free models, verified 2026-11-17'
+title: 'Summer Engine free tier: limits, free models, verified 2026-11-19'
 description: Desktop game editor with a one-time, no-card credit for AI edits to scripts and scenes. An account is required for hosted AI. The one-time welcome credit is separate from the free editor, manual game export and MCP tools that use your own AI provider. Existing projects can be imported; check…
 permalink: /providers/summer-engine/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-19
 crumb: Summer Engine
 ---
 
@@ -11,7 +11,7 @@ crumb: Summer Engine
 
 # Summer Engine free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-17 · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-19 · [summerengine.com](https://www.summerengine.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

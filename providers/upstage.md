@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-11-18'
+title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-11-19'
 description: 'Approved schools, universities, hospitals and nonprofits get free API model access for up to one year. Free models: solar-pro-4. Institutional approval is required; apply to the program and receive instructions by email. Access lasts up to one year within the program usage period ending March 31…'
 permalink: /providers/upstage/
-last_modified_at: 2026-11-18
+last_modified_at: 2026-11-19
 crumb: Upstage (Solar API)
 ---
 
@@ -11,7 +11,7 @@ crumb: Upstage (Solar API)
 
 # Upstage (Solar API) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-18 · [upstage.ai](https://www.upstage.ai/events/ai-initiative-2025-en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-19 · [upstage.ai](https://www.upstage.ai/events/ai-initiative-2025-en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

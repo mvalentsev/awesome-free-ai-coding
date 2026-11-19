@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 4 providers, limits and ids, provider probes 2026-11-16'
+title: 'glm-5.3-flash free: 4 providers, limits and ids, provider probes 2026-11-19'
 description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-11-18
+last_modified_at: 2026-11-19
 crumb: glm-5.3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**4 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-16; their offers are rechecked twice a week.
+**4 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.3-flash
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-16 · listed since 2026-09-29
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-19 · listed since 2026-09-29
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -39,7 +39,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-16 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -64,7 +64,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-16 · listed since 2026-10-12
+🎁 Trials (no card when possible) · no card · last probe 2026-11-19 · listed since 2026-10-12
 
 Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
 
@@ -88,7 +88,7 @@ Global and mainland BigModel accounts have different per-model daily trial grant
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-16 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · last probe 2026-11-19 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

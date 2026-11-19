@@ -136,7 +136,7 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [deepseek-v4.1-flash-1017](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/): notable; Freebuff
 - [glm-5.3](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/): notable; AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international), ZCode (Z.ai)
 - [mimo-v2.6-pro](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/): notable; AIHubMix (free models)
-- [minimax-m3.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/): NVIDIA NIM (build.nvidia.com)
+- [minimax-m3.1-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/): notable; NVIDIA NIM (build.nvidia.com)
 - [qwen3.8-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/): Alibaba Cloud Model Studio (DashScope, international)
 - [gpt-6-luna](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/): Codex (ChatGPT Free)
 - [glm-5.3-flash](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/): NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS)

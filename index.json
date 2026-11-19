@@ -430,7 +430,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -861,7 +861,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -1135,7 +1135,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -1277,7 +1277,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 78,
@@ -1452,7 +1452,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -1541,7 +1541,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
@@ -1720,7 +1720,7 @@
         ]
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -1929,7 +1929,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -2341,7 +2341,7 @@
         ]
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 78,
@@ -2477,7 +2477,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -2656,7 +2656,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -2781,7 +2781,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -2889,7 +2889,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -2996,7 +2996,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -3291,7 +3291,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
@@ -3368,6 +3368,7 @@
       "models": [
         {
           "family": "minimax-m3.1-flash",
+          "tier": "notable",
           "aa_model": "minimax-m3-1-flash"
         },
         {
@@ -3508,7 +3509,7 @@
         "free_list": "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D"
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 25,
@@ -3669,7 +3670,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -3781,7 +3782,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -4140,7 +4141,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -4449,7 +4450,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-21",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -4555,7 +4556,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-11-18",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -4766,7 +4767,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
@@ -4929,7 +4930,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -5202,7 +5203,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -5393,7 +5394,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -5509,7 +5510,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 76,
@@ -5748,7 +5749,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -5884,7 +5885,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -6265,7 +6266,7 @@
         }
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 25,
@@ -6360,7 +6361,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
@@ -6538,7 +6539,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -7264,7 +7265,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -7534,7 +7535,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "retired_on": "2026-12-29",
       "probe_failures": 0,
       "provisional": false,
@@ -7621,7 +7622,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-21",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
@@ -7811,7 +7812,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 101,
@@ -7981,7 +7982,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-30",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
@@ -8223,7 +8224,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-08-30",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
@@ -8677,7 +8678,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 28,
@@ -9149,7 +9150,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
@@ -9690,7 +9691,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
@@ -9823,7 +9824,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
@@ -9963,7 +9964,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 82,
@@ -10100,7 +10101,7 @@
         }
       },
       "first_seen": "2026-09-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
@@ -10254,7 +10255,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 86,
@@ -10395,7 +10396,7 @@
         ]
       },
       "first_seen": "2026-09-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
@@ -10488,7 +10489,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-21",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -10598,7 +10599,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-05",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
@@ -10689,7 +10690,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-07",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -10819,7 +10820,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-11",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 93,
@@ -10936,7 +10937,7 @@
         "lane": "free"
       },
       "first_seen": "2026-09-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 29,
@@ -11047,7 +11048,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
@@ -11472,7 +11473,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
@@ -11594,7 +11595,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-16",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
@@ -11756,7 +11757,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-16",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
@@ -11880,7 +11881,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-16",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
@@ -12135,7 +12136,7 @@
       },
       "first_seen": "2026-09-16",
       "last_verified": "2026-11-16",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 45,
       "no_account": false,
@@ -12248,7 +12249,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
@@ -12444,7 +12445,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 79,
@@ -12564,7 +12565,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 102,
@@ -12664,7 +12665,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -12762,7 +12763,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -12864,7 +12865,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 82,
@@ -12966,7 +12967,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
@@ -13065,7 +13066,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -13265,7 +13266,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
@@ -13369,7 +13370,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
@@ -13488,7 +13489,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-18",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 86,
@@ -13715,7 +13716,7 @@
         ]
       },
       "first_seen": "2026-09-17",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
@@ -14228,7 +14229,7 @@
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-11-16",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 96,
       "no_account": false,
@@ -14901,7 +14902,7 @@
         ]
       },
       "first_seen": "2026-09-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 103,
@@ -15067,7 +15068,7 @@
         }
       },
       "first_seen": "2026-09-19",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 100,
@@ -15250,7 +15251,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-23",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
@@ -15405,7 +15406,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-26",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 84,
@@ -15604,7 +15605,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-27",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 52,
@@ -15733,7 +15734,7 @@
       },
       "first_seen": "2026-09-27",
       "last_verified": "2026-11-16",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": false,
       "rank": 83,
       "no_account": false,
@@ -15818,7 +15819,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-27",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 76,
@@ -15903,7 +15904,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-27",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 81,
@@ -16002,7 +16003,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-29",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 54,
@@ -16100,7 +16101,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 93,
@@ -16275,7 +16276,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-10",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -16413,7 +16414,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
@@ -16527,7 +16528,8 @@
       "free_part": "models",
       "models": [
         {
-          "family": "gemma-4-e4b"
+          "family": "gemma-4-e4b",
+          "aa_model": "gemma-4-e4b"
         },
         {
           "family": "llama-3.1-8b"
@@ -16561,7 +16563,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-14",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 82,
@@ -16737,7 +16739,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-18",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -16895,7 +16897,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-22",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -17158,7 +17160,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-31",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
@@ -17263,7 +17265,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-31",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
@@ -17353,7 +17355,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-31",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 86,
@@ -17432,7 +17434,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-31",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 100,
@@ -17538,7 +17540,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-01",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
@@ -17642,7 +17644,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-01",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -17782,7 +17784,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 89,
@@ -17898,7 +17900,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -18013,7 +18015,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-02",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -18104,7 +18106,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
@@ -18184,7 +18186,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 89,
@@ -18263,7 +18265,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 101,
@@ -18361,7 +18363,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 109,
@@ -18454,7 +18456,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -18534,7 +18536,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-03",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
@@ -18615,7 +18617,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-04",
-      "last_verified": "2026-11-18",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -18722,7 +18724,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-04",
-      "last_verified": "2026-11-18",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": false,
       "rank": 97,
@@ -18967,7 +18969,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 99,
@@ -19081,7 +19083,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 96,
@@ -19174,7 +19176,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 97,
@@ -19278,7 +19280,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 96,
@@ -19395,7 +19397,7 @@
       },
       "first_seen": "2026-11-08",
       "last_verified": "2026-11-16",
-      "probe_failures": 0,
+      "probe_failures": 1,
       "provisional": true,
       "rank": 96,
       "no_account": false,
@@ -19520,7 +19522,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-08",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 95,
@@ -19602,7 +19604,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-10",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 85,
@@ -19873,7 +19875,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-11",
-      "last_verified": "2026-11-16",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 93,
@@ -19967,7 +19969,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-17",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 99,
@@ -20177,7 +20179,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-18",
-      "last_verified": "2026-11-18",
+      "last_verified": "2026-11-19",
       "probe_failures": 0,
       "provisional": true,
       "rank": 80,
@@ -21502,6 +21504,7 @@
       "rows": [
         "nvidia-nim"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/"
     },
     {
@@ -21637,6 +21640,12 @@
         "bazaarlink"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+    },
+    {
+      "family": "gemma-4-e4b",
+      "rows": [
+        "simplellm"
+      ]
     },
     {
       "family": "gemma-4-31b",
@@ -21968,12 +21977,6 @@
         "kiosapi-id"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"
-    },
-    {
-      "family": "gemma-4-e4b",
-      "rows": [
-        "simplellm"
-      ]
     },
     {
       "family": "glm-4-9b-0414",

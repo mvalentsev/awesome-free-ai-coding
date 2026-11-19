@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'xing4.0-29b-a4b free: 1 provider, limits and ids, provider probes 2026-11-16'
+title: 'xing4.0-29b-a4b free: 1 provider, limits and ids, provider probes 2026-11-19'
 description: xing4.0-29b-a4b is served free by SiliconFlow (China). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/xing4.0-29b-a4b/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-19
 crumb: xing4.0-29b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: xing4.0-29b-a4b
 
 # Where xing4.0-29b-a4b is free
 
-**One row on the list serves `xing4.0-29b-a4b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-11-16; its offer is rechecked twice a week.
+**One row on the list serves `xing4.0-29b-a4b` free:** SiliconFlow (China). It asks for no card. The provider's last scheduled probe was on 2026-11-19; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: xing4.0-29b-a4b
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-11-16 · listed since 2026-10-31
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · last probe 2026-11-19 · listed since 2026-10-31
 
 Zero-priced small chat models on SiliconFlow China, after real-name verification with accepted mainland, Hong Kong, Macau or Taiwan documents
 
