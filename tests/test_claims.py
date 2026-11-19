@@ -149,6 +149,18 @@ def test_verification_weekdays_generate_the_actual_workflow(tmp_path, monkeypatc
         assert check_claims(root, (), scheduled=()) == []
 
 
+def test_shared_frequency_generates_static_text_without_rewriting_its_format(tmp_path, monkeypatch):
+    from freetier_radar import claims
+
+    monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', tuple(range(7)))
+    for filename, text in [
+        ('_config.yml', 'description: "probe-verified twice a week"\n'),
+        ('browse.html', '<p>Probe-verified twice a week; every offer has its own page.</p>'),
+        ('assets/social-preview.svg', '<svg><text>Live probes twice a week</text></svg>'),
+    ]:
+        assert claims.render_claims(text, filename, tmp_path) == text.replace('twice a week', 'every day')
+
+
 def test_every_claim_names_where_its_truth_lives():
     for claim in CLAIMS:
         assert claim.source and claim.file, claim.pattern

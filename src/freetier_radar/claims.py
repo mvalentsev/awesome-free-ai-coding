@@ -51,7 +51,7 @@ from .quality import (CRITERIA, ELIGIBILITY_FIELDS, ELIGIBILITY_MAX_AGE_DAYS,
                       CONFLICT_STATES, WITHDRAWAL_VERDICTS)
 from .review_leads import LEAD_VERDICTS
 
-__all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims", "render_claims"]
+__all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims", "render_claims", "generated_claim_files"]
 
 _DURATION = r"\w+ weeks|a week|\d+ days?"
 _FREQUENCY = "|".join(map(re.escape, TIMES_A_WEEK.values()))
@@ -806,6 +806,15 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
 # The hand-written files that say how often the list is checked.
 SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/social-preview.svg")
 _FREQUENCY_PHRASE = re.compile(rf"\b(?:{_FREQUENCY})\b")
+_PROJECTIONS = (_UPDATE_SCHEDULE, *(Claim(
+    filename, rf"\b({_FREQUENCY})\b", lambda root: (probe_frequency(PROBE_WEEKDAYS),),
+    "models.PROBE_WEEKDAYS; the existing scheduled-copy check validates every phrase",
+    generated=True) for filename in SCHEDULED if filename != "CONTRIBUTING.md"))
+
+
+def generated_claim_files() -> tuple[str, ...]:
+    """Partially written files come from their registered generated values."""
+    return tuple(sorted({claim.file for claim in (*CLAIMS, *_PROJECTIONS) if claim.generated}))
 
 
 def render_claims(text: str, file: str, root: Path) -> str:
@@ -815,7 +824,7 @@ def render_claims(text: str, file: str, root: Path) -> str:
     invent prose, rewrite external quotes or renew dated vendor evidence.
     """
     inputs = _ClaimInputs(root)
-    for claim in (*CLAIMS, _UPDATE_SCHEDULE):
+    for claim in (*CLAIMS, *_PROJECTIONS):
         if claim.file != file or not claim.generated:
             continue
         matches = list(re.finditer(claim.pattern, text))

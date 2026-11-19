@@ -131,12 +131,17 @@ MAP: tuple[Node, ...] = (
          published=True, kept=True),
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
-         made_from=("index.json", "assets/model-name.js", "assets/search.js"), published=True),
+         made_from=("index.json", "assets/model-name.js", "assets/search.js",
+                    "src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
+         written_by=("freetier-render",), published=True),
     Node("404.html", Kind.PAGE,
          "what Pages serves for an address the site does not have, offering the rows that "
          "name what the address asked for", published=True),
-    Node("assets/*.svg", Kind.PAGE, "the favicon and the social preview's source",
+    Node("assets/favicon.svg", Kind.PAGE, "the favicon",
          published=True),
+    Node("assets/social-preview.svg", Kind.PAGE, "the social preview's source, with the shared probe frequency",
+         made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
+         written_by=("freetier-render",), published=True),
     Node("assets/*.png", Kind.PAGE, "the social preview", published=True),
     Node("assets/*.js", Kind.PAGE, "shared browser search, model matching, sorting and heading permalinks", published=True),
     Node("assets/anchorjs-LICENSE.txt", Kind.DOC, "MIT license for the heading permalink library", published=True),
@@ -167,7 +172,9 @@ MAP: tuple[Node, ...] = (
     # ---- config
     Node("pyproject.toml", Kind.CONFIG, "the package and its commands"),
     Node("uv.lock", Kind.CONFIG, "the pinned dependencies"),
-    Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out"),
+    Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out",
+         made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
+         written_by=("freetier-render",)),
     Node("_layouts/*.html", Kind.CONFIG,
          "the page every generated Markdown page is served in: one heading, the way back to "
          "the indexes, the breadcrumb"),

@@ -862,9 +862,10 @@ cannot print two versions of it.
 | `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and measured free models on a zero-based score axis with the index leader named separately, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
-| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js` | `hand` |
+| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js`, `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
-| `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
+| `assets/favicon.svg` | **page** — the favicon | — | `hand` |
+| `assets/social-preview.svg` | **page** — the social preview's source, with the shared probe frequency | `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `assets/*.js` | **page** — shared browser search, model matching, sorting and heading permalinks | — | `hand` |
 | `assets/anchorjs-LICENSE.txt` | **doc** — MIT license for the heading permalink library | — | `hand` |
@@ -881,7 +882,7 @@ cannot print two versions of it.
 | `tests/*.py` | **code** — the test suite · not on the site | — | `hand` |
 | `pyproject.toml` | **config** — the package and its commands · not on the site | — | `hand` |
 | `uv.lock` | **config** — the pinned dependencies · not on the site | — | `hand` |
-| `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
+| `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `_layouts/*.html` | **config** — the page every generated Markdown page is served in: one heading, the way back to the indexes, the breadcrumb · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
