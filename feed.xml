@@ -5,8 +5,36 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-19T08:22:01Z</updated>
+  <updated>2026-11-19T15:10:26Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blockrun/20261119T151026Z</id>
+    <title>Added: BlockRun (free models)</title>
+    <link rel="alternate" href="https://blockrun.ai/free"/>
+    <updated>2026-11-19T15:10:26Z</updated>
+    <summary type="text">Keyless OpenAI-compatible chat and tools</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/iflytek-spark/20261119T151026Z</id>
+    <title>Added: iFlytek Spark Lite (讯飞星火)</title>
+    <link rel="alternate" href="https://xinghuo.xfyun.cn/sparkapi"/>
+    <updated>2026-11-19T15:10:26Z</updated>
+    <summary type="text">Free Spark Lite HTTP API</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/together-ai/20261119T151026Z</id>
+    <title>Added: Together AI (free model)</title>
+    <link rel="alternate" href="https://www.together.ai/models/prism-ml-ternary-bonsai-27b"/>
+    <updated>2026-11-19T15:10:26Z</updated>
+    <summary type="text">Zero-priced serverless chat after activation · free models: ternary-bonsai-27b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/volcengine-ark/20261119T151026Z</id>
+    <title>Added: Volcengine Ark (new-user inference trial)</title>
+    <link rel="alternate" href="https://docs.volcengine.com/docs/ark/free-inference-quota?lang=zh"/>
+    <updated>2026-11-19T15:10:26Z</updated>
+    <summary type="text">No-card online inference trial for new accounts</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/merkium/20261119T082201Z</id>
     <title>Free models changed: Merkium</title>
@@ -328,33 +356,5 @@
     <link rel="alternate" href="https://cline.bot"/>
     <updated>2026-11-05T00:49:25Z</updated>
     <summary type="text">added nemotron-3.5-lightning · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixedbread/20261104T125114Z</id>
-    <title>Added: Mixedbread</title>
-    <link rel="alternate" href="https://www.mixedbread.com"/>
-    <updated>2026-11-04T12:51:14Z</updated>
-    <summary type="text">OpenAI-compatible API for the Toast 1 knowledge and search model, with $5 in one-time Starter credits and no card required</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codacy/20261104T032721Z</id>
-    <title>Added: Codacy</title>
-    <link rel="alternate" href="https://www.codacy.com"/>
-    <updated>2026-11-04T03:27:21Z</updated>
-    <summary type="text">AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/deepsource/20261103T215913Z</id>
-    <title>Added: DeepSource</title>
-    <link rel="alternate" href="https://deepsource.com"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">AI code review and suggested fixes on existing repositories, with a no-card introductory trial and bundled AI Review credits</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/graphite/20261103T215913Z</id>
-    <title>Added: Graphite</title>
-    <link rel="alternate" href="https://graphite.com"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial</summary>
   </entry>
 </feed>

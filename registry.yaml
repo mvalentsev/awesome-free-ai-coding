@@ -12819,3 +12819,254 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 80
+- id: blockrun
+  name: BlockRun (free models)
+  category: aggregator
+  url: https://blockrun.ai/free
+  source_urls:
+  - https://blockrun.ai/docs/api-reference/models
+  - https://blockrun.ai/docs/api-reference/chat-completions
+  - https://blockrun.ai/docs/api-reference/rate-limits
+  - https://blockrun.ai/docs/getting-started/sdk-developers
+  - https://blockrun.ai/faq
+  - https://blockrun.ai/privacy
+  - https://blockrun.ai/terms
+  card_required: false
+  offering: Keyless OpenAI-compatible chat and tools
+  limits: Both IP limits apply across the free lane. The gateway can substitute another
+    free model when an upstream is unavailable. Read the response model and X-Fallback-Model
+    to see which model answered. Paid models use a separate x402 payment flow.
+  quotas:
+  - amount: 30.0
+    unit: requests
+    period: minute
+    scope: ip
+    source: https://blockrun.ai/docs/api-reference/rate-limits
+    quote: 30 req / minute and 300 req / hour per IP
+    value_phrase: 30 req / minute
+    reviewed_on: '2026-11-19'
+  - amount: 300.0
+    unit: requests
+    period: hour
+    scope: ip
+    source: https://blockrun.ai/docs/api-reference/rate-limits
+    quote: 30 req / minute and 300 req / hour per IP
+    value_phrase: 300 req / hour
+    reviewed_on: '2026-11-19'
+  free_part: models
+  models: []
+  api:
+    base_url: https://blockrun.ai/api/v1
+    auth: none
+    openai_compatible: true
+    model_ids:
+    - poolside/laguna-xs-2.1
+    - nvidia/muse-glimmer-30b
+    - nvidia/nemotron-3.5-bolt
+    ignored_ids:
+    - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
+    - nvidia/nemotron-3-super-120b
+    - nvidia/nemotron-3.5-lightning
+    - nvidia/nemotron-3-ultra-550b
+    - cohere/north-mini-code
+    - nvidia/minimax-m3.1-flash
+    note: Use the listed IDs against the BlockRun base URL. The response names the
+      model that handled the request. A 429 can signal an IP limit or exhausted upstream
+      capacity. Follow Retry-After.
+  data_use:
+    trains: 'yes'
+    quote: Free models run on free tiers whose terms may let the host use prompts
+      to improve its service
+    url: https://blockrun.ai/privacy
+  border:
+    left_out: []
+    'on': '2026-11-19'
+    source: https://blockrun.ai/terms
+  probe:
+    type: api-models
+    endpoint: https://blockrun.ai/api/v1/models
+    keywords: []
+    free_marker: ''
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-11-19'
+  last_verified: '2026-11-19'
+  probe_failures: 0
+  provisional: true
+  rank: 83
+- id: iflytek-spark
+  name: iFlytek Spark Lite (讯飞星火)
+  category: api-free-tier
+  url: https://xinghuo.xfyun.cn/sparkapi
+  source_urls:
+  - https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html
+  - https://www.xfyun.cn/doc/authentication/personal.html
+  - https://console.xfyun.cn/
+  card_required: false
+  offering: Free Spark Lite HTTP API
+  limits: Claim the Spark API allowance and create an APIPassword in the developer
+    console. Personal verification asks for identity and phone details. Hong Kong,
+    Macao, Taiwan and overseas applicants can submit valid ID for manual review. The
+    HTTP documentation describes Lite as free but leaves its account quota unpublished.
+  quotas:
+  - unit: tokens
+    scope: account-model
+    source: https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html
+    quote: 具有更高的响应速度,支持 免费使用
+    reviewed_on: '2026-11-19'
+  free_part: models
+  models: []
+  api:
+    base_url: https://spark-api-open.xf-yun.com/v1
+    key_url: https://console.xfyun.cn/
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - lite
+    no_family_ids:
+    - lite
+    note: Use the APIPassword issued for your Spark app and the exact model ID lite.
+  border:
+    left_out: []
+    'on': '2026-11-19'
+    source: https://www.xfyun.cn/doc/authentication/personal.html
+    quote: 港澳台及海外地区用户请填写有效证件信息，进入人工审核
+    read: quote
+  probe:
+    type: page-keywords
+    endpoint: https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html
+    keywords:
+    - 具有更高的响应速度,支持 免费使用
+    - lite指向Lite版本
+    - https://spark-api-open.xf-yun.com/v1
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-19'
+  last_verified: '2026-11-19'
+  probe_failures: 0
+  provisional: true
+  rank: 126
+- id: volcengine-ark
+  name: Volcengine Ark (new-user inference trial)
+  category: trial
+  url: https://docs.volcengine.com/docs/ark/free-inference-quota?lang=zh
+  source_urls:
+  - https://docs.volcengine.com/docs/ark/activation-management?lang=zh
+  - https://docs.volcengine.com/docs/ark/quick-start-beginner?lang=zh
+  - https://docs.volcengine.com/docs/account-related/account-registration-process?lang=zh
+  card_required: false
+  offering: No-card online inference trial for new accounts
+  limits: Registration requires a phone number that receives SMS at +86. Enable the
+    safe trial mode before opening paid model service and check each model's remaining
+    allowance in the console. Each model's quota is shared by subaccounts and by its
+    base and fine-tuned models. Trial mode stops inference near exhaustion. Batch
+    inference, plug-ins and cache storage are billed separately.
+  quotas:
+  - unit: tokens
+    period: one-time
+    scope: account-model
+    state: account-specific
+    source: https://docs.volcengine.com/docs/ark/free-inference-quota?lang=zh
+    quote: 免费推理额度，不同模型分别计算，主账号下共享
+    reviewed_on: '2026-11-19'
+  free_part: unnamed
+  models: []
+  api:
+    base_url: https://ark.cn-beijing.volces.com/api/v3
+    key_url: https://console.volcengine.com/ark
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    no_ids: Ark shows the available trial models and remaining token allowances in
+      the signed-in console.
+    note: Use the trial console to obtain a key and copy the exact model ID.
+  border:
+    served: [CN]
+    'on': '2026-11-19'
+    source: https://docs.volcengine.com/docs/account-related/account-registration-process?lang=zh
+    quote: 1 个可正常接收短信的手机号（+86）
+    read: quote
+  probe:
+    type: page-keywords
+    endpoint: https://docs.volcengine.com/docs/ark/activation-management?lang=zh
+    keywords:
+    - 50w token 免费额度
+    - 接近免费额度后服务将暂停
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-11-19'
+  last_verified: '2026-11-19'
+  probe_failures: 0
+  provisional: true
+  rank: 160
+- id: together-ai
+  name: Together AI (free model)
+  category: api-free-tier
+  url: https://www.together.ai/models/prism-ml-ternary-bonsai-27b
+  source_urls:
+  - https://www.together.ai/pricing
+  - https://www.together.ai/models/prism-ml-ternary-bonsai-27b
+  - https://docs.together.ai/docs/serverless/models
+  - https://docs.together.ai/docs/billing-credits
+  card_required: false
+  access:
+    source: https://docs.together.ai/docs/billing-credits
+    initial_payment_usd: 15.0
+  offering: Zero-priced serverless chat after activation
+  limits: Together documents prepaid activation for new organizations and suspends
+    API access at zero balance. Funding can use a card or US bank account. The catalog
+    prices other serverless models separately.
+  free_part: models
+  models:
+  - family: ternary-bonsai-27b
+    table_name: Ternary Bonsai 27B
+  api:
+    base_url: https://api.together.xyz/v1
+    key_url: https://api.together.ai/settings/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - Prism-ML/Ternary-Bonsai-27B
+    model_bindings:
+      Prism-ML/Ternary-Bonsai-27B:
+        family: ternary-bonsai-27b
+        source: https://docs.together.ai/docs/serverless/models
+        quote: Ternary Bonsai 27B Prism-ML/Ternary-Bonsai-27B
+    note: Use the serverless ID as printed. The named variant is based on Qwen3.6
+      27B and supports function calling according to the catalog.
+  border:
+    left_out: []
+    'on': '2026-11-19'
+    source: https://www.together.ai/terms-of-service
+  probe:
+    type: page-keywords
+    endpoint: https://docs.together.ai/docs/serverless/models
+    keywords:
+    - Prism-ML/Ternary-Bonsai-27B
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+    model_prices:
+      headers:
+      - Organization
+      - Model name
+      - API model string
+      - Context length
+      - Input pricing (per 1M tokens)
+      - Cached input pricing (per 1M tokens)
+      - Output pricing (per 1M tokens)
+      - Quantization
+      - Function calling
+      - Structured outputs
+      name_column: Model name
+      price_columns:
+      - Input pricing (per 1M tokens)
+      - Output pricing (per 1M tokens)
+      free_value: Free
+  first_seen: '2026-11-19'
+  last_verified: '2026-11-19'
+  probe_failures: 0
+  provisional: true
+  rank: 190

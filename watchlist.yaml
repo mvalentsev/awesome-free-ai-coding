@@ -188,31 +188,6 @@ watched:
       Primary terms introduce a positive free API allowance or usable
       trial compute without a recurring paid subscription. Restore the
       existing row after checking current activation and model conditions.
-  - domains: [blockrun.ai]
-    name: BlockRun
-    checked_on: '2026-10-05'
-    reason: >-
-      Free chat and streaming are real, with no key, wallet or payment header:
-      https://blockrun.ai/free documents automatic substitution and the response
-      names the model that answered. The seven free chat rows at
-      https://blockrun.ai/api/v1/models do not establish seven callable models:
-      five were marked unavailable, then six on a fresh read. Llama 3.2 11B
-      Vision answered under its own ID but returned non-JSON tool arguments;
-      the tool-result turn failed with an upstream parse error. Laguna XS 2.1
-      completed a tool read and answer through Nemotron 3 Super 120B instead,
-      which the catalog does not list, and Laguna was subsequently marked
-      unavailable too. The published free 1M contexts belong to unavailable rows.
-      https://blockrun.ai/docs/api-reference/chat-completions documents the
-      canonical /api/v1 route and /v1 alias; both were tested. Paid-model
-      control correctly returned an x402 payment challenge. The offer is
-      legitimate, but no catalog-listed available free ID demonstrated both
-      its advertised identity and a valid tool round trip for the configs.
-    reopen_if: >-
-      The catalog exposes an available zero-priced coding lane that completes
-      a tool call with JSON arguments and consumes its result, with the actual
-      served model matching the catalog or an explicitly cataloged free router
-      ID. Recheck the catalog and live calls when those routes are repaired.
-
   - domains: [siliconflow.com]
     name: SiliconFlow (international)
     checked_on: '2026-09-26'
@@ -619,21 +594,6 @@ watched:
       AI Horde's OpenAI route accepts tool definitions, or it publishes a
       set of models it keeps available.
 
-  - domains:
-    - together.ai
-    - together.xyz
-    name: Together AI
-    checked_on: '2026-10-14'
-    reason: Primary pricing now lists Ternary Bonsai 27B at zero input and output price,
-      replacing the old all-paid verdict. Official billing requires an initial $15 credit
-      purchase and offers no free trial. The competitor claim of 98 free Together models
-      is unsupported by primary pricing. Exact independent free access after activation has
-      not been established; no purchase was made. An initial payment is an access condition,
-      not automatic disqualification.
-    reopen_if: Primary sources establish the exact zero-priced API ID and activation conditions,
-      and an authorized funded account confirms the independent free lane; or the activation
-      payment is removed.
-
   - domains: [perplexity.ai]
     name: Perplexity (Sonar API)
     checked_on: '2026-08-14'
@@ -694,31 +654,6 @@ watched:
     reopen_if: >-
       ZenMux documents that a zero-balance Pay As You Go key may call the
       -free ids, or the Free Builder tier gains API access.
-
-  - domains: [xfyun.cn, xf-yun.com, xinghuo.xfyun.cn]
-    name: iFlytek Spark (讯飞星火)
-    checked_on: '2026-08-14'
-    reason: >-
-      The free model is real and the vendor says so on its own page: the HTTP
-      docs describe Lite as "轻量级大语言模型 ... 具有更高的响应速度，支持免费使用"
-      (a lightweight model, faster to respond, free to use), give the model id
-      as `lite` and publish an OpenAI-compatible base url,
-      https://spark-api-open.xf-yun.com/v1/. An anchor exists too, contrary to
-      an earlier note here: 「具有更高的响应速度,支持免费使用」 sits in the Lite column of
-      that page's version table in served HTML, glued to the id by
-      「lite指向Lite版本」 beside it. What blocks the listing is reachability. No
-      served page states a quota, a QPS or a duration for the Lite lane; the
-      figures that exist — the 0元/百万tokens cell and the 200,000-token free
-      package — appear only after JavaScript runs on xinghuo.xfyun.cn/sparkapi,
-      and that same table conditions the package on 个人认证 or 企业认证, real-name
-      verification. Whether `lite` itself is reachable without it is stated
-      nowhere, and console.xfyun.cn renders 「加载中……」 and nothing else. That is
-      the ModelScope case: a real free model this list cannot yet tell a
-      developer how to reach.
-    reopen_if: >-
-      iFlytek states, on a served page, what the Lite lane costs and whether it
-      needs 实名认证 — or the registration gate turns out not to need a
-      mainland-China identity.
 
   - domains: [intern-ai.org.cn]
     name: Intern AI (书生 / InternLM, Shanghai AI Lab)
@@ -1668,25 +1603,6 @@ watched:
     reopen_if: >-
       A readable page saying the console opens without mainland real-name
       verification, or an international console carrying the grant.
-
-  - domains: [volcengine.com, volces.com]
-    name: Volcengine Ark (火山方舟)
-    checked_on: '2026-09-05'
-    reason: >-
-      Named by two Chinese lists for its 协作奖励计划, the data-collaboration
-      reward. The program page (docs.volcengine.com/docs/82379/1391869,
-      updated 2026-08-31) is client-rendered and came back empty to this
-      repository's fetch on 2026-09-05; what could be read is the vendor's
-      2025-11-20 notice as quoted by nodeseek and linux.do — the reward for
-      individual users rose "由原本每日每模型的50万免费tokens奖励提升至200万", granted as a
-      next-day rebate of what was consumed, for accounts that pass real-name
-      verification and authorize their prompts and outputs for model
-      training — and a 2026-09-01 notice that 38 models left the program. A
-      mainland real-name account and a training authorization are two walls
-      this list does not carry, and the page that would say so is unreadable.
-    reopen_if: >-
-      A server-rendered program page, and a sign-up readable outside the
-      mainland.
 
   - domains: [wandb.ai]
     name: W&B Inference (Weights & Biases)

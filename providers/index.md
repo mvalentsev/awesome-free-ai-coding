@@ -82,6 +82,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) — verified 2026-11-19 · `sensenova-6.8-flash-lite`
 - [Tencent Cloud TokenHub](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) — verified 2026-11-19
 - [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) — verified 2026-11-19 · `deepseek-r1-0528-qwen3-8b` · `glm-4-9b-0414` · `glm-z1-9b-0414` · `qwen2.5-7b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · [+1 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
+- [iFlytek Spark Lite (讯飞星火)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iflytek-spark/) — verified 2026-11-19
+- [Together AI (free model)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) — verified 2026-11-19 · `ternary-bonsai-27b` (requires $15 top-up)
 
 ## 🎁 Trials (no card when possible)
 
@@ -110,6 +112,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [CodeAnt AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codeant/) — verified 2026-11-19
 - [DeepSource](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepsource/) — verified 2026-11-19
 - [Liquid Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/liquid-inference/) — verified 2026-11-19
+- [Volcengine Ark (new-user inference trial)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/volcengine-ark/) — verified 2026-11-19
 
 ## 🧭 Aggregators (one key, many providers)
 
@@ -125,6 +128,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) — verified 2026-11-19 · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 - [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) — verified 2026-11-19 · [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
 - [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) — verified 2026-11-19 · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)
+- [BlockRun (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blockrun/) — verified 2026-11-19
 - [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) — verified 2026-11-19 · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up) · `mistral-small-3.2`
 - [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) — verified 2026-11-19
 - [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) — verified 2026-11-19 · [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/) · [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/) · `qwen3-30b` · `sea-lion-27b`

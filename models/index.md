@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-16 or later'
-description: 140 model families the list's 113 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 141 model families the list's 117 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-11-19
 model_sort: true
@@ -12,7 +12,7 @@ sortable_model_index: true
 
 # Every free model on the list
 
-140 model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+141 model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -157,6 +157,7 @@ sortable_model_index: true
 | [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
 | [`swe-2-flash-medium`](https://mvalentsev.github.io/awesome-free-ai-coding/models/swe-2-flash-medium/) | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) (until 2026-12-04) |
+| `ternary-bonsai-27b` | [Together AI (free model)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) (requires $15 top-up) |
 | [`xing4.0-29b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/xing4.0-29b-a4b/) | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 
 ## Previously listed models

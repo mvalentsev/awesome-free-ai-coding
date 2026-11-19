@@ -90,7 +90,7 @@ MODELS_DIR = "models"
 # on the index of every model, beside its row.
 MODEL_PAGE_ROWS = 2
 FEED_ENTRIES = 50
-README_CHANGES = 10
+README_CHANGES = 5
 # Where a prose cell stops showing and starts folding: the README's Archive
 # reasons, and every long cell on the site (`_site_fold`). The teaser is a cut at
 # a word boundary, so the gap between the two is what keeps a cell from folding

@@ -979,6 +979,24 @@
         }
       }
     },
+    "blockrun": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "BlockRun (free models)",
+      "options": {
+        "baseURL": "https://blockrun.ai/api/v1"
+      },
+      "models": {
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        },
+        "nvidia/muse-glimmer-30b": {
+          "name": "nvidia/muse-glimmer-30b"
+        },
+        "nvidia/nemotron-3.5-bolt": {
+          "name": "nvidia/nemotron-3.5-bolt"
+        }
+      }
+    },
     "cheapllm-shop": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "cheapllm.shop",
@@ -1882,6 +1900,41 @@
       "models": {
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
+        }
+      }
+    },
+    "iflytek-spark": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "iFlytek Spark Lite (讯飞星火)",
+      "options": {
+        "baseURL": "https://spark-api-open.xf-yun.com/v1",
+        "apiKey": "{env:IFLYTEK_SPARK_API_KEY}"
+      },
+      "models": {
+        "lite": {
+          "name": "lite"
+        }
+      }
+    },
+    "volcengine-ark": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Volcengine Ark (new-user inference trial)",
+      "options": {
+        "baseURL": "https://ark.cn-beijing.volces.com/api/v3",
+        "apiKey": "{env:VOLCENGINE_ARK_API_KEY}"
+      },
+      "models": {}
+    },
+    "together-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Together AI (free model)",
+      "options": {
+        "baseURL": "https://api.together.xyz/v1",
+        "apiKey": "{env:TOGETHER_AI_API_KEY}"
+      },
+      "models": {
+        "Prism-ML/Ternary-Bonsai-27B": {
+          "name": "Prism-ML/Ternary-Bonsai-27B (requires $15 top-up)"
         }
       }
     }

@@ -1208,6 +1208,24 @@ model_list:
     api_base: https://api.simplellm.eu/v1
     api_key: os.environ/SIMPLELLM_API_KEY
     use_chat_completions_api: true
+- model_name: blockrun/poolside/laguna-xs-2.1
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
+- model_name: blockrun/nvidia/muse-glimmer-30b
+  litellm_params:
+    model: openai/nvidia/muse-glimmer-30b
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
+- model_name: blockrun/nvidia/nemotron-3.5-bolt
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-bolt
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
 - model_name: cheapllm-shop/deepseek-v4.1-flash-1017
   litellm_params:
     model: openai/deepseek-v4.1-flash-1017
@@ -2001,6 +2019,54 @@ model_list:
     api_base: https://router.inference.ai.exchange/v1
     api_key: os.environ/LIQUID_INFERENCE_API_KEY
     use_chat_completions_api: true
+- model_name: iflytek-spark/lite
+  litellm_params:
+    model: openai/lite
+    api_base: https://spark-api-open.xf-yun.com/v1
+    api_key: os.environ/IFLYTEK_SPARK_API_KEY
+    use_chat_completions_api: true
+- model_name: together-ai/Prism-ML/Ternary-Bonsai-27B
+  litellm_params:
+    model: openai/Prism-ML/Ternary-Bonsai-27B
+    api_base: https://api.together.xyz/v1
+    api_key: os.environ/TOGETHER_AI_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: requires $15 one-time top-up
+    source: https://docs.together.ai/docs/billing-credits
+- model_name: free/nokey
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/nvidia/muse-glimmer-30b
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-bolt
+    api_base: https://blockrun.ai/api/v1
+    api_key: none
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
     model: openai/gpt-oss-20b
