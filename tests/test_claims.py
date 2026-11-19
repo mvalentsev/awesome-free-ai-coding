@@ -130,6 +130,25 @@ def test_the_contribution_guide_generates_the_verification_frequency(tmp_path, m
     assert rendered.startswith('The scheduled run does this every day.\n')
 
 
+def test_verification_weekdays_generate_the_actual_workflow(tmp_path, monkeypatch):
+    from freetier_radar import claims
+    root = _root(tmp_path, '')
+    workflow = root / '.github/workflows/update.yml'
+    workflow.write_text((ROOT / '.github/workflows/update.yml').read_text())
+    before = yaml.safe_load(workflow.read_text())
+    trigger = 'on' if 'on' in before else True
+    for days, expected in [((0, 2, 6), '23 5 * * 0,2,6'), (tuple(range(7)), '23 5 * * *')]:
+        monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', days)
+        assert check_claims(root, (), scheduled=())
+        rendered = claims.render_claims(workflow.read_text(), '.github/workflows/update.yml', root)
+        workflow.write_text(rendered)
+        after = yaml.safe_load(rendered)
+        assert after[trigger]['schedule'] == [{'cron': expected}]
+        before[trigger]['schedule'] = after[trigger]['schedule']
+        assert after == before
+        assert check_claims(root, (), scheduled=()) == []
+
+
 def test_every_claim_names_where_its_truth_lives():
     for claim in CLAIMS:
         assert claim.source and claim.file, claim.pattern

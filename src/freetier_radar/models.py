@@ -2242,8 +2242,9 @@ def known_domains(entries: list[Entry]) -> set[str]:
 ARCHIVE_AFTER_DAYS = 60
 # The weekdays the scheduled run probes every row on, numbered the way the cron
 # in .github/workflows/update.yml numbers them (0 is Sunday). Every page that
-# says how often a row is checked reads the phrase from here, and freetier-check
-# holds the workflow's cron and the hand-written files to it (see claims).
+# says how often a row is checked reads the phrase from here. freetier-render
+# also generates the workflow's weekdays; freetier-check holds both to this
+# schedule (see claims).
 PROBE_WEEKDAYS = (1, 4)
 TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
                  4: "four times a week", 5: "five times a week", 6: "six times a week",

@@ -2,7 +2,7 @@ name: update
 
 on:
   schedule:
-    - cron: "23 5 * * 1,4"   # twice a week, Monday and Thursday 05:23 UTC
+    - cron: "23 5 * * 1,4"   # freetier-render generates weekdays from models.PROBE_WEEKDAYS
   workflow_dispatch:
     inputs:
       scout_backend:

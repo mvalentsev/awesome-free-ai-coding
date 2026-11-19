@@ -18778,7 +18778,36 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "ceres-1.0",
+          "aa_auto": false
+        },
+        {
+          "family": "ceres-1.0-pro",
+          "aa_auto": false
+        },
+        {
+          "family": "ganymede-1.1",
+          "aa_auto": false
+        },
+        {
+          "family": "pluto-1.1-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "pluto-1.1-pro",
+          "aa_auto": false
+        },
+        {
+          "family": "pluto-1.2-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "pluto-1.2-pro",
+          "aa_auto": false
+        }
+      ],
       "api": {
         "base_url": "https://chat.merkium.nl/api/v1",
         "key_url": "https://chat.merkium.nl",
@@ -18837,7 +18866,15 @@
       "archived": false,
       "search": {
         "name": "Merkium",
-        "models": [],
+        "models": [
+          "ganymede-1.1",
+          "pluto-1.2-flash",
+          "pluto-1.2-pro",
+          "ceres-1.0",
+          "ceres-1.0-pro",
+          "pluto-1.1-flash",
+          "pluto-1.1-pro"
+        ],
         "ids": [
           "ganymede-1.1",
           "pluto-1.2-flash",
@@ -18851,7 +18888,15 @@
         "limits": "30 requests/minute per key\n\nSign in and create a free API key in the Console; no card or billing step. Space requests at least two seconds apart, including each step of a tool-call round trip, and honor Retry-After on HTTP 429. The current models are advertised as permanently free; later models may be paid. The public terms page is a review draft without an effective date.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "ganymede-1.1": "",
+          "pluto-1.2-flash": "",
+          "pluto-1.2-pro": "",
+          "ceres-1.0": "",
+          "ceres-1.0-pro": "",
+          "pluto-1.1-flash": "",
+          "pluto-1.1-pro": ""
+        },
         "section": {
           "id": "api-free-tier"
         },
@@ -21690,6 +21735,18 @@
       ]
     },
     {
+      "family": "ceres-1.0",
+      "rows": [
+        "merkium"
+      ]
+    },
+    {
+      "family": "ceres-1.0-pro",
+      "rows": [
+        "merkium"
+      ]
+    },
+    {
       "family": "claude-opus-4.6",
       "rows": [
         "antigravity"
@@ -21825,6 +21882,12 @@
         "aihubmix"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/"
+    },
+    {
+      "family": "ganymede-1.1",
+      "rows": [
+        "merkium"
+      ]
     },
     {
       "family": "gemini-2.5",
@@ -22162,6 +22225,30 @@
       "family": "nemotron-3.5-bolt-e4b",
       "rows": [
         "nvidia-nim"
+      ]
+    },
+    {
+      "family": "pluto-1.1-flash",
+      "rows": [
+        "merkium"
+      ]
+    },
+    {
+      "family": "pluto-1.1-pro",
+      "rows": [
+        "merkium"
+      ]
+    },
+    {
+      "family": "pluto-1.2-flash",
+      "rows": [
+        "merkium"
+      ]
+    },
+    {
+      "family": "pluto-1.2-pro",
+      "rows": [
+        "merkium"
       ]
     },
     {

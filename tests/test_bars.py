@@ -5,10 +5,11 @@ from datetime import date
 from pathlib import Path
 
 import httpx
+import pytest
 import respx
 import yaml
 
-from freetier_radar.bars import BAR_DAYS, arrivals, main, report, vendor_dates, waiting
+from freetier_radar.bars import arrivals, main, report, vendor_dates, waiting
 from freetier_radar.models import save_registry
 
 from test_prober import NGC_SEARCH, ngc_endpoint, ngc_search
@@ -34,9 +35,11 @@ def _git(repo: Path, *args: str, day: str | None = None) -> None:
                     *args], cwd=repo, check=True, env=env, capture_output=True)
 
 
-def _commit(repo: Path, rows: dict[str, list[str]], day: str) -> None:
+def _commit(repo: Path, rows: dict[str, list[str]], day: str,
+            free_parts: dict[str, str] | None = None) -> None:
     """One committed registry.yaml whose rows carry these ids, dated `day`."""
-    entries = [{"id": rid, "api": {"model_ids": ids}} for rid, ids in rows.items()]
+    entries = [{"id": rid, "free_part": (free_parts or {}).get(rid, "models"),
+                "api": {"model_ids": ids}} for rid, ids in rows.items()]
     (repo / "registry.yaml").write_text(yaml.safe_dump({"entries": entries}), encoding="utf-8")
     _git(repo, "add", "registry.yaml", day=day)
     _git(repo, "commit", "-q", "-m", day, day=day)
@@ -57,6 +60,25 @@ def test_an_id_is_dated_from_the_commit_after_which_it_never_left(tmp_path):
     assert since[("other", "b")] == date(2026, 8, 20)
 
 
+@pytest.mark.parametrize("free_part", ["sum", "unnamed"])
+def test_example_ids_do_not_age_a_named_free_lane(tmp_path, free_part):
+    _git(tmp_path, "init", "-q")
+    rows = {"gw": ["v/new-2:free"], "peer": ["b"]}
+    _commit(tmp_path, rows, "2026-08-01", {"gw": free_part})
+    _commit(tmp_path, rows, "2026-09-20")
+    since = arrivals(tmp_path)
+    assert since[("gw", "v/new-2:free")] == date(2026, 9, 20)
+    assert since[("peer", "b")] == date(2026, 8, 1)
+    pending = waiting([_gateway(model_ids=rows["gw"])], since, TODAY)
+    assert pending[0].due_on == date(2026, 10, 4)
+
+    _commit(tmp_path, rows, "2026-09-21", {"gw": free_part})
+    _commit(tmp_path, rows, "2026-09-22")
+    since = arrivals(tmp_path)
+    assert since[("gw", "v/new-2:free")] == date(2026, 9, 22)
+    assert since[("peer", "b")] == date(2026, 8, 1)
+
+
 def _gateway(**api) -> object:
     return make(id="gw", category="aggregator", models=[{"family": "big-1"}], probe=LANE,
                 api={"base_url": "https://x.ai/v1", **api})
@@ -73,7 +95,6 @@ def test_an_id_no_family_names_is_due_two_weeks_after_it_arrived():
     assert [(w.row, w.model_id, w.due_on) for w in rows] == [
         ("gw", "v/new-2:free", date(2026, 9, 15)), ("gw", "v/fresh-3:free", date(2026, 10, 4))]
     assert [w.due_on <= TODAY for w in rows] == [True, False]
-    assert BAR_DAYS == 14
 
 
 def test_an_id_the_history_has_not_seen_arrives_today():
@@ -253,7 +274,7 @@ def test_a_client_lane_is_dated_from_the_registry_s_history_too(tmp_path):
     block."""
     _git(tmp_path, "init", "-q")
     for day, ids in (("2026-09-14", ["x-free/a-1"]), ("2026-09-23", ["x-free/a-1", "x-free/b-2"])):
-        entries = [{"id": "cl", "client_lane": {"model_ids": ids}}]
+        entries = [{"id": "cl", "free_part": "models", "client_lane": {"model_ids": ids}}]
         (tmp_path / "registry.yaml").write_text(yaml.safe_dump({"entries": entries}),
                                                 encoding="utf-8")
         _git(tmp_path, "add", "registry.yaml", day=day)

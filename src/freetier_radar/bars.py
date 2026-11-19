@@ -48,9 +48,9 @@ _LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], date]:
     """(row id, model id) → the UTC day of the commit from which the id has stood
     in the row's `api.model_ids` — or `client_lane.model_ids`, for a lane no API
-    serves — without a break. An id is added on the read that finds it and
-    taken out when the run says it left, so an id that came back is dated from
-    its return."""
+    serves — as named free models, without a break. An id is added on the read
+    that finds it and taken out when the run says it left, so an id that came
+    back is dated from its return."""
     since: dict[tuple[str, str], date] = {}
     for sha, stamp in git.commits(repo, "--reverse", "HEAD", "--", path, field="%ct",
                                   check=True):
@@ -60,6 +60,7 @@ def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], d
             continue
         rows = (data.get("entries") or []) if isinstance(data, dict) else []
         present = {(row.get("id"), model_id) for row in rows if isinstance(row, dict)
+                   and row.get("free_part") == FreePart.MODELS.value
                    for block in ("api", "client_lane")
                    for model_id in ((row.get(block) or {}).get("model_ids") or [])}
         day = datetime.fromtimestamp(int(stamp), timezone.utc).date()

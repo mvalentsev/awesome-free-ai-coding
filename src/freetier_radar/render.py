@@ -3392,6 +3392,18 @@ def render_indexnow_filter(source: Path, out: Path) -> str | None:
     return text
 
 
+def render_update_schedule(source: Path, out: Path) -> str | None:
+    """Generate verification weekdays without changing its time or jobs."""
+    if not source.is_file():
+        return None
+    from .claims import render_claims
+    text = render_claims(source.read_text(encoding="utf-8"),
+                         ".github/workflows/update.yml", source.parents[2])
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    return text
+
+
 def render_all(registry_path: Path, template_dir: Path, root: Path,
                readme_name: str = "README.md", today: date | None = None,
                watchlist_path: Path | None = None, contributing_from: Path | None = None) -> None:
@@ -3415,6 +3427,8 @@ def _write_all(registry_path: Path, template_dir: Path, root: Path, readme_name:
     render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
     render_indexnow_filter((contributing_from or registry_path.parent) / ".github/workflows/indexnow.yml",
                           root / ".github/workflows/indexnow.yml")
+    render_update_schedule((contributing_from or registry_path.parent) / ".github/workflows/update.yml",
+                           root / ".github/workflows/update.yml")
 
 
 def render_repository(registry_path: Path, template_dir: Path, root: Path,

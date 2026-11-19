@@ -421,6 +421,17 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
             end.tzname(), end.strftime('%H:%M'))
 
 
+# The semantic cron check below already validates the weekdays. Generate their
+# text through the same writer without adding a second validation of the rule.
+_UPDATE_SCHEDULE = Claim(
+    ".github/workflows/update.yml",
+    r"(?m)^\s*- cron: [\"']?\S+ \S+ \S+ \S+ ([0-7,*]+)[\"']?(?:[ \t]*(?:#.*)?)?$",
+    lambda root: ('*' if set(PROBE_WEEKDAYS) == set(range(7))
+                  else ','.join(map(str, sorted(set(PROBE_WEEKDAYS)))),),
+    "models.PROBE_WEEKDAYS; workflow generation and job-preservation controls in tests/test_claims.py",
+    generated=True)
+
+
 CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
     Claim("CONTRIBUTING.md", rf"scheduled run does this ({_FREQUENCY})\b",
           lambda root: (probe_frequency(PROBE_WEEKDAYS),),
@@ -804,7 +815,7 @@ def render_claims(text: str, file: str, root: Path) -> str:
     invent prose, rewrite external quotes or renew dated vendor evidence.
     """
     inputs = _ClaimInputs(root)
-    for claim in CLAIMS:
+    for claim in (*CLAIMS, _UPDATE_SCHEDULE):
         if claim.file != file or not claim.generated:
             continue
         matches = list(re.finditer(claim.pattern, text))

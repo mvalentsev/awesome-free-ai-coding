@@ -887,11 +887,11 @@ cannot print two versions of it.
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/indexnow.yml` | **config** — IndexNow after publication; its push filter is generated from the published map · not on the site | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
+| `.github/workflows/update.yml` | **config** — scheduled verification, model measurements and scouting; weekdays are generated from the shared schedule · not on the site | `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `.github/workflows/ci.yml` | **config** — registry, generated output and package compatibility checks · not on the site | — | `hand` |
 | `.github/workflows/conformance.yml` | **config** — client compatibility on the generated configs · not on the site | — | `hand` |
 | `.github/workflows/expire.yml` | **config** — publish only model promotions whose deadlines have passed · not on the site | — | `hand` |
 | `.github/workflows/read-page.yml` | **config** — read primary pages with the project HTTP client · not on the site | — | `hand` |
-| `.github/workflows/update.yml` | **config** — scheduled verification, model measurements and scouting · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the watcher of the pinned actions and of uv.lock · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
 

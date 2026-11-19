@@ -11791,7 +11791,21 @@ entries:
       as one request every two seconds.
     value_phrase: 30 requests per minute per API key
   free_part: models
-  models: []
+  models:
+  - family: ganymede-1.1
+    aa_auto: false
+  - family: pluto-1.2-flash
+    aa_auto: false
+  - family: pluto-1.2-pro
+    aa_auto: false
+  - family: ceres-1.0
+    aa_auto: false
+  - family: ceres-1.0-pro
+    aa_auto: false
+  - family: pluto-1.1-flash
+    aa_auto: false
+  - family: pluto-1.1-pro
+    aa_auto: false
   api:
     base_url: https://chat.merkium.nl/api/v1
     key_url: https://chat.merkium.nl

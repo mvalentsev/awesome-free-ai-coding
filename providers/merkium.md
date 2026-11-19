@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'Merkium free tier: limits, free models, verified 2026-11-16'
-description: Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge. Sign in and create a free API key in the Console; no card or billing step. Space requests at least two seconds apart, including each step of a tool-call round…
+description: 'Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge. Free models: ceres-1.0, ceres-1.0-pro, ganymede-1.1, pluto-1.1-flash, pluto-1.1-pro, pluto-1.2-flash and 1 more. Sign in and create a free API key in the…'
 permalink: /providers/merkium/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-19
 crumb: Merkium
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Independent model developer with a free OpenAI-compatible API and chat service; 
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+<span data-model-sort-inline><span data-model-family="ceres-1.0">`ceres-1.0`</span>, <span data-model-family="ceres-1.0-pro">`ceres-1.0-pro`</span>, <span data-model-family="ganymede-1.1">`ganymede-1.1`</span>, <span data-model-family="pluto-1.1-flash">`pluto-1.1-flash`</span>, <span data-model-family="pluto-1.1-pro">`pluto-1.1-pro`</span>, <span data-model-family="pluto-1.2-flash">`pluto-1.2-flash`</span>, <span data-model-family="pluto-1.2-pro">`pluto-1.2-pro`</span></span>
 
 ## Limits, in the vendor's words
 
@@ -67,6 +68,7 @@ curl -s https://chat.merkium.nl/api/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-19` — Free models changed: added ceres-1.0, ceres-1.0-pro, ganymede-1.1, pluto-1.1-flash, pluto-1.1-pro, pluto-1.2-flash, pluto-1.2-pro
 - `2026-11-05` — Added: Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge
 
 ---

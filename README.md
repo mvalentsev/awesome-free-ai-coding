@@ -3,7 +3,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
-  <img alt="awesome-free-ai-coding — 113 live offers, 109 need no card, 133 free models, 79 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
+  <img alt="awesome-free-ai-coding — 113 live offers, 109 need no card, 140 free models, 79 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -63,7 +63,7 @@
 
 </details>
 
-[All 133 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
+[All 140 free model families](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index), including those without current scores, remain in the model index.
 
 **Or pick by what you need:**
 
@@ -144,7 +144,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[OpenTyphoon (SCB 10X)](https://opentyphoon.ai)** 👁 — Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) · [🔑 key](https://playground.opentyphoon.ai/api-key)</sub>
 - **[Agnes AI](https://agnes-ai.com)** 👁 — Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) · [🔑 key](https://platform.agnes-ai.com) · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</sub>
 - **[Zro (MoonMath)](https://zro.moonmath.ai)** — OpenAI-compatible inference for coding agents from MoonMath, with a recurring Free plan on selected Flash models<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zro/) · [🔑 key](https://zro.moonmath.ai/get-started?plan=free) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</sub>
-- **[Merkium](https://www.merkium.nl)** 🧪 — Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) · [🔑 key](https://chat.merkium.nl)</sub>
+- **[Merkium](https://www.merkium.nl)** 🧪 — Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) · [🔑 key](https://chat.merkium.nl) · `ceres-1.0` · `ceres-1.0-pro` · `ganymede-1.1` · `pluto-1.1-flash` · `pluto-1.1-pro` · `pluto-1.2-flash` · [+1 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/)</sub>
 - **[Infron](https://infron.ai)** (requires $5 top-up + 5% fee) 👁 — OpenAI-compatible model gateway with a shared recurring Free request allowance, unlocked by a retained prepaid balance<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infron/) · [🔑 key](https://infron.ai/dashboard/apiKeys)</sub>
 - **[FreeInference (Harvard SEAS)](https://freeinference.org)** — Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) · [🔑 key](https://freeinference.org) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/)</sub>
 - **[Ollama Cloud](https://ollama.com/cloud)** — Cloud-hosted open models with a monthly starter allowance advertised in the launch announcement; current pricing instead describes pay-as-you-go usage<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) · [🔑 key](https://ollama.com/settings/keys)</sub>
@@ -221,7 +221,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 - **[JZS Token](https://jzstoken.com)** (requires $1.5 top-up) 🧪 — A temporary free model API with a dedicated key and prepaid account<br><sub>[verified 2026-11-16](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) · [🔑 key](https://jzstoken.com/dashboard/keys)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 133 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 140 model families on the list and everyone who serves each one free; the comparison is [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -229,6 +229,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-19` | 🔄 Free models changed **[Merkium](https://www.merkium.nl)** | <sub>added ceres-1.0, ceres-1.0-pro, ganymede-1.1, pluto-1.1-flash, pluto-1.1-pro, pluto-1.2-flash, pluto-1.2-pro</sub> |
 | `2026-11-18` | 🔄 Free models changed **[opencode](https://opencode.ai)** | <sub>dropped glm-5.3-flash</sub> |
 | `2026-11-18` | ➕ Added **[AMD Radeon Cloud Token Factory](https://developer.amd.com.cn/login?source=bjOVsdlfc)** | <sub>Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance</sub> |
 | `2026-11-17` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped ernie-5.5-flash-preview</sub> |
@@ -238,7 +239,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-11-17` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>dropped xing4.0-29b-a4b</sub> |
 | `2026-11-17` | 🔄 Free models changed **[Requesty](https://www.requesty.ai)** | <sub>dropped ling-3.0-tiny, nemotron-3-super</sub> |
 | `2026-11-17` | ➕ Added **[Teapot Router](https://teapotrouter.com)** | <sub>Independent API gateway advertising signup trial credit before optional prepaid use</sub> |
-| `2026-11-17` | 🔄 Free models changed **[Upstage (Solar API)](https://www.upstage.ai/events/ai-initiative-2025-en)** | <sub>added solar-pro-4</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

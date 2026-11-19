@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-18T14:03:37Z</updated>
+  <updated>2026-11-19T08:22:01Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/merkium/20261119T082201Z</id>
+    <title>Free models changed: Merkium</title>
+    <link rel="alternate" href="https://www.merkium.nl"/>
+    <updated>2026-11-19T08:22:01Z</updated>
+    <summary type="text">added ceres-1.0, ceres-1.0-pro, ganymede-1.1, pluto-1.1-flash, pluto-1.1-pro, pluto-1.2-flash, pluto-1.2-pro · free models: ganymede-1.1, pluto-1.2-flash, pluto-1.2-pro, ceres-1.0, ceres-1.0-pro, pluto-1.1-flash, pluto-1.1-pro</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261118T140337Z</id>
     <title>Free models changed: opencode</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://graphite.com"/>
     <updated>2026-11-03T21:59:13Z</updated>
     <summary type="text">AI pull-request reviews and repository chat with an ongoing Hobby plan for personal GitHub repositories, alongside a separate no-card Team trial</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/liquid-inference/20261103T215913Z</id>
-    <title>Added: Liquid Inference</title>
-    <link rel="alternate" href="https://inference.ai.exchange"/>
-    <updated>2026-11-03T21:59:13Z</updated>
-    <summary type="text">Inference exchange where providers compete to serve API requests, with a no-card starting credit for new workspaces</summary>
   </entry>
 </feed>
