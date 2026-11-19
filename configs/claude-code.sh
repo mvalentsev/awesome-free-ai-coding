@@ -105,7 +105,7 @@ claude-token-harbor() {
   claude "$@"
 }
 
-# ── AMD Radeon Cloud Token Factory · get a key: https://developer.amd.com.cn/radeon/tokenfactory
+# ── AMD Radeon Cloud Token Factory · get a key: https://developer.amd.com.cn/login?source=bjOVsdlfc
 #    free ids: MiMo-V2.6-Flash, DeepSeek-V4.1-Flash, DeepSeek-V4-Flash, GLM-5.3-Flash, Qwen3.8-27B, Gemma-4-31B-IT, MiniCPM-V-4.7-35B-A3B, MiniCPM-V-4.7-1B, MiniCPM5-2B
 claude-amd-token-factory() {
   if [ -z "${AMD_TOKEN_FACTORY_API_KEY:-}" ]; then

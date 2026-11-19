@@ -992,13 +992,15 @@ def _newest_first(events: list[Event], limit: int) -> list[Event]:
 
 
 def _event_link(ev: Event, entries: list[Entry] | None, today: date) -> str:
-    """Where an event sends a reader: the vendor while the row is live, the row's
-    own page once it is in the Archive — the vendor of a row that left is dead,
-    or for a row rejected for cause, somewhere this list sends no one."""
+    """Link to the current vendor page for live rows and the provider page for archived rows.
+    Events without a registry row keep their recorded destination.
+    """
     row = next((e for e in entries or [] if e.id == ev.id), None)
-    if row is not None and is_archived(row, today):
+    if row is None:
+        return ev.url or REPO_URL
+    if is_archived(row, today):
         return provider_page_url(row.id)
-    return ev.url or REPO_URL
+    return row.url
 
 
 def event_detail(ev: Event, entries: list[Entry] | None) -> str:

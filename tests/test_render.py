@@ -11,7 +11,7 @@ from freetier_radar.models import ARCHIVE_AFTER_DAYS, WATCH_RECHECK_DAYS, Entry,
 from freetier_radar.render import (
     FEED_ENTRIES, FEED_URL, PAGES_URL, README_CHANGES, README_NOTE_TEASER,
     build_context, build_env_example, build_feed, build_index, build_litellm_config,
-    build_opencode_config, env_var, render_artifacts, render_readme,
+    build_opencode_config, env_var, provider_page_url, render_artifacts, render_readme,
 )
 
 TODAY = date(2026, 7, 19)
@@ -1234,6 +1234,22 @@ def test_the_what_changed_rows_are_newest_first_and_capped():
     newest = README_CHANGES + 2
     assert [r["name"] for r in rows] == [f"E{n}" for n in range(newest, newest - README_CHANGES, -1)]
     assert rows[0]["date"] == (FIRST_EVENT + timedelta(days=newest)).date().isoformat()
+
+
+def test_change_links_use_the_live_provider_url_and_keep_historical_fallbacks():
+    current = "https://x.ai/signup?source=list"
+    live = make(url=current)
+    archived = make(id="archived", delisted={"on": TODAY, "reason": "the free lane is gone"})
+    events = [ev(), ev(id="archived"), ev(id="missing")]
+    expected = [current, provider_page_url(archived.id), "https://x.ai"]
+
+    rows = build_context([live, archived], TODAY, history=events)["changes"]
+    assert [row["url"] for row in rows] == expected
+
+    ns = "{http://www.w3.org/2005/Atom}"
+    feed = ElementTree.fromstring(build_feed(events, TODAY, entries=[live, archived]))
+    assert [node.get("href") for node in feed.findall(f"{ns}entry/{ns}link")] == expected
+    assert events[0].url == "https://x.ai"
 
 
 def test_each_kind_of_event_is_labelled_for_a_reader():

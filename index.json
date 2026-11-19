@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18",
+  "generated": "2026-11-19",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -19952,7 +19952,7 @@
       "id": "amd-token-factory",
       "name": "AMD Radeon Cloud Token Factory",
       "category": "api-free-tier",
-      "url": "https://developer.amd.com.cn/radeon/tokenfactory",
+      "url": "https://developer.amd.com.cn/login?source=bjOVsdlfc",
       "source_urls": [
         "https://amd-aim.github.io/radeon-cloud-docs/guides/token-factory/",
         "https://amd-aim.github.io/radeon-cloud-docs/api/rate-limits/",
@@ -20088,7 +20088,7 @@
       "models": [],
       "api": {
         "base_url": "https://developer.amd.com.cn/radeon/api/v1",
-        "key_url": "https://developer.amd.com.cn/radeon/tokenfactory",
+        "key_url": "https://developer.amd.com.cn/login?source=bjOVsdlfc",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
