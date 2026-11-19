@@ -11848,9 +11848,9 @@ entries:
       plan_column: Price
       included_value: Free
   first_seen: '2026-11-05'
-  last_verified: '2026-11-16'
+  last_verified: '2026-11-19'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 89
 - id: jzstoken
   name: JZS Token
