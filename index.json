@@ -1619,11 +1619,6 @@
           "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "nemotron-3-ultra",
-          "table_name": "Nemotron 3 Ultra Free",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
           "family": "nemotron-3.5-lightning",
           "table_name": "Nemotron 3.5 Lightning Free",
           "aa_model": "nemotron-3-5-lightning"
@@ -1730,7 +1725,6 @@
         "name": "opencode",
         "models": [
           "big-pickle",
-          "nemotron-3-ultra",
           "nemotron-3.5-lightning",
           "mimo-v2.6-flash",
           "deepseek-v4.1-flash",
@@ -1745,7 +1739,6 @@
         "access": "",
         "modelAccess": {
           "big-pickle": "",
-          "nemotron-3-ultra": "",
           "nemotron-3.5-lightning": "",
           "mimo-v2.6-flash": "",
           "deepseek-v4.1-flash": "",
@@ -3400,24 +3393,7 @@
           "aa_model": "gemma-4-31b"
         },
         {
-          "family": "deepseek-v4.1-flash",
-          "aa_model": "deepseek-v4-1-flash"
-        },
-        {
-          "family": "diffusiongemma"
-        },
-        {
-          "family": "gpt-oss-20b",
-          "aa_model": "gpt-oss-20b"
-        },
-        {
           "family": "laguna-xs-2.1"
-        },
-        {
-          "family": "llama-3.2-11b-vision"
-        },
-        {
-          "family": "llama-3.2-90b-vision"
         },
         {
           "family": "nemotron-3-nano-omni",
@@ -3524,12 +3500,7 @@
           "muse-glimmer-30b",
           "nemotron-3.5-lightning",
           "gemma-4-31b",
-          "gpt-oss-20b",
           "nemotron-3-nano-omni",
-          "diffusiongemma",
-          "llama-3.2-90b-vision",
-          "llama-3.2-11b-vision",
-          "deepseek-v4.1-flash",
           "nemotron-3.5-super-vl-120b-a12b",
           "step-5-preview-600b-a27b",
           "minimax-m3.1-flash",
@@ -3565,12 +3536,7 @@
           "muse-glimmer-30b": "",
           "nemotron-3.5-lightning": "",
           "gemma-4-31b": "",
-          "gpt-oss-20b": "",
           "nemotron-3-nano-omni": "",
-          "diffusiongemma": "",
-          "llama-3.2-90b-vision": "",
-          "llama-3.2-11b-vision": "",
-          "deepseek-v4.1-flash": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "step-5-preview-600b-a27b": "",
           "minimax-m3.1-flash": "",
@@ -5126,9 +5092,6 @@
         },
         {
           "family": "beam-1.0"
-        },
-        {
-          "family": "laguna-s-2.1"
         }
       ],
       "api": {
@@ -5212,7 +5175,6 @@
       "search": {
         "name": "Vercel AI Gateway",
         "models": [
-          "laguna-s-2.1",
           "nemotron-3.5-lightning",
           "beam-1.0"
         ],
@@ -5229,7 +5191,6 @@
         "why": "",
         "access": "",
         "modelAccess": {
-          "laguna-s-2.1": "",
           "nemotron-3.5-lightning": "",
           "beam-1.0": ""
         },
@@ -10884,9 +10845,6 @@
           "aa_model": "nemotron-3-5-super-vl"
         },
         {
-          "family": "beam-1.0"
-        },
-        {
           "family": "nemotron-3.5-lightning"
         },
         {
@@ -10948,8 +10906,7 @@
         "models": [
           "solar-mini-4",
           "nemotron-3.5-super-vl-120b-a12b",
-          "nemotron-3.5-lightning",
-          "beam-1.0"
+          "nemotron-3.5-lightning"
         ],
         "ids": [
           "cline-free/solar-mini4",
@@ -10964,8 +10921,7 @@
         "modelAccess": {
           "solar-mini-4": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "nemotron-3.5-lightning": "",
-          "beam-1.0": ""
+          "nemotron-3.5-lightning": ""
         },
         "section": {
           "id": "agent-cli"
@@ -15726,7 +15682,8 @@
         "type": "page-keywords",
         "endpoint": "https://docs.qoder.cn/events/100credits",
         "keywords": [
-          "2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。"
+          "自 2026 年 11 月 19 日 10:00 起，本活动面向 试用期用户、个人付费订阅用户及会员卡用户 开放",
+          "每笔奖励自领取之日起 30 天内有效"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -21592,7 +21549,6 @@
     {
       "family": "nemotron-3-ultra",
       "rows": [
-        "opencode",
         "openrouter-free",
         "kilo-code",
         "requesty",
@@ -21732,7 +21688,6 @@
       "family": "beam-1.0",
       "rows": [
         "opencode",
-        "cline",
         "vercel-ai-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
@@ -21852,7 +21807,6 @@
       "family": "deepseek-v4.1-flash",
       "rows": [
         "opencode",
-        "nvidia-nim",
         "alibaba-model-studio",
         "token-harbor",
         "zro"
@@ -21862,7 +21816,6 @@
     {
       "family": "diffusiongemma",
       "rows": [
-        "nvidia-nim",
         "vlm-run-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
@@ -22073,7 +22026,6 @@
       "family": "gpt-oss-20b",
       "rows": [
         "groq-free",
-        "nvidia-nim",
         "regolo",
         "pollinations"
       ],
@@ -22117,13 +22069,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
-      "family": "laguna-s-2.1",
-      "rows": [
-        "vercel-ai-gateway"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
       "family": "laguna-xs-2.1",
       "rows": [
         "nvidia-nim"
@@ -22143,18 +22088,6 @@
         "kiosapi-id"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/"
-    },
-    {
-      "family": "llama-3.2-11b-vision",
-      "rows": [
-        "nvidia-nim"
-      ]
-    },
-    {
-      "family": "llama-3.2-90b-vision",
-      "rows": [
-        "nvidia-nim"
-      ]
     },
     {
       "family": "mellum",
@@ -22581,6 +22514,11 @@
       "family": "kolibri-1",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kolibri-1/"
+    },
+    {
+      "family": "laguna-s-2.1",
+      "rows": [],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
       "family": "ling-3.0-flash",

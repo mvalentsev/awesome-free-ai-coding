@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'nemotron-3-ultra free: 7 providers, limits and ids, provider probes 2026-11-19'
-description: nemotron-3-ultra is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's…
+title: 'nemotron-3-ultra free: 6 providers, limits and ids, provider probes 2026-11-19'
+description: nemotron-3-ultra is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe…
 permalink: /models/nemotron-3-ultra/
 last_modified_at: 2026-11-19
 crumb: nemotron-3-ultra
@@ -11,30 +11,11 @@ crumb: nemotron-3-ultra
 
 # Where nemotron-3-ultra is free
 
-**7 rows on the list serve `nemotron-3-ultra` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**6 rows on the list serve `nemotron-3-ultra` free:** OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
-
-🤖 Coding agents & CLIs · no card · last probe 2026-11-19 · listed since 2026-07-19
-
-Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
-
-Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them. Hy4 flash Free's provider states zero retention and no training on your data.
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In opencode's own model list: `Nemotron 3 Ultra Free`
-- What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
@@ -153,6 +134,7 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 ## Rows that listed it before
 
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-07-19 to 2026-11-19
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
 
 ## Related models

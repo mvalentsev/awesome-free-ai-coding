@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-19'
-description: beam-1.0 is served free by opencode, Cline and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'beam-1.0 free: 2 providers, limits and ids, provider probes 2026-11-19'
+description: beam-1.0 is served free by opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
 last_modified_at: 2026-11-19
 crumb: beam-1.0
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**3 rows on the list serve `beam-1.0` free:** opencode, Cline and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**2 rows on the list serve `beam-1.0` free:** opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -35,25 +35,6 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - In opencode's own model list: `Beam Free`
 - What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
-
-### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
-
-🤖 Coding agents & CLIs · no card · last probe 2026-11-19 · listed since 2026-11-05
-
-Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
-
-Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `reflection/beam-free`
-- What you send may be used to train or improve models ([the vendor's words](https://docs.cline.bot/getting-started/free-models)).
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
@@ -83,6 +64,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 ## Rows that listed it before
 
+- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — listed 2026-11-05 to 2026-11-19
 - [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) — listed 2026-11-02 to 2026-11-17
 - [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-10-31 to 2026-11-10
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-10-17 to 2026-10-22

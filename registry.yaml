@@ -774,9 +774,6 @@ entries:
   models:
   - family: big-pickle
     table_name: Big Pickle
-  - family: nemotron-3-ultra
-    table_name: Nemotron 3 Ultra Free
-    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
     table_name: Nemotron 3.5 Lightning Free
     aa_model: nemotron-3-5-lightning
@@ -1595,15 +1592,8 @@ entries:
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
     aa_model: gemma-4-31b
-  - family: gpt-oss-20b
-    aa_model: gpt-oss-20b
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
-  - family: diffusiongemma
-  - family: llama-3.2-90b-vision
-  - family: llama-3.2-11b-vision
-  - family: deepseek-v4.1-flash
-    aa_model: deepseek-v4-1-flash
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: step-5-preview-600b-a27b
@@ -2668,7 +2658,6 @@ entries:
     reviewed_on: '2026-11-17'
   free_part: models
   models:
-  - family: laguna-s-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: beam-1.0
@@ -6470,7 +6459,6 @@ entries:
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
   - family: nemotron-3.5-lightning
-  - family: beam-1.0
   client_lane:
     model_ids:
     - cline-free/solar-mini4
@@ -9647,8 +9635,8 @@ entries:
     type: page-keywords
     endpoint: https://docs.qoder.cn/events/100credits
     keywords:
-    - 2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在
-      Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。
+    - 自 2026 年 11 月 19 日 10:00 起，本活动面向 试用期用户、个人付费订阅用户及会员卡用户 开放
+    - 每笔奖励自领取之日起 30 天内有效
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

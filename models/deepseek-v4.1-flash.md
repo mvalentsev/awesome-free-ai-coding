@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, provider probes 2026-11-19'
-description: deepseek-v4.1-flash is served free by opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, provider probes 2026-11-19'
+description: deepseek-v4.1-flash is served free by opencode, Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash/
 last_modified_at: 2026-11-19
 crumb: deepseek-v4.1-flash
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**5 rows on the list serve `deepseek-v4.1-flash` free:** opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**4 rows on the list serve `deepseek-v4.1-flash` free:** opencode, Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -35,26 +35,6 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - In opencode's own model list: `DeepSeek V4.1 Flash Free`
 - What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
-
-### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
-
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-19 · listed since 2026-10-02
-
-Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Published ceiling: 40 requests/minute; 10,000 requests/day per account
-
-No card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.
-
-</details>
-
-- Base URL: `https://integrate.api.nvidia.com/v1`
-- Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `deepseek-ai/deepseek-v4.1-flash`
-- What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
@@ -120,6 +100,7 @@ Reset time and rate limits are not published. An account and API key are require
 
 ## Rows that listed it before
 
+- [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) — listed 2026-10-02 to 2026-11-19
 - [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-16 to 2026-10-06, 2026-10-06 to 2026-11-08
 - [Haimaker](https://mvalentsev.github.io/awesome-free-ai-coding/providers/haimaker/) — listed 2026-10-30 to 2026-11-01; the row itself is archived
 - [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — listed 2026-10-28 to 2026-10-31

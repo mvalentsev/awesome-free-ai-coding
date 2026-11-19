@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'gpt-oss-20b free: 4 providers, limits and ids, provider probes 2026-11-16 or later'
-description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'gpt-oss-20b free: 3 providers, limits and ids, provider probes 2026-11-16 or later'
+description: gpt-oss-20b is served free by Groq, Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-20b/
 last_modified_at: 2026-11-19
 crumb: gpt-oss-20b
@@ -11,7 +11,7 @@ crumb: gpt-oss-20b
 
 # Where gpt-oss-20b is free
 
-**4 rows on the list serve `gpt-oss-20b` free:** Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. The providers' last scheduled probes were on 2026-11-16 or later; their offers are rechecked twice a week.
+**3 rows on the list serve `gpt-oss-20b` free:** Groq, Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. The providers' last scheduled probes were on 2026-11-16 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -36,26 +36,6 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
 - Callable ids: `openai/gpt-oss-20b`
 - What you send is not used to train models ([the vendor's words](https://console.groq.com/docs/legal/services-agreement)).
-
-### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
-
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-19 · listed since 2026-09-24
-
-Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Published ceiling: 40 requests/minute; 10,000 requests/day per account
-
-No card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.
-
-</details>
-
-- Base URL: `https://integrate.api.nvidia.com/v1`
-- Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `openai/gpt-oss-20b`
-- What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
@@ -89,6 +69,10 @@ The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous 
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `gpt-oss-20b`
+
+## Rows that listed it before
+
+- [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) — listed 2026-09-24 to 2026-11-19
 
 ## Related models
 

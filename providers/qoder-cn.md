@@ -41,7 +41,7 @@ The vendor names no country it keeps the offer from ([source](https://docs.qoder
 
 ## Evidence
 
-- Probe: the page at <https://docs.qoder.cn/events/100credits>, anchored on `2026 年 9 月 18 日 10:00 起，Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits 。免费用户、个人付费订阅用户及会员卡用户均可参与。奖励可在 Qoder CN 全系产品中使用， 每笔奖励自领取之日起 30 天内有效，未到期的 Credits 可跨天保留 。`
+- Probe: the page at <https://docs.qoder.cn/events/100credits>, anchored on `自 2026 年 11 月 19 日 10:00 起，本活动面向 试用期用户、个人付费订阅用户及会员卡用户 开放`, `每笔奖励自领取之日起 30 天内有效`
 - Source: <https://docs.qoder.cn/product-overview/billing-description>
 - Source: <https://docs.qoder.cn/product-overview/credits>
 - Source: <https://docs.qoder.cn/events/100credits>
