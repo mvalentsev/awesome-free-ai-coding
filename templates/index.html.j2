@@ -60,15 +60,15 @@ p { margin: 0 0 12px; }
 .hero { background: var(--raised); }
 .hero-main {
   display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  align-items: center; gap: clamp(30px, 5vw, 76px); padding-block: clamp(34px, 4vw, 58px) 30px;
+  align-items: center; gap: clamp(30px, 5vw, 76px); padding-bottom: 30px;
 }
-.hero h1 { margin: 0 0 16px; }
-.hero .name {
-  display: block; margin-bottom: 16px; color: var(--accent);
-  font: 720 .91rem/1.3 var(--sans); letter-spacing: -.015em;
+.hero-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding-block: clamp(16px, 3vw, 44px) 5px;
 }
-.hero .tagline {
-  display: block; font-size: clamp(2.3rem, 5vw, 4.25rem);
+.hero-top .site-brand { color: var(--accent); }
+.hero h1 {
+  margin: 0 0 16px; font-size: clamp(2.3rem, 5vw, 4.25rem);
   font-weight: 770; line-height: 1.02; letter-spacing: -.058em; text-wrap: balance;
 }
 .hero .lede { max-width: 54ch; margin-bottom: 20px; color: var(--muted); }
@@ -292,9 +292,8 @@ tr.flash { animation: flash 1.6s ease-out; }
   .searchbox .eg { display: none; }
 }
 @media (max-width: 760px) {
-  .hero-main { display: block; padding-block: 29px 22px; }
-  .hero .name { margin-bottom: 12px; }
-  .hero .tagline { max-width: 15ch; }
+  .hero-main { display: block; padding-bottom: 22px; }
+  .hero h1 { max-width: 15ch; }
   .hero .lede { margin-bottom: 16px; }
   .radar { display: none; }
   .stats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -342,10 +341,13 @@ tr.flash { animation: flash 1.6s ease-out; }
 
 <header class="hero" id="top">
   <div class="wrap">
+    <div class="hero-top">
+      <span class="site-brand">awesome-free-ai-coding</span>
+      <a class="github-link" href="{{ repo_url }}" aria-label="Star on GitHub">Star</a>
+    </div>
     <div class="hero-main">
       <div>
-        <h1><span class="name">awesome-free-ai-coding</span>
-          <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
+        <h1>Legal free LLM APIs &amp; coding agents</h1>
         <p class="lede">Checked against live model APIs and pricing pages {{ schedule }}.
           Offers move to the <a href="#archive">Archive</a> after {{ archive_after_failures }} consecutive failed probes.</p>
         <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">

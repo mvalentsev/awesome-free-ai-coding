@@ -139,6 +139,7 @@ MAP: tuple[Node, ...] = (
          "name what the address asked for", published=True),
     Node("assets/favicon.svg", Kind.PAGE, "the favicon",
          published=True),
+    Node("assets/github-mark.svg", Kind.PAGE, "the GitHub repository link’s mark", published=True),
     Node("assets/social-preview.svg", Kind.PAGE, "the social preview's source, with the shared probe frequency",
          made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
          written_by=("freetier-render",), published=True),

@@ -12,6 +12,7 @@
   --accent-2: #7e258b;
   --action: #4d249d;
   --on-action: #fff;
+  --brand-mark: #202020;
   --selected: #eae4ff;
   --ok: #22604d;
   --danger: #a12649;
@@ -38,6 +39,7 @@
     --accent-2: #efa6ed;
     --action: #c0b3ff;
     --on-action: #251444;
+    --brand-mark: #f4f4f4;
     --selected: #362856;
     --ok: #8ed7b8;
     --danger: #f0a1b3;
@@ -80,11 +82,10 @@ code, kbd, pre { font-family: var(--mono); }
 }
 
 .site-nav .site-frame {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  column-gap: 24px;
+  column-gap: clamp(12px, 2vw, 24px);
   padding-block: 10px;
 }
 
@@ -93,6 +94,8 @@ code, kbd, pre { font-family: var(--mono); }
   align-items: center;
   gap: 9px;
   min-height: 40px;
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--fg);
   font-size: .92rem;
   font-weight: 750;
@@ -101,7 +104,36 @@ code, kbd, pre { font-family: var(--mono); }
 }
 
 .site-brand img { display: block; flex: none; }
-.site-links { display: flex; flex-wrap: wrap; gap: 0 clamp(14px, 2vw, 28px); }
+.site-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 clamp(14px, 2vw, 28px); }
+
+.github-link {
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+  min-height: 44px;
+  padding-inline: 10px;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: .85rem;
+  font-weight: 640;
+  text-decoration: none;
+}
+
+.github-link::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: var(--brand-mark);
+  mask: url("github-mark.svg") center / contain no-repeat;
+}
+
+.github-link:hover {
+  color: var(--fg);
+  background: var(--surface);
+  text-decoration: underline;
+}
 
 .site-links a {
   display: inline-flex;
@@ -160,12 +192,13 @@ code, kbd, pre { font-family: var(--mono); }
 
 .skip:focus { transform: none; }
 
-@media (max-width: 600px) {
-  .site-nav .site-frame { padding-block: 6px; }
-  .site-links { column-gap: 11px; }
+@media (max-width: 760px) {
+  .site-nav .site-frame { grid-template-columns: minmax(0, 1fr) auto; padding-block: 6px; }
+  .site-links { grid-column: 1 / -1; justify-content: flex-start; column-gap: 11px; }
   .site-links a { min-height: 31px; font-size: .8rem; }
 }
 
 @media (forced-colors: active) {
   .search-icon::after { background: ButtonText; }
+  .github-link::before { background: LinkText; forced-color-adjust: none; }
 }

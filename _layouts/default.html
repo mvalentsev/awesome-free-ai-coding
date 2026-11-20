@@ -88,6 +88,7 @@
     <nav class="site-nav" aria-label="Catalog">
       <div class="site-frame">
         <a class="site-brand" href="{{ "/" | relative_url }}"><img src="{{ "/assets/readme/radar.svg" | relative_url }}" width="26" height="26" alt="">{{ site.title }}</a>
+        <a class="github-link" href="{{ site.github.repository_url }}" aria-label="Star on GitHub">Star</a>
         <div class="site-links">
           <a href="{{ "/models/" | relative_url }}"{% if page.url == "/models/" %} aria-current="page"{% endif %}>Every free model</a>
           <a href="{{ "/providers/" | relative_url }}"{% if page.url == "/providers/" %} aria-current="page"{% endif %}>Every provider</a>

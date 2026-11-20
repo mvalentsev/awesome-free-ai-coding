@@ -531,13 +531,12 @@ def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
 
 
 def test_the_page_has_one_heading_and_it_names_the_list(tmp_path):
-    """The heading is text — the list's name and what it is, beside the radar
-    the README's hero draws — so a search engine, a screen reader and a phone
-    all read it at any width."""
+    """The masthead identifies the project and the heading names the catalog.
+    Both are text beside the generated radar."""
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert html.count("<h1") == 1
     heading = html.split("<h1>")[1].split("</h1>")[0]
-    assert '<span class="name">awesome-free-ai-coding</span>' in heading
+    assert '<span class="site-brand">awesome-free-ai-coding</span>' in html
     assert "Legal free LLM APIs &amp; coding agents" in heading
     assert '<img src="assets/readme/radar.svg" width="300" height="300" alt="">' in html
 

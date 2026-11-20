@@ -865,6 +865,7 @@ cannot print two versions of it.
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js`, `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/favicon.svg` | **page** — the favicon | — | `hand` |
+| `assets/github-mark.svg` | **page** — the GitHub repository link’s mark | — | `hand` |
 | `assets/social-preview.svg` | **page** — the social preview's source, with the shared probe frequency | `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `assets/*.js` | **page** — shared browser search, model matching, sorting and heading permalinks | — | `hand` |
