@@ -535,7 +535,7 @@ def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(t
     for svg in sorted((tmp_path / "assets" / "readme").glob("hero*.svg")):
         assert not re.search(r"\d{4}-\d{2}-\d{2}", svg.read_text(encoding="utf-8")), svg.name
     html = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
-    assert f"every row verified <b>{floor} or later</b>" in html
+    assert f"Every row verified <b>{floor} or later</b>" in html
 
     # Every live row confirmed the same day: that day is no floor under later ones.
     save_registry(reg, [make(id="fresh"), make(id="also-fresh")])
@@ -546,7 +546,7 @@ def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(t
     assert f"every%20row%20verified-{day.replace('-', '--')}-" in top
     assert "or later" not in top and "or%20later" not in top
     html = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
-    assert f"every row verified <b>{day}</b>" in html
+    assert f"Every row verified <b>{day}</b>" in html
 
 
 def test_repository_render_keeps_one_registry_snapshot_for_every_surface(tmp_path, monkeypatch):

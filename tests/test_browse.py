@@ -22,8 +22,8 @@ def test_browse_page_uses_local_assets_and_reads_index_json_beside_itself():
     assert 'fetch("index.json"' in html
     assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js", "assets/search.js", "assets/model-sort.js"]
     assert (PAGE.parent / "assets/model-name.js").is_file()
-    assert re.findall(r'<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"', html) == ["assets/model-sort.css"], "only shared local styles"
-    assert "prefers-color-scheme" in html
+    assert re.findall(r'<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"', html) == ["assets/site.css", "assets/model-sort.css"], "only shared local styles"
+    assert "prefers-color-scheme" in (PAGE.parent / "assets/site.css").read_text(encoding="utf-8")
     assert 'name="viewport"' in html
 
 

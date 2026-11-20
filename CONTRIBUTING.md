@@ -869,7 +869,7 @@ cannot print two versions of it.
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `assets/*.js` | **page** — shared browser search, model matching, sorting and heading permalinks | — | `hand` |
 | `assets/anchorjs-LICENSE.txt` | **doc** — MIT license for the heading permalink library | — | `hand` |
-| `assets/*.css` | **page** — shared model sorting controls | — | `hand` |
+| `assets/*.css` | **page** — shared site styles and model sorting controls | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py`, `src/freetier_radar/claims.py`, `.github/workflows/ci.yml`, `.github/workflows/conformance.yml` | `hand`, `freetier-render` |

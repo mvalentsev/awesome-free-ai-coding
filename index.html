@@ -74,43 +74,17 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/model-sort.css">
 <style>
-:root {
-  color-scheme: light dark;
-  --bg: #ffffff; --surface: #f6f8fa; --raised: #ffffff; --fg: #1f2328; --muted: #59636e;
-  --line: #d1d9e0; --line-soft: #e4e8ed; --accent: #0969da; --accent-2: #8250df;
-  --ok: #1a7f37; --ok-bg: #dafbe1; --warn: #9a6700; --warn-bg: #fff8c5; --danger: #cf222e;
-  --chip: #eef2f6; --shadow: 0 1px 2px rgba(31,35,40,.08), 0 3px 12px rgba(31,35,40,.06);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117; --surface: #161b22; --raised: #12171e; --fg: #e6edf3; --muted: #9198a1;
-    --line: #3d444d; --line-soft: #272c33; --accent: #4493f8; --accent-2: #ab7df8;
-    --ok: #3fb950; --ok-bg: #12261e; --warn: #d29922; --warn-bg: #272115; --danger: #f85149;
-    --chip: #1c2229; --shadow: 0 1px 2px rgba(1,4,9,.5), 0 4px 16px rgba(1,4,9,.4);
-  }
-}
-* { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 70px; }
-body {
-  margin: 0; background: var(--bg); color: var(--fg);
-  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
-  -webkit-text-size-adjust: 100%;
-}
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
-}
-code, kbd { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  overflow-wrap: anywhere; }
-h2 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 6px; letter-spacing: -.01em; }
-h3 { font-size: 1.05rem; margin: 0 0 8px; }
+.wrap { width: min(100%, var(--wide)); margin-inline: auto; padding-inline: var(--gutter); }
+a { text-decoration: none; }
+a:hover, p a { text-decoration: underline; }
+code, kbd { overflow-wrap: anywhere; }
+h2 { font-size: clamp(1.55rem, 3vw, 2.35rem); line-height: 1.13; margin: 0 0 8px; letter-spacing: -.04em; }
+h3 { font-size: 1.1rem; margin: 0 0 8px; }
 p { margin: 0 0 12px; }
-.skip { position: absolute; left: -9999px; top: 0; background: var(--bg); padding: 10px 14px; }
-.skip:focus { left: 8px; top: 8px; z-index: 50; box-shadow: var(--shadow); }
 .config-choices { display:flex; flex-wrap:wrap; gap:16px; margin:18px 0; }
 .config-choices label { display:grid; gap:4px; flex:1 1 240px; min-width:0; }
 .config-choices select { width:100%; padding:9px; font:inherit; color:var(--fg);
@@ -121,77 +95,88 @@ p { margin: 0 0 12px; }
 .config-result .copy { position:static; margin-left:8px; }
 
 /* ── hero ─────────────────────────────────────────────────────────────── */
-.hero { padding: 40px 0 24px; background:
-  radial-gradient(1100px 380px at 50% -140px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
-  border-bottom: 1px solid var(--line-soft); text-align: center; }
-/* The list's name as text beside its radar, a dot per live offer, so a phone
-   reads the name and the tagline at any width. */
-.brand { display: flex; align-items: center; justify-content: center; gap: 24px; }
-.brand img { width: 148px; height: 148px; flex: none; }
-.brand h1 { margin: 0; text-align: left; font-size: inherit; }
-.brand .name { display: block; white-space: nowrap; letter-spacing: -.01em;
-  font: 700 clamp(0.9rem, 4.6vw, 2.5rem)/1.15 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
-.brand .name::after { content: ""; display: block; height: 4px; margin-top: 8px; border-radius: 2px;
-  background: linear-gradient(90deg, var(--ok), var(--accent)); }
-.brand .tagline { display: block; margin-top: 8px; font-size: 1.05rem; font-weight: 500; line-height: 1.35;
-  color: var(--muted); text-wrap: balance; }
-.lede { font-size: 1.15rem; color: var(--fg); max-width: 760px; margin: 18px auto 14px; }
-.lede b { font-weight: 650; }
-.meta { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
-.dot { display: inline-block; width: .6em; height: .6em; border-radius: 50%; vertical-align: baseline; }
-.cta { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 26px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px;
-  border: 1px solid var(--line); background: var(--raised); color: var(--fg); font-weight: 550;
-  font-size: .94rem; box-shadow: var(--shadow); cursor: pointer;
+.hero { background: var(--raised); }
+.hero-main {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: center; gap: clamp(30px, 5vw, 76px); padding-block: clamp(34px, 4vw, 58px) 30px;
 }
-.btn:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn.primary:hover { color: #fff; filter: brightness(1.08); }
-.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; list-style: none;
-  margin: 0; padding: 0; }
-.stats li { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 12px;
-  padding: 14px 8px; }
-.stats b { display: block; font-size: 1.7rem; line-height: 1.1; letter-spacing: -.02em; }
+.hero h1 { margin: 0 0 16px; }
+.hero .name {
+  display: block; margin-bottom: 16px; color: var(--accent);
+  font: 720 .91rem/1.3 var(--sans); letter-spacing: -.015em;
+}
+.hero .tagline {
+  display: block; font-size: clamp(2.3rem, 5vw, 4.25rem);
+  font-weight: 770; line-height: 1.02; letter-spacing: -.058em; text-wrap: balance;
+}
+.hero .lede { max-width: 54ch; margin-bottom: 20px; color: var(--muted); }
+.radar {
+  display: grid; place-items: center; position: relative; min-height: 328px; margin: 0;
+  border: 1px solid var(--line-soft); border-radius: 24px; overflow: hidden;
+  background: var(--selected);
+  background-image:
+    linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center;
+}
+.radar img { display: block; width: min(80%, 304px); height: auto; }
+.verification { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 0; color: var(--muted); font-size: .84rem; }
+.dot { display: inline-block; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+.dot.ageing { background: var(--warn); }
+.dot.stale { background: var(--danger); }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+  padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--raised); color: var(--fg); font-size: .92rem; font-weight: 680;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.btn.primary { background: var(--action); border-color: var(--action); color: var(--on-action); }
+.btn.primary:hover { text-decoration: underline; }
+
+.stats {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0;
+  border-top: 1px solid var(--line-soft); list-style: none;
+}
+.stats li { padding: 16px clamp(10px, 2vw, 26px); }
+.stats li:first-child { padding-left: 0; }
+.stats li + li { border-left: 1px solid var(--line-soft); }
+.stats b { display: block; font-size: clamp(1.3rem, 2vw, 1.9rem); font-weight: 730;
+  line-height: 1.1; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
 .stats span { color: var(--muted); font-size: .8rem; }
 
-/* ── sticky nav ───────────────────────────────────────────────────────── */
-.nav { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--line-soft); }
-/* One line at every width: it is what a section anchor is offset against
-   (scroll-padding-top), and a bar that wrapped to two rows would land every
-   jump on top of the section it jumped to. Too many links to fit scroll. */
-.nav .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: nowrap; overflow-x: auto;
-  min-height: 52px; scrollbar-width: none; }
-.nav .wrap::-webkit-scrollbar { display: none; }
-.nav a { color: var(--fg); font-size: .92rem; font-weight: 500; white-space: nowrap; }
-.nav a:hover { color: var(--accent); text-decoration: none; }
-.nav a .n { color: var(--muted); font-size: .8rem; }
-/* The search's way in from anywhere on the page: first in the bar, so a phone
-   shows it without scrolling the bar sideways. */
-.nav .navsearch { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line);
-  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; cursor: pointer; }
-.nav .navsearch:hover { border-color: var(--accent); color: var(--accent); }
+.nav { position: sticky; top: 0; z-index: 30; background: var(--raised);
+  border-block: 1px solid var(--line-soft); }
+.nav .wrap { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; overflow-x: auto;
+  min-height: 54px; scrollbar-width: thin; scroll-padding-inline: var(--gutter); }
+.nav a, .nav .navsearch { display: inline-flex; flex: none; align-items: center; gap: 6px; min-height: 38px;
+  padding: 6px 10px; border: 1px solid transparent; border-radius: 6px; color: var(--muted);
+  font-size: .88rem; font-weight: 620; white-space: nowrap; }
+.nav a:hover, .nav .navsearch:hover { color: var(--accent); background: var(--chip); text-decoration: none; }
+.nav a .n { font-size: .76rem; font-variant-numeric: tabular-nums; }
+.nav .navsearch { font-family: inherit; color: var(--fg); background: var(--surface);
+  border-color: var(--line-soft); margin-right: 6px; cursor: pointer; }
 
 /* ── sections ─────────────────────────────────────────────────────────── */
-section { padding: 44px 0 4px; }
+section { padding: clamp(34px, 5vw, 66px) 0 4px; }
 section > .wrap > header { margin-bottom: 18px; }
-.sub { color: var(--muted); font-size: .92rem; margin: 0; }
+.sub { max-width: 84ch; color: var(--muted); font-size: .94rem; margin: 0; }
 .grid { display: grid; gap: 14px; }
-.cols-2 { grid-template-columns: repeat(2, 1fr); }
-.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.card { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 14px;
-  padding: 16px 18px; }
-.card h3 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
-  font-weight: 600; margin-bottom: 10px; }
-.card .who { font-weight: 600; }
+.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.card { min-width: 0; background: var(--raised); border: 1px solid var(--line-soft); border-radius: 10px;
+  padding: 16px 18px; overflow-wrap: anywhere; }
+.card h3 { font-size: .85rem; color: var(--muted); font-weight: 650; margin-bottom: 6px; }
+.card .who { font-weight: 720; }
+.cols-2 .who { font-size: 1.12rem; }
 .card ul { margin: 0; padding: 0; list-style: none; }
-.card li + li { margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line-soft); }
+.card li + li { margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line-soft); }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
 .model-access { display: inline-flex; flex-direction: column; gap: 3px; max-width: 100%; }
 .model-access small { font-size: .74rem; color: var(--muted); overflow-wrap: anywhere; }
-.chip { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  background: var(--chip); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px;
+.chip { font: .78rem/1.55 var(--mono); overflow-wrap: anywhere;
+  background: var(--chip); border: 1px solid transparent; border-radius: 5px; padding: 1px 6px;
   color: var(--fg); }
 .chip.top { border-color: color-mix(in srgb, var(--accent-2) 55%, var(--line));
   color: var(--accent-2); }
@@ -201,9 +186,9 @@ a.chip:not(.top) { color: var(--accent); }
 a.chip:hover { border-color: currentColor; text-decoration: none; }
 
 /* ── tables ───────────────────────────────────────────────────────────── */
-.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--raised); }
+.scroll { overflow-x: auto; border: 1px solid var(--line-soft); border-radius: 10px; background: var(--raised); }
 table.rows { border-collapse: collapse; width: 100%; min-width: 940px; font-size: .93rem; }
-table.rows th, table.rows td { text-align: left; vertical-align: top; padding: 11px 13px;
+table.rows th, table.rows td { text-align: left; vertical-align: top; padding: 13px 14px; overflow-wrap: anywhere;
   border-top: 1px solid var(--line-soft); }
 /* Not sticky, deliberately. Inside a horizontally scrollable wrapper a sticky
    header resolves against that wrapper rather than the viewport — it leaves its
@@ -212,19 +197,18 @@ table.rows th, table.rows td { text-align: left; vertical-align: top; padding: 1
    scrolled past, leaving a header floating over an empty box at every section
    boundary. The narrow view carries the column names on the cells instead. */
 table.rows thead th { background: var(--surface); border-top: 0;
-  border-bottom: 1px solid var(--line); font-size: .78rem; text-transform: uppercase;
-  letter-spacing: .05em; color: var(--muted); white-space: nowrap; }
+  border-bottom: 1px solid var(--line-soft); font-size: .8rem; color: var(--muted); }
 table.rows tbody tr:hover { background: color-mix(in srgb, var(--accent) 5%, transparent); }
 th.who { width: 20%; font-weight: 600; }
-th.who a.name { font-size: 1rem; }
+th.who a.name { font-size: 1rem; font-weight: 720; }
 td.what { width: 30%; }
 td.models { width: 19%; }
 td.limits { width: 25%; font-size: .86rem; color: var(--muted); }
-td.when { width: 6%; white-space: nowrap; font-size: .86rem; }
+td.when { width: 6%; white-space: nowrap; font-size: .85rem; font-variant-numeric: tabular-nums; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .tag { font-size: 11.5px; line-height: 1.6; padding: 0 7px; border-radius: 999px;
   border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
-.tag.card { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.tag.card { padding: 0 7px; color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
 .tag.nokey { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
 .tag.new { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .tag.front { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 45%, var(--line)); }
@@ -239,7 +223,7 @@ details .full { display: block; margin-top: 6px; }
    triangle after it does not read as something to tap. */
 details.fold > summary { display: inline-block; padding: 9px 16px; border-radius: 8px;
   border: 1px solid var(--line); background: var(--raised); color: var(--fg); font-weight: 550;
-  font-size: .94rem; box-shadow: var(--shadow); }
+  font-size: .94rem; }
 details.fold > summary:hover { border-color: var(--accent); color: var(--accent); }
 details.fold[open] > summary { margin-bottom: 14px; }
 /* A row's families past the first few, under their count; open, they take a
@@ -254,7 +238,7 @@ details.more[open] { flex-basis: 100%; }
 /* ── code, callouts, footer ───────────────────────────────────────────── */
 .code { position: relative; background: var(--surface); border: 1px solid var(--line);
   border-radius: 12px; padding: 14px 16px; overflow-x: auto; }
-.code pre { margin: 0; font: 13.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.code pre { margin: 0; font: .85rem/1.65 var(--mono); }
 .copy { position: absolute; top: 8px; right: 8px; font-size: 12px; padding: 4px 9px;
   border-radius: 6px; border: 1px solid var(--line); background: var(--raised); color: var(--muted); }
 .copy:hover { color: var(--accent); border-color: var(--accent); cursor: pointer; }
@@ -282,10 +266,12 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 /* One surface wherever it is opened from — the box in the hero, the bar, "/"
    or Ctrl+K — with its answers under the box a reader is typing into, where
    each keystroke shows. */
-.searchbox { display: flex; align-items: center; gap: 10px; width: min(100%, 640px);
-  margin: 0 auto 20px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line);
-  background: var(--raised); color: var(--muted); font: inherit; font-size: 1rem; text-align: left;
-  box-shadow: var(--shadow); cursor: text; }
+.searchbox {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 48px; margin: 0 0 12px;
+  padding: 10px 13px; border-radius: 8px; border: 1px solid var(--control-line);
+  background: var(--bg); color: var(--fg); font: inherit; font-size: .94rem;
+  text-align: left; cursor: pointer;
+}
 .searchbox:hover { border-color: var(--accent); }
 .searchbox .ph { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* A key to press means nothing on a screen with no keyboard. */
@@ -313,12 +299,11 @@ kbd.key { font-size: .76rem; line-height: 1.5; padding: 0 6px; border: 1px solid
 .fchip { font: inherit; font-size: .82rem; line-height: 1.5; padding: 2px 10px; border-radius: 999px;
   border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
 .fchip:hover { border-color: var(--accent); }
-.fchip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fchip[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: var(--on-action); }
 .palette-results { flex: 1; overflow-y: auto; padding: 4px 0 8px; overscroll-behavior: contain; }
 .palette-results .hint { padding: 14px 16px 6px; margin: 0; color: var(--muted); font-size: .92rem; }
 .palette-results .tries { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 16px 14px; }
-.pgroup { padding: 10px 16px 4px; font-size: .72rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: .07em; color: var(--muted); }
+.pgroup { padding: 10px 16px 4px; font-size: .8rem; font-weight: 670; color: var(--muted); }
 .presult { display: block; padding: 8px 16px 9px 13px; border-left: 3px solid transparent;
   color: var(--fg); cursor: pointer; }
 .presult:hover { text-decoration: none; }
@@ -340,24 +325,32 @@ kbd.key { font-size: .76rem; line-height: 1.5; padding: 0 6px; border: 1px solid
 tr.flash { animation: flash 1.6s ease-out; }
 @keyframes flash { from { background: color-mix(in srgb, var(--accent) 22%, transparent); } }
 
-@media (max-width: 900px) {
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .stats li:last-child { grid-column: 1 / -1; }
-  .cols-3, .cols-2 { grid-template-columns: 1fr; }
-  h2 { font-size: 1.35rem; }
+@media (max-width: 960px) {
+  .radar { min-height: 270px; }
+  .searchbox .eg { display: none; }
 }
 @media (max-width: 760px) {
+  .hero-main { display: block; padding-block: 29px 22px; }
+  .hero .name { margin-bottom: 12px; }
+  .hero .tagline { max-width: 15ch; }
+  .hero .lede { margin-bottom: 16px; }
+  .radar { display: none; }
+  .stats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .stats li { grid-column: span 2; padding: 9px 10px; }
+  .stats li:nth-child(n+4) { grid-column: span 3; border-top: 1px solid var(--line-soft); }
+  .stats li:nth-child(4) { border-left: 0; padding-left: 0; }
+  .stats span { font-size: .75rem; }
+  .cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .scroll { border: 0; border-radius: 0; overflow: visible; }
   table.rows { min-width: 0; display: block; }
   table.rows thead { display: none; }
   table.rows tbody, table.rows tr, table.rows th, table.rows td { display: block; width: auto; }
-  table.rows tr { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+  table.rows tr { border: 1px solid var(--line-soft); border-radius: 10px; padding: 14px;
     margin-bottom: 12px; background: var(--raised); }
   /* A card cell breaks a token that has no space in it — a note's
      `ANTHROPIC_BASE_URL=https://…` — or it pushes the whole page sideways. */
   table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; overflow-wrap: anywhere; }
-  table.rows td::before { content: attr(data-label); display: block; font-size: 11px;
-    text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
+  table.rows td::before { content: attr(data-label); display: block; font-size: .78rem; font-weight: 650; color: var(--muted); margin-bottom: 2px; }
   td.what, td.models, td.limits, td.when, th.who { width: auto; }
   /* The two-column tables (the files, the model index) stack the same way: a
      26% column of file names does not fit a phone, and kept on one line it
@@ -371,24 +364,14 @@ tr.flash { animation: flash 1.6s ease-out; }
   .palette-box { width: 100%; height: 100%; max-height: none; border-radius: 0; border: 0; }
   .palette-foot .keys { display: none; }
 }
-/* A phone: the radar shrinks beside the name and the three secondary links
-   share the second row of buttons. */
-@media (max-width: 600px) {
-  .hero { padding-top: 28px; }
-  .brand { gap: 14px; }
-  .brand img { width: 84px; height: 84px; }
-  .brand .tagline { font-size: .86rem; }
-  .lede { font-size: 1.02rem; margin-top: 16px; }
-  .cta { gap: 8px; }
-  .btn { padding: 8px 12px; font-size: .9rem; }
-  .btn.minor { padding: 6px 10px; font-size: .84rem; box-shadow: none; }
-  .stats { gap: 8px; }
-  .stats li { padding: 10px 6px; }
-  .stats b { font-size: 1.4rem; }
+@media (max-width: 520px) {
+  .cols-3, .cols-2 { grid-template-columns: 1fr; }
+  .nav a { padding-inline: 7px; }
+  .stats span { display: block; margin-top: 3px; line-height: 1.25; }
 }
-@media (max-width: 360px) {
-  .brand { gap: 12px; }
-  .brand img { width: 72px; height: 72px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  tr.flash { animation: none; background: var(--selected); }
 }
 </style>
 </head>
@@ -397,29 +380,29 @@ tr.flash { animation: flash 1.6s ease-out; }
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="brand">
-      <img src="assets/readme/radar.svg" width="300" height="300" alt="">
-      <h1><span class="name">awesome-free-ai-coding</span>
-        <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
-    </div>
-    <p class="lede">Checked against live model APIs and pricing pages twice a week.
-      Offers move to the <a href="#archive">Archive</a> after 3 consecutive failed probes.</p>
-    <p class="meta">
-      <span class="dot" style="background:#3fb950"></span>
-      every row verified <b>2026-11-16 or later</b> (fresh)
-      · 117 live offers · MIT · no tracking, no ads, no affiliate links
-    </p>
-    <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">
-      <span aria-hidden="true">🔎</span>
-      <span class="ph">Search 117 offers and 141 models<span class="eg"> — kimi, groq, no card, claude code</span></span>
-      <kbd class="key">/</kbd>
-    </button>
-    <div class="cta">
-      <a class="btn primary" href="#start">Start here</a>
-      <a class="btn" href="browse.html">▦ Table with filters</a>
-      <a class="btn" href="https://github.com/mvalentsev/awesome-free-ai-coding">★ GitHub</a>
-      <a class="btn minor" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">📡 Atom feed</a>
-      <a class="btn minor" href="llms.txt">🤖 llms.txt</a>
+    <div class="hero-main">
+      <div>
+        <h1><span class="name">awesome-free-ai-coding</span>
+          <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
+        <p class="lede">Checked against live model APIs and pricing pages twice a week.
+          Offers move to the <a href="#archive">Archive</a> after 3 consecutive failed probes.</p>
+        <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="ph">Search 117 offers and 141 models<span class="eg"> — kimi, groq, no card, claude code</span></span>
+          <kbd class="key">/</kbd>
+        </button>
+        <div class="cta">
+          <a class="btn primary" href="browse.html">Table with filters</a>
+          <a class="btn" href="#start">Start here</a>
+        </div>
+        <p class="verification">
+          <span class="dot fresh" aria-hidden="true"></span>
+          <span>Every row verified <b>2026-11-16 or later</b> (fresh)</span>
+        </p>
+      </div>
+      <figure class="radar" aria-hidden="true">
+        <img src="assets/readme/radar.svg" width="300" height="300" alt="">
+      </figure>
     </div>
     <ul class="stats">
       <li><b>117</b><span>live offers</span></li>
@@ -434,15 +417,15 @@ tr.flash { animation: flash 1.6s ease-out; }
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
     <button class="navsearch" type="button" data-search-open hidden aria-haspopup="dialog"
-            aria-label="Search the list">🔎 Search</button>
-    <a href="#start">🚀 Start</a>
-    <a href="#agent-cli">🤖 Agents <span class="n">26</span></a>
-    <a href="#api-free-tier">🔌 APIs <span class="n">41</span></a>
-    <a href="#trial">🎁 Trials <span class="n">26</span></a>
-    <a href="#aggregator">🧭 Aggregators <span class="n">24</span></a>
-<a href="#models">🧠 Models <span class="n">141</span></a>    <a href="#plug">🔧 Plug it in</a>
-    <a href="#machinery">📡 How it works</a>
-    <a href="#archive">📦 Archive</a>
+            aria-label="Search the list"><span class="search-icon" aria-hidden="true"></span> Search</button>
+    <a href="#start">Start</a>
+    <a href="#agent-cli">Agents <span class="n">26</span></a>
+    <a href="#api-free-tier">APIs <span class="n">41</span></a>
+    <a href="#trial">Trials <span class="n">26</span></a>
+    <a href="#aggregator">Aggregators <span class="n">24</span></a>
+<a href="#models">Models <span class="n">141</span></a>    <a href="#plug">Plug it in</a>
+    <a href="#machinery">How it works</a>
+    <a href="#archive">Archive</a>
   </div>
 </nav>
 
@@ -451,7 +434,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 <section id="start">
   <div class="wrap">
     <header>
-      <h2>🚀 Start here</h2>
+      <h2>Start here</h2>
       <p class="sub">Free is not the same as weak. Coding agents and models available on a $0 plan.</p>
     </header>
 
@@ -537,7 +520,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 <section id="agent-cli" class="listing">
   <div class="wrap">
     <header>
-      <h2>🤖 Coding agents &amp; CLIs</h2>
+      <h2>Coding agents &amp; CLIs</h2>
       <p class="sub"><b>26</b> live ·
 not one of them asks for a card        · sorted by how much work you can get done for free</p>
     </header>
@@ -1116,7 +1099,7 @@ AI pull-request reviews for public open-source GitHub repositories, with a separ
 <section id="api-free-tier" class="listing">
   <div class="wrap">
     <header>
-      <h2>🔌 LLM APIs with free tier</h2>
+      <h2>LLM APIs with free tier</h2>
       <p class="sub"><b>41</b> live ·
 <b>39</b> of them ask for no card        · sorted by how much work you can get done for free</p>
     </header>
@@ -1968,7 +1951,7 @@ Together documents prepaid activation for new organizations and suspends API acc
 <section id="trial" class="listing">
   <div class="wrap">
     <header>
-      <h2>🎁 Trials (no card when possible)</h2>
+      <h2>Trials (no card when possible)</h2>
       <p class="sub"><b>26</b> live ·
 not one of them asks for a card        · sorted by how much work you can get done for free</p>
     </header>
@@ -2513,7 +2496,7 @@ No-card online inference trial for new accounts            </td>
 <section id="aggregator" class="listing">
   <div class="wrap">
     <header>
-      <h2>🧭 Aggregators (one key, many providers)</h2>
+      <h2>Aggregators (one key, many providers)</h2>
       <p class="sub"><b>24</b> live ·
 <b>22</b> of them ask for no card        · sorted by how much work you can get done for free</p>
     </header>
@@ -3088,7 +3071,7 @@ A temporary free model API with a dedicated key and prepaid account<p class="acc
 <section id="models">
   <div class="wrap">
     <header>
-      <h2>🧠 Looking for one model in particular?</h2>
+      <h2>Looking for one model in particular?</h2>
       <p class="sub">141 model families, and everyone who serves each one free. A
         model gets <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/">a page of its own</a> once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.</p>
     </header>
@@ -3812,7 +3795,7 @@ A temporary free model API with a dedicated key and prepaid account<p class="acc
 <section id="plug">
   <div class="wrap">
     <header>
-      <h2>🔧 Plug it into your agent</h2>
+      <h2>Plug it into your agent</h2>
       <p class="sub">Base URLs and keys for opencode, aider, Cline and OpenAI SDKs.
         Anthropic-format URLs use the same key with Claude Code's <code>ANTHROPIC_BASE_URL</code>.
         For Codex CLI, use a listed direct profile or the LiteLLM profile below.</p>
@@ -5035,7 +5018,7 @@ Use the serverless ID as printed. The named variant is based on Qwen3.6 27B and 
 <section id="machinery">
   <div class="wrap">
     <header>
-      <h2>📡 How this list stays fresh</h2>
+      <h2>How this list stays fresh</h2>
       <p class="sub">A scheduled job calls every provider twice a week and rewrites this page from
         what it finds — there is no hand-maintained copy of any figure on it.</p>
     </header>
@@ -5073,7 +5056,7 @@ A <span class="tag card">👁</span> tag means what you send may be used to
 <section id="archive">
   <div class="wrap">
     <header>
-      <h2>📦 Archive</h2>
+      <h2>Archive</h2>
       <p class="sub">Previously listed offers and why they left. Their pages and history are retained.</p>
     </header>
     <div class="scroll">
@@ -5229,7 +5212,7 @@ delisted on 2026-07-19: BYOK only — the tool is free and open source but bundl
 <section id="changes">
   <div class="wrap">
     <header>
-      <h2>🕰 What changed</h2>
+      <h2>What changed</h2>
       <p class="sub">The last 8 registry events. The rest is an
         <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> and an append-only
         <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/history.jsonl">history.jsonl</a>.</p>
@@ -5285,8 +5268,9 @@ delisted on 2026-07-19: BYOK only — the tool is free and open source but bundl
   <div class="wrap">
     <span>Rendered from <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/registry.yaml">registry.yaml</a> on
       <time datetime="2026-11-20">2026-11-20</time> · MIT</span>
+    <span>No tracking, no ads, no affiliate links</span>
     <span><a href="https://github.com/mvalentsev/awesome-free-ai-coding">GitHub</a> · <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md">Contribute a row</a>
-      · <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom</a> · <a href="browse.html">Filterable table</a>
+      · <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · <a href="browse.html">Filterable table</a>
       · <a href="#top">Back to top</a></span>
   </div>
 </footer>
@@ -5294,7 +5278,7 @@ delisted on 2026-07-19: BYOK only — the tool is free and open source but bundl
 <div id="search" class="palette" role="dialog" aria-modal="true" aria-label="Search the list" hidden>
   <div class="palette-box">
     <div class="palette-head">
-      <span aria-hidden="true">🔎</span>
+      <span class="search-icon" aria-hidden="true"></span>
       <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false"
              placeholder="Search a model or a vendor"
              role="combobox" aria-expanded="true" aria-controls="results" aria-autocomplete="list"

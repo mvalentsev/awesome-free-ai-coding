@@ -4,9 +4,8 @@
   hand-written 404. It
   replaces the Primer theme's layout, whose <h1> doubled each page's own, whose
   <title> suffix spoiled titles written for search results and whose footer
-  offered an edit the next render would overwrite. The theme still builds the
-  stylesheet this links; the style below adds a dark palette and keeps a model
-  id or a command in running text on one line.
+  offered an edit the next render would overwrite. Primer supplies the
+  Markdown and syntax defaults beneath the catalog's shared stylesheet.
 {%- endcomment -%}
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
@@ -17,26 +16,49 @@
     {% seo title=false %}
     <link rel="icon" type="image/svg+xml" href="{{ "/assets/favicon.svg" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/site.css" | relative_url }}">
     {% if page.model_sort %}<link rel="stylesheet" href="{{ "/assets/model-sort.css" | relative_url }}">{% endif %}
     <style>
-      .markdown-body :not(pre) > code { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
-      .markdown-body td code { white-space: nowrap; }
+      .detail-page { background: var(--bg); color: var(--fg); font: 16px/1.62 var(--sans); }
+      .detail-frame { --wide: 1110px; padding-block: clamp(28px, 6vw, 76px) 48px; }
+      .detail-page .markdown-body { min-width: 0; color: var(--fg); font: inherit; overflow-wrap: anywhere; }
+      .detail-page .markdown-body h1 { margin: 0 0 14px; padding: 0; border: 0; }
+      .markdown-body h1 + p { color: var(--muted); font-size: .93rem; }
+      .markdown-body h2 {
+        margin: 32px 0 12px; padding: 12px 0 0; border: 0; border-top: 1px solid var(--line-soft);
+        font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.25; letter-spacing: -.035em;
+      }
+      .markdown-body h3 { font-size: 1.15rem; line-height: 1.35; letter-spacing: -.015em; }
+      .markdown-body > p, .markdown-body > ul, .markdown-body > ol, .markdown-body > blockquote {
+        max-width: 78ch;
+      }
+      .markdown-body a, .detail-footer a { color: var(--accent); text-decoration: underline; }
+      .markdown-body :not(pre) > code {
+        display: inline-block; max-width: 100%; overflow-wrap: anywhere; background: var(--chip);
+      }
+      .markdown-body code, .markdown-body pre { font-family: var(--mono); }
+      .markdown-body pre, .markdown-body .highlight pre, .markdown-body .highlight {
+        background: var(--raised); color: var(--fg);
+      }
+      .markdown-body pre, .markdown-body .highlight pre {
+        border: 1px solid var(--line-soft); border-radius: 8px;
+      }
+      .markdown-body table {
+        max-width: 100%; padding-bottom: 4px; font-size: .9rem; scrollbar-width: thin;
+      }
+      .markdown-body table th, .markdown-body table td { border-color: var(--line-soft); }
+      .markdown-body table tr, .markdown-body table tr:nth-child(2n) { background: var(--raised); }
+      .markdown-body table th { background: var(--surface); text-align: left; }
+      .markdown-body td:first-child code { white-space: nowrap; }
+      .markdown-body blockquote { color: var(--muted); border-left-color: var(--line); }
+      .markdown-body hr { height: 1px; background: var(--line-soft); }
+      .markdown-body img { background: transparent; }
+      .markdown-body summary { cursor: pointer; }
+      .detail-footer {
+        margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line-soft);
+        color: var(--muted); font-size: .9rem;
+      }
       @media (prefers-color-scheme: dark) {
-        :root { color-scheme: dark; }
-        body { background: #0d1117; color: #e6edf3; }
-        a, .markdown-body a { color: #4493f8; }
-        .markdown-body h1, .markdown-body h2 { border-bottom-color: #3d444d; }
-        .markdown-body h6, .markdown-body blockquote, .text-gray { color: #9198a1 !important; }
-        .markdown-body blockquote { border-left-color: #3d444d; }
-        .markdown-body hr { background-color: #3d444d; }
-        .markdown-body code, .markdown-body tt { background-color: rgba(101, 108, 118, .2); }
-        .markdown-body pre, .markdown-body .highlight pre, .highlight { background-color: #161b22; }
-        .markdown-body table th, .markdown-body table td { border-color: #3d444d; }
-        .markdown-body table tr { background-color: #0d1117; border-top-color: #3d444d; }
-        .markdown-body table tr:nth-child(2n) { background-color: #151b23; }
-        .markdown-body img { background-color: transparent; }
-        .markdown-body kbd { color: #e6edf3; background-color: #161b22; border-color: #3d444d; box-shadow: inset 0 -1px 0 #3d444d; }
-        .border-gray-light, .border-top { border-color: #3d444d !important; }
         .highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv,
         .highlight .o, .highlight .ow, .highlight .ge, .highlight .gd, .highlight .gi { color: #ff7b72; }
         .highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se,
@@ -61,13 +83,25 @@
     </script>
     {%- endif %}
   </head>
-  <body>
-    <div class="container-lg px-3 my-5 markdown-body">
-      <p><a href="{{ "/" | relative_url }}"><strong>{{ site.title }}</strong></a> · <a href="{{ "/models/" | relative_url }}">every free model</a> · <a href="{{ "/providers/" | relative_url }}">every provider</a> · <a href="{{ "/browse.html" | relative_url }}">filter the list</a></p>
-      {{ content }}
-      <div class="footer border-top border-gray-light mt-5 pt-3 text-gray">
-        Something wrong or missing? <a href="{{ site.github.repository_url }}/issues/new?template=suggest-a-service.yml">Suggest a service or a change</a> — or read <a href="{{ site.github.repository_url }}/blob/main/CONTRIBUTING.md">how the list works</a>.
+  <body class="detail-page">
+    <a class="skip" href="#content">Skip to the content</a>
+    <nav class="site-nav" aria-label="Catalog">
+      <div class="site-frame">
+        <a class="site-brand" href="{{ "/" | relative_url }}"><img src="{{ "/assets/readme/radar.svg" | relative_url }}" width="26" height="26" alt="">{{ site.title }}</a>
+        <div class="site-links">
+          <a href="{{ "/models/" | relative_url }}"{% if page.url == "/models/" %} aria-current="page"{% endif %}>Every free model</a>
+          <a href="{{ "/providers/" | relative_url }}"{% if page.url == "/providers/" %} aria-current="page"{% endif %}>Every provider</a>
+          <a href="{{ "/browse.html" | relative_url }}">Filter the list</a>
+        </div>
       </div>
+    </nav>
+    <div class="site-frame detail-frame">
+      <main id="content" class="markdown-body">
+        {{ content }}
+      </main>
+      <footer class="detail-footer">
+        Something wrong or missing? <a href="{{ site.github.repository_url }}/issues/new?template=suggest-a-service.yml">Suggest a service or a change</a> — or read <a href="{{ site.github.repository_url }}/blob/main/CONTRIBUTING.md">how the list works</a>.
+      </footer>
     </div>
     <script src="{{ "/assets/anchor.min.js" | relative_url }}" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>

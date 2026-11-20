@@ -145,7 +145,7 @@ MAP: tuple[Node, ...] = (
     Node("assets/*.png", Kind.PAGE, "the social preview", published=True),
     Node("assets/*.js", Kind.PAGE, "shared browser search, model matching, sorting and heading permalinks", published=True),
     Node("assets/anchorjs-LICENSE.txt", Kind.DOC, "MIT license for the heading permalink library", published=True),
-    Node("assets/*.css", Kind.PAGE, "shared model sorting controls", published=True),
+    Node("assets/*.css", Kind.PAGE, "shared site styles and model sorting controls", published=True),
     Node("eb68c254f1e03877b906ccc800002691.txt", Kind.PAGE,
          "the IndexNow key, named after itself (indexnow.INDEXNOW_KEY)", published=True),
     # ---- docs
