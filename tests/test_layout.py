@@ -123,8 +123,7 @@ def test_the_run_checks_what_ci_would_before_it_commits():
     workflow — so a commit that broke a test CI runs would sit on main until
     the maintainer's next commit met it at the pre-commit gate, with nothing to
     say which change did it. What CI runs, the run runs before it commits, and
-    the scout's branch reports it in its pull request, where CI waits for an
-    approval."""
+    reports the result before it publishes."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     ci = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
     steps = workflow["jobs"]["update"]["steps"]
@@ -134,8 +133,6 @@ def test_the_run_checks_what_ci_would_before_it_commits():
     ci_runs = "\n".join(s.get("run", "") for s in ci["jobs"]["test"]["steps"])
     for command in ("pytest", "freetier-check", "freetier-render"):
         assert command in ci_runs and command in check["run"], command
-    scout = next(s for s in steps if s.get("name") == "Check the scout's branch")
-    assert "pytest" in scout["run"]
 
 
 @pytest.mark.parametrize("failed", [False, True])

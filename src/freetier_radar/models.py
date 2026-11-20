@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 from urllib.parse import urlparse
@@ -2240,12 +2240,9 @@ def known_domains(entries: list[Entry]) -> set[str]:
 
 
 ARCHIVE_AFTER_DAYS = 60
-# The weekdays the scheduled run probes every row on, numbered the way the cron
-# in .github/workflows/update.yml numbers them (0 is Sunday). Every page that
-# says how often a row is checked reads the phrase from here. freetier-render
-# also generates the workflow's weekdays; freetier-check holds both to this
-# schedule (see claims).
-PROBE_WEEKDAYS = (1, 4)
+# One UTC run on each of these weekdays (Sunday is 0 in cron).
+PROBE_TIME_UTC = time(hour=5, minute=23)
+PROBE_WEEKDAYS = frozenset({1, 4})
 TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
                  4: "four times a week", 5: "five times a week", 6: "six times a week",
                  7: "every day"}
@@ -2256,9 +2253,15 @@ def utc_today() -> date:
     return datetime.now(timezone.utc).date()
 
 
-def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
+def probe_frequency() -> str:
     """How often the list says a row is checked, in the words its pages use."""
-    return TIMES_A_WEEK[len(set(weekdays))]
+    return TIMES_A_WEEK[len(PROBE_WEEKDAYS)]
+
+
+def probe_cron() -> str:
+    """The GitHub Actions rule for one run per scheduled weekday."""
+    days = "*" if len(PROBE_WEEKDAYS) == 7 else ",".join(map(str, sorted(PROBE_WEEKDAYS)))
+    return f"{PROBE_TIME_UTC.minute} {PROBE_TIME_UTC.hour} * * {days}"
 
 
 # Consecutive FAILs before a row is buried. Two is a vendor reshuffling a

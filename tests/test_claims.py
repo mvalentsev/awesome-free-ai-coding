@@ -1,6 +1,7 @@
 """Registered assertions follow their shared rules. Numerical values can be
 generated; missing or rewritten sentences and values that drift still fail
 validation."""
+from datetime import time
 from pathlib import Path
 
 import pytest
@@ -103,11 +104,18 @@ def test_the_schedule_is_said_the_way_the_cron_keeps_it(tmp_path):
         "(models.PROBE_WEEKDAYS)"]
 
 
-def test_the_cron_and_the_schedule_the_pages_state_are_one(tmp_path):
-    root = _root(tmp_path, "Nothing about it.\n", cron="23 5 * * 1,3,5")
-    assert check_claims(root, (), scheduled=()) == [
-        ".github/workflows/update.yml runs on weekdays 1,3,5 and models.PROBE_WEEKDAYS says "
-        "1,4 — the pages would say twice a week"]
+@pytest.mark.parametrize('schedules', [
+    ['23 5 * * 1,3,5'],
+    ['23 5,17 * * 1,4'],
+    ['23 5 * 11 1,4'],
+    ['23 5 * * 1,4', '23 17 * * 1,4'],
+    ['23 5 * * 1-4'],
+])
+def test_verification_requires_one_complete_scheduled_rule(tmp_path, schedules):
+    root = _root(tmp_path, '')
+    workflow = root / '.github/workflows/update.yml'
+    workflow.write_text(yaml.safe_dump({'on': {'schedule': [{'cron': cron} for cron in schedules]}}))
+    assert check_claims(root, (), scheduled=())
 
 
 def test_a_manual_only_update_workflow_breaks_the_scheduled_claim(tmp_path):
@@ -119,26 +127,27 @@ def test_a_manual_only_update_workflow_breaks_the_scheduled_claim(tmp_path):
 
 
 def test_the_contribution_guide_generates_the_verification_frequency(tmp_path, monkeypatch):
-    from freetier_radar import claims
+    from freetier_radar import models
     from freetier_radar.render import MAP_BEGIN, MAP_END, render_contributing
 
     root = _root(tmp_path, 'The scheduled run does this twice a week.\n'
                           f'{MAP_BEGIN}\nold map\n{MAP_END}\n', cron='23 5 * * *')
-    monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', tuple(range(7)))
+    monkeypatch.setattr(models, 'PROBE_WEEKDAYS', frozenset(range(7)))
     guide = root / 'CONTRIBUTING.md'
     rendered = render_contributing(guide, guide)
     assert rendered.startswith('The scheduled run does this every day.\n')
 
 
-def test_verification_weekdays_generate_the_actual_workflow(tmp_path, monkeypatch):
-    from freetier_radar import claims
+def test_verification_schedule_generates_the_actual_workflow(tmp_path, monkeypatch):
+    from freetier_radar import claims, models
     root = _root(tmp_path, '')
     workflow = root / '.github/workflows/update.yml'
     workflow.write_text((ROOT / '.github/workflows/update.yml').read_text())
     before = yaml.safe_load(workflow.read_text())
     trigger = 'on' if 'on' in before else True
-    for days, expected in [((0, 2, 6), '23 5 * * 0,2,6'), (tuple(range(7)), '23 5 * * *')]:
-        monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', days)
+    monkeypatch.setattr(models, 'PROBE_TIME_UTC', time(hour=7, minute=14))
+    for days, expected in [({0, 2, 6}, '14 7 * * 0,2,6'), (set(range(7)), '14 7 * * *')]:
+        monkeypatch.setattr(models, 'PROBE_WEEKDAYS', days)
         assert check_claims(root, (), scheduled=())
         rendered = claims.render_claims(workflow.read_text(), '.github/workflows/update.yml', root)
         workflow.write_text(rendered)
@@ -150,15 +159,30 @@ def test_verification_weekdays_generate_the_actual_workflow(tmp_path, monkeypatc
 
 
 def test_shared_frequency_generates_static_text_without_rewriting_its_format(tmp_path, monkeypatch):
-    from freetier_radar import claims
+    from freetier_radar import claims, models
 
-    monkeypatch.setattr(claims, 'PROBE_WEEKDAYS', tuple(range(7)))
+    monkeypatch.setattr(models, 'PROBE_WEEKDAYS', frozenset(range(7)))
     for filename, text in [
         ('_config.yml', 'description: "probe-verified twice a week"\n'),
         ('browse.html', '<p>Probe-verified twice a week; every offer has its own page.</p>'),
         ('assets/social-preview.svg', '<svg><text>Live probes twice a week</text></svg>'),
     ]:
         assert claims.render_claims(text, filename, tmp_path) == text.replace('twice a week', 'every day')
+
+
+def test_browse_and_pages_settings_follow_the_site_url_and_review_age(tmp_path, monkeypatch):
+    from freetier_radar import claims
+
+    monkeypatch.setattr(claims, 'PROVISIONAL_PROMOTE_DAYS', 21)
+    monkeypatch.setattr(claims, 'PAGES_URL', 'https://new.example/new-path')
+    browse = (ROOT / 'browse.html').read_text()
+    config = (ROOT / '_config.yml').read_text()
+
+    actual = claims.render_claims(browse, 'browse.html', tmp_path)
+    assert 'href="https://new.example/new-path/browse.html"' in actual
+    assert 'listed for less than three weeks' in actual
+    actual = claims.render_claims(config, '_config.yml', tmp_path)
+    assert 'url: https://new.example\nbaseurl: /new-path\n' in actual
 
 
 def test_every_claim_names_where_its_truth_lives():

@@ -95,6 +95,16 @@ def test_one_ordering_archives_a_row_and_says_why(kw, rule, words):
         assert archive_reason(e, TODAY) == words
 
 
+def test_archive_calendar_and_failure_boundaries():
+    assert not is_archived(make(last_verified=date(2026, 6, 15)), TODAY)
+    assert is_archived(make(last_verified=date(2026, 6, 14)), TODAY)
+    assert not is_archived(make(retired_on=date(2026, 8, 15)), TODAY)
+    assert is_archived(make(retired_on=date(2026, 8, 14)), TODAY)
+    assert is_archived(make(retired_on=date(2026, 8, 13)), TODAY)
+    assert not is_archived(make(probe_failures=2), TODAY)
+    assert is_archived(make(probe_failures=3), TODAY)
+
+
 def test_an_entry_that_failed_three_probes_is_archived_once():
     live = [make()]
     recorded = replay(diff_state({}, registry_state(live, TODAY), NOW))

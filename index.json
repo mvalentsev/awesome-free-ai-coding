@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19",
+  "generated": "2026-11-20",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -13208,18 +13208,18 @@
         "https://docs.abliteration.ai/integrations/claude-code.md"
       ],
       "card_required": false,
-      "offering": "OpenAI- and Anthropic-compatible API for uncensored reasoning models, with a one-credit free preview and no card",
-      "limits": "1 credit once per organization\n\nSign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.",
+      "offering": "OpenAI- and Anthropic-compatible API for uncensored reasoning models, with possible promotional credit for eligible new accounts",
+      "limits": "Introductory promotional credit: One-time credits allowance: amount not published per account\n\nA free account can explore the console without a card. The vendor gives no public eligibility criteria for promotional credit. API usage outside the credit requires a prepaid balance or plan. The models stream, call tools and think before answering by default.",
       "quotas": [
         {
-          "amount": 1.0,
           "unit": "credits",
           "period": "one-time",
-          "scope": "organization",
+          "scope": "account",
+          "label": "Introductory promotional credit",
           "source": "https://abliteration.ai/pricing",
-          "quote": "You can start with a one-credit free preview and no credit card.",
-          "value_phrase": "You can start with a one-credit free preview and no credit card.",
-          "reviewed_on": "2026-10-06"
+          "quote": "Eligible new accounts may receive introductory promotional credit to try the playground or API.",
+          "reviewed_on": "2026-11-20",
+          "amount": null
         }
       ],
       "free_part": "sum",
@@ -13260,7 +13260,7 @@
         "type": "page-keywords",
         "endpoint": "https://abliteration.ai/pricing",
         "keywords": [
-          "You can start with a one-credit free preview and no credit card"
+          "Eligible new accounts may receive introductory promotional credit to try the playground or API"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -13282,8 +13282,8 @@
           "abliterated-model",
           "abliterated-model-large"
         ],
-        "what": "OpenAI- and Anthropic-compatible API for uncensored reasoning models, with a one-credit free preview and no card",
-        "limits": "1 credit once per organization\n\nSign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.",
+        "what": "OpenAI- and Anthropic-compatible API for uncensored reasoning models, with possible promotional credit for eligible new accounts",
+        "limits": "Introductory promotional credit: One-time credits allowance: amount not published per account\n\nA free account can explore the console without a card. The vendor gives no public eligibility criteria for promotional credit. API usage outside the credit requires a prepaid balance or plan. The models stream, call tools and think before answering by default.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -16615,51 +16615,30 @@
       ],
       "card_required": false,
       "remaining_free": {
-        "source": "https://iteracompute.com/free-tier-terms/",
-        "quote": "For recharged users, lifetime benefits mean retaining the monthly token allowance, context limit and queue priority of the Starter or Pro tier they have reached, including after a free-model upgrade or replacement.",
-        "free_part": "unnamed",
-        "access": {
-          "source": "https://iteracompute.com/terms.html",
-          "initial_payment_usd": 10.0,
-          "topup_fee_percent": 8.0
-        }
+        "source": "https://iteracompute.com/free/",
+        "quote": "Users with positive net recharge completed before this cutoff retain their existing free tier. Afterward, shared free Auto is limited to these users and users with a currently effective plan.",
+        "free_part": "unnamed"
       },
       "offering": "OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router",
-      "limits": "Shared free-model allowance: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`, `Auto`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nShared free-model slot: 1 request at once per account\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. No recharge is required. Optional cumulative $10/$50 top-ups unlock larger allowances; new external payments add an 8% fee. Thresholds use completed principal minus refunds, excluding grants and fees. Spending keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement. The no-recharge promotion has a deadline; recharged users retain tier benefits while model names, weights and precision may change.",
+      "limits": "Shared allowance without a recharge: 30,000,000 tokens/month per account (before the no-recharge promotion ends); for `qwen/qwen3.8-27b`, `Auto`. Allowances reset at 00:00 UTC on the first of each month and do not roll over.\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. The no-recharge promotion ends at the model deadline. Positive net recharge completed before the cutoff retains the reached tier, including below Starter. Active plans have a separate Auto allowance. Later top-ups fund paid usage. New external payments add an 8% fee. Shared capacity may queue. Honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
       "quotas": [
         {
           "amount": 30000000.0,
           "unit": "tokens",
           "period": "month",
           "scope": "account",
-          "label": "Shared free-model allowance",
-          "reset": "Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.",
-          "source": "https://iteracompute.com/free/",
-          "quote": "Tier Cumulative net recharge Monthly tokens Context Output speed Free No recharge required 30M 128K Shared capacity; may be slow",
-          "read": "table",
-          "table": {
-            "headers": [
-              "Tier",
-              "Cumulative net recharge",
-              "Monthly tokens",
-              "Context",
-              "Output speed"
-            ],
-            "column": "Monthly tokens",
-            "rows": [
-              "Free"
-            ],
-            "row_column": 0,
-            "where": {},
-            "cell_part": "",
-            "active_tab": "",
-            "active_class": ""
-          },
+          "label": "Shared allowance without a recharge",
+          "condition": "before the no-recharge promotion ends",
+          "condition_quote": "Before the promotion ends, email verification unlocks the full 30M monthly free allowance immediately.",
+          "reset": "Allowances reset at 00:00 UTC on the first of each month and do not roll over.",
+          "source": "https://iteracompute.com/free-tier-terms/",
+          "quote": "Free provides 30M tokens/month and 128K context.",
+          "value_phrase": "30M tokens/month",
           "model_ids": [
             "qwen/qwen3.8-27b",
             "Auto"
           ],
-          "reviewed_on": "2026-11-10"
+          "reviewed_on": "2026-11-20"
         },
         {
           "amount": 1.0,
@@ -16671,6 +16650,10 @@
           "quote": "Free, Starter and Pro each allow one queued or running request per account and use shared capacity that may be slow, shared across all keys and Auto.",
           "value_phrase": "one queued or running request per account",
           "period_quote": "Monthly tokens and concurrency are shared across your account’s API keys and free routes; changing keys or model IDs does not create another allowance.",
+          "model_ids": [
+            "qwen/qwen3.8-27b",
+            "Auto"
+          ],
           "reviewed_on": "2026-11-10"
         }
       ],
@@ -16754,7 +16737,7 @@
           "Auto"
         ],
         "what": "OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router",
-        "limits": "Shared free-model allowance: 30,000,000 tokens/month per account; for `qwen/qwen3.8-27b`, `Auto`. Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\n\nShared free-model slot: 1 request at once per account\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. No recharge is required. Optional cumulative $10/$50 top-ups unlock larger allowances; new external payments add an 8% fee. Thresholds use completed principal minus refunds, excluding grants and fees. Spending keeps the tier; refunds may lower it. Shared capacity may queue; honor Retry-After. No SLA. Zero data retention requires a separate signed agreement. The no-recharge promotion has a deadline; recharged users retain tier benefits while model names, weights and precision may change.",
+        "limits": "Shared allowance without a recharge: 30,000,000 tokens/month per account (before the no-recharge promotion ends); for `qwen/qwen3.8-27b`, `Auto`. Allowances reset at 00:00 UTC on the first of each month and do not roll over.\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. The no-recharge promotion ends at the model deadline. Positive net recharge completed before the cutoff retains the reached tier, including below Starter. Active plans have a separate Auto allowance. Later top-ups fund paid usage. New external payments add an 8% fee. Shared capacity may queue. Honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -19917,24 +19900,21 @@
         "https://teapotrouter.com/api/pricing",
         "https://teapotrouter.com/en/pricing",
         "https://teapotrouter.com/en/terms",
-        "https://teapotrouter.com/en/privacy",
-        "https://github.com/mvalentsev/awesome-free-ai-coding/issues/57"
+        "https://teapotrouter.com/en/privacy"
       ],
       "card_required": false,
-      "offering": "Independent API gateway with a one-time signup credit grant and optional prepaid use",
-      "limits": "Signup trial credit (operator statement): 40,000 credits once per account (Automatically after email verification)\n\nEmail verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is established. The vendor says balance does not expire; optional top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.",
+      "offering": "Independent prepaid API gateway with discretionary signup credit",
+      "limits": "Discretionary signup credit: One-time credits allowance: amount not published per account\n\nEmail verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.",
       "quotas": [
         {
-          "amount": 40000.0,
           "unit": "credits",
           "period": "one-time",
           "scope": "account",
-          "label": "Signup trial credit (operator statement)",
-          "condition": "Automatically after email verification",
-          "condition_quote": "the signup grant is issued automatically on email verification, no admin step",
-          "source": "https://github.com/mvalentsev/awesome-free-ai-coding/issues/57",
-          "quote": "A one-time grant of 40,000 site credits at account creation",
-          "reviewed_on": "2026-11-17"
+          "label": "Discretionary signup credit",
+          "source": "https://teapotrouter.com",
+          "quote": "Whether sign-up credit is granted is decided by our risk-control policy - usually it is not; when it is, the homepage shows it.",
+          "reviewed_on": "2026-11-20",
+          "amount": null
         }
       ],
       "free_part": "sum",
@@ -19947,7 +19927,7 @@
         "model_ids": [
           "gpt-6.1-sol"
         ],
-        "note": "Create a key in the workspace and confirm real trial credit. Use a GPT ID enabled for your key with the OpenAI endpoint. The separately documented Messages mode uses the gateway root and Claude IDs; a GPT ID is not its model default. Demo keys and balances cannot make real requests. Credit is a shared spending balance."
+        "note": "Check your balance in the workspace before making requests. Create a key there and use a GPT ID enabled for it with the OpenAI endpoint. The separately documented Messages mode uses the gateway root and Claude IDs; a GPT ID is not its model default. Demo keys and balances cannot make real requests. Credit is a shared spending balance."
       },
       "border": {
         "left_out": [],
@@ -19980,8 +19960,8 @@
         "ids": [
           "gpt-6.1-sol"
         ],
-        "what": "Independent API gateway with a one-time signup credit grant and optional prepaid use",
-        "limits": "Signup trial credit (operator statement): 40,000 credits once per account (Automatically after email verification)\n\nEmail verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is established. The vendor says balance does not expire; optional top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.",
+        "what": "Independent prepaid API gateway with discretionary signup credit",
+        "limits": "Discretionary signup credit: One-time credits allowance: amount not published per account\n\nEmail verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.",
         "why": "",
         "access": "",
         "modelAccess": {},

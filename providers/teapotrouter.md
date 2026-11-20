@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Teapot Router free tier: limits, free models, verified 2026-11-19'
-description: Independent API gateway with a one-time signup credit grant and optional prepaid use. Email verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is…
+description: Independent prepaid API gateway with discretionary signup credit. Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and…
 permalink: /providers/teapotrouter/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-20
 crumb: Teapot Router
 ---
 
@@ -15,7 +15,7 @@ crumb: Teapot Router
 
 ## What you get
 
-Independent API gateway with a one-time signup credit grant and optional prepaid use
+Independent prepaid API gateway with discretionary signup credit
 
 ## Free models
 
@@ -23,9 +23,9 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ## Limits, in the vendor's words
 
-Signup trial credit (operator statement): 40,000 credits once per account (Automatically after email verification)
+Discretionary signup credit: One-time credits allowance: amount not published per account
 
-Email verification and an account key are required. No card, daily check-in or tasks are required for the signup grant. Credits are the site's own units, not a USD balance. No numerical public trial rate is established. The vendor says balance does not expire; optional top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
+Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
 
 ## Where it is offered
 
@@ -36,7 +36,7 @@ The vendor names no country it keeps the offer from ([source](https://teapotrout
 - Base URL: `https://api.teapotrouter.com/v1`
 - Key: `TEAPOTROUTER_API_KEY` — get one at <https://teapotrouter.com/en/register>
 - Callable ids: `gpt-6.1-sol`
-- Note: Create a key in the workspace and confirm real trial credit. Use a GPT ID enabled for your key with the OpenAI endpoint. The separately documented Messages mode uses the gateway root and Claude IDs; a GPT ID is not its model default. Demo keys and balances cannot make real requests. Credit is a shared spending balance.
+- Note: Check your balance in the workspace before making requests. Create a key there and use a GPT ID enabled for it with the OpenAI endpoint. The separately documented Messages mode uses the gateway root and Claude IDs; a GPT ID is not its model default. Demo keys and balances cannot make real requests. Credit is a shared spending balance.
 
 Try it from your terminal with your key in `TEAPOTROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -59,7 +59,6 @@ curl -s https://api.teapotrouter.com/v1/chat/completions \
 - Source: <https://teapotrouter.com/en/pricing>
 - Source: <https://teapotrouter.com/en/terms>
 - Source: <https://teapotrouter.com/en/privacy>
-- Source: <https://github.com/mvalentsev/awesome-free-ai-coding/issues/57>
 
 ## History
 

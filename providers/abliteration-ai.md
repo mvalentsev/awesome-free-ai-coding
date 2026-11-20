@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'abliteration.ai free tier: limits, free models, verified 2026-11-19'
-description: OpenAI- and Anthropic-compatible API for uncensored reasoning models, with a one-credit free preview and no card. Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage…
+description: OpenAI- and Anthropic-compatible API for uncensored reasoning models, with possible promotional credit for eligible new accounts. A free account can explore the console without a card. The vendor gives no public eligibility criteria for promotional credit. API usage outside the credit requires a…
 permalink: /providers/abliteration-ai/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-20
 crumb: abliteration.ai
 ---
 
@@ -15,7 +15,7 @@ crumb: abliteration.ai
 
 ## What you get
 
-OpenAI- and Anthropic-compatible API for uncensored reasoning models, with a one-credit free preview and no card
+OpenAI- and Anthropic-compatible API for uncensored reasoning models, with possible promotional credit for eligible new accounts
 
 ## Free models
 
@@ -23,9 +23,9 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ## Limits, in the vendor's words
 
-1 credit once per organization
+Introductory promotional credit: One-time credits allowance: amount not published per account
 
-Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.
+A free account can explore the console without a card. The vendor gives no public eligibility criteria for promotional credit. API usage outside the credit requires a prepaid balance or plan. The models stream, call tools and think before answering by default.
 
 ## Where it is offered
 
@@ -55,7 +55,7 @@ curl -s https://api.abliteration.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://abliteration.ai/pricing>, anchored on `You can start with a one-credit free preview and no credit card`
+- Probe: the page at <https://abliteration.ai/pricing>, anchored on `Eligible new accounts may receive introductory promotional credit to try the playground or API`
 - Source: <https://abliteration.ai/pricing>
 - Source: <https://docs.abliteration.ai/models.md>
 - Source: <https://docs.abliteration.ai/pricing.md>

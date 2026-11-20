@@ -255,17 +255,6 @@ def test_a_provider_page_says_the_families_are_checked_not_that_one_fails_the_ro
     assert "required" not in page.split("## Evidence")[1]
 
 
-def test_archive_rules():
-    assert not is_archived(make(), TODAY)
-    assert is_archived(make(probe_failures=3), TODAY)
-    assert is_archived(make(last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)), TODAY)
-    assert not is_archived(make(last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS)), TODAY)
-    assert is_archived(make(retired_on=TODAY), TODAY)
-    assert is_archived(make(retired_on=TODAY - timedelta(days=1)), TODAY)
-    assert not is_archived(make(retired_on=TODAY + timedelta(days=1)), TODAY)
-    assert is_archived(make(delisted={"on": TODAY, "reason": "taken off by a reviewer"}), TODAY)
-
-
 def test_superseded_models_never_archive():
     """A vendor shipping a newer generation means "bump the row", not "bury the
     entry" — the free tier outlives the model family listed against it."""

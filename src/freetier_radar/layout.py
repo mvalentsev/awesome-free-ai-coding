@@ -189,7 +189,7 @@ MAP: tuple[Node, ...] = (
          "IndexNow after publication; its push filter is generated from the published map",
          made_from=("src/freetier_radar/layout.py",), written_by=("freetier-render",)),
     Node(".github/workflows/update.yml", Kind.CONFIG,
-         "scheduled verification, model measurements and scouting; weekdays are generated from the shared schedule",
+         "scheduled verification, model measurements and scouting; the cron rule is generated from the shared schedule",
          made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
          written_by=("freetier-render",)),
     *(Node(f".github/workflows/{name}.yml", Kind.CONFIG, about) for name, about in (

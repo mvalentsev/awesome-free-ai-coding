@@ -21,7 +21,7 @@ from .history import (Event, EventType, archive_reason, load_history, pending_ch
                       record_changes, refuse_deleted_rows)
 from .models import (utc_today, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
                      CODEX_LITELLM_PROFILE, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD,
-                     PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
+                     PROVIDERS_INDEX_PAGE,
                      WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
                      folded_into, entry_id_family, is_archived,
@@ -179,13 +179,6 @@ def badge_colour(verified_through: date, today: date) -> str:
     if age <= BADGE_FRESH_DAYS:
         return BADGE_GREEN
     return BADGE_AMBER if age <= BADGE_AGEING_DAYS else BADGE_RED
-
-
-def _schedule() -> str:
-    """How often every row is probed, as each page says it — read when a page is
-    built rather than when this module loads, so it is always the schedule the
-    run keeps."""
-    return probe_frequency(PROBE_WEEKDAYS)
 
 
 def _by_rank(e: Entry) -> tuple[int, bool, str]:
@@ -1068,7 +1061,7 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
         '<feed xmlns="http://www.w3.org/2005/Atom">',
         "  <title>awesome-free-ai-coding — what changed</title>",
         "  <subtitle>Free LLM APIs and coding agents arriving, changing and dying, "
-        f"as the probes that run {_schedule()} see it.</subtitle>",
+        f"as the probes that run {probe_frequency()} see it.</subtitle>",
         f"  <id>{FEED_URL}</id>",
         f"  <link rel=\"self\" href={quoteattr(FEED_URL)}/>",
         f"  <link rel=\"alternate\" href={quoteattr(REPO_URL)}/>",
@@ -1194,7 +1187,7 @@ def _shared_facts(entries: list[Entry], today: date,
                   "litellm_since": LITELLM_BRIDGE_SINCE},
         "has_provisional": any(e.provisional for e in active),
         "has_trains": any(_trains(e) for e in active),
-        "schedule": _schedule(),
+        "schedule": probe_frequency(),
         "frontier_within": f"{FRONTIER_WITHIN:g}",
         "strong_within": f"{STRONG_WITHIN:g}",
         "provisional_weeks": weeks(PROVISIONAL_PROMOTE_DAYS),
@@ -1655,7 +1648,7 @@ def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
             {"@type": "WebSite", "@id": f"{PAGES_URL}/#website", "url": f"{PAGES_URL}/",
              "name": "awesome-free-ai-coding", "inLanguage": "en",
              "description": "Legal free LLM APIs, coding agents and no-card trials for AI "
-                            f"coding, machine-verified {_schedule()}."},
+                            f"coding, machine-verified {probe_frequency()}."},
             {"@type": "Dataset", "@id": f"{PAGES_URL}/#dataset",
              "name": "awesome-free-ai-coding registry",
              "description": f"{active_count} legal free LLM APIs, coding agents and no-card "
@@ -1786,7 +1779,7 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
         "# awesome-free-ai-coding",
         "",
         "> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials "
-        f"and free models, probe-verified {_schedule()} against live model catalogs and "
+        f"and free models, probe-verified {probe_frequency()} against live model catalogs and "
         f"pricing pages. Generated {today.isoformat()} from the registry; every offer above "
         f"the Archived heading passed a probe in the last {ARCHIVE_AFTER_DAYS} days and has not "
         f"failed {ARCHIVE_AFTER_FAILURES} in a row.",
@@ -2285,7 +2278,7 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
                else ".\n# Works in bash and zsh.")
     lines = [
         "# Claude Code on a free lane — generated from registry.yaml, do not edit by hand.",
-        f"# Each function points Claude Code at a gateway this list verifies {_schedule()}:",
+        f"# Each function points Claude Code at a gateway this list verifies {probe_frequency()}:",
         "# the vendor documents the Anthropic-format route, and the probe confirms it still",
         "# answers. Usage:  source configs/free-llm.env.example  (fill the key you use),",
         "# then  source configs/claude-code.sh  and run the function named after the row"
@@ -2722,13 +2715,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     out += _history_section(e, events)
     if not archived:
         standing = ("Generated from `registry.yaml` and re-verified "
-                    f"{_schedule()}")
+                    f"{probe_frequency()}")
     elif is_archived_for_good(e, today):
         standing = ("Generated from `registry.yaml`. No probe reads this row "
                     "any more — it left the list for good unless a reviewer brings it back")
     else:
         standing = ("Generated from `registry.yaml`. A probe still reads it "
-                    f"{_schedule()}, and the first probe it passes brings it back to the list")
+                    f"{probe_frequency()}, and the first probe it passes brings it back to the list")
     out += ["", "---", "",
             f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>."]
     return _page(head, out)
@@ -2743,13 +2736,13 @@ def build_providers_index(entries: list[Entry], today: date,
     head = {"title": "Every free LLM API and coding agent on the list, with its evidence",
             "description": "One page per provider: the free tier in the vendor's own "
                            "words, connection details, the evidence a live probe reads "
-                           f"{_schedule()}, and the row's history.",
+                           f"{probe_frequency()}, and the row's history.",
             "permalink": _permalink(providers_index_url()),
             "last_modified_at": max((_last_modified(e, events or [])
                                      for e in entries), default=today)}
     out = ["# Every provider, one page each", "",
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
-           f"row is re-verified {_schedule()}, and an archived one says why it left. Every free "
+           f"row is re-verified {probe_frequency()}, and an archived one says why it left. Every free "
            f"model and the rows that serve it are on [the model index]({models_index_url()}).", ""]
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
@@ -2947,9 +2940,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         served = ("**One row on the list serves" if n == 1 else f"**{n} rows on the list serve")
         summary = [f"{served} `{family}` free:** {series(names)}.", asks,
                    (f"The provider's last scheduled probe was on {floor}; its offer is "
-                    f"rechecked {_schedule()}." if n == 1 else
+                    f"rechecked {probe_frequency()}." if n == 1 else
                     f"The providers' last scheduled probes were on {floor}; their offers "
-                    f"are rechecked {_schedule()}.")]
+                    f"are rechecked {probe_frequency()}.")]
         mark = _measured(family, rows)
         if mark is not None:
             board = (f"https://artificialanalysis.ai/models/{mark.aa_model}" if mark.aa_model
@@ -3002,7 +2995,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                   "crumb": family},
                  [*body, "---", "",
                   "Generated from `registry.yaml` and re-verified "
-                  f"{_schedule()}; every free model on the list is at <{models_index_url()}>, and "
+                  f"{probe_frequency()}; every free model on the list is at <{models_index_url()}>, and "
                   f"the full list, the Atom feed and the machinery at <{REPO_URL}>."])
 
 
@@ -3041,7 +3034,7 @@ def build_models_index(entries: list[Entry], today: date,
            f"{len(by_family)} model families, and every row that serves each one free, matching measured scores first, then retained tier and model name. A model gets a page of its own once {_model_page_rule()}: every "
            "row that serves it, the limits in the vendor's words and the ids to call. It keeps "
            "the page when fewer rows serve it, and when none does the page says since when and "
-           f"which rows listed it. A live probe reads every row again {_schedule()}.", "",
+           f"which rows listed it. A live probe reads every row again {probe_frequency()}.", "",
            f"[The whole list]({PAGES_URL}/) · [Every provider]({providers_index_url()})", "",
            "| Model | Free at |", "|---|---|"]
     for family, rows in by_family.items():

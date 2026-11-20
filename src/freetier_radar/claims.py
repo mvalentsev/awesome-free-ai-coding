@@ -4,8 +4,8 @@ The pages state every rule from its constant. CONTRIBUTING.md also generates
 registered rule values; other handwritten assertions remain independently
 checked. Each sentence that states a figure the code applies is
 listed here with the constant it states, how often the files in SCHEDULED say
-the list is checked is held to models.PROBE_WEEKDAYS (and so is the workflow's
-cron), and `freetier-check` refuses the sentence — or the constant — the day
+the list is checked is held to the verification schedule in models, and
+`freetier-check` refuses the sentence — or the constant — the day
 the two part. A claim whose sentence was reworded is reported too, since a
 claim that matches nothing checks nothing.
 """
@@ -32,8 +32,8 @@ from .models import ApiInfo, ArchiveReview, CatalogCondition, Category, ClientLa
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, Entry, NOTICE_HOLD_DAYS,
-                     PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
-                     load_registry, probe_frequency)
+                     SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
+                     load_registry, probe_cron, probe_frequency)
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT,
@@ -421,20 +421,18 @@ def _utc_date_deadline(root: Path) -> tuple[str, ...]:
             end.tzname(), end.strftime('%H:%M'))
 
 
-# The semantic cron check below already validates the weekdays. Generate their
-# text through the same writer without adding a second validation of the rule.
+# check_claims validates the complete schedule, including the number of entries.
 _UPDATE_SCHEDULE = Claim(
     ".github/workflows/update.yml",
-    r"(?m)^\s*- cron: [\"']?\S+ \S+ \S+ \S+ ([0-7,*]+)[\"']?(?:[ \t]*(?:#.*)?)?$",
-    lambda root: ('*' if set(PROBE_WEEKDAYS) == set(range(7))
-                  else ','.join(map(str, sorted(set(PROBE_WEEKDAYS)))),),
-    "models.PROBE_WEEKDAYS; workflow generation and job-preservation controls in tests/test_claims.py",
+    r'''(?m)^[ \t]*- cron: "([^"\n]+)"[ \t]*(?:#.*)?$''',
+    lambda root: (probe_cron(),),
+    "models.probe_cron; workflow generation and job-preservation controls in tests/test_claims.py",
     generated=True)
 
 
 CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
     Claim("CONTRIBUTING.md", rf"scheduled run does this ({_FREQUENCY})\b",
-          lambda root: (probe_frequency(PROBE_WEEKDAYS),),
+          lambda root: (probe_frequency(),),
           "models.PROBE_WEEKDAYS", generated=True),
     Claim("assets/README.md", r"`(anchor\.min\.js)` \| Pinned heading permalink library used by the Markdown page layout; its license is in `(anchorjs-LICENSE\.txt)`",
           _local_heading_links, "the layout's local heading library, SRI checksum and bundled license"),
@@ -788,9 +786,9 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           read=lambda found: (" ".join(found.group(1).split()),)),
     Claim("browse.html", rf"listed for less than ({_DURATION})",
           lambda root: (_weeks(PROVISIONAL_PROMOTE_DAYS),),
-          "prober.PROVISIONAL_PROMOTE_DAYS"),
+          "prober.PROVISIONAL_PROMOTE_DAYS", generated=True),
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
-          lambda root: (PAGES_URL,), "render.PAGES_URL"),
+          lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
     Claim("browse.html", r"var ORDER = \{([^}]*)\}",
           lambda root: tuple(f'{c.value}:{index}' for index, c in enumerate(CATEGORY_TITLES)),
           "render.CATEGORY_TITLES order; divergence controls in tests/test_claims.py",
@@ -799,7 +797,7 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           lambda root: tuple(c.value for c in CATEGORY_TITLES), "render.CATEGORY_TITLES",
           read=_keys),
     Claim("_config.yml", r"(?m)^url: (\S+)\nbaseurl: (\S+)$",
-          lambda root: _site_url(), "render.PAGES_URL"),
+          lambda root: _site_url(), "render.PAGES_URL", generated=True),
 )
 
 
@@ -807,7 +805,7 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
 SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/social-preview.svg")
 _FREQUENCY_PHRASE = re.compile(rf"\b(?:{_FREQUENCY})\b")
 _PROJECTIONS = (_UPDATE_SCHEDULE, *(Claim(
-    filename, rf"\b({_FREQUENCY})\b", lambda root: (probe_frequency(PROBE_WEEKDAYS),),
+    filename, rf"\b({_FREQUENCY})\b", lambda root: (probe_frequency(),),
     "models.PROBE_WEEKDAYS; the existing scheduled-copy check validates every phrase",
     generated=True) for filename in SCHEDULED if filename != "CONTRIBUTING.md"))
 
@@ -844,20 +842,6 @@ def _line(text: str, at: int) -> int:
     return text.count("\n", 0, at) + 1
 
 
-def _cron_weekdays(root: Path) -> tuple[int, ...]:
-    workflow = yaml.safe_load((root / ".github/workflows/update.yml").read_text(encoding="utf-8"))
-    # PyYAML reads a bare `on:` as the boolean true.
-    trigger = workflow.get("on", workflow.get(True)) or {}
-    days: set[int] = set()
-    for entry in trigger.get("schedule") or []:
-        field = str(entry["cron"]).split()[4]
-        if field == "*":
-            days |= set(range(7))
-        else:
-            days |= {int(d) % 7 for d in field.split(",")}
-    return tuple(sorted(days))
-
-
 def check_claims(root: Path, claims: Sequence[Claim[Path] | RegistryClaim] = CLAIMS,
                  scheduled: tuple[str, ...] = SCHEDULED, *,
                  entries: list[Entry] | None = None) -> list[str]:
@@ -880,19 +864,20 @@ def check_claims(root: Path, claims: Sequence[Claim[Path] | RegistryClaim] = CLA
                 problems.append(f"{claim.file}:{_line(text, found.start())} says `{said}` and "
                                 f"{claim.source} says {', '.join(truth)} — change the sentence or the "
                                 "constant, never one of them alone")
-    expected = probe_frequency(PROBE_WEEKDAYS)
+    expected = probe_frequency()
     for name in scheduled:
         text = files[name]
         for m in _FREQUENCY_PHRASE.finditer(text):
             if m.group(0) != expected:
                 problems.append(f"{name}:{_line(text, m.start())} says `{m.group(0)}` and the "
                                 f"scheduled run probes {expected} (models.PROBE_WEEKDAYS)")
-    cron = _cron_weekdays(root)
-    if not cron:
+    workflow = yaml.safe_load((root / _UPDATE_SCHEDULE.file).read_text(encoding="utf-8"))
+    # PyYAML reads a bare `on:` as the boolean true.
+    trigger = workflow.get("on", workflow.get(True)) or {}
+    schedule = trigger.get("schedule")
+    if not schedule:
         problems.append(".github/workflows/update.yml has no scheduled verification")
-    elif set(cron) != set(PROBE_WEEKDAYS):
-        problems.append(
-            f".github/workflows/update.yml runs on weekdays {','.join(map(str, cron))} and "
-            f"models.PROBE_WEEKDAYS says {','.join(map(str, PROBE_WEEKDAYS))} — the pages would "
-            f"say {expected}")
+    elif schedule != [{"cron": probe_cron()}]:
+        problems.append(f"{_UPDATE_SCHEDULE.file} schedules {schedule!r}; "
+                        f"expected exactly one UTC cron rule `{probe_cron()}` for {expected}")
     return problems
