@@ -2,6 +2,7 @@
 it is, what it is made from and what writes it — so a file nobody accounted
 for, a generated file the map calls hand-written, or a page the site serves by
 accident is a failed check rather than a surprise on the next run."""
+import os
 import re
 import subprocess
 import tomllib
@@ -173,6 +174,9 @@ def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_ol
     assert pythons[0] == floor and minors == list(range(minors[0], minors[-1] + 1)), pythons
     assert [s["run"] for s in test["steps"] if s.get("run", "").startswith("uv sync")] \
         == ["uv sync --locked"]
+    gates = [step for step in test["steps"] if "freetier-gate diff" in step.get("run", "")]
+    gate, = gates
+    assert gate["if"] == "strategy.job-index == 0"
     floors = ci["jobs"]["floors"]
     assert floors["env"]["UV_RESOLUTION"] == "lowest-direct"
     setup = next(s for s in floors["steps"] if s.get("uses", "").startswith("astral-sh/setup-uv"))
@@ -226,6 +230,21 @@ def test_the_run_reads_every_quote_back_into_its_summary():
     assert "if" not in quotes
     commit = next(s for s in steps if s.get("id") == "commit")
     assert steps.index(quotes) < steps.index(commit)
+
+
+def test_a_failed_family_report_is_visible_even_when_tee_succeeds(tmp_path):
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text())
+    steps = workflow["jobs"]["update"]["steps"]
+    report = next(step for step in steps if "freetier-bars" in step.get("run", ""))
+    summary = tmp_path / "summary"
+    command = 'uv() { echo "Registry history unreadable"; return 17; }\n' + report["run"]
+    result = subprocess.run(["bash", "-e", "-c", command], cwd=tmp_path,
+                            env={**os.environ, "GITHUB_STEP_SUMMARY": str(summary)},
+                            capture_output=True, text=True)
+    assert summary.read_text() == "Registry history unreadable\n"
+    assert result.returncode == 17
+    assert report["continue-on-error"] is True
+
 
 def test_the_map_is_printed_as_a_table_with_one_row_per_line():
     table = markdown_table(TINY)

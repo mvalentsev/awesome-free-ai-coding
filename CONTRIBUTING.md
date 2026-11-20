@@ -862,7 +862,7 @@ cannot print two versions of it.
 | `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and measured free models on a zero-based score axis with the index leader named separately, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
-| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js`, `src/freetier_radar/models.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
+| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js`, `assets/search.js`, `src/freetier_radar/models.py`, `src/freetier_radar/render.py`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/favicon.svg` | **page** — the favicon | — | `hand` |
 | `assets/github-mark.svg` | **page** — the GitHub repository link’s mark | — | `hand` |

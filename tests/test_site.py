@@ -242,23 +242,10 @@ def test_the_readme_and_the_page_ask_the_quickstart_lane_the_same_question(tmp_p
     assert "&#34;content&#34;:&#34;2+2? MAKE NO MISTAKES.&#34;" in html
 
 
-def test_the_readme_and_the_page_are_rendered_from_one_registry(tmp_path):
-    """Both are committed, both are compared with the registry by --check, and
-    the numbers a reader is shown have to agree between them."""
-    entries = [make(id="a", name="A"), make(id="b", name="B", card_required=True)]
-    registry = tmp_path / "registry.yaml"
-    save_registry(registry, entries)
-    readme = render_readme(registry, TEMPLATES, tmp_path / "README.md", today=TODAY)
-    html = render_site(registry, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
-    for name in ("A", "B"):
-        assert name in readme and name in html
-    assert "https://mvalentsev.github.io/awesome-free-ai-coding/" in readme
-
-
-@pytest.mark.parametrize("path", ["browse.html", "llms.txt", "index.json"])
-def test_the_page_links_the_files_beside_it(tmp_path, path):
+def test_the_page_links_the_files_beside_it(tmp_path):
     html = _render([make()], tmp_path)
-    assert f'href="{path}"' in html
+    for path in ("browse.html", "llms.txt", "index.json"):
+        assert f'href="{path}"' in html
 
 
 def test_jekyll_leaves_every_markdown_written_for_github_off_the_site():

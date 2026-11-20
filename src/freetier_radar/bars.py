@@ -30,7 +30,7 @@ import httpx
 import yaml
 
 from . import git
-from .models import (utc_today, Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
+from .models import (Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
                      is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
 from .words import weeks
@@ -50,9 +50,10 @@ def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], d
     in the row's `api.model_ids` — or `client_lane.model_ids`, for a lane no API
     serves — as named free models, without a break. An id is added on the read
     that finds it and taken out when the run says it left, so an id that came
-    back is dated from its return."""
+    back is dated from its return. Follow the first-parent history so proposal
+    commits cannot change a lane's age before their merge reaches that line."""
     since: dict[tuple[str, str], date] = {}
-    for sha, stamp in git.commits(repo, "--reverse", "HEAD", "--", path, field="%ct",
+    for sha, stamp in git.commits(repo, "--reverse", "--first-parent", "HEAD", "--", path, field="%ct",
                                   check=True):
         try:
             data = yaml.load(git.show(repo, sha, path) or "", Loader=_LOADER) or {}
@@ -197,6 +198,7 @@ def report(entries: list[Entry], since: dict[tuple[str, str], date], today: date
 
 
 def main(argv: list[str] | None = None) -> int:
+    now = datetime.now(timezone.utc)
     ap = argparse.ArgumentParser(description=(
         f"Which ids a rotating lane has served free for {weeks(BAR_DAYS)} without a Models-column "
         "family, dated from the registry's git history."))
@@ -204,12 +206,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--registry", default="registry.yaml",
                     help="path of the registry inside the repository")
     ap.add_argument("--today", type=date.fromisoformat,
-                    default=utc_today())
+                    default=now.date())
     args = ap.parse_args(argv)
     entries = load_registry(args.repo / args.registry)
     with httpx.Client(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         vendor, unread = vendor_dates(entries, client.get, args.today)
-    now = datetime.now(timezone.utc)
     print(report(entries, arrivals(args.repo, args.registry), args.today, vendor, unread,
                  now=now if args.today == now.date() else None), end="")
     return 0

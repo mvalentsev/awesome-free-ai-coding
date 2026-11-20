@@ -77,7 +77,10 @@ jobs:
       # before it exists; this holds a push or a pull request made without it.
       # On a pull request HEAD is the merge commit, and its first parent is the
       # branch the request would land on.
+      # Each matrix job sees the same commit range. The first job covers it
+      # once (GitHub Actions contexts reference, checked 2026-11-20).
       - name: Logs appended to, earned fields untouched
+        if: strategy.job-index == 0
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             uv run freetier-gate diff HEAD^1 --earned

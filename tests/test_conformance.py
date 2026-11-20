@@ -2,6 +2,7 @@
 Codex: which sentences it proves, the commands it reads off the files, the
 config it points at its own lanes, and how it tells two requests apart."""
 import json
+import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -445,8 +446,32 @@ def test_the_workflow_runs_the_oldest_and_the_newest_of_both_programs():
             "src/freetier_radar/conformance.py", "src/freetier_radar/prober.py"} <= set(
         trigger["push"]["paths"])
     steps = workflow["jobs"]["conformance"]["steps"]
-    assert any("freetier-conformance floors" in s.get("run", "") for s in steps)
     run = next(s["run"] for s in steps if "freetier-conformance run" in s.get("run", ""))
     for given in ('--litellm "$LITELLM_OLDEST=', '--litellm "$LITELLM_NEWEST=',
                   '--codex "$CODEX_OLDEST=', '--codex "$CODEX_NEWEST='):
         assert given in run, given
+
+
+@pytest.mark.parametrize("exit_code", [0, 17])
+def test_conformance_release_step_requires_the_oldest_versions(tmp_path, monkeypatch, exit_code):
+    workflow = yaml.safe_load((ROOT / ".github/workflows/conformance.yml").read_text())
+    releases = next(step for step in workflow["jobs"]["conformance"]["steps"]
+                    if step.get("id") == "releases")
+    output = tmp_path / "outputs"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(output))
+    stubs = f'''
+uv() {{
+  [ "$*" = "run freetier-conformance floors" ] || return 1
+  [ {exit_code} = 0 ] || return {exit_code}
+  printf '%s\\n' litellm=1.2.3 codex=2.3.4
+}}
+curl() {{ printf '%s\\n' '{{"info":{{"version":"4.5.6"}}}}'; }}
+jq() {{ cat >/dev/null; printf '%s\\n' 4.5.6; }}
+gh() {{ printf '%s\\n' rust-v5.6.7; }}
+'''
+    result = subprocess.run(["bash", "-e", "-c", stubs + releases["run"]],
+                            capture_output=True, text=True)
+    assert result.returncode == exit_code
+    expected = ["oldest_litellm=1.2.3", "oldest_codex=2.3.4",
+                "newest_litellm=4.5.6", "newest_codex=5.6.7"]
+    assert output.read_text().splitlines() == (expected if exit_code == 0 else [])

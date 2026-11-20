@@ -267,10 +267,14 @@ def test_the_index_names_every_country_a_border_can_name():
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
-def test_comparison_links_resolve_only_three_distinct_live_offers():
+@pytest.mark.parametrize('limit', [3, 2])
+def test_comparison_links_resolve_distinct_live_offers_up_to_the_advertised_limit(limit):
     from test_site import _js_function
 
-    harness = _js_function(_html(), "comparisonIds") + """
+    html = _html()
+    initializer = re.search(r'^  var comparisonLimit = .+;$', html, re.M).group(0)
+    harness = (f'const document = {{getElementById: id => ({{textContent: id === "comparison-limit" ? "{limit}" : ""}})}};\n'
+               + initializer + '\n' + _js_function(html, "comparisonIds")) + """
     const rows = [{id:'a'}, {id:'b'}, {id:'c'}, {id:'d'},
                   {id:'gone',archived:true}, {id:'alias',duplicate_of:'a'}];
     console.log(JSON.stringify([
@@ -281,7 +285,7 @@ def test_comparison_links_resolve_only_three_distinct_live_offers():
     ]));"""
     result = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
     assert result.returncode == 0, result.stderr
-    assert json.loads(result.stdout) == [[], ["a", "b", "c"], ["b"], ["d", "a"]]
+    assert json.loads(result.stdout) == [[], ["a", "b", "c"][:limit], ["b"], ["d", "a"]]
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")

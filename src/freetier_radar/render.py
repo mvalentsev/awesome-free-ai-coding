@@ -156,6 +156,10 @@ DOT = "\u00a0· "
 # How many measured free models Start here compares, highest score first.
 # Unavailable measurements retain the shared tier and natural-name order.
 README_COMPARISON = 20
+
+# How many providers a reader can compare side by side in Browse.
+BROWSE_COMPARE_LIMIT = 3
+
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
 # name/version shape the vendors' own example uses.

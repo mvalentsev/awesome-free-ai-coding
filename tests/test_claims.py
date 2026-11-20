@@ -170,17 +170,19 @@ def test_shared_frequency_generates_static_text_without_rewriting_its_format(tmp
         assert claims.render_claims(text, filename, tmp_path) == text.replace('twice a week', 'every day')
 
 
-def test_browse_and_pages_settings_follow_the_site_url_and_review_age(tmp_path, monkeypatch):
+def test_browse_and_pages_settings_follow_their_shared_rules(tmp_path, monkeypatch):
     from freetier_radar import claims
 
     monkeypatch.setattr(claims, 'PROVISIONAL_PROMOTE_DAYS', 21)
     monkeypatch.setattr(claims, 'PAGES_URL', 'https://new.example/new-path')
+    monkeypatch.setattr(claims, 'BROWSE_COMPARE_LIMIT', 2)
     browse = (ROOT / 'browse.html').read_text()
     config = (ROOT / '_config.yml').read_text()
 
     actual = claims.render_claims(browse, 'browse.html', tmp_path)
     assert 'href="https://new.example/new-path/browse.html"' in actual
     assert 'listed for less than three weeks' in actual
+    assert 'Select up to <span id="comparison-limit">2</span> offers' in actual
     actual = claims.render_claims(config, '_config.yml', tmp_path)
     assert 'url: https://new.example\nbaseurl: /new-path\n' in actual
 

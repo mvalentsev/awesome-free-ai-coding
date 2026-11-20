@@ -36,8 +36,9 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
                      load_registry, probe_cron, probe_frequency)
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
-from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT,
-                     PAGES_URL, QUICKSTART_USER_AGENT, README_BUDGET, README_MODELS, README_PICKS,
+from .render import (BROWSE_COMPARE_LIMIT, CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE,
+                     MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT, PAGES_URL,
+                     QUICKSTART_USER_AGENT, README_BUDGET, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
 from .pictures import _chart_ticks, _style
@@ -787,6 +788,10 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
     Claim("browse.html", rf"listed for less than ({_DURATION})",
           lambda root: (_weeks(PROVISIONAL_PROMOTE_DAYS),),
           "prober.PROVISIONAL_PROMOTE_DAYS", generated=True),
+    Claim("browse.html", r'Select up to <span id="comparison-limit">(\d+)</span> offers',
+          lambda root: (str(BROWSE_COMPARE_LIMIT),),
+          "render.BROWSE_COMPARE_LIMIT; Browse reads this value when restoring and editing comparisons",
+          generated=True),
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
           lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
     Claim("browse.html", r"var ORDER = \{([^}]*)\}",

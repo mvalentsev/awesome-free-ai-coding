@@ -132,7 +132,8 @@ MAP: tuple[Node, ...] = (
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
          made_from=("index.json", "assets/model-name.js", "assets/search.js",
-                    "src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
+                    "src/freetier_radar/models.py", "src/freetier_radar/render.py",
+                    "src/freetier_radar/claims.py"),
          written_by=("freetier-render",), published=True),
     Node("404.html", Kind.PAGE,
          "what Pages serves for an address the site does not have, offering the rows that "

@@ -63,6 +63,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -o pipefail
           uv run freetier-conformance floors | sed 's/^/oldest_/' >> "$GITHUB_OUTPUT"
           litellm=$(curl -fsSL --retry 3 https://pypi.org/pypi/litellm/json | jq -r .info.version)
           codex=$(gh api repos/openai/codex/releases/latest --jq .tag_name)
@@ -70,13 +71,15 @@ jobs:
           echo "newest_codex=${codex#rust-v}" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
+      # setup-uv exports UV_PYTHON from the job's python-version input
+      # (setup-uv v10.3.3 README, checked 2026-11-20).
       - name: Install LiteLLM
         env:
           OLDEST: ${{ steps.releases.outputs.oldest_litellm }}
           NEWEST: ${{ steps.releases.outputs.newest_litellm }}
         run: |
           for v in $(printf '%s\n' "$OLDEST" "$NEWEST" | sort -u); do
-            uv venv --quiet --python 3.12 "$RUNNER_TEMP/litellm-$v"
+            uv venv --quiet --python "$UV_PYTHON" "$RUNNER_TEMP/litellm-$v"
             uv pip install --quiet --python "$RUNNER_TEMP/litellm-$v/bin/python" "litellm[proxy]==$v"
           done
 

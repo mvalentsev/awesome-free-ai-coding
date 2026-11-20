@@ -60,6 +60,19 @@ def test_an_id_is_dated_from_the_commit_after_which_it_never_left(tmp_path):
     assert since[("other", "b")] == date(2026, 8, 20)
 
 
+def test_merge_dates_only_the_free_models_that_reach_the_registry(tmp_path):
+    _git(tmp_path, "init", "-q", "-b", "main")
+    _commit(tmp_path, {"gw": ["continuous"]}, "2026-08-01")
+    _git(tmp_path, "switch", "-c", "proposal")
+    _commit(tmp_path, {"gw": ["new"]}, "2026-08-05")
+    _commit(tmp_path, {"gw": ["continuous", "new"]}, "2026-08-10")
+    _git(tmp_path, "switch", "main")
+    _git(tmp_path, "merge", "--no-ff", "-m", "Publish reviewed registry", "proposal",
+         day="2026-08-20")
+    assert arrivals(tmp_path) == {("gw", "continuous"): date(2026, 8, 1),
+                                  ("gw", "new"): date(2026, 8, 20)}
+
+
 @pytest.mark.parametrize("free_part", ["sum", "unnamed"])
 def test_example_ids_do_not_age_a_named_free_lane(tmp_path, free_part):
     _git(tmp_path, "init", "-q")

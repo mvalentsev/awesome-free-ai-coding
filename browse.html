@@ -163,7 +163,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     <label class="chip"><input type="checkbox" id="archived"> Show archived</label>
   </div>
 </div>
-<p class="compare-hint">Select up to 3 offers to compare their models, limits and access conditions.</p>
+<p class="compare-hint">Select up to <span id="comparison-limit">3</span> offers to compare their models, limits and access conditions.</p>
 <section id="comparison" class="comparison" aria-labelledby="comparison-title" hidden>
   <div class="comparison-toolbar">
     <h2 id="comparison-title">Compare providers</h2>
@@ -205,6 +205,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   var generated = "";
   var configClients = {};
   var searchConfig = {};
+  var comparisonLimit = Number(document.getElementById("comparison-limit").textContent);
   var comparison = [];
   var comparisonOpen = false;
   var countryNames = {};
@@ -275,7 +276,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     var live = rows.filter(function (e) { return !e.archived && !e.duplicate_of; });
     return (value || "").split(",").filter(function (id, i, ids) {
       return id && ids.indexOf(id) === i && live.some(function (e) { return e.id === id; });
-    }).slice(0, 3);
+    }).slice(0, comparisonLimit);
   }
 
   function countryWords(e) {
@@ -295,21 +296,23 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   function toggleComparison(id) {
     var i = comparison.indexOf(id);
     if (i !== -1) comparison.splice(i, 1);
-    else if (comparison.length < 3) comparison.push(id);
+    else if (comparison.length < comparisonLimit) comparison.push(id);
     if (comparison.length < 2) comparisonOpen = false;
     renderComparison();
     writeState();
   }
 
+  function syncComparisonChoice(input) {
+    input.checked = comparison.indexOf(input.dataset.compare) !== -1;
+    input.disabled = !input.checked && comparison.length >= comparisonLimit;
+  }
+
   function renderComparison() {
-    document.querySelectorAll("input[data-compare]").forEach(function (input) {
-      input.checked = comparison.indexOf(input.dataset.compare) !== -1;
-      input.disabled = !input.checked && comparison.length === 3;
-    });
+    document.querySelectorAll("input[data-compare]").forEach(syncComparisonChoice);
     var section = document.getElementById("comparison");
     section.hidden = !comparison.length;
     var names = comparison.map(function (id) { return entries.find(function (e) { return e.id === id; }).name; });
-    document.getElementById("comparison-status").textContent = comparison.length + " of 3 selected: " + names.join(", ") +
+    document.getElementById("comparison-status").textContent = comparison.length + " of " + comparisonLimit + " selected: " + names.join(", ") +
       (comparison.length === 1 ? ". Choose another offer." : ".");
     var toggle = document.getElementById("comparison-toggle");
     toggle.disabled = comparison.length < 2;
@@ -409,8 +412,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
       var check = el("input");
       check.type = "checkbox";
       check.dataset.compare = e.id;
-      check.checked = comparison.indexOf(e.id) !== -1;
-      check.disabled = !check.checked && comparison.length === 3;
+      syncComparisonChoice(check);
       check.setAttribute("aria-label", "Compare " + e.name);
       check.addEventListener("change", function () { toggleComparison(e.id); });
       choose.appendChild(check);
