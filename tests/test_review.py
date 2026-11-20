@@ -131,7 +131,7 @@ def client_config_repo(tmp_path_factory, source_history_repo):
     return repo
 
 
-@pytest.mark.parametrize('change', ['listing', 'one-client', 'client-ui'])
+@pytest.mark.parametrize('change', ['listing', 'one-client', 'client-ui', 'unrelated-render'])
 def test_browser_client_content_tracks_actual_config_changes(tmp_path, client_config_repo, change):
     from freetier_radar.review_browser import browser_plan
 
@@ -140,10 +140,15 @@ def test_browser_client_content_tracks_actual_config_changes(tmp_path, client_co
         html = (repo / 'index.html').read_text().replace('"alpha"', '"beta"', 1)
         (repo / 'index.html').write_text(html)
     elif change == 'client-ui':
-        template = repo / 'templates/site.html.j2'
+        template = repo / 'templates/index.html.j2'
         template.parent.mkdir()
         template.write_text('Changed client selection interface\n')
         (repo / 'index.html').write_text((repo / 'index.html').read_text() + '<button>Changed client control</button>')
+    elif change == 'unrelated-render':
+        render = repo / 'src/freetier_radar/render.py'
+        render.parent.mkdir(parents=True, exist_ok=True)
+        render.write_text('BROWSE_COMPARE_LIMIT = 3\n')
+        (repo / 'browse.html').write_text('<p>Compare offers</p>')
     else:
         (repo / 'index.html').write_text((repo / 'index.html').read_text() + '<p>New verification date</p>')
     subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
@@ -153,12 +158,10 @@ def test_browser_client_content_tracks_actual_config_changes(tmp_path, client_co
     plan = browser_plan(bundle)
     coverage = plan['coverage']
     for client in ('opencode', 'codex'):
-        expected = ('client-content' if change == 'client-ui' or
-                    (change == 'one-client' and client == 'opencode') else 'shared-layout')
+        updated = change == 'one-client' and client == 'opencode'
+        expected = 'client-content' if updated else 'shared-layout'
         assert coverage['1440/light/config/' + client] == expected
-        assert plan['client_content_rows'][client] == (
-            ['vendor', 'peer'] if change == 'client-ui' else
-            ['vendor'] if change == 'one-client' and client == 'opencode' else [])
+        assert plan['client_content_rows'][client] == (['vendor'] if updated else [])
     assert any(key.startswith('375/light/config/') and value == 'shared-layout'
                for key, value in coverage.items())
 

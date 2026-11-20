@@ -80,14 +80,12 @@ def browser_plan(bundle: Bundle) -> dict:
     widths, schemes = [1440, 375, 320], ['light', 'dark']
     client_configs = _client_configs(bundle, scope['sha'])
     old_configs = _client_configs(bundle, scope['base'])
-    client_ui_changed = shared_layout or any(path in scope['paths'] for path in
-                                            ('templates/site.html.j2', 'src/freetier_radar/render.py'))
     clients = list(client_configs)
     client_content_rows = {}
     for client, configs in client_configs.items():
         old_rows = {row['id']: row for row in old_configs.get(client, [])}
         client_content_rows[client] = [row['id'] for row in configs
-                                      if client_ui_changed or row != old_rows.get(row['id'])]
+                                      if row != old_rows.get(row['id'])]
     words = {word for key in ('sections', 'filters')
              for item in index.get('search_config', {}).get(key, []) for word in item.get('words', [])}
     named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
@@ -126,8 +124,10 @@ def browser_plan(bundle: Bundle) -> dict:
             add(1440, 'light', kind, model['family'], COVERAGE_PURPOSES[0])
     for row in rows:
         add(1440, 'light', 'provider', row['id'], COVERAGE_PURPOSES[0])
+    # Each changed route is exercised once. The client picker is shared, so
+    # its unchanged routes exercise the UI through representative cases.
     for client in clients:
-        purpose = ('client-content' if client_ui_changed or client_configs[client] != old_configs.get(client)
+        purpose = ('client-content' if client_configs[client] != old_configs.get(client)
                    else COVERAGE_PURPOSES[1])
         add(1440, 'light', 'config', client, purpose)
     for width, scheme in ((1440, 'light'), (1440, 'dark'), (375, 'light'), (375, 'dark'), (320, 'light')):
