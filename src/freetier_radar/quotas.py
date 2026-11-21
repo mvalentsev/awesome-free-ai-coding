@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 import json
+from collections.abc import Iterator
 from html.parser import HTMLParser
 from datetime import date
 from typing import TYPE_CHECKING, Literal
@@ -487,14 +488,11 @@ def quota_review_changes(quota: UsageQuota, today: date) -> list[str]:
 
 
 async def resolved_quota_entry(client, entry: Entry, attempts: int = 3, backoff: float = 1) -> Entry:
-    """Resolve the current release before any quote or numeric comparison."""
+    """Resolve current quota sources without shifting canonical field positions."""
     from .models import Follow
     from .prober import _fetch_page, followed_url
-    indices, quotas = {}, []
-    for q in entry.quotas:
-        q = active_quota(entry,q)
-        if q is None:
-            continue
+    indices, quotas = {}, entry.quotas.copy()
+    for i, q in active_quotas(entry):
         if q.follow:
             if q.source not in indices:
                 response,_ = await _fetch_page(client,q.source,attempts,backoff,page=False)
@@ -505,7 +503,7 @@ async def resolved_quota_entry(client, entry: Entry, attempts: int = 3, backoff:
                 try:UsageQuota._http_source(url)
                 except ValueError:pass
                 else:q = q.model_copy(update={'source':url,'follow':None})
-        quotas.append(q)
+        quotas[i] = q
     return entry.model_copy(update={'quotas':quotas})
 
 
@@ -513,9 +511,7 @@ async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: floa
     from .prober import _page_beside
     pages, notes = {}, []
     entry = await resolved_quota_entry(client,entry,attempts,backoff)
-    for i, q in enumerate(entry.quotas):
-        q = active_quota(entry,q)
-        if q is None:continue
+    for i, q in active_quotas(entry):
         if q.source not in pages:
             pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff)
         page, failure = pages[q.source]
@@ -574,7 +570,7 @@ def quota_value(q: UsageQuota) -> str:
 
 def structured_quotas(entry: Entry) -> list[dict]:
     rows = [{**q.model_dump(mode='json', exclude_none=True), 'amount': q.amount, 'period':q.period}
-            for old in entry.quotas if (q := active_quota(entry,old)) is not None]
+            for _, q in active_quotas(entry)]
     if entry.page_catalog and entry.page_catalog.limited_allowance:
         quote = entry.page_catalog.limited_allowance
         m = re.fullmatch(r'(\d+) one-hour sessions per (day|week|month)', quote)
@@ -594,6 +590,13 @@ def active_quota(entry: Entry, quota: UsageQuota) -> UsageQuota | None:
     ended = {mid for mid in lane.ignored_ids if mid in lane.model_access and lane.model_access[mid].until}
     ids = [mid for mid in quota.model_ids if mid not in ended]
     return quota.model_copy(update={'model_ids':ids}) if ids else None
+
+
+def active_quotas(entry: Entry) -> Iterator[tuple[int, UsageQuota]]:
+    """Current quotas, identified by their index in the canonical row."""
+    for index, quota in enumerate(entry.quotas):
+        if (current := active_quota(entry, quota)) is not None:
+            yield index, current
 
 
 def quota_summary(entry: Entry) -> str:

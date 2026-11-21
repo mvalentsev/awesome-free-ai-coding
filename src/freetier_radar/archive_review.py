@@ -79,7 +79,8 @@ async def collect(entries: list[Entry], blocklist: dict[str, str], today: date,
             return record
 
     async def run():
-        urls = {url for e in selected for url in row_urls(e)}
+        by_row = {e.id: row_urls(e, historical_quotas=True) for e in selected}
+        urls = {url for row_sources in by_row.values() for url in row_sources}
         urls.update(e.probe.free_list for e in selected if e.probe.free_list)
         for record in await asyncio.gather(*(one(url) for url in sorted(urls))):
             sources[record['url']] = record
@@ -97,7 +98,7 @@ async def collect(entries: list[Entry], blocklist: dict[str, str], today: date,
             sources[record['url']] = record
         rows = []
         for e in selected:
-            urls = row_urls(e)
+            urls = by_row[e.id]
             endpoint = followed.get(e.id, e.probe.endpoint)
             if e.probe.follow and not endpoint:
                 notes = ['current probe index names no readable source']

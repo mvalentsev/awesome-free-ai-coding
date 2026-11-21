@@ -137,6 +137,7 @@ def quota_transport_repo(tmp_path_factory, source_history_repo):
 
     repo = shutil.copytree(source_history_repo, tmp_path_factory.mktemp('quota-transport') / 'repo')
     rows = []
+    today = str(utc_today())
     for ident in ('direct', 'followed'):
         quota = {'amount': 5, 'unit': 'requests', 'period': 'minute', 'scope': 'account-model',
                  'source': 'https://vendor.example/quota-catalog', 'quote': 'Free tier L0',
@@ -145,11 +146,18 @@ def quota_transport_repo(tmp_path_factory, source_history_repo):
         if ident == 'followed':
             quota.update(source='https://vendor.example/docs-index',
                          follow={'field': 'release', 'suffix': '/quota-catalog'})
-        rows.append({'id': ident, 'name': ident, 'category': 'api-free-tier',
+        row = {'id': ident, 'name': ident, 'category': 'api-free-tier',
                      'url': 'https://vendor.example', 'offering': 'A recurring free allowance',
-                     'first_seen': str(utc_today()), 'last_verified': str(utc_today()),
+                     'first_seen': today, 'last_verified': today,
                      'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
-                               'keywords': ['A recurring free allowance for coding']}, 'quotas': [quota]})
+                               'keywords': ['A recurring free allowance for coding']}, 'quotas': [quota]}
+        if ident == 'followed':
+            ended = 'https://vendor.example/ended-limits'
+            row['api'] = {'base_url': 'https://vendor.example/v1', 'model_ids': ['coding'],
+                          'ignored_ids': ['ended'], 'model_access': {
+                              'ended': {'until': '2026-10-01', 'source': ended}}}
+            row['quotas'].insert(0, {**quota, 'source': ended, 'model_ids': ['ended'], 'follow': None})
+        rows.append(row)
     (repo / 'registry.yaml').write_text(json.dumps({'entries': rows}))
     subprocess.run(['git', '-C', str(repo), 'add', 'registry.yaml'], check=True)
     subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: quota transports'], check=True)
@@ -225,14 +233,17 @@ async def test_catalog_quota_sources_keep_original_transport(quota_transport_rep
         respx.get(url).respond(403, text='<html>Checking your browser</html>',
                                headers={'content-type': 'text/html'})
     entries = load_registry(quota_transport_repo / 'registry.yaml')
+    expected = {'direct': 'quotas[0]', 'followed': 'quotas[1]'}
     async with httpx.AsyncClient() as client:
         if consumer == 'probe':
             for entry in entries:
                 result = await probe_entry(client, entry, attempts=1, backoff=0)
-                assert result.status is ProbeStatus.STALE_IDS and 'could not be checked' in result.detail
+                assert result.status is ProbeStatus.STALE_IDS
+                assert f'{expected[entry.id]} could not be checked' in result.detail
         elif consumer == 'quotes':
             missing, unread = await check_entries(entries, client)
             assert len(missing) == 2 and all(m.unverified for m in missing)
+            assert {m.entry_id: m.field for m in missing} == {row: f'{field}.quote' for row, field in expected.items()}
             assert set(unread) == {'direct', 'followed'}
         else:
             bundle = review.Bundle(tmp_path / 'evidence', quota_transport_repo)
@@ -240,6 +251,8 @@ async def test_catalog_quota_sources_keep_original_transport(quota_transport_rep
             result = await review.sources(bundle, [])
             assert not result['passed']
             assert sum(not check['passed'] for check in result['checks']) == 2
+            assert {q['row']: q['field'] for q in result['quotas']} == expected
+            assert 'https://vendor.example/ended-limits' not in result['by_row']['followed']
     assert calls == []
 
 

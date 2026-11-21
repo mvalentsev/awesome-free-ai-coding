@@ -363,8 +363,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
             notes = check_page_catalog(body, entry.page_catalog, raw_bodies) if body is not None else ['source unreadable']
             catalogs.append({'row': entry.id, 'source': entry.page_catalog.source, 'notes': notes,
                              'passed': not notes})
-        from .quotas import quota_changes, quota_review_changes
-        for i, quota in enumerate(entry.quotas):
+        from .quotas import active_quotas, quota_changes, quota_review_changes
+        for i, quota in active_quotas(entry):
             body = raw_bodies.get(quota.source)
             notes = quota_changes(body, quota) if body is not None else ['source unreadable']
             notes.extend(quota_review_changes(quota, today))

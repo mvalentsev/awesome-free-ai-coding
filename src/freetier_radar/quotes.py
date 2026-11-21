@@ -28,6 +28,7 @@ import httpx
 from .page_reader import page_evidence, recover_page
 from .models import ProbeType, Entry, RemainingFree, is_archived, load_registry, utc_today
 from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
+from .quotas import active_quotas, resolved_quota_entry
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 MIN_WORDS = 3
@@ -133,11 +134,12 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     if entry.page_catalog:
         from .page_catalog import catalog_quotes
         found.extend(catalog_quotes(entry.page_catalog))
-    found.extend((f"quotas[{i}].quote", q.quote) for i, q in enumerate(entry.quotas))
-    found.extend((f"quotas[{i}].period_quote", q.period_quote) for i, q in enumerate(entry.quotas) if q.period_quote)
-    found.extend((f"quotas[{i}].reset", q.reset) for i, q in enumerate(entry.quotas) if q.reset)
+    quotas = list(active_quotas(entry))
+    found.extend((f"quotas[{i}].quote", q.quote) for i, q in quotas)
+    found.extend((f"quotas[{i}].period_quote", q.period_quote) for i, q in quotas if q.period_quote)
+    found.extend((f"quotas[{i}].reset", q.reset) for i, q in quotas if q.reset)
     found.extend((f"quotas[{i}].condition_quote", q.condition_quote)
-                 for i, q in enumerate(entry.quotas) if q.condition_quote)
+                 for i, q in quotas if q.condition_quote)
     found.extend((f"probe.model_exclusions[{i}].quote", e.quote)
                  for i, e in enumerate(entry.probe.model_exclusions))
     if entry.api:
@@ -263,7 +265,7 @@ def model_exclusion_changes(entry: Entry, bodies: dict[str, str]) -> list[str]:
     return notes
 
 
-def row_urls(entry: Entry, page: str | None = None) -> list[str]:
+def row_urls(entry: Entry, page: str | None = None, *, historical_quotas: bool = False) -> list[str]:
     """The row's sources, its probe's page — `page` where the probe follows an
     index to it, the endpoint otherwise — its catalog, the page its word on
     training is quoted from and the page that sets Codex up on its lane."""
@@ -272,7 +274,8 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.extend(router.source for mid, router in entry.api.free_routers.items() if mid in entry.api.model_ids)
     if entry.archive_review:
         urls.extend(entry.archive_review.sources)
-    urls.extend(q.source for q in entry.quotas)
+    quotas = entry.quotas if historical_quotas else (q for _, q in active_quotas(entry))
+    urls.extend(q.source for q in quotas)
     urls.extend(a.source for family, a in entry.model_access.items() if family not in entry.expired_models)
     if entry.border and entry.border.read not in ('none', 'dns'):
         urls.append(entry.border.source)
@@ -314,7 +317,7 @@ def catalog_urls(entry: Entry) -> set[str]:
         urls.update(b.source for b in lane.model_bindings.values() if b.read == "catalog")
     if entry.probe.type is ProbeType.API_MODELS or entry.probe.follow is not None:
         urls.add(entry.probe.endpoint)
-    urls.update(q.source for q in entry.quotas if q.is_catalog or q.follow is not None)
+    urls.update(q.source for _, q in active_quotas(entry) if q.is_catalog or q.follow is not None)
     return urls
 
 
@@ -362,7 +365,6 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
     missing: list[Missing] = []
     unread: dict[str, list[str]] = {}
     for entry in live_rows(entries, today or utc_today()):
-        from .quotas import resolved_quota_entry
         entry = await resolved_quota_entry(client,entry)
         quotes = row_quotes(entry)
         if not quotes:
