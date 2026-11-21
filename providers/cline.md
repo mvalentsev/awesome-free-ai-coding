@@ -26,7 +26,7 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 
 Free model promotions: Daily usage allowance: amount not published per account per model
 
-Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
+Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers "free models you can use to try Cloud Agents without paying anything".
 
 ## Where it is offered
 
@@ -48,6 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://api.cline.bot/api/v1/ai/cline/recommended-models>
 - Source: <https://docs.cline.bot/getting-started/cline-provider>
 - Source: <https://docs.cline.bot/usage/cline-desktop>
+- Source: <https://docs.cline.bot/usage/cloud-agents>
 - Source: <https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts>
 - Source: <https://raw.githubusercontent.com/cline/cline/main/sdk/packages/llms/src/catalog/catalog.generated.ts>
 
