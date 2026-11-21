@@ -15,6 +15,7 @@ import base64
 import hashlib
 import json
 import re
+import tomllib
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date
@@ -27,7 +28,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
-from .layout import MAP, Kind
+from .layout import CI_WORKFLOW, INDEXNOW_WORKFLOW, MAP, PROJECT_FILE, Kind
 from .models import ApiInfo, ArchiveReview, CatalogCondition, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, PageModel, Probe, SessionEligibility, utc_today
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
@@ -150,12 +151,32 @@ def _ordered_keys(found: re.Match) -> tuple[str, ...]:
     return tuple(f'{key}:{value}' for key, value in pairs)
 
 
+def _python_floor(root: Path) -> str:
+    requirement = tomllib.loads((root / PROJECT_FILE).read_text(encoding="utf-8"))["project"]["requires-python"]
+    floor = re.fullmatch(r">=(3\.\d+)", requirement)
+    if floor is None:
+        raise ValueError(f"{PROJECT_FILE}: expected a Python minor-version floor, got {requirement!r}")
+    return floor[1]
+
+
 def _ci_pythons(root: Path) -> tuple[str, str]:
-    """The oldest and the newest Python CI runs the suite on."""
-    ci = yaml.safe_load((root / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
-    pythons = sorted(ci["jobs"]["test"]["strategy"]["matrix"]["python"],
-                     key=lambda v: tuple(map(int, v.split("."))))
-    return pythons[0], pythons[-1]
+    """The package floor and the newest Python selected in the CI matrix."""
+    ci = yaml.safe_load((root / CI_WORKFLOW).read_text(encoding="utf-8"))
+    pythons = ci["jobs"]["test"]["strategy"]["matrix"]["python"]
+    return _python_floor(root), max(pythons, key=lambda v: int(v.split(".")[1]))
+
+
+def _ci_matrix(root: Path) -> tuple[str]:
+    floor, newest = _ci_pythons(root)
+    start, end = (int(version.split(".")[1]) for version in (floor, newest))
+    if start > end:
+        raise ValueError(f"{CI_WORKFLOW}: Python {newest} is below the package floor {floor}")
+    return (json.dumps([f"3.{minor}" for minor in range(start, end + 1)]),)
+
+
+def _indexnow_push_filter(root: Path) -> tuple[str]:
+    return ("    paths:\n" + "".join(f"      - {json.dumps(node.path)}\n"
+                                    for node in MAP if node.published),)
 
 
 def _cron_day(workflow: str) -> Callable[[Path], tuple[str, ...]]:
@@ -450,9 +471,11 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           lambda root: ('still',) if re.search(
               r'@media \(prefers-reduced-motion: reduce\).*?\.turning \{ animation: none \}', _style()) else (),
           "pictures._style; actual generated SVG reduced-motion control in tests/test_pictures.py"),
-    Claim(".github/workflows/indexnow.yml", r"(freetier-render) generates this projection",
-          lambda root: next(node.written_by for node in MAP if node.path == ".github/workflows/indexnow.yml"),
-          "layout.MAP and render.render_indexnow_filter; independent new-file/job-preservation controls in tests/test_layout.py"),
+    Claim(INDEXNOW_WORKFLOW, r"(freetier-render) generates this projection",
+          lambda root: next(node.written_by for node in MAP if node.path == INDEXNOW_WORKFLOW),
+          "layout.MAP; independent new-file/job-preservation controls in tests/test_layout.py"),
+    Claim(INDEXNOW_WORKFLOW, r"(?m)(^    paths:\n(?:      - [^\n]+\n)+)",
+          _indexnow_push_filter, "published paths in layout.MAP", generated=True),
     Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
           _browser_coverage_purposes,
           "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),
@@ -770,7 +793,12 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
     Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",
           lambda root: (CODEX_SINCE,), "render.CODEX_SINCE", generated=True),
     Claim("CONTRIBUTING.md", r"Python (\d+\.\d+) to (\d+\.\d+), httpx",
-          _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml", generated=True),
+          _ci_pythons, "the package Python floor and the newest Python in CI", generated=True),
+    Claim(CI_WORKFLOW, r"(?m)^        python: (\[[^\n]+\])$", _ci_matrix,
+          "pyproject.toml requires-python through the newest Python in CI", generated=True),
+    *(Claim(node.path, r'(?m)^[ \t]+python-version: "(\d+\.\d+)"$',
+            lambda root: (_python_floor(root),), "pyproject.toml requires-python", generated=True)
+      for node in MAP if node.path.startswith(".github/workflows/") and PROJECT_FILE in node.made_from),
     Claim("CONTRIBUTING.md", r"`conformance` workflow runs them every (\w+)",
           _cron_day(".github/workflows/conformance.yml"),
           ".github/workflows/conformance.yml's cron", generated=True),

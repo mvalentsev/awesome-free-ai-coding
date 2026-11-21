@@ -67,6 +67,10 @@ RUN_WRITERS = ("freetier-probe", "freetier-tiers", "freetier-render")
 
 _PAGES = ("registry.yaml", "watchlist.yaml", "history.jsonl")
 _SCORES = "src/freetier_radar/intelligence-index.json"
+PROJECT_FILE = "pyproject.toml"
+CI_WORKFLOW = ".github/workflows/ci.yml"
+INDEXNOW_WORKFLOW = ".github/workflows/indexnow.yml"
+_PYTHON_PROJECTION = (PROJECT_FILE, "src/freetier_radar/claims.py")
 
 MAP: tuple[Node, ...] = (
     # ---- curated data
@@ -154,8 +158,8 @@ MAP: tuple[Node, ...] = (
     Node("AGENTS.md", Kind.DOC, "standing review and evidence rules for repository work"),
     Node("CONTRIBUTING.md", Kind.DOC,
          "how the list works and how to change it; its map section is this table",
-         made_from=("src/freetier_radar/layout.py", "src/freetier_radar/claims.py",
-                    ".github/workflows/ci.yml", ".github/workflows/conformance.yml"),
+         made_from=("src/freetier_radar/layout.py", *_PYTHON_PROJECTION,
+                    CI_WORKFLOW, ".github/workflows/conformance.yml"),
          written_by=("freetier-render",),
          published=True),
     Node("LICENSE", Kind.DOC, "MIT", published=True),
@@ -172,7 +176,7 @@ MAP: tuple[Node, ...] = (
     Node("templates/*.j2", Kind.CODE, "the page templates freetier-render fills"),
     Node("tests/*.py", Kind.CODE, "the test suite"),
     # ---- config
-    Node("pyproject.toml", Kind.CONFIG, "the package and its commands"),
+    Node(PROJECT_FILE, Kind.CONFIG, "the package and its commands"),
     Node("uv.lock", Kind.CONFIG, "the pinned dependencies"),
     Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out",
          made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
@@ -187,14 +191,16 @@ MAP: tuple[Node, ...] = (
          "uploaded to GitHub"),
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
-    Node(".github/workflows/indexnow.yml", Kind.CONFIG,
+    Node(INDEXNOW_WORKFLOW, Kind.CONFIG,
          "IndexNow after publication; its push filter is generated from the published map",
-         made_from=("src/freetier_radar/layout.py",), written_by=("freetier-render",)),
+         made_from=("src/freetier_radar/layout.py", *_PYTHON_PROJECTION),
+         written_by=("freetier-render",)),
     Node(".github/workflows/update.yml", Kind.CONFIG,
          "scheduled verification, model measurements and scouting; the cron rule is generated from the shared schedule",
-         made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
+         made_from=("src/freetier_radar/models.py", *_PYTHON_PROJECTION),
          written_by=("freetier-render",)),
-    *(Node(f".github/workflows/{name}.yml", Kind.CONFIG, about) for name, about in (
+    *(Node(f".github/workflows/{name}.yml", Kind.CONFIG, about,
+          made_from=_PYTHON_PROJECTION, written_by=("freetier-render",)) for name, about in (
         ("ci", "registry, generated output and package compatibility checks"),
         ("conformance", "client compatibility on the generated configs"),
         ("expire", "publish only model promotions whose deadlines have passed"),

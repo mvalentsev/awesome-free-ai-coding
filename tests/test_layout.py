@@ -4,6 +4,7 @@ for, a generated file the map calls hand-written, or a page the site serves by
 accident is a failed check rather than a surprise on the next run."""
 import os
 import re
+import sys
 import subprocess
 import tomllib
 from pathlib import Path
@@ -302,16 +303,56 @@ def test_the_indexnow_ping_fires_on_every_file_the_site_publishes():
 
 
 def test_publication_filter_writer_tracks_new_map_entries_and_preserves_the_job(tmp_path, monkeypatch):
-    from freetier_radar import render
+    from freetier_radar import claims
+    from freetier_radar.layout import INDEXNOW_WORKFLOW
+    from freetier_radar.render import render_rule_files
+
     source = ROOT / ".github/workflows/indexnow.yml"
     before = yaml.safe_load(source.read_text())
-    monkeypatch.setattr(render, "MAP", (*MAP, Node("new-published.html", Kind.PAGE, "a new page", published=True)))
-    text = render.render_indexnow_filter(source, tmp_path / "indexnow.yml")
+    monkeypatch.setattr(claims, "MAP", (*MAP, Node("new-published.html", Kind.PAGE, "a new page", published=True)))
+    render_rule_files(ROOT, tmp_path)
+    text = (tmp_path / INDEXNOW_WORKFLOW).read_text()
     after = yaml.safe_load(text)
     assert after[True]["push"]["paths"][-1] == "new-published.html"
     after[True]["push"]["paths"] = before[True]["push"]["paths"]
     assert after == before
     assert "on:\n" in text
+
+
+def test_read_page_workflow_keeps_failed_responses_but_reports_only_readable_evidence(tmp_path):
+    workflow = yaml.safe_load((ROOT / '.github/workflows/read-page.yml').read_text())
+    step = next(step for step in workflow['jobs']['read']['steps'] if step.get('name') == 'Read the pages')
+    wrapper = tmp_path / 'read-fixture.py'
+    wrapper.write_text('''
+import sys
+
+import respx
+from freetier_radar import page_reader
+
+page_reader._addresses = lambda host: []
+with respx.mock(assert_all_called=True) as mock:
+    mock.get('https://vendor.example/live').respond(200, text='<p>Free quota — café</p>')
+    mock.get('https://vendor.example/gone').respond(404, text='<p>Free quota</p>')
+    mock.get('https://vendor.example/empty').respond(
+        200, headers={'content-type': 'text/html'},
+        text='<html><head><title>Free quota</title></head><body><div id="root"></div>'
+             '<script src="/entry.js" type="module"></script></body></html>')
+    exec(compile(sys.stdin.read(), 'workflow', 'exec'), {'__name__': '__main__'})
+''')
+    run = subprocess.run(
+        ['bash', '-eo', 'pipefail', '-c', 'uv() { "$TEST_PYTHON" "$TEST_WRAPPER"; }\n' + step['run']],
+        cwd=tmp_path, capture_output=True, text=True,
+        env={**os.environ, 'TEST_PYTHON': sys.executable, 'TEST_WRAPPER': str(wrapper),
+             'GITHUB_STEP_SUMMARY': str(tmp_path / 'summary.md'), 'KEYWORDS': 'Free quota',
+             'URLS': ' '.join(f'https://vendor.example/{name}' for name in ('live', 'gone', 'empty'))})
+    assert run.returncode == 2, run.stderr
+    assert run.stdout.count('`Free quota` — rendered text') == 1
+    raw = (tmp_path / 'pages/https_vendor.example_live.html').read_bytes()
+    assert raw == '<p>Free quota — café</p>'.encode() and f'{len(raw)} bytes' in run.stdout
+    sections = dict(section.split('\n', 1) for section in run.stdout.split('## ')[1:])
+    for name in ('gone', 'empty'):
+        assert 'Free quota' in (tmp_path / f'pages/https_vendor.example_{name}.html').read_text()
+        assert 'Page evidence unavailable' in sections[f'https://vendor.example/{name}']
 
 
 def test_the_published_pages_are_kept():

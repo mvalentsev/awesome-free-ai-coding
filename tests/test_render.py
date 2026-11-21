@@ -608,14 +608,22 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     save_registry(reg, [api_entry(id="x", name="Renamed"), make(id="gone", name="Gone")])
     # A page no row renders any more is still served: check both directions
     # of the file comparison in the same run.
-    (tmp_path / "providers" / "stray.md").write_text("# Stray\n", encoding="utf-8")
+    extra_pages = ("providers/stray.md", "models/stray.md")
+    for path in extra_pages:
+        (tmp_path / path).write_text("# Stray\n", encoding="utf-8")
     stale = check_rendered(reg, Path("templates"), tmp_path)
     assert "README.md" in stale and "index.json" in stale and "providers/x.md" in stale
     # The site's front page is generated and committed like the rest of them,
     # and so is the connection table beside the configs.
     assert SITE_PAGE in stale and CONFIGS_README in stale
 
-    assert "providers/stray.md" in stale
+    assert set(extra_pages) <= set(stale)
+
+    # Generated pages can also be current while the history is missing the new row.
+    save_registry(reg, [api_entry(id="x", name="X"), make(id="gone", name="Gone"),
+                        make(id="added", name="Added")])
+    render_all(reg, Path("templates"), tmp_path, today=TODAY)
+    assert check_rendered(reg, Path("templates"), tmp_path) == ["history.jsonl"]
 
 
 def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):
@@ -1570,7 +1578,7 @@ def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="a", name="A")])
     render_all(reg, Path("templates"), tmp_path, today=TODAY, contributing_from=Path("."))
-    shutil.copytree(Path('.github/workflows'), tmp_path / '.github/workflows', dirs_exist_ok=True)
+    shutil.copyfile(Path('pyproject.toml'), tmp_path / 'pyproject.toml')
     hero = tmp_path / "assets" / "readme" / "hero.svg"
     hero.write_text(hero.read_text(encoding="utf-8").replace("live offers", "live deals"),
                     encoding="utf-8")
@@ -1787,23 +1795,6 @@ def test_repository_render_uses_the_utc_day_before_a_local_midnight_retirement(t
     assert '## Connect' in page
     assert json.loads((tmp_path / 'index.json').read_text())['generated'] == '2026-07-19'
     assert '"event": "archived"' not in (tmp_path / 'history.jsonl').read_text()
-
-
-def test_the_check_finds_a_history_the_registry_has_moved_past(tmp_path: Path):
-    """A commit that changed the registry and not the log would publish pages
-    with no line for the change and a feed that never mentions it."""
-    from freetier_radar.models import save_registry
-    from freetier_radar.render import check_rendered, render_all, render_repository
-
-    reg = tmp_path / "registry.yaml"
-    save_registry(reg, [make(id="a", name="A")])
-    render_repository(reg, Path("templates"), tmp_path, today=TODAY,
-                      now=datetime(2026, 7, 19, 9, 30, tzinfo=timezone.utc), committed="")
-    assert check_rendered(reg, Path("templates"), tmp_path) == []
-
-    save_registry(reg, [make(id="a", name="A"), make(id="b", name="B")])
-    render_all(reg, Path("templates"), tmp_path, today=TODAY)
-    assert check_rendered(reg, Path("templates"), tmp_path) == ["history.jsonl"]
 
 
 def test_an_archived_provider_page_says_so_and_why():

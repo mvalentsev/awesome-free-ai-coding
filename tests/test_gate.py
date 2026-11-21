@@ -395,6 +395,7 @@ def test_each_check_fails_on_a_snapshot_it_should_refuse(render_source):
     shutil.copytree(root / 'src', snap / 'src', ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copytree(root / 'templates', snap / 'templates')
     shutil.copytree(root / '.github/workflows', snap / '.github/workflows')
+    shutil.copyfile(root / 'pyproject.toml', snap / 'pyproject.toml')
     render_all(snap / 'registry.yaml', snap / 'templates', snap,
                today=TODAY, contributing_from=root)
     readme = snap / "README.md"

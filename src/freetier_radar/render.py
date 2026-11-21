@@ -3374,21 +3374,6 @@ def render_contributing(source: Path, out: Path) -> str | None:
     return text
 
 
-def render_indexnow_filter(source: Path, out: Path) -> str | None:
-    """Generate the static Actions push filter from the publication map."""
-    if not source.is_file():
-        return None
-    text = source.read_text(encoding="utf-8")
-    pattern = r"(?m)^    paths:\n(?:      - [^\n]+\n)+"
-    block = "    paths:\n" + "".join(f"      - {json.dumps(node.path)}\n" for node in MAP if node.published)
-    text, matches = re.subn(pattern, lambda _: block, text)
-    if matches != 1:
-        raise ValueError("IndexNow needs exactly one published-file push filter")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(text, encoding="utf-8")
-    return text
-
-
 def render_rule_files(source_root: Path, root: Path) -> None:
     """Project registered values while preserving each file's other content."""
     from .claims import generated_claim_files, render_claims
@@ -3423,8 +3408,6 @@ def _write_all(registry_path: Path, template_dir: Path, root: Path, readme_name:
     _write_configs_readme(env, root / CONFIGS_README, github)
     _write_artifacts(registry_path, root, inputs)
     render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
-    render_indexnow_filter((contributing_from or registry_path.parent) / ".github/workflows/indexnow.yml",
-                          root / ".github/workflows/indexnow.yml")
     render_rule_files(contributing_from or registry_path.parent, root)
 
 

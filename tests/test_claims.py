@@ -141,6 +141,7 @@ def test_the_contribution_guide_generates_the_verification_frequency(tmp_path, m
 def test_verification_schedule_generates_the_actual_workflow(tmp_path, monkeypatch):
     from freetier_radar import claims, models
     root = _root(tmp_path, '')
+    (root / 'pyproject.toml').write_bytes((ROOT / 'pyproject.toml').read_bytes())
     workflow = root / '.github/workflows/update.yml'
     workflow.write_text((ROOT / '.github/workflows/update.yml').read_text())
     before = yaml.safe_load(workflow.read_text())
@@ -156,6 +157,34 @@ def test_verification_schedule_generates_the_actual_workflow(tmp_path, monkeypat
         before[trigger]['schedule'] = after[trigger]['schedule']
         assert after == before
         assert check_claims(root, (), scheduled=()) == []
+
+
+def test_render_projects_the_python_floor_to_every_workflow_and_keeps_the_indexnow_filter(render_source):
+    import shutil
+
+    from freetier_radar.render import render_all
+    from test_render import TODAY
+
+    root = render_source
+    (root / 'pyproject.toml').write_text('[project]\nrequires-python = ">=3.13"\n')
+    shutil.copytree(ROOT / '.github', root / '.github')
+    shutil.copyfile(ROOT / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
+    indexnow = root / '.github/workflows/indexnow.yml'
+    indexnow.write_text(indexnow.read_text().replace('      - "index.json"', '      - "stray.json"'))
+    render_all(root / 'registry.yaml', ROOT / 'templates', root, today=TODAY)
+
+    for name in ('ci', 'conformance', 'expire', 'indexnow', 'read-page', 'update'):
+        workflow = yaml.safe_load((root / f'.github/workflows/{name}.yml').read_text())
+        jobs = workflow['jobs']
+        concrete = [step['with']['python-version']
+                    for job in jobs.values() for step in job['steps']
+                    if step.get('with', {}).get('python-version', '').startswith('3.')]
+        assert concrete == ['3.13'], name
+        if name == 'ci':
+            assert jobs['test']['strategy']['matrix']['python'] == ['3.13', '3.14', '3.15']
+    assert 'Python 3.13 to 3.15' in (root / 'CONTRIBUTING.md').read_text()
+    assert '      - "index.json"' in indexnow.read_text()
+    assert '      - "stray.json"' not in indexnow.read_text()
 
 
 def test_shared_frequency_generates_static_text_without_rewriting_its_format(tmp_path, monkeypatch):

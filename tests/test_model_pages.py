@@ -123,22 +123,6 @@ def test_the_render_writes_a_page_per_model_and_keeps_one_that_fell_below_the_ba
     assert sorted(p.name for p in (fresh / MODELS_DIR).iterdir()) == ["index.md"]
 
 
-def test_check_rendered_sees_a_model_page_the_render_no_longer_makes(tmp_path):
-    """A page left behind is still served, and would go on saying where a model
-    is free after the list stopped saying it."""
-    reg = tmp_path / "registry.yaml"
-    save_registry(reg, [make(id="a", name="A", models=[{"family": "kimi-k3"}]),
-                        make(id="b", name="B", models=[{"family": "kimi-k3"}])])
-    from freetier_radar.render import CONFIGS_README, SITE_PAGE, render_configs_readme, render_site
-    render_readme(reg, TEMPLATES, tmp_path / "README.md", today=TODAY)
-    render_site(reg, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
-    render_configs_readme(reg, TEMPLATES, tmp_path / CONFIGS_README, today=TODAY)
-    render_artifacts(reg, tmp_path, today=TODAY)
-    assert not [s for s in check_rendered(reg, TEMPLATES, tmp_path) if s.startswith(MODELS_DIR)]
-    (tmp_path / MODELS_DIR / "glm-5.md").write_text("# Stray\n", encoding="utf-8")
-    assert f"{MODELS_DIR}/glm-5.md" in check_rendered(reg, TEMPLATES, tmp_path)
-
-
 # ---- what a model page says --------------------------------------------------
 
 def test_a_model_page_is_titled_by_the_question_and_dated_by_the_evidence():

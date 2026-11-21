@@ -48,11 +48,11 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
 @respx.mock
 async def test_source_review_reuses_current_decisions_and_their_canonical_deadlines(tmp_path, monkeypatch, bare, history_repo):
     from datetime import date, timedelta
-    from freetier_radar import models, review_leads
+    from freetier_radar import models
 
     repo = history_repo
     today = date(2026, 11, 12)
-    monkeypatch.setattr(review_leads, 'utc_today', lambda: today)
+    monkeypatch.setattr(review, 'now', lambda: f'{today.isoformat()}T12:00:00+00:00')
     monkeypatch.setattr(models, 'WATCH_RECHECK_DAYS', 2)
     monkeypatch.setattr(models, 'SOURCE_RECHECK_DAYS', 4)
     targets = []
@@ -80,6 +80,43 @@ async def test_source_review_reuses_current_decisions_and_their_canonical_deadli
     assert result['passed']
     assert len(respx.calls) == 1
     assert {r['url'] for r in result['lead_inventory']} == {url for url, state in targets if state != 'current'}
+
+
+@respx.mock
+async def test_source_review_keeps_an_offer_current_when_the_read_crosses_retirement(history_repo, monkeypatch):
+    from datetime import date, timedelta
+
+    source = 'https://vendor.example/pricing'
+    retirement = date(2026, 11, 13)
+    last_day = retirement - timedelta(days=1)
+    (history_repo / 'registry.yaml').write_text(json.dumps({'entries': [{
+        'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier', 'url': source,
+        'offering': 'Recurring coding allowance', 'first_seen': '2026-11-01',
+        'last_verified': str(last_day), 'retired_on': str(retirement),
+        'probe': {'type': 'page-keywords', 'endpoint': source, 'keywords': ['Free coding allowance for everyone']},
+    }]}))
+    subprocess.run(['git', '-C', str(history_repo), 'commit', '-qam', 'feat: dated offer'], check=True)
+    bundle = review.Bundle(history_repo / '.evidence/midnight', history_repo)
+    review.prepare(history_repo, 'HEAD~1', 'HEAD', bundle)
+    clock = f'{last_day}T23:59:59+00:00'
+    monkeypatch.setattr(review, 'now', lambda: clock)
+    monkeypatch.setattr(review, 'utc_today', lambda: date.fromisoformat(clock[:10]), raising=False)
+
+    def after_midnight(_request):
+        nonlocal clock
+        clock = f'{retirement}T00:00:01+00:00'
+        return httpx.Response(200, text='Only paid access is shown.')
+
+    respx.get(source).mock(side_effect=after_midnight)
+    started_before_retirement = await review.sources(bundle, [])
+    assert started_before_retirement['historical_rows'] == []
+    assert not started_before_retirement['passed']
+    assert [row['row'] for row in started_before_retirement['model_checks']] == ['vendor']
+
+    started_after_retirement = await review.sources(bundle, [])
+    assert started_after_retirement['passed']
+    assert started_after_retirement['historical_rows'] == ['vendor']
+    assert [row['row'] for row in started_after_retirement['historical_checks']['model_checks']] == ['vendor']
 
 
 @pytest.fixture(scope='module')

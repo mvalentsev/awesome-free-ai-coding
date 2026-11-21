@@ -23,7 +23,7 @@ import yaml
 from . import git
 from .indexnow import index_at
 from .layout import node_for
-from .models import Entry, utc_today
+from .models import Entry
 from .prober import CONCURRENCY, TIMEOUT, UA, _ask, page_response_ok, probe_page_url
 from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
@@ -373,8 +373,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     # CONTRIBUTING preserves a delisted row's last published offer. Keep its
     # diverging historical checks visible without asserting current eligibility.
     from .models import is_archived_for_good
-    historical_ids = {entry.id for entry in entries
-                      if is_archived_for_good(entry, utc_today())}
+    historical_ids = {entry.id for entry in entries if is_archived_for_good(entry, today)}
     current_urls = set(extra) | {url for row, selected in by_row.items()
                                 if row not in historical_ids for url in selected}
     historical_urls = {url for row, selected in by_row.items()
@@ -391,7 +390,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     from .review_leads import answered_sites, collect_leads
     content_types = {r['url']: r.get('content_type', '') for r in checks if r['passed']}
     base_urls = {r['url']: r.get('final_url', r['url']) for r in checks if r['passed']}
-    leads = collect_leads(raw_bodies, answered_sites(bundle.repo, scope['sha']),
+    leads = collect_leads(raw_bodies, answered_sites(bundle.repo, scope['sha'], today),
                           content_types=content_types, base_urls=base_urls)
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'lead_inventory': leads,
