@@ -3,7 +3,7 @@ layout: default
 title: 'Free LLM models by name: who serves each one free, provider probes 2026-11-16 or later'
 description: 141 model families the list's 117 live rows serve free, and every row that serves each one; 86 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-21
 model_sort: true
 sortable_model_index: true
 ---
@@ -47,7 +47,7 @@ sortable_model_index: true
 | [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/) | [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) |
 | `apertus-70b` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | [`apodex-1.1-mini`](https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/) | [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) |
-| [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/), [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳 |
+| [`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/) | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/), [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) 💳 |
 | `big-pickle` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | `ceres-1.0` | [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) |
 | `ceres-1.0-pro` | [Merkium](https://mvalentsev.github.io/awesome-free-ai-coding/providers/merkium/) |
@@ -152,7 +152,7 @@ sortable_model_index: true
 | `qwen-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | `sea-lion-27b` | [Kiosapi.id](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiosapi-id/) |
 | `sensenova-6.8-flash-lite` | [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) |
-| [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/), [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
+| [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/), [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | [`solar-pro-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-pro-4/) | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/), [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) (until 2027-03-31) |
 | [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-19T15:10:26Z</updated>
+  <updated>2026-11-21T15:59:56Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261121T155956Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-11-21T15:59:56Z</updated>
+    <summary type="text">dropped beam-1.0, solar-mini-4 · free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blockrun/20261119T151026Z</id>
     <title>Added: BlockRun (free models)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://cline.bot"/>
     <updated>2026-11-05T05:38:45Z</updated>
     <summary type="text">added beam-1.0 · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning, beam-1.0</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T004925Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-11-05T00:49:25Z</updated>
-    <summary type="text">added nemotron-3.5-lightning · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning</summary>
   </entry>
 </feed>

@@ -3,7 +3,7 @@ layout: default
 title: 'solar-pro-4 free: 2 providers, limits and ids, provider probes 2026-11-19'
 description: solar-pro-4 is served free by Freebuff and Upstage (Solar API). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-pro-4/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-21
 crumb: solar-pro-4
 ---
 
@@ -64,7 +64,7 @@ Institutional approval is required; apply to the program and receive instruction
 
 ## Related models
 
-- [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) — free at Freebuff, Cline and Nous Portal (Hermes Agent)
+- [`solar-mini-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/solar-mini-4/) — free at Freebuff and Nous Portal (Hermes Agent)
 
 ---
 

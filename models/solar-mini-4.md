@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'solar-mini-4 free: 3 providers, limits and ids, provider probes 2026-11-19'
-description: solar-mini-4 is served free by Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'solar-mini-4 free: 2 providers, limits and ids, provider probes 2026-11-19'
+description: solar-mini-4 is served free by Freebuff and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-21
 crumb: solar-mini-4
 ---
 
@@ -11,7 +11,7 @@ crumb: solar-mini-4
 
 # Where solar-mini-4 is free
 
-**3 rows on the list serve `solar-mini-4` free:** Freebuff, Cline and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**2 rows on the list serve `solar-mini-4` free:** Freebuff and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -43,25 +43,6 @@ DeepSeek V4.1 Flash Fast is the default at full access. At limited access the de
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/llms.txt)).
 
-### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
-
-🤖 Coding agents & CLIs · no card · last probe 2026-11-19 · listed since 2026-10-21
-
-Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
-
-Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality.
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/solar-mini4`
-- What you send may be used to train or improve models ([the vendor's words](https://docs.cline.bot/getting-started/free-models)).
-
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
 🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-10-21
@@ -81,6 +62,10 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
 - Callable ids: `upstage/solar-mini4:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
+
+## Rows that listed it before
+
+- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — listed 2026-10-21 to 2026-11-21
 
 ## Related models
 
