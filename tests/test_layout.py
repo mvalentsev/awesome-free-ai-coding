@@ -180,6 +180,9 @@ def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_ol
     assert gate["if"] == "strategy.job-index == 0"
     curated, = [step for step in test["steps"] if step.get("run") == "uv run freetier-check"]
     assert curated["if"] == gate["if"]
+    rendered, = [step for step in test["steps"] if "freetier-render" in step.get("run", "")]
+    assert rendered["if"] == gate["if"]
+    assert any(step.get("run") == "uv run pytest -q" and "if" not in step for step in test["steps"])
     floors = ci["jobs"]["floors"]
     assert floors["env"]["UV_RESOLUTION"] == "lowest-direct"
     setup = next(s for s in floors["steps"] if s.get("uses", "").startswith("astral-sh/setup-uv"))

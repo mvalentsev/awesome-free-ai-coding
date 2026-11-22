@@ -20,6 +20,8 @@ import httpx
 
 from . import git
 from .discovery import github_headers
+from .layout import node_for
+from .page_dates import content_hash, page_parts
 from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
@@ -105,9 +107,26 @@ def index_at(rev: str, path: str = "index.json", repo: Path = Path(".")) -> dict
 
 
 def changed_since(before: str, now: dict, repo: Path = Path("."),
-                  path: str = "index.json") -> list[str]:
-    """Compare with the caller's baseline; keep changes by intervening publishers."""
-    return changed_urls(index_at(before, path, repo), now)
+                  path: str = "index.json", *, after: str = "HEAD") -> list[str]:
+    """Compare with the caller's baseline, including changes visible only on pages."""
+    old_index = index_at(before, path, repo)
+    urls = changed_urls(old_index, now)
+    if old_index is None:
+        return urls
+    for changed in git.changed_paths(repo, before, after):
+        node = node_for(changed)
+        if not (node and node.published and node.kept and changed.endswith(".md")):
+            continue
+        old, new = (git.show(repo, ref, changed) for ref in (before, after))
+        if new is None or (old is not None and content_hash(old) == content_hash(new)):
+            continue
+        # The writer's permalink is the served address, including index pages.
+        fields, _ = page_parts(new)
+        permalink = fields.get("permalink")
+        if not isinstance(permalink, str) or not permalink.startswith("/") or permalink.startswith("//"):
+            raise ValueError(f"{changed} has an invalid Pages permalink")
+        urls.append(f"{PAGES_URL}{permalink}")
+    return list(dict.fromkeys(urls))
 
 
 def submit(urls: list[str], post=httpx.post) -> int:
@@ -186,7 +205,7 @@ def main() -> None:
     builds.add_argument("--ensure-pages-build", action="store_true",
                         help="repair a missing or failed Pages branch build")
     parser.add_argument("--before", metavar="SHA",
-                        help="submit only the pages whose data changed since this commit's index.json")
+                        help="submit only the pages that changed since this commit")
     args = parser.parse_args()
     if args.request_pages_build or args.ensure_pages_build:
         if not args.after_pages_build:
@@ -202,7 +221,9 @@ def main() -> None:
         if waited != "built":
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
-    urls = changed_since(args.before, index, path=args.index.as_posix()) if args.before else site_urls(index)
+    urls = (changed_since(args.before, index, path=args.index.as_posix(),
+                          after=args.after_pages_build or "HEAD")
+            if args.before else site_urls(index))
     if not urls:
         print(f"indexnow: no page's data changed since {args.before[:7]}, nothing submitted")
         sys.exit(0)

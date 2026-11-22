@@ -11,7 +11,7 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-__all__ = ["run", "show", "commits"]
+__all__ = ["run", "show", "changed_paths", "commits"]
 
 
 def run(repo: Path, *args: str) -> subprocess.CompletedProcess:
@@ -25,6 +25,14 @@ def show(repo: Path, rev: str, path: str) -> str | None:
     clone too shallow to reach it, a file the commit deleted."""
     shown = run(repo, "show", f"{rev}:{path}")
     return shown.stdout if shown.returncode == 0 else None
+
+
+def changed_paths(repo: Path, base: str, sha: str) -> list[str]:
+    """The paths changed between two trees, in sorted order."""
+    result = run(repo, "diff", "--name-only", "-z", base, sha, "--")
+    if result.returncode:
+        raise ValueError(f"cannot read diff between {base} and {sha}")
+    return sorted(filter(None, result.stdout.split("\0")))
 
 
 def commits(repo: Path, *args: str, field: str = "", check: bool = False) -> list[tuple[str, str]]:

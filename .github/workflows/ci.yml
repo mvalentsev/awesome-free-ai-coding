@@ -59,7 +59,10 @@ jobs:
       # registry that has moved on, until a scheduled run happens to fix it.
       # --check writes nothing: it renders into a temporary directory and
       # reports, so CI still never mutates tracked files.
+      # Compare the full published tree on the writer's Python with both
+      # dependency sets. The renderer tests still run on every matrix Python.
       - name: Registry renders, and the committed files are that render
+        if: strategy.job-index == 0
         run: uv run freetier-render --registry registry.yaml --templates templates --check
 
       # The curated files beside the registry are read by the scout, which runs

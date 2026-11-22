@@ -1,6 +1,7 @@
 """IndexNow: after a run publishes, tell Bing, Yandex and the engines that
 share their index which URLs changed, instead of waiting to be crawled."""
 import re
+from datetime import timedelta
 from pathlib import Path
 
 import pytest
@@ -38,19 +39,6 @@ def test_the_key_is_published_at_the_site_root_under_its_own_name():
     assert re.fullmatch(r"[a-f0-9]{32}", INDEXNOW_KEY)
     assert KEY_FILE == f"{INDEXNOW_KEY}.txt"
     assert (ROOT / KEY_FILE).read_text(encoding="utf-8").strip() == INDEXNOW_KEY
-
-
-def test_site_urls_cover_what_a_search_engine_should_recrawl():
-    index = build_index([make(id="x", models=[{"family": "kimi-k3"}, {"family": "solo"}]),
-                         make(id="w", models=[{"family": "kimi-k3"}]),
-                         make(id="y", probe_failures=3)], TODAY)
-    urls = site_urls(index)
-    assert urls[0] == PAGES_URL + "/"
-    for path in ("providers/", "providers/checked/", "providers/x/", "providers/y/", "feed.xml", "llms.txt",
-                 "browse.html", "models/", "models/kimi-k3/"):
-        assert f"{PAGES_URL}/{path}" in urls, path
-    assert f"{PAGES_URL}/models/solo/" not in urls, "one row and no tier: no page"
-    assert len(urls) == len(set(urls))
 
 
 def test_submit_posts_the_indexnow_payload_and_returns_the_status():
@@ -242,3 +230,56 @@ def test_a_hand_push_recovers_a_bot_push_without_a_successful_ping(tmp_path):
     bot_urls = changed_since("HEAD^", at_run, repo=tmp_path)
     assert f"{PAGES_URL}/providers/w/" in bot_urls
     assert f"{PAGES_URL}/providers/x/" not in bot_urls
+
+
+def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path):
+    import json
+    from freetier_radar import git
+    from freetier_radar.indexnow import changed_since
+    from freetier_radar.render import build_model_page, model_page_url
+
+    def commit(message):
+        git.run(tmp_path, "add", ".").check_returncode()
+        result = git.run(tmp_path, "-c", "user.name=Test", "-c", "user.email=t@t",
+                         "commit", "-qm", message)
+        result.check_returncode()
+        return git.run(tmp_path, "rev-parse", "HEAD").stdout.strip()
+
+    git.run(tmp_path, "init", "-q").check_returncode()
+    (tmp_path / "models").mkdir()
+    primary, related, peer = "glm-5.3", "glm-5.2", "kimi-k3"
+    rows = [make(id="alpha", models=[{"family": primary}]),
+            make(id="beta", models=[{"family": primary}, {"family": related}]),
+            make(id="peer", models=[{"family": peer}]),
+            make(id="second-peer", models=[{"family": peer}])]
+    index_path = tmp_path / "index.json"
+    first = build_index(rows, TODAY)
+    index_path.write_text(json.dumps(first))
+    for family in (primary, peer):
+        page = build_model_page(family, rows, [], TODAY)
+        (tmp_path / "models" / f"{family}.md").write_text(page)
+    before = commit("initial pages")
+
+    rows.append(make(id="gamma", models=[{"family": related}]))
+    after = build_index(rows, TODAY)
+    index_path.write_text(json.dumps(after))
+    for family in (primary, related):
+        page = build_model_page(family, rows, [], TODAY)
+        (tmp_path / "models" / f"{family}.md").write_text(page)
+    peer_path = tmp_path / "models" / f"{peer}.md"
+    peer_text = peer_path.read_text()
+    rerendered = re.sub(r"last_modified_at: [^\n]+", f"last_modified_at: {TODAY + timedelta(days=1)}",
+                        peer_text)
+    assert rerendered != peer_text
+    peer_path.write_text(rerendered)
+    published = commit("publish related page")
+
+    primary_record = lambda index: next(m for m in index["models"] if m["family"] == primary)
+    assert primary_record(first) == primary_record(after)
+    page = (tmp_path / "models" / f"{primary}.md").read_text()
+    assert model_page_url(related) in page.split("## Related models")[1]
+    assert model_page_url(peer) in site_urls(after)
+    urls = changed_since(before, after, repo=tmp_path, after=published)
+    assert model_page_url(related) in urls
+    assert model_page_url(primary) in urls
+    assert model_page_url(peer) not in urls

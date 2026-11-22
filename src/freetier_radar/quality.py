@@ -17,13 +17,6 @@ WITHDRAWAL_VERDICTS = ('ended', 'ineligible')
 SIGNOFFS = '.remember/review-signoffs'
 
 
-def changed_paths(repo: Path, base: str, sha: str) -> list[str]:
-    result = git.run(repo, 'diff', '--name-only', '-z', base, sha)
-    if result.returncode:
-        raise ValueError('cannot read review diff')
-    return sorted(filter(None, result.stdout.split('\0')))
-
-
 def vendor_scope(repo: Path, base: str, sha: str) -> dict:
     """One fact-review scope for source collection and mandatory signoffs.
 
@@ -42,7 +35,7 @@ def vendor_scope(repo: Path, base: str, sha: str) -> dict:
     rows = set()
     for left, right in (indexes, registries):
         rows.update(row for row in left.keys() | right.keys() if left.get(row) != right.get(row))
-    for path in changed_paths(repo, base, sha):
+    for path in git.changed_paths(repo, base, sha):
         if path.startswith('providers/') and path.endswith('.md'):
             old, new = (git.show(repo, ref, path) or '' for ref in (base, sha))
             if content_hash(old) != content_hash(new):
@@ -172,7 +165,7 @@ def accept_judgment(bundle, value: dict) -> dict:
     if scope.get('eligibility', {}) != facts['eligibility'] or scope.get('withdrawals', []) != facts['withdrawals']:
         raise ValueError('eligibility scope does not match the committed facts')
     validate_judgment(value, scope)
-    if sorted(scope['paths']) != changed_paths(bundle.repo, scope['base'], scope['sha']):
+    if sorted(scope['paths']) != git.changed_paths(bundle.repo, scope['base'], scope['sha']):
         raise ValueError('scope no longer matches the complete diff')
     if integrity(bundle):
         raise ValueError('review evidence is missing or changed')
@@ -263,7 +256,7 @@ def review_problems(repo: Path, base: str, sha: str) -> list[str]:
             raise ValueError('eligibility scope does not match the committed facts')
         fresh_eligibility(judgment.get('model_eligibility', []))
         current_eligibility_sources(bundle, judgment.get('model_eligibility', []))
-        if sorted(scope['paths']) != changed_paths(repo, scope['base'], sha):
+        if sorted(scope['paths']) != git.changed_paths(repo, scope['base'], sha):
             raise ValueError('review does not cover the complete diff')
         if digest((bundle.out / 'judgment.json').read_bytes()) != receipt['judgment_sha256']:
             raise ValueError('review signoff changed')

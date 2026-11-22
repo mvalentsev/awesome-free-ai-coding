@@ -426,7 +426,10 @@ def test_every_page_the_render_writes_is_one_indexnow_submits(tmp_path):
     index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
     others = {f"{PAGES_URL}/", f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt",
               f"{PAGES_URL}/browse.html"}
-    assert set(site_urls(index)) - others == written
+    urls = site_urls(index)
+    assert urls[0] == f"{PAGES_URL}/"
+    assert len(urls) == len(set(urls))
+    assert set(urls) == written | others
 
 
 def test_the_render_dates_are_utc_days():

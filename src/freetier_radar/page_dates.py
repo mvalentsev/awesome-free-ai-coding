@@ -19,7 +19,8 @@ from . import git
 MODIFIED = "last_modified_at"
 
 
-def _parts(text: str) -> tuple[dict, str]:
+def page_parts(text: str) -> tuple[dict, str]:
+    """Read the generated Markdown page's front matter and body."""
     if not text.startswith("---\n"):
         return {}, text
     fields, separator, body = text[4:].partition("\n---\n")
@@ -27,8 +28,11 @@ def _parts(text: str) -> tuple[dict, str]:
 
 
 def content_hash(text: str) -> str:
-    fields, body = _parts(text)
-    fields.pop(MODIFIED, None)
+    return _content_hash(*page_parts(text))
+
+
+def _content_hash(fields: dict, body: str) -> str:
+    fields = {key: value for key, value in fields.items() if key != MODIFIED}
     # Legacy daily generation stamps are incidental, including their removal.
     # Verification dates, titles, source URLs and limits remain substantive.
     body = re.sub(r"(Generated from `registry\.yaml`) on \d{4}-\d{2}-\d{2}", r"\1", body)
@@ -60,12 +64,12 @@ class PageDates:
                      if self.repo is not None else "")
 
     def stamp(self, rel: str, text: str) -> str:
-        fields, body = _parts(text)
-        fingerprint = content_hash(text)
+        fields, body = page_parts(text)
+        fingerprint = _content_hash(fields, body)
         path = self.source / rel
         previous = path.read_text(encoding="utf-8") if path.is_file() else ""
-        old, _ = _parts(previous)
-        same = bool(previous) and content_hash(previous) == fingerprint
+        old, old_body = page_parts(previous)
+        same = bool(previous) and _content_hash(old, old_body) == fingerprint
         if same:
             # Full Git provenance repairs stale legacy dates. A source archive
             # or shallow clone retains the recorded date; later full history
