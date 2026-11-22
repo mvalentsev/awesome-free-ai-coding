@@ -51,6 +51,7 @@ on:
 
 permissions:
   contents: write
+  deployments: read
   pages: write
 
 # Serialize the read, submission and advance of the shared delivery ref.

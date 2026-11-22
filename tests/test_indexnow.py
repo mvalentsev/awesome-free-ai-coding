@@ -27,11 +27,15 @@ def test_a_later_noop_repairs_failed_publication_but_keeps_a_current_build(monke
     from freetier_radar import indexnow
     requested = []
     monkeypatch.setattr(indexnow, 'request_pages_build', lambda: requested.append(True))
+    monkeypatch.setattr(indexnow, 'latest_pages_build', lambda: ('built', 'old'))
     for status, commit, needs_request in [('built', 'current', False), ('queued', 'current', False),
                                           ('building', 'current', False), ('errored', 'current', True),
                                           ('built', 'old', True)]:
-        monkeypatch.setattr(indexnow, 'latest_pages_build', lambda: (status, commit))
+        monkeypatch.setattr(indexnow, 'latest_pages_deployment', lambda: (status, commit))
         assert indexnow.ensure_pages_build('current') is needs_request
+    assert len(requested) == 2
+    monkeypatch.setattr(indexnow, 'latest_pages_build', lambda: ('queued', 'current'))
+    assert not indexnow.ensure_pages_build('current')
     assert len(requested) == 2
 
 
@@ -96,6 +100,26 @@ def test_a_build_that_cannot_be_read_is_waited_out_not_fatal():
     def unreachable():
         raise OSError("no network")
     assert wait_for_pages("sha", fetch=unreachable, sleep=lambda s: None, attempts=2) == "timeout"
+
+
+def test_the_sender_uses_the_active_pages_deployment_when_build_metadata_disagrees():
+    import respx
+    from freetier_radar.indexnow import wait_for_pages
+
+    api = 'https://api.github.com/repos/mvalentsev/awesome-free-ai-coding'
+    old, target = 'a' * 40, 'b' * 40
+    with respx.mock(assert_all_called=False) as routes:
+        routes.get(api + '/pages/builds/latest').respond(200, json={'status': 'built', 'commit': old})
+        routes.get(api + '/deployments', params={'environment': 'github-pages', 'per_page': 1}).respond(
+            200, json=[{'id': 42, 'sha': target, 'environment': 'github-pages'}])
+        statuses = routes.get(api + '/deployments/42/statuses', params={'per_page': 1})
+        statuses.side_effect = [
+            respx.MockResponse(200, json=[{'state': 'in_progress'}]),
+            respx.MockResponse(200, json=[{'state': 'success', 'environment_url': PAGES_URL + '/'}]),
+        ]
+        slept = []
+        assert wait_for_pages(target, sleep=slept.append, attempts=2) == 'built'
+    assert len(slept) == 1 and statuses.call_count == 2
 
 
 @pytest.mark.parametrize('published', ['built', 'errored', 'timeout'])
@@ -221,13 +245,16 @@ from pathlib import Path
 
 import respx
 
-from freetier_radar.indexnow import ENDPOINT, main
+from freetier_radar.indexnow import ENDPOINT, PAGES_URL, main
 
 with respx.mock() as routes:
-    pages = 'https://api.github.com/repos/mvalentsev/awesome-free-ai-coding/pages/builds'
-    routes.get(pages + '/latest').respond(200, json={
-        'status': 'built', 'commit': os.environ['SERVED_SHA'],
-    })
+    api = 'https://api.github.com/repos/mvalentsev/awesome-free-ai-coding'
+    routes.get(api + '/deployments').respond(200, json=[{
+        'id': 42, 'sha': os.environ['SERVED_SHA'], 'environment': 'github-pages',
+    }])
+    routes.get(api + '/deployments/42/statuses').respond(200, json=[{
+        'state': 'success', 'environment_url': PAGES_URL + '/',
+    }])
     def submit(request):
         with Path('requests.jsonl').open('a') as log:
             log.write(json.dumps(json.loads(request.content)['urlList']) + '\\n')

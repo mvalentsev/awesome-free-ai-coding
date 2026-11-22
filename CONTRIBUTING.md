@@ -798,9 +798,10 @@ GitHub's renderer and stays off the Pages site. **Never edit it by hand.**
 `llms.txt` is generated with them as the machine-readable list. `browse.html`
 is the hand-written filterable page; it reads `index.json` in the browser and
 shares its field names with the generated data. After publication,
-`freetier-indexnow` submits only changed published URLs after Pages has built the
-commit. `.github/workflows/indexnow.yml` uses the map-derived push filter and
-accepts explicit dispatches from verification and expiry. It serializes delivery
+`freetier-indexnow` submits only changed published URLs after the `github-pages`
+deployment confirms the exact commit. `.github/workflows/indexnow.yml` uses the
+map-derived push filter and accepts explicit dispatches from verification and
+expiry. It serializes delivery
 and advances `refs/heads/indexnow-delivered` only after IndexNow accepts the URLs
 or the published commit has no changed URLs. The hourly expiry dispatch can
 repair a missing Pages build and retry from the same delivery ref.

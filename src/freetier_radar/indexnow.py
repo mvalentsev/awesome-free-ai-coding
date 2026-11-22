@@ -30,6 +30,7 @@ ENDPOINT = "https://api.indexnow.org/indexnow"
 INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
 KEY_FILE = f"{INDEXNOW_KEY}.txt"
 DELIVERY_REF = "refs/heads/indexnow-delivered"
+PAGES_ENVIRONMENT = "github-pages"
 TIMEOUT = 30.0
 # How long a ping waits for Pages to build its commit: fifteen minutes.
 PAGES_ATTEMPTS = 60
@@ -156,14 +157,16 @@ def request_pages_build(token: str | None = None) -> None:
 def ensure_pages_build(sha: str, force: bool = False, *,
                        superseded: Callable[[str], bool] | None = None) -> bool:
     """Repair a missing/failed build, without rebuilding an already served commit."""
-    try:
-        status, commit = latest_pages_build()
-    except (OSError, httpx.HTTPError, ValueError):
-        status, commit = "", ""
-    if not force and status in ("built", "building", "queued") and (
-        commit == sha or (superseded is not None and superseded(commit))
-    ):
-        return False
+    if not force:
+        status, commit = _pages_state(latest_pages_deployment)
+        if status in ("built", "building", "queued") and (
+            commit == sha or (superseded is not None and superseded(commit))
+        ):
+            return False
+        # A branch build can be queued before Pages creates its deployment.
+        status, commit = _pages_state(latest_pages_build)
+        if status in ("building", "queued") and commit == sha:
+            return False
     request_pages_build()
     return True
 
@@ -180,7 +183,55 @@ def latest_pages_build(token: str | None = None) -> tuple[str, str]:
     return build.get("status", ""), build.get("commit", "")
 
 
-def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages_build,
+def latest_pages_deployment(token: str | None = None) -> tuple[str, str]:
+    """Read the production Pages deployment and its latest status."""
+    # The branch build can name the previous SHA after a newer Pages deployment
+    # already succeeded. Deployment and status REST endpoints (GitHub Docs)
+    # matched the live Pages bytes on 2026-11-22.
+    token = token or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
+    repo = REPO_URL.removeprefix("https://github.com/")
+    endpoint = f"https://api.github.com/repos/{repo}/deployments"
+    headers = github_headers(token)
+    response = httpx.get(endpoint, params={"environment": PAGES_ENVIRONMENT, "per_page": 1},
+                         headers=headers, timeout=TIMEOUT)
+    response.raise_for_status()
+    deployments = response.json()
+    if not deployments:
+        return "", ""
+    deployment = deployments[0]
+    if deployment.get("environment") != PAGES_ENVIRONMENT:
+        return "", ""
+    sha, deployment_id = deployment.get("sha"), deployment.get("id")
+    if not isinstance(sha, str) or not re.fullmatch(r"[0-9a-f]{40}", sha) or type(deployment_id) is not int:
+        raise ValueError("invalid Pages deployment")
+    response = httpx.get(f"{endpoint}/{deployment_id}/statuses", params={"per_page": 1},
+                         headers=headers, timeout=TIMEOUT)
+    response.raise_for_status()
+    statuses = response.json()
+    if not statuses:
+        return "", ""
+    latest = statuses[0]
+    state = latest.get("state")
+    if state == "success":
+        url = latest.get("environment_url")
+        return ("built", sha) if isinstance(url, str) and url.rstrip("/") == PAGES_URL else ("", "")
+    if state in ("failure", "error"):
+        return "errored", sha
+    if state == "in_progress":
+        return "building", sha
+    if state in ("pending", "queued"):
+        return "queued", sha
+    return "", ""
+
+
+def _pages_state(fetch: Callable[[], tuple[str, str]]) -> tuple[str, str]:
+    try:
+        return fetch()
+    except (OSError, httpx.HTTPError, ValueError):
+        return "", ""
+
+
+def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages_deployment,
                    sleep: Callable[[float], None] = time.sleep,
                    attempts: int = PAGES_ATTEMPTS, every: float = PAGES_EVERY, *,
                    superseded: Callable[[str], bool] | None = None) -> str:
@@ -188,10 +239,7 @@ def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages
     of that commit failed — or "timeout". A newer build can supersede a queued
     delivery. A build that cannot be read is waited out."""
     for attempt in range(attempts):
-        try:
-            status, commit = fetch()
-        except (OSError, httpx.HTTPError, ValueError):
-            status, commit = "", ""
+        status, commit = _pages_state(fetch)
         if commit == sha and status in ("built", "errored"):
             return status
         if superseded is not None and superseded(commit):
