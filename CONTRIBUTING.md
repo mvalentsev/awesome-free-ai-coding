@@ -481,12 +481,9 @@ remain in `expired_models`; their family-bound quotas stay as evidence and are
 excluded from current Limits.
 The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
 which writes nothing before a deadline and earns no verification fields.
-It explicitly requests a Pages build before notifying IndexNow. A manual run
-also rebuilds Pages if no promotion ended, so the publication path can be
-checked without changing a deadline. Verification and expiry share a queued
-writer group, preserving pending verification runs.
-If an earlier publication failed, the next hourly check repairs its Pages build
-even when no further model expired.
+It dispatches the shared Pages and IndexNow reconciliation even when no
+promotion ended. A manual expiry run requests a Pages rebuild. Verification
+and expiry share a queued writer group, preserving pending verification runs.
 Publication follows the next successful run; GitHub scheduling can delay it.
 The exact deadline remains visible in the interim.
 
@@ -802,9 +799,13 @@ GitHub's renderer and stays off the Pages site. **Never edit it by hand.**
 is the hand-written filterable page; it reads `index.json` in the browser and
 shares its field names with the generated data. After publication,
 `freetier-indexnow` submits only changed published URLs after Pages has built the
-commit. `.github/workflows/indexnow.yml` applies the same map-derived path filter
-for other pushes to `main`. The ownership key is the root file named after it;
-it grants no access beyond asking an engine to crawl this site.
+commit. `.github/workflows/indexnow.yml` uses the map-derived push filter and
+accepts explicit dispatches from verification and expiry. It serializes delivery
+and advances `refs/heads/indexnow-delivered` only after IndexNow accepts the URLs
+or the published commit has no changed URLs. The hourly expiry dispatch can
+repair a missing Pages build and retry from the same delivery ref.
+The ownership key is the root file named after it and only lets a caller ask
+an engine to crawl this site.
 
 Google's sitemap reference belongs in the host's root `robots.txt`, not the
 project-site path. It is maintained in the user-site repository
@@ -972,8 +973,8 @@ Pages byte checks use the repository map: only files marked `published` are
 served there. Changed README files are also checked at the exact GitHub commit,
 including documentation excluded from Pages.
 For a bot verification or expiry commit, add `prepare --verification-run <producer-run-id>`:
-the full successful writer log must prove which commit it produced, since that
-push runs its checks and IndexNow inside the writer instead of starting CI.
+the full successful writer log must prove which commit it produced. The writer
+runs its own checks and dispatches IndexNow separately.
 It prints workflow updates only when their state changes. Run the emitted
 `browser.js` with Playwright's `browser_run_code_unsafe` filename argument,
 save the returned JSON privately, and import it with `browser --result <file>`.

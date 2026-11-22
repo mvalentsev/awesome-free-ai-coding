@@ -8,7 +8,6 @@ on:
 permissions:
   actions: write
   contents: write
-  pages: write
 
 # Serialize every writer of main with the verification workflow. An hourly
 # check is a no-op unless a documented deadline has passed; it calls no vendor
@@ -57,16 +56,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: uv run freetier-conformance dispatch --before "$(git rev-parse HEAD^)" --sha "$(git rev-parse HEAD)"
-      - name: Ping IndexNow after Pages has built the expiry commit
+      - name: Dispatch Pages and IndexNow reconciliation
         if: ${{ always() && steps.publish.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ github.token }}
-          CHANGED: ${{ steps.publish.outputs.changed }}
-          EVENT: ${{ github.event_name }}
-        run: |
-          sha=$(git rev-parse HEAD)
-          before=$sha
-          mode=--ensure-pages-build
-          if [ "$CHANGED" = true ]; then before=$(git rev-parse HEAD^); fi
-          if [ "$EVENT" = workflow_dispatch ]; then mode=--request-pages-build; fi
-          uv run freetier-indexnow --index index.json "$mode" --after-pages-build "$sha" --before "$before"
+          REBUILD_PAGES: ${{ github.event_name == 'workflow_dispatch' }}
+        run: gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref main -f "rebuild_pages=$REBUILD_PAGES"

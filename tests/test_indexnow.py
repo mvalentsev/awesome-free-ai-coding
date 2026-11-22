@@ -162,74 +162,155 @@ def test_the_ping_reads_the_index_as_the_push_found_it(tmp_path):
     assert index_at("0" * 40, "index.json", repo=tmp_path) is None
 
 
-@pytest.mark.parametrize('lookup', ['success', 'empty', 'failure'])
-def test_push_notification_uses_the_last_successful_run_as_its_baseline(lookup):
+def test_the_hourly_expiry_recovers_a_failed_notification_without_another_push(tmp_path):
+    """Execute the actual publisher steps with a real Git remote and stubbed HTTP."""
+    import json
     import os
     import subprocess
+    import sys
+
     import yaml
 
-    ping = yaml.safe_load((ROOT / ".github/workflows/indexnow.yml").read_text(encoding="utf-8"))
-    steps = ping["jobs"]["ping"]["steps"]
-    call = next(s for s in steps if "freetier-indexnow" in s.get("run", ""))
-    assert not call.get("continue-on-error", False)
-    checkout = next(s for s in steps if s.get("uses", "").startswith("actions/checkout"))
-    assert checkout.get("with", {}).get("fetch-depth") == 0
+    def run(*args, **kwargs):
+        return subprocess.run(args, cwd=tmp_path, text=True, capture_output=True, **kwargs)
 
-    commands = '''
-gh() {
-    [[ "$2" == 'repos/test/project/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1' ]] || return 2
-    case "$LOOKUP" in
-        success) echo earlier-head ;;
-        failure) return 3 ;;
-    esac
+    def git(*args, repo=tmp_path):
+        return run('git', '-C', str(repo), *args, check=True).stdout.strip()
+
+    def commit(rows, *, repo=tmp_path):
+        (repo / 'index.json').write_text(json.dumps(build_index(rows, TODAY)))
+        git('add', 'index.json', repo=repo)
+        git('-c', 'user.name=Test', '-c', 'user.email=test@example.org', 'commit',
+            '--allow-empty', '-qm', 'publish', repo=repo)
+        git('push', 'origin', 'HEAD:main', repo=repo)
+        return git('rev-parse', 'HEAD', repo=repo)
+
+    git('init', '-q', '-b', 'main')
+    git('init', '-q', '--bare', str(tmp_path / 'remote.git'))
+    git('remote', 'add', 'origin', str(tmp_path / 'remote.git'))
+    start = commit([make(id='old')])
+    cursor = 'refs/heads/indexnow-delivered'
+    git('push', 'origin', f'{start}:{cursor}')
+    current = commit([make(id='old'), make(id='new')])
+
+    workflows = {name: yaml.safe_load((ROOT / '.github/workflows' / f'{name}.yml').read_text())
+                 for name in ('indexnow', 'update', 'expire')}
+    worker = workflows['indexnow']
+    triggers = worker.get('on', worker.get(True))
+    assert set(triggers) == {'push', 'workflow_dispatch'}
+    assert triggers['push']['branches'] == ['main']
+    assert worker['jobs']['ping']['if'] == "github.ref == 'refs/heads/main'"
+    assert worker['concurrency']['cancel-in-progress'] is False
+    steps = worker['jobs']['ping']['steps']
+    checkout = next(s for s in steps if s.get('uses', '').startswith('actions/checkout'))
+    assert checkout['with'] == {'ref': 'main', 'fetch-depth': 0}
+
+    def step(workflow, job):
+        return next(s for s in workflows[workflow]['jobs'][job]['steps']
+                    if 'freetier-indexnow' in s.get('run', '') or
+                    'workflow run indexnow.yml' in s.get('run', ''))
+
+    assert "steps.publish.outcome == 'success'" in step('expire', 'expire')['if']
+    assert '!inputs.dry_run' in step('update', 'update')['if']
+    (tmp_path / 'worker.sh').write_text(step('indexnow', 'ping')['run'])
+    (tmp_path / 'network.py').write_text("""
+import json
+import os
+import signal
+from pathlib import Path
+
+import respx
+
+from freetier_radar.indexnow import ENDPOINT, main
+
+with respx.mock() as routes:
+    pages = 'https://api.github.com/repos/mvalentsev/awesome-free-ai-coding/pages/builds'
+    routes.get(pages + '/latest').respond(200, json={
+        'status': 'built', 'commit': os.environ['SERVED_SHA'],
+    })
+    def submit(request):
+        with Path('requests.jsonl').open('a') as log:
+            log.write(json.dumps(json.loads(request.content)['urlList']) + '\\n')
+        if os.environ['INDEXNOW_STATUS'] == 'cancelled':
+            os.kill(os.getpid(), signal.SIGTERM)
+        return respx.MockResponse(int(os.environ['INDEXNOW_STATUS']))
+    routes.post(ENDPOINT).mock(side_effect=submit)
+    main()
+""")
+    (tmp_path / 'publisher.sh').write_text("""
+uv() {
+    [[ "$1 $2" == 'run freetier-indexnow' ]] || return 22
+    shift 2
+    "$TEST_PYTHON" network.py "$@"
 }
-uv() { printf '%s\\n' "$@"; }
-'''
-    result = subprocess.run(['bash', '-eo', 'pipefail', '-c', commands + call['run']],
-                            env={**os.environ, 'REPOSITORY': 'test/project', 'PUBLISHED_SHA': 'current-head',
-                                 'LOOKUP': lookup}, capture_output=True, text=True)
-    if lookup == 'failure':
-        assert result.returncode == 3 and not result.stdout
-        return
-    assert result.returncode == 0, result.stderr
-    suffix = ['--before', 'earlier-head'] if lookup == 'success' else []
-    assert result.stdout.splitlines() == ['run', 'freetier-indexnow', '--after-pages-build', 'current-head', *suffix]
+export -f uv
+gh() {
+    if [[ "$1 $2 $3" == 'workflow run indexnow.yml' ]]; then
+        [[ "$4 $5 $6 $7" == "--repo $GITHUB_REPOSITORY --ref main" ]] || return 24
+        EVENT=workflow_dispatch bash -eo pipefail worker.sh
+    else
+        return 23
+    fi
+}
+export -f gh
+""")
 
+    def invoke(workflow, job, status, *, served=current):
+        return run('bash', '-eo', 'pipefail', '-c', 'source publisher.sh\n' + step(workflow, job)['run'],
+                   env={**os.environ, 'TEST_PYTHON': sys.executable, 'REBUILD_PAGES': 'false',
+                        'EVENT': 'push', 'SERVED_SHA': served, 'INDEXNOW_STATUS': str(status),
+                        'GITHUB_REPOSITORY': 'mvalentsev/awesome-free-ai-coding'})
 
-def test_a_hand_push_recovers_a_bot_push_without_a_successful_ping(tmp_path):
-    """A verification commit's subject cannot establish that IndexNow accepted its URLs."""
-    import json
-    import subprocess
-    from freetier_radar.indexnow import changed_since
+    def accepted():
+        return git('ls-remote', 'origin', cursor).split()[0]
 
-    def commit(rows, message):
-        (tmp_path / "index.json").write_text(json.dumps(build_index(rows, TODAY)), encoding="utf-8")
-        subprocess.run(["git", "add", "index.json"], cwd=tmp_path, check=True)
-        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", message],
-                       cwd=tmp_path, check=True)
-        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp_path, capture_output=True,
-                              text=True, check=True).stdout.strip()
+    first = invoke('update', 'update', 503)
+    assert first.returncode == 1, first.stderr
+    assert accepted() == start
+    retry = invoke('expire', 'expire', 202)
+    assert retry.returncode == 0, retry.stderr
+    assert accepted() == current, retry.stdout
+    duplicate = invoke('expire', 'expire', 200)
+    assert duplicate.returncode == 0, duplicate.stderr
+    def recorded_posts():
+        return [json.loads(line) for line in (tmp_path / 'requests.jsonl').read_text().splitlines()]
 
-    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
-    rows = {k: make(id=k) for k in ("x", "w", "z")}
-    start = commit(list(rows.values()), "data: start")
-    rows["x"] = make(id="x", limits="changed by hand")
-    commit(list(rows.values()), "data: x by hand")
-    rows["w"] = make(id="w", limits="read again by the run")
-    commit(list(rows.values()), "chore: verification 2026-09-27")
-    rows["z"] = make(id="z", limits="changed by hand after the run")
-    commit(list(rows.values()), "data: z by hand")
-    now = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
-    urls = changed_since(start, now, repo=tmp_path)
-    assert {f"{PAGES_URL}/providers/{provider}/" for provider in rows} <= set(urls)
-    # The bot's own ping, from its parent, covers only its changes.
-    rows_head = subprocess.run(["git", "rev-parse", "HEAD~1"], cwd=tmp_path, capture_output=True,
-                               text=True, check=True).stdout.strip()
-    subprocess.run(["git", "checkout", "-q", rows_head], cwd=tmp_path, check=True)
-    at_run = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
-    bot_urls = changed_since("HEAD^", at_run, repo=tmp_path)
-    assert f"{PAGES_URL}/providers/w/" in bot_urls
-    assert f"{PAGES_URL}/providers/x/" not in bot_urls
+    posts = recorded_posts()
+    assert len(posts) == 2 and posts[0] == posts[1]
+    assert f'{PAGES_URL}/providers/new/' in posts[1]
+    assert f'{PAGES_URL}/providers/old/' not in posts[1]
+
+    rows = [make(id='old'), make(id='new'), make(id='during-cancel')]
+    interrupted = commit(rows)
+    cancelled = invoke('update', 'update', 'cancelled', served=interrupted)
+    assert cancelled.returncode == 143, cancelled.stderr
+    assert accepted() == current
+
+    other_checkout = tmp_path / 'other'
+    git('clone', '-q', '-b', 'main', str(tmp_path / 'remote.git'), str(other_checkout))
+    newest_rows = [*rows, make(id='after-cancel')]
+    latest = commit(newest_rows, repo=other_checkout)
+    assert run('git', 'cat-file', '-e', latest).returncode != 0
+    stale = invoke('indexnow', 'ping', 200, served=latest)
+    assert stale.returncode == 0 and 'superseded' in stale.stdout, stale.stderr
+    assert accepted() == current
+    assert len(recorded_posts()) == 3
+
+    git('merge', '--ff-only', 'FETCH_HEAD')
+    recovered = invoke('indexnow', 'ping', 200, served=latest)
+    assert recovered.returncode == 0, recovered.stderr
+    assert accepted() == latest
+    posts = recorded_posts()
+    assert len(posts) == 4
+    assert {url for url in posts[-1] if '/providers/' in url and url != PAGES_URL + '/providers/'} == {
+        f'{PAGES_URL}/providers/during-cancel/', f'{PAGES_URL}/providers/after-cancel/',
+    }
+
+    unchanged = commit(newest_rows)
+    empty = invoke('expire', 'expire', 200, served=unchanged)
+    assert empty.returncode == 0 and 'nothing submitted' in empty.stdout, empty.stderr
+    assert accepted() == unchanged
+    assert len(recorded_posts()) == 4
 
 
 def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path):

@@ -29,8 +29,6 @@ permissions:
   actions: write
   contents: write
   pull-requests: write
-  # Publication requests a missing Pages build before notifying IndexNow.
-  pages: write
 
 # One run that commits at a time. GitHub starts the scheduled run when it gets
 # to it — from half an hour to eleven hours after the cron time, July to
@@ -193,19 +191,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: uv run freetier-conformance dispatch --before "$(git rev-parse HEAD^)" --sha "$(git rev-parse HEAD)"
 
-      # Without a ping, Bing, Yandex and the engines sharing their index can
-      # take days to weeks to notice a change; a ping after a push names the
-      # pages that changed — once Pages has built the commit, or an
-      # engine fetching on the ping reads the pages before it (see indexnow.yml,
-      # which waits the same way for a push made by hand). Best effort: an
-      # engine being down is not a reason to fail a run that has already
-      # published.
-      - name: Tell search engines what changed (IndexNow)
+      # The separate sender can retry this publication independently of the
+      # verification and scout. Hourly expiry also dispatches it on a no-op.
+      - name: Dispatch Pages and IndexNow reconciliation
         if: ${{ always() && !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run freetier-indexnow --index index.json --ensure-pages-build --after-pages-build "$(git rev-parse HEAD)" --before "$(git rev-parse HEAD^)"
+        run: gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref main
 
       # Says what the history just recorded, from the project's own accounts,
       # once per event and channel (announced.jsonl is the ledger). With no

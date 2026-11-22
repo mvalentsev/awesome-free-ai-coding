@@ -174,12 +174,15 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
                       changed_pages('models', 'models', 'family'))
     eligibility = facts['eligibility']
     required = {'pages build and deployment'}
+    indexnow_dispatch = False
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)
         workflow = yaml.safe_load(content) if content else None
         if not workflow:
             continue
         triggers = workflow.get('on', workflow.get(True, {}))
+        if filename == 'indexnow.yml':
+            indexnow_dispatch = isinstance(triggers, dict) and 'workflow_dispatch' in triggers
         push = triggers.get('push') if isinstance(triggers, dict) else None
         if push is None:
             continue
@@ -203,14 +206,20 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         run = produced_run(repo, sha, run, log, workflow['name'], subject)
         run['log'] = bundle.write(f"workflows/{run['databaseId']}-{run['attempt']}.log", log.encode())
         bundle.save('verification-run', run)
-        for path in ('ci.yml', 'indexnow.yml'):
-            required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/' + path))['name'])
+        required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/ci.yml'))['name'])
+        indexnow = yaml.safe_load(blob(repo, sha, '.github/workflows/indexnow.yml'))
+        if indexnow_dispatch:
+            required.add(indexnow['name'])
+        else:
+            # Older writers ran IndexNow inline.
+            required.discard(indexnow['name'])
         required.add(workflow['name'])
     scope = {'base': base, 'sha': sha, 'paths': paths, 'deleted_paths': deleted_paths, 'rows': rows,
              'eligibility': eligibility, 'withdrawals': facts['withdrawals'],
              'push_base': push_base, 'push_paths': push_paths,
              'families': families,
-             'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}
+             'workflows': sorted(required), 'indexnow_dispatch': indexnow_dispatch,
+             'verification_run': verification_run, 'prepared_at': now()}
     if previous and any(previous.get(key) != scope[key] for key in ('paths', 'rows', 'families', 'workflows')):
         raise ValueError('changed coverage requires a new evidence directory')
     return bundle.save('scope', scope)
@@ -489,6 +498,16 @@ def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
             bundle.write(filename,
                          gh('run', 'view', str(run['databaseId']), '--repo',
                             REPO_URL.removeprefix('https://github.com/'), '--attempt', str(run['attempt']), '--log').encode())
+    if state == 'passed' and scope.get('indexnow_dispatch') and 'indexnow' in required:
+        # Dispatch records main when requested. A queued worker checks out main
+        # again and may supersede that commit, so its trigger SHA alone cannot
+        # prove what it actually notified.
+        log = (bundle.out / chosen['indexnow']['log']).read_text(encoding='utf-8')
+        sha = re.escape(scope['sha'])
+        if not re.search(rf'(?m)indexnow: (?:recorded delivery at {sha}|{sha} already reconciled)\s*$', log):
+            state = 'failed'
+            print(json.dumps({'phase': 'workflows', 'state': state,
+                              'reason': 'IndexNow log does not confirm the exact commit'}), flush=True)
     bundle.write('open-prs.json', gh('pr', 'list', '--repo', REPO_URL.removeprefix('https://github.com/'),
                                     '--state', 'open', '--json', 'number,title,author,headRefOid,url').encode())
     return bundle.save('workflows', {'sha': scope['sha'], 'required': sorted(required), 'runs': selected,

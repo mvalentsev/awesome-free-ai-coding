@@ -653,6 +653,33 @@ def test_workflow_rerun_uses_the_newest_attempt_and_not_an_older_green_run():
     assert review.workflow_state([old, new], 'a' * 40, {'ci'}) == 'waiting'
 
 
+@pytest.mark.parametrize('message,passed', [
+    ('recorded delivery at ' + 'a' * 40, True),
+    ('a' * 40 + ' already reconciled', True),
+    ('recorded delivery at ' + 'b' * 40, False),
+    ('Pages build of ' + 'a' * 40 + ': superseded', False),
+])
+def test_indexnow_review_requires_the_exact_delivery_log(tmp_path, monkeypatch, message, passed):
+    sha = 'a' * 40
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    monkeypatch.setattr(review, 'scoped', lambda bundle: {
+        'sha': sha, 'workflows': ['indexnow'], 'indexnow_dispatch': True,
+    })
+    run = {'name': 'indexnow', 'headSha': sha, 'status': 'completed', 'conclusion': 'success',
+           'databaseId': 1, 'attempt': 1}
+
+    def github(command, subcommand, *args):
+        if (command, subcommand) == ('run', 'list'):
+            return json.dumps([run])
+        if (command, subcommand) == ('run', 'view'):
+            return 'ping\tdate\tindexnow: ' + message + '\n'
+        assert (command, subcommand) == ('pr', 'list')
+        return '[]'
+
+    monkeypatch.setattr(review, 'gh', github)
+    assert review.wait_workflows(bundle, timeout=0)['passed'] is passed
+
+
 @pytest.mark.parametrize('every,timeout', [(float('nan'), 900), (15, float('inf')),
                                            (0, 900), (15, -1)])
 def test_invalid_workflow_wait_bounds_fail_before_network_access(monkeypatch, every, timeout):
@@ -1219,16 +1246,20 @@ def test_verification_log_must_prove_the_exact_produced_commit(tmp_path, history
     ('update.yml', 'update', 'verification'),
     ('expire.yml', 'expire promotions', 'expire model promotions'),
 ])
+@pytest.mark.parametrize('dispatched', [False, True])
 def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeypatch,
-                                                              filename, name, subject, history_repo):
+                                                              filename, name, subject, history_repo,
+                                                              dispatched):
     import yaml
     repo = history_repo
     workflows = repo / '.github/workflows'
     workflows.mkdir(parents=True)
     for file, workflow_name in [('update.yml', 'update'), ('expire.yml', 'expire promotions'),
                                 ('ci.yml', 'ci'), ('indexnow.yml', 'indexnow')]:
-        (workflows / file).write_text(yaml.safe_dump({
-            'name': workflow_name, 'on': {'push': {}} if file in {'ci.yml', 'indexnow.yml'} else {}}))
+        triggers = {'push': {}} if file in {'ci.yml', 'indexnow.yml'} else {}
+        if file == 'indexnow.yml' and dispatched:
+            triggers['workflow_dispatch'] = {}
+        (workflows / file).write_text(yaml.safe_dump({'name': workflow_name, 'on': triggers}))
     env = {**os.environ, 'GIT_AUTHOR_NAME': 'a reviewer', 'GIT_AUTHOR_EMAIL': 't@example.com',
            'GIT_COMMITTER_NAME': 'a reviewer', 'GIT_COMMITTER_EMAIL': 't@example.com'}
     subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True, env=env)
@@ -1240,7 +1271,10 @@ def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeyp
     monkeypatch.setattr(review, 'gh', lambda *args: log if '--log' in args else json.dumps(run))
     bundle = review.Bundle(repo / '.evidence/good', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle, verification_run=3)
-    assert set(scope['workflows']) == {'pages build and deployment', name}
+    expected = {'pages build and deployment', name}
+    if dispatched:
+        expected.add('indexnow')
+    assert set(scope['workflows']) == expected
     assert bundle.load('verification-run')['producedSha'] == sha
     assert log in (bundle.out / 'workflows/3-1.log').read_text()
 

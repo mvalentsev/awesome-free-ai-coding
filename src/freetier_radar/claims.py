@@ -240,6 +240,11 @@ def _bot_conformance_dispatch(root: Path) -> tuple[str, ...]:
     return ('verification', 'expiry')
 
 
+def _indexnow_delivery(root: Path) -> tuple[str]:
+    from .indexnow import DELIVERY_REF
+    return (DELIVERY_REF,)
+
+
 def _unpriced_catalog_tier(root: Path) -> tuple[str, ...]:
     from .prober import _is_free
     if (_is_free({'tier': 'free'})
@@ -476,6 +481,8 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           "layout.MAP; independent new-file/job-preservation controls in tests/test_layout.py"),
     Claim(INDEXNOW_WORKFLOW, r"(?m)(^    paths:\n(?:      - [^\n]+\n)+)",
           _indexnow_push_filter, "published paths in layout.MAP", generated=True),
+    Claim("CONTRIBUTING.md", r"advances `(refs/heads/[\w-]+)` only after IndexNow accepts the URLs\s+or the published commit has no changed URLs",
+          _indexnow_delivery, "indexnow.DELIVERY_REF and deliver; three-workflow HTTP and Git regression in tests/test_indexnow.py"),
     Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
           _browser_coverage_purposes,
           "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),

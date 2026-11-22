@@ -1,13 +1,16 @@
 name: indexnow
 
-# Bing, Yandex and the engines that share their index read what IndexNow names,
-# and Bing's index is what the search inside ChatGPT, Copilot and DuckDuckGo
-# reads. The scheduled run pings after its own push; a push made by hand — a row
-# added, a page rewritten, a model page born — would wait up to four days for
-# the next run, so a push to main that changes a file the site publishes pings
-# as well. The run's own push is made with GITHUB_TOKEN, which starts no push
-# workflow.
+# One sender for human pushes, verification and hourly expiry, including a
+# retry when expiry finds nothing to change. The bot dispatches this workflow
+# explicitly because its GITHUB_TOKEN pushes do not start push workflows
+# (GitHub trigger-a-workflow docs, checked 2026-11-22).
 on:
+  workflow_dispatch:
+    inputs:
+      rebuild_pages:
+        description: "Request a Pages rebuild even if this commit is already served"
+        type: boolean
+        default: false
   push:
     branches: [main]
     # Every file the site publishes: layout.MAP's lines marked `published`, and
@@ -47,25 +50,27 @@ on:
       - "LICENSE"
 
 permissions:
-  contents: read
-  pages: read
-  # The ping lists this workflow's own runs for the last one that went out.
-  actions: read
+  contents: write
+  pages: write
 
-# A newer push publishes a newer site, and its ping carries what the cancelled
-# one would have sent: it counts from the last ping that went out (see the step).
+# Serialize the read, submission and advance of the shared delivery ref.
+# Checkout reads main after the run acquires the slot, so an older queued
+# event can recover the current publication too.
 concurrency:
   group: indexnow
-  cancel-in-progress: true
+  cancel-in-progress: false
+  queue: max
 
 jobs:
   ping:
+    if: github.ref == 'refs/heads/main'
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     timeout-minutes: 25
     steps:
-      # The whole history lets the ping read index.json at the last successful run.
+      # The delivery ref points to a commit in main's history.
       - uses: actions/checkout@v7
         with:
+          ref: main
           fetch-depth: 0
 
       # Exact by necessity — see the note in ci.yml.
@@ -75,21 +80,16 @@ jobs:
 
       - run: uv sync
 
-      # An engine that fetched on the ping before Pages built the push would
-      # read the pages as they were: `--after-pages-build` waits for
-      # the build of this very commit (indexnow.wait_for_pages, the scheduled
-      # run's wait too). A failed or cancelled notification leaves the previous
-      # successful run as the baseline for the next push.
       - name: Tell search engines what changed (IndexNow)
         env:
           GH_TOKEN: ${{ github.token }}
-          REPOSITORY: ${{ github.repository }}
-          PUBLISHED_SHA: ${{ github.sha }}
-        # With no successful run yet, submit all current URLs. A failed lookup
-        # fails the step so its commit cannot become a notification baseline.
+          EVENT: ${{ github.event_name }}
+          REBUILD_PAGES: ${{ inputs.rebuild_pages }}
         run: |
-          since=$(gh api "repos/$REPOSITORY/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1" \
-            --jq '.workflow_runs[0].head_sha // empty')
-          args=(--after-pages-build "$PUBLISHED_SHA")
-          if [ -n "$since" ]; then args+=(--before "$since"); fi
+          args=(--deliver)
+          if [ "$REBUILD_PAGES" = true ]; then
+            args+=(--request-pages-build)
+          elif [ "$EVENT" = workflow_dispatch ]; then
+            args+=(--ensure-pages-build)
+          fi
           uv run freetier-indexnow "${args[@]}"

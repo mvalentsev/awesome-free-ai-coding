@@ -10,8 +10,10 @@ do is ask an engine to crawl our own pages. Entry point: `freetier-indexnow` (`m
 import argparse
 import json
 import os
+import re
 import sys
 import time
+from functools import cache
 from pathlib import Path
 from typing import Callable
 from urllib.parse import urlsplit
@@ -27,6 +29,7 @@ from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, pro
 ENDPOINT = "https://api.indexnow.org/indexnow"
 INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
 KEY_FILE = f"{INDEXNOW_KEY}.txt"
+DELIVERY_REF = "refs/heads/indexnow-delivered"
 TIMEOUT = 30.0
 # How long a ping waits for Pages to build its commit: fifteen minutes.
 PAGES_ATTEMPTS = 60
@@ -150,13 +153,16 @@ def request_pages_build(token: str | None = None) -> None:
     response.raise_for_status()
 
 
-def ensure_pages_build(sha: str, force: bool = False) -> bool:
+def ensure_pages_build(sha: str, force: bool = False, *,
+                       superseded: Callable[[str], bool] | None = None) -> bool:
     """Repair a missing/failed build, without rebuilding an already served commit."""
     try:
         status, commit = latest_pages_build()
     except (OSError, httpx.HTTPError, ValueError):
         status, commit = "", ""
-    if not force and status in ("built", "building", "queued") and commit == sha:
+    if not force and status in ("built", "building", "queued") and (
+        commit == sha or (superseded is not None and superseded(commit))
+    ):
         return False
     request_pages_build()
     return True
@@ -176,12 +182,11 @@ def latest_pages_build(token: str | None = None) -> tuple[str, str]:
 
 def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages_build,
                    sleep: Callable[[float], None] = time.sleep,
-                   attempts: int = PAGES_ATTEMPTS, every: float = PAGES_EVERY) -> str:
+                   attempts: int = PAGES_ATTEMPTS, every: float = PAGES_EVERY, *,
+                   superseded: Callable[[str], bool] | None = None) -> str:
     """Wait until Pages has built commit `sha`: "built", "errored" — the build
-    of that commit failed — or "timeout". An engine that fetched on the ping
-    would otherwise read the pages Pages had not rebuilt yet; the scheduled run
-    and a hand push both wait here. A build that cannot be read is waited out,
-    never fatal: the ping is best effort."""
+    of that commit failed — or "timeout". A newer build can supersede a queued
+    delivery. A build that cannot be read is waited out."""
     for attempt in range(attempts):
         try:
             status, commit = fetch()
@@ -189,9 +194,81 @@ def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages
             status, commit = "", ""
         if commit == sha and status in ("built", "errored"):
             return status
+        if superseded is not None and superseded(commit):
+            return "superseded"
         if attempt < attempts - 1:
             sleep(every)
     return "timeout"
+
+
+def send_changes(before: str | None, index: dict, path: Path, sha: str,
+                 repo: Path = Path(".")) -> int:
+    urls = (changed_since(before, index, repo=repo, path=path.as_posix(), after=sha)
+            if before else site_urls(index))
+    if not urls:
+        print(f"indexnow: no page's data changed since {before[:7] if before else sha[:7]}, nothing submitted")
+        return 0
+    status = submit(urls)
+    print(f"indexnow: submitted {len(urls)} urls, HTTP {status}")
+    return 0 if status in (200, 202) else 1
+
+
+def deliver(path: Path, *, repair: bool, rebuild: bool, repo: Path = Path(".")) -> int:
+    """Reconcile the checked-out main commit in the serialized sender."""
+    head = git.run(repo, "rev-parse", "HEAD")
+    head.check_returncode()
+    sha = head.stdout.strip()
+    receipt = git.run(repo, "ls-remote", "--exit-code", "origin", DELIVERY_REF)
+    if receipt.returncode == 2:  # Git found the remote, but the ref is absent.
+        before = None
+    else:
+        receipt.check_returncode()
+        before, _, ref = receipt.stdout.strip().partition("\t")
+        if ref != DELIVERY_REF or not re.fullmatch(r"[0-9a-f]{40}", before):
+            raise ValueError("invalid IndexNow delivery ref")
+        ancestor = git.run(repo, "merge-base", "--is-ancestor", before, sha)
+        if ancestor.returncode:
+            raise ValueError(f"IndexNow delivery ref {before} must be an ancestor of {sha}")
+
+    if before == sha and not rebuild:
+        print(f"indexnow: {sha} already reconciled")
+        return 0
+
+    @cache
+    def superseded(candidate: str) -> bool:
+        if (not isinstance(candidate, str) or candidate == sha
+                or not re.fullmatch(r"[0-9a-f]{40}", candidate)):
+            return False
+        if git.run(repo, "cat-file", "-e", f"{candidate}^{{commit}}").returncode:
+            git.run(repo, "fetch", "--no-tags", "origin", "main").check_returncode()
+        return git.run(repo, "merge-base", "--is-ancestor", sha, candidate).returncode == 0
+
+    if repair or rebuild:
+        ensure_pages_build(sha, force=rebuild, superseded=superseded)
+    waited = wait_for_pages(sha, superseded=superseded)
+    print(f"indexnow: Pages build of {sha}: {waited}")
+    if waited == "superseded":
+        return 0  # A queued push or hourly reconciliation reads current main.
+    if waited != "built":
+        return 1
+
+    index = index_at(sha, path.as_posix(), repo=repo)
+    if index is None:
+        raise ValueError(f"cannot read {path} from the published commit {sha}")
+    result = send_changes(before, index, path, sha, repo=repo)
+    if result:
+        return result
+    if before == sha:
+        print(f"indexnow: {sha} already reconciled")
+    else:
+        # A normal branch update is fast-forward only. A failed push leaves the
+        # previous receipt intact so an unrecorded submission can be retried.
+        update = git.run(repo, "push", "origin", f"{sha}:{DELIVERY_REF}")
+        if update.returncode:
+            print(update.stderr, end="", file=sys.stderr)
+            return 1
+        print(f"indexnow: recorded delivery at {sha}")
+    return 0
 
 
 def main() -> None:
@@ -206,7 +283,13 @@ def main() -> None:
                         help="repair a missing or failed Pages branch build")
     parser.add_argument("--before", metavar="SHA",
                         help="submit only the pages that changed since this commit")
+    parser.add_argument("--deliver", action="store_true",
+                        help="reconcile main and persist the delivery ref from the serialized workflow")
     args = parser.parse_args()
+    if args.deliver:
+        if args.before or args.after_pages_build:
+            parser.error("--deliver determines its own baseline and publication")
+        sys.exit(deliver(args.index, repair=args.ensure_pages_build, rebuild=args.request_pages_build))
     if args.request_pages_build or args.ensure_pages_build:
         if not args.after_pages_build:
             parser.error("requesting a Pages build needs --after-pages-build SHA")
@@ -221,12 +304,4 @@ def main() -> None:
         if waited != "built":
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
-    urls = (changed_since(args.before, index, path=args.index.as_posix(),
-                          after=args.after_pages_build or "HEAD")
-            if args.before else site_urls(index))
-    if not urls:
-        print(f"indexnow: no page's data changed since {args.before[:7]}, nothing submitted")
-        sys.exit(0)
-    status = submit(urls)
-    print(f"indexnow: submitted {len(urls)} urls, HTTP {status}")
-    sys.exit(0 if status in (200, 202) else 1)
+    sys.exit(send_changes(args.before, index, args.index, args.after_pages_build or "HEAD"))
