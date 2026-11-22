@@ -1584,7 +1584,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nLongCat 2.5 Free: 100 requests/day; scope not published; for `longcat-2.5`\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them. Hy4 flash Free's provider states zero retention and no training on your data.",
+      "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Hy4 flash Free's provider states zero retention and no training on your data.",
       "quotas": [
         {
           "unit": "usage",
@@ -1595,20 +1595,6 @@
           "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
-        },
-        {
-          "amount": 100.0,
-          "unit": "requests",
-          "period": "day",
-          "scope": "unspecified",
-          "label": "LongCat 2.5 Free",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "quote": "LongCat 2.5 Free is free on OpenCode for a limited time, with a limit of 100 requests per day.",
-          "value_phrase": "100 requests per day",
-          "families": [
-            "longcat-2.5"
-          ],
-          "reviewed_on": "2026-11-17"
         }
       ],
       "free_part": "models",
@@ -1621,11 +1607,6 @@
           "family": "nemotron-3.5-super-vl-120b-a12b",
           "table_name": "Nemotron 3.5 Super VL Free",
           "aa_model": "nemotron-3-5-super-vl"
-        },
-        {
-          "family": "nemotron-3-ultra",
-          "table_name": "Nemotron 3 Ultra Free",
-          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3.5-lightning",
@@ -1653,18 +1634,6 @@
         }
       ],
       "newcomers": [
-        {
-          "family": "inkling-2-small",
-          "on": "2026-11-07",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "Inkling 2 Small Free"
-        },
-        {
-          "family": "longcat-2.5",
-          "on": "2026-11-09",
-          "source": "https://opencode.ai/v2/docs/console/models/",
-          "table_name": "LongCat 2.5 Free"
-        },
         {
           "family": "hy4-flash",
           "on": "2026-11-17",
@@ -1719,7 +1688,13 @@
             "name": "Iceman Free",
             "source": "https://opencode.ai/v2/docs/console/models/",
             "quote": "Iceman Free is a stealth model that's free on OpenCode for a limited time.",
-            "reviewed_on": "2026-11-14"
+            "reviewed_on": "2026-11-22"
+          },
+          {
+            "name": "Tidepool Alpha Free",
+            "source": "https://opencode.ai/v2/docs/console/models/",
+            "quote": "Tidepool Alpha Free is a stealth model that's free on OpenCode for a limited time.",
+            "reviewed_on": "2026-11-22"
           }
         ]
       },
@@ -1734,7 +1709,6 @@
         "name": "opencode",
         "models": [
           "big-pickle",
-          "nemotron-3-ultra",
           "nemotron-3.5-lightning",
           "mimo-v2.6-flash",
           "deepseek-v4.1-flash",
@@ -1744,12 +1718,11 @@
         ],
         "ids": [],
         "what": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
-        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nLongCat 2.5 Free: 100 requests/day; scope not published; for `longcat-2.5`\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Inkling 2 Small Free permits training. It has model-specific territorial exclusions, including Russia. LongCat 2.5 Free is hosted in China; its provider does not train on inputs or retain them. Hy4 flash Free's provider states zero retention and no training on your data.",
+        "limits": "Free model usage: Usage allowance: amount not published (period not published); scope not published\n\nFree models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant. Offers rotate; each named free offer is \"available on OpenCode for a limited time\". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Flint 40B Free allows training and retains data for 30 days. Beam Free's provider does not train on inputs and retains them for 30 days; its listed territorial exclusions include Russia. Hy4 flash Free's provider states zero retention and no training on your data.",
         "why": "",
         "access": "",
         "modelAccess": {
           "big-pickle": "",
-          "nemotron-3-ultra": "",
           "nemotron-3.5-lightning": "",
           "mimo-v2.6-flash": "",
           "deepseek-v4.1-flash": "",
@@ -22020,7 +21993,6 @@
     {
       "family": "nemotron-3-ultra",
       "rows": [
-        "opencode",
         "openrouter-free",
         "kilo-code",
         "requesty",

@@ -154,14 +154,6 @@ dismissed:
       Lightning is already in api.model_ids and in the generated configs; the bump
       would drop the frontier model this row is ranked for in order to name one the
       row already hands out.
-  - entry: opencode
-    family: nemotron-3-ultra
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      The row lists both families already, and opencode.ai/zen/v1/models carries
-      nemotron-3-ultra-free and nemotron-3.5-lightning-free side by side. The bump
-      would delete one of this row's own free models to name the other.
   - entry: kilo-code
     family: nemotron-3-ultra
     superseded_by: nemotron-3.5-lightning

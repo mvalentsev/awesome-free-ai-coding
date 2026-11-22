@@ -73,7 +73,7 @@
 <text class="t label" x="396.5" y="604" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">nemotron-3-ultra</text>
 <rect class="bar" x="416.5" y="589" width="142.6" height="18" rx="4"/>
 <text class="t score" x="1000" y="604" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">11.8</text>
-<text class="m offers" x="1120" y="604" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">7</text>
+<text class="m offers" x="1120" y="604" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">6</text>
 <text class="t label" x="396.5" y="636" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.5-flash-lite</text>
 <rect class="bar" x="416.5" y="621" width="141.4" height="18" rx="4"/>
 <text class="t score" x="1000" y="636" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">11.7</text>

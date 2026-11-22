@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3-nano-30b free: 1 provider, limits and ids, provider probes 2026-11-19'
 description: nemotron-3-nano-30b is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/nemotron-3-nano-30b/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: nemotron-3-nano-30b
 ---
 
@@ -39,7 +39,7 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 ## Related models
 
 - [`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/) — free at opencode, OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models) and LLMTR
-- [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — free at opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR
+- [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — free at OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR
 - [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) — free at opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink
 - [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/) — free at OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and TokenRouter (PaleBlueDot)
 
