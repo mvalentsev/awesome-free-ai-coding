@@ -159,9 +159,11 @@ def test_verification_schedule_generates_the_actual_workflow(tmp_path, monkeypat
         assert check_claims(root, (), scheduled=()) == []
 
 
-def test_render_projects_the_python_floor_to_every_workflow_and_keeps_the_indexnow_filter(render_source):
+def test_render_projects_the_python_floor_and_publication_paths_to_workflows(render_source, monkeypatch):
     import shutil
 
+    from freetier_radar import claims
+    from freetier_radar.layout import Kind, Node
     from freetier_radar.render import render_all
     from test_render import TODAY
 
@@ -170,7 +172,10 @@ def test_render_projects_the_python_floor_to_every_workflow_and_keeps_the_indexn
     shutil.copytree(ROOT / '.github', root / '.github')
     shutil.copyfile(ROOT / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
     indexnow = root / '.github/workflows/indexnow.yml'
-    indexnow.write_text(indexnow.read_text().replace('      - "index.json"', '      - "stray.json"'))
+    original = indexnow.read_text()
+    indexnow.write_text(original.replace('      - "index.json"', '      - "stray.json"'))
+    new_page = Node('new-published.html', Kind.PAGE, 'a new page', published=True)
+    monkeypatch.setattr(claims, 'MAP', (*claims.MAP, new_page))
     render_all(root / 'registry.yaml', ROOT / 'templates', root, today=TODAY)
 
     for name in ('ci', 'conformance', 'expire', 'indexnow', 'read-page', 'update'):
@@ -183,8 +188,14 @@ def test_render_projects_the_python_floor_to_every_workflow_and_keeps_the_indexn
         if name == 'ci':
             assert jobs['test']['strategy']['matrix']['python'] == ['3.13', '3.14', '3.15']
     assert 'Python 3.13 to 3.15' in (root / 'CONTRIBUTING.md').read_text()
-    assert '      - "index.json"' in indexnow.read_text()
-    assert '      - "stray.json"' not in indexnow.read_text()
+    before = yaml.safe_load(original)
+    rendered = indexnow.read_text()
+    after = yaml.safe_load(rendered)
+    assert after[True]['push']['paths'].pop() == new_page.path
+    setup = next(step for step in after['jobs']['ping']['steps'] if step.get('with', {}).get('python-version'))
+    setup['with']['python-version'] = '3.12'
+    assert after == before
+    assert 'on:\n' in rendered
 
 
 def test_shared_frequency_generates_static_text_without_rewriting_its_format(tmp_path, monkeypatch):

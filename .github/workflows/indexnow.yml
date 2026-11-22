@@ -5,8 +5,8 @@ name: indexnow
 # reads. The scheduled run pings after its own push; a push made by hand — a row
 # added, a page rewritten, a model page born — would wait up to four days for
 # the next run, so a push to main that changes a file the site publishes pings
-# as well. The run's own push is made with GITHUB_TOKEN, which starts no
-# workflow, so the two never ping for the same commit.
+# as well. The run's own push is made with GITHUB_TOKEN, which starts no push
+# workflow.
 on:
   push:
     branches: [main]
@@ -63,8 +63,7 @@ jobs:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     timeout-minutes: 25
     steps:
-      # The whole history: the ping reads index.json as the push found it, at
-      # github.event.before, however many commits the push carried.
+      # The whole history lets the ping read index.json at the last successful run.
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
@@ -79,18 +78,18 @@ jobs:
       # An engine that fetched on the ping before Pages built the push would
       # read the pages as they were: `--after-pages-build` waits for
       # the build of this very commit (indexnow.wait_for_pages, the scheduled
-      # run's wait too); a push that lands meanwhile cancels this job. Best
-      # effort, as on the scheduled run: an engine being down is not a reason to
-      # mark a push that has already published as failed.
+      # run's wait too). A failed or cancelled notification leaves the previous
+      # successful run as the baseline for the next push.
       - name: Tell search engines what changed (IndexNow)
-        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        # What to send is what changed since the last ping that went out: a push
-        # that lands meanwhile cancels this job, and the next one has to carry
-        # the pages the cancelled one would have sent. Where the last successful
-        # run cannot be read, since the commit this push started from.
+          REPOSITORY: ${{ github.repository }}
+          PUBLISHED_SHA: ${{ github.sha }}
+        # With no successful run yet, submit all current URLs. A failed lookup
+        # fails the step so its commit cannot become a notification baseline.
         run: |
-          since=$(gh api "repos/${{ github.repository }}/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1" \
-            --jq '.workflow_runs[0].head_sha // empty' || true)
-          uv run freetier-indexnow --index index.json --after-pages-build "${{ github.sha }}" --before "${since:-${{ github.event.before }}}"
+          since=$(gh api "repos/$REPOSITORY/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1" \
+            --jq '.workflow_runs[0].head_sha // empty')
+          args=(--after-pages-build "$PUBLISHED_SHA")
+          if [ -n "$since" ]; then args+=(--before "$since"); fi
+          uv run freetier-indexnow "${args[@]}"

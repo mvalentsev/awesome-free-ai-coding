@@ -65,8 +65,10 @@ jobs:
       # The curated files beside the registry are read by the scout, which runs
       # behind a catch-all, so a malformed one would reach main as a green run
       # that had silently done nothing. This is where it is caught, together
-      # with the contradictions that span two files.
+      # with the contradictions that span two files. Run once for the locked
+      # dependencies and again in the floors job.
       - name: Curated files + cross-file consistency
+        if: strategy.job-index == 0
         run: uv run freetier-check
 
       # What no check of one tree can see: history.jsonl grown, commit by

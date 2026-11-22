@@ -178,6 +178,8 @@ def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_ol
     gates = [step for step in test["steps"] if "freetier-gate diff" in step.get("run", "")]
     gate, = gates
     assert gate["if"] == "strategy.job-index == 0"
+    curated, = [step for step in test["steps"] if step.get("run") == "uv run freetier-check"]
+    assert curated["if"] == gate["if"]
     floors = ci["jobs"]["floors"]
     assert floors["env"]["UV_RESOLUTION"] == "lowest-direct"
     setup = next(s for s in floors["steps"] if s.get("uses", "").startswith("astral-sh/setup-uv"))
@@ -300,23 +302,6 @@ def test_the_indexnow_ping_fires_on_every_file_the_site_publishes():
     on = workflow.get("on", workflow.get(True))  # YAML 1.1 reads the key `on` as true
     assert on["push"]["branches"] == ["main"]
     assert on["push"]["paths"] == [n.path for n in MAP if n.published]
-
-
-def test_publication_filter_writer_tracks_new_map_entries_and_preserves_the_job(tmp_path, monkeypatch):
-    from freetier_radar import claims
-    from freetier_radar.layout import INDEXNOW_WORKFLOW
-    from freetier_radar.render import render_rule_files
-
-    source = ROOT / ".github/workflows/indexnow.yml"
-    before = yaml.safe_load(source.read_text())
-    monkeypatch.setattr(claims, "MAP", (*MAP, Node("new-published.html", Kind.PAGE, "a new page", published=True)))
-    render_rule_files(ROOT, tmp_path)
-    text = (tmp_path / INDEXNOW_WORKFLOW).read_text()
-    after = yaml.safe_load(text)
-    assert after[True]["push"]["paths"][-1] == "new-published.html"
-    after[True]["push"]["paths"] = before[True]["push"]["paths"]
-    assert after == before
-    assert "on:\n" in text
 
 
 def test_read_page_workflow_keeps_failed_responses_but_reports_only_readable_evidence(tmp_path):

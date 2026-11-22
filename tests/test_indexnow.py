@@ -3,6 +3,8 @@ share their index which URLs changed, instead of waiting to be crawled."""
 import re
 from pathlib import Path
 
+import pytest
+
 from freetier_radar.indexnow import ENDPOINT, INDEXNOW_KEY, KEY_FILE, site_urls, submit
 from freetier_radar.render import PAGES_URL, build_index
 from test_render import TODAY, make
@@ -72,6 +74,20 @@ def test_submit_posts_the_indexnow_payload_and_returns_the_status():
     })]
 
 
+def test_the_key_location_and_payload_host_follow_the_public_site(monkeypatch):
+    from freetier_radar import indexnow
+
+    site = 'https://published.example/catalog'
+    monkeypatch.setattr(indexnow, 'PAGES_URL', site)
+
+    def post(url, json, timeout):
+        assert json['host'] == 'published.example'
+        assert json['keyLocation'] == f'{site}/{KEY_FILE}'
+        return type('Response', (), {'status_code': 202})()
+
+    assert submit([site + '/'], post=post) == 202
+
+
 def test_the_ping_waits_for_pages_to_publish_the_commit():
     """An engine that fetched on the ping would read the page before Pages built
     it, so both the scheduled run and a hand push wait for the build of their
@@ -92,6 +108,28 @@ def test_a_build_that_cannot_be_read_is_waited_out_not_fatal():
     def unreachable():
         raise OSError("no network")
     assert wait_for_pages("sha", fetch=unreachable, sleep=lambda s: None, attempts=2) == "timeout"
+
+
+@pytest.mark.parametrize('published', ['built', 'errored', 'timeout'])
+def test_the_indexnow_command_only_submits_after_the_exact_pages_build(monkeypatch, tmp_path, published):
+    import json
+    import sys
+    from freetier_radar import indexnow
+
+    index = tmp_path / 'index.json'
+    index.write_text(json.dumps(build_index([make(id='x')], TODAY)))
+    monkeypatch.setattr(sys, 'argv', ['freetier-indexnow', '--index', str(index),
+                                     '--after-pages-build', 'exact-head'])
+    waits = []
+    submitted = []
+    monkeypatch.setattr(indexnow, 'wait_for_pages', lambda sha: waits.append(sha) or published)
+    monkeypatch.setattr(indexnow, 'submit', lambda urls: submitted.extend(urls) or 202)
+    with pytest.raises(SystemExit) as result:
+        indexnow.main()
+
+    assert waits == ['exact-head']
+    assert result.value.code == (0 if published == 'built' else 1)
+    assert bool(submitted) == (published == 'built')
 
 
 def test_only_the_pages_whose_data_changed_are_submitted():
@@ -136,31 +174,42 @@ def test_the_ping_reads_the_index_as_the_push_found_it(tmp_path):
     assert index_at("0" * 40, "index.json", repo=tmp_path) is None
 
 
-def test_both_pings_send_only_what_their_push_changed():
-    """The scheduled run pings after its own verification commit, from the
-    commit it started on. indexnow.yml pings after any other push, and a push
-    that lands while it waits for Pages cancels it, so it sends what changed
-    since the head of its last successful run, or, where that cannot be read,
-    since its own push's `before`; its checkout reaches back far enough to read
-    either."""
+@pytest.mark.parametrize('lookup', ['success', 'empty', 'failure'])
+def test_push_notification_uses_the_last_successful_run_as_its_baseline(lookup):
+    import os
+    import subprocess
     import yaml
-    run = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
-    step = next(s for s in run["jobs"]["update"]["steps"] if "freetier-indexnow" in s.get("run", ""))
-    assert '--before "$(git rev-parse HEAD^)"' in step["run"]
+
     ping = yaml.safe_load((ROOT / ".github/workflows/indexnow.yml").read_text(encoding="utf-8"))
     steps = ping["jobs"]["ping"]["steps"]
     call = next(s for s in steps if "freetier-indexnow" in s.get("run", ""))
-    assert "actions/workflows/indexnow.yml/runs?status=success" in call["run"]
-    assert '--before "${since:-${{ github.event.before }}}"' in call["run"]
+    assert not call.get("continue-on-error", False)
     checkout = next(s for s in steps if s.get("uses", "").startswith("actions/checkout"))
     assert checkout.get("with", {}).get("fetch-depth") == 0
 
+    commands = '''
+gh() {
+    [[ "$2" == 'repos/test/project/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1' ]] || return 2
+    case "$LOOKUP" in
+        success) echo earlier-head ;;
+        failure) return 3 ;;
+    esac
+}
+uv() { printf '%s\\n' "$@"; }
+'''
+    result = subprocess.run(['bash', '-eo', 'pipefail', '-c', commands + call['run']],
+                            env={**os.environ, 'REPOSITORY': 'test/project', 'PUBLISHED_SHA': 'current-head',
+                                 'LOOKUP': lookup}, capture_output=True, text=True)
+    if lookup == 'failure':
+        assert result.returncode == 3 and not result.stdout
+        return
+    assert result.returncode == 0, result.stderr
+    suffix = ['--before', 'earlier-head'] if lookup == 'success' else []
+    assert result.stdout.splitlines() == ['run', 'freetier-indexnow', '--after-pages-build', 'current-head', *suffix]
 
-def test_a_hand_push_leaves_out_what_the_runs_own_ping_already_sent(tmp_path):
-    """The scheduled run pings its verification commit itself, and that push
-    starts no workflow, so the next hand push counts from an older ping. What a
-    verification commit in between changed is left out; what the hand commits
-    around it changed is not."""
+
+def test_a_hand_push_recovers_a_bot_push_without_a_successful_ping(tmp_path):
+    """A verification commit's subject cannot establish that IndexNow accepted its URLs."""
     import json
     import subprocess
     from freetier_radar.indexnow import changed_since
@@ -184,11 +233,12 @@ def test_a_hand_push_leaves_out_what_the_runs_own_ping_already_sent(tmp_path):
     commit(list(rows.values()), "data: z by hand")
     now = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
     urls = changed_since(start, now, repo=tmp_path)
-    assert f"{PAGES_URL}/providers/x/" in urls and f"{PAGES_URL}/providers/z/" in urls
-    assert f"{PAGES_URL}/providers/w/" not in urls
-    # the run's own ping, from the commit before its verification commit, sends it all
+    assert {f"{PAGES_URL}/providers/{provider}/" for provider in rows} <= set(urls)
+    # The bot's own ping, from its parent, covers only its changes.
     rows_head = subprocess.run(["git", "rev-parse", "HEAD~1"], cwd=tmp_path, capture_output=True,
                                text=True, check=True).stdout.strip()
     subprocess.run(["git", "checkout", "-q", rows_head], cwd=tmp_path, check=True)
     at_run = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
-    assert f"{PAGES_URL}/providers/w/" in changed_since("HEAD^", at_run, repo=tmp_path)
+    bot_urls = changed_since("HEAD^", at_run, repo=tmp_path)
+    assert f"{PAGES_URL}/providers/w/" in bot_urls
+    assert f"{PAGES_URL}/providers/x/" not in bot_urls

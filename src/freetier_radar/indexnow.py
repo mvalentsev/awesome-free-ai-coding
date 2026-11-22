@@ -14,6 +14,7 @@ import sys
 import time
 from pathlib import Path
 from typing import Callable
+from urllib.parse import urlsplit
 
 import httpx
 
@@ -22,7 +23,6 @@ from .discovery import github_headers
 from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
-HOST = "mvalentsev.github.io"
 INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
 KEY_FILE = f"{INDEXNOW_KEY}.txt"
 TIMEOUT = 30.0
@@ -104,40 +104,17 @@ def index_at(rev: str, path: str = "index.json", repo: Path = Path(".")) -> dict
         return None
 
 
-# The subject the scheduled run gives its verification commit. Its push pings
-# the pages that commit changed (update.yml) and starts no workflow.
-VERIFICATION_SUBJECT = "chore: verification"
-
-
 def changed_since(before: str, now: dict, repo: Path = Path("."),
                   path: str = "index.json") -> list[str]:
-    """changed_urls from commit `before` to `now`, leaving out what each of the
-    run's verification commits in between changed: the run pinged those pages
-    itself when it pushed, and because its push starts no workflow the next
-    hand push counts from an older ping. The commit being pinged is never left
-    out, so the run's own ping, from HEAD^, sends its verification commit
-    whole; and a `before` git cannot read sends every page, as changed_urls
-    does."""
-    commits = git.commits(repo, "--reverse", "--first-parent", f"{before}..HEAD", field="%s")
-    head = commits[-1][0] if commits else None
-    cuts = [sha for sha, subject in commits
-            if subject.startswith(VERIFICATION_SUBJECT) and sha != head]
-    wanted: list[str] = []
-    start = before
-    for cut in cuts:
-        segment = index_at(f"{cut}^", path, repo)
-        if segment is not None:
-            wanted += changed_urls(index_at(start, path, repo), segment)
-        start = cut
-    wanted += changed_urls(index_at(start, path, repo), now)
-    order = site_urls(now)
-    return [u for u in order if u in set(wanted)] + [u for u in dict.fromkeys(wanted) if u not in order]
+    """Compare with the caller's baseline; keep changes by intervening publishers."""
+    return changed_urls(index_at(before, path, repo), now)
+
 
 def submit(urls: list[str], post=httpx.post) -> int:
     """One POST for the whole list; returns the HTTP status. 200 and 202 both
     mean accepted — the protocol answers before it crawls."""
     response = post(ENDPOINT, json={
-        "host": HOST,
+        "host": urlsplit(PAGES_URL).hostname,
         "key": INDEXNOW_KEY,
         "keyLocation": f"{PAGES_URL}/{KEY_FILE}",
         "urlList": list(urls),
@@ -222,8 +199,7 @@ def main() -> None:
     if args.after_pages_build:
         waited = wait_for_pages(args.after_pages_build)
         print(f"indexnow: Pages build of {args.after_pages_build[:7]}: {waited}")
-        if waited == "errored" or ((args.request_pages_build or args.ensure_pages_build)
-                                   and waited != "built"):
+        if waited != "built":
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
     urls = changed_since(args.before, index, path=args.index.as_posix()) if args.before else site_urls(index)
