@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'BeatAPI (free models) free tier: limits, free models, verified 2026-11-16'
-description: A no-top-up API for free text-model variants. Free calls are counted separately from paid rate limits, but can also be refused when the ordinary account limit is exhausted. Availability can change without notice and no daily allowance is promised. Free model contexts, output limits and reasoning…
+description: 'A no-top-up API for free text-model variants. Free models: deepseek-v4.1-flash, glm-5.3-flash. Free calls are counted separately from paid rate limits, but can also be refused when the ordinary account limit is exhausted. Availability can change without notice and no daily allowance is promised…'
 permalink: /providers/beatapi/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: BeatAPI (free models)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ A no-top-up API for free text-model variants
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+<span data-model-sort-inline><span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span>, <span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -61,6 +62,7 @@ curl -s https://api.beatapi.io/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-22` — Free models changed: added deepseek-v4.1-flash, glm-5.3-flash
 - `2026-11-08` — Added: A no-top-up API for free text-model variants
 
 ---

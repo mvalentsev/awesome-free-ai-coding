@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.1-flash free: 1 provider, limits and ids, provider probes 2026-11-19'
 description: ling-3.1-flash is served free by Requesty. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.1-flash/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: ling-3.1-flash
 ---
 
@@ -36,6 +36,11 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 - [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) — listed 2026-10-13 to 2026-10-15
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-10-01 to 2026-10-13
+
+## Related models
+
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at AnyAPI
+- [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) — free at AnyAPI
 
 ---
 

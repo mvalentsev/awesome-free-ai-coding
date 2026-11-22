@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 4 providers, limits and ids, provider probes 2026-11-19'
-description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'glm-5.3-flash free: 6 providers, limits and ids, provider probes 2026-11-16 or later'
+description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: glm-5.3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**4 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**6 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-16 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -105,6 +105,48 @@ No card. This is an experimental research service with capacity-dependent limits
 - Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
 - Callable ids: `glm-5.3-flash`
+
+### [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-19 · listed since 2026-11-22
+
+Free model APIs for accounts with established GitHub linkage
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: 10 requests/minute; 50 requests/day per workspace (before any top-up)
+
+20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)
+
+The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states "OrcaRouter rate-limits at the workspace level, not per API key."
+
+</details>
+
+- Base URL: `https://api.orcarouter.ai/v1`
+- Key: `ORCAROUTER_API_KEY` — get one at <https://www.orcarouter.ai>
+- Callable ids: `z-ai/glm-5.3-flash-free`
+
+### [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-16 · listed since 2026-11-22
+
+A no-top-up API for free text-model variants
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: 1 request/minute per account (before the first top-up)
+
+10 requests/minute per account (after any top-up)
+
+Free calls are counted separately from paid rate limits, but can also be refused when the ordinary account limit is exhausted. Availability can change without notice and no daily allowance is promised. Free model contexts, output limits and reasoning settings are not those of the paid siblings.
+
+</details>
+
+- Base URL: `https://api.beatapi.io/v1`
+- Key: `BEATAPI_API_KEY` — get one at <https://beatapi.io/dashboard/apikeys>
+- Callable ids: `glm-5.3-flash-free`
 
 ## Rows that listed it before
 

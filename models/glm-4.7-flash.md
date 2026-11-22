@@ -3,7 +3,7 @@ layout: default
 title: 'glm-4.7-flash free: 5 providers, limits and ids, provider probes 2026-11-19'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM), Kiosapi.id, NovAI and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: glm-4.7-flash
 ---
 
@@ -138,7 +138,7 @@ Tier 1 registration needs no card. A $1 deposit unlocks Tier 2's separate per-mo
 ## Related models
 
 - [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai)
-- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — free at NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai) and FreeInference (Harvard SEAS)
+- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — free at NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models)
 - [`glm-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/) — free at AIHubMix (free models)
 - [`glm-4.6v-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6v-flash/) — free at Z.ai (Zhipu GLM) and NovAI
 - [`glm-4.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/) — free at AIHubMix (free models)

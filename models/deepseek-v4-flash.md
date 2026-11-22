@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4-flash free: 4 providers, limits and ids, provider probes 2026-11-19'
-description: deepseek-v4-flash is served free by Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4-flash free: 5 providers, limits and ids, provider probes 2026-11-19'
+description: deepseek-v4-flash is served free by Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode, FreeInference (Harvard SEAS) and OrcaRouter (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4-flash/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: deepseek-v4-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4-flash
 
 # Where deepseek-v4-flash is free
 
-**4 rows on the list serve `deepseek-v4-flash` free:** Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**5 rows on the list serve `deepseek-v4-flash` free:** Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode, FreeInference (Harvard SEAS) and OrcaRouter (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -103,6 +103,27 @@ No card. This is an experimental research service with capacity-dependent limits
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
 - Callable ids: `deepseek-v4-flash`
 
+### [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-19 · listed since 2026-11-22
+
+Free model APIs for accounts with established GitHub linkage
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: 10 requests/minute; 50 requests/day per workspace (before any top-up)
+
+20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)
+
+The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states "OrcaRouter rate-limits at the workspace level, not per API key."
+
+</details>
+
+- Base URL: `https://api.orcarouter.ai/v1`
+- Key: `ORCAROUTER_API_KEY` — get one at <https://www.orcarouter.ai>
+- Callable ids: `deepseek/deepseek-v4-flash-free`
+
 ## Rows that listed it before
 
 - [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-09-16 to 2026-11-01
@@ -118,7 +139,7 @@ No card. This is an experimental research service with capacity-dependent limits
 - [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — free at Freebuff
 - [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) — free at Kiro
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor and Zro (MoonMath)
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor, Zro (MoonMath), OrcaRouter (free models) and BeatAPI (free models)
 
 ---
 

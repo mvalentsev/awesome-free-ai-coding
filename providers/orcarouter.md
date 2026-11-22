@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'OrcaRouter (free models) free tier: limits, free models, verified 2026-11-19'
-description: Free model APIs for accounts with established GitHub linkage. The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never…
+description: 'Free model APIs for accounts with established GitHub linkage. Free models: deepseek-v4-flash, deepseek-v4.1-flash, glm-5.3-flash. The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished…'
 permalink: /providers/orcarouter/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: OrcaRouter (free models)
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Free model APIs for accounts with established GitHub linkage
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+<span data-model-sort-inline><span data-model-family="deepseek-v4-flash">[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)</span>, <span data-model-family="deepseek-v4.1-flash">[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</span>, <span data-model-family="glm-5.3-flash">[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -63,6 +64,7 @@ curl -s https://api.orcarouter.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-22` — Free models changed: added deepseek-v4-flash, deepseek-v4.1-flash, glm-5.3-flash
 - `2026-11-08` — Added: Free model APIs for accounts with established GitHub linkage
 
 ---

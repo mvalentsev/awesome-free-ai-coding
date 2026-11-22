@@ -7,6 +7,8 @@ import shlex
 import unicodedata
 import tempfile
 import textwrap
+from collections import Counter
+from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
@@ -444,17 +446,18 @@ def border_words(e: Entry) -> str:
     return " ".join(said)
 
 
-def _row_models(e: Entry, pages: set[str], scores: dict | None = None) -> str:
+def _row_models(e: Entry, pages: set[str], preview: tuple[list[str], int], *,
+                references: Mapping[str, str] | None = None) -> str:
     """A row's models as a Markdown line names them — the README's list and the
     provider index alike: the first README_MODELS, each linking its own page
     where it has one (what a reader who stops on a model name came for), then
     a count linking the row's page for the rest."""
-    shown, more = _readme_families(e, scores)
-    return DOT.join(([_entry_family_links(e, shown, pages, DOT)] if shown else [])
+    shown, more = preview
+    return DOT.join(([_entry_family_links(e, shown, pages, DOT, references=references)] if shown else [])
                       + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
 
 
-def _row(e: Entry, pages: set[str], scores: dict | None = None) -> dict[str, str]:
+def _row(e: Entry, models: str) -> dict[str, str]:
     return {
         "name": e.name,
         "url": e.url,
@@ -478,7 +481,7 @@ def _row(e: Entry, pages: set[str], scores: dict | None = None) -> dict[str, str
         "key_url": e.api.key_url if e.api and e.api.key_url and e.api.key_kind != "none" else "",
         # The row's families, as `_row_models` names them; a row that names none
         # has the date alone on its small line.
-        "models": _row_models(e, pages, scores),
+        "models": models,
     }
 
 
@@ -542,8 +545,12 @@ def _access_description(e: Entry, family: str | None = None, *, compact: bool = 
 
 
 def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ",
-                        sortable: bool = False) -> str:
-    links = [_family_links([f], pages) + _access_flag(e, f) for f in families]
+                        sortable: bool = False, *, references: Mapping[str, str] | None = None) -> str:
+    links = []
+    for family in families:
+        reference = references.get(family) if references is not None else None
+        link = f"[`{family}`][{reference}]" if reference else _family_links([family], pages)
+        links.append(link + _access_flag(e, family))
     if sortable:
         links = [f'<span data-model-family="{family}">{text}</span>' for family, text in zip(families, links)]
         return '<span data-model-sort-inline>' + sep.join(links) + '</span>'
@@ -1222,11 +1229,24 @@ def build_context(entries: list[Entry], today: date,
     scores = _resolve_scores(scores)
     active = [e for e in entries if not is_archived(e, today)]
     pages = model_pages(entries, history or [], today) if pages is None else pages
+    previews = {e.id: _readme_families(e, scores) for e in active}
+    linked = Counter(f for shown, _ in previews.values() for f in shown if f in pages)
+    # GitHub Flavored Markdown link reference definitions resolve throughout the
+    # document and do not render (github.github.com/gfm, checked 2026-11-22).
+    references, definitions = {}, {}
+    for family, count in sorted(linked.items()):
+        if count < 2:
+            continue
+        url, label = model_page_url(family), f"model-{family}"
+        savings = count * (len(f"({url})") - len(f"[{label}]"))
+        if savings > len(f"[{label}]: {url}\n"):
+            references[family] = label
+            definitions[label] = url
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
-        sections.append({"title": title, "rows": [_row(e, pages, scores) for e in rows],
-                         **_card_counts(rows)})
+        section_rows = [_row(e, _row_models(e, pages, previews[e.id], references=references)) for e in rows]
+        sections.append({"title": title, "rows": section_rows, **_card_counts(rows)})
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "page": provider_page_url(e.id),
@@ -1267,6 +1287,7 @@ def build_context(entries: list[Entry], today: date,
             "score_version": (scores or {}).get("version", ""),
             "score_date": (scores or {}).get("read_on", ""),
             "sections": sections,
+            "model_link_definitions": definitions,
             "new_rows": _new_rows(active, history or [], today),
             "archived": _archived_rows(entries, today),
             "connections": connections,
@@ -2756,7 +2777,7 @@ def build_providers_index(entries: list[Entry], today: date,
     for title, rows in sections(live):
         out += [f"## {title}", ""]
         for e in rows:
-            fams = _row_models(e, pages, scores)
+            fams = _row_models(e, pages, _readme_families(e, scores))
             out.append(f"- [{e.name}]({provider_page_url(e.id)}){_card_flag(e)} — verified "
                        f"{e.last_verified.isoformat()}" + (DOT + fams if fams else ""))
         out.append("")

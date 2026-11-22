@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21",
+  "generated": "2026-11-22",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -17448,7 +17448,7 @@
           "label": "Free plan",
           "source": "https://zro.moonmath.ai/pricing",
           "quote": "Free daily usage on DeepSeek V4.1 Flash. Resets every day.",
-          "reviewed_on": "2026-11-15",
+          "reviewed_on": "2026-11-22",
           "amount": null
         }
       ],
@@ -18996,7 +18996,20 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "ling-3.0-flash-fin",
+          "aa_auto": false
+        },
+        {
+          "family": "ling-3.0-flash-sante",
+          "aa_auto": false
+        },
+        {
+          "family": "qwen3.8-27b",
+          "aa_auto": false
+        }
+      ],
       "api": {
         "base_url": "https://api.anyapi.ai/v1",
         "key_url": "https://dash.anyapi.ai/?page=api-keys",
@@ -19054,7 +19067,11 @@
       "archived": false,
       "search": {
         "name": "AnyAPI",
-        "models": [],
+        "models": [
+          "qwen3.8-27b",
+          "ling-3.0-flash-fin",
+          "ling-3.0-flash-sante"
+        ],
         "ids": [
           "qwen/qwen3.8-27b:free",
           "inclusionai/ling-3.0-flash-fin:free",
@@ -19064,7 +19081,11 @@
         "limits": "100,000 AnyTokens/day per account. midnight UTC\n\nAnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "qwen3.8-27b": "",
+          "ling-3.0-flash-fin": "",
+          "ling-3.0-flash-sante": ""
+        },
         "section": {
           "id": "aggregator"
         },
@@ -19323,7 +19344,16 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "deepseek-v4.1-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "glm-5.3-flash",
+          "aa_auto": false
+        }
+      ],
       "api": {
         "base_url": "https://api.beatapi.io/v1",
         "key_url": "https://beatapi.io/dashboard/apikeys",
@@ -19367,7 +19397,10 @@
       "archived": false,
       "search": {
         "name": "BeatAPI (free models)",
-        "models": [],
+        "models": [
+          "glm-5.3-flash",
+          "deepseek-v4.1-flash"
+        ],
         "ids": [
           "glm-5.3-flash-free",
           "deepseek-v4.1-flash-free",
@@ -19377,7 +19410,10 @@
         "limits": "1 request/minute per account (before the first top-up)\n\n10 requests/minute per account (after any top-up)\n\nFree calls are counted separately from paid rate limits, but can also be refused when the ordinary account limit is exhausted. Availability can change without notice and no daily allowance is promised. Free model contexts, output limits and reasoning settings are not those of the paid siblings.",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "glm-5.3-flash": "",
+          "deepseek-v4.1-flash": ""
+        },
         "section": {
           "id": "aggregator"
         },
@@ -19450,7 +19486,20 @@
         }
       ],
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "deepseek-v4-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "aa_auto": false
+        },
+        {
+          "family": "glm-5.3-flash",
+          "aa_auto": false
+        }
+      ],
       "api": {
         "base_url": "https://api.orcarouter.ai/v1",
         "key_url": "https://www.orcarouter.ai",
@@ -19493,7 +19542,11 @@
       "archived": false,
       "search": {
         "name": "OrcaRouter (free models)",
-        "models": [],
+        "models": [
+          "deepseek-v4-flash",
+          "deepseek-v4.1-flash",
+          "glm-5.3-flash"
+        ],
         "ids": [
           "deepseek/deepseek-v4-flash-free",
           "deepseek/deepseek-v4.1-flash-free",
@@ -19503,7 +19556,11 @@
         "limits": "10 requests/minute; 50 requests/day per workspace (before any top-up)\n\n20 requests/minute; 800 requests/day per workspace ($20 lifetime spend)\n\nThe workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished per-request prompt cap. Day buckets reset at 00:00 UTC. Free models never fall back to a paid model; availability and limits can change. Requests are routed to upstream providers under their own policies. The rate-limit guide states \"OrcaRouter rate-limits at the workspace level, not per API key.\"",
         "why": "",
         "access": "",
-        "modelAccess": {},
+        "modelAccess": {
+          "deepseek-v4-flash": "",
+          "deepseek-v4.1-flash": "",
+          "glm-5.3-flash": ""
+        },
         "section": {
           "id": "aggregator"
         },
@@ -21901,7 +21958,9 @@
         "nvidia-nim",
         "aihubmix",
         "zcode",
-        "freeinference"
+        "freeinference",
+        "orcarouter",
+        "beatapi"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
@@ -21932,7 +21991,8 @@
         "iteracompute",
         "regolo",
         "vlm-run-gateway",
-        "ovh-ai-endpoints"
+        "ovh-ai-endpoints",
+        "anyapi"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
@@ -22211,7 +22271,8 @@
         "alibaba-model-studio",
         "bazaarlink",
         "atomcode",
-        "freeinference"
+        "freeinference",
+        "orcarouter"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
@@ -22222,7 +22283,9 @@
         "nvidia-nim",
         "alibaba-model-studio",
         "token-harbor",
-        "zro"
+        "zro",
+        "orcarouter",
+        "beatapi"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
@@ -22502,6 +22565,20 @@
       "rows": [
         "requesty"
       ]
+    },
+    {
+      "family": "ling-3.0-flash-fin",
+      "rows": [
+        "anyapi"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
+    },
+    {
+      "family": "ling-3.0-flash-sante",
+      "rows": [
+        "anyapi"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
     },
     {
       "family": "llama-3.1-8b",
@@ -22958,16 +23035,6 @@
       "family": "ling-3.0-flash",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
-    },
-    {
-      "family": "ling-3.0-flash-fin",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
-    },
-    {
-      "family": "ling-3.0-flash-sante",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
     },
     {
       "family": "ling-3.0-tiny",

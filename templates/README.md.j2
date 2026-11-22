@@ -203,3 +203,9 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 <sub>MIT{{ dot }}<a href="#top">back to top ↑</a></sub>
 
 </div>
+{% if model_link_definitions %}
+
+{% for label, url in model_link_definitions.items() %}
+[{{ label }}]: {{ url }}
+{% endfor %}
+{% endif %}

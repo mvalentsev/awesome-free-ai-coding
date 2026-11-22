@@ -347,6 +347,27 @@ def test_the_pages_that_name_a_model_link_its_page(tmp_path):
     assert ctx["model_index"][0]["page"] == model_page_url("glm-5.3")
 
 
+def test_readme_reuses_one_destination_for_a_model_linked_from_multiple_rows(tmp_path):
+    from markdown_it import MarkdownIt
+
+    family = {"family": "kimi-k3"}
+    entries = [make(id="a", name="A", models=[family, {"family": "solo"}]),
+               make(id="b", name="B", models=[family])]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    readme = render_readme(reg, TEMPLATES, tmp_path / "README.md", today=TODAY)
+    model_url = model_page_url("kimi-k3")
+    provider_list = readme.split("## 📋 The list", 1)[1].split("\n## ", 1)[0]
+    footer = readme.rsplit("</div>", 1)[1]
+
+    assert provider_list.count("[`kimi-k3`][model-kimi-k3]") == 2
+    assert f"[model-kimi-k3]: {model_url}" in footer
+    assert model_url not in provider_list
+    assert "`solo`" in provider_list and "[model-solo]" not in readme
+    html = MarkdownIt("commonmark").render(readme)
+    assert html.count(f'<a href="{model_url}"><code>kimi-k3</code></a>') == 3
+
+
 def test_llms_txt_names_the_model_pages():
     entries = [make(id="a", name="A", rank=1, models=[{"family": "glm-5.3", **STRONG}]),
                make(id="b", name="B", rank=2, card_required=True,

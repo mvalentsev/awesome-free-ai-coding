@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-tiny free: no current listing, last listed 2026-11-17'
 description: No row currently lists ling-3.0-tiny under Free models. The list carried it at Requesty, AIHubMix (free models) and Kilo Code until 2026-11-17. Each row's page gives its current offer.
 permalink: /models/ling-3.0-tiny/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-22
 crumb: ling-3.0-tiny
 ---
 
@@ -24,6 +24,8 @@ crumb: ling-3.0-tiny
 ## Related models
 
 - [`ling-3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/) — free at Requesty
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at AnyAPI
+- [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) — free at AnyAPI
 
 ---
 

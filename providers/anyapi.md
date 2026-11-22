@@ -1,10 +1,11 @@
 ---
 layout: default
 title: 'AnyAPI free tier: limits, free models, verified 2026-11-19'
-description: A free model API with a separate daily AnyToken allowance. AnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with…
+description: 'A free model API with a separate daily AnyToken allowance. Free models: ling-3.0-flash-fin, ling-3.0-flash-sante, qwen3.8-27b. AnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground…'
 permalink: /providers/anyapi/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-22
 crumb: AnyAPI
+model_sort: true
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ A free model API with a separate daily AnyToken allowance
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+<span data-model-sort-inline><span data-model-family="ling-3.0-flash-fin">[`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/)</span>, <span data-model-family="ling-3.0-flash-sante">[`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/)</span>, <span data-model-family="qwen3.8-27b">[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -63,6 +64,7 @@ curl -s https://api.anyapi.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-22` — Free models changed: added ling-3.0-flash-fin, ling-3.0-flash-sante, qwen3.8-27b
 - `2026-11-08` — Added: A free model API with a separate daily AnyToken allowance
 
 ---

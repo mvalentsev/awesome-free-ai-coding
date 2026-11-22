@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-21T15:59:56Z</updated>
+  <updated>2026-11-22T13:27:35Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/anyapi/20261122T132735Z</id>
+    <title>Free models changed: AnyAPI</title>
+    <link rel="alternate" href="https://anyapi.ai"/>
+    <updated>2026-11-22T13:27:35Z</updated>
+    <summary type="text">added ling-3.0-flash-fin, ling-3.0-flash-sante, qwen3.8-27b · free models: qwen3.8-27b, ling-3.0-flash-fin, ling-3.0-flash-sante</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/beatapi/20261122T132735Z</id>
+    <title>Free models changed: BeatAPI (free models)</title>
+    <link rel="alternate" href="https://beatapi.io"/>
+    <updated>2026-11-22T13:27:35Z</updated>
+    <summary type="text">added deepseek-v4.1-flash, glm-5.3-flash · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/orcarouter/20261122T132735Z</id>
+    <title>Free models changed: OrcaRouter (free models)</title>
+    <link rel="alternate" href="https://www.orcarouter.ai"/>
+    <updated>2026-11-22T13:27:35Z</updated>
+    <summary type="text">added deepseek-v4-flash, deepseek-v4.1-flash, glm-5.3-flash · free models: deepseek-v4-flash, deepseek-v4.1-flash, glm-5.3-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261121T155956Z</id>
     <title>Free models changed: Cline</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://aiapi-pro.com"/>
     <updated>2026-11-05T11:57:23Z</updated>
     <summary type="text">added glm-4.1v-thinking-flash, glm-4.6v-flash, glm-4.7-flash · free models: glm-4.7-flash, glm-4.6v-flash, glm-4.1v-thinking-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261105T115723Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-11-05T11:57:23Z</updated>
-    <summary type="text">added nemotron-3.5-bolt-e4b · free models: glm-5.3-flash, nemotron-3-ultra, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash, nemotron-3.5-super-vl-120b-a12b, step-5-preview-600b-a27b, minimax-m3.1-flash, nemotron-3.5-bolt-e4b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/merkium/20261105T062228Z</id>
-    <title>Added: Merkium</title>
-    <link rel="alternate" href="https://www.merkium.nl"/>
-    <updated>2026-11-05T06:22:28Z</updated>
-    <summary type="text">Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20261105T053845Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-11-05T05:38:45Z</updated>
-    <summary type="text">added beam-1.0 · free models: solar-mini-4, nemotron-3.5-super-vl-120b-a12b, nemotron-3.5-lightning, beam-1.0</summary>
   </entry>
 </feed>

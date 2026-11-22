@@ -10860,7 +10860,7 @@ entries:
     label: Free plan
     source: https://zro.moonmath.ai/pricing
     quote: Free daily usage on DeepSeek V4.1 Flash. Resets every day.
-    reviewed_on: '2026-11-15'
+    reviewed_on: '2026-11-22'
   free_part: models
   models:
   - family: deepseek-v4.1-flash
@@ -11909,7 +11909,13 @@ entries:
       day at no charge. Daily allowances reset at midnight UTC and do not carry over.
     value_phrase: 100,000 anyTokens per calendar day
   free_part: models
-  models: []
+  models:
+  - family: qwen3.8-27b
+    aa_auto: false
+  - family: ling-3.0-flash-fin
+    aa_auto: false
+  - family: ling-3.0-flash-sante
+    aa_auto: false
   api:
     base_url: https://api.anyapi.ai/v1
     key_url: https://dash.anyapi.ai/?page=api-keys
@@ -12139,7 +12145,11 @@ entries:
       active_tab: ''
       active_class: ''
   free_part: models
-  models: []
+  models:
+  - family: glm-5.3-flash
+    aa_auto: false
+  - family: deepseek-v4.1-flash
+    aa_auto: false
   api:
     base_url: https://api.beatapi.io/v1
     key_url: https://beatapi.io/dashboard/apikeys
@@ -12231,7 +12241,13 @@ entries:
     quote: '"min_paid_usd":20,"rpm":20,"rpd":800}'
     value_phrase: '"rpd":800'
   free_part: models
-  models: []
+  models:
+  - family: deepseek-v4-flash
+    aa_auto: false
+  - family: deepseek-v4.1-flash
+    aa_auto: false
+  - family: glm-5.3-flash
+    aa_auto: false
   api:
     base_url: https://api.orcarouter.ai/v1
     key_url: https://www.orcarouter.ai

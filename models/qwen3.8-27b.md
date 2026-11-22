@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-27b free: 8 providers, limits and ids, provider probes 2026-11-19'
-description: qwen3.8-27b is served free by Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
+title: 'qwen3.8-27b free: 9 providers, limits and ids, provider probes 2026-11-19'
+description: qwen3.8-27b is served free by Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway, OVHcloud AI Endpoints and AnyAPI. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-11-20
+last_modified_at: 2026-11-22
 crumb: qwen3.8-27b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-27b
 
 # Where qwen3.8-27b is free
 
-**8 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**9 rows on the list serve `qwen3.8-27b` free:** Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway, OVHcloud AI Endpoints and AnyAPI. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -179,6 +179,25 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 - Key: none — the lane is anonymous
 - Callable ids: `Qwen3.8-27B`
 - What you send is not used to train models ([the vendor's words](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
+
+### [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-19 · listed since 2026-11-22
+
+A free model API with a separate daily AnyToken allowance
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: 100,000 AnyTokens/day per account. midnight UTC
+
+AnyTokens are internal billing units, not model tokens. The daily wallet does not carry over and is limited to one account per person or legal entity. Browser Playground access is a separate mode. Requests go to third-party providers with their own data policies; the documentation offers provider-selection controls.
+
+</details>
+
+- Base URL: `https://api.anyapi.ai/v1`
+- Key: `ANYAPI_API_KEY` — get one at <https://dash.anyapi.ai/?page=api-keys>
+- Callable ids: `qwen/qwen3.8-27b:free`
 
 ## Rows that listed it before
 
