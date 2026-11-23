@@ -13,6 +13,7 @@ from .render import MODEL_SORT, PAGES_URL, REPO_URL
 from .review import Bundle, blob, scoped
 
 COVERAGE_PURPOSES = ('changed-content', 'shared-layout')
+VERIFICATION_METADATA = {'last_verified', 'probe_failures', 'provisional'}
 
 
 def _representatives(items: list[dict], features) -> list[dict]:
@@ -67,25 +68,28 @@ def browser_plan(bundle: Bundle) -> dict:
     browser_changed, shared_layout = browser_scope(scope['paths'])
     index = index_at(scope['sha'], repo=bundle.repo)
     before = index_at(scope['base'], repo=bundle.repo)
+    previous = {m['family']: m for m in before['models']}
     current = {m['family']: m for m in index['models']}
     models = [current.get(m['family'], {**m, 'rows': [], 'tier': None})
-              for m in {m['family']: m for m in [*before['models'], *index['models']]}.values()
+              for m in (previous | current).values()
               if m.get('page') and m['family'] in scope['families']]
     if not models:
         models = [m for m in index['models'] if m.get('page') and m.get('rows')][:2]
     rows = [e for e in index['entries'] if e['id'] in scope['rows']]
-    old = {e['id']: {m['family'] for m in e.get('models', [])} for e in before['entries']}
+    old_rows = {e['id']: e for e in before['entries']}
+    old = {ident: {m['family'] for m in e.get('models', [])} for ident, e in old_rows.items()}
     links = [[e['id'], m['family']] for e in rows for m in e.get('models', [])
              if m['family'] not in old.get(e['id'], set())]
     widths, schemes = [1440, 375, 320], ['light', 'dark']
+    desktop, mobile, narrow = widths
     client_configs = _client_configs(bundle, scope['sha'])
     old_configs = _client_configs(bundle, scope['base'])
     clients = list(client_configs)
     client_content_rows = {}
     for client, configs in client_configs.items():
-        old_rows = {row['id']: row for row in old_configs.get(client, [])}
+        old_routes = {row['id']: row for row in old_configs.get(client, [])}
         client_content_rows[client] = [row['id'] for row in configs
-                                      if row != old_rows.get(row['id'])]
+                                      if row != old_routes.get(row['id'])]
     words = {word for key in ('sections', 'filters')
              for item in index.get('search_config', {}).get(key, []) for word in item.get('words', [])}
     named = sorted((e for e in index['entries'] if not e.get('archived') and not e.get('duplicate_of')
@@ -117,20 +121,30 @@ def browser_plan(bundle: Bundle) -> dict:
         case = f'{width}/{scheme}/{kind}' + ('/' + name if name else '')
         coverage.setdefault(case, purpose)
 
-    # Unique content and associations once. Themes and widths exercise the
-    # shared components on representatives, not every provider's same page.
-    for model in models:
-        for kind in ('search', 'browse', 'model'):
-            add(1440, 'light', kind, model['family'], COVERAGE_PURPOSES[0])
+    # Verification dates and badges change page content but leave the model
+    # associations that search and Browse exercise unchanged. Archive changes
+    # remain in the discovery comparison through the row's archived field.
+    discovery_changes = set()
     for row in rows:
-        add(1440, 'light', 'provider', row['id'], COVERAGE_PURPOSES[0])
+        prior = old_rows.get(row['id'], {})
+        keys = row.keys() | prior.keys()
+        if any(row.get(key) != prior.get(key) for key in keys - VERIFICATION_METADATA):
+            discovery_changes.add(row['id'])
+    for model in models:
+        family = model['family']
+        add(desktop, 'light', 'model', family, COVERAGE_PURPOSES[0])
+        if model != previous.get(family) or discovery_changes.intersection(model.get('rows', ())):
+            for kind in ('search', 'browse'):
+                add(desktop, 'light', kind, family, COVERAGE_PURPOSES[0])
+    for row in rows:
+        add(desktop, 'light', 'provider', row['id'], COVERAGE_PURPOSES[0])
     # Each changed route is exercised once. The client picker is shared, so
     # its unchanged routes exercise the UI through representative cases.
     for client in clients:
         purpose = ('client-content' if client_configs[client] != old_configs.get(client)
                    else COVERAGE_PURPOSES[1])
-        add(1440, 'light', 'config', client, purpose)
-    for width, scheme in ((1440, 'light'), (1440, 'dark'), (375, 'light'), (375, 'dark'), (320, 'light')):
+        add(desktop, 'light', 'config', client, purpose)
+    for width, scheme in ((desktop, 'light'), (desktop, 'dark'), (mobile, 'light'), (mobile, 'dark'), (narrow, 'light')):
         for row in row_controls:
             add(width, scheme, 'provider', row['id'])
         for model in model_controls:
@@ -140,7 +154,7 @@ def browser_plan(bundle: Bundle) -> dict:
             add(width, scheme, 'config', config_control)
         if len(named) == 2:
             add(width, scheme, 'search-flow')
-        if width != 320:
+        if width != narrow:
             add(width, scheme, 'readme')
             for i in range(len(readme_images)):
                 add(width, scheme, 'readme-image', str(i))
@@ -149,7 +163,7 @@ def browser_plan(bundle: Bundle) -> dict:
                 and len([m for m in row.get('models', []) if not m.get('superseded_by')]) >= index.get('model_sort', MODEL_SORT)['minimum']]
     sort_row = next((row for row in sortable if row['id'] == 'opencode'), sortable[0] if sortable else None)
     if index.get('model_sort'):
-        for width, scheme in ((1440, 'light'), (375, 'dark')):
+        for width, scheme in ((desktop, 'light'), (mobile, 'dark')):
             for kind in ('home', 'index', *(('provider', 'browse') if sort_row else ())):
                 add(width, scheme, 'model-sort', kind, 'user-sort')
         cases = list(coverage)

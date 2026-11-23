@@ -911,6 +911,38 @@ def test_browser_plan_checks_each_changed_content_once_and_bounds_shared_control
     assert any(case.startswith('320/light/provider/') for case in provider_cases)
 
 
+def test_browser_plan_keeps_page_checks_but_only_repeats_search_for_changed_discovery_facts(monkeypatch, history_repo):
+    from freetier_radar import review_browser
+
+    bundle = review.Bundle(history_repo / '.evidence', history_repo)
+    scope = review.prepare(history_repo, 'HEAD~1', 'HEAD', bundle)
+    models = [{'family': name, 'tier': None, 'rows': [name], 'page': f'https://site.example/models/{name}/'}
+              for name in ('freshness', 'new-tier', 'changed-limit')]
+    rows = [{'id': m['family'], 'name': m['family'], 'limits': 'ordinary limit',
+             'last_verified': '2026-11-19', 'probe_failures': 0, 'provisional': True} for m in models]
+    scope['families'] = [m['family'] for m in models]
+    scope['rows'] = [r['id'] for r in rows]
+    bundle.save('scope', scope)
+
+    old = {'entries': rows, 'models': models}
+    current = {'entries': [{**rows[0], 'last_verified': '2026-11-23', 'probe_failures': 1,
+                            'provisional': False},
+                           rows[1], {**rows[2], 'limits': 'documented lower limit'}],
+               'models': [models[0], {**models[1], 'tier': 'strong'}, models[2]]}
+    monkeypatch.setattr(review_browser, 'index_at',
+                        lambda revision, **kwargs: current if revision == scope['sha'] else old)
+    monkeypatch.setattr(review_browser, '_client_configs',
+                        lambda *args: {'opencode': [{'id': 'freshness'}]})
+
+    coverage = review_browser.browser_plan(bundle)['coverage']
+    for family in scope['families']:
+        assert coverage[f'1440/light/model/{family}'] == 'changed-content'
+        for kind in ('search', 'browse'):
+            case = f'1440/light/{kind}/{family}'
+            assert (coverage.get(case) == 'changed-content') is (family != 'freshness')
+    assert any(case.startswith('375/dark/search/') for case in coverage)
+
+
 @pytest.mark.parametrize('path', ['CONTRIBUTING.md', 'src/freetier_radar/prober.py'])
 def test_browser_plan_does_not_repeat_unchanged_ui_for_internal_changes(tmp_path, path, history_repo):
     from freetier_radar.review_browser import browser_plan
