@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Teapot Router free tier: limits, free models, verified 2026-11-19'
-description: Independent prepaid API gateway with discretionary signup credit. Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and…
+description: Independent prepaid API gateway with discretionary signup credit. Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. No signup-credit amount or expiry is published. The vendor says prepaid…
 permalink: /providers/teapotrouter/
 last_modified_at: 2026-11-23
 crumb: Teapot Router
@@ -25,7 +25,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 Discretionary signup credit: One-time credits allowance: amount not published per account
 
-Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. The vendor says balances do not expire. Top-ups start at $3. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
+Email verification and an account key are required. The vendor says signup credit is usually unavailable and advertises it on the homepage when offered. No signup-credit amount or expiry is published. The vendor says prepaid balances do not expire. Optional top-ups start at $1. Models and channels depend on account access. Requests go to configured upstream providers; usage, billing and audit records are retained for operational, accounting, security and legal needs. Upstream retention and training rules are not established.
 
 ## Where it is offered
 
