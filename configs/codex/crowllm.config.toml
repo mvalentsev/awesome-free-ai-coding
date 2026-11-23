@@ -1,0 +1,2 @@
+provider = "crowllm"
+endpoint = "https://crowllm.com/v1"
