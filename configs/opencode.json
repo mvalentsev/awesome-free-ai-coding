@@ -585,7 +585,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Hetzner Inference API",
       "options": {
-        "baseURL": "https://inference.hetzner.com/api/v1",
+        "baseURL": "https://inference.hetzner.com/v1",
         "apiKey": "{env:HETZNER_INFERENCE_API_KEY}"
       },
       "models": {

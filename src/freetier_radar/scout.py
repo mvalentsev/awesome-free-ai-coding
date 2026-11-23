@@ -7,7 +7,7 @@ import re
 import time
 import traceback
 from functools import partial
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Callable
 
@@ -89,6 +89,8 @@ REFUSAL_REASON_CHARS = 200
 # A quote shorter than this is too weak to verify against a page.
 RETIREMENT_PAGE_CHARS = 2500
 MIN_QUOTE_CHARS = 25
+_RETIREMENT_DATE = re.compile(r"\b(?:\d{4}-\d{2}-\d{2}|(?:\d{1,2} [a-z]+|[a-z]+ \d{1,2},?) \d{4})\b")
+_RETIREMENT_DATE_FORMATS = ("%Y-%m-%d", "%d %B %Y", "%B %d %Y", "%d %b %Y", "%b %d %Y")
 
 # Only pages carrying one of these reach the LLM: every live page would cost tens
 # of thousands of tokens for a question that is almost always "no", and could
@@ -226,12 +228,11 @@ official pages. Report an entry ONLY when its own page announces that the free
 offering is ending or has already ended, and gives a date. A price change, a
 paid plan, a deprecated model, a regional restriction or a retired unrelated
 product is NOT a whole-offer retirement. Preserve geographic and plan scope.
-Copy the announcing sentence verbatim from the page text — an
-entry whose quote is not on the page is discarded.
+Copy the announcing sentence verbatim, including its explicit calendar date.
+Propose only a sentence with one unambiguous date, including the year.
 Output format:
 retire:
   - id: <existing id>
-    retired_on: YYYY-MM-DD   # the day the free offering stops
     quote: <verbatim sentence from the page text below>
 Empty list if no page announces one.
 ENTRIES AND PAGE TEXTS:
@@ -1040,14 +1041,24 @@ def _retirement_excerpt(text: str) -> str:
     return text[start:start + RETIREMENT_PAGE_CHARS]
 
 
+def _retirement_dates(quote: str) -> set[date]:
+    dates = set()
+    for match in _RETIREMENT_DATE.finditer(quote):
+        for fmt in _RETIREMENT_DATE_FORMATS:
+            try:
+                dates.add(datetime.strptime(match[0].replace(",", ""), fmt).date())
+            except ValueError:
+                continue
+            break
+    return dates
+
+
 def apply_retirements(entries: list[Entry], retire: list[dict],
                       pages: dict[str, str], rejected: list[str] | None = None) -> list[str]:
     """Set retired_on from a vendor's own shutdown announcement.
 
-    The quote has to appear verbatim in the page text we fetched — a retirement
-    date is the one field that archives a live entry outright, so a paraphrased
-    or invented announcement must not be able to set it. An announcement dated
-    before a successful verification is contradictory evidence for human review."""
+    Derive the date from one readable source quote. A proposal with multiple
+    dates or an earlier date than a successful verification needs human review."""
     applied = []
     by_id = {e.id: e for e in entries}
     for r in retire:
@@ -1057,11 +1068,15 @@ def apply_retirements(entries: list[Entry], retire: list[dict],
         quote = _flatten(str(r.get("quote", "")))
         if entry is None or entry.retired_on is not None or len(quote) < MIN_QUOTE_CHARS:
             continue
-        if quote not in _flatten(" ".join(pages.get(u, "") for u in entry.source_urls)):
+        if not any(quote in _flatten(pages.get(url, "")) for url in entry.source_urls):
             continue
-        try:
-            when = date.fromisoformat(str(r.get("retired_on", "")))
-        except ValueError:
+        dates = _retirement_dates(quote)
+        when = next(iter(dates)) if len(dates) == 1 else None
+        reported = r.get("retired_on")
+        if when is None or (reported is not None and str(reported) != when.isoformat()):
+            if rejected is not None:
+                rejected.append(f"{entry.id}: retirement date does not match one explicit "
+                                "date in the vendor quote — review the announcement")
             continue
         if when < entry.last_verified:
             if rejected is not None:

@@ -120,6 +120,45 @@ def test_the_workflow_commits_the_maps_list():
     assert "freetier-map paths run" in commit["run"]
 
 
+@pytest.mark.parametrize('history_changed', [False, True])
+def test_expiry_workflow_publishes_a_history_only_change(tmp_path, history_changed):
+    workflow = yaml.safe_load((ROOT / '.github/workflows/expire.yml').read_text())
+    publish = next(s for s in workflow['jobs']['expire']['steps'] if s.get('id') == 'publish')
+    subprocess.run(['git', 'init', '-q', str(tmp_path)], check=True)
+    history = tmp_path / 'history.jsonl'
+    history.write_text('previous\n')
+    (tmp_path / 'registry.yaml').write_text('unchanged\n')
+    subprocess.run(['git', 'add', '.'], cwd=tmp_path, check=True)
+    subprocess.run(['git', '-c', 'user.name=Test', '-c', 'user.email=test@example.test',
+                    'commit', '-qm', 'base'], cwd=tmp_path, check=True)
+    if history_changed:
+        history.write_text('previous\narchived\n')
+
+    stub = '''
+uv() {
+    if [ "$2" = freetier-map ]; then echo 'history.jsonl registry.yaml'; fi
+}
+git() {
+    if [ "$1" = push ]; then
+        command git diff-tree --no-commit-id --name-only -r HEAD > pushed.txt
+    else
+        command git "$@"
+    fi
+}
+'''
+    result = subprocess.run(['bash', '-eo', 'pipefail', '-c', stub + publish['run']],
+                            cwd=tmp_path, env={**os.environ, 'GITHUB_OUTPUT': 'result.txt'},
+                            capture_output=True, text=True)
+
+    assert result.returncode == 0, result.stderr
+    if history_changed:
+        assert (tmp_path / 'pushed.txt').read_text() == 'history.jsonl\n'
+        assert (tmp_path / 'result.txt').read_text() == 'changed=true\n'
+    else:
+        assert not (tmp_path / 'pushed.txt').exists()
+        assert not (tmp_path / 'result.txt').exists()
+
+
 def test_the_run_checks_what_ci_would_before_it_commits():
     """CI never runs on the scheduled run's own push — GITHUB_TOKEN starts no
     workflow — so a commit that broke a test CI runs would sit on main until

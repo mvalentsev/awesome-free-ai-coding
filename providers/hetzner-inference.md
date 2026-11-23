@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Hetzner Inference API free tier: limits, free models, verified 2026-11-19'
-description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.8-27b, qwen3.6. Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a…'
+description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.8-27b, qwen3.6. Free while the Inference API remains experimental. Hetzner says “This Experiment will end on 8 December 2026.” Per-key request and token windows both apply, with HTTP 429…'
 permalink: /providers/hetzner-inference/
 last_modified_at: 2026-11-23
 crumb: Hetzner Inference API
@@ -26,7 +26,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 4,000,000 input tokens/60 seconds; 100,000 output tokens/60 seconds; 10 requests/60 seconds per key
 
-Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap or end date is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.
+Free while the Inference API remains experimental. Hetzner says “This Experiment will end on 8 December 2026.” Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.
 
 ## Where it is offered
 
@@ -38,7 +38,7 @@ What you send is not used to train models. In the vendor's words: “Prompts and
 
 ## Connect
 
-- Base URL: `https://inference.hetzner.com/api/v1`
+- Base URL: `https://inference.hetzner.com/v1`
 - Key: `HETZNER_INFERENCE_API_KEY` — get one at <https://experiments.hetzner.com/inference>
 - Callable ids: `Qwen3.8-27B`, `Qwen/Qwen3.6-35B-A3B-FP8`
 - Note: both ids are 262K-context and take text and images; /v1/models, /v1/completions and /v1/chat/completions are the whole surface. The key is minted in the Inference tab of experiments.hetzner.com, which is a client-rendered page behind a Hetzner login — the readable copy of the terms is the docs page this row probes
@@ -46,7 +46,7 @@ What you send is not used to train models. In the vendor's words: “Prompts and
 Try it from your terminal with your key in `HETZNER_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
 ```sh
-curl -s https://inference.hetzner.com/api/v1/chat/completions \
+curl -s https://inference.hetzner.com/v1/chat/completions \
   -H "Authorization: Bearer $HETZNER_INFERENCE_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{"model":"Qwen/Qwen3.6-35B-A3B-FP8","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
@@ -54,7 +54,7 @@ curl -s https://inference.hetzner.com/api/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>, anchored on `remains in experimental status, it is free of charge`, `https://inference.hetzner.com/api/v1`
+- Probe: the page at <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>, anchored on `remains in experimental status, it is free of charge`, `https://inference.hetzner.com/v1`
 - Source: <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>
 - Source: <https://experiments.hetzner.com/inference>
 

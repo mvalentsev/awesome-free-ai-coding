@@ -32,11 +32,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: uv sync
-      - name: Publish only promotions whose deadlines have passed
+      - name: Publish ended promotions and scheduled shutdowns
         id: publish
         run: |
           uv run freetier-render --expire-only
-          if git diff --quiet -- registry.yaml; then
+          if git diff --quiet -- registry.yaml history.jsonl; then
             exit 0
           fi
           uv run freetier-check

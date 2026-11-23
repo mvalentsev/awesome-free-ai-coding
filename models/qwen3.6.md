@@ -28,11 +28,11 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 - Limits, in the vendor's words: 4,000,000 input tokens/60 seconds; 100,000 output tokens/60 seconds; 10 requests/60 seconds per key
 
-Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap or end date is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.
+Free while the Inference API remains experimental. Hetzner says “This Experiment will end on 8 December 2026.” Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.
 
 </details>
 
-- Base URL: `https://inference.hetzner.com/api/v1`
+- Base URL: `https://inference.hetzner.com/v1`
 - Key: `HETZNER_INFERENCE_API_KEY` — get one at <https://experiments.hetzner.com/inference>
 - Callable ids: `Qwen/Qwen3.6-35B-A3B-FP8`
 - What you send is not used to train models ([the vendor's words](https://www.hetzner.com/legal/privacy-policy/)).

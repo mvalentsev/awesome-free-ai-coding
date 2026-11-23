@@ -480,7 +480,8 @@ The same source checks, model labels and expiry writer apply. Ended families
 remain in `expired_models`; their family-bound quotas stay as evidence and are
 excluded from current Limits.
 The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
-which writes nothing before a deadline and earns no verification fields.
+which publishes ended model promotions and scheduled whole-offer shutdowns. It
+writes nothing before a deadline and earns no verification fields.
 It dispatches the shared Pages and IndexNow reconciliation even when no
 promotion ended. A manual expiry run requests a Pages rebuild. Verification
 and expiry share a queued writer group, preserving pending verification runs.

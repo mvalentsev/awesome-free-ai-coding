@@ -491,13 +491,33 @@ def test_apply_retirements_needs_the_quote_on_the_page():
 def test_retirement_evidence_requires_a_successful_http_read(status):
     quote = "The free tier will be permanently shut down on 30 September 2026."
     entry = make(source_urls=["https://x.ai/blog"])
+    llm = StubLLM({"FIND-RETIREMENTS": f"```yaml\nretire:\n  - id: x\n    quote: {quote}\n```"})
     transport = httpx.MockTransport(lambda request: httpx.Response(status, text=quote))
     with httpx.Client(transport=transport) as client:
-        pages = fetch_page_texts(entry.source_urls, client)
-    applied = apply_retirements([entry], [{"id": entry.id, "retired_on": "2026-09-30",
-                                          "quote": quote}], pages)
-    assert applied == (["x (2026-09-30)"] if status == 200 else [])
+        result = run_scout(llm, [entry], [], lambda urls: fetch_page_texts(urls, client), TODAY)
+    assert any("FIND-RETIREMENTS" in prompt for prompt in llm.prompts) is (status == 200)
+    assert result['retired'] == (["x (2026-09-30)"] if status == 200 else [])
     assert entry.retired_on == (date(2026, 9, 30) if status == 200 else None)
+
+
+@pytest.mark.parametrize('quote, proposed_date, expected', [
+    ('The experiment will end on 8 December 2026.', '2026-12-08', True),
+    ('The experiment will end on December 8, 2026.', '2026-12-08', True),
+    ('The experiment will end on 8 December 2026.', '2026-11-30', False),
+    ('The experiment will end on 2026-12-08, revised from 2026-11-30.', '2026-11-30', False),
+    ('The experiment will end later this year.', '2026-11-30', False),
+])
+def test_retirement_date_must_be_unambiguous_in_the_vendor_quote(quote, proposed_date, expected):
+    row = make(source_urls=['https://x.ai/blog'])
+    llm = StubLLM({'FIND-RETIREMENTS': '```yaml\nretire:\n  - id: x\n'
+                   f'    retired_on: {proposed_date}\n    quote: {quote}\n```'})
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=quote))
+    with httpx.Client(transport=transport) as client:
+        result = run_scout(llm, [row], [], lambda urls: fetch_page_texts(urls, client), TODAY)
+
+    assert row.retired_on == (date.fromisoformat(proposed_date) if expected else None)
+    if not expected:
+        assert result['rejected'] and row.id in result['rejected'][0]
 
 
 @pytest.mark.parametrize('markup,expected', [
@@ -517,17 +537,6 @@ def test_retirement_evidence_requires_published_prose_beside_a_live_offer(markup
                                           'quote': quote}], pages)
     assert applied == (['x (2026-09-30)'] if expected else [])
     assert entry.retired_on == (date(2026, 9, 30) if expected else None)
-
-
-@pytest.mark.parametrize("status", [200, 403])
-def test_retirement_sweep_never_sends_an_http_error_body_to_the_llm(status):
-    quote = "The free tier will be permanently shut down on 30 September 2026."
-    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
-    entry = make(source_urls=["https://x.ai/blog"])
-    transport = httpx.MockTransport(lambda request: httpx.Response(status, text=quote))
-    with httpx.Client(transport=transport) as client:
-        run_scout(llm, [entry], [], lambda urls: fetch_page_texts(urls, client), TODAY)
-    assert any("FIND-RETIREMENTS" in p for p in llm.prompts) is (status == 200)
 
 
 @pytest.mark.parametrize("retired_on,expected", [
@@ -563,18 +572,6 @@ def test_apply_retirements_ignores_bad_dates_and_short_quotes():
         {"id": "nobody", "retired_on": "2026-09-30", "quote": "we are shutting the free tier down"},
     ], pages) == []
     assert entries[0].retired_on is None
-
-
-def test_run_scout_sweeps_live_entries_for_retirements():
-    """Live rows are swept for an announced retirement, which a vendor makes
-    weeks ahead; a failing probe only notices on the day the tier dies."""
-    page = "the free tier for github models will be retired on 2026-07-30, use the paid plan"
-    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire:\n  - id: x\n    retired_on: '2026-07-30'\n"
-                                       f"    quote: {page[:60]}\n```"})
-    entries = [make(source_urls=["https://x.ai/blog"])]
-    result = run_scout(llm, entries, [], lambda urls: {u: page for u in urls}, TODAY)
-    assert result["retired"] == ["x (2026-07-30)"]
-    assert entries[0].retired_on == date(2026, 7, 30)
 
 
 def test_the_retirement_sweep_reads_no_page_of_a_delisted_row():

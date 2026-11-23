@@ -4324,12 +4324,12 @@ entries:
   card_required: false
   offering: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as
     the experiment runs
-  limits: Free while the Inference API remains experimental; Hetzner says it will
-    email advance notice of a change. Per-key request and token windows both apply,
-    with HTTP 429 at a cap. No daily, monthly or lifetime cap or end date is published.
-    The service is offered as is for experimental use, without guaranteed availability
-    or backups. Minting a token needs a Hetzner account; payment verification can
-    include a card charge or other routes.
+  limits: Free while the Inference API remains experimental. Hetzner says “This Experiment
+    will end on 8 December 2026.” Per-key request and token windows both apply, with
+    HTTP 429 at a cap. No daily, monthly or lifetime cap is published. The service
+    is offered as is for experimental use, without guaranteed availability or backups.
+    Minting a token needs a Hetzner account; payment verification can include a card
+    charge or other routes.
   quotas:
   - amount: 4000000.0
     unit: input tokens
@@ -4402,7 +4402,7 @@ entries:
   - family: qwen3.8-27b
     aa_model: qwen3-8-27b
   api:
-    base_url: https://inference.hetzner.com/api/v1
+    base_url: https://inference.hetzner.com/v1
     key_url: https://experiments.hetzner.com/inference
     auth: api-key
     openai_compatible: true
@@ -4427,7 +4427,7 @@ entries:
     endpoint: https://docs.hetzner.com/general/company-and-policy/experiments/inference/
     keywords:
     - remains in experimental status, it is free of charge
-    - https://inference.hetzner.com/api/v1
+    - https://inference.hetzner.com/v1
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

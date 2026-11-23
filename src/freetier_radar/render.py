@@ -74,13 +74,13 @@ CATEGORY_TITLES: dict[Category, str] = {
 }
 
 REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
-# GitHub Pages rather than raw.githubusercontent.com, which serves the feed as
-# text/plain, for a file every subscriber polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
-# every subscription.
-FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
 # The Pages site the feed lives on, where each row gets a page of its own
 # (`build_provider_page`).
 PAGES_URL = "https://mvalentsev.github.io/awesome-free-ai-coding"
+# GitHub Pages rather than raw.githubusercontent.com, which serves the feed as
+# text/plain, for a file every subscriber polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
+# every subscription.
+FEED_URL = f"{PAGES_URL}/feed.xml"
 PROVIDERS_DIR = "providers"
 # And where a model gets one (`build_model_page`).
 MODELS_DIR = "models"
@@ -3441,14 +3441,14 @@ def render_repository(registry_path: Path, template_dir: Path, root: Path,
     change carries its line, and the pages it publishes already show it.
     `committed` is the log the commit will be made on (`gate.committed_log`);
     the lines recorded are the ones it will add. An expiry-only run returns
-    None and writes nothing when there is no promotion to withdraw."""
+    None and writes nothing when no new deadline has passed."""
     now = now or datetime.now(timezone.utc)
     today = today or now.astimezone(timezone.utc).date()
     entries = load_registry(registry_path)
     current = expire_entries(entries, now)
     if current != entries:
         save_registry(registry_path, current)
-    elif expire_only:
+    elif expire_only and not _unpublished_retirement(current, root, today):
         return None
     recorded = record_changes(registry_path, _history_path(registry_path), today,
                               now, committed=committed, entries=current)
@@ -3469,6 +3469,12 @@ def _generated_on(root: Path, today: date) -> date:
         return min(date.fromisoformat(stamped), today)
     except (OSError, ValueError, KeyError, TypeError):
         return today
+
+
+def _unpublished_retirement(entries: list[Entry], root: Path, today: date) -> bool:
+    published_day = _generated_on(root, today)
+    return any(e.retired_on and published_day < e.retired_on <= today
+               and not is_archived(e, published_day) for e in entries)
 
 
 def check_rendered(registry_path: Path, template_dir: Path, root: Path,
@@ -3522,7 +3528,7 @@ def main() -> None:
                         help="write nothing; report the generated files that no longer "
                              "match the registry, and exit 1 if any do")
     parser.add_argument("--expire-only", action="store_true",
-                        help="publish ended model promotions; write nothing if none ended")
+                        help="publish ended model promotions and scheduled shutdowns")
     args = parser.parse_args()
     if args.check and args.expire_only:
         parser.error("--check and --expire-only cannot be combined")
@@ -3545,7 +3551,7 @@ def main() -> None:
                                  committed=committed_log(_history_path(args.registry)),
                                  expire_only=args.expire_only)
     if recorded is None:
-        print("no model promotion has ended")
+        print("no new expiry to publish")
         return
     for ev in recorded:
         print(f"history: {ev.event.value} {ev.id}")

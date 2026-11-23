@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
 from pydantic import ValidationError
@@ -305,6 +305,34 @@ def test_expire_only_command_is_a_noop_before_any_deadline(tmp_path):
     assert not (tmp_path / "README.md").exists()
 
 
+def test_expiry_writer_archives_a_scheduled_shutdown_without_a_registry_edit(tmp_path):
+    import json
+
+    from freetier_radar.history import load_history
+    from freetier_radar.render import render_repository
+
+    deadline = date(2026, 10, 4)
+    cutoff = datetime.combine(deadline, datetime.min.time(), timezone.utc)
+    path = tmp_path / 'registry.yaml'
+    save_registry(path, [entry(retired_on=deadline)])
+    before = path.read_bytes()
+    templates = Path('templates')
+    config = tmp_path / 'configs/opencode.json'
+    previous = cutoff - timedelta(seconds=1)
+    render_repository(path, templates, tmp_path, now=previous)
+    assert 'gateway' in json.loads(config.read_bytes())['provider']
+    assert render_repository(path, templates, tmp_path, now=previous, expire_only=True) is None
+
+    render_repository(path, templates, tmp_path, now=cutoff, expire_only=True)
+
+    assert path.read_bytes() == before
+    assert 'gateway' not in json.loads(config.read_bytes())['provider']
+    assert (tmp_path / 'providers/gateway.md').is_file()
+    events = load_history(tmp_path / 'history.jsonl')
+    assert events[-1].id == 'gateway' and events[-1].event.value == 'archived'
+    assert render_repository(path, templates, tmp_path, now=cutoff, expire_only=True) is None
+
+
 def test_client_defaults_choose_an_unfunded_id_even_if_the_paid_id_is_first():
     from freetier_radar.render import build_codex_profile, build_claude_code_sh
     row = entry(api={"base_url": "https://vendor.example/v1", "model_ids": ["preview", "steady"],
@@ -397,7 +425,6 @@ def test_model_name_list_and_monthly_digest_disclose_the_same_conditions():
 def test_expiry_command_uses_one_instant_for_deadlines_history_and_pages(tmp_path, monkeypatch):
     import json
     import sys
-    from datetime import timedelta
 
     from freetier_radar import render
     from freetier_radar.history import archive_reason, load_history
