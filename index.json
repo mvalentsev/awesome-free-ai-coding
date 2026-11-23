@@ -7958,6 +7958,7 @@
       },
       "first_seen": "2026-08-30",
       "last_verified": "2026-11-19",
+      "retired_on": "2026-12-08",
       "probe_failures": 1,
       "provisional": false,
       "rank": 55,
