@@ -85,7 +85,7 @@ A verified email is required. Free requests do not spend prepaid credit and need
 
 ## Related models
 
-- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR (until 2026-11-24), Regolo AI and Opper
+- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Regolo AI and Opper
 
 ---
 

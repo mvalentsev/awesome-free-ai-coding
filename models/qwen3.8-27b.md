@@ -45,8 +45,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 - Limits, in the vendor's words: Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`
 
-Creekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`
-
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
@@ -56,8 +54,7 @@ Creekside Free models: Usage allowance: amount not published (period not publish
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `creekside/qwen3.8-27b-creekside-free`, `qwen/qwen3.8-27b-free`
-- `creekside/qwen3.8-27b-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
+- Callable ids: `qwen/qwen3.8-27b-free`
 - What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
 
 ### [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/)

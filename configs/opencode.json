@@ -518,34 +518,6 @@
             "max_completion_tokens": 8192,
             "max_tokens": 8192
           }
-        },
-        "creekside/qwen3.8-27b-creekside-free": {
-          "name": "creekside/qwen3.8-27b-creekside-free (until 2026-11-24)",
-          "options": {
-            "max_completion_tokens": 32768,
-            "max_tokens": 32768
-          }
-        },
-        "creekside/qwen3.6-35b-a3b-creekside-free": {
-          "name": "creekside/qwen3.6-35b-a3b-creekside-free (until 2026-11-24)",
-          "options": {
-            "max_completion_tokens": 32768,
-            "max_tokens": 32768
-          }
-        },
-        "creekside/gemma-4-31b-it-creekside-free": {
-          "name": "creekside/gemma-4-31b-it-creekside-free (until 2026-11-24)",
-          "options": {
-            "max_completion_tokens": 32768,
-            "max_tokens": 32768
-          }
-        },
-        "creekside/muse-glimmer-30b-creekside-free": {
-          "name": "creekside/muse-glimmer-30b-creekside-free (until 2026-11-24)",
-          "options": {
-            "max_completion_tokens": 32768,
-            "max_tokens": 32768
-          }
         }
       }
     },

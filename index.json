@@ -9240,7 +9240,7 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+      "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
       "quotas": [
         {
           "unit": "usage",
@@ -9299,24 +9299,6 @@
           "reviewed_on": "2026-11-17",
           "amount": null,
           "period": null
-        },
-        {
-          "unit": "usage",
-          "scope": "unspecified",
-          "label": "Creekside Free models",
-          "condition": "quantized builds; provider states no request/response storage or training",
-          "condition_quote": "request and response content is not stored and is not used for model training",
-          "source": "https://llmtr.com/docs/en/gateway/creekside/",
-          "quote": "The four rows ending in -free in the table are free until 23 November 2026, 24:00 (TRT); if free use ends sooner, they close before that date.",
-          "model_ids": [
-            "creekside/qwen3.8-27b-creekside-free",
-            "creekside/qwen3.6-35b-a3b-creekside-free",
-            "creekside/gemma-4-31b-it-creekside-free",
-            "creekside/muse-glimmer-30b-creekside-free"
-          ],
-          "reviewed_on": "2026-11-17",
-          "amount": null,
-          "period": null
         }
       ],
       "free_part": "models",
@@ -9332,18 +9314,6 @@
         {
           "family": "nemotron-3-ultra",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
-        },
-        {
-          "family": "gemma-4-31b",
-          "aa_auto": false
-        },
-        {
-          "family": "muse-glimmer-30b",
-          "aa_auto": false
-        },
-        {
-          "family": "qwen3.6-35b-a3b",
-          "aa_auto": false
         }
       ],
       "api": {
@@ -9357,11 +9327,7 @@
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "lgai/k-exaone-2.5",
-          "creekside/qwen3.8-27b-creekside-free",
-          "creekside/qwen3.6-35b-a3b-creekside-free",
-          "creekside/gemma-4-31b-it-creekside-free",
-          "creekside/muse-glimmer-30b-creekside-free"
+          "lgai/k-exaone-2.5"
         ],
         "model_bindings": {
           "internlm/intern-s2-free": {
@@ -9638,7 +9604,11 @@
           "qwen/qwen3.8-max-free",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "baidu/ernie-5.5-flash-preview-free"
+          "baidu/ernie-5.5-flash-preview-free",
+          "creekside/gemma-4-31b-it-creekside-free",
+          "creekside/muse-glimmer-30b-creekside-free",
+          "creekside/qwen3.6-35b-a3b-creekside-free",
+          "creekside/qwen3.8-27b-creekside-free"
         ],
         "no_family_ids": [
           "liquid/lfm3-1.7b-free",
@@ -9679,10 +9649,7 @@
         "models": [
           "nemotron-3-ultra",
           "qwen3.8-27b",
-          "nemotron-3.5-super-vl-120b-a12b",
-          "qwen3.6-35b-a3b",
-          "gemma-4-31b",
-          "muse-glimmer-30b"
+          "nemotron-3.5-super-vl-120b-a12b"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b",
@@ -9690,23 +9657,16 @@
           "nvidia/nemotron-3.5-super-vl-free",
           "liquid/lfm3-1.7b-free",
           "parallel/parallel-free",
-          "lgai/k-exaone-2.5",
-          "creekside/qwen3.8-27b-creekside-free",
-          "creekside/qwen3.6-35b-a3b-creekside-free",
-          "creekside/gemma-4-31b-it-creekside-free",
-          "creekside/muse-glimmer-30b-creekside-free"
+          "lgai/k-exaone-2.5"
         ],
         "what": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nCreekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
+        "limits": "Nemotron Ultra and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `qwen/qwen3.8-27b-free`\n\nNemotron3.5 Super VL: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3.5-super-vl-free`\n\nLFM3: One-time tokens allowance: amount not published; scope not published (Input and output count together; does not renew; can end early if the free allocation runs out); for `liquid/lfm3-1.7b-free`\n\nParallel: Usage allowance: amount not published (period not published) per account per model (20,000 characters across all messages; no tool calling; can end early if the free allocation runs out); for `parallel/parallel-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs \"may be retained by the provider and used to improve the model\".",
         "why": "",
         "access": "",
         "modelAccess": {
           "nemotron-3-ultra": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": "",
-          "qwen3.6-35b-a3b": "until 2026-11-24",
-          "gemma-4-31b": "until 2026-11-24",
-          "muse-glimmer-30b": "until 2026-11-24"
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "section": {
           "id": "aggregator"
@@ -9720,10 +9680,7 @@
         "models": {
           "nemotron-3-ultra": "",
           "qwen3.8-27b": "",
-          "nemotron-3.5-super-vl-120b-a12b": "",
-          "qwen3.6-35b-a3b": "until 2026-11-24",
-          "gemma-4-31b": "until 2026-11-24",
-          "muse-glimmer-30b": "until 2026-11-24"
+          "nemotron-3.5-super-vl-120b-a12b": ""
         },
         "ids": {
           "nvidia/nemotron-3-ultra-550b-a55b": "",
@@ -9731,11 +9688,7 @@
           "nvidia/nemotron-3.5-super-vl-free": "",
           "liquid/lfm3-1.7b-free": "free until 2026-12-30 23:59+03:00",
           "parallel/parallel-free": "free until 2027-01-04 23:59+03:00",
-          "lgai/k-exaone-2.5": "",
-          "creekside/qwen3.8-27b-creekside-free": "free until 2026-11-24 00:00+03:00",
-          "creekside/qwen3.6-35b-a3b-creekside-free": "free until 2026-11-24 00:00+03:00",
-          "creekside/gemma-4-31b-it-creekside-free": "free until 2026-11-24 00:00+03:00",
-          "creekside/muse-glimmer-30b-creekside-free": "free until 2026-11-24 00:00+03:00"
+          "lgai/k-exaone-2.5": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -22096,8 +22049,7 @@
       "rows": [
         "requesty",
         "nvidia-nim",
-        "routeway",
-        "llmtr"
+        "routeway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
     },
@@ -22136,7 +22088,6 @@
         "requesty",
         "nvidia-nim",
         "aihubmix",
-        "llmtr",
         "regolo",
         "opper"
       ],
@@ -22877,7 +22828,6 @@
     {
       "family": "qwen3.6-35b-a3b",
       "rows": [
-        "llmtr",
         "alibaba-model-studio"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/"

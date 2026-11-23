@@ -3,7 +3,7 @@ layout: default
 title: 'muse-spark-1.3-contributor free: no current listing, last listed 2026-10-21'
 description: No row currently lists muse-spark-1.3-contributor under Free models. The list carried it at Cline and opencode until 2026-10-21. Each row's page gives its current offer.
 permalink: /models/muse-spark-1.3-contributor/
-last_modified_at: 2026-11-17
+last_modified_at: 2026-11-23
 crumb: muse-spark-1.3-contributor
 ---
 
@@ -22,7 +22,7 @@ crumb: muse-spark-1.3-contributor
 
 ## Related models
 
-- [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — free at Requesty, NVIDIA NIM (build.nvidia.com), Routeway and LLMTR (until 2026-11-24)
+- [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — free at Requesty, NVIDIA NIM (build.nvidia.com) and Routeway
 
 ---
 

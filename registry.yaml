@@ -5389,12 +5389,6 @@ entries:
     aa_model: qwen3-8-27b
   - family: nemotron-3.5-super-vl-120b-a12b
     aa_model: nemotron-3-5-super-vl
-  - family: qwen3.6-35b-a3b
-    aa_auto: false
-  - family: gemma-4-31b
-    aa_auto: false
-  - family: muse-glimmer-30b
-    aa_auto: false
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -5407,10 +5401,6 @@ entries:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free
     - lgai/k-exaone-2.5
-    - creekside/qwen3.8-27b-creekside-free
-    - creekside/qwen3.6-35b-a3b-creekside-free
-    - creekside/gemma-4-31b-it-creekside-free
-    - creekside/muse-glimmer-30b-creekside-free
     model_bindings:
       internlm/intern-s2-free:
         family: intern-s2-397b
@@ -5637,6 +5627,10 @@ entries:
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - baidu/ernie-5.5-flash-preview-free
+    - creekside/gemma-4-31b-it-creekside-free
+    - creekside/muse-glimmer-30b-creekside-free
+    - creekside/qwen3.6-35b-a3b-creekside-free
+    - creekside/qwen3.8-27b-creekside-free
     no_family_ids:
     - liquid/lfm3-1.7b-free
     - parallel/parallel-free

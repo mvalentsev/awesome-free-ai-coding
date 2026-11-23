@@ -672,42 +672,6 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 524288
-- model_name: llmtr/creekside/qwen3.8-27b-creekside-free
-  litellm_params:
-    model: openai/creekside/qwen3.8-27b-creekside-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-11-24 00:00+03:00
-    source: https://llmtr.com/docs/en/gateway/creekside/
-- model_name: llmtr/creekside/qwen3.6-35b-a3b-creekside-free
-  litellm_params:
-    model: openai/creekside/qwen3.6-35b-a3b-creekside-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-11-24 00:00+03:00
-    source: https://llmtr.com/docs/en/gateway/creekside/
-- model_name: llmtr/creekside/gemma-4-31b-it-creekside-free
-  litellm_params:
-    model: openai/creekside/gemma-4-31b-it-creekside-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-11-24 00:00+03:00
-    source: https://llmtr.com/docs/en/gateway/creekside/
-- model_name: llmtr/creekside/muse-glimmer-30b-creekside-free
-  litellm_params:
-    model: openai/creekside/muse-glimmer-30b-creekside-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2026-11-24 00:00+03:00
-    source: https://llmtr.com/docs/en/gateway/creekside/
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'muse-glimmer-30b free: 4 providers, limits and ids, provider probes 2026-11-23'
-description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com), Routeway and LLMTR. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'muse-glimmer-30b free: 3 providers, limits and ids, provider probes 2026-11-23'
+description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/muse-glimmer-30b/
 last_modified_at: 2026-11-23
 crumb: muse-glimmer-30b
@@ -11,7 +11,7 @@ crumb: muse-glimmer-30b
 
 # Where muse-glimmer-30b is free
 
-**4 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com), Routeway and LLMTR. None asks for a card. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
+**3 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -70,26 +70,9 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 - Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway -m muse-glimmer-30b:free`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
 - Callable ids: `muse-glimmer-30b:free`
 
-### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
+## Rows that listed it before
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-17
-
-Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
-
-- Limits, in the vendor's words: Creekside Free models: Usage allowance: amount not published (period not published); scope not published (quantized builds; provider states no request/response storage or training); for `creekside/qwen3.8-27b-creekside-free`, `creekside/qwen3.6-35b-a3b-creekside-free`, `creekside/gemma-4-31b-it-creekside-free`, `creekside/muse-glimmer-30b-creekside-free`
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Free chat rows can be called on a new account with zero balance before any top-up. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. For free Nemotron3.5 Super VL, inputs "may be retained by the provider and used to improve the model".
-
-</details>
-
-- Base URL: `https://llmtr.com/v1`
-- Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `creekside/muse-glimmer-30b-creekside-free`
-- `creekside/muse-glimmer-30b-creekside-free`: free until 2026-11-24 00:00+03:00 ([conditions](https://llmtr.com/docs/en/gateway/creekside/))
-- What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/nemotron-3-5-super-vl/)).
+- [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-11-17 to 2026-11-23
 
 ---
 

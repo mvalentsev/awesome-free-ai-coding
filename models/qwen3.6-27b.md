@@ -42,7 +42,7 @@ Free token grants apply in Singapore (international), independently per model an
 ## Related models
 
 - [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) — free at Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints
-- [`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) — free at LLMTR (until 2026-11-24) and Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.6-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
