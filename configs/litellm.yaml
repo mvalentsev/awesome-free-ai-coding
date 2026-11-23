@@ -1875,6 +1875,12 @@ model_list:
   model_info:
     access: requires $1.5 one-time top-up; free until 2026-11-30 UTC
     source: https://jzstoken.com/model-pricing/jzs-max-3.0
+- model_name: crowllm/gemma-4-31b-it:free
+  litellm_params:
+    model: openai/gemma-4-31b-it:free
+    api_base: https://crowllm.com/v1
+    api_key: os.environ/CROWLLM_API_KEY
+    use_chat_completions_api: true
 - model_name: modelscope/deepseek-ai/DeepSeek-V4.1-Flash
   litellm_params:
     model: openai/deepseek-ai/DeepSeek-V4.1-Flash

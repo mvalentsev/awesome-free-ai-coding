@@ -140,6 +140,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/) — verified 2026-11-23 · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/)
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) 💳 — verified 2026-11-23
 - [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/) — verified 2026-11-23
+- [CrowLLM (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/) — verified 2026-11-23
 
 ## Archived
 

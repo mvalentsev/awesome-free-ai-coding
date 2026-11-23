@@ -1781,6 +1781,19 @@
         }
       }
     },
+    "crowllm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "CrowLLM (free models)",
+      "options": {
+        "baseURL": "https://crowllm.com/v1",
+        "apiKey": "{env:CROWLLM_API_KEY}"
+      },
+      "models": {
+        "gemma-4-31b-it:free": {
+          "name": "gemma-4-31b-it:free"
+        }
+      }
+    },
     "modelscope": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "ModelScope API-Inference (Alibaba)",

@@ -13033,3 +13033,49 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 190
+- id: crowllm
+  name: CrowLLM (free models)
+  category: aggregator
+  url: https://crowllm.com
+  source_urls:
+  - https://crowllm.com/models/gemma-4-31b-it%3Afree
+  - https://crowllm.com/pricing
+  - https://crowllm.com/v1/models
+  - https://crowllm.com/docs/authentication
+  - https://crowllm.com/terms-of-service
+  card_required: false
+  offering: Free OpenAI-compatible Chat Completions with an account API key
+  limits: The Free plan has a low request ceiling and no burst headroom while requests
+    are queued. The model card gives this route no trial timer.
+  free_part: models
+  models: []
+  api:
+    base_url: https://crowllm.com/v1
+    key_url: https://crowllm.com/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - gemma-4-31b-it:free
+    note: ''
+  border:
+    left_out: []
+    'on': '2026-11-23'
+    source: https://crowllm.com/terms-of-service
+    read: none
+  probe:
+    type: page-keywords
+    endpoint: https://crowllm.com/models/gemma-4-31b-it%3Afree
+    keywords:
+    - gemma-4-31b-it:free from Google is free on CrowLLM
+    - no card, no trial timer
+    - $0 per 1M input tokens and $0 per 1M output tokens
+    - /v1/chat/completions
+    free_marker: ''
+    require_zero_price: false
+    catalog: https://crowllm.com/v1/models
+    machinery_keywords: []
+  first_seen: '2026-11-23'
+  last_verified: '2026-11-23'
+  probe_failures: 0
+  provisional: true
+  rank: 100

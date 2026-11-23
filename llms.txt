@@ -132,6 +132,7 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 - [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/): A no-top-up API for free text-model variants; no card; key from https://beatapi.io/dashboard/apikeys; OpenAI-compatible at https://api.beatapi.io/v1; free models: `deepseek-v4.1-flash`, `glm-5.3-flash`
 - [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/): Open-source AI gateway backed by Y Combinator; its pricing page advertises a recurring Free core-model pool, separate from paid wallet credits; card required; requires $1 one-time card verification; key from https://platform.experientiallabs.ai; OpenAI-compatible at https://api.experientiallabs.ai/v1
 - [JZS Token](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jzstoken/): A temporary free model API with a dedicated key and prepaid account; no card; requires $1.5 one-time top-up; key from https://jzstoken.com/dashboard/keys; OpenAI-compatible at https://jzstoken.com/api/v1
+- [CrowLLM (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/): Free OpenAI-compatible Chat Completions with an account API key; no card; key from https://crowllm.com/keys; OpenAI-compatible at https://crowllm.com/v1; provisional since 2026-11-23
 
 ## Free models by name
 

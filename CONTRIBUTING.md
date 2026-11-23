@@ -74,6 +74,12 @@ What does **not** qualify:
   workspace — an entry has to hand you model access you can aim at code you
   already have, through a client you install or an endpoint you can call.
 
+For a gateway, check the operator's published offer and the API available to
+developers. Judge evidence of unofficial access, key sharing or scraping
+against the lane it describes. A gateway can rely on infrastructure from other
+providers. Check upstream terms when a published claim depends on them, such
+as whether anyone who processes requests may use them for model training.
+
 Domains rejected for cause live in [`blocklist.yaml`](blocklist.yaml) — the scout
 will not re-propose them, nor a vendor this list already reaches at another of its
 hosts. Model-generation bumps a reviewer has already declined

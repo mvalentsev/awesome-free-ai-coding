@@ -170,7 +170,8 @@
       "BlockRun (free models)",
       "iFlytek Spark Lite (讯飞星火)",
       "Volcengine Ark (new-user inference trial)",
-      "Together AI (free model)"
+      "Together AI (free model)",
+      "CrowLLM (free models)"
     ],
     "sections": [
       {
@@ -20603,6 +20604,82 @@
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/"
+    },
+    {
+      "id": "crowllm",
+      "name": "CrowLLM (free models)",
+      "category": "aggregator",
+      "url": "https://crowllm.com",
+      "source_urls": [
+        "https://crowllm.com/models/gemma-4-31b-it%3Afree",
+        "https://crowllm.com/pricing",
+        "https://crowllm.com/v1/models",
+        "https://crowllm.com/docs/authentication",
+        "https://crowllm.com/terms-of-service"
+      ],
+      "card_required": false,
+      "offering": "Free OpenAI-compatible Chat Completions with an account API key",
+      "limits": "The Free plan has a low request ceiling and no burst headroom while requests are queued. The model card gives this route no trial timer.",
+      "free_part": "models",
+      "models": [],
+      "api": {
+        "base_url": "https://crowllm.com/v1",
+        "key_url": "https://crowllm.com/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "gemma-4-31b-it:free"
+        ],
+        "note": ""
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-11-23",
+        "source": "https://crowllm.com/terms-of-service",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://crowllm.com/models/gemma-4-31b-it%3Afree",
+        "keywords": [
+          "gemma-4-31b-it:free from Google is free on CrowLLM",
+          "no card, no trial timer",
+          "$0 per 1M input tokens and $0 per 1M output tokens",
+          "/v1/chat/completions"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "catalog": "https://crowllm.com/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-11-23",
+      "last_verified": "2026-11-23",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "no_account": false,
+      "archived": false,
+      "search": {
+        "name": "CrowLLM (free models)",
+        "models": [],
+        "ids": [
+          "gemma-4-31b-it:free"
+        ],
+        "what": "Free OpenAI-compatible Chat Completions with an account API key",
+        "limits": "The Free plan has a low request ceiling and no burst headroom while requests are queued. The model card gives this route no trial timer.",
+        "why": "",
+        "access": "",
+        "modelAccess": {},
+        "section": {
+          "id": "aggregator"
+        },
+        "flags": [
+          "nocard"
+        ]
+      },
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/"
     }
   ],
   "countries": [
@@ -21681,6 +21758,7 @@
       "upstage",
       "aion-labs",
       "jzstoken",
+      "crowllm",
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
@@ -21760,6 +21838,7 @@
       "upstage",
       "aion-labs",
       "jzstoken",
+      "crowllm",
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
@@ -21862,6 +21941,7 @@
       "upstage",
       "aion-labs",
       "jzstoken",
+      "crowllm",
       "modelscope",
       "sensenova",
       "tencent-tokenhub",
@@ -23546,8 +23626,8 @@
       ],
       "name": "DX TOKEN",
       "checked_on": "2026-08-14",
-      "reason": "Blocklisted earlier the same day on a reason that turned out to be wrong, and moved here rather than left standing. The claim was that its model ids anonymise the upstream they route to; dxnt.com/byok refutes it in its own words — \"在控制台添加自有端点，用 {身份码}/{模型名} 调用。请求直接转发到你的供应商\" — so the opaque four-character prefixes (ot5k/, its0/, ry5b/) are per-user identity codes for a customer's OWN endpoint, not a hidden supplier, and dxnt's own catalog names its models plainly as dxnt/qwen3.5-397b-a17b and the like. Its free route is four models at multiplier 0, mostly open-weight (nemotron-3-nano, llama-3.2-90b-vision, step-3.7-flash, sensenova-6.7-flash-lite), which is capacity anyone may host. What is left is not enough to block and not enough to list: the service calls itself a 中转网关, a relay gateway, discloses no sourcing for the proprietary Chinese models it relays, and its footer links 服务条款 and 隐私政策 both resolve to a page containing neither, so there are no terms and no legal entity behind any of it.",
-      "reopen_if": "DX TOKEN publishes terms of service and a legal entity, or states where the models on its own dxnt/ prefix are licensed from.",
+      "reason": "Blocklisted earlier the same day on a reason that turned out to be wrong, and moved here rather than left standing. The claim was that its model ids anonymise the upstream they route to; dxnt.com/byok refutes it in its own words — \"在控制台添加自有端点，用 {身份码}/{模型名} 调用。请求直接转发到你的供应商\" — so the opaque four-character prefixes (ot5k/, its0/, ry5b/) are per-user identity codes for a customer's OWN endpoint, not a hidden supplier, and dxnt's own catalog names its models plainly as dxnt/qwen3.5-397b-a17b and the like. Its free route is four models at multiplier 0, mostly open-weight (nemotron-3-nano, llama-3.2-90b-vision, step-3.7-flash, sensenova-6.7-flash-lite). Its footer links labelled 服务条款 and 隐私政策 both led to a page containing neither policy.",
+      "reopen_if": "Read current operator terms and confirm which dxnt/ IDs a new developer can call on the published zero-price offer. Review BYOK separately.",
       "current": false
     },
     {
@@ -23700,8 +23780,8 @@
       ],
       "name": "Nara / NaraRouter",
       "checked_on": "2026-09-14",
-      "reason": "The free plan is real now and published, and what it serves is the reason it stays here. The keyless router.bynara.id/api/plans reads \"Free tier with a daily token quota. No card required\", token_cap_daily 7,000,000 at 15 requests a minute, over four models — agnes-2.5-flash, laguna-s-2.1, stepfun-3.7-flash and tencent-hy3-free — which are other vendors' free lanes: Agnes prices its Flash at zero itself, Laguna S 2.1 is free on OpenRouter and Kilo, and Step 3.7 Flash on Kilo. The paid day passes beside it (Freemium at Rp 5,000 a day, FreeMium Max, FreeMium Ultra) sell glm-5.3-free, mimo-v2.5-free, qwen3.8-flash-free, deepseek-v4.1-flash-free and muse-spark-1.3-contributor-free — ids named for free lanes, sold by the day. OmniRoute also reports that a key requires linking Telegram. The 2026-08-30 reading here found no pricing and a 401 catalog; this one was prompted by OmniRoute citing the plans endpoint.",
-      "reopen_if": "Nara's free plan serves a model it hosts or licenses itself, rather than another gateway's free lane.",
+      "reason": "The free plan was documented in the public plans endpoint. The keyless router.bynara.id/api/plans reads \"Free tier with a daily token quota. No card required\", token_cap_daily 7,000,000 at 15 requests a minute, over four models: agnes-2.5-flash, laguna-s-2.1, stepfun-3.7-flash and tencent-hy3-free. Some of the same models were free at other gateways: Agnes prices its Flash at zero itself, Laguna S 2.1 is free on OpenRouter and Kilo, and Step 3.7 Flash on Kilo. The paid day passes beside it (Freemium at Rp 5,000 a day, FreeMium Max, FreeMium Ultra) sell glm-5.3-free, mimo-v2.5-free, qwen3.8-flash-free, deepseek-v4.1-flash-free and muse-spark-1.3-contributor-free — ids named for free lanes, sold by the day. OmniRoute also reports that a key requires linking Telegram. The 2026-08-30 reading here found no pricing and a 401 catalog; this one was prompted by OmniRoute citing the plans endpoint.",
+      "reopen_if": "Recheck the official Free plan, exact callable IDs, price and signup conditions. Keep the paid day passes separate and trace any specific evidence that the Free plan reuses another service's accounts.",
       "current": true
     },
     {
@@ -23720,8 +23800,8 @@
       ],
       "name": "xKiro",
       "checked_on": "2026-09-16",
-      "reason": "api.xkiro.com/v1/models now marks 42 rows access_tier free at 0/0, no longer only Qwen: openai/gpt-5.3-codex-spark, mistralai/mistral-large-2512 and mistralai/codestral-2508 are among them, and the site's own JSON-LD featureList includes \"Claude and GPT proxy\". Free closed models prove nothing about where the capacity comes from, and no page states it either — no upstream provider is named anywhere read — so it stays unlisted until that is known (2026-09-16).",
-      "reopen_if": "xKiro names where its free models are served from, or a provider confirms the arrangement.",
+      "reason": "api.xkiro.com/v1/models now marks 42 rows access_tier free at 0/0, no longer only Qwen: openai/gpt-5.3-codex-spark, mistralai/mistral-large-2512 and mistralai/codestral-2508 are among them, and the site's own JSON-LD featureList includes \"Claude and GPT proxy\". The feature label leaves the account and access mechanism unspecified.",
+      "reopen_if": "Recheck the current zero-priced developer offer, its exact callable IDs and activation terms. Resolve any concrete evidence of unofficial access for those IDs.",
       "current": true
     },
     {
@@ -23731,8 +23811,8 @@
       ],
       "name": "UnoRouter",
       "checked_on": "2026-11-03",
-      "reason": "Current documentation and public structured catalog explicitly separate no-card :free models from the paid wallet. Discord linking also has a separately claimed one-time reward credit. Fresh per-model group responses still name opaque routing groups and data-handling flags, without establishing the actual serving supplier and applicable authorization. The public OpenAI-format catalog is readable, but catalog presence and missing/invalid-key rejection do not establish keyed Free activation. Reward credit spends from the ordinary wallet and needs its own route review. Sources: https://unorouter.com/en/docs/platform/models-and-pricing, https://unorouter.com/en/docs/platform/discord-rewards, https://unorouter.com/en/docs/platform/platform-api and https://api.unorouter.com/api/pricing/catalog.",
-      "reopen_if": "Current primary provider/group information establishes authorized supply for a chosen Free or reward-credit mode, with exact callable IDs and upstream access, data and usage conditions. Review both advertised modes separately and preserve the distinction between model developers and the suppliers serving a request.",
+      "reason": "Official documentation and the public structured catalog distinguish no-card :free IDs from a paid wallet and a separately advertised one-time Discord reward. The public catalog was readable and missing and invalid keys were rejected. Sources: https://unorouter.com/en/docs/platform/models-and-pricing, https://unorouter.com/en/docs/platform/discord-rewards, https://unorouter.com/en/docs/platform/platform-api and https://api.unorouter.com/api/pricing/catalog.",
+      "reopen_if": "Recheck exact current callable Free IDs, zero pricing and account eligibility. Check the Discord reward credit separately, including the wallet and models that it can reach.",
       "current": true
     },
     {
@@ -24124,8 +24204,8 @@
       ],
       "name": "ZeroLimitAI",
       "checked_on": "2026-09-11",
-      "reason": "The product behind ClawLabsAI/free-ai-models, whose README funnels readers to \"one OpenAI-compatible endpoint that auto-routes every request to whichever free model is answering best\". zerolimitai.com/developers does hand out a key — \"OpenAI-compatible · Free tier\", base URL https://www.zerolimitai.com/api/v1, model \"auto\" — but the free key \"expires after 7 days\" and carries no stated quota; the paid tiers are \"Lifetime Core $49 one-time … 2,000 API calls/day\" and \"Lifetime Pro $99 … 10,000 API calls/day\", sold beside \"Unlimited chat\". What the key routes to is \"the best free AI model available — Llama 4 Scout, DeepSeek R1, Qwen3 235B\", the models other vendors serve on their own free lanes, and neither /terms nor /about says where those requests go or under what licence; /docs answers 404. A relay reselling lifetime access to upstream free lanes is the provenance question llm7.io was blocked over, but the models here are open-weight and the operator publishes terms and a named team, so it stays a verdict rather than a block. Read 2026-09-11.",
-      "reopen_if": "It publishes the free key's quota and where its \"free models\" are served from.",
+      "reason": "The product behind ClawLabsAI/free-ai-models, whose README funnels readers to \"one OpenAI-compatible endpoint that auto-routes every request to whichever free model is answering best\". zerolimitai.com/developers does hand out a key — \"OpenAI-compatible · Free tier\", base URL https://www.zerolimitai.com/api/v1, model \"auto\" — but the free key \"expires after 7 days\" and carries no stated quota; the paid tiers are \"Lifetime Core $49 one-time … 2,000 API calls/day\" and \"Lifetime Pro $99 … 10,000 API calls/day\", sold beside \"Unlimited chat\". What the key routes to is \"the best free AI model available — Llama 4 Scout, DeepSeek R1, Qwen3 235B\". The operator publishes terms and a named team. /docs answers 404.",
+      "reopen_if": "Confirm the current no-card trial or recurring offer, which coding API the key can call and the published trial and usage conditions.",
       "current": true
     },
     {
@@ -24225,8 +24305,8 @@
       ],
       "name": "NagaAI",
       "checked_on": "2026-10-13",
-      "reason": "The site and public catalog are live. The documented :free models cost nothing and share 10 RPM and 100 RPD per account (https://docs.naga.ac/build/rate-limits). Routing documentation says requests go to changing third-party providers, whose identity is never disclosed in responses and cannot be selected or excluded (https://docs.naga.ac/build/routing). It does not establish self-hosted inference or named authorized upstream capacity. Matching model IDs or lower prices alone do not establish unauthorized proxying. The terms require purchasing credits while the pricing and billing docs advertise zero-cost models; fresh missing-key and invalid-key requests both return 401, so no zero-balance completion is established. Free-model data collection for training by NagaAI and its partners is always enabled (https://naga.ac/legal/privacy).",
-      "reopen_if": "NagaAI discloses self-hosted inference or named authorized upstream providers and documents the free lane's payment and eligibility conditions, including any minimum initial payment. A documented one-time deposit is a condition, not an automatic rejection; model-ID overlap alone is not a rejection reason.",
+      "reason": "The site and public catalog are live. The documented :free models cost nothing and share 10 RPM and 100 RPD per account (https://docs.naga.ac/build/rate-limits). Routing documentation says requests go to changing third-party providers, whose identity is never disclosed in responses and cannot be selected or excluded (https://docs.naga.ac/build/routing). The terms require purchasing credits while the pricing and billing docs advertise zero-cost models; fresh missing-key and invalid-key requests both return 401, so no zero-balance completion is established. Free-model data collection for training by NagaAI and its partners is always enabled (https://naga.ac/legal/privacy).",
+      "reopen_if": "Reconcile the terms and billing documentation for the exact Free IDs, including any one-time minimum payment and whether free usage can continue without a paid subscription.",
       "current": true
     },
     {
@@ -24286,8 +24366,8 @@
       ],
       "name": "Zylo AI",
       "checked_on": "2026-09-14",
-      "reason": "The Basic plan is real — \"$0 /mo 7.2k req/day · 10/min 200k Daily Tokens Basic models only ... No credits\", no card — and it can only reach the rows priced at zero, since Basic carries no credits. Those rows, in the keyless catalog's BASIC tier, are nemotron-3-ultra, mistral-large-3 (675B), qwen-3.5 (397B), qwen-3.5-flash, mistral-small-4, gpt-oss-20b, step-3.7, diffusiongemma and llama-3.2-3b, plus Zylo's own routers — the models NVIDIA's API catalog serves free for development, handed out here under a gateway's free plan without a word on where they run. Terms on zyloai.net/terms cover only linked-account enforcement.",
-      "reopen_if": "Zylo states where its zero-priced Basic models are served from, or the Basic plan covers a model it serves itself.",
+      "reason": "The Basic plan is real — \"$0 /mo 7.2k req/day · 10/min 200k Daily Tokens Basic models only ... No credits\", no card — and it can only reach the rows priced at zero, since Basic carries no credits. Those rows, in the keyless catalog's BASIC tier, are nemotron-3-ultra, mistral-large-3 (675B), qwen-3.5 (397B), qwen-3.5-flash, mistral-small-4, gpt-oss-20b, step-3.7, diffusiongemma and llama-3.2-3b, plus Zylo's own routers. Terms on zyloai.net/terms cover only linked-account enforcement.",
+      "reopen_if": "Recheck the current Basic plan, OpenAI-compatible endpoint and exact zero-priced Basic IDs available to new accounts.",
       "current": true
     },
     {
@@ -24296,8 +24376,8 @@
       ],
       "name": "Speka",
       "checked_on": "2026-09-14",
-      "reason": "A $1 monthly allowance with no card — \"Free $0.00 /mo ... $1 of model usage / month 10 requests / minute 1 API key Access to all open models\" — on a gateway that markets \"27 frontier models\" and serves seven from its keyless catalog: nemotron-3-ultra, nemotron-3-super, gpt-oss-20b, laguna-xs-2.1, llama-3.2-11b-vision, flux.1-dev and an embedder, ids spelled the way NVIDIA's API catalog spells them. Prices sit above the makers' (DeepSeek V4 Flash at $0.27/$1.10), which is not the relay pattern, but the terms (June 2026) name no company and nothing says whose capacity the allowance spends.",
-      "reopen_if": "Speka names its operator and where its models are served, and the catalog carries what the home page claims.",
+      "reason": "A $1 monthly allowance with no card — \"Free $0.00 /mo ... $1 of model usage / month 10 requests / minute 1 API key Access to all open models\" — on a gateway that markets \"27 frontier models\" and serves seven from its keyless catalog: nemotron-3-ultra, nemotron-3-super, gpt-oss-20b, laguna-xs-2.1, llama-3.2-11b-vision, flux.1-dev and an embedder. The terms (June 2026) do not name a company.",
+      "reopen_if": "Verify the current service terms and which coding API and model IDs the advertised monthly allowance can reach.",
       "current": true
     },
     {
@@ -24307,8 +24387,8 @@
       ],
       "name": "OpenAdapter",
       "checked_on": "2026-09-14",
-      "reason": "OpenAdapter, Inc. sells a coding subscription — \"4x Cheaper than Claude Code\", Lite at $9/mo for \"~400 requests over 5h\" — across 72+ open models, and does have a free plan: \"Try OpenAdapter Strict daily quota across the full catalog. No credit card.\" The quota is never given a number, and the pitch is resale on its own words: \"Same models. Fraction of the price. One subscription replaces 3+ separate provider plans\", beside an \"0G Network\" section of privately hosted models. Nothing says which provider plans are being replaced, or under what licence.",
-      "reopen_if": "OpenAdapter publishes the free plan's daily quota and where its models are served from.",
+      "reason": "OpenAdapter, Inc. sells a coding subscription — \"4x Cheaper than Claude Code\", Lite at $9/mo for \"~400 requests over 5h\" — across 72+ open models, and does have a free plan: \"Try OpenAdapter Strict daily quota across the full catalog. No credit card.\" The page gives no numeric allowance. The site says \"Same models. Fraction of the price. One subscription replaces 3+ separate provider plans\", beside an \"0G Network\" section of privately hosted models.",
+      "reopen_if": "Verify current Free activation and which developer endpoint and models the daily allowance reaches.",
       "current": true
     },
     {
@@ -25199,8 +25279,8 @@
       ],
       "name": "DGrid AI Gateway",
       "checked_on": "2026-09-21",
-      "reason": "The free lane is one router id, dgridai/free, which \"aggregates multiple sources of free inference capacity behind a single routing layer\"; the model behind it \"can change from request to request\" and no page names it or its sources. 10 requests a minute and 100 a day per account, 20 and 1,000 after $5 of top-ups. Free capacity gathered from other sources is the NaraRouter verdict above: a gateway re-serving free lanes it does not own is not the vendor of the offer.",
-      "reopen_if": "DGrid names the models and the sources behind dgridai/free, and they are its own capacity or sold to it for this.",
+      "reason": "The free lane is one router id, dgridai/free, which \"aggregates multiple sources of free inference capacity behind a single routing layer\"; the model behind it \"can change from request to request\" and no page names it or its sources. 10 requests a minute and 100 a day per account, 20 and 1,000 after $5 of top-ups.",
+      "reopen_if": "Verify the current dgridai/free endpoint, no-top-up entitlement and published allowance. Check whether the offer applies to coding use.",
       "current": true
     },
     {
@@ -25210,8 +25290,8 @@
       ],
       "name": "HCNSec public-welfare gateway (幻城公益API)",
       "checked_on": "2026-09-21",
-      "reason": "A New API relay run by 新疆幻城网安科技有限责任公司 — its own FAQ opens with \"中转站如何使用？\" (how do I use the relay station?) — whose free-user group serves other vendors' models from sources it does not name. On 2026-09-06 the operator warned that the free group's glm-5.3 \"是第三方低价服务商非官方服务商 模型真实度有待考证\": it comes from a third-party low-price, unofficial provider, and whether it is the real model is unverified. A sign-up balance and invite rewards spent on that is not a vendor's own offer.",
-      "reopen_if": "The free group serves the operator's own deployment of a named model, with its quota on a page.",
+      "reason": "A New API relay run by 新疆幻城网安科技有限责任公司 — its own FAQ opens with \"中转站如何使用？\" (how do I use the relay station?). On 2026-09-06 the operator warned that the free group's glm-5.3 \"是第三方低价服务商非官方服务商 模型真实度有待考证\": it comes from a third-party low-price, unofficial provider, and whether it is the real model is unverified. The signup balance and invite rewards used that group.",
+      "reopen_if": "Verify an official developer-facing Free offer and reconcile the reported unofficial route if it is still part of the offer.",
       "current": true
     },
     {
@@ -25220,8 +25300,8 @@
       ],
       "name": "LiteRouter",
       "checked_on": "2026-09-21",
-      "reason": "A subscription gateway run by Eqlyx, LLC whose $0 Basic plan gives \"∞ requests/day for most of free models\" — \"a rate limit of up to 100 requests per hour applies to free models\", its FAQ adds — and 50 premium requests a day. The free models are about forty ':free' variants of other vendors' models (DeepSeek, GLM-5.2 and GLM-5.3-Flash, Kimi, MiniMax, Mistral Large 3, Gemma 4, gpt-oss) and no page says where they are served from: the xKiro case above, unlisted until that is known.",
-      "reopen_if": "LiteRouter names the providers behind its :free ids, and they sell or give it that capacity.",
+      "reason": "A subscription gateway run by Eqlyx, LLC whose $0 Basic plan gives \"∞ requests/day for most of free models\" — \"a rate limit of up to 100 requests per hour applies to free models\", its FAQ adds — and 50 premium requests a day. The free models are about forty ':free' variants of other vendors' models (DeepSeek, GLM-5.2 and GLM-5.3-Flash, Kimi, MiniMax, Mistral Large 3, Gemma 4, gpt-oss).",
+      "reopen_if": "Recheck the current Basic plan, exact zero-priced callable IDs and the separate terms for premium requests.",
       "current": true
     },
     {
@@ -25302,8 +25382,8 @@
       ],
       "name": "ACLIDE",
       "checked_on": "2026-09-21",
-      "reason": "A gateway run by the French association Skyclouds whose Free plan gives \"€20 Monthly usage credits\", \"Renewed every month · No credit card required\". Its catalog serves most models twice: \"distribué par l'endpoint Anthropic T2+ configuré par ACLIDE\" at list price, and \"est disponible via l'API unifiée ACLIDE\" below it — and the second route carries all 36 zero-priced ids, Mistral's whole line, MiniMax M2.x, DeepSeek V4 and Qwen ':free' ids, other vendors' free quotas. Who runs that route is never named: the privacy page says only \"Administration may select another secure AI endpoint operator\". The xKiro case.",
-      "reopen_if": "The catalog names the operator behind \"l'API unifiée ACLIDE\", and it is the vendors' own capacity or sold to ACLIDE for this.",
+      "reason": "A gateway run by the French association Skyclouds whose Free plan gives \"€20 Monthly usage credits\", \"Renewed every month · No credit card required\". Its catalog serves most models twice: \"distribué par l'endpoint Anthropic T2+ configuré par ACLIDE\" at list price, and \"est disponible via l'API unifiée ACLIDE\" below it — and the second route carries all 36 zero-priced ids, Mistral's whole line, MiniMax M2.x, DeepSeek V4 and Qwen ':free' ids. The Free allowance and independently free IDs need separate checks.",
+      "reopen_if": "Verify which coding API and IDs the current recurring wallet can reach, and whether the unified API has independently free IDs.",
       "current": true
     },
     {
@@ -25312,8 +25392,8 @@
       ],
       "name": "Router9",
       "checked_on": "2026-09-21",
-      "reason": "A flat-rate \"Token Plan\" gateway with a Free plan, but no readable page states its quota or its models: \"on the Free tier it draws only from free-eligible models\", unnamed, and \"Router9 fronts multiple providers and routes each request for the best value\", also unnamed. The pricing page redirects to a login.",
-      "reopen_if": "The Free plan's quota and models on a public page, and the providers behind them named.",
+      "reason": "The site advertised a Free plan for free-eligible models. The pricing page redirected to a login and did not confirm the developer entitlement or which IDs the Free plan could reach.",
+      "reopen_if": "Find current first-party Free eligibility and a callable coding API or model router covered by the plan.",
       "current": true
     },
     {
@@ -25332,8 +25412,8 @@
       ],
       "name": "CLōD",
       "checked_on": "2026-09-21",
-      "reason": "\"100 free daily requests, auto-replenished\" across \"50+ frontier and open-weight AI models\", priced \"always below the provider's list price cap\" — a reseller that names neither the models the free requests reach nor where it buys them; its site renders client-side and docs.clod.io does not resolve.",
-      "reopen_if": "A readable page naming the free models and the supply behind them.",
+      "reason": "The site advertised 100 automatically replenished daily requests and a broad catalog. The comparison did not establish the specific coding API and models that Free requests could reach. Documentation did not resolve at the time.",
+      "reopen_if": "Confirm the current developer endpoint and the coding access covered by the published Free allowance.",
       "current": true
     },
     {
@@ -25352,8 +25432,8 @@
       ],
       "name": "Lucidity Composite",
       "checked_on": "2026-09-21",
-      "reason": "A roleplay-first API whose free daily tier is other providers' capacity: \"Composite runs a free daily tier of open-weight models, including Llama 3.3 70B, DeepSeek V4 Flash, GLM 5.2, Kimi K2.6\", and \"For non LucidityAI models, OpenRouter is the upstream provider\". The same page says both that \"connecting a Discord account unlocks the free tier\" and that \"No Discord account, credit card, or invite is needed\".",
-      "reopen_if": "The free tier runs on Lucidity's own infrastructure, with its models and quota stated once.",
+      "reason": "A roleplay-first API advertising a daily Free tier: \"Composite runs a free daily tier of open-weight models, including Llama 3.3 70B, DeepSeek V4 Flash, GLM 5.2, Kimi K2.6\", and \"For non LucidityAI models, OpenRouter is the upstream provider\". The same page says both that \"connecting a Discord account unlocks the free tier\" and that \"No Discord account, credit card, or invite is needed\".",
+      "reopen_if": "Reconcile Free activation and confirm which developer endpoint, models and usage terms are available for coding through the daily allowance.",
       "current": true
     },
     {
@@ -25362,8 +25442,8 @@
       ],
       "name": "DreamPrompting",
       "checked_on": "2026-09-21",
-      "reason": "Says what it is: \"One free key routes across the free tiers of many providers with automatic failover\" — \"Free tiers first, trial credits next, keyless ch.at as the always-on last resort\", over Groq, Mistral, NVIDIA NIM, Cohere, Google AI Studio, OpenRouter and Cloudflare. The offer is other vendors' free tiers under one key, the NaraRouter verdict.",
-      "reopen_if": "Free capacity of its own, or the vendors' consent to resell theirs.",
+      "reason": "Says what it is: \"One free key routes across the free tiers of many providers with automatic failover\" — \"Free tiers first, trial credits next, keyless ch.at as the always-on last resort\", over Groq, Mistral, NVIDIA NIM, Cohere, Google AI Studio, OpenRouter and Cloudflare.",
+      "reopen_if": "Recheck any separately documented eligible developer offer, or primary terms explaining how the reported cross-service pooling works.",
       "current": true
     },
     {
@@ -25372,8 +25452,8 @@
       ],
       "name": "Waterfall",
       "checked_on": "2026-09-21",
-      "reason": "\"The indie LLM router that tries free models first\" — \"waterfall routing from free to cheap to premium\". A router serves nothing itself, so its 131 free models are other providers' free lanes re-served under its own key: the NaraRouter verdict.",
-      "reopen_if": "Free capacity of its own, named, with a quota.",
+      "reason": "The operator described an LLM router that tries free models before cheap and premium models. The earlier review inferred the access mechanism from that order. The description established routing preference and did not establish how the Free plan is granted.",
+      "reopen_if": "Verify whether the operator publishes a Free coding API entitlement and which callable routes it covers.",
       "current": true
     },
     {
@@ -25382,8 +25462,8 @@
       ],
       "name": "ElectronHub",
       "checked_on": "2026-09-21",
-      "reason": "One of the Discord-membership relays sources.yaml records under the YoannDev90 and zukixa lists, where nothing is a vendor's own offer; its site renders 639 characters without JavaScript, and a router's label for it is all that describes the free part, \"shared weekly credits\".",
-      "reopen_if": "A readable page that names the free credits and where they are served from.",
+      "reason": "The site required JavaScript to read the offer and the only available description of shared weekly credits came from a third-party directory. That description did not establish coding API eligibility or how Discord membership affects activation.",
+      "reopen_if": "Find current first-party documentation of the shared credits, developer endpoint and activation conditions.",
       "current": true
     },
     {
@@ -25524,8 +25604,8 @@
       ],
       "name": "Onomeo",
       "checked_on": "2026-09-27",
-      "reason": "A one-person gateway over other vendors' free tiers: \"The free-route models run on the free tier each provider offers; onomeo puts them behind one key\", and \"Big models such as Claude and GPT are paid for by onomeo, within a shared daily budget\" (onomeo.com/models, read 2026-09-27). The free tiers it routes to are rows here in their own right; a gateway's free plan over them is a watchlist verdict, never a row.",
-      "reopen_if": "Onomeo serves models of its own, or buys the capacity it gives away, and says so.",
+      "reason": "A one-person gateway over other vendors' free tiers: \"The free-route models run on the free tier each provider offers; onomeo puts them behind one key\", and \"Big models such as Claude and GPT are paid for by onomeo, within a shared daily budget\" (onomeo.com/models, read 2026-09-27).",
+      "reopen_if": "Check the operator-funded daily budget against the current coding API offer and activation terms. Review the separately described free-tier pooling against its own access mechanism.",
       "current": true
     },
     {
@@ -25604,8 +25684,8 @@
       ],
       "name": "TokenToWorld",
       "checked_on": "2026-09-30",
-      "reason": "Known only from three repositories an account opened on 2026-06-03 — willianhecaiyan/claude-no-creditcard-demo, TOKENTOWORLD and fix-openai-429-demo — which sell it as Claude 3, GPT-4o, DeepSeek, Kimi and Qwen for developers \"lacking US credit card\", with a \"Stable multi-source balance to avoid interface blocking\", wholesale and affiliate terms, and \"trial tokens\" of no stated size. Nothing answers to read: tokentoworld.com and www refuse HTTPS here and from a GitHub runner on 2026-09-30, and plain HTTP returns nginx's 404 page. A relay whose offer cannot be read cannot be verified to offer anything, the rule that settled Clarifai, Coze and Morph, and the ad does not say where the Claude it sells comes from.",
-      "reopen_if": "tokentoworld.com serves its terms over HTTPS, stating a trial spent before any payment and where its Claude supply comes from.",
+      "reason": "Known only from three repositories an account opened on 2026-06-03 — willianhecaiyan/claude-no-creditcard-demo, TOKENTOWORLD and fix-openai-429-demo — which sell it as Claude 3, GPT-4o, DeepSeek, Kimi and Qwen for developers \"lacking US credit card\", with a \"Stable multi-source balance to avoid interface blocking\", wholesale and affiliate terms, and \"trial tokens\" of no stated size. Nothing answers to read: tokentoworld.com and www refuse HTTPS here and from a GitHub runner on 2026-09-30, and plain HTTP returns nginx's 404 page.",
+      "reopen_if": "Read current official HTTPS terms and a callable coding trial offer. Resolve concrete evidence of unofficial access for that offer.",
       "current": true
     },
     {
@@ -25715,8 +25795,8 @@
       ],
       "name": "Poixe AI",
       "checked_on": "2026-11-03",
-      "reason": "Current Free documentation and the rendered product page advertise separate no-payment large/small daily model pools. The :free suffix uses default routing and Chat Completions; a priced wallet exists beside it. The pricing JSON marks eligible default entries with free_group, while the model list carries base IDs. CLI2API terminal resources are a separate mode, and supplier onboarding also accepts API-key/account channels. A permitted ordinary upstream route and a current automated binding to its exact Free IDs and conditions remain unconfirmed; no terminal-resource mode is promoted. Sources: https://poixe.com/products/free, https://poixe.com/api/tool/price, https://docs.poixe.com/cn/api-reference/introduction/model-naming.md and https://docs.poixe.com/cn/docs/vendor/onboarding.md.",
-      "reopen_if": "Primary supplier/route terms establish permitted supply for an exact ordinary Free mode, and a current source binding verifies its eligible IDs, separate quotas, auth/payment and data handling. Review ordinary API and CLI2API modes independently; positive base-model prices do not negate the Free pools.",
+      "reason": "Official Free documentation described distinct no-payment large and small daily pools. Pricing JSON marks free_group entries, the catalog carries base IDs and the :free suffix selects the default Chat Completions route. Paid wallet and CLI2API resources are separate. Supplier onboarding offers API-key and account channels. Sources: https://poixe.com/products/free, https://poixe.com/api/tool/price, https://docs.poixe.com/cn/api-reference/introduction/model-naming.md and https://docs.poixe.com/cn/docs/vendor/onboarding.md.",
+      "reopen_if": "Bind the current ordinary Free pools to their exact callable :free IDs, separate quotas and account conditions. Review CLI2API and other account-based modes on their own terms.",
       "current": true
     },
     {
@@ -25796,8 +25876,8 @@
       ],
       "name": "Oriper AI",
       "checked_on": "2026-11-03",
-      "reason": "The current hosting homepage explicitly advertises Chat AI plus Free API. The unrelated prepaid-hosting policy does not establish the AI payment conditions. Exact AI endpoint, eligible model identity, quota/reset, permitted supply and no-payment activation remain unconfirmed. Source: https://oriper.com/.",
-      "reopen_if": "The linked AI service publishes a usable coding-compatible Free endpoint, its model and upstream identity, no-payment/card activation, quota/reset and data policy. Keep hosting purchases separate from the advertised AI mode.",
+      "reason": "The hosting homepage advertised Chat AI and Free API. The hosting payment policy did not establish the AI billing terms. The review did not confirm a working AI endpoint or its model eligibility. Source: https://oriper.com/.",
+      "reopen_if": "Recheck for a working coding-compatible Free API and read its direct model and activation terms separately from hosting purchases.",
       "current": true
     },
     {
