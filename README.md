@@ -3,7 +3,7 @@
 
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
-  <img alt="awesome-free-ai-coding — 117 live offers, 113 need no card, 143 free models, 83 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
+  <img alt="awesome-free-ai-coding — 117 live offers, 112 need no card, 143 free models, 83 OpenAI-compatible; every offer probed twice a week; one dot per live offer" src="assets/readme/hero.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -90,7 +90,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — card required: 4 of 117 · **👁** — what you send may be used to train models · **🧪** — provisional for two weeks of probes · **verified** — latest probe date; opens limits, evidence and history</sub>
+<sub>**💳** — card required: 5 of 117 · **👁** — what you send may be used to train models · **🧪** — provisional for two weeks of probes · **verified** — latest probe date; opens limits, evidence and history</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**26** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -123,7 +123,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Codacy](https://www.codacy.com)** — AI pull-request reviews for public open-source GitHub repositories, with a separate no-card trial for private repositories<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codacy/)</sub>
 
 ### 🔌 LLM APIs with free tier
-<sub>**41** live · **39** of them ask for no card · sorted by how much work you can get done for free</sub>
+<sub>**41** live · **38** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 - **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 — Free tier on the Gemini API, priced model by model rather than as one account quota<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) · [🔑 key](https://aistudio.google.com/apikey) · [`gemini-3.5-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/) · [`gemini-2.5-flash`][model-gemini-2.5-flash] · `gemini-2.5-flash-lite` · [`gemini-2.5-pro`][model-gemini-2.5-pro] · [`gemini-3-flash`][model-gemini-3-flash] · [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) · [+3 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)</sub>
 - **[Groq](https://groq.com)** — Fast inference against a free plan Groq publishes as a per-model rate table<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) · [🔑 key](https://console.groq.com/keys) · [`qwen3.8-27b`][model-qwen3.8-27b] · [`gpt-oss-120b`][model-gpt-oss-120b] · [`gpt-oss-20b`][model-gpt-oss-20b]</sub>
@@ -156,10 +156,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[PLaMo API (Preferred Networks)](https://plamo.preferredai.jp/api)** 👁 — Preferred Networks model API with a Free plan for eligible users in Japan<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) · [🔑 key](https://console.platform.preferredai.jp/)</sub>
 - **[Pollinations.AI](https://pollinations.ai)** — Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) · [`gpt-oss-20b`][model-gpt-oss-20b]</sub>
 - **[IBM watsonx.ai (Lite plan)](https://www.ibm.com/products/watsonx-ai)** 💳 — IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) · [🔑 key](https://cloud.ibm.com/iam/apikeys)</sub>
-- **[Aion Labs](https://www.aionlabs.ai)** — OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required<br><sub>[verified 2026-11-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) · [🔑 key](https://www.aionlabs.ai/app/api-keys/)</sub>
 - **[Arli AI](https://www.arliai.com)** — OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time<br><sub>[verified 2026-11-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) · [🔑 key](https://www.arliai.com/account)</sub>
 - **[Bytez](https://bytez.com)** — Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) · [🔑 key](https://bytez.com/api)</sub>
 - **[Mixlayer](https://www.mixlayer.com)** — Serverless open models priced per token, one of them at $0 and callable without prepaid credit<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) · [🔑 key](https://console.mixlayer.com/app/api-keys) · [`qwen3.5-4b`][model-qwen3.5-4b]</sub>
+- **[Aion Labs](https://www.aionlabs.ai)** 💳 — OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier<br><sub>[verified 2026-11-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) · [🔑 key](https://www.aionlabs.ai/app/api-keys/)</sub>
 - **[ModelScope API-Inference (Alibaba)](https://modelscope.cn)** — Alibaba model community with a free daily API inference allowance measured in credits, after Alibaba Cloud real-name verification<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) · [🔑 key](https://modelscope.cn/my/myaccesstoken)</sub>
 - **[SenseNova (SenseTime 商汤)](https://www.sensenova.cn)** — SenseTime's SenseNova API, with a $0 Free plan during public beta; registration and identity verification required<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) · [🔑 key](https://platform.sensenova.cn) · `sensenova-6.8-flash-lite`</sub>
 - **[Tencent Cloud TokenHub](https://cloud.tencent.com/document/product/1823)** — Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) · [🔑 key](https://console.cloud.tencent.com/tokenhub/apikey)</sub>

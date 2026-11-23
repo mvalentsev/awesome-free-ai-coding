@@ -74,10 +74,10 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [PLaMo API (Preferred Networks)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/plamo/) — verified 2026-11-23
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-11-23 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
 - [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-11-23
-- [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) — verified 2026-11-19
 - [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) — verified 2026-11-19
 - [Bytez](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) — verified 2026-11-23
 - [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) — verified 2026-11-23 · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/)
+- [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) 💳 — verified 2026-11-19
 - [ModelScope API-Inference (Alibaba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) — verified 2026-11-23
 - [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) — verified 2026-11-23 · `sensenova-6.8-flash-lite`
 - [Tencent Cloud TokenHub](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) — verified 2026-11-23

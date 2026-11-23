@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Aion Labs free tier: limits, free models, verified 2026-11-19'
-description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required. The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms…
+description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier. Free-tier API keys need payment-card verification. “The card is verified through Stripe and never charged.” The browser chat is available before API key activation (“Browser chat does not need it.”). The reset…
 permalink: /providers/aion-labs/
 last_modified_at: 2026-11-23
 crumb: Aion Labs
@@ -11,11 +11,11 @@ crumb: Aion Labs
 
 # Aion Labs free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required
+OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier
 
 ## Free models
 
@@ -25,7 +25,7 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account
 
-The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.
+Free-tier API keys need payment-card verification. “The card is verified through Stripe and never charged.” The browser chat is available before API key activation (“Browser chat does not need it.”). The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.
 
 ## Where it is offered
 
@@ -53,7 +53,7 @@ curl -s https://api.aionlabs.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://www.aionlabs.ai/pricing/>, anchored on `A daily credit allowance to try agent jobs, the API, and browser chat`, `No card required`; ids checked in <https://api.aionlabs.ai/v1/models>
+- Probe: the page at <https://www.aionlabs.ai/pricing/>, anchored on `A daily credit allowance to try agent jobs, the API, and browser chat`, `API access is activated by verifying a payment card`; ids checked in <https://api.aionlabs.ai/v1/models>
 - Source: <https://www.aionlabs.ai/pricing/>
 - Source: <https://www.aionlabs.ai/docs/>
 - Source: <https://www.aionlabs.ai/docs/quickstart/>

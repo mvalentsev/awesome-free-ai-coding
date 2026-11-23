@@ -12,7 +12,7 @@ model_sort: true
 
 # Google AI Studio (Gemini API) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · **live** — last verified by a probe on 2026-11-23 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 12 more places · **live** — last verified by a probe on 2026-11-23 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -30,7 +30,7 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 
 ## Where it is offered
 
-Offered in the 230 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Syria, Afghanistan and 8 more places ([source](https://ai.google.dev/gemini-api/docs/available-regions), read 2026-09-26). That leaves out 10.5% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Gemini API and Google AI Studio are available in the following countries and territories”.
+Offered in the 231 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Afghanistan, Cuba and 7 more places ([source](https://ai.google.dev/gemini-api/docs/available-regions), read 2026-11-23). That leaves out 10.5% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Gemini API and Google AI Studio are available in the following countries and territories”.
 
 ## What happens to what you send
 

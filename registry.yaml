@@ -257,10 +257,10 @@ entries:
       MH, MK, ML, MN, MP, MR, MS, MT, MU, MV, MW, MX, MY, MZ, NA, NC, NE, NF, NG,
       NI, NL, 'NO', NP, NR, NU, NZ, OM, PA, PE, PG, PH, PK, PL, PM, PN, PR, PS, PT,
       PW, PY, QA, RE, RO, RS, RW, SA, SB, SC, SD, SE, SG, SH, SI, SK, SL, SM, SN,
-      SO, SR, SS, ST, SV, SZ, TC, TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT, TV,
-      TW, TZ, UA, UG, UM, US, UY, UZ, VA, VC, VE, VG, VI, VN, VU, WF, WS, XK, YE,
-      ZA, ZM, ZW]
-    'on': '2026-09-26'
+      SO, SR, SS, ST, SV, SY, SZ, TC, TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT,
+      TV, TW, TZ, UA, UG, UM, US, UY, UZ, VA, VC, VE, VG, VI, VN, VU, WF, WS, XK,
+      YE, ZA, ZM, ZW]
+    'on': '2026-11-23'
     source: https://ai.google.dev/gemini-api/docs/available-regions
     quote: The Gemini API and Google AI Studio are available in the following countries
       and territories
@@ -5683,12 +5683,12 @@ entries:
     period: one-time
     scope: team
     state: unmetered
-    label: 14-day trial
+    label: Trial
     condition: Free for 14 days
-    condition_quote: Free 14 Day Trial no credit card
+    condition_quote: $0 for 14 days
     source: https://www.qodo.ai/pricing/
-    quote: Unlimited credits
-    reviewed_on: '2026-11-12'
+    quote: Unlimited reviews and credits
+    reviewed_on: '2026-11-23'
   - unit: usage
     scope: project
     label: Open Source program
@@ -5698,7 +5698,7 @@ entries:
     source: https://www.qodo.ai/pricing/
     quote: Qualified open source projects can apply to the Qodo for Open Source program
       for free access.
-    reviewed_on: '2026-11-12'
+    reviewed_on: '2026-11-23'
   free_part: unnamed
   models: []
   border:
@@ -5709,8 +5709,8 @@ entries:
     type: page-keywords
     endpoint: https://www.qodo.ai/pricing/
     keywords:
-    - Free 14 Day Trial
-    - Unlimited credits
+    - Unlimited reviews and credits
+    - No credit card required
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -9878,23 +9878,25 @@ entries:
   - https://api.aionlabs.ai/v1/models
   - https://www.aionlabs.ai/terms/
   - https://www.aionlabs.ai/privacy/
-  card_required: false
+  card_required: true
   offering: OpenAI-compatible text-model API with a daily credit allowance on its
-    $0 Free tier, no card required
-  limits: The reset timezone is unpublished. Request and token ceilings apply separately
-    from the credit balance; completions are billed at each model's price. An account
-    and API key are required. The Terms call free use before purchase a courtesy that
-    may be changed or withdrawn. Deleting a Free account within its first 30 days
-    leaves signup IP, hashed email, email domain and signup date retained for the
-    rest of that period to prevent allowance abuse.
+    $0 Free tier
+  limits: Free-tier API keys need payment-card verification. “The card is verified
+    through Stripe and never charged.” The browser chat is available before API key
+    activation (“Browser chat does not need it.”). The reset timezone is unpublished.
+    Request and token ceilings apply separately from the credit balance; completions
+    are billed at each model's price. An account and API key are required. The Terms
+    call free use before purchase a courtesy that may be changed or withdrawn. Deleting
+    a Free account within its first 30 days leaves signup IP, hashed email, email
+    domain and signup date retained for the rest of that period to prevent allowance
+    abuse.
   quotas:
   - unit: credits
     period: day
     scope: account
     source: https://www.aionlabs.ai/pricing/
     quote: A daily credit allowance to try agent jobs, the API, and browser chat.
-      No card required.
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-23'
   - amount: 15.0
     unit: requests
     period: minute
@@ -9984,7 +9986,7 @@ entries:
     endpoint: https://www.aionlabs.ai/pricing/
     keywords:
     - A daily credit allowance to try agent jobs, the API, and browser chat
-    - No card required
+    - API access is activated by verifying a payment card
     free_marker: ''
     require_zero_price: false
     catalog: https://api.aionlabs.ai/v1/models

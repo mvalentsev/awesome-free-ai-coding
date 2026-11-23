@@ -23,7 +23,7 @@ The vendor does not identify which models the free offer includes. See Limits fo
 
 ## Limits, in the vendor's words
 
-14-day trial: Unmetered credits per team (Free for 14 days)
+Trial: Unmetered credits per team (Free for 14 days)
 
 Open Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)
 
@@ -39,7 +39,7 @@ The vendor names no country it keeps the offer from ([source](https://www.qodo.a
 
 ## Evidence
 
-- Probe: the page at <https://www.qodo.ai/pricing/>, anchored on `Free 14 Day Trial`, `Unlimited credits`
+- Probe: the page at <https://www.qodo.ai/pricing/>, anchored on `Unlimited reviews and credits`, `No credit card required`
 - Source: <https://www.qodo.ai/pricing/>
 - Source: <https://www.qodo.ai/terms-of-use/>
 

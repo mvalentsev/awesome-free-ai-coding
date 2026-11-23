@@ -810,6 +810,7 @@
           "SS",
           "ST",
           "SV",
+          "SY",
           "SZ",
           "TC",
           "TD",
@@ -847,7 +848,7 @@
           "ZM",
           "ZW"
         ],
-        "on": "2026-09-26",
+        "on": "2026-11-23",
         "source": "https://ai.google.dev/gemini-api/docs/available-regions",
         "quote": "The Gemini API and Google AI Studio are available in the following countries and territories",
         "read": "page",
@@ -9749,19 +9750,19 @@
       ],
       "card_required": false,
       "offering": "Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card",
-      "limits": "14-day trial: Unmetered credits per team (Free for 14 days)\n\nOpen Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)\n\nNo card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.",
+      "limits": "Trial: Unmetered credits per team (Free for 14 days)\n\nOpen Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)\n\nNo card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.",
       "quotas": [
         {
           "unit": "credits",
           "period": "one-time",
           "scope": "team",
           "state": "unmetered",
-          "label": "14-day trial",
+          "label": "Trial",
           "condition": "Free for 14 days",
-          "condition_quote": "Free 14 Day Trial no credit card",
+          "condition_quote": "$0 for 14 days",
           "source": "https://www.qodo.ai/pricing/",
-          "quote": "Unlimited credits",
-          "reviewed_on": "2026-11-12",
+          "quote": "Unlimited reviews and credits",
+          "reviewed_on": "2026-11-23",
           "amount": null
         },
         {
@@ -9772,7 +9773,7 @@
           "condition_quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
           "source": "https://www.qodo.ai/pricing/",
           "quote": "Qualified open source projects can apply to the Qodo for Open Source program for free access.",
-          "reviewed_on": "2026-11-12",
+          "reviewed_on": "2026-11-23",
           "amount": null,
           "period": null
         }
@@ -9791,8 +9792,8 @@
         "type": "page-keywords",
         "endpoint": "https://www.qodo.ai/pricing/",
         "keywords": [
-          "Free 14 Day Trial",
-          "Unlimited credits"
+          "Unlimited reviews and credits",
+          "No credit card required"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -9810,7 +9811,7 @@
         "models": [],
         "ids": [],
         "what": "Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card",
-        "limits": "14-day trial: Unmetered credits per team (Free for 14 days)\n\nOpen Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)\n\nNo card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.",
+        "limits": "Trial: Unmetered credits per team (Free for 14 days)\n\nOpen Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)\n\nNo card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -16098,17 +16099,17 @@
         "https://www.aionlabs.ai/terms/",
         "https://www.aionlabs.ai/privacy/"
       ],
-      "card_required": false,
-      "offering": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required",
-      "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nThe reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.",
+      "card_required": true,
+      "offering": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier",
+      "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nFree-tier API keys need payment-card verification. “The card is verified through Stripe and never charged.” The browser chat is available before API key activation (“Browser chat does not need it.”). The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.",
       "quotas": [
         {
           "unit": "credits",
           "period": "day",
           "scope": "account",
           "source": "https://www.aionlabs.ai/pricing/",
-          "quote": "A daily credit allowance to try agent jobs, the API, and browser chat. No card required.",
-          "reviewed_on": "2026-11-17",
+          "quote": "A daily credit allowance to try agent jobs, the API, and browser chat.",
+          "reviewed_on": "2026-11-23",
           "amount": null
         },
         {
@@ -16223,7 +16224,7 @@
         "endpoint": "https://www.aionlabs.ai/pricing/",
         "keywords": [
           "A daily credit allowance to try agent jobs, the API, and browser chat",
-          "No card required"
+          "API access is activated by verifying a payment card"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -16248,17 +16249,15 @@
           "aion-labs/aion-2.0",
           "aion-labs/aion-rp-llama-3.1-8b"
         ],
-        "what": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required",
-        "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nThe reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.",
+        "what": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier",
+        "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nFree-tier API keys need payment-card verification. “The card is verified through Stripe and never charged.” The browser chat is available before API key activation (“Browser chat does not need it.”). The reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required. The Terms call free use before purchase a courtesy that may be changed or withdrawn. Deleting a Free account within its first 30 days leaves signup IP, hashed email, email domain and signup date retained for the rest of that period to prevent allowance abuse.",
         "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
           "id": "api-free-tier"
         },
-        "flags": [
-          "nocard"
-        ]
+        "flags": []
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/"
     },
@@ -21676,11 +21675,11 @@
       "mixedbread",
       "plamo",
       "pollinations",
-      "aion-labs",
       "bytez",
       "mixlayer",
       "teapotrouter",
       "upstage",
+      "aion-labs",
       "jzstoken",
       "modelscope",
       "sensenova",
@@ -21755,11 +21754,11 @@
       "mixedbread",
       "plamo",
       "pollinations",
-      "aion-labs",
       "bytez",
       "mixlayer",
       "teapotrouter",
       "upstage",
+      "aion-labs",
       "jzstoken",
       "modelscope",
       "sensenova",
@@ -21857,11 +21856,11 @@
       "mixedbread",
       "plamo",
       "pollinations",
-      "aion-labs",
       "bytez",
       "mixlayer",
       "teapotrouter",
       "upstage",
+      "aion-labs",
       "jzstoken",
       "modelscope",
       "sensenova",

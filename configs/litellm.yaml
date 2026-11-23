@@ -1803,6 +1803,33 @@ model_list:
     api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
+- model_name: bytez/Qwen/Qwen3-4B
+  litellm_params:
+    model: openai/Qwen/Qwen3-4B
+    api_base: https://api.bytez.com/models/v2/openai/v1
+    api_key: os.environ/BYTEZ_API_KEY
+    use_chat_completions_api: true
+- model_name: mixlayer/qwen/qwen3.5-4b-free
+  litellm_params:
+    model: openai/qwen/qwen3.5-4b-free
+    api_base: https://models.mixlayer.ai/v1
+    api_key: os.environ/MIXLAYER_API_KEY
+    use_chat_completions_api: true
+- model_name: teapotrouter/gpt-6.1-sol
+  litellm_params:
+    model: openai/gpt-6.1-sol
+    api_base: https://api.teapotrouter.com/v1
+    api_key: os.environ/TEAPOTROUTER_API_KEY
+    use_chat_completions_api: true
+- model_name: upstage/solar-pro4
+  litellm_params:
+    model: openai/solar-pro4
+    api_base: https://api.upstage.ai/v1
+    api_key: os.environ/UPSTAGE_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    access: free until 2027-03-31 23:00+09:00
+    source: https://www.upstage.ai/events/ai-initiative-2025-en
 - model_name: aion-labs/aion-labs/aion-3.5
   litellm_params:
     model: openai/aion-labs/aion-3.5
@@ -1839,33 +1866,6 @@ model_list:
     api_base: https://api.aionlabs.ai/v1
     api_key: os.environ/AION_LABS_API_KEY
     use_chat_completions_api: true
-- model_name: bytez/Qwen/Qwen3-4B
-  litellm_params:
-    model: openai/Qwen/Qwen3-4B
-    api_base: https://api.bytez.com/models/v2/openai/v1
-    api_key: os.environ/BYTEZ_API_KEY
-    use_chat_completions_api: true
-- model_name: mixlayer/qwen/qwen3.5-4b-free
-  litellm_params:
-    model: openai/qwen/qwen3.5-4b-free
-    api_base: https://models.mixlayer.ai/v1
-    api_key: os.environ/MIXLAYER_API_KEY
-    use_chat_completions_api: true
-- model_name: teapotrouter/gpt-6.1-sol
-  litellm_params:
-    model: openai/gpt-6.1-sol
-    api_base: https://api.teapotrouter.com/v1
-    api_key: os.environ/TEAPOTROUTER_API_KEY
-    use_chat_completions_api: true
-- model_name: upstage/solar-pro4
-  litellm_params:
-    model: openai/solar-pro4
-    api_base: https://api.upstage.ai/v1
-    api_key: os.environ/UPSTAGE_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: free until 2027-03-31 23:00+09:00
-    source: https://www.upstage.ai/events/ai-initiative-2025-en
 - model_name: jzstoken/jzs-max-3.0
   litellm_params:
     model: openai/jzs-max-3.0
