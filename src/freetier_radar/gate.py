@@ -388,6 +388,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
     line per ref pushed."""
     steps = CHECKS if steps is None else steps
     problems = []
+    checked_tips = set()
     for line in lines:
         parts = line.split()
         if len(parts) != 4 or parts[1] == _ZERO:
@@ -397,8 +398,12 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
             base = git.run(repo, "merge-base", local, "origin/main").stdout.strip() or None
         else:
             base = remote
-        with snapshot_commit(repo, local) as snap:
-            problems += _run_steps(snap, steps)
+        # Snapshot checks only see the local commit. The checks below it still
+        # run for each destination, which can have a different protected base.
+        if local not in checked_tips:
+            with snapshot_commit(repo, local) as snap:
+                problems += _run_steps(snap, steps)
+            checked_tips.add(local)
         if base is None:
             continue
         from .quality import review_problems

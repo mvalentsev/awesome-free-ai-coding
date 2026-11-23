@@ -370,6 +370,36 @@ def test_the_gate_reports_a_check_that_fails_on_the_snapshot(tmp_path):
                         "✗ something is off"]
 
 
+def test_a_multi_ref_push_checks_one_snapshot_and_each_destination(tmp_path, monkeypatch):
+    from freetier_radar import quality
+    from freetier_radar.gate import pre_push
+
+    repo = _repo(tmp_path)
+    older = _git(repo, "rev-parse", "HEAD").strip()
+    (repo / "note.txt").write_text("two\n", encoding="utf-8")
+    _git(repo, "commit", "-qam", "fix: update note")
+    newer = _git(repo, "rev-parse", "HEAD").strip()
+    completed, ranges = [], []
+
+    def snapshot_check(snap):
+        completed.append((snap / "note.txt").read_text())
+        return ""
+
+    def signoff(_repo, base, tip):
+        ranges.append((base, tip))
+        return ["second destination requires its own signoff"] if base == older else []
+
+    monkeypatch.setattr(quality, "review_problems", signoff)
+    problems = pre_push(repo, [
+        f"refs/heads/main {newer} refs/heads/main {newer}",
+        f"refs/heads/main {newer} refs/heads/review {older}",
+        f"refs/heads/older {older} refs/heads/older {older}",
+    ], steps=[("snapshot", snapshot_check)])
+    assert completed == ["two\n", "one\n"]
+    assert ranges == [(newer, newer), (older, newer), (older, older)]
+    assert problems == ["second destination requires its own signoff"] * 2
+
+
 def test_the_commit_msg_hook_exits_non_zero_on_a_bad_message(tmp_path, capsys):
     message = tmp_path / "COMMIT_EDITMSG"
     message.write_text("fix: subject\nbody\n", encoding="utf-8")

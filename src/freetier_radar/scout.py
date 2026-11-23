@@ -16,7 +16,7 @@ import yaml
 
 from .discovery import Evidence, fetch_page_texts, format_evidence, gather_evidence
 from .models import (utc_today, ANCHOR_PHRASE_WORDS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, ProbeType, Entry, Source, Watched,
-                     domain_of, is_archived, is_blocked, is_covered, is_source_current,
+                     domain_of, is_anchor, is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      probe_frequency, watch_match)
@@ -139,6 +139,10 @@ keywords are matched with script and style tags stripped out, so a string that
 lives only in a state blob or an OpenAPI enum passes every run and proves
 nothing. Words like "free", "hobby", "free quota" or "no credit card required"
 are rejected for the same reason: they outlive the offer.
+To replace only the visible keywords on an existing page-keywords probe, return
+`probe: {{keywords: [...]}}` with the full list of still-applicable and corrected
+keywords. To change the endpoint, type or other fields, return the complete
+probe including every setting that still applies.
 Output only the keys you are actually changing — never a null value, and skip an
 entry entirely when you have nothing to correct for it.
 Output format:
@@ -844,7 +848,16 @@ def apply_updates(entries: list[Entry], updates: list[dict],
         if "models" in changed:
             changed["models"] = _measured_marks(changed["models"], entries, current=e)
         try:
-            fixed = Entry.model_validate({**e.model_dump(mode="json"), **changed})
+            current = e.model_dump(mode="json")
+            probe = changed.get("probe")
+            if (e.probe.type is ProbeType.PAGE_KEYWORDS
+                    and isinstance(probe, dict) and probe.keys() == {"keywords"}):
+                keywords = probe["keywords"]
+                if not isinstance(keywords, list) or not any(
+                        isinstance(keyword, str) and is_anchor(keyword) for keyword in keywords):
+                    raise ValueError("a keyword-only correction needs a visible offer anchor")
+                changed["probe"] = {**current["probe"], "keywords": keywords}
+            fixed = Entry.model_validate({**current, **changed})
         except Exception as exc:
             print(f"update for {e.id} rejected: {exc}")
             rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"

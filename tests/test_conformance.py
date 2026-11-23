@@ -68,9 +68,9 @@ def test_real_client_budget_uses_sourced_model_limit_and_smaller_explicit_budget
 
 
 @pytest.mark.parametrize('status,retry_after,deferred', [
-    (429, '60', True),
+    (429, None, True),
     (503, '60', True),
-    (503, 'Wed, 25 Nov 2026 00:00:00 GMT', True),
+    (503, 'Wed, 21 Oct 2015 07:28:00 GMT', True),  # Unparsed dates still defer.
     (503, 'invalid', True),
     (503, None, False),
     (503, '0', False),
@@ -91,7 +91,7 @@ def test_output_budget_recorder_preserves_requests_and_honors_upstream_waits(sta
             self.wfile.write(b'{"upstream":true}')
 
     server = ThreadingHTTPServer(("127.0.0.1", 0), Upstream)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
     thread.start()
     body = b'{"model":"alpha","tools":[{}],"max_completion_tokens":8000}'
     try:

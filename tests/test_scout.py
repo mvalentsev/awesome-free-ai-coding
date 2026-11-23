@@ -709,6 +709,36 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
     assert result["unfixed"] == ["x: fail — boom"]
 
 
+@pytest.mark.parametrize("visible", [True, False])
+@respx.mock
+def test_scout_can_repair_page_keywords_without_replacing_the_probe(visible):
+    keyword = "Ten free requests per account"
+    entry = make(api={"base_url": "https://api.x.ai/v1", "model_ids": ["x-mini-2"]},
+                 probe={**BASE["probe"], "catalog": "https://api.x.ai/v1/models",
+                        "machinery_keywords": ["x-mini-2"]})
+    entries = [entry]
+    reply = {"updates": [{"id": entry.id, "probe": {"keywords": [keyword]}}]}
+    llm = StubLLM({"FIX-FAILED": json.dumps(reply)})
+    html = f'<script>const model = "x-mini-2";</script>'
+    html += f'<p>{keyword}</p>' if visible else f'<script>{keyword}</script>'
+    route = respx.get(entry.probe.endpoint).respond(200, html=html)
+    with httpx.Client() as client:
+        result = run_scout(
+            llm, entries, [{"id": entry.id, "status": "fail", "detail": "missing keywords"}],
+            lambda urls: {url: html for url in urls}, TODAY, evidence=None,
+            verifier=lambda candidate: scout.probe_check_sync(candidate, client),
+        )
+    assert route.call_count == 1
+    if visible:
+        assert result["updates"] == [entry.id]
+        assert entries[0].probe.model_dump() == {**entry.probe.model_dump(), "keywords": [keyword]}
+    else:
+        assert result["updates"] == []
+        assert result["unfixed"] == [f"{entry.id}: fail — missing keywords"]
+        assert "in the page's machinery only" in result["rejected"][0]
+        assert entries == [entry]
+
+
 def test_a_fix_the_probe_rejects_leaves_the_row_on_the_unfixed_list():
     """A repair the run cannot stand behind must not read as a repair. `updates`
     is what the pull request calls fixed and what drops off `unfixed`, so an

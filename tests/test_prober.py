@@ -2245,8 +2245,10 @@ async def test_a_dry_run_counts_its_failures_so_a_shell_chain_can_stop(tmp_path)
 
 @pytest.mark.parametrize('dry_run', [False, True])
 @respx.mock
-async def test_selected_verification_never_requests_or_changes_other_rows(tmp_path, dry_run):
-    from freetier_radar.models import load_registry
+async def test_selected_verification_never_requests_or_changes_other_rows(tmp_path, dry_run, monkeypatch):
+    from freetier_radar import prober
+    stamp = date(2026, 11, 23)
+    monkeypatch.setattr(prober, "utc_today", lambda: stamp)
     selected, untouched = page_entry(), api_entry()
     untouched.probe_failures = 2
     registry = tmp_path / 'registry.yaml'
@@ -2261,7 +2263,7 @@ async def test_selected_verification_never_requests_or_changes_other_rows(tmp_pa
     if dry_run:
         assert registry.read_bytes() == before
     else:
-        assert after[0].last_verified == date.today()
+        assert after[0].last_verified == stamp
 
 
 @respx.mock
