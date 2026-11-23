@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OrcaRouter (free models) free tier: limits, free models, verified 2026-11-19'
+title: 'OrcaRouter (free models) free tier: limits, free models, verified 2026-11-23'
 description: 'Free model APIs for accounts with established GitHub linkage. Free models: deepseek-v4-flash, deepseek-v4.1-flash, glm-5.3-flash. The workspace owner must link a GitHub account registered for some time, unless lifetime spend exempts the workspace. The lowest tier also has a small unpublished…'
 permalink: /providers/orcarouter/
-last_modified_at: 2026-11-22
+last_modified_at: 2026-11-23
 crumb: OrcaRouter (free models)
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # OrcaRouter (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-08, a regular row from the first probe it passes on or after 2026-11-22 · **live** — last verified by a probe on 2026-11-19 · [orcarouter.ai](https://www.orcarouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-23 · [orcarouter.ai](https://www.orcarouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

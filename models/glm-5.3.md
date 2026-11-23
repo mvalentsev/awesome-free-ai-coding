@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3 free: 3 providers, limits and ids, provider probes 2026-11-19'
+title: 'glm-5.3 free: 3 providers, limits and ids, provider probes 2026-11-19 or later'
 description: glm-5.3 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3/
-last_modified_at: 2026-11-22
+last_modified_at: 2026-11-23
 crumb: glm-5.3
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3
 
 # Where glm-5.3 is free
 
-**3 rows on the list serve `glm-5.3` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3), below its strong bar.
+**3 rows on the list serve `glm-5.3` free:** AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-11-19 or later; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-16
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -44,7 +44,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-19 · listed since 2026-09-30
+🔌 LLM APIs with free tier · no card · not offered in mainland China · last probe 2026-11-23 · listed since 2026-09-30
 
 Model-specific free token grants in Singapore, typically one million tokens valid for 90 days; some models retain only previously issued allowances; OpenAI-compatible
 

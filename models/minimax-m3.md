@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m3 free: 2 providers, limits and ids, provider probes 2026-11-19'
+title: 'minimax-m3 free: 2 providers, limits and ids, provider probes 2026-11-19 or later'
 description: minimax-m3 is served free by AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-23
 crumb: minimax-m3
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m3
 
 # Where minimax-m3 is free
 
-**2 rows on the list serve `minimax-m3` free:** AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**2 rows on the list serve `minimax-m3` free:** AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The providers' last scheduled probes were on 2026-11-19 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

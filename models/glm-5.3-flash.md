@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 6 providers, limits and ids, provider probes 2026-11-16 or later'
+title: 'glm-5.3-flash free: 6 providers, limits and ids, provider probes 2026-11-19 or later'
 description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-11-22
+last_modified_at: 2026-11-23
 crumb: glm-5.3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**6 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-16 or later; their offers are rechecked twice a week.
+**6 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models), ZCode (Z.ai), FreeInference (Harvard SEAS), OrcaRouter (free models) and BeatAPI (free models). None asks for a card. The providers' last scheduled probes were on 2026-11-19 or later; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.3-flash
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-19 · listed since 2026-09-29
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-23 · listed since 2026-09-29
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -39,7 +39,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -108,7 +108,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ### [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-19 · listed since 2026-11-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-22
 
 Free model APIs for accounts with established GitHub linkage
 
@@ -129,7 +129,7 @@ The workspace owner must link a GitHub account registered for some time, unless 
 
 ### [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-16 · listed since 2026-11-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-22
 
 A no-top-up API for free text-model variants
 

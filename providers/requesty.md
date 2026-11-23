@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Requesty free tier: limits, free models, verified 2026-11-19'
+title: 'Requesty free tier: limits, free models, verified 2026-11-23'
 description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, ling-3.1-flash, leanstral-1.5 and 2 more. No credit card for the Free plan, which serves free models only…'
 permalink: /providers/requesty/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-23
 crumb: Requesty
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Requesty free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-19 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-11-23 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

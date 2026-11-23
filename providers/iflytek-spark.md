@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'iFlytek Spark Lite (讯飞星火) free tier: limits, free models, verified 2026-11-19'
+title: 'iFlytek Spark Lite (讯飞星火) free tier: limits, free models, verified 2026-11-23'
 description: Free Spark Lite HTTP API. Claim the Spark API allowance and create an APIPassword in the developer console. Personal verification asks for identity and phone details. Hong Kong, Macao, Taiwan and overseas applicants can submit valid ID for manual review. The HTTP documentation describes Lite as…
 permalink: /providers/iflytek-spark/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-23
 crumb: iFlytek Spark Lite (讯飞星火)
 ---
 
@@ -11,7 +11,7 @@ crumb: iFlytek Spark Lite (讯飞星火)
 
 # iFlytek Spark Lite (讯飞星火) free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-19 · [xinghuo.xfyun.cn](https://xinghuo.xfyun.cn/sparkapi) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-23 · [xinghuo.xfyun.cn](https://xinghuo.xfyun.cn/sparkapi) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

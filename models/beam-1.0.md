@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'beam-1.0 free: 2 providers, limits and ids, provider probes 2026-11-19'
+title: 'beam-1.0 free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: beam-1.0 is served free by opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-11-22
+last_modified_at: 2026-11-23
 crumb: beam-1.0
 ---
 
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**2 rows on the list serve `beam-1.0` free:** opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**2 rows on the list serve `beam-1.0` free:** opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: beam-1.0
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-19 · listed since 2026-11-10
+🤖 Coding agents & CLIs · no card · last probe 2026-11-23 · listed since 2026-11-10
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -38,7 +38,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-19 · listed since 2026-10-30
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-23 · listed since 2026-10-30
 
 OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 

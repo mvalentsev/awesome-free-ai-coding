@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-fin free: 1 provider, limits and ids, provider probes 2026-11-19'
+title: 'ling-3.0-flash-fin free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: ling-3.0-flash-fin is served free by AnyAPI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-11-22
+last_modified_at: 2026-11-23
 crumb: ling-3.0-flash-fin
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-fin
 
 # Where ling-3.0-flash-fin is free
 
-**One row on the list serves `ling-3.0-flash-fin` free:** AnyAPI. It asks for no card. The provider's last scheduled probe was on 2026-11-19; its offer is rechecked twice a week.
+**One row on the list serves `ling-3.0-flash-fin` free:** AnyAPI. It asks for no card. The provider's last scheduled probe was on 2026-11-23; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-flash-fin
 
 ### [AnyAPI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/anyapi/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-11-08 · last probe 2026-11-19 · listed since 2026-11-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-22
 
 A free model API with a separate daily AnyToken allowance
 

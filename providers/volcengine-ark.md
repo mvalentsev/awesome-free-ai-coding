@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Volcengine Ark (new-user inference trial) free tier: limits, free models, verified 2026-11-19'
+title: 'Volcengine Ark (new-user inference trial) free tier: limits, free models, verified 2026-11-23'
 description: No-card online inference trial for new accounts. Registration requires a phone number that receives SMS at +86. Enable the safe trial mode before opening paid model service and check each model's remaining allowance in the console. Each model's quota is shared by subaccounts and by its base and…
 permalink: /providers/volcengine-ark/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-23
 crumb: Volcengine Ark (new-user inference trial)
 ---
 
@@ -11,7 +11,7 @@ crumb: Volcengine Ark (new-user inference trial)
 
 # Volcengine Ark (new-user inference trial) free tier
 
-🎁 Trials (no card when possible) · no card · offered only in mainland China · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-19 · [docs.volcengine.com](https://docs.volcengine.com/docs/ark/free-inference-quota?lang=zh) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · offered only in mainland China · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-23 · [docs.volcengine.com](https://docs.volcengine.com/docs/ark/free-inference-quota?lang=zh) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Hetzner Inference API free tier: limits, free models, verified 2026-11-19'
 description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.8-27b, qwen3.6. Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a…'
 permalink: /providers/hetzner-inference/
-last_modified_at: 2026-11-19
+last_modified_at: 2026-11-23
 crumb: Hetzner Inference API
 model_sort: true
 ---
@@ -12,7 +12,7 @@ model_sort: true
 
 # Hetzner Inference API free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'solar-mini-4 free: 2 providers, limits and ids, provider probes 2026-11-19'
+title: 'solar-mini-4 free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: solar-mini-4 is served free by Freebuff and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/solar-mini-4/
-last_modified_at: 2026-11-21
+last_modified_at: 2026-11-23
 crumb: solar-mini-4
 ---
 
@@ -11,7 +11,7 @@ crumb: solar-mini-4
 
 # Where solar-mini-4 is free
 
-**2 rows on the list serve `solar-mini-4` free:** Freebuff and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-19; their offers are rechecked twice a week.
+**2 rows on the list serve `solar-mini-4` free:** Freebuff and Nous Portal (Hermes Agent). None asks for a card. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: solar-mini-4
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-19 · listed since 2026-10-10
+🤖 Coding agents & CLIs · no card · last probe 2026-11-23 · listed since 2026-10-10
 
 Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access
 
@@ -45,7 +45,7 @@ DeepSeek V4.1 Flash Fast is the default at full access. At limited access the de
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-19 · listed since 2026-10-21
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-10-21
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
