@@ -6465,7 +6465,21 @@ entries:
     label: Free model promotions
     source: https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts
     quote: You've reached today's free usage limit for this model.
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
+  - amount: 10.0
+    unit: sessions
+    period: concurrent
+    scope: account
+    label: Cloud Agents
+    source: https://docs.cline.bot/usage/cloud-agents
+    quote: You can have up to 10 cloud agent sessions running at once
+  - amount: 50.0
+    unit: sessions
+    period: day
+    scope: account
+    label: Cloud Agents
+    source: https://docs.cline.bot/usage/cloud-agents
+    quote: start up to 50 new sessions per day
   free_part: models
   models:
   - family: nemotron-3.5-super-vl-120b-a12b
@@ -8562,17 +8576,14 @@ entries:
   - https://novita.ai/docs/guides/quickstart
   - https://api.novita.ai/openai/v1/models
   card_required: false
-  offering: Inference cloud with a zero-priced chat model through an OpenAI-compatible
-    API, including tool calling and structured output
-  limits: Apodex 1.1 Mini has zero input and output prices on its public model page,
-    pricing table and API catalog. An account and API key are required. The general
-    quickstart asks users to check available credit and model access; it does not
-    state a minimum payment for this zero-priced model. No numeric Free request allowance
-    or offer deadline is published on these pages. Other models are metered.
+  offering: Inference cloud with an OpenAI-compatible API, including tool calling
+    and structured output
+  limits: An account and API key are required. The general quickstart asks users to
+    check available credit and model access. Other models are metered.
   quotas:
   - unit: requests
     scope: unspecified
-    label: Zero-priced model
+    label: Configured model
     source: https://novita.ai/models/model-detail/apodex-apodex-1.1-mini
     quote: Input $0 / M Tokens Output $0 / M Tokens
     reviewed_on: '2026-11-17'
@@ -8580,7 +8591,7 @@ entries:
   models:
   - family: apodex-1.1-mini
   api:
-    base_url: https://api.novita.ai/openai
+    base_url: https://api.novita.ai/openai/v1
     key_url: https://novita.ai/settings/key-management
     auth: api-key
     openai_compatible: true
@@ -8591,7 +8602,9 @@ entries:
     - dev/glm46
     - nvrouter/auto
     - nvrouter/fusion
-    note: ''
+    note: Confirm account-specific Free access for the configured Apodex ID before
+      use; its authenticated availability is unconfirmed. Use the documented /openai/v1
+      base URL.
   border:
     left_out: []
     'on': '2026-10-26'
@@ -12589,10 +12602,11 @@ entries:
       'on': '2026-11-24'
       source: https://logfare.ai/v1/models
     anthropic_base_url: https://logfare.ai
-    note: This ID uses Standard access without training or data-sale opt-in. Register,
-      link your Discord account and keep server membership; each API key is shown
-      once. Use /chat/completions for chat, tools and streaming, or the documented
-      /v1/messages route. Premium and Pro models need separate data consents.
+    note: Check the public catalog before using the configured GLM ID; account availability
+      is unconfirmed. Standard requires no training or data-sale opt-in. Register,
+      link Discord and keep server membership; each key is shown once. Chat, tools
+      and streaming use /chat/completions; Messages use /v1/messages. Premium and
+      Pro require separate data consents.
   data_use:
     trains: 'yes'
     quote: If — and only if — you opt in at /consent, your post-scrub request and
@@ -12725,7 +12739,7 @@ entries:
     reset: 00:00 Beijing time
     source: https://amd-aim.github.io/radeon-cloud-docs/api/usage/
     quote: Limits differ between accounts
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
   - amount: 20.0
     unit: requests
     period: minute
@@ -12750,7 +12764,7 @@ entries:
       cell_part: 20, on a
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
   - amount: 30.0
     unit: requests
     period: minute
@@ -12775,7 +12789,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
   - amount: 8.0
     unit: requests
     period: concurrent
@@ -12800,7 +12814,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
   free_part: models
   models: []
   api:

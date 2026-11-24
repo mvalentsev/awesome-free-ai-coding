@@ -1557,7 +1557,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Novita AI",
       "options": {
-        "baseURL": "https://api.novita.ai/openai",
+        "baseURL": "https://api.novita.ai/openai/v1",
         "apiKey": "{env:NOVITA_API_KEY}"
       },
       "models": {

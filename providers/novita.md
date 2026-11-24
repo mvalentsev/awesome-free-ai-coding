@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Novita AI free tier: limits, free models, verified 2026-11-16'
-description: 'Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output. Free models: apodex-1.1-mini. Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required…'
+description: 'Inference cloud with an OpenAI-compatible API, including tool calling and structured output. Free models: apodex-1.1-mini. An account and API key are required. The general quickstart asks users to check available credit and model access. Other models are metered.'
 permalink: /providers/novita/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: Novita AI
 ---
 
@@ -15,7 +15,7 @@ crumb: Novita AI
 
 ## What you get
 
-Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output
+Inference cloud with an OpenAI-compatible API, including tool calling and structured output
 
 ## Free models
 
@@ -23,9 +23,9 @@ Inference cloud with a zero-priced chat model through an OpenAI-compatible API, 
 
 ## Limits, in the vendor's words
 
-Zero-priced model: Requests allowance: amount not published (period not published); scope not published
+Configured model: Requests allowance: amount not published (period not published); scope not published
 
-Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.
+An account and API key are required. The general quickstart asks users to check available credit and model access. Other models are metered.
 
 ## Where it is offered
 
@@ -33,14 +33,15 @@ The vendor names no country it keeps the offer from ([source](https://novita.ai/
 
 ## Connect
 
-- Base URL: `https://api.novita.ai/openai`
+- Base URL: `https://api.novita.ai/openai/v1`
 - Key: `NOVITA_API_KEY` — get one at <https://novita.ai/settings/key-management>
 - Callable ids: `apodex/apodex-1.1-mini`
+- Note: Confirm account-specific Free access for the configured Apodex ID before use; its authenticated availability is unconfirmed. Use the documented /openai/v1 base URL.
 
 Try it from your terminal with your key in `NOVITA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
 ```sh
-curl -s https://api.novita.ai/openai/chat/completions \
+curl -s https://api.novita.ai/openai/v1/chat/completions \
   -H "Authorization: Bearer $NOVITA_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{"model":"apodex/apodex-1.1-mini","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'

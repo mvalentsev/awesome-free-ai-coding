@@ -414,6 +414,22 @@ def _empty_app_policy(root: Path) -> tuple[str, ...]:
     return ('unreadable' if not page_response_ok(response) else 'readable',)
 
 
+def _named_catalog_policy(root: Path) -> tuple[str, ...]:
+    from .models import FreePart, ProbeType
+    from .prober import _catalog_note_status
+    named = Entry.model_construct(
+        api=ApiInfo(base_url='https://vendor.example/v1', model_ids=['one']),
+        free_part=FreePart.MODELS, probe=Probe.model_construct(
+            type=ProbeType.PAGE_KEYWORDS, catalog='https://vendor.example/v1/models'))
+    credit = named.model_copy(update={'free_part': FreePart.SUM})
+    catalog = named.model_copy(update={'probe': Probe.model_construct(type=ProbeType.API_MODELS)})
+    cases = ((named, False, ProbeStatus.INCONCLUSIVE),
+             (named, True, ProbeStatus.STALE_IDS), (credit, False, ProbeStatus.STALE_IDS),
+             (catalog, False, ProbeStatus.INCONCLUSIVE))
+    return ('inconclusive',) if all(_catalog_note_status(row, available) is expected
+                                  for row, available, expected in cases) else ()
+
+
 def _native_audio_policy(root: Path) -> tuple[str, ...]:
     from .prober import _is_free
     models = [{'types': kind, 'pricing': {'input': 0, 'output': 0},
@@ -516,6 +532,10 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           r'The sources phase (rechecks) quota review deadlines and recorded territory lists',
           _source_detail_policy,
           'review.sources uses quotas.quota_review_changes and prober.border_changes; HTTP expiry and region controls in tests/test_review.py'),
+    Claim('CONTRIBUTING.md',
+          r'no backed ID leaves verification (inconclusive), without incrementing\s+failures',
+          _named_catalog_policy,
+          'prober._catalog_note_status and apply_results; HTTP source/earned-field controls in tests/test_prober.py'),
     Claim('CONTRIBUTING.md',
           r'An HTML response with an empty app mount and a client bootstrap is (unreadable)',
           _empty_app_policy,

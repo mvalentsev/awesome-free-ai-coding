@@ -34,7 +34,8 @@ async def test_explicit_empty_lane_does_not_fall_back_to_a_nested_catalog():
         {'id': 'fixture-free', 'pricing': {'prompt': '0', 'completion': '0'}}]}}
     async with httpx.AsyncClient(transport=httpx.MockTransport(lambda request: httpx.Response(200, json=body))) as client:
         result = await probe_entry(client, entry('free'), attempts=1, today=date(2026, 11, 8))
-    assert result.status is ProbeStatus.FAIL
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert 'fixture-free is not in the catalog' in result.detail
 
 
 @pytest.mark.asyncio

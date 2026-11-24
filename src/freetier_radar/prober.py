@@ -16,6 +16,7 @@ from pathlib import Path
 
 import httpx
 
+from .models import QUALIFICATION_DAYS as PROVISIONAL_PROMOTE_DAYS
 from .page_reader import (browser_challenge, empty_app_page, empty_framer_page,
                           page_evidence, recover_page, recover_page_sync)
 
@@ -23,7 +24,7 @@ from .models import (
     utc_today,
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, OPENCODE_OUTPUT_FIELD,
     OPENCODE_LEGACY_OUTPUT_FIELD, Entry, Follow, ModelFamily, Probe, ProbeType,
-    Border, _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
+    Border, FreePart, _id_squash, _squash, names_family, is_archived_for_good, entry_id_family, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -32,7 +33,6 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 ATTEMPTS = 3
 BACKOFF_SECONDS = 2.0
 CONCURRENCY = 8
-PROVISIONAL_PROMOTE_DAYS = 14
 
 
 class ProbeStatus(str, Enum):
@@ -54,6 +54,22 @@ class ProbeStatus(str, Enum):
 class ProbeResult:
     status: ProbeStatus
     detail: str = ""
+
+
+@dataclass(frozen=True)
+class _CatalogIds:
+    detail: str
+    missing_all: bool
+
+
+def _catalog_note_status(entry: Entry, available: bool) -> ProbeStatus:
+    """A catalog gap cannot verify an own-key named Free lane."""
+    if (not available and (entry.probe.type is ProbeType.API_MODELS
+                          or entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.catalog)
+            and entry.free_part is FreePart.MODELS and entry.api
+            and entry.api.key_kind == 'own' and entry.api.model_ids):
+        return ProbeStatus.INCONCLUSIVE
+    return ProbeStatus.STALE_IDS
 
 
 @dataclass(frozen=True)
@@ -102,6 +118,11 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         if stop is not None:
             return stop
     detail = check_content(resp, entry)
+    if (detail is not None and entry.probe.type is ProbeType.API_MODELS
+            and _catalog_note_status(entry, False) is ProbeStatus.INCONCLUSIVE):
+        ids = _catalog_ids(resp, entry)
+        if ids.missing_all:
+            return ProbeResult(ProbeStatus.INCONCLUSIVE, f"{detail} | {ids.detail}")
     # A catalog that still serves one of the row's families free is a live
     # lane: the families it stopped serving are a Models-column note (the
     # words check_content wrote), not a failure. A lane serving none fails.
@@ -142,28 +163,30 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
             if keyless is not None:
                 note = f"{note} | {keyless.detail}" if note else keyless.detail
             if column:
-                return ProbeResult(ProbeStatus.STALE_MODELS,
-                                   f"{column} | {note}" if note else column)
+                note = f"{column} | {note}" if note else column
+                if status is not ProbeStatus.INCONCLUSIVE:
+                    status = ProbeStatus.STALE_MODELS
             return ProbeResult(status, note)
 
         # The row's ids, asked in both directions (see stale_ids): an api-models
         # probe asks the bytes it already has, a page-keywords row the catalog
         # it names in probe.catalog, fetched now. A catalog that does not
-        # answer is a note, not a skip: the row stays verified by its page.
+        # answer can remain a note for a credit wallet. An own-key named Free
+        # lane needs a backed configured ID before the page earns verification.
         if entry.probe.type is ProbeType.API_MODELS:
             catalog = resp
         elif entry.probe.catalog:
             catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
             if catalog is None:
-                return verdict(ProbeStatus.STALE_IDS,
+                return verdict(_catalog_note_status(entry, False),
                                f"api.model_ids could not be checked: catalog "
                                f"{entry.probe.catalog} {failure}")
         else:
             catalog = None
         if catalog is not None:
-            stale = stale_ids(catalog, entry)
-            if stale:
-                return verdict(ProbeStatus.STALE_IDS, stale)
+            ids = _catalog_ids(catalog, entry)
+            if ids.detail:
+                return verdict(_catalog_note_status(entry, not ids.missing_all), ids.detail)
             gap = codex_endpoint_gap(catalog, entry)
             if gap:
                 return verdict(ProbeStatus.STALE_IDS, gap)
@@ -2150,7 +2173,7 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
     return not unevidenced_families(resp, asked)
 
 
-def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
+def dead_model_ids(resp: httpx.Response, entry: Entry, *, items: list[dict] | None = None) -> list[str]:
     """Ids in `api.model_ids` that the catalog no longer answers for: not in it,
     retired by its own date, marked unavailable, explicitly served only at
     other operations, or — where the row reads prices — no longer free.
@@ -2175,7 +2198,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     if lane is None:
         return []
     catalog: dict[str, dict] = {}
-    for model in _catalog_items(resp, entry.probe.lane) or []:
+    for model in items if items is not None else _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if mid:
             catalog.setdefault(mid, model)
@@ -2197,7 +2220,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     return dead
 
 
-def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
+def unlisted_free_ids(resp: httpx.Response, entry: Entry, *, items: list[dict] | None = None) -> list[str]:
     """Ids the catalog serves free that `api.model_ids` does not carry — the
     other direction of dead_model_ids, and the one that sees a lane grow.
 
@@ -2225,7 +2248,7 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
         return []
     known = set(lane.model_ids) | set(lane.ignored_ids)
     unlisted = set()
-    for model in _catalog_items(resp, entry.probe.lane) or []:
+    for model in items if items is not None else _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if (mid and mid not in known
                 and (_is_free(model) or not entry.probe.require_zero_price)
@@ -2307,14 +2330,20 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     verdict and a failing api-models row beside its failure: whether a row is
     being verified or repaired says nothing about whether its ids are true.
     """
-    dead = dead_model_ids(catalog, entry)
-    unlisted = unlisted_free_ids(catalog, entry)
+    return _catalog_ids(catalog, entry).detail
+
+
+def _catalog_ids(catalog: httpx.Response, entry: Entry) -> _CatalogIds:
+    """Keep ID availability and its detail from the same catalog judgment."""
+    items = _catalog_items(catalog, entry.probe.lane) or []
+    dead = dead_model_ids(catalog, entry, items=items)
+    unlisted = unlisted_free_ids(catalog, entry, items=items)
     notes = [_stale_ids_detail(dead, unlisted, entry)] if dead or unlisted else []
+    rows = {}
+    for row in items:
+        if mid := _model_id(row):
+            rows.setdefault(mid, row)
     if entry.api and (entry.api.model_limits or entry.api.opencode_output_tokens):
-        rows = {}
-        for row in _catalog_items(catalog, entry.probe.lane) or []:
-            if mid := _model_id(row):
-                rows.setdefault(mid, row)
         for mid, limits in entry.api.model_limits.items():
             if mid not in entry.api.model_ids or mid not in rows or limits.read != "catalog":
                 continue
@@ -2344,7 +2373,9 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
             maximum = _catalog_output_limit(rows[mid])
             if maximum is not None and maximum < budget:
                 notes.append(f"api.opencode_output_tokens {mid}: budget {budget} exceeds output limit {maximum}")
-    return " | ".join(notes)
+    lane = lane_ids(entry)
+    return _CatalogIds(" | ".join(notes),
+                       bool(lane and lane.model_ids and not rows.keys() & set(lane.model_ids)))
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

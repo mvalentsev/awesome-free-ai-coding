@@ -3,7 +3,7 @@ layout: default
 title: 'Cline free tier: limits, free models, verified 2026-11-23'
 description: 'Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: nemotron-3.5-super-vl-120b-a12b…'
 permalink: /providers/cline/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: Cline
 model_sort: true
 ---
@@ -25,6 +25,8 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 ## Limits, in the vendor's words
 
 Free model promotions: Daily usage allowance: amount not published per account per model
+
+Cloud Agents: 10 sessions at once; 50 sessions/day per account
 
 Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers "free models you can use to try Cloud Agents without paying anything".
 

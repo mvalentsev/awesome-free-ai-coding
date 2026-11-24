@@ -3,15 +3,14 @@ Codex: which sentences it proves, the commands it reads off the files, the
 config it points at its own lanes, and how it tells two requests apart."""
 import json
 import subprocess
-import threading
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
 import httpx
 import pytest
 import yaml
 
-from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_answer, _foreign_keys, as_run, bare,
+from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_answer, _foreign_keys, _serve, as_run, bare,
                                         comment_text, floors, keyed_profile, lanes, listening,
                                         missing_sentences, point_lanes, printed_profile,
                                         printed_run, shape_differences, summary)
@@ -90,11 +89,8 @@ def test_output_budget_recorder_preserves_requests_and_honors_upstream_waits(sta
             self.end_headers()
             self.wfile.write(b'{"upstream":true}')
 
-    server = ThreadingHTTPServer(("127.0.0.1", 0), Upstream)
-    thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
-    thread.start()
     body = b'{"model":"alpha","tools":[{}],"max_completion_tokens":8000}'
-    try:
+    with _serve(Upstream) as server:
         with record_opencode_output_budget(f"http://127.0.0.1:{server.server_port}/v1",
                                            "alpha", 8000) as (base, result):
             with httpx.Client(trust_env=False) as client:
@@ -112,10 +108,34 @@ def test_output_budget_recorder_preserves_requests_and_honors_upstream_waits(sta
         assert result["rate_limited"] is deferred
         assert result["checked_requests"] == expected_requests
         assert all("authorization" not in record for record in result["records"])
-    finally:
-        server.shutdown()
-        server.server_close()
-        thread.join(timeout=5)
+
+
+def test_output_budget_recorder_rejects_non_object_json_before_forwarding():
+    received = []
+
+    class Upstream(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            received.append(self.rfile.read(int(self.headers["Content-Length"])))
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b'{"upstream":true}')
+
+    valid = b'{"model":"alpha","tools":[{}],"max_completion_tokens":8000}'
+    malformed = (b'null', b'[]', b'42', b'"model"')
+    with _serve(Upstream) as server:
+        with record_opencode_output_budget(f"http://127.0.0.1:{server.server_port}/v1",
+                                           "alpha", 8000) as (base, result):
+            with httpx.Client(trust_env=False) as client:
+                for body in malformed:
+                    assert client.post(base + "/chat/completions", content=body).status_code == 502
+                assert client.post(base + "/chat/completions", content=valid).json() == {"upstream": True}
+        assert received == [valid]
+        assert result["checked_requests"] == 1
+        assert result["errors"] == ["ValueError"] * len(malformed)
+        assert not result["passed"]
 
 
 def test_every_sentence_a_check_proves_is_in_its_file():
@@ -313,20 +333,13 @@ def test_bridge_requests_an_existing_pool_when_no_strong_pool_is_generated(tmp_p
         def failing(self, statuses):
             self.status = statuses
 
-    server = ThreadingHTTPServer(("127.0.0.1", 0), Proxy)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    monkeypatch.setattr(conformance, "PROXY_PORT", server.server_port)
     run = conformance._Run(tmp_path, tmp_path, {}, {})
-    try:
+    with _serve(Proxy) as server:
+        monkeypatch.setattr(conformance, "PROXY_PORT", server.server_port)
         conformance._check_bridge(run, "test", Served(), got)
         conformance._check_fallback(run, "test", Served(), got)
         assert all(f.verdict == "ok" for f in run.findings)
         assert requests == ["named", "free/nokey", "free/nokey"]
-    finally:
-        server.shutdown()
-        server.server_close()
-        thread.join(timeout=5)
 
 
 @pytest.mark.parametrize("claimed", [False, True])

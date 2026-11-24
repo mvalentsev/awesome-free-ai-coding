@@ -285,7 +285,7 @@ class UsageQuota(BaseModel):
     amount: float | None = Field(default=None, gt=0, allow_inf_nan=False)
     unit: Literal['requests','queries','tokens','neurons','credits','USD','tasks','one-hour sessions','list-price value','usage',
                   'messages','completions','edit predictions','points','CUH','input tokens','output tokens',
-                  'Hypercredits','AnyTokens','weighted units','interactions','INR','reviews']
+                  'Hypercredits','AnyTokens','weighted units','interactions','INR','reviews','sessions']
     period: Literal['second','minute','hour','day','week','month','one-time','concurrent'] | None = None
     window: int = Field(default=1, gt=0, exclude_if=lambda v: v == 1)
     rolling: bool = Field(default=False, exclude_if=lambda v: not v)
@@ -379,14 +379,14 @@ class UsageQuota(BaseModel):
                      'completions':r'\b(?:completions?|autocompletion)\b',
                      'tokens':r'\btokens?\b|(?<![a-z])(?:tpm|tpd)(?![a-z])',
                      'tasks':r'\btasks?\b','reviews':r'\breviews?\b','messages':r'\bmessages?\b', 'points':r'\bpoints?\b|积分',
-                     'one-hour sessions':r'\bone.hour sessions?\b',
+                     'one-hour sessions':r'\bone.hour sessions?\b', 'sessions':r'\bsessions?\b',
                      'list-price value':r'\b(?:list.price|value.based)\b'}.get(self.unit, r'\b' + self.unit + r'\b')
             periods = {'second':r'\b(?:seconds?|secs?|rps)\b',
                        'minute':r'\b(?:minutes?|min|menit|rpm|tpm)\b', 'hour':r'\b(?:hours?|rph)\b|小时',
                        'day':r'\b(?:days?|daily|hari|rpd|günde|günlük)\b|每天|每日|24小时', 'week':r'\b(?:weeks?|weekly)\b|周',
                        'month':r'\b(?:months?|monthly|mo)\b|每月|月',
                        'one-time':r'\b(?:one.time|sign.?up|welcome|initial|new accounts?|new users?|registration|trials?|preview|once|first time)\b|注册|首次|试用|仅可领取一次',
-                       'concurrent':r'\b(?:concurrent|concurrency|simultaneous|simultaneously|in flight|at a time)\b|并发',
+                       'concurrent':r'\b(?:concurrent|concurrency|simultaneous|simultaneously|in flight|at a time|at once)\b|并发',
                        None:''}[self.period]
             period_evidence = self.period_quote or phrase
             if not re.search(units, phrase, re.I) or (periods and not re.search(periods, period_evidence, re.I)):
@@ -558,7 +558,7 @@ SCOPE_WORDS = {'account':'per account','person':'per person','ip':'per IP','acco
 PERIOD_ADJECTIVES = {'second':'Per-second','minute':'Per-minute','hour':'Hourly','day':'Daily','week':'Weekly',
                      'month':'Monthly','one-time':'One-time','concurrent':'Concurrent',None:''}
 _SINGULAR_UNITS = {'requests':'request', 'queries':'query', 'tokens':'token', 'neurons':'neuron', 'credits':'credit',
-                   'tasks':'task', 'reviews':'review', 'one-hour sessions':'one-hour session', 'messages':'message',
+                   'tasks':'task', 'reviews':'review', 'sessions':'session', 'one-hour sessions':'one-hour session', 'messages':'message',
                    'completions':'completion', 'edit predictions':'edit prediction', 'points':'point',
                    'input tokens':'input token', 'output tokens':'output token',
                    'Hypercredits':'Hypercredit', 'AnyTokens':'AnyToken', 'weighted units':'weighted unit', 'interactions':'interaction'}

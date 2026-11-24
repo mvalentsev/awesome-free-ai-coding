@@ -7,7 +7,7 @@ import httpx
 import pytest
 import respx
 
-from freetier_radar.models import ApiInfo, CodexRoute, DataUse, Entry, ModelFamily, load_registry, save_registry
+from freetier_radar.models import ApiInfo, CodexRoute, DataUse, Entry, FreePart, ModelFamily, load_registry, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
     free_list_dates, is_model_stale, probe_entry,
@@ -2068,6 +2068,62 @@ def catalog_entry(*ids: str) -> Entry:
 
 
 PAGE_OK = "qwen3-coder on the free tier, no credit card"
+
+
+@pytest.mark.parametrize('free_part,available,expected', [
+    (FreePart.MODELS, [], ProbeStatus.INCONCLUSIVE),
+    (FreePart.MODELS, None, ProbeStatus.INCONCLUSIVE),
+    (FreePart.MODELS, ['qwen/qwen3-coder'], ProbeStatus.STALE_IDS),
+    (FreePart.MODELS, ['qwen/qwen3-coder', 'qwen/qwen3-coder-legacy'], ProbeStatus.PASS),
+    (FreePart.SUM, [], ProbeStatus.STALE_IDS),
+])
+@respx.mock
+async def test_page_catalog_gap_does_not_verify_named_free_access(free_part, available, expected):
+    entry = catalog_entry('qwen/qwen3-coder', 'qwen/qwen3-coder-legacy')
+    entry.free_part = free_part
+    entry.provisional = True
+    entry.first_seen = date(2026, 7, 1)
+    entry.last_verified = date(2026, 7, 10)
+    if expected is ProbeStatus.INCONCLUSIVE:
+        # A missing family must not turn this unavailable check into a pass
+        # with a Models-column note and thereby earn verification fields.
+        entry.models = [ModelFamily(family='glm-5')]
+    source = respx.get('https://x.ai/pricing').respond(200, text=PAGE_OK)
+    catalog = respx.get('https://api.x.ai/v1/models').respond(
+        200, json={'data': ([{'id': mid} for mid in available] + [{'id': 'other/paid'}]
+                          if available is not None else [])})
+    today = date(2026, 7, 19)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0, today=today)
+    assert result.status is expected
+    assert source.call_count == catalog.call_count == 1
+    apply_results([entry], {entry.id: result}, today)
+    if expected is ProbeStatus.INCONCLUSIVE:
+        assert entry.last_verified == date(2026, 7, 10)
+        assert entry.provisional and entry.probe_failures == 0
+        assert 'api.model_ids' in for_a_human(result.detail)
+    else:
+        assert entry.last_verified == today
+        assert not entry.provisional and entry.probe_failures == 0
+
+
+@pytest.mark.parametrize('model,price,expected', [
+    ('other/paid', '1', ProbeStatus.INCONCLUSIVE),
+    ('qwen/qwen3-coder:free', '1', ProbeStatus.FAIL),
+    ('qwen/qwen3-coder:free', '0', ProbeStatus.PASS),
+])
+@respx.mock
+async def test_keyed_free_catalog_distinguishes_missing_id_from_changed_price(model, price, expected):
+    entry = config_entry('qwen/qwen3-coder:free')
+    entry.free_part = FreePart.MODELS
+    source = respx.get(entry.probe.endpoint).respond(
+        200, json={'data': [{'id': model, 'pricing': {'prompt': price, 'completion': price}}]})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is expected
+    assert source.call_count == 1
+    apply_results([entry], {entry.id: result}, date(2026, 7, 19))
+    assert entry.probe_failures == (1 if expected is ProbeStatus.FAIL else 0)
 
 
 @respx.mock

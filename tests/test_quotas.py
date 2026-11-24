@@ -19,22 +19,25 @@ def quota_text(quota):
     return quota_summary(Entry.model_validate({**BASE, 'quotas': [quota]}))
 
 
-@pytest.mark.parametrize('quote', [
-    'Only one free-model request may run at a time per account.',
-    'Free, Starter and Pro each allow one queued or running request per account.',
+@pytest.mark.parametrize('quote,unit,amount,old,new', [
+    ('Only one free-model request may run at a time per account.', 'requests', 1, 'one ', 'two '),
+    ('Free, Starter and Pro each allow one queued or running request per account.', 'requests', 1, 'one ', 'two '),
+    ('You can have up to 10 cloud agent sessions running at once', 'sessions', 10, '10 ', '9 '),
 ])
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock
-async def test_spelled_concurrency_counts_follow_the_http_source(quote, changed):
+async def test_concurrency_counts_follow_the_http_source(quote, unit, amount, old, new, changed):
     # https://simplellm.eu/docs/limits.md and https://iteracompute.com/free/,
     # checked 2026-11-10: both publish the concurrency count in words.
+    # Cline's Cloud session cap: https://docs.cline.bot/usage/cloud-agents,
+    # checked 2026-11-24. It limits sessions, not model inference requests.
     period = 'Monthly tokens and concurrency are shared across account keys.'
     source = respx.get(QUOTA['source']).respond(
-        200, text=(quote.replace('one ', 'two ') if changed else quote) + ' ' + period)
+        200, text=(quote.replace(old, new) if changed else quote) + ' ' + period)
     async with httpx.AsyncClient() as client:
         entry = Entry.model_validate({**BASE, 'quotas': [{
-            **QUOTA, 'amount': 1, 'period': 'concurrent', 'scope': 'account',
-            'quote': quote, 'value_phrase': quote, 'period_quote': period,
+            **QUOTA, 'amount': amount, 'unit': unit, 'period': 'concurrent', 'scope': 'account',
+            'quote': quote, 'value_phrase': quote, 'period_quote': period if unit == 'requests' else '',
         }]})
         respx.get(BASE['probe']['endpoint']).respond(200, text='Recurring free quota for chat')
         result = await probe_entry(client, entry, attempts=1, backoff=0)

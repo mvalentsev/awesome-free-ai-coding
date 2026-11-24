@@ -17,6 +17,7 @@ from .words import number
 from .quotas import UsageQuota, QuotaTable, _numbers
 from .source_urls import valid_source_url
 from .countries import quoted_codes
+from .yaml_data import load_yaml
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
@@ -2240,6 +2241,8 @@ def known_domains(entries: list[Entry]) -> set[str]:
 
 
 ARCHIVE_AFTER_DAYS = 60
+# The observation period for undated free offers and rotating model families.
+QUALIFICATION_DAYS = 14
 # One UTC run on each of these weekdays (Sunday is 0 in cron).
 PROBE_TIME_UTC = time(hour=5, minute=23)
 PROBE_WEEKDAYS = frozenset({1, 4})
@@ -2338,7 +2341,7 @@ def _records(path: Path, key: str) -> list:
     bare list; none for a missing or empty file."""
     if not path.exists():
         return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = load_yaml(path.read_text(encoding="utf-8")) or {}
     return (data.get(key) if isinstance(data, dict) else data) or []
 
 
@@ -2346,7 +2349,7 @@ def load_blocklist(path: Path) -> dict[str, str]:
     """domain -> reason; missing file means an empty blocklist."""
     if not path.exists():
         return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or []
+    data = load_yaml(path.read_text(encoding="utf-8")) or []
     return {str(d["domain"]).lower(): str(d.get("reason", ""))
             for d in data if isinstance(d, dict) and d.get("domain")}
 
@@ -2475,7 +2478,7 @@ def watch_match(domain: str, watchlist: list[Watched], today: date) -> Watched |
 
 
 def load_registry(path: Path) -> list[Entry]:
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    data = load_yaml(path.read_text(encoding="utf-8"))
     return [Entry.model_validate(e) for e in data["entries"]]
 
 

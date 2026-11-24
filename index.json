@@ -10840,7 +10840,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-      "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers \"free models you can use to try Cloud Agents without paying anything\".",
+      "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nCloud Agents: 10 sessions at once; 50 sessions/day per account\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers \"free models you can use to try Cloud Agents without paying anything\".",
       "quotas": [
         {
           "unit": "usage",
@@ -10849,8 +10849,26 @@
           "label": "Free model promotions",
           "source": "https://raw.githubusercontent.com/cline/cline/main/apps/cli/src/utils/cline-pass-errors.ts",
           "quote": "You've reached today's free usage limit for this model.",
-          "reviewed_on": "2026-11-18",
+          "reviewed_on": "2026-11-24",
           "amount": null
+        },
+        {
+          "amount": 10.0,
+          "unit": "sessions",
+          "period": "concurrent",
+          "scope": "account",
+          "label": "Cloud Agents",
+          "source": "https://docs.cline.bot/usage/cloud-agents",
+          "quote": "You can have up to 10 cloud agent sessions running at once"
+        },
+        {
+          "amount": 50.0,
+          "unit": "sessions",
+          "period": "day",
+          "scope": "account",
+          "label": "Cloud Agents",
+          "source": "https://docs.cline.bot/usage/cloud-agents",
+          "quote": "start up to 50 new sessions per day"
         }
       ],
       "free_part": "models",
@@ -10916,7 +10934,7 @@
           "nvidia/nemotron-3.5-lightning-free"
         ],
         "what": "Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-        "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers \"free models you can use to try Cloud Agents without paying anything\".",
+        "limits": "Free model promotions: Daily usage allowance: amount not published per account per model\n\nCloud Agents: 10 sessions at once; 50 sessions/day per account\n\nFree promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers \"free models you can use to try Cloud Agents without paying anything\".",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -14132,13 +14150,13 @@
         "https://api.novita.ai/openai/v1/models"
       ],
       "card_required": false,
-      "offering": "Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output",
-      "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
+      "offering": "Inference cloud with an OpenAI-compatible API, including tool calling and structured output",
+      "limits": "Configured model: Requests allowance: amount not published (period not published); scope not published\n\nAn account and API key are required. The general quickstart asks users to check available credit and model access. Other models are metered.",
       "quotas": [
         {
           "unit": "requests",
           "scope": "unspecified",
-          "label": "Zero-priced model",
+          "label": "Configured model",
           "source": "https://novita.ai/models/model-detail/apodex-apodex-1.1-mini",
           "quote": "Input $0 / M Tokens Output $0 / M Tokens",
           "reviewed_on": "2026-11-17",
@@ -14153,7 +14171,7 @@
         }
       ],
       "api": {
-        "base_url": "https://api.novita.ai/openai",
+        "base_url": "https://api.novita.ai/openai/v1",
         "key_url": "https://novita.ai/settings/key-management",
         "auth": "api-key",
         "openai_compatible": true,
@@ -14166,7 +14184,7 @@
           "nvrouter/auto",
           "nvrouter/fusion"
         ],
-        "note": ""
+        "note": "Confirm account-specific Free access for the configured Apodex ID before use; its authenticated availability is unconfirmed. Use the documented /openai/v1 base URL."
       },
       "border": {
         "left_out": [],
@@ -14199,8 +14217,8 @@
         "ids": [
           "apodex/apodex-1.1-mini"
         ],
-        "what": "Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output",
-        "limits": "Zero-priced model: Requests allowance: amount not published (period not published); scope not published\n\nApodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.",
+        "what": "Inference cloud with an OpenAI-compatible API, including tool calling and structured output",
+        "limits": "Configured model: Requests allowance: amount not published (period not published); scope not published\n\nAn account and API key are required. The general quickstart asks users to check available credit and model access. Other models are metered.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -19882,7 +19900,7 @@
           }
         ],
         "anthropic_base_url": "https://logfare.ai",
-        "note": "This ID uses Standard access without training or data-sale opt-in. Register, link your Discord account and keep server membership; each API key is shown once. Use /chat/completions for chat, tools and streaming, or the documented /v1/messages route. Premium and Pro models need separate data consents."
+        "note": "Check the public catalog before using the configured GLM ID; account availability is unconfirmed. Standard requires no training or data-sale opt-in. Register, link Discord and keep server membership; each key is shown once. Chat, tools and streaming use /chat/completions; Messages use /v1/messages. Premium and Pro require separate data consents."
       },
       "data_use": {
         "trains": "yes",
@@ -20064,7 +20082,7 @@
           "reset": "00:00 Beijing time",
           "source": "https://amd-aim.github.io/radeon-cloud-docs/api/usage/",
           "quote": "Limits differ between accounts",
-          "reviewed_on": "2026-11-18",
+          "reviewed_on": "2026-11-24",
           "amount": null
         },
         {
@@ -20096,7 +20114,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-18"
+          "reviewed_on": "2026-11-24"
         },
         {
           "amount": 30.0,
@@ -20127,7 +20145,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-18"
+          "reviewed_on": "2026-11-24"
         },
         {
           "amount": 8.0,
@@ -20158,7 +20176,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-18"
+          "reviewed_on": "2026-11-24"
         }
       ],
       "free_part": "models",

@@ -177,6 +177,20 @@ def check_opencode_output_budget(records: list[dict], model: str, tokens: int) -
 
 
 @contextmanager
+def _serve(handler: type[BaseHTTPRequestHandler]) -> Iterator[ThreadingHTTPServer]:
+    """One local server lifecycle for recording and conformance lanes."""
+    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
+    thread.start()
+    try:
+        yield server
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+
+@contextmanager
 def record_opencode_output_budget(base_url: str, model: str, tokens: int):
     """Forward unchanged requests and inspect their budgets without recording keys."""
     records, errors = [], []
@@ -194,9 +208,11 @@ def record_opencode_output_budget(base_url: str, model: str, tokens: int):
             if limited.is_set():
                 self.send_error(429, "No further upstream requests after a rate limit")
                 return
-            body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
             try:
+                body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
                 payload = json.loads(body)
+                if not isinstance(payload, dict):
+                    raise ValueError("request JSON must be an object")
                 headers = {k: v for k, v in self.headers.items()
                            if k.lower() not in {"host", "content-length", "connection", "accept-encoding"}}
                 with httpx.Client(timeout=httpx.Timeout(95, connect=10)) as client:
@@ -219,16 +235,11 @@ def record_opencode_output_budget(base_url: str, model: str, tokens: int):
                 errors.append(type(exc).__name__)
                 self.send_error(502, "Request recording failed")
 
-    server = ThreadingHTTPServer(("127.0.0.1", 0), Recorder)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
     result = {"upstream": base_url}
     try:
-        yield f"http://127.0.0.1:{server.server_port}{prefix}", result
+        with _serve(Recorder) as server:
+            yield f"http://127.0.0.1:{server.server_port}{prefix}", result
     finally:
-        server.shutdown()
-        server.server_close()
-        thread.join(timeout=5)
         result.update(check_opencode_output_budget(records, model, tokens), records=records,
                       errors=errors, rate_limited=limited.is_set())
         result["passed"] = result["passed"] and not errors and not limited.is_set()
@@ -662,14 +673,8 @@ def _handler(lanes_: _Lanes):
 @contextmanager
 def _serve_lanes() -> Iterator[tuple[_Lanes, str]]:
     lanes_ = _Lanes()
-    server = ThreadingHTTPServer(("127.0.0.1", 0), _handler(lanes_))
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    try:
+    with _serve(_handler(lanes_)) as server:
         yield lanes_, f"http://127.0.0.1:{server.server_address[1]}"
-    finally:
-        server.shutdown()
-        server.server_close()
 
 
 # ---- the programs

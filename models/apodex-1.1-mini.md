@@ -3,7 +3,7 @@ layout: default
 title: 'apodex-1.1-mini free: 1 provider, limits and ids, provider probes 2026-11-16'
 description: apodex-1.1-mini is served free by Novita AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/apodex-1.1-mini/
-last_modified_at: 2026-11-16
+last_modified_at: 2026-11-24
 crumb: apodex-1.1-mini
 ---
 
@@ -21,12 +21,12 @@ crumb: apodex-1.1-mini
 
 🔌 LLM APIs with free tier · no card · last probe 2026-11-16 · listed since 2026-11-09
 
-Inference cloud with a zero-priced chat model through an OpenAI-compatible API, including tool calling and structured output
+Inference cloud with an OpenAI-compatible API, including tool calling and structured output
 
-- Limits, in the vendor's words: Zero-priced model: Requests allowance: amount not published (period not published); scope not published
+- Limits, in the vendor's words: Configured model: Requests allowance: amount not published (period not published); scope not published
 
-Apodex 1.1 Mini has zero input and output prices on its public model page, pricing table and API catalog. An account and API key are required. The general quickstart asks users to check available credit and model access; it does not state a minimum payment for this zero-priced model. No numeric Free request allowance or offer deadline is published on these pages. Other models are metered.
-- Base URL: `https://api.novita.ai/openai`
+An account and API key are required. The general quickstart asks users to check available credit and model access. Other models are metered.
+- Base URL: `https://api.novita.ai/openai/v1`
 - Key: `NOVITA_API_KEY` — get one at <https://novita.ai/settings/key-management>
 - Callable ids: `apodex/apodex-1.1-mini`
 

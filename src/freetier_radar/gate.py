@@ -39,9 +39,8 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable, Iterator
 
-import yaml
-
 from . import git
+from .yaml_data import load_yaml
 from .history import block_problems, parse_history
 from .layout import MAP, Kind, node_for
 from .models import Entry
@@ -185,7 +184,7 @@ def message_problems(text: str) -> list[str]:
 def _registry(text: str | None) -> list[Entry]:
     if text is None:
         return []
-    return [Entry.model_validate(e) for e in (yaml.safe_load(text) or {}).get("entries", [])]
+    return [Entry.model_validate(e) for e in (load_yaml(text) or {}).get("entries", [])]
 
 
 def _pages_at(repo: Path, rev: str) -> set[str]:

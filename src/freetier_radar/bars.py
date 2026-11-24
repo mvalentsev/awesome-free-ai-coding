@@ -34,15 +34,10 @@ from .models import (Entry, FreePart, expire_entries, family_access, entry_id_fa
                      is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
 from .words import weeks
+from .models import QUALIFICATION_DAYS as BAR_DAYS
+from .yaml_data import load_yaml
 
 __all__ = ["BAR_DAYS", "Waiting", "arrivals", "vendor_dates", "waiting", "report", "main"]
-
-# Two weeks in the lane before a model joins the Models column: long enough
-# that an id which came and went within days never became a family, short
-# enough that a lane's steady models are named while they are there.
-BAR_DAYS = 14
-
-_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], date]:
@@ -56,7 +51,7 @@ def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], d
     for sha, stamp in git.commits(repo, "--reverse", "--first-parent", "HEAD", "--", path, field="%ct",
                                   check=True):
         try:
-            data = yaml.load(git.show(repo, sha, path) or "", Loader=_LOADER) or {}
+            data = load_yaml(git.show(repo, sha, path) or "") or {}
         except yaml.YAMLError:
             continue
         rows = (data.get("entries") or []) if isinstance(data, dict) else []

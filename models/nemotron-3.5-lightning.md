@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-lightning free: 9 providers, limits and ids, provider probes 2026-11-23'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: nemotron-3.5-lightning
 ---
 
@@ -120,6 +120,8 @@ Open-source coding agent for VS Code, JetBrains, the terminal and Cline Desktop;
 <summary>Provider-wide limits</summary>
 
 - Limits, in the vendor's words: Free model promotions: Daily usage allowance: amount not published per account per model
+
+Cloud Agents: 10 sessions at once; 50 sessions/day per account
 
 Free promotions require a Cline account, with Google, GitHub or email signup and no card. The picker's free list rotates. Use these promotions in the IDE extensions, CLI or Cline Desktop; their free quotas do not cover the Cline API. Free usage may improve model performance and quality. For Cloud Agents in the browser, connect GitHub and pick a repository. ClineFree offers "free models you can use to try Cloud Agents without paying anything".
 

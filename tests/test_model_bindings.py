@@ -55,7 +55,7 @@ async def test_a_binding_never_restores_a_priced_withdrawn_or_missing_id(model):
     e=entry();respx.get(e.probe.endpoint).respond(200,json={'data':[model]})
     async with httpx.AsyncClient() as client:
         result=await probe_entry(client,e,attempts=1,backoff=0)
-    assert result.status is ProbeStatus.FAIL
+    assert result.status is (ProbeStatus.FAIL if model['id']=='science-free' else ProbeStatus.INCONCLUSIVE)
 
 
 @pytest.mark.parametrize('client',[False,True])

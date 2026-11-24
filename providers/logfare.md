@@ -49,7 +49,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Key: `LOGFARE_API_KEY` — get one at <https://logfare.ai/register>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://logfare.ai`
 - Callable ids: `glm-5.3-flash`
-- Note: This ID uses Standard access without training or data-sale opt-in. Register, link your Discord account and keep server membership; each API key is shown once. Use /chat/completions for chat, tools and streaming, or the documented /v1/messages route. Premium and Pro models need separate data consents.
+- Note: Check the public catalog before using the configured GLM ID; account availability is unconfirmed. Standard requires no training or data-sale opt-in. Register, link Discord and keep server membership; each key is shown once. Chat, tools and streaming use /chat/completions; Messages use /v1/messages. Premium and Pro require separate data consents.
 
 Try it from your terminal with your key in `LOGFARE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

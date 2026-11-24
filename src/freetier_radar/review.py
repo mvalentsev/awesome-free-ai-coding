@@ -19,9 +19,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import httpx
-import yaml
 
 from . import git
+from .yaml_data import load_yaml
 from .indexnow import index_at
 from .layout import node_for
 from .models import Entry
@@ -178,7 +178,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
     indexnow_dispatch = False
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)
-        workflow = yaml.safe_load(content) if content else None
+        workflow = load_yaml(content) if content else None
         if not workflow:
             continue
         triggers = workflow.get('on', workflow.get(True, {}))
@@ -199,7 +199,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
                  '--attempt', str(run['attempt']), '--log')
         for filename, subject in PRODUCER_WORKFLOWS.values():
             body = git.show(repo, sha, '.github/workflows/' + filename)
-            workflow = yaml.safe_load(body) if body else None
+            workflow = load_yaml(body) if body else None
             if workflow and run['name'] == workflow['name']:
                 break
         else:
@@ -207,8 +207,8 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         run = produced_run(repo, sha, run, log, workflow['name'], subject)
         run['log'] = bundle.write(f"workflows/{run['databaseId']}-{run['attempt']}.log", log.encode())
         bundle.save('verification-run', run)
-        required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/ci.yml'))['name'])
-        indexnow = yaml.safe_load(blob(repo, sha, '.github/workflows/indexnow.yml'))
+        required.discard(load_yaml(blob(repo, sha, '.github/workflows/ci.yml'))['name'])
+        indexnow = load_yaml(blob(repo, sha, '.github/workflows/indexnow.yml'))
         if indexnow_dispatch:
             required.add(indexnow['name'])
         else:
@@ -279,7 +279,7 @@ def scoped(bundle: Bundle) -> dict:
 async def sources(bundle: Bundle, extra: list[str]) -> dict:
     scope = scoped(bundle)
     today = datetime.fromisoformat(now()).date()
-    entries = [Entry.model_validate(e) for e in yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
+    entries = [Entry.model_validate(e) for e in load_yaml(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
                if e['id'] in scope['rows']]
     urls, by_row, followed, probe_urls = set(extra), {}, [], {}
     catalogs_read = set().union(*(catalog_urls(e) for e in entries))
@@ -630,7 +630,7 @@ def opencode_session_result(bundle: Bundle, prefix: str, binary: str, project: P
 
 def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: str) -> dict:
     scope = scoped(bundle)
-    rows = yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
+    rows = load_yaml(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
     entry = next((Entry.model_validate(e) for e in rows if e['id'] == provider), None)
     if entry is None or not entry.api or model not in entry.api.model_ids:
         raise ValueError('provider and model must be a committed public API lane')
