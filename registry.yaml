@@ -10348,7 +10348,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-10-18'
-  last_verified: '2026-11-23'
+  last_verified: '2026-11-24'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -12374,9 +12374,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-11-10'
-  last_verified: '2026-11-23'
+  last_verified: '2026-11-24'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 85
 - id: logfare
   name: Logfare (Standard models)

@@ -16655,7 +16655,7 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-10-18",
-      "last_verified": "2026-11-23",
+      "last_verified": "2026-11-24",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -19605,9 +19605,9 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-11-10",
-      "last_verified": "2026-11-23",
+      "last_verified": "2026-11-24",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 85,
       "no_account": false,
       "archived": false,

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'IteraCompute free tier: limits, free models, verified 2026-11-23'
+title: 'IteraCompute free tier: limits, free models, verified 2026-11-24'
 description: 'OpenAI-compatible API with retained monthly free model usage for eligible existing accounts. Free models: qwen3.8-27b. Positive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. "Users with positive net…'
 permalink: /providers/iteracompute/
 last_modified_at: 2026-11-24
@@ -11,7 +11,7 @@ crumb: IteraCompute
 
 # IteraCompute free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-23 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-24 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

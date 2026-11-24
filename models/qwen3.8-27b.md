@@ -101,7 +101,7 @@ Free token grants apply in Singapore (international), independently per model an
 
 ### [IteraCompute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-23 · listed since 2026-10-21
+🔌 LLM APIs with free tier · no card · last probe 2026-11-24 · listed since 2026-10-21
 
 OpenAI-compatible API with retained monthly free model usage for eligible existing accounts
 
