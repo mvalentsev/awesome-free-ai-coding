@@ -8,7 +8,6 @@ unrelated model illustrations are deliberately outside the hours table.
 from __future__ import annotations
 
 import html
-import json
 import re
 from datetime import date
 from html.parser import HTMLParser
@@ -58,10 +57,9 @@ class _Page(HTMLParser):
     def handle_endtag(self, tag):
         if tag == "script":
             if self.structured and self.script is not None:
-                try:
-                    self._questions(json.loads("".join(self.script)))
-                except (ValueError, TypeError):
-                    pass
+                from .page_reader import jsonld_questions
+                for question, answer in jsonld_questions("".join(self.script)):
+                    self.faq.setdefault(clean(question).casefold(), []).append(answer)
             self.script = None
             self.structured = False
         elif tag == "style":
@@ -73,19 +71,6 @@ class _Page(HTMLParser):
                     self.nodes.append((node["at"], tag, clean(" ".join(node["parts"]))))
                     self.open.pop(i)
                     break
-
-    def _questions(self, value):
-        if isinstance(value, list):
-            for item in value:
-                self._questions(item)
-        elif isinstance(value, dict):
-            if value.get("@type") == "Question" and isinstance(value.get("name"), str):
-                answer = value.get("acceptedAnswer")
-                if isinstance(answer, dict) and isinstance(answer.get("text"), str):
-                    self.faq.setdefault(clean(value["name"]).casefold(), []).append(answer["text"])
-            for item in value.values():
-                if isinstance(item, (list, dict)):
-                    self._questions(item)
 
     def answer(self, question: str) -> str | None:
         answers = self.faq.get(clean(question).casefold(), [])

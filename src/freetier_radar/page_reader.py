@@ -10,6 +10,7 @@ import re
 import socket
 import time
 import uuid
+from collections.abc import Iterator
 from contextlib import contextmanager
 from contextvars import ContextVar
 from datetime import datetime, timezone
@@ -136,6 +137,26 @@ def without_templates(text: str) -> str:
     return text
 
 
+def jsonld_questions(text: str) -> Iterator[tuple[str, str]]:
+    """Named FAQ answers, excluding organization and website metadata."""
+    def questions(value):
+        if isinstance(value, list):
+            for item in value:
+                yield from questions(item)
+        elif isinstance(value, dict):
+            answer = value.get('acceptedAnswer')
+            if (value.get('@type') == 'Question' and isinstance(value.get('name'), str)
+                    and isinstance(answer, dict) and isinstance(answer.get('text'), str)):
+                yield value['name'], answer['text']
+            for item in value.values():
+                if isinstance(item, (list, dict)):
+                    yield from questions(item)
+    try:
+        yield from questions(json.loads(text))
+    except (ValueError, TypeError):
+        return
+
+
 class _PageShell(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -145,6 +166,8 @@ class _PageShell(HTMLParser):
         self.hidden = 0
         self.text = []
         self.client_bootstrap = False
+        self.structured = None
+        self.faq = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -152,6 +175,8 @@ class _PageShell(HTMLParser):
             self.indexes.append(attrs.get("content", ""))
         if tag == "body":
             self.body = self.seen_body = True
+        if tag == 'script':
+            self.structured = [] if attrs.get('type', '').lower() == 'application/ld+json' else None
         if (tag == "script" and attrs.get("src")
                 and attrs.get("type", "").lower() in ("", "module", "text/javascript", "application/javascript")):
             self.client_bootstrap = True
@@ -159,12 +184,17 @@ class _PageShell(HTMLParser):
             self.hidden += 1
 
     def handle_endtag(self, tag):
+        if tag == 'script' and self.structured is not None:
+            self.faq.extend(answer for _, answer in jsonld_questions(''.join(self.structured)) if answer.strip())
+            self.structured = None
         if tag in ("script", "style", "noscript"):
             self.hidden = max(0, self.hidden - 1)
         if tag == "body":
             self.body = False
 
     def handle_data(self, data):
+        if self.structured is not None:
+            self.structured.append(data)
         if self.body and not self.hidden:
             self.text.append(data)
 
@@ -206,8 +236,7 @@ def empty_app_page(response: httpx.Response) -> bool:
     parsed.feed(without_templates(response.text))
     if not parsed.seen_body or not parsed.client_bootstrap or "".join(parsed.text).strip():
         return False
-    from .page_catalog import _Page
-    return not any(answer.strip() for answers in _Page(response.text).faq.values() for answer in answers)
+    return not parsed.faq
 
 
 def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient) -> bool:

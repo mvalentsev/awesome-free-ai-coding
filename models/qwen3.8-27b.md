@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 9 providers, limits and ids, provider probes 2026-11-19 or later'
 description: qwen3.8-27b is served free by Groq, LLMTR, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), IteraCompute, Regolo AI, VLM Run Gateway, OVHcloud AI Endpoints and AnyAPI. None asks for a card; VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: qwen3.8-27b
 ---
 
@@ -103,17 +103,20 @@ Free token grants apply in Singapore (international), independently per model an
 
 🔌 LLM APIs with free tier · no card · last probe 2026-11-23 · listed since 2026-10-21
 
-OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router
+OpenAI-compatible API with retained monthly free model usage for eligible existing accounts
 
-- Limits, in the vendor's words: Shared allowance without a recharge: 30,000,000 tokens/month per account (before the no-recharge promotion ends); for `qwen/qwen3.8-27b`, `Auto`. Allowances reset at 00:00 UTC on the first of each month and do not roll over.
+- Limits, in the vendor's words: Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`
+
+Retained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`
+
+Retained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`
 
 Shared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`
 
-Register and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. "Context includes input and requested output; output is capped at 8,192 tokens." Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. The no-recharge promotion ends at the model deadline. Positive net recharge completed before the cutoff retains the reached tier, including below Starter. Active plans have a separate Auto allowance. Later top-ups fund paid usage. New external payments add an 8% fee. Shared capacity may queue. Honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.
+Positive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. "Users with positive net recharge completed before this cutoff retain their existing free tier." Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. "Context includes input and requested output; output is capped at 8,192 tokens." Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. "Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over."
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
 - Callable ids: `qwen/qwen3.8-27b`
-- `qwen/qwen3.8-27b`: free until 2026-11-24 00:00-08:00 ([conditions](https://iteracompute.com/free/))
 - What you send is not used to train models ([the vendor's words](https://iteracompute.com/privacy.html)).
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)

@@ -16528,26 +16528,61 @@
         "quote": "Users with positive net recharge completed before this cutoff retain their existing free tier. Afterward, shared free Auto is limited to these users and users with a currently effective plan.",
         "free_part": "unnamed"
       },
-      "offering": "OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router",
-      "limits": "Shared allowance without a recharge: 30,000,000 tokens/month per account (before the no-recharge promotion ends); for `qwen/qwen3.8-27b`, `Auto`. Allowances reset at 00:00 UTC on the first of each month and do not roll over.\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. The no-recharge promotion ends at the model deadline. Positive net recharge completed before the cutoff retains the reached tier, including below Starter. Active plans have a separate Auto allowance. Later top-ups fund paid usage. New external payments add an 8% fee. Shared capacity may queue. Honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
+      "offering": "OpenAI-compatible API with retained monthly free model usage for eligible existing accounts",
+      "limits": "Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nPositive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. \"Users with positive net recharge completed before this cutoff retain their existing free tier.\" Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. \"Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\"",
       "quotas": [
         {
           "amount": 30000000.0,
           "unit": "tokens",
           "period": "month",
           "scope": "account",
-          "label": "Shared allowance without a recharge",
-          "condition": "before the no-recharge promotion ends",
-          "condition_quote": "Before the promotion ends, email verification unlocks the full 30M monthly free allowance immediately.",
-          "reset": "Allowances reset at 00:00 UTC on the first of each month and do not roll over.",
-          "source": "https://iteracompute.com/free-tier-terms/",
-          "quote": "Free provides 30M tokens/month and 128K context.",
+          "label": "Retained Free allowance below Starter",
+          "condition": "for eligible pre-cutoff recharge users below Starter",
+          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
+          "source": "https://iteracompute.com/models/qwen3-8-27b/",
+          "quote": "Free: 128K total context and 30M tokens/month",
           "value_phrase": "30M tokens/month",
           "model_ids": [
             "qwen/qwen3.8-27b",
             "Auto"
           ],
-          "reviewed_on": "2026-11-20"
+          "reviewed_on": "2026-11-24"
+        },
+        {
+          "amount": 100000000.0,
+          "unit": "tokens",
+          "period": "month",
+          "scope": "account",
+          "label": "Retained Starter allowance",
+          "condition": "for eligible pre-cutoff recharge users",
+          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
+          "source": "https://iteracompute.com/models/qwen3-8-27b/",
+          "quote": "Starter provides 100M tokens/month and 128K context",
+          "value_phrase": "100M tokens/month",
+          "period_quote": "Starter provides 100M tokens/month and 128K context",
+          "model_ids": [
+            "qwen/qwen3.8-27b",
+            "Auto"
+          ],
+          "reviewed_on": "2026-11-24"
+        },
+        {
+          "amount": 300000000.0,
+          "unit": "tokens",
+          "period": "month",
+          "scope": "account",
+          "label": "Retained Pro allowance",
+          "condition": "for eligible pre-cutoff recharge users",
+          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
+          "source": "https://iteracompute.com/models/qwen3-8-27b/",
+          "quote": "Pro provides 300M tokens/month and 256K context",
+          "value_phrase": "300M tokens/month",
+          "period_quote": "Pro provides 300M tokens/month and 256K context",
+          "model_ids": [
+            "qwen/qwen3.8-27b",
+            "Auto"
+          ],
+          "reviewed_on": "2026-11-24"
         },
         {
           "amount": 1.0,
@@ -16582,16 +16617,6 @@
           "qwen/qwen3.8-27b",
           "Auto"
         ],
-        "model_access": {
-          "qwen/qwen3.8-27b": {
-            "source": "https://iteracompute.com/free/",
-            "until": "2026-11-24T00:00:00-08:00"
-          },
-          "Auto": {
-            "source": "https://iteracompute.com/free/",
-            "until": "2026-11-24T00:00:00-08:00"
-          }
-        },
         "ignored_ids": [
           "opencode/mimo-v2.6-flash:free",
           "opencode/deepseek-v4.1-flash:free",
@@ -16604,7 +16629,7 @@
         "no_family_ids": [
           "Auto"
         ],
-        "note": "Use qwen/qwen3.8-27b for the named model or Auto for the changing routing pool; both share the free allowance. Create an API key and use Chat Completions. Auto does not pin model weights or precision. Independent eligibility and allowances for the other catalog routes remain unconfirmed."
+        "note": "Use qwen/qwen3.8-27b for the named model or Auto for the changing pool. Both use the retained shared allowance for qualifying pre-cutoff recharge accounts. An active plan separately permits Auto; check its purchased and shared allowances in your account. Create an API key and use Chat Completions. Auto does not pin model weights or precision. Other catalog routes have independent prices and eligibility."
       },
       "data_use": {
         "trains": "no",
@@ -16645,12 +16670,12 @@
           "qwen/qwen3.8-27b",
           "Auto"
         ],
-        "what": "OpenAI-compatible API with recurring free usage on a self-hosted open model and an automatic router",
-        "limits": "Shared allowance without a recharge: 30,000,000 tokens/month per account (before the no-recharge promotion ends); for `qwen/qwen3.8-27b`, `Auto`. Allowances reset at 00:00 UTC on the first of each month and do not roll over.\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nRegister and verify an email, or sign in with Google. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free total context is 128K. There is no RPM, TPM or daily token cap. Requests reserve maximum usage, then settle actual usage; exhausted quota returns 429 without automatic paid overage. The no-recharge promotion ends at the model deadline. Positive net recharge completed before the cutoff retains the reached tier, including below Starter. Active plans have a separate Auto allowance. Later top-ups fund paid usage. New external payments add an 8% fee. Shared capacity may queue. Honor Retry-After. No SLA. Zero data retention requires a separate signed agreement.",
+        "what": "OpenAI-compatible API with retained monthly free model usage for eligible existing accounts",
+        "limits": "Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nPositive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. \"Users with positive net recharge completed before this cutoff retain their existing free tier.\" Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. \"Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\"",
         "why": "",
         "access": "",
         "modelAccess": {
-          "qwen3.8-27b": "until 2026-11-24"
+          "qwen3.8-27b": ""
         },
         "section": {
           "id": "api-free-tier"
@@ -16658,16 +16683,6 @@
         "flags": [
           "nocard"
         ]
-      },
-      "access_labels": {
-        "offer": "",
-        "models": {
-          "qwen3.8-27b": "until 2026-11-24"
-        },
-        "ids": {
-          "qwen/qwen3.8-27b": "free until 2026-11-24 00:00-08:00",
-          "Auto": "free until 2026-11-24 00:00-08:00"
-        }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/"
     },

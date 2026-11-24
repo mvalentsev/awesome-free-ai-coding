@@ -736,10 +736,10 @@
       },
       "models": {
         "qwen/qwen3.8-27b": {
-          "name": "qwen/qwen3.8-27b (until 2026-11-24)"
+          "name": "qwen/qwen3.8-27b"
         },
         "Auto": {
-          "name": "Auto (until 2026-11-24)"
+          "name": "Auto"
         }
       }
     },
