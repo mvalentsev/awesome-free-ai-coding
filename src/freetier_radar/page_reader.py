@@ -144,7 +144,6 @@ class _PageShell(HTMLParser):
         self.seen_body = False
         self.hidden = 0
         self.text = []
-        self.app_mount = False
         self.client_bootstrap = False
 
     def handle_starttag(self, tag, attrs):
@@ -153,8 +152,6 @@ class _PageShell(HTMLParser):
             self.indexes.append(attrs.get("content", ""))
         if tag == "body":
             self.body = self.seen_body = True
-        if self.body and tag == "div" and attrs.get("id") in ("root", "app"):
-            self.app_mount = True
         if (tag == "script" and attrs.get("src")
                 and attrs.get("type", "").lower() in ("", "module", "text/javascript", "application/javascript")):
             self.client_bootstrap = True
@@ -194,10 +191,12 @@ def empty_framer_page(response: httpx.Response) -> bool:
 
 
 def empty_app_page(response: httpx.Response) -> bool:
-    """A client bootstrap and empty app mount do not supply rendered page text.
+    """A client bootstrap and empty body do not supply rendered page text.
 
     PLaMo's https://plamo.preferredai.jp/info/terms returned this shape on
     2026-11-09; https://www.trae.ai/pricing used async/defer scripts that day.
+    LLM7's https://llm7.io had no named mount on 2026-11-24. Structured FAQ
+    answers remain page evidence; title and organization metadata do not.
     A title or description cannot establish the page's offer or terms.
     """
     if (not response.is_success
@@ -205,8 +204,10 @@ def empty_app_page(response: httpx.Response) -> bool:
         return False
     parsed = _PageShell()
     parsed.feed(without_templates(response.text))
-    return (parsed.seen_body and parsed.app_mount and parsed.client_bootstrap
-            and not "".join(parsed.text).strip())
+    if not parsed.seen_body or not parsed.client_bootstrap or "".join(parsed.text).strip():
+        return False
+    from .page_catalog import _Page
+    return not any(answer.strip() for answers in _Page(response.text).faq.values() for answer in answers)
 
 
 def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient) -> bool:

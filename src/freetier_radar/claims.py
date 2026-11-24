@@ -409,7 +409,7 @@ def _prose_access_fields(root: Path) -> tuple[str, ...]:
 def _empty_app_policy(root: Path) -> tuple[str, ...]:
     import httpx
     from .prober import page_response_ok
-    shell = '<html><head><title>Free offer</title><script type="module" src="/app.js"></script></head><body><div id="root"><template>Free offer</template></div></body></html>'
+    shell = '<html><head><title>Free offer</title><script type="module" src="/app.js"></script></head><body><div><template>Free offer</template></div></body></html>'
     response = httpx.Response(200, text=shell, headers={'content-type': 'text/html'})
     return ('unreadable' if not page_response_ok(response) else 'readable',)
 

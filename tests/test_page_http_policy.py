@@ -1,11 +1,9 @@
 """Page evidence policy exercised through synchronous and asynchronous HTTP reads."""
-from datetime import date
-
 import httpx
 import pytest
 
 from freetier_radar.discovery import Evidence, fetch_page_texts, format_evidence
-from freetier_radar.models import Entry
+from freetier_radar.models import Entry, utc_today
 from freetier_radar.prober import (
     ProbeStatus, _fetch_page, probe_entry, probe_page_url, probe_page_url_sync,
 )
@@ -17,11 +15,12 @@ QUOTE = "Our free tier stays available"
 
 
 def entry() -> Entry:
+    today = utc_today()
     return Entry.model_validate({
         "id": "vendor", "name": "Vendor", "category": "api-free-tier",
         "url": URL, "source_urls": [URL], "offering": "A free tier",
         "limits": f'The page says "{QUOTE}".',
-        "first_seen": date.today(), "last_verified": date.today(),
+        "first_seen": today, "last_verified": today,
         "probe": {"type": "page-keywords", "endpoint": URL, "keywords": [QUOTE]},
     })
 
@@ -61,19 +60,24 @@ async def test_all_page_readers_agree_on_which_bodies_can_supply_evidence(status
     assert len(calls) == (8 if status == 503 else 6)
 
 
-@pytest.mark.parametrize('script_attrs,content,rendered', [
-    ('type="module"', '', False),
-    ('async', '', False),
-    ('defer', '', False),
-    ('type="module"', QUOTE, True),
-    ('type="module"', '<template data-mint="manifest">' + QUOTE + '</template>', False),
+@pytest.mark.parametrize('script_attrs,content,mount_attrs,rendered', [
+    ('type="module"', '', 'id="root"', False),
+    ('async', '', 'id="root"', False),
+    ('defer', '', 'id="root"', False),
+    ('type="module"', QUOTE, 'id="root"', True),
+    ('type="module"', '<template data-mint="manifest">' + QUOTE + '</template>', 'id="root"', False),
+    ('async', '', '', False),
+    ('async', QUOTE, '', True),
+    ('async', '<script type="application/ld+json">{"@type":"FAQPage","mainEntity":'
+     '[{"@type":"Question","name":"What is free?","acceptedAnswer":'
+     '{"@type":"Answer","text":"' + QUOTE + '"}}]}</script>', '', True),
 ])
-async def test_client_rendered_shell_is_unreadable_even_when_metadata_names_the_offer(tmp_path, rendered, script_attrs, content):
+async def test_client_rendered_shell_is_unreadable_even_when_metadata_names_the_offer(tmp_path, rendered, script_attrs, content, mount_attrs):
     from freetier_radar import review
 
     body = ('<html><head><title>' + QUOTE + '</title>'
             '<script ' + script_attrs + ' src="/assets/index.js"></script></head>'
-            '<body><div id="root">' + content + '</div></body></html>')
+            '<body><div ' + mount_attrs + '>' + content + '</div></body></html>')
     def answer(request):
         return httpx.Response(200, text=body, headers={'content-type': 'text/html'})
     transport = httpx.MockTransport(answer)
