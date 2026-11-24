@@ -301,15 +301,22 @@ async (page) => {
           if(await list.count()!==1) throw Error('Missing shared model list');
           if(await list.getAttribute('open')!==null) throw Error('README list initially open');
           await list.locator('summary').click();
-          for(const model of plan.readme_models) {
-            const row=list.getByText(model.family,{exact:true}).first().locator('xpath=ancestor::li[1]');
-            await row.waitFor({state:'visible'});
-            for(const id of model.rows) {
-              const name=plan.readme_providers[id];
-              if(!name) throw Error('Missing README provider identity: '+id);
-              if(!(await row.innerText()).includes(name)) throw Error('README provider: '+name);
+          await list.locator('li').first().waitFor({state:'visible'});
+          // Read the open state and all labels together: GitHub can replace the
+          // article between remote reads (661f29a4, checked 2026-11-24).
+          await list.evaluate((details,plan)=>{
+            if(!details.open) throw Error('README list did not stay open');
+            const rows=Array.from(details.querySelectorAll('li'));
+            for(const model of plan.readme_models) {
+              const row=rows.find(li=>Array.from(li.querySelectorAll('code')).some(code=>code.textContent===model.family));
+              if(!row?.innerText) throw Error('README model not visible: '+model.family);
+              for(const id of model.rows) {
+                const name=plan.readme_providers[id];
+                if(!name) throw Error('Missing README provider identity: '+id);
+                if(!row.innerText.includes(name)) throw Error('README provider: '+name);
+              }
             }
-          }
+          },plan);
           await list.locator('summary').click();
           await list.locator('li').first().waitFor({state:'hidden'});
 {% else %}
