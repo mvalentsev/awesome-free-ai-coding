@@ -198,6 +198,39 @@ async def test_an_inert_table_cannot_confirm_a_current_quota(table):
     assert 'quota table coding-model' in result.detail
 
 
+@respx.mock
+async def test_an_unreadable_table_does_not_hide_a_separate_valid_quota_table():
+    q = {**QUOTA, 'amount': 30, 'period': 'minute', 'read': 'table', 'quote': 'Free Plan Limits',
+         'table': {'headers': ['MODEL ID', 'RPM'], 'column': 'RPM', 'rows': ['coding-model']}}
+    entry = Entry.model_validate({**BASE, 'quotas': [q]})
+    body = ('<p>Free Plan Limits</p><table><tr><th colspan>Unrelated</th></tr></table>'
+            '<table><tr><th colspan="2">Current rates</th></tr>'
+            '<tr><th>MODEL ID</th><th>RPM</th></tr>'
+            '<tr><td>coding-model</td><td>30</td></tr></table>')
+    respx.get(entry.probe.endpoint).respond(200, text='Recurring free quota for chat')
+    respx.get(q['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@pytest.mark.parametrize('span', ['0', '-1', 'not-a-number', '1000000000'])
+@respx.mock
+async def test_invalid_table_spans_cannot_shift_the_bound_quota_columns(span):
+    q = {**QUOTA, 'amount': 30, 'period': 'minute', 'read': 'table', 'quote': 'Free Plan Limits',
+         'table': {'headers': ['MODEL ID', 'RPM'], 'column': 'RPM', 'rows': ['coding-model']}}
+    entry = Entry.model_validate({**BASE, 'quotas': [q]})
+    body = ('<p>Free Plan Limits</p><table><tr>'
+            f'<th colspan="{span}">Different plan</th><th>MODEL ID</th><th>RPM</th></tr>'
+            '<tr><td>coding-model</td><td>30</td></tr></table>')
+    respx.get(entry.probe.endpoint).respond(200, text='Recurring free quota for chat')
+    respx.get(q['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'quota table coding-model' in result.detail
+
+
 @pytest.mark.parametrize('changed', [False, True])
 @respx.mock
 async def test_requests_per_second_table_tracks_the_exact_http_cell(changed):

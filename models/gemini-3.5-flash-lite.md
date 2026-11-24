@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.5-flash-lite free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: gemini-3.5-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.5-flash-lite/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: gemini-3.5-flash-lite
 ---
 
@@ -45,7 +45,7 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 - [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) — free at Google AI Studio (Gemini API)
 - [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API)
-- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
+- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity (until 2026-11-30)
 
 ---
 

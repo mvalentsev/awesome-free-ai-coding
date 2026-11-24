@@ -34,6 +34,21 @@ def html(kind, *, beta=True):
         '<tr>'+''.join('<td>'+v+'</td>' for v in [name, *values])+'</tr>' for name, values in rows) + '</table>'
 
 
+@pytest.mark.parametrize('state', ['extra-column', 'invalid-span'])
+async def test_shared_model_table_keeps_extra_columns_but_rejects_unreadable_spans(state):
+    entry = table_entry('prices')
+    body = html('prices', beta=False)
+    if state == 'extra-column':
+        body = body.replace('<th>Output</th>', '<th>Output</th><th>Context</th>')
+        body = body.replace('</td></tr>', '</td><td>1M</td></tr>')
+    else:
+        body = body.replace('</table>', '<tr><td colspan="-1">Unknown</td></tr></table>')
+    async with httpx.AsyncClient(transport=httpx.MockTransport(
+            lambda request: httpx.Response(200, text=body))) as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is (ProbeStatus.PASS if state == 'extra-column' else ProbeStatus.STALE_MODELS)
+
+
 @pytest.mark.parametrize('kind', ['prices', 'plan'])
 async def test_unrecorded_free_table_arrival_is_a_human_finding_not_a_silent_pass(kind):
     entry = table_entry(kind)

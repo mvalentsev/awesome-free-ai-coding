@@ -3,7 +3,7 @@ layout: default
 title: 'claude-opus-4.6 free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: claude-opus-4.6 is served free by Google Antigravity. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-opus-4.6/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: claude-opus-4.6
 ---
 
@@ -19,7 +19,7 @@ crumb: claude-opus-4.6
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-11-23 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · free until 2026-11-30 UTC · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-11-23 · listed since 2026-08-11
 
 Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models
 
@@ -32,7 +32,7 @@ Claude and GPT agent allowance: Weekly usage allowance: amount not published per
 
 Tab: Unmetered completions per account
 
-Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice "Will be removed on November 18, 2026." No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 </details>
 
@@ -44,7 +44,7 @@ Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemi
 
 - [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) — free at Kiro
 - [`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/) — free at Kiro
-- [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) — free at Google Antigravity
+- [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) — free at Google Antigravity (until 2026-11-30)
 
 ---
 

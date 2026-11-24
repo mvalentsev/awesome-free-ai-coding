@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-2.5-pro free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: gemini-2.5-pro is served free by Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-2.5-pro/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: gemini-2.5-pro
 ---
 
@@ -67,7 +67,7 @@ The free express trial is for new Google Cloud users and requires no billing inf
 - [`gemini-3.1-flash-lite`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/) — free at Google AI Studio (Gemini API)
 - [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) — free at Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 - [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — free at Google AI Studio (Gemini API)
-- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity
+- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — free at Google AI Studio (Gemini API) and Google Antigravity (until 2026-11-30)
 
 ---
 

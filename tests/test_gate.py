@@ -2,6 +2,7 @@
 about to be committed, the logs only ever appended to, the fields a probe
 earns never typed, and a message git can show as a subject and a body."""
 import json
+import shutil
 import subprocess
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -121,6 +122,16 @@ def _repo(tmp_path: Path) -> Path:
     return repo
 
 
+@pytest.fixture(scope="module")
+def gate_repo_seed(tmp_path_factory):
+    return _repo(tmp_path_factory.mktemp("gate-seed"))
+
+
+@pytest.fixture
+def gate_repo(tmp_path, gate_repo_seed):
+    return Path(shutil.copytree(gate_repo_seed, tmp_path / "repo"))
+
+
 ADDED_AT = datetime(2026, 9, 21, 10, 0, tzinfo=timezone.utc)
 RENDERED_AT = datetime(2026, 9, 21, 12, 0, tzinfo=timezone.utc)
 
@@ -131,16 +142,22 @@ def _line(event: str, entry_id: str, ts: datetime = RENDERED_AT, detail: str = "
     return json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n"
 
 
-def _history_repo(tmp_path: Path) -> Path:
-    """A registry of one row, the line that recorded it, and the day the pages
-    were rendered on — what a commit's lines are held to."""
-    repo = _repo(tmp_path)
+@pytest.fixture(scope="module")
+def gate_history_seed(tmp_path_factory, gate_repo_seed):
+    """One committed registry/history pair; tests mutate only private copies."""
+    root = tmp_path_factory.mktemp("gate-history-seed")
+    repo = Path(shutil.copytree(gate_repo_seed, root / "repo"))
     save_registry(repo / "registry.yaml", [row()])
     (repo / "history.jsonl").write_text(_line("added", "x", ADDED_AT), encoding="utf-8")
     (repo / "index.json").write_text('{"generated": "2026-09-21"}\n', encoding="utf-8")
     _git(repo, "add", ".")
     _git(repo, "commit", "-q", "-m", "chore: the list")
     return repo
+
+
+@pytest.fixture
+def gate_history_repo(tmp_path, gate_history_seed):
+    return Path(shutil.copytree(gate_history_seed, tmp_path / "repo"))
 
 
 def _add_row(repo: Path, line: str | None) -> None:
@@ -152,17 +169,17 @@ def _add_row(repo: Path, line: str | None) -> None:
     _git(repo, "add", ".")
 
 
-def test_a_commit_on_main_appends_the_lines_its_render_records(tmp_path):
-    repo = _history_repo(tmp_path)
+def test_a_commit_on_main_appends_the_lines_its_render_records(gate_history_repo):
+    repo = gate_history_repo
     _add_row(repo, _line("added", "y"))
     assert pre_commit(repo, steps=[]) == []
 
 
-def test_a_history_line_no_render_wrote_is_refused(tmp_path):
+def test_a_history_line_no_render_wrote_is_refused(gate_history_repo):
     """The render appends the history on every commit, so on main an appended
     line is held to the change it records: a line typed by hand, for a change
     the registry never made, is refused."""
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
         fh.write(_line("archived", "x", detail="gone"))
     _git(repo, "add", "history.jsonl")
@@ -171,18 +188,18 @@ def test_a_history_line_no_render_wrote_is_refused(tmp_path):
         "registry makes"]
 
 
-def test_a_registry_change_the_commit_does_not_record_is_refused(tmp_path):
-    repo = _history_repo(tmp_path)
+def test_a_registry_change_the_commit_does_not_record_is_refused(gate_history_repo):
+    repo = gate_history_repo
     _add_row(repo, None)
     assert pre_commit(repo, steps=[]) == [
         "history.jsonl: the registry makes a change the commit does not record: added y"]
 
 
-def test_each_commit_a_push_adds_is_held_to_its_own_lines(tmp_path):
+def test_each_commit_a_push_adds_is_held_to_its_own_lines(gate_history_repo):
     """CI and the pre-push hook read a push as a range, and a range hides which
     commit wrote a line: a registry change and its line one commit later read
     as right. Each commit is held to its own."""
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     base = _git(repo, "rev-parse", "HEAD").strip()
     _add_row(repo, None)
     _git(repo, "commit", "-q", "-m", "feat: y")
@@ -197,8 +214,8 @@ def test_each_commit_a_push_adds_is_held_to_its_own_lines(tmp_path):
         "added y"]
 
 
-def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
-    repo = _repo(tmp_path)
+def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(gate_repo):
+    repo = gate_repo
     (repo / "note.txt").write_text("staged\n", encoding="utf-8")
     _git(repo, "add", "note.txt")
     (repo / "note.txt").write_text("not staged\n", encoding="utf-8")
@@ -208,10 +225,10 @@ def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
         assert not (snap / "untracked.txt").exists()
 
 
-def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(tmp_path):
+def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(gate_history_repo):
     """No hook runs on the runner: `freetier-gate diff HEAD` reads the working
     tree before the verification commit exists."""
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _add_row(repo, _line("added", "y"))
     assert diff(repo, "HEAD", earned=False) == []
     _add_row(repo, _line("archived", "x", detail="gone"))
@@ -220,14 +237,14 @@ def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(tmp
         "registry makes"]
 
 
-def test_a_push_is_checked_from_the_commit_its_owner_ratified(tmp_path, monkeypatch):
+def test_a_push_is_checked_from_the_commit_its_owner_ratified(monkeypatch, gate_history_repo):
     """A push or a CI run that meets a commit named in `gate.RATIFIED` checks the
     logs and the earned fields from it on, and holds the commits after it as
     ever."""
     from freetier_radar import gate
     from freetier_radar.gate import pre_push
 
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     base = _git(repo, "rev-parse", "HEAD").strip()
     (repo / "history.jsonl").write_text(_line("added", "x", RENDERED_AT), encoding="utf-8")
     save_registry(repo / "registry.yaml", [row(first_seen=date(2026, 9, 2))])
@@ -254,8 +271,8 @@ def test_a_push_is_checked_from_the_commit_its_owner_ratified(tmp_path, monkeypa
         "change this registry makes"]
 
 
-def test_the_gate_refuses_a_commit_on_main_that_touches_the_announcers_ledger(tmp_path):
-    repo = _repo(tmp_path)
+def test_the_gate_refuses_a_commit_on_main_that_touches_the_announcers_ledger(gate_repo):
+    repo = gate_repo
     (repo / "announced.jsonl").write_text("A\n", encoding="utf-8")
     _git(repo, "add", "announced.jsonl")
     ran = []
@@ -281,17 +298,17 @@ def _rerendered_scout(repo: Path) -> tuple[str, str]:
     return base, published
 
 
-def test_a_scout_push_accepts_its_own_rerendered_history(tmp_path):
+def test_a_scout_push_accepts_its_own_rerendered_history(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _, published = _rerendered_scout(repo)
     local = _git(repo, "rev-parse", "HEAD").strip()
     assert pre_push(repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]) == []
 
 
-def test_a_push_to_main_still_refuses_a_rewritten_remote_history(tmp_path):
+def test_a_push_to_main_still_refuses_a_rewritten_remote_history(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _, published = _rerendered_scout(repo)
     local = _git(repo, "rev-parse", "HEAD").strip()
     assert pre_push(repo, [f"HEAD {local} refs/heads/main {published}"], steps=[]) == [
@@ -299,9 +316,9 @@ def test_a_push_to_main_still_refuses_a_rewritten_remote_history(tmp_path):
         "file and let its command append"]
 
 
-def test_a_scout_push_cannot_rewrite_the_history_it_inherited_from_main(tmp_path):
+def test_a_scout_push_cannot_rewrite_the_history_it_inherited_from_main(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _, published = _rerendered_scout(repo)
     history = repo / "history.jsonl"
     history.write_text(history.read_text().replace('"detail": "stuff"', '"detail": "changed"', 1))
@@ -311,9 +328,9 @@ def test_a_scout_push_cannot_rewrite_the_history_it_inherited_from_main(tmp_path
         repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]))
 
 
-def test_a_scout_rerender_must_still_record_only_its_registry_changes(tmp_path):
+def test_a_scout_rerender_must_still_record_only_its_registry_changes(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _, published = _rerendered_scout(repo)
     with (repo / "history.jsonl").open("a") as fh:
         fh.write(_line("archived", "x", RENDERED_AT + timedelta(hours=1), detail="gone"))
@@ -323,9 +340,9 @@ def test_a_scout_rerender_must_still_record_only_its_registry_changes(tmp_path):
     assert any("archived x" in p and "not a change" in p for p in problems)
 
 
-def test_a_scout_history_rerender_does_not_allow_rewriting_the_remote_announcement_ledger(tmp_path):
+def test_a_scout_history_rerender_does_not_allow_rewriting_the_remote_announcement_ledger(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _rerendered_scout(repo)
     ledger = repo / "announced.jsonl"
     ledger.write_text("a\nb\n")
@@ -339,9 +356,9 @@ def test_a_scout_history_rerender_does_not_allow_rewriting_the_remote_announceme
         "file and let its command append"]
 
 
-def test_a_scout_rerender_does_not_allow_an_earned_field_edit(tmp_path):
+def test_a_scout_rerender_does_not_allow_an_earned_field_edit(gate_history_repo):
     from freetier_radar.gate import pre_push
-    repo = _history_repo(tmp_path)
+    repo = gate_history_repo
     _, published = _rerendered_scout(repo)
     _add_row(repo, None)
     save_registry(repo / "registry.yaml", [row(last_verified=date(2026, 9, 22)),
@@ -352,8 +369,8 @@ def test_a_scout_rerender_does_not_allow_an_earned_field_edit(tmp_path):
         repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]))
 
 
-def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):
-    repo = _history_repo(tmp_path)
+def test_the_gate_refuses_a_commit_that_rewrites_the_history(gate_history_repo):
+    repo = gate_history_repo
     (repo / "history.jsonl").write_text(_line("added", "x", ADDED_AT, detail="other words"),
                                         encoding="utf-8")
     _git(repo, "add", "history.jsonl")
@@ -362,19 +379,19 @@ def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):
         "file and let its command append"]
 
 
-def test_the_gate_reports_a_check_that_fails_on_the_snapshot(tmp_path):
-    repo = _repo(tmp_path)
+def test_the_gate_reports_a_check_that_fails_on_the_snapshot(gate_repo):
+    repo = gate_repo
     problems = pre_commit(repo, steps=[("freetier-check", lambda snap: "✗ something is off"),
                                        ("pytest", lambda snap: "")])
     assert problems == ["freetier-check failed on what is about to be committed:\n"
                         "✗ something is off"]
 
 
-def test_a_multi_ref_push_checks_one_snapshot_and_each_destination(tmp_path, monkeypatch):
+def test_a_multi_ref_push_checks_one_snapshot_and_each_destination(monkeypatch, gate_repo):
     from freetier_radar import quality
     from freetier_radar.gate import pre_push
 
-    repo = _repo(tmp_path)
+    repo = gate_repo
     older = _git(repo, "rev-parse", "HEAD").strip()
     (repo / "note.txt").write_text("two\n", encoding="utf-8")
     _git(repo, "commit", "-qam", "fix: update note")
@@ -450,11 +467,11 @@ def test_a_snapshot_runs_without_the_git_variables_a_hook_is_handed(tmp_path, mo
     assert _run(tmp_path, "-c", leaked) == ""
 
 
-def test_the_gate_refuses_a_snapshot_check_that_exits_without_output(tmp_path):
+def test_the_gate_refuses_a_snapshot_check_that_exits_without_output(gate_repo):
     from freetier_radar.gate import _run
 
     steps = [("quiet check", lambda snap: _run(snap, "-c", "raise SystemExit(17)"))]
-    repo = _repo(tmp_path)
+    repo = gate_repo
     assert pre_commit(repo, steps=steps) == [
         "quiet check failed on what is about to be committed:\n"
         "Process exited with status 17 without output."
@@ -463,13 +480,13 @@ def test_the_gate_refuses_a_snapshot_check_that_exits_without_output(tmp_path):
 
 # ---- a page the site published
 
-def test_a_page_the_site_published_is_never_deleted(tmp_path):
+def test_a_page_the_site_published_is_never_deleted(gate_repo):
     """A provider's or a model's page is an address a search engine indexed and
     an answer may cite. The render keeps every page it published and says on it
     what became of its subject, so a page that leaves the tree is one somebody
     deleted: the commit is refused, and so is the working tree CI and the
     scheduled run check against the commit they start from. Adding is fine."""
-    repo = _repo(tmp_path)
+    repo = gate_repo
     for path in ("models/kimi-k3.md", "providers/x.md"):
         (repo / path).parent.mkdir(exist_ok=True)
         (repo / path).write_text("a page\n", encoding="utf-8")

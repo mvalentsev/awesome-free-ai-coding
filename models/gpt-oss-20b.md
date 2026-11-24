@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-20b free: 4 providers, limits and ids, provider probes 2026-11-23'
 description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-oss-20b/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: gpt-oss-20b
 ---
 
@@ -93,7 +93,7 @@ The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous 
 ## Related models
 
 - [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — free at Codex (ChatGPT Free)
-- [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints
+- [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity (until 2026-11-30), Regolo AI and OVHcloud AI Endpoints
 
 ---
 

@@ -2003,7 +2003,8 @@ def _table_models(body: str, headers: list[str], name_column: str,
     from .quotas import _Tables
     parser = _Tables()
     parser.feed(without_templates(body))
-    tables = [table for table in parser.tables if set(headers) <= set(table['headers'])]
+    tables = [table for table in parser.tables
+              if table.get('valid', True) and set(headers) <= set(table['headers'])]
     if len(tables) != 1:
         return []
     table = tables[0]

@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-6-luna free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: gpt-6-luna is served free by Codex (ChatGPT Free). It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gpt-6-luna/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: gpt-6-luna
 ---
 
@@ -34,7 +34,7 @@ The Free card names GPT-6 Luna. The Plus card explicitly includes web, CLI, IDE 
 
 ## Related models
 
-- [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints
+- [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity (until 2026-11-30), Regolo AI and OVHcloud AI Endpoints
 - [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
 
 ---

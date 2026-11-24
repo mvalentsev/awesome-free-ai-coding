@@ -23,7 +23,8 @@ __all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
 # The most a row's prose may run to, in characters: a README cell and a provider
 # page, not a research log.
-PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "client_lane.note": 600, "api.notice": 500,
+LANE_NOTE_LIMIT = 600
+PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": LANE_NOTE_LIMIT, "client_lane.note": LANE_NOTE_LIMIT, "api.notice": 500,
                 "delisted.reason": 300}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}

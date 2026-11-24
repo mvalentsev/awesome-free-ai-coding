@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.8-flash free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: gemini-3.8-flash is served free by Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/gemini-3.8-flash/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: gemini-3.8-flash
 ---
 
@@ -39,7 +39,7 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-11-23 · listed since 2026-09-03
+🤖 Coding agents & CLIs · no card · free until 2026-11-30 UTC · not offered in mainland China, Russia, Hong Kong and 21 more places · last probe 2026-11-23 · listed since 2026-09-03
 
 Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models
 
@@ -52,11 +52,12 @@ Claude and GPT agent allowance: Weekly usage allowance: amount not published per
 
 Tab: Unmetered completions per account
 
-Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice "Will be removed on November 18, 2026." No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 </details>
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In Google Antigravity's own model list: `Gemini 3.8 Flash*`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://antigravity.google/terms)).
 
 ## Related models

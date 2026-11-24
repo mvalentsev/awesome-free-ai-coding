@@ -3,7 +3,7 @@ layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-11-23'
 description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gpt-oss-120b, claude-opus-4.6, claude-sonnet-4.6, gemini-3.8-flash. Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this…'
 permalink: /providers/antigravity/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: Google Antigravity
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/)</span>, <span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/)</span></span>
+<span data-model-sort-inline><span data-model-family="gpt-oss-120b">[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) (until 2026-11-30)</span>, <span data-model-family="claude-opus-4.6">[`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) (until 2026-11-30)</span>, <span data-model-family="claude-sonnet-4.6">[`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) (until 2026-11-30)</span>, <span data-model-family="gemini-3.8-flash">[`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) (until 2026-11-30)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -30,7 +30,7 @@ Claude and GPT agent allowance: Weekly usage allowance: amount not published per
 
 Tab: Unmetered completions per account
 
-Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice "Will be removed on November 18, 2026." No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
+Follow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.
 
 ## Where it is offered
 
@@ -43,7 +43,11 @@ What you send may be used to train or improve models unless you turn that off. I
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Google Antigravity's own model list: `GPT-OSS-120b*`, `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`
+- Gemini 3.8 Flash*: free until 2026-11-30 UTC ([conditions](https://antigravity.google/docs/models))
+- Claude Opus 4.6 (thinking)*: free until 2026-11-30 UTC ([conditions](https://antigravity.google/docs/models))
+- Claude Sonnet 4.6 (thinking)*: free until 2026-11-30 UTC ([conditions](https://antigravity.google/docs/models))
+- GPT-OSS-120b*: free until 2026-11-30 UTC ([conditions](https://antigravity.google/docs/models))
+- In Google Antigravity's own model list: `GPT-OSS-120b*`, `Claude Opus 4.6 (thinking)*`, `Claude Sonnet 4.6 (thinking)*`, `Gemini 3.8 Flash*`, `Gemini 4 Hydrogen`
 
 ## Evidence
 

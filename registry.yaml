@@ -3157,13 +3157,11 @@ entries:
   offering: Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini
     and third-party agent models
   limits: Follow the Free & Google AI Plus column of the model table; Enterprise-only
-    Gemini models are outside this offer. Older third-party choices in that column
-    carry the notice "Will be removed on November 18, 2026." No exact cutoff time
-    is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The
-    plans overview highlights Ultra third-party access and directs model availability
-    to the model table. Gemini and third-party models have separate weekly allowances.
-    Baseline limits depend on capacity and abuse prevention; no numerical weekly budget
-    is published.
+    Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside
+    that Free column. The plans overview highlights Ultra third-party access and directs
+    model availability to the model table. Gemini and third-party models have separate
+    weekly allowances. Baseline limits depend on capacity and abuse prevention; no
+    numerical weekly budget is published.
   quotas:
   - unit: usage
     period: week
@@ -3171,24 +3169,25 @@ entries:
     label: Gemini agent allowance
     source: https://antigravity.google/docs/models
     quote: Gemini models Weekly limit remaining
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-24'
   - unit: usage
     period: week
     scope: account
     label: Claude and GPT agent allowance
     source: https://antigravity.google/docs/models
     quote: Claude and GPT models Weekly limit remaining
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-24'
   - unit: completions
     scope: account
     state: unmetered
     label: Tab
     source: https://antigravity.google/docs/plans
     quote: Unlimited Tab completions
-    reviewed_on: '2026-11-18'
+    reviewed_on: '2026-11-24'
   free_part: models
   models:
   - family: gemini-3.8-flash
+    table_name: Gemini 3.8 Flash*
     aa_model: gemini-3-8-flash
   - family: claude-opus-4.6
     table_name: Claude Opus 4.6 (thinking)*
@@ -3199,6 +3198,32 @@ entries:
   - family: gpt-oss-120b
     table_name: GPT-OSS-120b*
     aa_model: gpt-oss-120b
+  model_access:
+    gemini-3.8-flash:
+      source: https://antigravity.google/docs/models
+      until: '2026-11-30'
+      quote: Gemini 3.8 Flash
+      deadline_quote: Will be removed on November 30, 2026.
+    claude-sonnet-4.6:
+      source: https://antigravity.google/docs/models
+      until: '2026-11-30'
+      quote: Claude Sonnet 4.6 (thinking)
+      deadline_quote: Will be removed on November 30, 2026.
+    claude-opus-4.6:
+      source: https://antigravity.google/docs/models
+      until: '2026-11-30'
+      quote: Claude Opus 4.6 (thinking)
+      deadline_quote: Will be removed on November 30, 2026.
+    gpt-oss-120b:
+      source: https://antigravity.google/docs/models
+      until: '2026-11-30'
+      quote: GPT-OSS-120b
+      deadline_quote: Will be removed on November 30, 2026.
+  newcomers:
+  - family: gemini-4-hydrogen
+    'on': '2026-11-24'
+    source: https://antigravity.google/docs/models
+    table_name: Gemini 4 Hydrogen
   data_use:
     trains: opt-out
     quote: We use Interactions to evaluate, develop, and improve Google and Alphabet
@@ -12403,24 +12428,24 @@ entries:
     The privacy policy says API keys are stored in plain text, while current docs
     describe fingerprints only.
   quotas:
-  - amount: 5000.0
+  - amount: 2500.0
     unit: requests
     period: day
     scope: account
     label: Regular account
     source: https://logfare.ai/docs
-    quote: Regular account 40 requests per minute 1,000 requests per hour 5,000 requests
-      per day 6
-    value_phrase: 5,000 requests per day
-    reviewed_on: '2026-11-11'
-  - amount: 6.0
+    quote: Regular account 20 requests per minute 500 requests per hour 2,500 requests
+      per day 3
+    value_phrase: 2,500 requests per day
+    reviewed_on: '2026-11-24'
+  - amount: 3.0
     unit: requests
     period: concurrent
     scope: account
     label: Regular account
     source: https://logfare.ai/docs
-    quote: Regular account 40 requests per minute 1,000 requests per hour 5,000 requests
-      per day 6
+    quote: Regular account 20 requests per minute 500 requests per hour 2,500 requests
+      per day 3
     read: table
     table:
       headers:
@@ -12435,25 +12460,25 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-11'
-  - amount: 10000.0
+    reviewed_on: '2026-11-24'
+  - amount: 5000.0
     unit: requests
     period: day
     scope: account
     label: Premium account
     source: https://logfare.ai/docs
-    quote: Premium account 80 requests per minute 2,000 requests per hour 10,000 requests
-      per day 12
-    value_phrase: 10,000 requests per day
-    reviewed_on: '2026-11-11'
-  - amount: 12.0
+    quote: Premium account 40 requests per minute 1,000 requests per hour 5,000 requests
+      per day 6
+    value_phrase: 5,000 requests per day
+    reviewed_on: '2026-11-24'
+  - amount: 6.0
     unit: requests
     period: concurrent
     scope: account
     label: Premium account
     source: https://logfare.ai/docs
-    quote: Premium account 80 requests per minute 2,000 requests per hour 10,000 requests
-      per day 12
+    quote: Premium account 40 requests per minute 1,000 requests per hour 5,000 requests
+      per day 6
     read: table
     table:
       headers:
@@ -12468,25 +12493,25 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-11'
-  - amount: 20000.0
+    reviewed_on: '2026-11-24'
+  - amount: 10000.0
     unit: requests
     period: day
     scope: account
     label: Pro account
     source: https://logfare.ai/docs
-    quote: Pro account 160 requests per minute 4,000 requests per hour 20,000 requests
-      per day 24
-    value_phrase: 20,000 requests per day
-    reviewed_on: '2026-11-11'
-  - amount: 24.0
+    quote: Pro account 80 requests per minute 2,000 requests per hour 10,000 requests
+      per day 12
+    value_phrase: 10,000 requests per day
+    reviewed_on: '2026-11-24'
+  - amount: 12.0
     unit: requests
     period: concurrent
     scope: account
     label: Pro account
     source: https://logfare.ai/docs
-    quote: Pro account 160 requests per minute 4,000 requests per hour 20,000 requests
-      per day 24
+    quote: Pro account 80 requests per minute 2,000 requests per hour 10,000 requests
+      per day 12
     read: table
     table:
       headers:
@@ -12501,7 +12526,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-11'
+    reviewed_on: '2026-11-24'
   - amount: 500.0
     unit: requests
     period: day
@@ -12509,17 +12534,17 @@ entries:
     label: New account
     source: https://logfare.ai/docs
     quote: New account 10 requests per minute 200 requests per hour 500 requests per
-      day 2
+      day 1
     value_phrase: 500 requests per day
-    reviewed_on: '2026-11-11'
-  - amount: 2.0
+    reviewed_on: '2026-11-24'
+  - amount: 1.0
     unit: requests
     period: concurrent
     scope: account
     label: New account
     source: https://logfare.ai/docs
     quote: New account 10 requests per minute 200 requests per hour 500 requests per
-      day 2
+      day 1
     read: table
     table:
       headers:
@@ -12534,7 +12559,7 @@ entries:
       cell_part: ''
       active_tab: ''
       active_class: ''
-    reviewed_on: '2026-11-11'
+    reviewed_on: '2026-11-24'
   - amount: 40000.0
     unit: requests
     period: day
@@ -12558,32 +12583,16 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - qwen-3.8-27b
-    - gemma-4-31b-it
-    - gemma-4-26b
-    model_bindings:
-      qwen-3.8-27b:
-        family: qwen3.8-27b
-        source: https://logfare.ai/v1/models
-        quote: 'Qwen: Qwen3.8 27B'
-        read: catalog
-      gemma-4-31b-it:
-        family: gemma-4-31b
-        source: https://logfare.ai/v1/models
-        quote: 'Google: Gemma 4 31B'
-        read: catalog
-      gemma-4-26b:
-        family: gemma-4-26b-a4b
-        source: https://logfare.ai/v1/models
-        quote: 'Google: Gemma 4 26B A4B'
-        read: catalog
+    - glm-5.3-flash
+    free_since:
+    - id: glm-5.3-flash
+      'on': '2026-11-24'
+      source: https://logfare.ai/v1/models
     anthropic_base_url: https://logfare.ai
-    note: These IDs use Standard access without training or data-sale opt-in. Register,
+    note: This ID uses Standard access without training or data-sale opt-in. Register,
       link your Discord account and keep server membership; each API key is shown
       once. Use /chat/completions for chat, tools and streaming, or the documented
-      /v1/messages route. Premium and Pro models need separate data consents and are
-      not configured here. The current DeepSeek 1017 ID requires Premium training
-      consent and is excluded from these Standard defaults.
+      /v1/messages route. Premium and Pro models need separate data consents.
   data_use:
     trains: 'yes'
     quote: If — and only if — you opt in at /consent, your post-scrub request and

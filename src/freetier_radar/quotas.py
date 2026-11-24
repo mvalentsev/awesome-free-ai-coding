@@ -15,6 +15,9 @@ if TYPE_CHECKING:
     from .models import Entry
 
 UNKNOWN_RECHECK_DAYS = 7
+# Shared model tables can have columns beyond the selected binding. Keep their
+# expansion bounded too; exact quota tables use their smaller bound width.
+MAX_TABLE_COLUMNS = 1000
 RATE_UNITS = {'RPM': ('requests', 'minute'), 'RPD': ('requests', 'day'),
               'RPS': ('requests', 'second'), 'TPM': ('tokens', 'minute'),
               'TPD': ('tokens', 'day')}
@@ -115,8 +118,9 @@ class QuotaTable(BaseModel):
 
 class _Tables(HTMLParser):
     """Keep cells, headers and selected tabs together, including split tables."""
-    def __init__(self):
+    def __init__(self, max_columns: int = MAX_TABLE_COLUMNS):
         super().__init__()
+        self.max_columns = max_columns
         self.tables, self.current, self.row, self.cell, self.button = [], None, None, None, None
         self.stack, self.spans = [], {}
 
@@ -127,13 +131,23 @@ class _Tables(HTMLParser):
             self.stack.append(semantic)
         tag = semantic
         if tag == 'table':
-            self.current = {'headers': [], 'rows': [], 'tabs': []}
+            self.current = {'headers': [], 'rows': [], 'tabs': [], 'valid': True}
             self.spans = {}
         elif self.current is not None:
             if tag == 'tr':
                 self.row = []
             elif tag in ('th','td') and self.row is not None:
-                self.cell = [tag, [], int(attributes.get('rowspan','1')), int(attributes.get('colspan','1'))]
+                try:
+                    rows = int(attributes.get('rowspan', '1'))
+                    cols = int(attributes.get('colspan', '1'))
+                except (ValueError, TypeError):
+                    rows = cols = 0
+                # The binding supplies the table width. Reject ambiguous spans
+                # and wider tables before allocating columns from remote HTML.
+                if rows < 1 or not 1 <= cols <= self.max_columns:
+                    self.current['valid'] = False
+                    return
+                self.cell = [tag, [], rows, cols]
             elif tag == 'button':
                 self.button = [dict(attrs).get('class','').split(), []]
 
@@ -151,6 +165,11 @@ class _Tables(HTMLParser):
     def handle_endtag(self, tag):
         tag = self.stack.pop() if self.stack else tag
         if self.current is None:
+            return
+        if not self.current['valid']:
+            if tag == 'table':
+                self.tables.append(self.current)
+                self.current, self.row, self.cell, self.button = None, None, None, None
             return
         if tag == 'button' and self.button is not None:
             self.current['tabs'].append((self.button[0], ' '.join(''.join(self.button[1]).split())))
@@ -170,6 +189,10 @@ class _Tables(HTMLParser):
                     column += 1
             for _,value,rows,cols in self.row:
                 carried()
+                if column + cols > self.max_columns:
+                    self.current['valid'] = False
+                    self.row = None
+                    return
                 for _ in range(cols):
                     expanded.append(value)
                     if rows > 1:self.spans[column] = (value,rows-1)
@@ -189,7 +212,7 @@ def table_values(body: str, binding: QuotaTable) -> list[tuple[str, str]]:
     """Resolve exact model/plan cells; missing or duplicate cells stay visible."""
     from .page_reader import without_templates
     body = without_templates(body)
-    parser = _Tables()
+    parser = _Tables(len(binding.headers))
     try:parser.feed(body)
     except (ValueError,TypeError):return []
     header, tabs, matches = [], [], []
@@ -205,6 +228,9 @@ def table_values(body: str, binding: QuotaTable) -> list[tuple[str, str]]:
                     rows.append(cells(next_line))
                 tables.append({'headers':cells(line),'rows':rows,'tabs':[]})
     for table in tables:
+        if not table.get('valid', True):
+            header, tabs = [], []
+            continue
         if table['headers']:
             header, tabs = table['headers'], table['tabs']
         if header != binding.headers:

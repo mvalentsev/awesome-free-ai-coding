@@ -204,7 +204,7 @@ claude-fireworks-ai() {
 }
 
 # ── Logfare (Standard models) · get a key: https://logfare.ai/register
-#    free ids: qwen-3.8-27b, gemma-4-31b-it, gemma-4-26b
+#    free ids: glm-5.3-flash
 claude-logfare() {
   if [ -z "${LOGFARE_API_KEY:-}" ]; then
     echo "claude-logfare: set LOGFARE_API_KEY first (configs/free-llm.env.example)" >&2
@@ -213,7 +213,7 @@ claude-logfare() {
   ANTHROPIC_BASE_URL="https://logfare.ai" \
   ANTHROPIC_AUTH_TOKEN="$LOGFARE_API_KEY" \
   ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="qwen-3.8-27b" \
+  ANTHROPIC_MODEL="glm-5.3-flash" \
   claude "$@"
 }
 

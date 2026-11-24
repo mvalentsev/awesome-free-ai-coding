@@ -3,7 +3,7 @@ layout: default
 title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-sonnet-4.5/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: claude-sonnet-4.5
 ---
 
@@ -37,9 +37,9 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ## Related models
 
-- [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) — free at Google Antigravity
+- [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) — free at Google Antigravity (until 2026-11-30)
 - [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) — free at Kiro
-- [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) — free at Google Antigravity
+- [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) — free at Google Antigravity (until 2026-11-30)
 
 ---
 

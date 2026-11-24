@@ -1322,14 +1322,8 @@
         "apiKey": "{env:LOGFARE_API_KEY}"
       },
       "models": {
-        "qwen-3.8-27b": {
-          "name": "qwen-3.8-27b"
-        },
-        "gemma-4-31b-it": {
-          "name": "gemma-4-31b-it"
-        },
-        "gemma-4-26b": {
-          "name": "gemma-4-26b"
+        "glm-5.3-flash": {
+          "name": "glm-5.3-flash"
         }
       }
     },

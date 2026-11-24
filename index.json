@@ -5927,7 +5927,7 @@
       ],
       "card_required": false,
       "offering": "Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models",
-      "limits": "Gemini agent allowance: Weekly usage allowance: amount not published per account\n\nClaude and GPT agent allowance: Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nFollow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice \"Will be removed on November 18, 2026.\" No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.",
+      "limits": "Gemini agent allowance: Weekly usage allowance: amount not published per account\n\nClaude and GPT agent allowance: Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nFollow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.",
       "quotas": [
         {
           "unit": "usage",
@@ -5936,7 +5936,7 @@
           "label": "Gemini agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Gemini models Weekly limit remaining",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-24",
           "amount": null
         },
         {
@@ -5946,7 +5946,7 @@
           "label": "Claude and GPT agent allowance",
           "source": "https://antigravity.google/docs/models",
           "quote": "Claude and GPT models Weekly limit remaining",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-24",
           "amount": null
         },
         {
@@ -5956,7 +5956,7 @@
           "label": "Tab",
           "source": "https://antigravity.google/docs/plans",
           "quote": "Unlimited Tab completions",
-          "reviewed_on": "2026-11-18",
+          "reviewed_on": "2026-11-24",
           "amount": null,
           "period": null
         }
@@ -5980,7 +5980,42 @@
         },
         {
           "family": "gemini-3.8-flash",
+          "table_name": "Gemini 3.8 Flash*",
           "aa_model": "gemini-3-8-flash"
+        }
+      ],
+      "model_access": {
+        "gemini-3.8-flash": {
+          "source": "https://antigravity.google/docs/models",
+          "until": "2026-11-30",
+          "quote": "Gemini 3.8 Flash",
+          "deadline_quote": "Will be removed on November 30, 2026."
+        },
+        "claude-sonnet-4.6": {
+          "source": "https://antigravity.google/docs/models",
+          "until": "2026-11-30",
+          "quote": "Claude Sonnet 4.6 (thinking)",
+          "deadline_quote": "Will be removed on November 30, 2026."
+        },
+        "claude-opus-4.6": {
+          "source": "https://antigravity.google/docs/models",
+          "until": "2026-11-30",
+          "quote": "Claude Opus 4.6 (thinking)",
+          "deadline_quote": "Will be removed on November 30, 2026."
+        },
+        "gpt-oss-120b": {
+          "source": "https://antigravity.google/docs/models",
+          "until": "2026-11-30",
+          "quote": "GPT-OSS-120b",
+          "deadline_quote": "Will be removed on November 30, 2026."
+        }
+      },
+      "newcomers": [
+        {
+          "family": "gemini-4-hydrogen",
+          "on": "2026-11-24",
+          "source": "https://antigravity.google/docs/models",
+          "table_name": "Gemini 4 Hydrogen"
         }
       ],
       "data_use": {
@@ -6259,14 +6294,14 @@
         ],
         "ids": [],
         "what": "Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models",
-        "limits": "Gemini agent allowance: Weekly usage allowance: amount not published per account\n\nClaude and GPT agent allowance: Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nFollow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Older third-party choices in that column carry the notice \"Will be removed on November 18, 2026.\" No exact cutoff time is published. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.",
+        "limits": "Gemini agent allowance: Weekly usage allowance: amount not published per account\n\nClaude and GPT agent allowance: Weekly usage allowance: amount not published per account\n\nTab: Unmetered completions per account\n\nFollow the Free & Google AI Plus column of the model table; Enterprise-only Gemini models are outside this offer. Claude 5.5 and Gemini 4 Argon are outside that Free column. The plans overview highlights Ultra third-party access and directs model availability to the model table. Gemini and third-party models have separate weekly allowances. Baseline limits depend on capacity and abuse prevention; no numerical weekly budget is published.",
         "why": "",
         "access": "",
         "modelAccess": {
-          "gemini-3.8-flash": "",
-          "claude-opus-4.6": "",
-          "claude-sonnet-4.6": "",
-          "gpt-oss-120b": ""
+          "gemini-3.8-flash": "until 2026-11-30",
+          "claude-opus-4.6": "until 2026-11-30",
+          "claude-sonnet-4.6": "until 2026-11-30",
+          "gpt-oss-120b": "until 2026-11-30"
         },
         "section": {
           "id": "agent-cli"
@@ -6274,6 +6309,16 @@
         "flags": [
           "nocard"
         ]
+      },
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "gemini-3.8-flash": "until 2026-11-30",
+          "claude-opus-4.6": "until 2026-11-30",
+          "claude-sonnet-4.6": "until 2026-11-30",
+          "gpt-oss-120b": "until 2026-11-30"
+        },
+        "ids": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/"
     },
@@ -19651,27 +19696,27 @@
       ],
       "card_required": false,
       "offering": "Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers",
-      "limits": "Regular account: 5,000 requests/day; 6 requests at once per account\n\nPremium account: 10,000 requests/day; 12 requests at once per account\n\nPro account: 20,000 requests/day; 24 requests at once per account\n\nNew account: 500 requests/day; 2 requests at once per account\n\nShared network / IP: 40,000 requests/day per IP (a window bypasses the network counter when the account's own allowance is higher or unlimited)\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
+      "limits": "Regular account: 2,500 requests/day; 3 requests at once per account\n\nPremium account: 5,000 requests/day; 6 requests at once per account\n\nPro account: 10,000 requests/day; 12 requests at once per account\n\nNew account: 500 requests/day; 1 request at once per account\n\nShared network / IP: 40,000 requests/day per IP (a window bypasses the network counter when the account's own allowance is higher or unlimited)\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
       "quotas": [
         {
-          "amount": 5000.0,
+          "amount": 2500.0,
           "unit": "requests",
           "period": "day",
           "scope": "account",
           "label": "Regular account",
           "source": "https://logfare.ai/docs",
-          "quote": "Regular account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
-          "value_phrase": "5,000 requests per day",
-          "reviewed_on": "2026-11-11"
+          "quote": "Regular account 20 requests per minute 500 requests per hour 2,500 requests per day 3",
+          "value_phrase": "2,500 requests per day",
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 6.0,
+          "amount": 3.0,
           "unit": "requests",
           "period": "concurrent",
           "scope": "account",
           "label": "Regular account",
           "source": "https://logfare.ai/docs",
-          "quote": "Regular account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
+          "quote": "Regular account 20 requests per minute 500 requests per hour 2,500 requests per day 3",
           "read": "table",
           "table": {
             "headers": [
@@ -19689,27 +19734,27 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-11"
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 10000.0,
+          "amount": 5000.0,
           "unit": "requests",
           "period": "day",
           "scope": "account",
           "label": "Premium account",
           "source": "https://logfare.ai/docs",
-          "quote": "Premium account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
-          "value_phrase": "10,000 requests per day",
-          "reviewed_on": "2026-11-11"
+          "quote": "Premium account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
+          "value_phrase": "5,000 requests per day",
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 12.0,
+          "amount": 6.0,
           "unit": "requests",
           "period": "concurrent",
           "scope": "account",
           "label": "Premium account",
           "source": "https://logfare.ai/docs",
-          "quote": "Premium account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
+          "quote": "Premium account 40 requests per minute 1,000 requests per hour 5,000 requests per day 6",
           "read": "table",
           "table": {
             "headers": [
@@ -19727,27 +19772,27 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-11"
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 20000.0,
+          "amount": 10000.0,
           "unit": "requests",
           "period": "day",
           "scope": "account",
           "label": "Pro account",
           "source": "https://logfare.ai/docs",
-          "quote": "Pro account 160 requests per minute 4,000 requests per hour 20,000 requests per day 24",
-          "value_phrase": "20,000 requests per day",
-          "reviewed_on": "2026-11-11"
+          "quote": "Pro account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
+          "value_phrase": "10,000 requests per day",
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 24.0,
+          "amount": 12.0,
           "unit": "requests",
           "period": "concurrent",
           "scope": "account",
           "label": "Pro account",
           "source": "https://logfare.ai/docs",
-          "quote": "Pro account 160 requests per minute 4,000 requests per hour 20,000 requests per day 24",
+          "quote": "Pro account 80 requests per minute 2,000 requests per hour 10,000 requests per day 12",
           "read": "table",
           "table": {
             "headers": [
@@ -19765,7 +19810,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-11"
+          "reviewed_on": "2026-11-24"
         },
         {
           "amount": 500.0,
@@ -19774,18 +19819,18 @@
           "scope": "account",
           "label": "New account",
           "source": "https://logfare.ai/docs",
-          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 2",
+          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 1",
           "value_phrase": "500 requests per day",
-          "reviewed_on": "2026-11-11"
+          "reviewed_on": "2026-11-24"
         },
         {
-          "amount": 2.0,
+          "amount": 1.0,
           "unit": "requests",
           "period": "concurrent",
           "scope": "account",
           "label": "New account",
           "source": "https://logfare.ai/docs",
-          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 2",
+          "quote": "New account 10 requests per minute 200 requests per hour 500 requests per day 1",
           "read": "table",
           "table": {
             "headers": [
@@ -19803,7 +19848,7 @@
             "active_tab": "",
             "active_class": ""
           },
-          "reviewed_on": "2026-11-11"
+          "reviewed_on": "2026-11-24"
         },
         {
           "amount": 40000.0,
@@ -19827,32 +19872,17 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "qwen-3.8-27b",
-          "gemma-4-31b-it",
-          "gemma-4-26b"
+          "glm-5.3-flash"
         ],
-        "model_bindings": {
-          "qwen-3.8-27b": {
-            "family": "qwen3.8-27b",
-            "source": "https://logfare.ai/v1/models",
-            "quote": "Qwen: Qwen3.8 27B",
-            "read": "catalog"
-          },
-          "gemma-4-31b-it": {
-            "family": "gemma-4-31b",
-            "source": "https://logfare.ai/v1/models",
-            "quote": "Google: Gemma 4 31B",
-            "read": "catalog"
-          },
-          "gemma-4-26b": {
-            "family": "gemma-4-26b-a4b",
-            "source": "https://logfare.ai/v1/models",
-            "quote": "Google: Gemma 4 26B A4B",
-            "read": "catalog"
+        "free_since": [
+          {
+            "id": "glm-5.3-flash",
+            "on": "2026-11-24",
+            "source": "https://logfare.ai/v1/models"
           }
-        },
+        ],
         "anthropic_base_url": "https://logfare.ai",
-        "note": "These IDs use Standard access without training or data-sale opt-in. Register, link your Discord account and keep server membership; each API key is shown once. Use /chat/completions for chat, tools and streaming, or the documented /v1/messages route. Premium and Pro models need separate data consents and are not configured here. The current DeepSeek 1017 ID requires Premium training consent and is excluded from these Standard defaults."
+        "note": "This ID uses Standard access without training or data-sale opt-in. Register, link your Discord account and keep server membership; each API key is shown once. Use /chat/completions for chat, tools and streaming, or the documented /v1/messages route. Premium and Pro models need separate data consents."
       },
       "data_use": {
         "trains": "yes",
@@ -19890,12 +19920,10 @@
         "name": "Logfare (Standard models)",
         "models": [],
         "ids": [
-          "qwen-3.8-27b",
-          "gemma-4-31b-it",
-          "gemma-4-26b"
+          "glm-5.3-flash"
         ],
         "what": "Free OpenAI-compatible model gateway operated by Solexsis Research LLC, with a Standard tier and optional data-consent tiers",
-        "limits": "Regular account: 5,000 requests/day; 6 requests at once per account\n\nPremium account: 10,000 requests/day; 12 requests at once per account\n\nPro account: 20,000 requests/day; 24 requests at once per account\n\nNew account: 500 requests/day; 2 requests at once per account\n\nShared network / IP: 40,000 requests/day per IP (a window bypasses the network counter when the account's own allowance is higher or unlimited)\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
+        "limits": "Regular account: 2,500 requests/day; 3 requests at once per account\n\nPremium account: 5,000 requests/day; 6 requests at once per account\n\nPro account: 10,000 requests/day; 12 requests at once per account\n\nNew account: 500 requests/day; 1 request at once per account\n\nShared network / IP: 40,000 requests/day per IP (a window bypasses the network counter when the account's own allowance is higher or unlimited)\n\nOne account per person; Discord verification and continued server membership are required. New-account limits apply for the first 24 hours. Account limits are shared across models, keys and apps; minute/hour, network and provider caps also apply. Some Standard models bypass request allowances, while concurrency and provider caps remain. Automation is allowed; honor Retry-After on 429/503. Standard traffic is logged for internal evaluation, with an evaluation opt-out. Optional Premium requires training consent; Pro additionally requires data-sale consent. Raw prompts reach changing upstream providers under their own policies. The privacy policy says API keys are stored in plain text, while current docs describe fingerprints only.",
         "why": "",
         "access": "",
         "modelAccess": {},
