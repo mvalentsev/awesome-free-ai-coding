@@ -16,6 +16,7 @@ from contextlib import ExitStack
 from datetime import datetime, timezone
 from fnmatch import fnmatchcase
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import httpx
 import yaml
@@ -451,7 +452,11 @@ def workflow_state(runs: list[dict], sha: str, required: set[str]) -> str:
 
 
 def gh(*args: str) -> str:
-    result = subprocess.run(['gh', *args], capture_output=True, text=True)
+    with ExitStack() as stack:
+        env = dict(os.environ)
+        if not env.get('XDG_CACHE_HOME'):
+            env['XDG_CACHE_HOME'] = stack.enter_context(TemporaryDirectory(prefix='freetier-gh-cache-'))
+        result = subprocess.run(['gh', *args], capture_output=True, text=True, env=env)
     if result.returncode:
         raise RuntimeError('gh failed: ' + result.stderr.strip())
     return result.stdout

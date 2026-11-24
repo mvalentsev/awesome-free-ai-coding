@@ -16,7 +16,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [CrowLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/) · [BlockRun](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blockrun/) · [iFlytek Spark Lite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iflytek-spark/) · [Together AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) · [Volcengine Ark](https://mvalentsev.github.io/awesome-free-ai-coding/providers/volcengine-ark/) · [AMD Radeon Cloud Token Factory](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/) · [Teapot Router](https://mvalentsev.github.io/awesome-free-ai-coding/providers/teapotrouter/)
+🆕 **New this week:** [CrowLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/) · [BlockRun](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blockrun/) · [iFlytek Spark Lite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iflytek-spark/) · [Together AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) · [Volcengine Ark](https://mvalentsev.github.io/awesome-free-ai-coding/providers/volcengine-ark/) · [AMD Radeon Cloud Token Factory](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/)
 
 ## 🚀 Start here
 
@@ -32,7 +32,7 @@
 <div align="center">
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
-  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-23: the strongest, deepseek-v4.1-flash-1017, scores 32.6 and is free on 1 offer; the top of the index, Claude Fable 5.2, 64.6" src="assets/readme/strong.svg" width="860">
+  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-23: the strongest, deepseek-v4.1-flash-1017, scores 32.6 and is free on 2 offers; the top of the index, Claude Fable 5.2, 64.6" src="assets/readme/strong.svg" width="860">
 </picture></a>
 </div>
 
@@ -40,7 +40,7 @@
 <summary><b>Where each one is free</b> — every live offer beside its model, in the chart's order</summary>
 <br>
 
-- [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — [Freebuff](https://freebuff.com)
+- [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — [Freebuff](https://freebuff.com) · [cheapllm.shop](https://cheapllm.shop)
 - [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — [AIHubMix (free models)](https://aihubmix.com) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [ZCode (Z.ai)](https://zcode.z.ai/en)
 - [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — [AIHubMix (free models)](https://aihubmix.com)
 - [`minimax-m3.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash/) — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
@@ -139,7 +139,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[AMD Radeon Cloud Token Factory](https://developer.amd.com.cn/login?source=bjOVsdlfc)** 🧪 — Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/) · [🔑 key](https://developer.amd.com.cn/login?source=bjOVsdlfc)</sub>
 - **[Cohere (trial keys)](https://cohere.com)** 👁 — Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) · [🔑 key](https://dashboard.cohere.com/api-keys) · [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · [`north-mini-code`][model-north-mini-code] · `command-a` · `command-a-reasoning` · `command-a-vision` · `command-r` · [+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)</sub>
 - **[SimpleLLM](https://simplellm.eu)** — OpenAI-compatible chat API from Stage One Solutions UG in Germany, with enabled zero-price aliases usable without credit<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) · [🔑 key](https://simplellm.eu/docs/) · `gemma-4-e4b` · [`llama-3.1-8b`][model-llama-3.1-8b]</sub>
-- **[cheapllm.shop](https://cheapllm.shop)** 🧪 — OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) · [🔑 key](https://cheapllm.shop/signup)</sub>
+- **[cheapllm.shop](https://cheapllm.shop)** 🧪 — OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) · [🔑 key](https://cheapllm.shop/signup) · [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)</sub>
 - **[SEA-LION (AI Singapore)](https://sea-lion.ai)** — AI Singapore's OpenAI-compatible API for its Southeast Asian language models<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) · [🔑 key](https://playground.sea-lion.ai/key-manager)</sub>
 - **[OpenTyphoon (SCB 10X)](https://opentyphoon.ai)** 👁 — Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) · [🔑 key](https://playground.opentyphoon.ai/api-key)</sub>
 - **[Agnes AI](https://agnes-ai.com)** 👁 — Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them<br><sub>[verified 2026-11-23](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) · [🔑 key](https://platform.agnes-ai.com) · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)</sub>
@@ -234,11 +234,11 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-11-24` | 🔄 Free models changed **[cheapllm.shop](https://cheapllm.shop)** | <sub>added deepseek-v4.1-flash-1017</sub> |
 | `2026-11-23` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped gemma-4-31b, muse-glimmer-30b, qwen3.6-35b-a3b</sub> |
 | `2026-11-23` | ➕ Added **[CrowLLM (free models)](https://crowllm.com)** | <sub>Free OpenAI-compatible Chat Completions with an account API key</sub> |
 | `2026-11-22` | 🔄 Free models changed **[opencode](https://opencode.ai)** | <sub>dropped nemotron-3-ultra</sub> |
 | `2026-11-22` | 🔄 Free models changed **[AnyAPI](https://anyapi.ai)** | <sub>added ling-3.0-flash-fin, ling-3.0-flash-sante, qwen3.8-27b</sub> |
-| `2026-11-22` | 🔄 Free models changed **[BeatAPI (free models)](https://beatapi.io)** | <sub>added deepseek-v4.1-flash, glm-5.3-flash</sub> |
 
 <sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 

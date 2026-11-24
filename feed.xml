@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-11-23T21:14:40Z</updated>
+  <updated>2026-11-24T07:09:12Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cheapllm-shop/20261124T070912Z</id>
+    <title>Free models changed: cheapllm.shop</title>
+    <link rel="alternate" href="https://cheapllm.shop"/>
+    <updated>2026-11-24T07:09:12Z</updated>
+    <summary type="text">added deepseek-v4.1-flash-1017 · free models: deepseek-v4.1-flash-1017</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261123T211440Z</id>
     <title>Free models changed: LLMTR</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://plamo.preferredai.jp/api"/>
     <updated>2026-11-08T17:24:53Z</updated>
     <summary type="text">Preferred Networks model API with a Free plan for eligible users in Japan</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/qoder/20261108T135456Z</id>
-    <title>Free models changed: Qoder</title>
-    <link rel="alternate" href="https://qoder.com"/>
-    <updated>2026-11-08T13:54:56Z</updated>
-    <summary type="text">dropped qwen3.8-flash</summary>
   </entry>
 </feed>

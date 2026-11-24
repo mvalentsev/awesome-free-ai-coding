@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v3.2 free: 1 provider, limits and ids, provider probes 2026-11-23'
 description: deepseek-v3.2 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v3.2/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: deepseek-v3.2
 ---
 
@@ -41,7 +41,7 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ## Related models
 
-- [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — free at Freebuff
+- [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/) — free at Freebuff and cheapllm.shop
 - [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — free at Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode, FreeInference (Harvard SEAS) and OrcaRouter (free models)
 - [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at opencode, NVIDIA NIM (build.nvidia.com), Alibaba Cloud Model Studio (DashScope, international), Token Harbor, Zro (MoonMath), OrcaRouter (free models) and BeatAPI (free models)

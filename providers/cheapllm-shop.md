@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'cheapllm.shop free tier: limits, free models, verified 2026-11-23'
-description: OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier. Email registration and an API key are required; no card. "During the beta every account is free, with no rate limit." The beta has no published end date. Requests may queue for 30 seconds before a…
+description: 'OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier. Free models: deepseek-v4.1-flash-1017. Email registration and an API key are required; no card. "During the beta it is free and has no rate limit." The beta has no published end date. Requests may…'
 permalink: /providers/cheapllm-shop/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: cheapllm.shop
 ---
 
@@ -19,11 +19,13 @@ OpenAI- and Anthropic-compatible model API with free beta access and a permanent
 
 ## Free models
 
-No free model family is currently listed here; callable ids, where the row has them, are under Connect.
+[`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)
 
 ## Limits, in the vendor's words
 
-Email registration and an API key are required; no card. "During the beta every account is free, with no rate limit." The beta has no published end date. Requests may queue for 30 seconds before a 503 with Retry-After. After beta, the documented Free floor is 5,000 input and 1,000 output tokens per rolling hour per account, shared across all keys; charges require adding a payment method. The operator says API prompts and answers are not stored and requests run on infrastructure it operates or rents; request metadata is retained. Signed-in browser-chat conversations are stored separately.
+Minimum after-beta Free allowance: 5,000 input tokens/rolling hour; 1,000 output tokens/rolling hour per account (after the beta ends)
+
+Email registration and an API key are required; no card. "During the beta it is free and has no rate limit." The beta has no published end date. Requests may queue for 30 seconds before a 503 with Retry-After. Charges require adding a payment method. "Free requests are for your own use only: no reselling, no proxy or pool of keys for people without their own account." Optional priority credit pays for "going ahead in the line". The operator says API prompts and answers are not stored; request metadata is retained. Signed-in browser-chat conversations are stored separately.
 
 ## Where it is offered
 
@@ -49,16 +51,18 @@ curl -s https://cheapllm.shop/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://cheapllm.shop/docs>, anchored on `During the beta every account is free, with no rate limit.`, `permanent free tier`, `5,000 input tokens and 1,000 output tokens per hour`, `deepseek-v4.1-flash-1017`
+- Probe: the page at <https://cheapllm.shop/docs>, anchored on `Free during the beta.`, `permanent free tier`, `deepseek-v4.1-flash-1017`, `per account over a rolling hour`
 - Source: <https://cheapllm.shop/docs>
 - Source: <https://cheapllm.shop/integrations>
 - Source: <https://cheapllm.shop/terms>
 - Source: <https://cheapllm.shop/v1/models>
+- Source: <https://cheapllm.shop/privacy>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-24` — Free models changed: added deepseek-v4.1-flash-1017
 - `2026-11-10` — Added: OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier
 
 ---

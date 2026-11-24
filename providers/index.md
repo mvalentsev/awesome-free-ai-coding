@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 ---
 
 {% raw %}
@@ -57,7 +57,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [AMD Radeon Cloud Token Factory](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/) — verified 2026-11-23
 - [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) — verified 2026-11-23 · [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · `command-a` · `command-a-reasoning` · `command-a-vision` · `command-r` · [+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)
 - [SimpleLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/simplellm/) — verified 2026-11-23 · `gemma-4-e4b` · [`llama-3.1-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/llama-3.1-8b/)
-- [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) — verified 2026-11-23
+- [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/) — verified 2026-11-23 · [`deepseek-v4.1-flash-1017`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash-1017/)
 - [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) — verified 2026-11-23
 - [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) — verified 2026-11-23
 - [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) — verified 2026-11-23 · [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/) · [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/)

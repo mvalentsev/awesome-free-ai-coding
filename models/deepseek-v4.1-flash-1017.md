@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash-1017 free: 1 provider, limits and ids, provider probes 2026-11-23'
-description: deepseek-v4.1-flash-1017 is served free by Freebuff. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'deepseek-v4.1-flash-1017 free: 2 providers, limits and ids, provider probes 2026-11-23'
+description: deepseek-v4.1-flash-1017 is served free by Freebuff and cheapllm.shop. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash-1017/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-24
 crumb: deepseek-v4.1-flash-1017
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash-1017
 
 # Where deepseek-v4.1-flash-1017 is free
 
-**One row on the list serves `deepseek-v4.1-flash-1017` free:** Freebuff. It asks for no card. The provider's last scheduled probe was on 2026-11-23; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
+**2 rows on the list serve `deepseek-v4.1-flash-1017` free:** Freebuff and cheapllm.shop. None asks for a card. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -42,6 +42,21 @@ DeepSeek V4.1 Flash Fast is the default at full access. At limited access the de
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/llms.txt)).
+
+### [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/)
+
+🔌 LLM APIs with free tier · no card · provisional since 2026-11-10 · last probe 2026-11-23 · listed since 2026-11-24
+
+OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier
+
+- Limits, in the vendor's words: Minimum after-beta Free allowance: 5,000 input tokens/rolling hour; 1,000 output tokens/rolling hour per account (after the beta ends)
+
+Email registration and an API key are required; no card. "During the beta it is free and has no rate limit." The beta has no published end date. Requests may queue for 30 seconds before a 503 with Retry-After. Charges require adding a payment method. "Free requests are for your own use only: no reselling, no proxy or pool of keys for people without their own account." Optional priority credit pays for "going ahead in the line". The operator says API prompts and answers are not stored; request metadata is retained. Signed-in browser-chat conversations are stored separately.
+- Base URL: `https://cheapllm.shop/v1`
+- Key: `CHEAPLLM_SHOP_API_KEY` — get one at <https://cheapllm.shop/signup>
+- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://cheapllm.shop`
+- Codex CLI: [`configs/codex/cheapllm-shop.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/cheapllm-shop.config.toml) — copy it to `~/.codex/`, then `codex -p cheapllm-shop`; set up on the lane by the vendor's own page, <https://cheapllm.shop/docs>: "Tools built for the OpenAI Responses API (Codex CLI, recent OpenAI SDK code) can call POST /v1/responses"
+- Callable ids: `deepseek-v4.1-flash-1017`
 
 ## Related models
 

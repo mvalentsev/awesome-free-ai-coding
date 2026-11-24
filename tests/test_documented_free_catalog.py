@@ -1,12 +1,35 @@
-"""FreeInference's documented per-key catalog scope, checked 2026-10-27.
+"""Documented free access is checked at the HTTP boundary.
 
-Source: https://doc.freeinference.org/models. The explicit Free table provides
+FreeInference: https://doc.freeinference.org/models, checked 2026-10-27. The explicit Free table provides
 the public entitlement; authenticated catalogs determine each key's access.
 """
 import httpx
 import pytest
 
 from freetier_radar.prober import ProbeStatus, probe_entry
+
+
+@pytest.mark.parametrize('input_floor,expected', [(5000, ProbeStatus.PASS), (4000, ProbeStatus.STALE_IDS)])
+async def test_cheapllm_current_beta_and_after_beta_floor_remain_distinct(registry_entry, input_floor, expected):
+    # https://cheapllm.shop/docs and /terms, checked 2026-11-24.
+    entry = registry_entry('cheapllm-shop')
+    docs = '''Free during the beta. After it, every account keeps a <b>permanent free tier</b>,
+    no card: <b>at least 5,000 input and 1,000 output tokens per hour</b>, per account over a rolling hour.
+    GET /v1/models lists one model: deepseek-v4.1-flash-1017.'''
+    terms = f'''During the beta it is free and has no rate limit.
+    When the beta ends, every account keeps a free tier of at least {input_floor:,} input tokens and
+    1,000 output tokens per hour, without a card; usage beyond it is billed at the prices shown on the site at that time.'''
+    def respond(request):
+        if request.url.path == '/docs':
+            return httpx.Response(200, text=docs)
+        if request.url.path == '/terms':
+            return httpx.Response(200, text=terms)
+        if request.url.path == '/v1/models':
+            return httpx.Response(200, json={'data': [{'id': 'deepseek-v4.1-flash-1017'}]})
+        return httpx.Response(401)
+    async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0)
+    assert result.status is expected, result.detail
 
 
 @pytest.mark.parametrize('minimax_access,expected', [('Free',ProbeStatus.PASS),('Pro',ProbeStatus.STALE_MODELS)])

@@ -3,6 +3,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import httpx
@@ -10,6 +11,27 @@ import pytest
 import respx
 
 from freetier_radar import review
+
+
+@pytest.mark.parametrize('selected_cache', [False, True])
+def test_workflow_logs_do_not_need_a_writable_default_gh_cache(tmp_path, monkeypatch, selected_cache):
+    binary = tmp_path / 'gh'
+    binary.write_text(f'#!{sys.executable}\n' + '''import os
+from pathlib import Path
+cache = Path(os.environ.get('XDG_CACHE_HOME', '/proc/freetier-gh-cache'))
+cache.mkdir(parents=True, exist_ok=True)
+(cache / 'workflow.zip').write_bytes(b'complete log archive')
+print('complete workflow log')
+''')
+    binary.chmod(0o755)
+    monkeypatch.setenv('PATH', str(tmp_path) + os.pathsep + os.environ['PATH'])
+    monkeypatch.delenv('XDG_CACHE_HOME', raising=False)
+    selected = tmp_path / 'selected-cache'
+    if selected_cache:
+        monkeypatch.setenv('XDG_CACHE_HOME', str(selected))
+    assert review.gh('run', 'view', '1', '--log') == 'complete workflow log\n'
+    if selected_cache:
+        assert (selected / 'workflow.zip').read_bytes() == b'complete log archive'
 
 
 def repo_at(tmp_path):
@@ -485,8 +507,8 @@ async def test_source_links_use_the_document_base_and_keep_requested_provenance(
     ('models/beta.md', [], ['beta']),
     ('providers/index.md', [], []),
 ])
-def test_rendered_page_changes_reach_review_coverage_without_registry_changes(tmp_path, path, rows, families):
-    repo, _, _ = push_repo_at(tmp_path)
+def test_rendered_page_changes_reach_review_coverage_without_registry_changes(push_repo, path, rows, families):
+    repo, _, _ = push_repo
     before_index = (repo / 'index.json').read_bytes()
     page = repo / path
     page.parent.mkdir(exist_ok=True)
@@ -511,8 +533,8 @@ def test_rendered_page_changes_reach_review_coverage_without_registry_changes(tm
     '. No probe reads this row any more.',
     '. A probe still reads it and can bring it back.',
 ])
-def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_facts(tmp_path, change, rows, standing):
-    repo, _, _ = push_repo_at(tmp_path)
+def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_facts(push_repo, change, rows, standing):
+    repo, _, _ = push_repo
     page = repo / 'providers/vendor.md'
     page.parent.mkdir()
     original = '# Vendor\n\nFree usage.\n\nGenerated from `registry.yaml` on 2026-10-10'+standing+'\n'
@@ -535,8 +557,8 @@ def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_fac
 
 
 @pytest.mark.parametrize('substantive', [False, True])
-def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(tmp_path, substantive):
-    repo, _, _ = push_repo_at(tmp_path)
+def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(push_repo, substantive):
+    repo, _, _ = push_repo
     page = repo / 'providers/vendor.md'
     page.parent.mkdir(exist_ok=True)
     page.write_text('---\ntitle: Vendor\nlast_modified_at: 2026-10-10\n---\n# Vendor\n\nLimit: 10 requests/day\n')
@@ -561,11 +583,10 @@ def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(t
     assert scope['paths'] == ['index.json', 'providers/vendor.md']
 
 
-def push_repo_at(tmp_path):
-    repo = repo_at(tmp_path)
+@pytest.fixture(scope='module')
+def push_history_repo(tmp_path_factory, source_history_repo):
+    repo = shutil.copytree(source_history_repo, tmp_path_factory.mktemp('push-history') / 'repo')
     base = review.revision(repo, 'HEAD~1')
-    for key, value in (('user.name', 'a reviewer'), ('user.email', 't@example.com')):
-        subprocess.run(['git', '-C', str(repo), 'config', key, value], check=True)
     workflows = repo / '.github/workflows'; workflows.mkdir(parents=True)
     for name, paths in (('ci', None), ('indexnow', ['index.json']),
                         ('conformance', ['configs/litellm.yaml'])):
@@ -583,8 +604,14 @@ def push_repo_at(tmp_path):
     return repo, base, push_base
 
 
-def test_scope_uses_final_push_paths_without_losing_review_coverage(tmp_path):
-    repo, base, push_base = push_repo_at(tmp_path)
+@pytest.fixture
+def push_repo(tmp_path, push_history_repo):
+    source, base, push_base = push_history_repo
+    return shutil.copytree(source, tmp_path / 'repo'), base, push_base
+
+
+def test_scope_uses_final_push_paths_without_losing_review_coverage(push_repo):
+    repo, base, push_base = push_repo
     whole = review.prepare(repo, base, 'HEAD', review.Bundle(repo / '.evidence/whole', repo))
     scope = review.prepare(repo, base, 'HEAD', review.Bundle(repo / '.evidence/push', repo),
                            push_base=push_base)
@@ -596,16 +623,16 @@ def test_scope_uses_final_push_paths_without_losing_review_coverage(tmp_path):
         assert scope[key] == whole[key]
 
 
-def test_scope_cannot_rebind_push_base_in_existing_evidence(tmp_path):
-    repo, base, push_base = push_repo_at(tmp_path)
+def test_scope_cannot_rebind_push_base_in_existing_evidence(push_repo):
+    repo, base, push_base = push_repo
     bundle = review.Bundle(repo / '.evidence', repo)
     review.prepare(repo, base, 'HEAD', bundle, push_base=push_base)
     with pytest.raises(ValueError, match='different commits'):
         review.prepare(repo, base, 'HEAD', bundle, push_base=base)
 
 
-def test_push_base_must_be_between_review_base_and_head(tmp_path):
-    repo, base, push_base = push_repo_at(tmp_path)
+def test_push_base_must_be_between_review_base_and_head(push_repo):
+    repo, base, push_base = push_repo
     with pytest.raises(ValueError, match='push base must'):
         review.prepare(repo, push_base, 'HEAD', review.Bundle(repo / '.evidence', repo), push_base=base)
 
@@ -766,8 +793,8 @@ async def test_publication_checks_excluded_readmes_on_github_and_served_assets_o
 
 @pytest.mark.parametrize('served_status', [404, 200])
 @respx.mock
-async def test_publication_checks_deleted_profiles_and_rejects_stale_served_files(tmp_path, monkeypatch, served_status):
-    repo, _, _ = push_repo_at(tmp_path)
+async def test_publication_checks_deleted_profiles_and_rejects_stale_served_files(tmp_path, push_repo, monkeypatch, served_status):
+    repo, _, _ = push_repo
     profile = 'configs/codex/retired.config.toml'
     files = ['index.html', 'llms.txt', 'history.jsonl', 'configs/opencode.json',
              'configs/free-llm.env.example', 'feed.xml', profile]
