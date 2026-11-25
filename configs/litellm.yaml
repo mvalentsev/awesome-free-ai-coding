@@ -937,12 +937,6 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
-- model_name: nous-portal/meituan/longcat-2.5:free
-  litellm_params:
-    model: openai/meituan/longcat-2.5:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
 - model_name: nous-portal/tencent/hy4-flash:free
   litellm_params:
     model: openai/tencent/hy4-flash:free

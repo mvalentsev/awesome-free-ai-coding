@@ -6983,7 +6983,7 @@ entries:
     label: Free models
     source: https://portal.nousresearch.com/
     quote: Standard rate limits
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-25'
   free_part: models
   models:
   - family: step-3.7-flash
@@ -6997,7 +6997,6 @@ entries:
     model_ids:
     - stepfun/step-3.7-flash:free
     - upstage/solar-mini4:free
-    - meituan/longcat-2.5:free
     - tencent/hy4-flash:free
     model_limits:
       tencent/hy4-flash:free:

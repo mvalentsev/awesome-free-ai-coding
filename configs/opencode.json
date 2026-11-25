@@ -715,9 +715,6 @@
         "upstage/solar-mini4:free": {
           "name": "upstage/solar-mini4:free"
         },
-        "meituan/longcat-2.5:free": {
-          "name": "meituan/longcat-2.5:free"
-        },
         "tencent/hy4-flash:free": {
           "name": "tencent/hy4-flash:free",
           "limit": {

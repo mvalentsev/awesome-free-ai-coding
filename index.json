@@ -11799,7 +11799,7 @@
           "label": "Free models",
           "source": "https://portal.nousresearch.com/",
           "quote": "Standard rate limits",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-25",
           "amount": null,
           "period": null
         }
@@ -11822,7 +11822,6 @@
         "model_ids": [
           "stepfun/step-3.7-flash:free",
           "upstage/solar-mini4:free",
-          "meituan/longcat-2.5:free",
           "tencent/hy4-flash:free"
         ],
         "model_limits": {
@@ -11871,7 +11870,6 @@
         "ids": [
           "stepfun/step-3.7-flash:free",
           "upstage/solar-mini4:free",
-          "meituan/longcat-2.5:free",
           "tencent/hy4-flash:free"
         ],
         "what": "Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent",
