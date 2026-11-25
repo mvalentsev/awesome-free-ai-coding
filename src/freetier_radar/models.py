@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 import yaml
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator, model_validator
 
 from .words import number
 from .quotas import UsageQuota, QuotaTable, _numbers
@@ -428,6 +428,8 @@ class Probe(BaseModel):
     # page-keywords: a keyless JSON catalog to check api.model_ids against, for a
     # vendor that keeps its offer on one page and its ids at another url
     catalog: str | None = None
+    catalog_requirements: dict[Annotated[str, Field(min_length=1)], StrictStr | StrictBool] = Field(
+        default_factory=dict, exclude_if=lambda v: not v)
     # page-keywords: keywords the vendor serves only inside the page's machinery
     # — a framework state blob, an OpenAPI enum, an i18n bundle. `keywords` is
     # read against what the page renders, because an id left behind in a script
@@ -492,6 +494,12 @@ class Probe(BaseModel):
             raise ValueError(
                 f"probe {self.endpoint}: lane is an api-models field — a page-keywords "
                 "probe reads text, not the arrays of a JSON document")
+        return self
+
+    @model_validator(mode="after")
+    def _catalog_requirements_need_a_catalog(self) -> Probe:
+        if self.catalog_requirements and (self.type is not ProbeType.PAGE_KEYWORDS or not self.catalog):
+            raise ValueError("catalog_requirements needs a page-keywords probe with probe.catalog")
         return self
 
     @model_validator(mode="after")

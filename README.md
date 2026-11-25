@@ -16,7 +16,7 @@
 
 > Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
-🆕 **New this week:** [CrowLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/) · [BlockRun](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blockrun/) · [iFlytek Spark Lite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iflytek-spark/) · [Together AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) · [Volcengine Ark](https://mvalentsev.github.io/awesome-free-ai-coding/providers/volcengine-ark/) · [AMD Radeon Cloud Token Factory](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amd-token-factory/)
+🆕 **New this week:** [CrowLLM](https://mvalentsev.github.io/awesome-free-ai-coding/providers/crowllm/) · [BlockRun](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blockrun/) · [iFlytek Spark Lite](https://mvalentsev.github.io/awesome-free-ai-coding/providers/iflytek-spark/) · [Together AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/together-ai/) · [Volcengine Ark](https://mvalentsev.github.io/awesome-free-ai-coding/providers/volcengine-ark/)
 
 ## 🚀 Start here
 

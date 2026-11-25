@@ -2107,6 +2107,53 @@ async def test_page_catalog_gap_does_not_verify_named_free_access(free_part, ava
         assert not entry.provisional and entry.probe_failures == 0
 
 
+@pytest.mark.parametrize('models,configured,expected,field', [
+    ([{'id': 'other'}], ['published'], ProbeStatus.INCONCLUSIVE, 'not in the catalog'),
+    ([{'id': 'published'}], ['published'], ProbeStatus.PASS, ''),
+    ([{'id': 'published', 'access_tier': 'premium'}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'access_tier'),
+    ([{'id': 'published', 'requires_training_optin': True}, {'id': 'other'}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'requires_training_optin'),
+    ([{'id': 'published', 'requires_data_sale_optin': True}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'requires_data_sale_optin'),
+    ([{'id': 'published', 'requires_training_optin': 0}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'requires_training_optin'),
+    ([{'id': 'published', 'requires_data_sale_optin': None}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'requires_data_sale_optin'),
+    ([{'id': 'published', 'chat_only': True}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'chat_only'),
+    ([{'id': 'published'}, {'id': 'published', 'access_tier': 'pro'}], ['published'],
+     ProbeStatus.INCONCLUSIVE, 'access_tier'),
+    ([{'id': 'published', 'access_tier': 'premium'}, {'id': 'peer'}], ['published', 'peer'],
+     ProbeStatus.STALE_IDS, 'access_tier'),
+])
+@respx.mock
+async def test_page_catalog_requires_exact_access_metadata(models, configured, expected, field):
+    entry = catalog_entry(*configured)
+    entry.free_part = FreePart.MODELS
+    entry.provisional = True
+    entry.first_seen = date(2026, 7, 1)
+    entry.last_verified = date(2026, 7, 10)
+    requirements = {'access_tier': 'standard', 'requires_training_optin': False,
+                    'requires_data_sale_optin': False, 'chat_only': False}
+    entry.probe = type(entry.probe).model_validate(
+        {**entry.probe.model_dump(), 'catalog_requirements': requirements})
+    page = respx.get('https://x.ai/pricing').respond(200, text=PAGE_OK)
+    catalog = respx.get('https://api.x.ai/v1/models').respond(
+        200, json={'data': [{**requirements, **model} for model in models]})
+    today = date(2026, 7, 19)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0, today=today)
+    assert result.status is expected
+    assert page.call_count == catalog.call_count == 1
+    assert field in result.detail
+    apply_results([entry], {entry.id: result}, today)
+    supported = expected is not ProbeStatus.INCONCLUSIVE
+    assert entry.last_verified == (today if supported else date(2026, 7, 10))
+    assert entry.provisional is not supported
+    assert entry.probe_failures == 0
+
+
 @pytest.mark.parametrize('model,price,expected', [
     ('other/paid', '1', ProbeStatus.INCONCLUSIVE),
     ('qwen/qwen3-coder:free', '1', ProbeStatus.FAIL),

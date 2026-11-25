@@ -334,6 +334,11 @@ catalog or no backed ID leaves verification inconclusive, without incrementing
 failures. Credit-wallet offers and positively tested keyless lanes retain their
 independent evidence.
 
+Set `probe.catalog_requirements` on a page probe when its catalog publishes
+the access terms for configured model IDs. Each requirement matches a
+top-level field with the exact string or boolean value. A missing or changed
+field means that ID cannot verify the advertised lane.
+
 **A page that moves with every release is read through the index that names
 it.** Set `probe.endpoint` to the index, `probe.follow.field` to the dotted path
 containing the current page prefix and `probe.follow.suffix` to the path after

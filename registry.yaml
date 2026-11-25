@@ -12625,6 +12625,11 @@ entries:
     free_marker: ''
     require_zero_price: false
     catalog: https://logfare.ai/v1/models
+    catalog_requirements:
+      access_tier: standard
+      requires_training_optin: false
+      requires_data_sale_optin: false
+      chat_only: false
     machinery_keywords: []
   first_seen: '2026-11-11'
   last_verified: '2026-11-23'

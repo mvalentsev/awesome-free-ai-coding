@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24",
+  "generated": "2026-11-25",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -19925,6 +19925,12 @@
         "free_marker": "",
         "require_zero_price": false,
         "catalog": "https://logfare.ai/v1/models",
+        "catalog_requirements": {
+          "access_tier": "standard",
+          "requires_training_optin": false,
+          "requires_data_sale_optin": false,
+          "chat_only": false
+        },
         "machinery_keywords": []
       },
       "first_seen": "2026-11-11",

@@ -59,7 +59,7 @@ class ProbeResult:
 @dataclass(frozen=True)
 class _CatalogIds:
     detail: str
-    missing_all: bool
+    none_backed: bool
 
 
 def _catalog_note_status(entry: Entry, available: bool) -> ProbeStatus:
@@ -121,7 +121,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
     if (detail is not None and entry.probe.type is ProbeType.API_MODELS
             and _catalog_note_status(entry, False) is ProbeStatus.INCONCLUSIVE):
         ids = _catalog_ids(resp, entry)
-        if ids.missing_all:
+        if ids.none_backed:
             return ProbeResult(ProbeStatus.INCONCLUSIVE, f"{detail} | {ids.detail}")
     # A catalog that still serves one of the row's families free is a live
     # lane: the families it stopped serving are a Models-column note (the
@@ -186,7 +186,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         if catalog is not None:
             ids = _catalog_ids(catalog, entry)
             if ids.detail:
-                return verdict(_catalog_note_status(entry, not ids.missing_all), ids.detail)
+                return verdict(_catalog_note_status(entry, not ids.none_backed), ids.detail)
             gap = codex_endpoint_gap(catalog, entry)
             if gap:
                 return verdict(ProbeStatus.STALE_IDS, gap)
@@ -2176,8 +2176,9 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
 
 def dead_model_ids(resp: httpx.Response, entry: Entry, *, items: list[dict] | None = None) -> list[str]:
     """Ids in `api.model_ids` that the catalog no longer answers for: not in it,
-    retired by its own date, marked unavailable, explicitly served only at
-    other operations, or — where the row reads prices — no longer free.
+    retired by its own date, marked unavailable, missing required access
+    metadata, served only at other operations, or no longer free where prices
+    are read.
 
     No family or keyword check reads this field, and it fills the generated
     configs a reader pastes into a client. It is never asked of a page: a name
@@ -2199,10 +2200,18 @@ def dead_model_ids(resp: httpx.Response, entry: Entry, *, items: list[dict] | No
     if lane is None:
         return []
     catalog: dict[str, dict] = {}
+    incompatible: dict[str, set[str]] = {}
+    requirements = entry.probe.catalog_requirements
+    required_ids = set(lane.model_ids) if requirements else set()
     for model in items if items is not None else _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if mid:
             catalog.setdefault(mid, model)
+        if mid in required_ids:
+            changed = {name for name, expected in requirements.items()
+                       if type(actual := model.get(name)) is not type(expected) or actual != expected}
+            if changed:
+                incompatible.setdefault(mid, set()).update(changed)
     dead = []
     for wanted in lane.model_ids:
         model = catalog.get(wanted)
@@ -2212,6 +2221,9 @@ def dead_model_ids(resp: httpx.Response, entry: Entry, *, items: list[dict] | No
             dead.append(f"{wanted} retired on {_retired_on(model)} by the catalog's own date")
         elif _is_withdrawn(model):
             dead.append(f"{wanted} is marked unavailable")
+        elif wanted in incompatible:
+            fields = ', '.join(sorted(incompatible[wanted]))
+            dead.append(f"{wanted} does not match catalog requirements: {fields}")
         elif entry.probe.require_zero_price and not _is_free(model):
             dead.append(_price_note(model, entry.probe.free_list is not None))
         elif (entry.api and entry.api.openai_compatible
@@ -2375,8 +2387,11 @@ def _catalog_ids(catalog: httpx.Response, entry: Entry) -> _CatalogIds:
             if maximum is not None and maximum < budget:
                 notes.append(f"api.opencode_output_tokens {mid}: budget {budget} exceeds output limit {maximum}")
     lane = lane_ids(entry)
-    return _CatalogIds(" | ".join(notes),
-                       bool(lane and lane.model_ids and not rows.keys() & set(lane.model_ids)))
+    none_backed = False
+    if lane and lane.model_ids:
+        none_backed = (len(dead) == len(lane.model_ids) if entry.probe.catalog_requirements
+                       else not rows.keys() & set(lane.model_ids))
+    return _CatalogIds(" | ".join(notes), none_backed)
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

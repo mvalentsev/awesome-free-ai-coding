@@ -430,6 +430,10 @@ def _named_catalog_policy(root: Path) -> tuple[str, ...]:
                                   for row, available, expected in cases) else ()
 
 
+def _catalog_requirement_fields(root: Path) -> tuple[str, ...]:
+    return ('probe.catalog_requirements',) if 'catalog_requirements' in Probe.model_fields else ()
+
+
 def _native_audio_policy(root: Path) -> tuple[str, ...]:
     from .prober import _is_free
     models = [{'types': kind, 'pricing': {'input': 0, 'output': 0},
@@ -536,6 +540,13 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           r'no backed ID leaves verification (inconclusive), without incrementing\s+failures',
           _named_catalog_policy,
           'prober._catalog_note_status and apply_results; HTTP source/earned-field controls in tests/test_prober.py'),
+    Claim('CONTRIBUTING.md',
+          r'Set `(probe\.catalog_requirements)` on a page probe when its catalog publishes\s+'
+          r'the access terms for configured model IDs\. Each requirement matches a\s+'
+          r'top-level field with the exact string or boolean value\. A missing or changed\s+'
+          r'field means that ID cannot verify the advertised lane\.',
+          _catalog_requirement_fields,
+          'models.Probe and prober._catalog_ids; HTTP access and earned-field controls in tests/test_prober.py'),
     Claim('CONTRIBUTING.md',
           r'An HTML response with an empty app mount and a client bootstrap is (unreadable)',
           _empty_app_policy,
