@@ -428,6 +428,7 @@ class Probe(BaseModel):
     # page-keywords: a keyless JSON catalog to check api.model_ids against, for a
     # vendor that keeps its offer on one page and its ids at another url
     catalog: str | None = None
+    authenticated_models: bool = Field(default=False, exclude_if=lambda v: not v)
     catalog_requirements: dict[Annotated[str, Field(min_length=1)], StrictStr | StrictBool] = Field(
         default_factory=dict, exclude_if=lambda v: not v)
     # page-keywords: keywords the vendor serves only inside the page's machinery
@@ -456,6 +457,10 @@ class Probe(BaseModel):
     # page-keywords: the endpoint is a JSON index that names the page to read,
     # for a vendor whose docs move to a new dated path each release (see Follow)
     follow: Follow | None = None
+
+    @property
+    def model_catalog(self) -> str | None:
+        return self.endpoint if self.type is ProbeType.API_MODELS else self.catalog
 
     def carries_marker(self, model_id: str) -> bool:
         """Whether an id carries `free_marker` in any case — every id does where
@@ -1057,15 +1062,15 @@ class ModelLimits(BaseModel):
     model_config = ConfigDict(extra="forbid")
     context_tokens: int = Field(gt=0, strict=True)
     output_tokens: int = Field(gt=0, strict=True)
-    source: str
+    source: str | None = None  # Catalog limits inherit the row's checked catalog.
     read: Literal["catalog", "opencode-config"] = Field(
         default="catalog", exclude_if=lambda v: v == "catalog")
     source_provider: str | None = None
 
     @field_validator("source")
     @classmethod
-    def _catalog_is_https(cls, value: str) -> str:
-        if not valid_source_url(value):
+    def _catalog_is_https(cls, value: str | None) -> str | None:
+        if value is not None and not valid_source_url(value):
             raise ValueError("model_limits source must be an https URL")
         return value
 
@@ -1074,6 +1079,8 @@ class ModelLimits(BaseModel):
         if self.output_tokens > self.context_tokens:
             raise ValueError("model_limits output_tokens exceeds context_tokens")
         if self.read == "opencode-config":
+            if self.source is None:
+                raise ValueError("opencode-config limits need a source")
             if not self.source_provider or any(c.isspace() for c in self.source_provider):
                 raise ValueError("opencode-config limits need an exact source_provider")
         elif self.source_provider is not None:
@@ -1837,14 +1844,20 @@ class Entry(BaseModel):
     @model_validator(mode="after")
     def _limits_are_rechecked(self) -> Entry:
         if self.api is not None and (self.api.model_limits or self.api.opencode_output_tokens):
-            catalog = (self.probe.endpoint if self.probe.type is ProbeType.API_MODELS
-                       else self.probe.catalog)
+            catalog = self.probe.model_catalog
             if (self.api.opencode_output_tokens and not catalog
                     and set(self.api.opencode_output_tokens) - self.api.opencode_output_sources.keys()):
                 raise ValueError("api.opencode_output_tokens requires a catalog this probe rechecks")
-            catalog_limits = [l for l in self.api.model_limits.values() if l.read == "catalog"]
-            if catalog_limits and (not catalog or any(l.source != catalog for l in catalog_limits)):
-                raise ValueError("api.model_limits source must be the catalog this probe rechecks")
+            inherited = {}
+            for mid, limits in self.api.model_limits.items():
+                if limits.read != "catalog":
+                    continue
+                if not catalog or not valid_source_url(catalog) or limits.source not in (None, catalog):
+                    raise ValueError("api.model_limits source must be the HTTPS catalog this probe rechecks")
+                if limits.source is None:
+                    inherited[mid] = limits.model_copy(update={"source": catalog})
+            if inherited:
+                self.api = self.api.model_copy(update={"model_limits": self.api.model_limits | inherited})
         return self
 
     @model_validator(mode="after")
@@ -1963,6 +1976,19 @@ class Entry(BaseModel):
         if self.api is None or not (self.api.model_ids or self.api.no_ids or self.api.ignored_ids):
             raise ValueError(
                 f"{self.id}: probe.catalog has nothing to check without api.model_ids")
+        return self
+
+    @model_validator(mode="after")
+    def _authenticated_models_needs_documented_free_ids(self) -> Entry:
+        if self.probe.authenticated_models and (
+            self.probe.type is not ProbeType.PAGE_KEYWORDS or self.probe.catalog is not None
+            or not (self.probe.model_plan or self.probe.model_prices)
+            or self.free_part is not FreePart.MODELS or self.api is None
+            or not (self.api.base_url and self.api.openai_compatible)
+            or not (self.api.model_ids or self.api.no_ids or self.api.ignored_ids)
+            or self.api.key_kind != "own"
+        ):
+            raise ValueError("authenticated_models needs an own-key OpenAI-compatible lane and a page that lists its free models")
         return self
 
     @model_validator(mode="after")
@@ -2170,8 +2196,7 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
                 entry_updates["probe"] = Probe(
                     type=ProbeType.PAGE_KEYWORDS, endpoint=e.remaining_free.source,
                     keywords=[e.remaining_free.quote],
-                    catalog=e.probe.endpoint if e.api and e.probe.type is ProbeType.API_MODELS
-                    else e.probe.catalog)
+                    catalog=e.probe.model_catalog if e.api else e.probe.catalog)
             else:
                 ended_on = max(id_access(e, i).ends_at for i in expired).astimezone(timezone.utc).date()
                 entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
@@ -2290,13 +2315,20 @@ class ArchiveRule(Enum):
     STALE = "stale"  # no probe passed in ARCHIVE_AFTER_DAYS
 
 
+def withdrawal_rule(delisted: bool, retired_on: date | None, today: date) -> ArchiveRule | None:
+    """A recorded withdrawal, independent of whether a recent probe passed."""
+    if delisted:
+        return ArchiveRule.DELISTED
+    if retired_on is not None and today >= retired_on:
+        return ArchiveRule.RETIRED
+    return None
+
+
 def archive_rule(entry: Entry, today: date) -> ArchiveRule | None:
     """The first rule that archives the row, or None while it is live — the one
     ordering is_archived, is_archived_for_good and the Archive's wording read."""
-    if entry.delisted is not None:
-        return ArchiveRule.DELISTED
-    if entry.retired_on is not None and today >= entry.retired_on:
-        return ArchiveRule.RETIRED
+    if rule := withdrawal_rule(entry.delisted is not None, entry.retired_on, today):
+        return rule
     if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
         return ArchiveRule.FAILED
     if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
@@ -2506,6 +2538,10 @@ _RegistryDumper.add_representer(
 
 def _row_payload(e: Entry) -> dict:
     row = e.model_dump(mode="json", exclude_none=True)
+    if e.api and e.api.model_limits:
+        for mid, limits in e.api.model_limits.items():
+            if limits.read == "catalog":
+                row["api"]["model_limits"][mid].pop("source", None)
     if e.page_catalog:
         if e.models != e.page_catalog.published() or e.newcomers != e.page_catalog.waiting():
             raise ValueError("page_catalog derived models/newcomers diverged before saving")

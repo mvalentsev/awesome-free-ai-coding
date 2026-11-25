@@ -18,7 +18,7 @@
 # page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/
 # — codex -p vercel-ai-gateway -m <id> takes another.
-model = "poolside/laguna-s-2.1-free"
+model = "nvidia/nemotron-3.5-lightning-free"
 model_provider = "vercel-ai-gateway"
 # The same three settings in every Codex profile here, so the request Codex
 # sends is the one the list's run checks; each is off for lanes that refuse it

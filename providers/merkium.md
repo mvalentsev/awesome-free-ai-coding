@@ -3,7 +3,7 @@ layout: default
 title: 'Merkium free tier: limits, free models, verified 2026-11-23'
 description: 'Independent model developer with a free OpenAI-compatible API and chat service; current API models have no per-request or per-token charge. Free models: ceres-1.0, ceres-1.0-pro, ganymede-1.1, pluto-1.1-flash, pluto-1.1-pro, pluto-1.2-flash and 1 more. Sign in and create a free API key in the…'
 permalink: /providers/merkium/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-25
 crumb: Merkium
 model_sort: true
 ---
@@ -13,6 +13,8 @@ model_sort: true
 # Merkium free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-23 · [merkium.nl](https://www.merkium.nl) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+
+> ⚠️ **Does not work as published since [2026-11-25](https://chat.merkium.nl).** The hosting service reports that the console and API are paused after reaching the site's hosting usage limits. The pricing page still lists the free offer.
 
 ## What you get
 

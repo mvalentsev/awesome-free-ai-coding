@@ -1818,7 +1818,8 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1852,6 +1853,11 @@
           "particle-ai/particle-1:free": {
             "context_tokens": 1048576,
             "output_tokens": 131072,
+            "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "inclusionai/ling-3.2-flash:free": {
+            "context_tokens": 1048576,
+            "output_tokens": 262144,
             "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
@@ -1938,7 +1944,8 @@
           "liquid/lfm-3-1.7b:free",
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
-          "particle-ai/particle-1:free"
+          "particle-ai/particle-1:free",
+          "inclusionai/ling-3.2-flash:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -1985,7 +1992,8 @@
           "liquid/lfm-3-1.7b:free": "",
           "baidu/ernie-5.5-flash-preview:free": "",
           "reflection/beam-free": "",
-          "particle-ai/particle-1:free": ""
+          "particle-ai/particle-1:free": "",
+          "inclusionai/ling-3.2-flash:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
@@ -5075,7 +5083,7 @@
           "condition_quote": "a lower limit per model",
           "source": "https://vercel.com/docs/ai-gateway/rate-limits",
           "quote": "this page describes behavior rather than fixed numbers",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-25",
           "amount": null,
           "period": null
         },
@@ -5090,7 +5098,7 @@
           "model_ids": [
             "reflection/beam-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-25",
           "amount": null,
           "period": null
         }
@@ -5114,9 +5122,9 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
+          "nvidia/nemotron-3.5-lightning-free",
           "poolside/laguna-s-2.1-free",
           "stealth/glyph-cluster",
-          "nvidia/nemotron-3.5-lightning-free",
           "reflection/beam-free",
           "humansand/ampersand-v0.1",
           "recursive/flint-v1.0"
@@ -5194,9 +5202,9 @@
           "beam-1.0"
         ],
         "ids": [
+          "nvidia/nemotron-3.5-lightning-free",
           "poolside/laguna-s-2.1-free",
           "stealth/glyph-cluster",
-          "nvidia/nemotron-3.5-lightning-free",
           "reflection/beam-free",
           "humansand/ampersand-v0.1",
           "recursive/flint-v1.0"
@@ -17687,7 +17695,7 @@
           "source": "https://kiosapi.id/docs",
           "quote": "Rate limit free: 5 req/menit",
           "value_phrase": "5 req/menit",
-          "reviewed_on": "2026-11-16"
+          "reviewed_on": "2026-11-25"
         }
       ],
       "free_part": "models",
@@ -17732,7 +17740,7 @@
             "quote": "Gemma 4 26B A4B"
           }
         },
-        "note": "Use a live key. Test keys return fixed mock responses without calling a model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions is separate. The public catalog marks function tools available on GLM, Qwen and Gemma, but not Llama or SEA-LION."
+        "note": "Use a live key. Test keys return fixed mock responses without calling a model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions is separate. The public catalog lists function tools on GLM and Gemma. SEA-LION has no function tools. Qwen and Llama are absent from that catalog and their availability is unconfirmed."
       },
       "border": {
         "left_out": [],
@@ -18791,7 +18799,12 @@
           "pluto-1.1-flash",
           "pluto-1.1-pro"
         ],
-        "note": "Create a key in the Console API tab. Set the OpenAI-compatible base URL verbatim; use /chat/completions for chat, streaming and tool calls. Model listing also requires the key."
+        "note": "Create a key in the Console API tab. Set the OpenAI-compatible base URL verbatim; use /chat/completions for chat, streaming and tool calls. Model listing also requires the key.",
+        "notice": {
+          "since": "2026-11-25",
+          "text": "The hosting service reports that the console and API are paused after reaching the site's hosting usage limits. The pricing page still lists the free offer.",
+          "url": "https://chat.merkium.nl"
+        }
       },
       "data_use": {
         "trains": "no",
@@ -18815,6 +18828,7 @@
         ],
         "free_marker": "",
         "require_zero_price": false,
+        "authenticated_models": true,
         "machinery_keywords": [],
         "model_plan": {
           "headers": [

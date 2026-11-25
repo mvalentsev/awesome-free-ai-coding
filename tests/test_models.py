@@ -673,13 +673,18 @@ def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_pr
 
 def test_client_limits_round_trip_and_require_the_rechecked_catalog(tmp_path: Path):
     row = sample_entry()
-    limits = {"context_tokens": 32768, "output_tokens": 16384,
-              "source": row["probe"]["endpoint"]}
+    limits = {"context_tokens": 32768, "output_tokens": 16384}
     row["api"] = {"base_url": "https://openrouter.ai/api/v1", "model_ids": ["qwen3-coder:free"],
                   "model_limits": {"qwen3-coder:free": limits}}
     entry = Entry.model_validate(row)
+    cap = entry.api.model_limits["qwen3-coder:free"]
+    assert cap.source == row["probe"]["endpoint"]
+    legacy = {**row, "api": {**row["api"], "model_limits": {
+        "qwen3-coder:free": {**limits, "source": cap.source}}}}
+    assert Entry.model_validate(legacy) == entry
     path = tmp_path / "registry.yaml"
     save_registry(path, [entry])
+    assert yaml.safe_load(path.read_text())["entries"][0]["api"]["model_limits"]["qwen3-coder:free"] == limits
     assert load_registry(path)[0].api.model_limits == entry.api.model_limits
     for broken in ({"context_tokens": 0}, {"output_tokens": True},
                    {"output_tokens": 32769}, {"source": "http://openrouter.ai/api/v1/models"},

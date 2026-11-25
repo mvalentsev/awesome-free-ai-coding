@@ -64,7 +64,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, stealth/glyph-cluster, nvidia/nemotron-3.5-lightning-free, reflection/beam-free, humansand/ampersand-v0.1, recursive/flint-v1.0
+#    free ids: nvidia/nemotron-3.5-lightning-free, poolside/laguna-s-2.1-free, stealth/glyph-cluster, reflection/beam-free, humansand/ampersand-v0.1, recursive/flint-v1.0
 claude-vercel-ai-gateway() {
   if [ -z "${VERCEL_AI_GATEWAY_API_KEY:-}" ]; then
     echo "claude-vercel-ai-gateway: set VERCEL_AI_GATEWAY_API_KEY first (configs/free-llm.env.example)" >&2
@@ -73,7 +73,7 @@ claude-vercel-ai-gateway() {
   ANTHROPIC_BASE_URL="https://ai-gateway.vercel.sh" \
   ANTHROPIC_AUTH_TOKEN="$VERCEL_AI_GATEWAY_API_KEY" \
   ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="poolside/laguna-s-2.1-free" \
+  ANTHROPIC_MODEL="nvidia/nemotron-3.5-lightning-free" \
   claude "$@"
 }
 

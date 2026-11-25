@@ -191,6 +191,13 @@
             "context": 1048576,
             "output": 131072
           }
+        },
+        "inclusionai/ling-3.2-flash:free": {
+          "name": "inclusionai/ling-3.2-flash:free",
+          "limit": {
+            "context": 1048576,
+            "output": 262144
+          }
         }
       }
     },
@@ -529,14 +536,14 @@
         "apiKey": "{env:VERCEL_AI_GATEWAY_API_KEY}"
       },
       "models": {
+        "nvidia/nemotron-3.5-lightning-free": {
+          "name": "nvidia/nemotron-3.5-lightning-free"
+        },
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
         },
         "stealth/glyph-cluster": {
           "name": "stealth/glyph-cluster"
-        },
-        "nvidia/nemotron-3.5-lightning-free": {
-          "name": "nvidia/nemotron-3.5-lightning-free"
         },
         "reflection/beam-free": {
           "name": "reflection/beam-free"

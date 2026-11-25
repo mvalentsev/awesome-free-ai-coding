@@ -67,6 +67,22 @@ jobs:
 
       - run: uv sync
 
+      # GitHub's GITHUB_ENV makes this value available to later steps of the
+      # job (workflow commands documentation, checked 2026-11-26).
+      - name: Resolve provider scope
+        env:
+          PROBE_IDS: ${{ inputs.provider_ids }}
+        run: |
+          ids=()
+          if [ -n "$PROBE_IDS" ]; then
+            read -r -a ids <<< "${PROBE_IDS//$'\n'/ }"
+            [ "${#ids[@]}" -gt 0 ] || { echo 'Provider IDs cannot be empty'; exit 1; }
+            for id in "${ids[@]}"; do
+              [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo 'Invalid provider ID'; exit 1; }
+            done
+          fi
+          printf 'SELECTED_PROVIDER_IDS=%s\n' "${ids[*]}" >> "$GITHUB_ENV"
+
       # A real run's probe exits 0 whatever it finds and hands its failures to
       # the scout. A dry run's exits 1 on a failing row, and without this one
       # FAIL would skip every later step that does not ask for always() — the
@@ -76,18 +92,11 @@ jobs:
         id: probe
         continue-on-error: ${{ inputs.dry_run == true }}
         env:
-          PROBE_IDS: ${{ inputs.provider_ids }}
           PROBE_DRY_RUN: ${{ inputs.dry_run }}
         run: |
           args=(--registry registry.yaml --failures failures)
-          if [ -n "$PROBE_IDS" ]; then
-            read -r -a ids <<< "${PROBE_IDS//$'\n'/ }"
-            [ "${#ids[@]}" -gt 0 ] || { echo 'Provider IDs cannot be empty'; exit 1; }
-            for id in "${ids[@]}"; do
-              [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo 'Invalid provider ID'; exit 1; }
-            done
-            args+=(--ids "${ids[@]}")
-          fi
+          read -r -a ids <<< "$SELECTED_PROVIDER_IDS"
+          if ((${#ids[@]})); then args+=(--ids "${ids[@]}"); fi
           if [ "$PROBE_DRY_RUN" = true ]; then args+=(--dry-run); fi
           uv run freetier-probe "${args[@]}"
 
@@ -112,7 +121,10 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          uv run freetier-bars | tee -a "$GITHUB_STEP_SUMMARY"
+          read -r -a ids <<< "$SELECTED_PROVIDER_IDS"
+          args=()
+          if ((${#ids[@]})); then args+=(--ids "${ids[@]}"); fi
+          uv run freetier-bars "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
 
       # Every phrase a row quotes, read back against the row's own pages: a
       # quote is the vendor's words only while a page carries them. A report
@@ -121,18 +133,9 @@ jobs:
       # failed step.
       - name: Read every quoted phrase back against its pages
         continue-on-error: true
-        env:
-          PROBE_IDS: ${{ inputs.provider_ids }}
         run: |
           set -o pipefail
-          ids=()
-          if [ -n "$PROBE_IDS" ]; then
-            read -r -a ids <<< "${PROBE_IDS//$'\n'/ }"
-            [ "${#ids[@]}" -gt 0 ] || { echo 'Provider IDs cannot be empty'; exit 1; }
-            for id in "${ids[@]}"; do
-              [[ "$id" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo 'Invalid provider ID'; exit 1; }
-            done
-          fi
+          read -r -a ids <<< "$SELECTED_PROVIDER_IDS"
           uv run freetier-quotes --report "${ids[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Collect archived offers due for manual review

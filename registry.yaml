@@ -97,19 +97,15 @@ entries:
       liquid/lfm-3-1.7b:free:
         context_tokens: 262144
         output_tokens: 8192
-        source: https://openrouter.ai/api/v1/models
       baidu/ernie-5.5-flash-preview:free:
         context_tokens: 1024000
         output_tokens: 921600
-        source: https://openrouter.ai/api/v1/models
       particle-ai/particle-1:free:
         context_tokens: 1048576
         output_tokens: 131072
-        source: https://openrouter.ai/api/v1/models
       inclusionai/ling-3.2-flash:free:
         context_tokens: 1048576
         output_tokens: 262144
-        source: https://openrouter.ai/api/v1/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - google/lyria-3-pro-preview
@@ -891,6 +887,7 @@ entries:
     - baidu/ernie-5.5-flash-preview:free
     - reflection/beam-free
     - particle-ai/particle-1:free
+    - inclusionai/ling-3.2-flash:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -905,19 +902,18 @@ entries:
       liquid/lfm-3-1.7b:free:
         context_tokens: 262144
         output_tokens: 8192
-        source: https://api.kilo.ai/api/gateway/models
       baidu/ernie-5.5-flash-preview:free:
         context_tokens: 1024000
         output_tokens: 921600
-        source: https://api.kilo.ai/api/gateway/models
       apodex/apodex-1.1-mini:free:
         context_tokens: 262144
         output_tokens: 235929
-        source: https://api.kilo.ai/api/gateway/models
       particle-ai/particle-1:free:
         context_tokens: 1048576
         output_tokens: 131072
-        source: https://api.kilo.ai/api/gateway/models
+      inclusionai/ling-3.2-flash:free:
+        context_tokens: 1048576
+        output_tokens: 262144
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free
@@ -2634,7 +2630,7 @@ entries:
     condition_quote: a lower limit per model
     source: https://vercel.com/docs/ai-gateway/rate-limits
     quote: this page describes behavior rather than fixed numbers
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-25'
   - unit: usage
     scope: unspecified
     label: Beam launch offer
@@ -2645,7 +2641,7 @@ entries:
     quote: Beam is free to use for a limited time
     model_ids:
     - reflection/beam-free
-    reviewed_on: '2026-11-17'
+    reviewed_on: '2026-11-25'
   free_part: models
   models:
   - family: laguna-s-2.1
@@ -2658,9 +2654,9 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
+    - nvidia/nemotron-3.5-lightning-free
     - poolside/laguna-s-2.1-free
     - stealth/glyph-cluster
-    - nvidia/nemotron-3.5-lightning-free
     - reflection/beam-free
     - humansand/ampersand-v0.1
     - recursive/flint-v1.0
@@ -2674,7 +2670,6 @@ entries:
       humansand/ampersand-v0.1:
         context_tokens: 1000000
         output_tokens: 32768
-        source: https://ai-gateway.vercel.sh/v1/models
     ignored_ids:
     - liquid/d1
     - convaiinnovations/laya
@@ -3982,7 +3977,6 @@ entries:
       crouton-alpha-free:
         context_tokens: 1048576
         output_tokens: 943718
-        source: https://aihubmix.com/api/v1/models
     ignored_ids:
     - qwen3.6-plus-preview-free
     - gpt-live-transcribe
@@ -5518,75 +5512,57 @@ entries:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
         output_tokens: 16384
-        source: https://llmtr.com/v1/models
       tesseracted/kolibri-1:
         context_tokens: 32768
         output_tokens: 16384
-        source: https://llmtr.com/v1/models
       apodex/apodex-1.1-mini-free:
         context_tokens: 262144
         output_tokens: 32768
-        source: https://llmtr.com/v1/models
       anthropic/claude-haiku-5.5-free:
         context_tokens: 100000
         output_tokens: 32768
-        source: https://llmtr.com/v1/models
       deepseek/deepseek-v4.1-flash-free:
         context_tokens: 1048576
         output_tokens: 393216
-        source: https://llmtr.com/v1/models
       heabsy/qwen3.8-27b-heabsy-free:
         context_tokens: 262144
         output_tokens: 32768
-        source: https://llmtr.com/v1/models
       ifm/jais-3-mova-36b-a4b:
         context_tokens: 524288
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       ifm/k2-horizon-375b-a23b:
         context_tokens: 524288
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       minimax/minimax-m3.1-flash-free:
         context_tokens: 1000000
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       internlm/intern-s2-free:
         context_tokens: 262144
         output_tokens: 262144
-        source: https://llmtr.com/v1/models
       internlm/atria-dawn-free:
         context_tokens: 524288
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       internlm/atria-dawn-preview-free:
         context_tokens: 524288
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       internlm/agents-a1-free:
         context_tokens: 262144
         output_tokens: 262144
-        source: https://llmtr.com/v1/models
       internlm/sage-a1.5-free:
         context_tokens: 262144
         output_tokens: 262144
-        source: https://llmtr.com/v1/models
       parallel/parallel-free:
         context_tokens: 20000
         output_tokens: 20000
-        source: https://llmtr.com/v1/models
       qwen/qwen3.8-max-free:
         context_tokens: 262144
         output_tokens: 262144
-        source: https://llmtr.com/v1/models
       lgai/k-exaone-2.5:
         context_tokens: 524288
         output_tokens: 524288
-        source: https://llmtr.com/v1/models
       baidu/ernie-5.5-flash-preview-free:
         context_tokens: 1024000
         output_tokens: 1024000
-        source: https://llmtr.com/v1/models
     opencode_output_tokens:
       qwen/qwen3.8-max-free: 8192
       lgai/k-exaone-2.5: 8192
@@ -7002,7 +6978,6 @@ entries:
       tencent/hy4-flash:free:
         context_tokens: 1048576
         output_tokens: 65536
-        source: https://inference-api.nousresearch.com/v1/models
     note: Select a current :free model and use your Nous Portal key; paid variants
       are outside the Free plan.
   data_use:
@@ -7401,7 +7376,6 @@ entries:
       qwen/qwen3.8-27b:
         context_tokens: 168000
         output_tokens: 32000
-        source: https://gateway.vlm.run/v1/openai/models
     opencode_output_tokens:
       qwen/qwen3.8-27b: 4096
     refuses_bearer: true
@@ -11067,7 +11041,7 @@ entries:
     source: https://kiosapi.id/docs
     quote: 'Rate limit free: 5 req/menit'
     value_phrase: 5 req/menit
-    reviewed_on: '2026-11-16'
+    reviewed_on: '2026-11-25'
   free_part: models
   models:
   - family: glm-4.7-flash
@@ -11098,8 +11072,9 @@ entries:
         quote: Gemma 4 26B A4B
     note: Use a live key. Test keys return fixed mock responses without calling a
       model. The hosted Agents API accepts paid models only; ordinary Free Chat Completions
-      is separate. The public catalog marks function tools available on GLM, Qwen
-      and Gemma, but not Llama or SEA-LION.
+      is separate. The public catalog lists function tools on GLM and Gemma. SEA-LION
+      has no function tools. Qwen and Llama are absent from that catalog and their
+      availability is unconfirmed.
   border:
     left_out: []
     'on': '2026-11-02'
@@ -11837,6 +11812,12 @@ entries:
     note: Create a key in the Console API tab. Set the OpenAI-compatible base URL
       verbatim; use /chat/completions for chat, streaming and tool calls. Model listing
       also requires the key.
+    notice:
+      since: '2026-11-25'
+      text: The hosting service reports that the console and API are paused after
+        reaching the site's hosting usage limits. The pricing page still lists the
+        free offer.
+      url: https://chat.merkium.nl
   data_use:
     trains: 'no'
     quote: Your conversations are never used to train, fine-tune or evaluate Merkium
@@ -11854,6 +11835,7 @@ entries:
     - not need a credit card or a billing account
     free_marker: ''
     require_zero_price: false
+    authenticated_models: true
     machinery_keywords: []
     model_plan:
       headers:

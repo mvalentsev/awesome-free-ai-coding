@@ -36,10 +36,12 @@ def _git(repo: Path, *args: str, day: str | None = None) -> None:
 
 
 def _commit(repo: Path, rows: dict[str, list[str]], day: str,
-            free_parts: dict[str, str] | None = None) -> None:
+            free_parts: dict[str, str] | None = None, *,
+            row_fields: dict[str, dict] | None = None) -> None:
     """One committed registry.yaml whose rows carry these ids, dated `day`."""
     entries = [{"id": rid, "free_part": (free_parts or {}).get(rid, "models"),
-                "api": {"model_ids": ids}} for rid, ids in rows.items()]
+                "api": {"model_ids": ids}, **(row_fields or {}).get(rid, {})}
+               for rid, ids in rows.items()]
     (repo / "registry.yaml").write_text(yaml.safe_dump({"entries": entries}), encoding="utf-8")
     _git(repo, "add", "registry.yaml", day=day)
     _git(repo, "commit", "-q", "-m", day, day=day)
@@ -58,6 +60,25 @@ def test_an_id_is_dated_from_the_commit_after_which_it_never_left(tmp_path):
     assert since[("gw", "a")] == date(2026, 8, 20)
     assert since[("gw", "b")] == date(2026, 8, 5)
     assert since[("other", "b")] == date(2026, 8, 20)
+
+
+def test_age_restarts_when_the_advertised_lane_ends_or_changes(tmp_path):
+    _git(tmp_path, "init", "-q")
+    rows = {rid: ["same-id"] for rid in ("delisted", "retired", "switched", "peer")}
+    _commit(tmp_path, rows, "2026-08-01")
+    _commit(tmp_path, rows, "2026-08-05", row_fields={
+        "delisted": {"delisted": {"on": date(2026, 8, 5)}},
+        "retired": {"retired_on": date(2026, 8, 10)},
+    })
+    _commit(tmp_path, rows, "2026-08-20", row_fields={
+        "switched": {"api": None, "client_lane": {"model_ids": ["same-id"]}},
+    })
+    assert arrivals(tmp_path) == {
+        ("delisted", "same-id"): date(2026, 8, 20),
+        ("retired", "same-id"): date(2026, 8, 20),
+        ("switched", "same-id"): date(2026, 8, 20),
+        ("peer", "same-id"): date(2026, 8, 1),
+    }
 
 
 def test_merge_dates_only_the_free_models_that_reach_the_registry(tmp_path):
@@ -265,20 +286,26 @@ def test_the_report_says_which_date_a_bar_counts_from_and_which_list_went_unread
     assert unread in out
 
 
-@respx.mock
-def test_the_report_reads_the_vendor_s_free_list_itself(tmp_path, capsys):
+@respx.mock(assert_all_called=False)
+def test_the_report_reads_the_vendor_s_free_list_itself(tmp_path, capsys, respx_mock):
     _git(tmp_path, "init", "-q")
-    save_registry(tmp_path / "registry.yaml", [_nim()])
+    nim = _nim()
+    unrelated_url = "https://vendor.example/free-list"
+    peer = nim.model_copy(update={"id": "peer", "probe": nim.probe.model_copy(
+        update={"free_list": unrelated_url})})
+    save_registry(tmp_path / "registry.yaml", [nim, peer])
     _git(tmp_path, "add", "registry.yaml", day="2026-09-22")
     _git(tmp_path, "commit", "-q", "-m", "x", day="2026-09-22")
-    respx.get(NGC_SEARCH).mock(return_value=httpx.Response(200, json=ngc_search(
+    respx_mock.get(NGC_SEARCH).mock(return_value=httpx.Response(200, json=ngc_search(
         ngc_endpoint("moonshotai", "kimi-k3"),
         ngc_endpoint("z-ai", "glm-5-3", created="2026-09-15T19:47:58.961Z"),
         ngc_endpoint("z-ai", "glm-5-3-flash", created="2026-09-15T19:46:42.256Z"))))
-    main(["--repo", str(tmp_path), "--today", "2026-09-25"])
+    unrelated = respx_mock.get(unrelated_url).respond(503)
+    main(["--repo", str(tmp_path), "--today", "2026-09-25", "--ids", "nim"])
     out = capsys.readouterr().out
     assert next(line for line in out.splitlines()
                 if "`z-ai/glm-5.3`" in line).startswith("- 2026-09-29 nim: ")
+    assert not unrelated.called and "peer" not in out
 
 
 def test_a_client_lane_is_dated_from_the_registry_s_history_too(tmp_path):

@@ -400,7 +400,6 @@ async def test_catalog_rechecks_limits_used_by_generated_clients(catalog_limits,
         "base_url": "https://api.x.ai/v1", "model_ids": [FREE_QWEN["id"]],
         "model_limits": {FREE_QWEN["id"]: {
             "context_tokens": 131042, "output_tokens": 16384,
-            "source": row["probe"]["endpoint"],
         }},
     }
     model = {**FREE_QWEN, **catalog_limits}
@@ -2068,6 +2067,40 @@ def catalog_entry(*ids: str) -> Entry:
 
 
 PAGE_OK = "qwen3-coder on the free tier, no credit card"
+
+
+@pytest.mark.parametrize('status,body,expected', [
+    (401, {'error': {'message': 'Missing API key'}}, ProbeStatus.PASS),
+    (401, '<h1>Proxy login</h1>', ProbeStatus.INCONCLUSIVE),
+    (402, '<h1>Site not available</h1>', ProbeStatus.INCONCLUSIVE),
+    (200, {'data': [{'id': 'other'}]}, ProbeStatus.INCONCLUSIVE),
+])
+@respx.mock(assert_all_called=False)
+async def test_live_pricing_cannot_verify_an_unreachable_keyed_catalog(status, body, expected, respx_mock):
+    raw = catalog_entry('qwen3-coder').model_dump()
+    raw['free_part'] = 'models'
+    raw['provisional'] = True
+    raw['first_seen'] = date(2026, 7, 1)
+    raw['last_verified'] = date(2026, 7, 10)
+    raw['api']['openai_compatible'] = True
+    raw['probe'].update(catalog=None, authenticated_models=True, model_plan={
+        'headers': ['Model ID', 'Price'], 'name_column': 'Model ID',
+        'plan_column': 'Price', 'included_value': 'Free'})
+    entry = Entry.model_validate(raw)
+    docs = (f'<p>{PAGE_OK}</p><table><tr><th>Model ID</th><th>Price</th></tr>'
+            '<tr><td>qwen3-coder</td><td>Free</td></tr></table>')
+    respx_mock.get(entry.probe.endpoint).respond(200, html=docs)
+    route = respx_mock.get(entry.api.base_url + '/models')
+    route.respond(status, **({'json': body} if isinstance(body, dict) else {'html': body}))
+    today = date(2026, 7, 19)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, attempts=1, backoff=0, today=today)
+    assert result.status is expected, result.detail
+    assert route.call_count == 1 and 'authorization' not in route.calls.last.request.headers
+    apply_results([entry], {entry.id: result}, today)
+    assert entry.last_verified == (today if expected is ProbeStatus.PASS else raw['last_verified'])
+    assert entry.provisional is (expected is ProbeStatus.INCONCLUSIVE)
+    assert entry.probe_failures == 0
 
 
 @pytest.mark.parametrize('free_part,available,expected', [

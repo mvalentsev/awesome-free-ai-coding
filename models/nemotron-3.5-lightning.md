@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-lightning free: 9 providers, limits and ids, provider probes 2026-11-23'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), Cline, AIHubMix (free models), Vercel AI Gateway and BazaarLink. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-11-24
+last_modified_at: 2026-11-25
 crumb: nemotron-3.5-lightning
 ---
 
@@ -172,7 +172,7 @@ A team must add a valid payment method before using free credit; otherwise reque
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
-- Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway -m nvidia/nemotron-3.5-lightning-free`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
+- Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
 - Callable ids: `nvidia/nemotron-3.5-lightning-free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training)).
 

@@ -672,6 +672,12 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 524288
+- model_name: vercel-ai-gateway/nvidia/nemotron-3.5-lightning-free
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-lightning-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
@@ -681,12 +687,6 @@ model_list:
 - model_name: vercel-ai-gateway/stealth/glyph-cluster
   litellm_params:
     model: openai/stealth/glyph-cluster
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-    use_chat_completions_api: true
-- model_name: vercel-ai-gateway/nvidia/nemotron-3.5-lightning-free
-  litellm_params:
-    model: openai/nvidia/nemotron-3.5-lightning-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true

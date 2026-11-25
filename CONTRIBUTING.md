@@ -299,6 +299,12 @@ evidence without advertising a current allowance.
 
 ### Page and catalog evidence
 
+Set `probe.authenticated_models` for an own-key OpenAI-compatible lane whose
+Free model table backs its IDs and whose `/models` endpoint requires a key.
+The probe derives `/models` from `api.base_url` and sends an anonymous GET.
+A structured HTTP 401 confirms the documented auth gate. A public model list
+is checked for configured IDs. A route outage leaves verification inconclusive.
+
 Public HTML reads try ordinary HTTP first. A confirmed browser challenge can
 start one anonymous `curl_cffi` browser-profile recovery, with a 20-second budget,
 up to 5 redirects and an 8 MiB body limit. API catalogs and completion requests,
@@ -548,11 +554,13 @@ embeddings or code editing into a chat model.
 
 **Client token limits are rechecked at their source.** When a client's default exceeds
 the vendor's cap, record `api.model_limits[ID]` with positive `context_tokens`,
-`output_tokens` and `source`. By default, `read: catalog` compares the limits
-with this row's checked catalog on every verification, reporting changed or
-unavailable context and output values.
+and `output_tokens`. By default, `read: catalog` compares the limits with this
+row's checked catalog on every verification, reporting changed or unavailable
+context and output values. Catalog limits use `probe.endpoint` or `probe.catalog`
+as their source.
 For an official OpenCode configuration example, set `read: opencode-config` and
-`source_provider` to its exact provider key. The source is re-read for the exact
+`source_provider` to its exact provider key, and give the example's `source`.
+The source is re-read for the exact
 `provider` / provider key / `models` / model ID / `limit` object in JSON code
 examples or a JSON configuration file. Context and output must both be positive
 integers; missing, conflicting or changed limits require review. Unrelated model
@@ -1168,10 +1176,10 @@ and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 
 Python 3.12 to 3.15, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI
-runs it on every push to `main` and every pull request, together with
-`freetier-check` and `freetier-render --check`: on each of those Pythons with the
-versions `uv.lock` pins, and on the oldest once more with the lowest versions
-`pyproject.toml` allows, so every floor written there is one the code has run on.
+runs it on every push to `main` and every pull request on each of those Pythons
+with the versions `uv.lock` pins, and on the oldest once more with the lowest
+versions `pyproject.toml` allows. The oldest Python also runs `freetier-check`
+and `freetier-render --check` with both dependency sets.
 `freetier-render --check` re-renders everything and compares it
 with what is committed, so an edit that never reached a file the map marks
 generated is a red run and not a page that quietly disagrees with the registry

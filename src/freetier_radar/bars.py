@@ -31,7 +31,7 @@ import yaml
 
 from . import git
 from .models import (Entry, FreePart, expire_entries, family_access, entry_id_family, id_access,
-                     is_archived, lane_ids, load_registry)
+                     is_archived, lane_ids, load_registry, withdrawal_rule)
 from .prober import TIMEOUT, UA, free_list_dates
 from .words import weeks
 from .models import QUALIFICATION_DAYS as BAR_DAYS
@@ -40,29 +40,49 @@ from .yaml_data import load_yaml
 __all__ = ["BAR_DAYS", "Waiting", "arrivals", "vendor_dates", "waiting", "report", "main"]
 
 
-def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], date]:
-    """(row id, model id) → the UTC day of the commit from which the id has stood
-    in the row's `api.model_ids` — or `client_lane.model_ids`, for a lane no API
-    serves — as named free models, without a break. An id is added on the read
-    that finds it and taken out when the run says it left, so an id that came
-    back is dated from its return. Follow the first-parent history so proposal
-    commits cannot change a lane's age before their merge reaches that line."""
+def _published_lanes(rows: list, through: date) -> dict[tuple[str, str], str]:
+    lanes = {}
+    for row in rows:
+        if not isinstance(row, dict) or row.get("free_part") != FreePart.MODELS.value:
+            continue
+        retired_on = row.get("retired_on")
+        if isinstance(retired_on, str):
+            retired_on = date.fromisoformat(retired_on)
+        if withdrawal_rule(row.get("delisted") is not None, retired_on, through):
+            continue
+        field = "api" if row.get("api") is not None else "client_lane"
+        for model_id in (row.get(field) or {}).get("model_ids") or []:
+            lanes[(row["id"], model_id)] = field
+    return lanes
+
+
+def arrivals(repo: Path, path: str = "registry.yaml", *,
+             lanes: dict[tuple[str, str], str] | None = None,
+             today: date | None = None) -> dict[tuple[str, str], date]:
+    """Date each exact ID from its uninterrupted run in the same named Free lane.
+
+    Read the first-parent history backward, stopping at each ID's first gap.
+    Callers can supply the current lanes they need, including uncommitted IDs.
+    A dated shutdown can break continuity between two registry commits.
+    """
+    if lanes == {}:
+        return {}
     since: dict[tuple[str, str], date] = {}
-    for sha, stamp in git.commits(repo, "--reverse", "--first-parent", "HEAD", "--", path, field="%ct",
-                                  check=True):
+    through = today
+    for sha, stamp in git.commits(repo, "--first-parent", "HEAD", "--", path, field="%ct", check=True):
+        day = datetime.fromtimestamp(int(stamp), timezone.utc).date()
         try:
             data = load_yaml(git.show(repo, sha, path) or "") or {}
         except yaml.YAMLError:
-            continue
+            raise ValueError(f"cannot read {path} in {sha}") from None
         rows = (data.get("entries") or []) if isinstance(data, dict) else []
-        present = {(row.get("id"), model_id) for row in rows if isinstance(row, dict)
-                   and row.get("free_part") == FreePart.MODELS.value
-                   for block in ("api", "client_lane")
-                   for model_id in ((row.get(block) or {}).get("model_ids") or [])}
-        day = datetime.fromtimestamp(int(stamp), timezone.utc).date()
-        since = {key: when for key, when in since.items() if key in present}
-        for key in present:
-            since.setdefault(key, day)
+        present = _published_lanes(rows, max(day, through) if through else day)
+        lanes = present if lanes is None else {key: field for key, field in lanes.items()
+                                                if present.get(key) == field}
+        if not lanes:
+            break
+        since.update(dict.fromkeys(lanes, day))
+        through = day
     return since
 
 
@@ -202,12 +222,21 @@ def main(argv: list[str] | None = None) -> int:
                     help="path of the registry inside the repository")
     ap.add_argument("--today", type=date.fromisoformat,
                     default=now.date())
+    ap.add_argument("--ids", nargs="+", help="report only these provider IDs")
     args = ap.parse_args(argv)
     entries = load_registry(args.repo / args.registry)
+    if args.ids:
+        ids = set(args.ids)
+        if unknown := ids - {e.id for e in entries}:
+            ap.error(f"unknown provider IDs: {', '.join(sorted(unknown))}")
+        entries = [e for e in entries if e.id in ids]
+    at = now if args.today == now.date() else None
+    lanes = {(w.row, w.model_id): w.field for w in waiting(entries, {}, args.today, now=at)
+             if w.field != "newcomers"}
+    since = arrivals(args.repo, args.registry, lanes=lanes, today=args.today)
     with httpx.Client(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         vendor, unread = vendor_dates(entries, client.get, args.today)
-    print(report(entries, arrivals(args.repo, args.registry), args.today, vendor, unread,
-                 now=now if args.today == now.date() else None), end="")
+    print(report(entries, since, args.today, vendor, unread, now=at), end="")
     return 0
 
 

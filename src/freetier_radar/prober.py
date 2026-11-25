@@ -65,7 +65,7 @@ class _CatalogIds:
 def _catalog_note_status(entry: Entry, available: bool) -> ProbeStatus:
     """A catalog gap cannot verify an own-key named Free lane."""
     if (not available and (entry.probe.type is ProbeType.API_MODELS
-                          or entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.catalog)
+                          or entry.probe.catalog or entry.probe.authenticated_models)
             and entry.free_part is FreePart.MODELS and entry.api
             and entry.api.key_kind == 'own' and entry.api.model_ids):
         return ProbeStatus.INCONCLUSIVE
@@ -175,6 +175,15 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         # lane needs a backed configured ID before the page earns verification.
         if entry.probe.type is ProbeType.API_MODELS:
             catalog = resp
+        elif entry.probe.authenticated_models:
+            url = entry.api.base_url.rstrip("/") + "/models"
+            catalog, failure = await _fetch_catalog(client, url, attempts, backoff, accept_key_refusal=True)
+            if catalog is None:
+                return verdict(ProbeStatus.INCONCLUSIVE, f"authenticated models endpoint {url} {failure}")
+            if entry.api.notice:
+                inventory.append("api.notice: the models endpoint responds; recheck the connection notice")
+            if catalog.status_code == httpx.codes.UNAUTHORIZED:
+                catalog = None  # The page's Free model table still supplies eligibility.
         elif entry.probe.catalog:
             catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
             if catalog is None:
@@ -1252,7 +1261,8 @@ def _keyless_said(answer: httpx.Response | str) -> str:
 
 
 async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
-                      backoff: float, *, page: bool = True) -> tuple[httpx.Response | None, str]:
+                      backoff: float, *, page: bool = True,
+                      accept_key_refusal: bool = False) -> tuple[httpx.Response | None, str]:
     """A second page a row's checks read, or why it could not be read, with the
     patience the probe gives its own endpoint: a 5xx or a network error is
     retried, and any answer outside 2xx is reported."""
@@ -1260,6 +1270,8 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
                             attempts, backoff)
     if resp is None:
         return None, f"unreachable after {attempts} attempts: {last}"
+    if accept_key_refusal and resp.status_code == httpx.codes.UNAUTHORIZED:
+        return resp, ""
     if page:
         resp = await recover_page(client, resp)
     if not page_response_ok(resp):
@@ -1281,14 +1293,25 @@ async def _page_beside(client: httpx.AsyncClient, url: str, entry: Entry,
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
-                         backoff: float) -> tuple[httpx.Response | None, str]:
+                         backoff: float, *, accept_key_refusal: bool = False
+                         ) -> tuple[httpx.Response | None, str]:
     """The catalog a page-keywords row names, or why it could not be read. The
     same patience as the page itself, and anything that is not a JSON list of
     models — a 401, a bot wall, an HTML shell — is reported rather than read as
     an empty catalog, which would call every id dead."""
-    resp, failure = await _fetch_page(client, url, attempts, backoff, page=False)
+    resp, failure = await _fetch_page(client, url, attempts, backoff, page=False,
+                                      accept_key_refusal=accept_key_refusal)
     if resp is None:
         return None, failure
+    if resp.status_code == httpx.codes.UNAUTHORIZED:
+        try:
+            body = resp.json()
+        except ValueError:
+            body = None
+        error = body.get("error") if isinstance(body, dict) else None
+        if isinstance(error, (str, dict)) and error:
+            return resp, ""
+        return None, "answered HTTP 401 without a structured API error"
     items = _catalog_items(resp)
     if not items or not any(_model_id(m) for m in items):
         return None, "answered no model ids" if items is not None else "answered something other than JSON"
@@ -2303,7 +2326,8 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str
 # after " | ".
 _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
                 "ids the free list ", "ids in the ", "model table: ", "model inventory: ",
-                "api.public_key ", "keyless ", "public-key ", "anthropic route ", "codex route ",
+                "api.public_key ", "api.notice: ", "authenticated models endpoint ",
+                "keyless ", "public-key ", "anthropic route ", "codex route ",
                 "data_use ", "border: ", "border could ", "api.model_limits ",
                 "api.opencode_output_tokens ")
 

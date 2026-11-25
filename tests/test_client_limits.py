@@ -67,7 +67,7 @@ def test_page_limits_require_explicit_reader_and_round_trip(tmp_path):
     save_registry(path, [row])
     assert load_registry(path)[0].api.model_limits == row.api.model_limits
     data = row.model_dump()
-    for update in [{'source_provider': None}, {'source_provider': ' '},
+    for update in [{'source': None}, {'source_provider': None}, {'source_provider': ' '},
                    {'read': 'catalog'}, {'read': 'unknown'}]:
         data['api']['model_limits']['alpha'] = row.api.model_limits['alpha'].model_dump() | update
         with pytest.raises(ValidationError):

@@ -14,31 +14,47 @@ import yaml
 def test_workflow_passes_exact_provider_ids_as_arguments(tmp_path, selection, expected):
     workflow = yaml.safe_load(Path('.github/workflows/update.yml').read_text())
     steps = workflow['jobs']['update']['steps']
+    scope = next(step for step in steps if step.get('name') == 'Resolve provider scope')
+    assert scope['env']['PROBE_IDS'] == '${{ inputs.provider_ids }}'
+    github_env = tmp_path / 'env'
+    summary = tmp_path / 'summary'
+    env = {**os.environ, 'PROBE_IDS': selection, 'GITHUB_ENV': str(github_env),
+           'PROBE_DRY_RUN': 'false', 'GITHUB_STEP_SUMMARY': str(summary)}
+    result = subprocess.run(['bash', '-e', '-c', scope['run']], cwd=tmp_path,
+                            env=env, capture_output=True, text=True)
+    if expected is None:
+        assert result.returncode != 0
+        assert not github_env.exists()
+        return
+    assert result.returncode == 0, result.stderr
+    selector, value = github_env.read_text().strip().split('=', 1)
+    env[selector] = value
+
     stub = tmp_path / 'uv'
     receipt = tmp_path / 'arguments.json'
     stub.write_text('#!/usr/bin/env python3\nimport json, os, sys\n'
-                    'open(os.environ["ARG_RECEIPT"], "w").write(json.dumps(sys.argv[1:]))\n')
+                    'with open(os.environ["ARG_RECEIPT"], "a") as receipt:\n'
+                    '    print(json.dumps(sys.argv[1:]), file=receipt)\n'
+                    'print(sys.argv[2])\n')
     stub.chmod(0o755)
-    for name in ('Probe all entries', 'Read every quoted phrase back against its pages'):
-        step = next(step for step in steps if step.get('name') == name)
-        assert step['env']['PROBE_IDS'] == '${{ inputs.provider_ids }}'
-        receipt.unlink(missing_ok=True)
-        result = subprocess.run(['bash', '-e', '-c', step['run']], cwd=tmp_path,
-            env={**os.environ, 'PATH': str(tmp_path) + os.pathsep + os.environ['PATH'],
-                 'ARG_RECEIPT': str(receipt), 'PROBE_IDS': selection,
-                 'PROBE_DRY_RUN': 'false', 'GITHUB_STEP_SUMMARY': str(tmp_path / 'summary')},
-            capture_output=True, text=True)
-        if expected is None:
-            assert result.returncode != 0
-            assert not receipt.exists()
-        else:
-            assert result.returncode == 0, result.stderr
-            args = json.loads(receipt.read_text())
-            if name == 'Probe all entries':
-                assert args == ['run', 'freetier-probe', '--registry', 'registry.yaml',
-                                '--failures', 'failures', *(['--ids', *expected] if expected else [])]
-            else:
-                assert args == ['run', 'freetier-quotes', '--report', *expected]
+    env.update(PATH=str(tmp_path) + os.pathsep + os.environ['PATH'], ARG_RECEIPT=str(receipt))
+    names = ('Probe all entries', 'Report the models owed a family',
+             'Read every quoted phrase back against its pages')
+    scoped = [step for step in steps if step.get('name') in names]
+    assert [step['name'] for step in scoped] == list(names)
+    commit = next(i for i, step in enumerate(steps) if step.get('id') == 'commit')
+    assert steps.index(scope) < steps.index(scoped[0]) < steps.index(scoped[-1]) < commit
+    assert all('if' not in step for step in scoped)
+    result = subprocess.run(['bash', '-e', '-c', '\n'.join(step['run'] for step in scoped)],
+                            cwd=tmp_path, env=env, capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    ids_arg = ['--ids', *expected] if expected else []
+    assert [json.loads(line) for line in receipt.read_text().splitlines()] == [
+        ['run', 'freetier-probe', '--registry', 'registry.yaml', '--failures', 'failures', *ids_arg],
+        ['run', 'freetier-bars', *ids_arg],
+        ['run', 'freetier-quotes', '--report', *expected],
+    ]
+    assert summary.read_text().splitlines() == ['freetier-bars', 'freetier-quotes']
 
 
 def test_targeted_workflow_does_not_start_unrelated_mutations_or_outreach():

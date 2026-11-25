@@ -2,11 +2,14 @@
 from __future__ import annotations
 
 import json
-import yaml
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import yaml
+from pydantic import ValidationError
+
 from . import git
+from .models import Entry
 
 CRITERIA = ('existing_behavior', 'reuse', 'copy', 'user_path', 'regression', 'diff', 'eligibility')
 ELIGIBILITY_FIELDS = ('plan', 'payment', 'regions', 'limits', 'deadline', 'conflicts')
@@ -15,6 +18,18 @@ ELIGIBILITY_FUTURE_SKEW_MINUTES = 5
 CONFLICT_STATES = ('none', 'resolved', 'unresolved')
 WITHDRAWAL_VERDICTS = ('ended', 'ineligible')
 SIGNOFFS = '.remember/review-signoffs'
+
+
+def _same_registry_facts(before: dict | None, after: dict | None) -> bool:
+    if before == after:
+        return True
+    if before is None or after is None:
+        return False
+    try:
+        return Entry.model_validate(before) == Entry.model_validate(after)
+    except ValidationError:
+        # Old or invalid records still require review when their raw data changes.
+        return False
 
 
 def vendor_scope(repo: Path, base: str, sha: str) -> dict:
@@ -32,9 +47,11 @@ def vendor_scope(repo: Path, base: str, sha: str) -> dict:
         indexes.append({e['id']: {k: v for k, v in e.items() if k != 'search'}
                         for e in index.get('entries', [])})
         registries.append({e['id']: e for e in registry.get('entries', [])})
-    rows = set()
-    for left, right in (indexes, registries):
-        rows.update(row for row in left.keys() | right.keys() if left.get(row) != right.get(row))
+    left, right = indexes
+    rows = {row for row in left.keys() | right.keys() if left.get(row) != right.get(row)}
+    left, right = registries
+    rows.update(row for row in left.keys() | right.keys()
+                if not _same_registry_facts(left.get(row), right.get(row)))
     for path in git.changed_paths(repo, base, sha):
         if path.startswith('providers/') and path.endswith('.md'):
             old, new = (git.show(repo, ref, path) or '' for ref in (base, sha))

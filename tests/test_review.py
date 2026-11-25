@@ -556,9 +556,18 @@ def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_fac
     assert '2026-10-11' in (bundle.out / 'diff.patch').read_text()
 
 
-@pytest.mark.parametrize('substantive', [False, True])
-def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(push_repo, substantive):
+@pytest.mark.parametrize('change', ['metadata', 'page', 'registry'])
+def test_only_substantive_registry_and_page_changes_expand_vendor_scope(push_repo, change):
+    from test_models import sample_entry
+
     repo, _, _ = push_repo
+    registry = repo / 'registry.yaml'
+    row = sample_entry()
+    row['id'] = 'vendor'
+    limits = {'context_tokens': 32768, 'output_tokens': 16384, 'source': row['probe']['endpoint']}
+    row['api'] = {'base_url': 'https://openrouter.ai/api/v1', 'model_ids': ['qwen3-coder:free'],
+                  'model_limits': {'qwen3-coder:free': limits}}
+    registry.write_text(json.dumps({'entries': [row]}, default=str))
     page = repo / 'providers/vendor.md'
     page.parent.mkdir(exist_ok=True)
     page.write_text('---\ntitle: Vendor\nlast_modified_at: 2026-10-10\n---\n# Vendor\n\nLimit: 10 requests/day\n')
@@ -569,18 +578,19 @@ def test_page_metadata_migration_and_search_derivatives_share_one_vendor_scope(p
     (repo / 'index.json').write_text(json.dumps(data))
     page.write_text(page.read_text().replace('last_modified_at: 2026-10-10',
                                            'last_modified_at: 2026-10-24'))
-    if substantive:
+    del limits['source']
+    if change == 'page':
         page.write_text(page.read_text().replace('10 requests/day', '20 requests/day'))
+    if change == 'registry':
+        limits['output_tokens'] = 8192
+    registry.write_text(json.dumps({'entries': [row]}, default=str))
     subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
     subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: reconcile content'], check=True)
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
-    from freetier_radar.quality import vendor_scope
-    expected = ['vendor'] if substantive else []
-    assert scope['rows'] == expected
-    assert vendor_scope(repo, scope['base'], scope['sha'])['rows'] == expected
-    assert scope['eligibility'] == ({'vendor': ['alpha', 'beta']} if substantive else {})
-    assert scope['paths'] == ['index.json', 'providers/vendor.md']
+    assert scope['rows'] == ([] if change == 'metadata' else ['vendor'])
+    assert scope['eligibility'] == ({} if change == 'metadata' else {'vendor': ['alpha', 'beta']})
+    assert scope['paths'] == ['index.json', 'providers/vendor.md', 'registry.yaml']
 
 
 @pytest.fixture(scope='module')

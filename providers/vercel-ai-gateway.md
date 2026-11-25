@@ -3,7 +3,7 @@ layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-11-23'
 description: 'OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes. Free models: nemotron-3.5-lightning, beam-1.0, laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise requests return `403…'
 permalink: /providers/vercel-ai-gateway/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-25
 crumb: Vercel AI Gateway
 model_sort: true
 ---
@@ -55,7 +55,7 @@ Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it go
 curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
   -H "Authorization: Bearer $VERCEL_AI_GATEWAY_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"poolside/laguna-s-2.1-free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"nvidia/nemotron-3.5-lightning-free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
