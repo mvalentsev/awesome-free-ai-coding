@@ -110,12 +110,12 @@ async def collect(entries: list[Entry], blocklist: dict[str, str], today: date,
                     if listed is None:
                         response = None
                     else:
-                        response, failure = join_free_list(response, listed, e.probe.lane)
+                        response, failure = join_free_list(response, listed, e.probe.lane, today=today)
                         if failure:
                             notes.append(failure)
                 if response is None:
                     notes.append('last-offer probe source is unavailable')
-                elif finding := check_content(response, e):
+                elif finding := check_content(response, e, today=today):
                     notes.append(finding)
             if endpoint and endpoint not in urls:
                 urls.append(endpoint)

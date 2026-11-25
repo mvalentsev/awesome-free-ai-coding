@@ -332,11 +332,11 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                     findings.append('current free list unreadable; eligibility not established')
                     current = None
                 else:
-                    current, failure = join_free_list(current, listed, entry.probe.lane)
+                    current, failure = join_free_list(current, listed, entry.probe.lane, today=today)
                     if failure:
                         findings.append(failure)
             if current is not None:
-                if content := check_content(current, entry):
+                if content := check_content(current, entry, today=today):
                     findings.append(content)
                 if missing := unevidenced_families(current, entry):
                     findings.append('listed families not evidenced: ' + ', '.join(missing))

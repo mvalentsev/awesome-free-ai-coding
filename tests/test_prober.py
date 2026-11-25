@@ -1,6 +1,6 @@
 import json
 import uuid
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import httpx
@@ -2495,6 +2495,30 @@ async def test_a_row_archived_for_good_is_not_probed_at_all(tmp_path, capsys):
 
     assert await _amain(registry, tmp_path / "failures", dry_run=True) == 0
     assert "probed 1 entries, 0 need attention" in capsys.readouterr().out
+
+
+@respx.mock
+async def test_catalog_uses_the_day_the_probe_started_across_utc_midnight(monkeypatch):
+    from freetier_radar import prober
+
+    retirement = date(2026, 8, 30)
+    monkeypatch.setattr(prober, "utc_today", lambda: retirement)
+    entry = api_entry()
+    entry = entry.model_copy(update={
+        "models": [], "retired_on": retirement,
+        "probe": entry.probe.model_copy(update={"require_zero_price": True}),
+    })
+    catalog = respx.get(entry.probe.endpoint)
+    catalog.respond(json={"data": [{"id": "qwen3-coder:free",
+                                     "pricing": {"prompt": "1", "completion": "1"}}]})
+    yesterday = retirement - timedelta(days=1)
+    async with httpx.AsyncClient() as http:
+        priced = await probe_entry(http, entry, today=yesterday)
+        assert priced == ProbeResult(ProbeStatus.FAIL, "no available free model ids in response")
+
+        catalog.respond(json={"data": [{"id": "qwen3-coder:free",
+                                         "pricing": {"prompt": "0", "completion": "0"}}]})
+        assert (await probe_entry(http, entry, today=yesterday)).status is ProbeStatus.PASS
 
 
 def test_an_announced_retirement_still_in_the_future_is_probed_normally():

@@ -737,9 +737,11 @@ def format_watchlist(watchlist: list[Watched], today: date) -> str:
 
 
 def probe_check_sync(entry: Entry, client: httpx.Client,
-                     time_left: Callable[[], float] | None = None) -> str | None:
+                     time_left: Callable[[], float] | None = None,
+                     *, today: date | None = None) -> str | None:
     """The run's probe, synchronous and single-shot, for vetting a proposal or a
     corrected row: None when the entry passes, else why it fails."""
+    today = today or utc_today()
     try:
         resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
         if entry.probe.type is ProbeType.PAGE_KEYWORDS:
@@ -750,17 +752,17 @@ def probe_check_sync(entry: Entry, client: httpx.Client,
     if not page_response_ok(resp):
         return f"HTTP {resp.status_code}"
     if entry.probe.free_list is not None:
-        resp, failure = join_free_list_sync(client, entry, resp)
+        resp, failure = join_free_list_sync(client, entry, resp, today=today)
         if resp is None:
             return failure
-    problem = check_content(resp, entry)
+    problem = check_content(resp, entry, today=today)
     if problem is None:
         # The run only flags a live row for this (see `unevidenced_families`); a
         # proposal or a correction has nothing live to protect and is refused.
         unevidenced = unevidenced_families(resp, entry)
         notes = (["listed families the page does not name: " + ", ".join(unevidenced)]
                  if unevidenced else [])
-        notes.extend(model_table_findings(resp, entry, utc_today()))
+        notes.extend(model_table_findings(resp, entry, today))
         sources = [exclusion.source for exclusion in entry.probe.model_exclusions]
         if entry.remaining_free:
             sources.append(entry.remaining_free.source)
@@ -1322,7 +1324,8 @@ def main() -> None:
                                                                        flush=True)),
                                today,
                                evidence=evidence,
-                               verifier=lambda e: probe_check_sync(e, probe_client, deadline.remaining),
+                               verifier=lambda e: probe_check_sync(e, probe_client, deadline.remaining,
+                                                                   today=today),
                                blocklist=blocklist,
                                dismissed=dismissed,
                                watchlist=watchlist,

@@ -187,6 +187,12 @@ def _registry(text: str | None) -> list[Entry]:
     return [Entry.model_validate(e) for e in (load_yaml(text) or {}).get("entries", [])]
 
 
+def _earned_registry_problems(before: str | None, after: str | None) -> list[str]:
+    if before == after:
+        return []
+    return earned_problems(_registry(before), _registry(after))
+
+
 def _pages_at(repo: Path, rev: str) -> set[str]:
     """The published pages a commit holds; none for a revision that does not exist yet."""
     return _kept(git.run(repo, "ls-tree", "-r", "--name-only", rev).stdout.splitlines())
@@ -324,8 +330,8 @@ def pre_commit(repo: Path, steps: list[Step] | None = None) -> list[str]:
                                          git.show(repo, "", "registry.yaml"),
                                          git.show(repo, "", "index.json"),
                                          datetime.now(timezone.utc))
-        problems += earned_problems(_registry(git.show(repo, "HEAD", "registry.yaml")),
-                                    _registry(git.show(repo, "", "registry.yaml")))
+        problems += _earned_registry_problems(git.show(repo, "HEAD", "registry.yaml"),
+                                              git.show(repo, "", "registry.yaml"))
     return problems
 
 
@@ -355,27 +361,40 @@ def _checked_from(repo: Path, base: str, local: str) -> str:
 def diff(repo: Path, base: str, earned: bool) -> list[str]:
     """The log rules — and with `earned` the earned fields — between `base` and
     the working tree: for CI, and for the scheduled run before it commits."""
-    base = _checked_from(repo, base, "HEAD")
-    problems = page_problems(_pages_at(repo, base), _pages_on_disk(repo))
-    for name in LOGS:
-        now = (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
-        problems += log_problems(name, git.show(repo, base, name), now)
-    problems += _history_by_commit(repo, base, "HEAD")
+    resolved = git.run(repo, "rev-parse", "--verify", "--end-of-options", f"{base}^{{commit}}")
+    if resolved.returncode:
+        return [f"cannot resolve the comparison commit: {base}"]
+    base = _checked_from(repo, resolved.stdout.strip(), "HEAD")
 
     def on_disk(name: str) -> str | None:
-        return (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
+        path = repo / name
+        return path.read_text(encoding="utf-8") if path.is_file() else None
+
+    problems = page_problems(_pages_at(repo, base), _pages_on_disk(repo))
+    logs = {name: on_disk(name) for name in LOGS}
+    for name in LOGS:
+        problems += log_problems(name, git.show(repo, base, name), logs[name])
+    problems += _history_by_commit(repo, base, "HEAD")
+
     # The working tree, where the scheduled run checks what it is about to
     # commit; a tree that is HEAD's own was read with HEAD's commit above.
+    registry = on_disk("registry.yaml")
+    index = on_disk("index.json")
+    head_registry = git.show(repo, "HEAD", "registry.yaml")
+    head_index = git.show(repo, "HEAD", "index.json")
     for name in RECORDED:
-        if all(on_disk(n) == git.show(repo, "HEAD", n) for n in (name, "registry.yaml", "index.json")):
+        history = git.show(repo, "HEAD", name)
+        if (history, head_registry, head_index) == (logs[name], registry, index):
             continue
-        problems += history_problems(git.show(repo, "HEAD", name), on_disk(name),
-                                     on_disk("registry.yaml"), on_disk("index.json"),
-                                     datetime.now(timezone.utc))
+        problems += history_problems(history, logs[name], registry, index, datetime.now(timezone.utc))
     if earned:
-        registry = repo / "registry.yaml"
-        problems += earned_problems(_registry(git.show(repo, base, "registry.yaml")),
-                                    _registry(registry.read_text(encoding="utf-8")))
+        # Check individual changes as well as the merge result and any working
+        # tree edits. A later restore must not hide an earlier edit in the PR.
+        proposed = _earned_by_commit(repo, base, "HEAD", allow_verification=False)
+        problems += [f"{sha}: {problem}" for sha, problem in proposed]
+        reported = {problem for _, problem in proposed}
+        problems += [p for p in _earned_registry_problems(git.show(repo, base, "registry.yaml"), registry)
+                     if p not in reported]
     return problems
 
 
@@ -427,22 +446,22 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
                 problems += history_problems(git.show(repo, fork, name), git.show(repo, local, name),
                     git.show(repo, local, "registry.yaml"), git.show(repo, local, "index.json"), made)
         problems += _history_by_commit(repo, base, local)
-        problems += _earned_by_commit(repo, base, local)
+        problems += [f"{sha}: {problem}" for sha, problem in
+                     _earned_by_commit(repo, base, local, allow_verification=True)]
     return problems
 
 
-def _earned_by_commit(repo: Path, base: str, local: str) -> list[str]:
-    """The earned-field rule for each commit the push adds that the scheduled
-    run did not make — its own verification commits are where those fields are
-    written."""
+def _earned_by_commit(repo: Path, base: str, local: str, *,
+                      allow_verification: bool) -> list[tuple[str, str]]:
+    """Earned field edits in individual non-merge commits, with their revisions."""
     problems = []
     for sha, author in git.commits(repo, "--reverse", "--no-merges", f"{base}..{local}",
                                    field="%an"):
-        if author == "freetier-bot":
+        if allow_verification and author == "freetier-bot":
             continue
-        problems += [f"{sha[:7]}: {p}" for p in earned_problems(
-            _registry(git.show(repo, f"{sha}^", "registry.yaml")),
-            _registry(git.show(repo, sha, "registry.yaml")))]
+        before = git.show(repo, f"{sha}^", "registry.yaml")
+        after = git.show(repo, sha, "registry.yaml")
+        problems.extend((sha[:7], p) for p in _earned_registry_problems(before, after))
     return problems
 
 

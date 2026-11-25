@@ -44,14 +44,17 @@ def test_contributing_writer_generates_rule_values_from_the_registered_truth(tmp
     sentence = "A verdict is retained and it expires after {} days, at which point the scout\n"
     root = _root(tmp_path, sentence.format(90) + sentence.format(30) +
                           "The vendor's historical offer lasted 30 days.\n" +
+                          "Without an answering id, a first-id 401/403 fails the probe unless `api.notice` holds it.\n" +
                           f"{MAP_BEGIN}\nold map\n{MAP_END}\n")
-    claim = next(c for c in CLAIMS if c.source == "models.WATCH_RECHECK_DAYS")
+    rules = tuple(c for c in CLAIMS if c.source in {"models.WATCH_RECHECK_DAYS", "prober.KEYLESS_REFUSED"})
     monkeypatch.setattr(claims, "WATCH_RECHECK_DAYS", 90)
-    assert check_claims(root, (claim,), scheduled=())
+    monkeypatch.setattr(claims, "KEYLESS_REFUSED", (401, 403, 407))
+    assert len(check_claims(root, rules, scheduled=())) == 2
     text = render_contributing(root / "CONTRIBUTING.md", root / "CONTRIBUTING.md")
     assert text.count("expires after 90 days") == 2
     assert "The vendor's historical offer lasted 30 days." in text
-    assert check_claims(root, (claim,), scheduled=()) == []
+    assert "a first-id 401/403/407 fails the probe" in text
+    assert check_claims(root, rules, scheduled=()) == []
 
 
 def test_contributing_writer_generates_the_evidence_age_and_its_unit(tmp_path, monkeypatch):

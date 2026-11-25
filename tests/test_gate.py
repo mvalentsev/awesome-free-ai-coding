@@ -237,6 +237,29 @@ def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(gat
         "registry makes"]
 
 
+def test_pr_check_refuses_an_earned_edit_even_if_a_later_commit_restores_it(gate_history_repo):
+    repo = gate_history_repo
+    _git(repo, "switch", "-qc", "proposal")
+    save_registry(repo / "registry.yaml", [row(last_verified=date(2026, 9, 22))])
+    _git(repo, "commit", "-qam", "chore: change a verification date")
+    edited = _git(repo, "rev-parse", "HEAD").strip()[:7]
+    save_registry(repo / "registry.yaml", [row()])
+    _git(repo, "commit", "-qam", "chore: restore the verification date")
+    _git(repo, "switch", "-q", "main")
+    _git(repo, "merge", "-q", "--no-ff", "proposal")
+
+    assert diff(repo, "HEAD^1", earned=False) == []
+    problems = diff(repo, "HEAD^1", earned=True)
+    assert len(problems) == 2
+    assert problems[0].startswith(f"{edited}: registry: x last_verified 2026-09-21 → 2026-09-22")
+    assert "last_verified 2026-09-22 → 2026-09-21" in problems[1]
+
+
+def test_diff_refuses_an_unavailable_base(gate_history_repo):
+    assert diff(gate_history_repo, "missing-base", earned=False) == [
+        "cannot resolve the comparison commit: missing-base"]
+
+
 def test_a_push_is_checked_from_the_commit_its_owner_ratified(monkeypatch, gate_history_repo):
     """A push or a CI run that meets a commit named in `gate.RATIFIED` checks the
     logs and the earned fields from it on, and holds the commits after it as
@@ -253,7 +276,7 @@ def test_a_push_is_checked_from_the_commit_its_owner_ratified(monkeypatch, gate_
     refused = diff(repo, base, earned=True)
     assert [p.split(" — ")[0] for p in refused] == [
         "history.jsonl rewrites line 1 of what is committed",
-        "registry: x first_seen 2026-09-01 → 2026-09-02"]
+        f"{rebuilt[:7]}: registry: x first_seen 2026-09-01 → 2026-09-02"]
 
     monkeypatch.setattr(gate, "RATIFIED", {rebuilt: "the log rebuilt from main's history"})
     assert diff(repo, base, earned=True) == []

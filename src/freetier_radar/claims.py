@@ -35,7 +35,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
                      CODEX_LITELLM_PROFILE, Entry, NOTICE_HOLD_DAYS,
                      SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
                      load_registry, probe_cron, probe_frequency)
-from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
+from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, KEYLESS_REFUSED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
 from .render import (BROWSE_COMPARE_LIMIT, CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE,
                      MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT, PAGES_URL,
@@ -788,6 +788,8 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           lambda root: (_word(MODEL_PAGE_ROWS),), "render.MODEL_PAGE_ROWS", generated=True),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",
           lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED", generated=True),
+    Claim("CONTRIBUTING.md", r"a first-id (\d+(?:/\d+)*) fails the probe unless `api.notice` holds it",
+          lambda root: ("/".join(map(str, KEYLESS_REFUSED)),), "prober.KEYLESS_REFUSED", generated=True),
     Claim("CONTRIBUTING.md", r"A later id answering is reported as `([^`]+)`\s+naming both results",
           lambda root: (ProbeStatus.STALE_IDS.value,),
           "prober.keyless_lane_verdict and HTTP alternate-completion notice regression in tests/test_prober.py"),

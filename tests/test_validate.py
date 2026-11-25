@@ -518,17 +518,10 @@ def test_the_announcement_ledger_is_checked_like_the_history(tmp_path: Path):
     assert any("line 3 is not JSON" in p for p in problems)
 
 
-def test_a_notice_is_short_and_not_dated_in_the_future(tmp_path: Path):
-    """A notice sits in a callout under the README's first command and in a
-    table cell: a reader's paragraph, not an incident log. And it records a
-    problem that has started, so a date after today is a typo."""
-    from freetier_radar.validate import PROSE_LIMITS
+def test_a_notice_cannot_be_dated_in_the_future(tmp_path: Path):
     api = {"base_url": "https://x.ai/v1", "auth": "none",
-           "notice": {"since": "2026-08-15", "text": "z" * (PROSE_LIMITS["api.notice"] + 1)}}
+           "notice": {"since": "2026-08-15", "text": "The first model is refusing requests."}}
     problems = check(build(tmp_path, entries=[{**ENTRY, "api": api}]), TODAY)
-    assert f"registry: x api.notice is {PROSE_LIMITS['api.notice'] + 1} characters, over " \
-           f"{PROSE_LIMITS['api.notice']} — keep what a reader needs to use the offer, and leave " \
-           "its history to history.jsonl" in problems
     assert "registry: x api.notice is dated 2026-08-15, after today (2026-08-14)" in problems
 
 

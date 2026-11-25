@@ -117,7 +117,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         resp, stop = await _read_free_list(client, entry, resp, attempts, backoff, today=today)
         if stop is not None:
             return stop
-    detail = check_content(resp, entry)
+    detail = check_content(resp, entry, today=today)
     if (detail is not None and entry.probe.type is ProbeType.API_MODELS
             and _catalog_note_status(entry, False) is ProbeStatus.INCONCLUSIVE):
         ids = _catalog_ids(resp, entry)
@@ -407,8 +407,8 @@ async def _read_free_list(client: httpx.AsyncClient, entry: Entry, catalog: http
     return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"free list {url} {failure}")
 
 
-def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Response
-                        ) -> tuple[httpx.Response | None, str]:
+def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Response,
+                        *, today: date | None = None) -> tuple[httpx.Response | None, str]:
     """join_free_list for the scout's synchronous client: the catalog with the
     marks on it, or None and why the list could not be read."""
     url = entry.probe.free_list
@@ -419,7 +419,7 @@ def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Respo
     listed = recover_page_sync(client, listed)
     if not page_response_ok(listed):
         return None, f"free list {url} answered HTTP {listed.status_code}"
-    joined, failure = join_free_list(catalog, listed, entry.probe.lane)
+    joined, failure = join_free_list(catalog, listed, entry.probe.lane, today=today)
     return (joined, "") if joined is not None else (None, f"free list {url} {failure}")
 
 
@@ -1295,14 +1295,14 @@ async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
     return resp, ""
 
 
-def check_content(resp: httpx.Response, entry: Entry) -> str | None:
+def check_content(resp: httpx.Response, entry: Entry, *, today: date | None = None) -> str | None:
     """None = content confirms the entry; string = what is missing.
 
     Works on both sync and async httpx responses, so the scout reuses it to
     vet newly proposed entries before accepting them.
     """
     if entry.probe.type is ProbeType.API_MODELS:
-        return _check_api_models(resp, entry)
+        return _check_api_models(resp, entry, today=today)
     return _check_page_keywords(resp, entry)
 
 
@@ -1686,6 +1686,7 @@ def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
     marks = free_list_marks(free_list)
     if isinstance(marks, str):
         return None, marks
+    today = today or utc_today()
     # The announced date is not proof of withdrawal: GLM's attribute says
     # 10/27 but its notice says supported through 10/28, with isDeprecated=false.
     # https://build.nvidia.com/z-ai/glm-5-3 (checked 2026-10-15).
@@ -1697,7 +1698,7 @@ def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
             announced_day = datetime.strptime(stamp, "%m/%d/%Y").date()
         except ValueError:
             return None, f"unreadable retirement date {stamp!r} for {key}"
-        if announced_day < (today or utc_today()):
+        if announced_day < today:
             return None, (f"announced retirement date {stamp} has passed for {key}; "
                           "current endpoint availability requires review")
     try:
@@ -1720,8 +1721,8 @@ def _empty_lane(resp: httpx.Response, lane: str) -> str:
     return f"response has no {lane!r} lane"
 
 
-def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool = True) -> str | None:
-    from .models import entry_id_family, is_archived_for_good
+def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool = True,
+                      today: date | None = None) -> str | None:
     items = _catalog_items(resp, entry.probe.lane)
     if items is None:
         return "response is not JSON"
@@ -1729,8 +1730,8 @@ def _check_api_models(resp: httpx.Response, entry: Entry, *, check_routers: bool
         if entry.probe.lane is not None:
             return _empty_lane(resp, entry.probe.lane)
         return "no model ids in response"
-    if (not entry.models and not is_archived_for_good(entry, utc_today())
-            and entry.probe.require_zero_price and not any(
+    if (not entry.models and entry.probe.require_zero_price
+            and not is_archived_for_good(entry, today or utc_today()) and not any(
             _model_id(m) and entry.probe.carries_marker(_model_id(m))
             and not _is_withdrawn(m) and _is_free(m) for m in items)):
         return "no available free model ids in response"

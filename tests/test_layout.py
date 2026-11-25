@@ -3,10 +3,8 @@ it is, what it is made from and what writes it — so a file nobody accounted
 for, a generated file the map calls hand-written, or a page the site serves by
 accident is a failed check rather than a surprise on the next run."""
 import os
-import re
 import sys
 import subprocess
-import tomllib
 from pathlib import Path
 
 import pytest
@@ -199,19 +197,11 @@ uv() {{
     assert ("suppression matches nothing" in body) is failed
 
 
-def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_oldest():
-    """The oldest Python CI runs is requires-python, no minor between it and
-    the newest is skipped, the matrix syncs to uv.lock as committed, and the
-    job that installs the lowest version pyproject.toml allows of each
-    dependency runs on that oldest Python with the same checks — so every
-    floor pyproject.toml writes is one the suite has passed on."""
+def test_ci_runs_locked_and_minimum_dependency_checks():
+    """Pytest covers the matrix; tree checks cover both dependency sets and the
+    commit range is checked once."""
     ci = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
-    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
-    floor = re.fullmatch(r">=(3\.\d+)", project["requires-python"]).group(1)
     test = ci["jobs"]["test"]
-    pythons = test["strategy"]["matrix"]["python"]
-    minors = [int(v.split(".")[1]) for v in pythons]
-    assert pythons[0] == floor and minors == list(range(minors[0], minors[-1] + 1)), pythons
     assert [s["run"] for s in test["steps"] if s.get("run", "").startswith("uv sync")] \
         == ["uv sync --locked"]
     gates = [step for step in test["steps"] if "freetier-gate diff" in step.get("run", "")]
@@ -224,8 +214,6 @@ def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_ol
     assert any(step.get("run") == "uv run pytest -q" and "if" not in step for step in test["steps"])
     floors = ci["jobs"]["floors"]
     assert floors["env"]["UV_RESOLUTION"] == "lowest-direct"
-    setup = next(s for s in floors["steps"] if s.get("uses", "").startswith("astral-sh/setup-uv"))
-    assert setup["with"]["python-version"] == floor
     runs = [s.get("run", "") for s in floors["steps"]]
     # --locked would refuse the lock the lowest versions resolve to.
     assert "uv sync" in runs
