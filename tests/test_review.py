@@ -696,6 +696,32 @@ def test_workflow_rerun_uses_the_newest_attempt_and_not_an_older_green_run():
     assert review.workflow_state([old, new], 'a' * 40, {'ci'}) == 'waiting'
 
 
+def test_failed_writer_still_collects_the_pages_deployment(tmp_path, monkeypatch):
+    sha = 'a' * 40
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    bundle.save('scope', {'sha': sha, 'base': 'b' * 40, 'workflows': ['update', review.PAGES_WORKFLOW],
+                          'verification_run': 1})
+    writer = {'name': 'update', 'headSha': 'b' * 40, 'producedSha': sha, 'status': 'completed',
+              'conclusion': 'failure', 'databaseId': 1, 'attempt': 1}
+    bundle.save('verification-run', writer)
+    pages = {**writer, 'name': review.PAGES_WORKFLOW, 'headSha': sha, 'databaseId': 2,
+             'conclusion': 'success'}
+    runs = iter(([], [pages]))
+
+    def github(*args):
+        if args[:2] == ('run', 'list'):
+            return json.dumps(next(runs))
+        if '--log' in args:
+            return f'full log for {args[2]}'
+        return json.dumps(writer) if args[:2] == ('run', 'view') else '[]'
+
+    monkeypatch.setattr(review, 'gh', github)
+    monkeypatch.setattr(review.time, 'sleep', lambda _: None)
+    result = review.wait_workflows(bundle)
+    assert result['state'] == 'failed' and result['passed'] is False
+    assert (bundle.out / 'workflows/2-1.log').read_text() == 'full log for 2'
+
+
 @pytest.mark.parametrize('message,passed', [
     ('recorded delivery at ' + 'a' * 40, True),
     ('a' * 40 + ' already reconciled', True),
@@ -805,6 +831,19 @@ async def test_publication_checks_excluded_readmes_on_github_and_served_assets_o
     for path in paths[3:]:
         assert ('source', path) in checked
         assert ('served', path) in checked
+
+    # A later scout failure leaves the deployed bytes independently checkable.
+    scope = bundle.load('scope')
+    scope['workflows'].append('update')
+    bundle.save('scope', scope)
+    workflows = bundle.load('workflows')
+    workflows.update(passed=False, state='failed')
+    workflows['runs'].append({'name': 'update', 'headSha': sha,
+                              'status': 'completed', 'conclusion': 'failure'})
+    bundle.save('workflows', workflows)
+    failed = await review.publication(bundle)
+    assert not failed['passed'] and failed['bytes_passed'] and failed['checks']
+    assert all(check['passed'] for check in failed['checks'])
 
 
 @pytest.mark.parametrize('served_status', [404, 200])
@@ -1309,9 +1348,12 @@ def test_verification_log_must_prove_the_exact_produced_commit(tmp_path, history
     verified = review.produced_run(repo, sha, run, log, 'update')
     assert verified['headSha'] != sha
     assert verified['producedSha'] == sha
-    for wrong_run, wrong_log in (({**run, 'conclusion': 'failure'}, log),
+    failed = review.produced_run(repo, sha, {**run, 'conclusion': 'failure'}, log, 'update')
+    assert review.workflow_state([failed], sha, {'update'}) == 'failed'
+    for wrong_run, wrong_log in (({**run, 'status': 'in_progress'}, log),
                                  ({**run, 'name': 'ci'}, log), (run, 'dry run'),
-                                 (run, log.replace(sha[:7], run['headSha'][:7]))):
+                                 (run, log.replace(sha[:7], run['headSha'][:7])),
+                                 (run, log.replace('verification ', 'verification-other '))):
         with pytest.raises(ValueError):
             review.produced_run(repo, sha, wrong_run, wrong_log, 'update')
     assert review.workflow_state([verified], sha, {'update'}) == 'passed'
@@ -1359,18 +1401,6 @@ def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeyp
     with pytest.raises(ValueError, match='exact produced commit'):
         review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / '.evidence/bad', repo),
                        verification_run=3)
-
-    for index, (bad_run, bad_log) in enumerate([
-        ({**run, 'conclusion': 'failure'}, log),
-        ({**run, 'name': 'ci'}, log),
-        (run, log.replace(sha[:7], run['headSha'][:7])),
-        (run, log.replace('chore: '+subject, 'chore: '+subject+'-other')),
-    ]):
-        monkeypatch.setattr(review, 'gh', lambda *args: bad_log if '--log' in args else json.dumps(bad_run))
-        with pytest.raises(ValueError):
-            review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / ('.evidence/rejected-'+str(index)), repo),
-                           verification_run=3)
-
 
 def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path, history_repo):
     repo = history_repo

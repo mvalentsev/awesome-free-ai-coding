@@ -184,7 +184,7 @@ upper half, which earns the model a page of its own and no strong mark — and n
 tier below the median or where nothing was measured. An explicit `null` score in
 a readable current leaderboard clears the old tier; a missing model or unreadable
 source preserves it for review. The measurement writer accepts only the reviewed
-index version `5.0.1`; a missing, ambiguous or different revision stops it before
+index version `5.0.2`; a missing, ambiguous or different revision stops it before
 registry or snapshot writes. The snapshot records its version and keeps missing
 measurements, unscored records and deprecated variants distinct. Scores from
 different index revisions must not be combined in one current comparison.
@@ -281,8 +281,10 @@ delisted row with its reason if an earlier change deleted it.
 ### Usage quotas
 
 `quotas` stores `amount`, `unit`, `period` and `scope`. Each allowance cites
-its source and exact quote; optional conditions and reset words need evidence on
-that same source. The scheduled probe flags changed or unreadable quotas beside a
+its source and exact quote. A catalog quota can inherit the model catalog URL.
+Other quotas can inherit the direct page probe URL. Keep a separate source for
+independent pages and indexed documents. Conditions and reset words need
+evidence on the same source. The scheduled probe flags changed or unreadable quotas beside a
 still-live offer. Catalog checks bind the quote to each named model ID; constant
 checks compare the numeric JavaScript value. Read modes are `page`, `catalog`, `constant`, `table`, `catalog-field`, and `script-field`. Table bindings identify
 the plan, model row and value column; catalog fields identify the model and tier.
@@ -1003,8 +1005,10 @@ Pages byte checks use the repository map: only files marked `published` are
 served there. Changed README files are also checked at the exact GitHub commit,
 including documentation excluded from Pages.
 For a bot verification or expiry commit, add `prepare --verification-run <producer-run-id>`:
-the full successful writer log must prove which commit it produced. The writer
-runs its own checks and dispatches IndexNow separately.
+the completed writer log must identify the exact commit it produced. A later
+failure stays visible in the workflow result. A successful Pages deployment
+allows byte comparison even if scouting failed. The writer runs its own checks
+and dispatches IndexNow separately.
 It prints workflow updates only when their state changes. Run the emitted
 `browser.js` with Playwright's `browser_run_code_unsafe` filename argument,
 save the returned JSON privately, and import it with `browser --result <file>`.

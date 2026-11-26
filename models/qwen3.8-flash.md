@@ -11,7 +11,7 @@ crumb: qwen3.8-flash
 
 # Where qwen3.8-flash is free
 
-**One row on the list serves `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-26; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-flash-next), below its strong bar.
+**One row on the list serves `qwen3.8-flash` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The provider's last scheduled probe was on 2026-11-26; its offer is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

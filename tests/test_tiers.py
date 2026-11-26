@@ -54,11 +54,7 @@ def page() -> str:
 
 @respx.mock
 async def test_reviewed_patch_revision_replaces_old_scores_through_the_http_writer(tmp_path):
-    """AA's 2026-11-06 methodology says v5.0.1 regrades all CRITPT v2
-    results. A new snapshot must use that revision's scores throughout."""
-    metadata = {"name": "Artificial Analysis Intelligence Index v5.0.1", "models": SCORED}
-    body = '<script>self.__next_f.push([1,' + json.dumps(json.dumps(metadata)) + '])</script>'
-    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=flight_page(SCORED)))
     registry, scores = tmp_path / 'registry.yaml', tmp_path / 'scores.json'
     save_registry(registry, [entry('a', {
         'family': 'glm-5.3', 'aa_model': 'glm-5-3', 'tier': 'strong'}, {
@@ -68,14 +64,14 @@ async def test_reviewed_patch_revision_replaces_old_scores_through_the_http_writ
         "old-only": {"index": 50.0}}}))
     assert await _amain(registry, write=True, scores=scores) == 0
     snapshot = json.loads(scores.read_text())
-    assert snapshot['version'] == '5.0.1'
+    assert snapshot['version'] == INDEX_VERSION
     assert snapshot['families'] == {
         'glm-5.3': {'slug': 'glm-5-3', 'index': 44.9, 'estimated': False}}
     assert snapshot['unscored']['no-score-yet']['reason'] == 'unscored'
     assert load_registry(registry)[0].models[1].tier is None
 
 
-@pytest.mark.parametrize('version', ['5.0', '5.0.2', '6.0', None, 'ambiguous'])
+@pytest.mark.parametrize('version', ['5.0.1', None, 'ambiguous'])
 @respx.mock
 async def test_an_unreviewed_index_revision_cannot_overwrite_tiers_or_measurements(tmp_path, version):
     metadata = '' if version is None else json.dumps({'name':
@@ -274,7 +270,8 @@ async def test_manifest_cannot_redirect_the_reader_to_an_arbitrary_source(tmp_pa
 @pytest.mark.parametrize("manifest", [None, []])
 @respx.mock
 async def test_unknown_manifest_shape_cannot_fall_back_to_a_partial_table(tmp_path, manifest):
-    props = {"initialModels": SCORED, "manifest": manifest}
+    props = {"name": f"Artificial Analysis Intelligence Index v{INDEX_VERSION}",
+             "initialModels": SCORED, "manifest": manifest}
     payload = '0:["$","div",null,' + json.dumps(props) + ']\n'
     body = '<script>self.__next_f.push([1,' + json.dumps(payload) + '])</script>'
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=body))

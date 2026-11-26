@@ -301,7 +301,8 @@ async (page) => {
           if(await list.count()!==1) throw Error('Missing shared model list');
           if(await list.getAttribute('open')!==null) throw Error('README list initially open');
           await list.locator('summary').click();
-          await list.locator('li').first().waitFor({state:'visible'});
+          const openList=list.and(page.locator('details[open]'));
+          await openList.waitFor();
           // Read the open state and all labels together: GitHub can replace the
           // article between remote reads (661f29a4, checked 2026-11-24).
           await list.evaluate((details,plan)=>{
@@ -317,8 +318,11 @@ async (page) => {
               }
             }
           },plan);
-          await list.locator('summary').click();
-          await list.locator('li').first().waitFor({state:'hidden'});
+          await openList.locator('summary').press('Enter');
+          // On GitHub (2026-11-26) a closed details can retain list item layout boxes.
+          await openList.waitFor({state:'detached'});
+          const closed=await list.evaluate(d=>!d.open && !d.querySelector('li').checkVisibility());
+          if(!closed) throw Error('README list did not close');
 {% else %}
           if(await list.count()!==0) throw Error('Unexpected README model list');
 {% endif %}

@@ -462,6 +462,13 @@ class Probe(BaseModel):
     def model_catalog(self) -> str | None:
         return self.endpoint if self.type is ProbeType.API_MODELS else self.catalog
 
+    def quota_source(self, read: str) -> str | None:
+        if read == "catalog":
+            return self.model_catalog
+        if self.type is ProbeType.PAGE_KEYWORDS and self.follow is None:
+            return self.endpoint
+        return None
+
     def carries_marker(self, model_id: str) -> bool:
         """Whether an id carries `free_marker` in any case — every id does where
         the row sets none."""
@@ -1731,19 +1738,21 @@ class Entry(BaseModel):
 
     @model_validator(mode="before")
     @classmethod
-    def _catalog_quota_sources(cls, data):
+    def _inherited_quota_sources(cls, data):
         if not isinstance(data, dict) or not isinstance(quotas := data.get("quotas"), list):
             return data
         inherited = [i for i, q in enumerate(quotas) if isinstance(q, dict)
-                     and q.get("read") == "catalog" and "source" not in q and not q.get("follow")]
+                     and "source" not in q and not q.get("follow")]
         if not inherited or "probe" not in data:
             return data
         probe = Probe.model_validate(data["probe"])
-        if not probe.model_catalog:
-            raise ValueError("a catalog quota without a source needs a probe catalog")
         bound = quotas.copy()
         for i in inherited:
-            bound[i] = {**quotas[i], "source": probe.model_catalog}
+            read = quotas[i].get("read", "page")
+            source = probe.quota_source(read)
+            if not source:
+                raise ValueError(f"a {read} quota needs an explicit source or a matching probe source")
+            bound[i] = {**quotas[i], "source": source}
         return {**data, "probe": probe, "quotas": bound}
 
     @model_validator(mode="after")
@@ -2570,7 +2579,7 @@ _RegistryDumper.add_representer(
 def _row_payload(e: Entry) -> dict:
     row = e.model_dump(mode="json", exclude_none=True)
     for i, quota in enumerate(e.quotas):
-        if quota.read == "catalog" and quota.follow is None and quota.source == e.probe.model_catalog:
+        if quota.follow is None and quota.source == e.probe.quota_source(quota.read):
             del row["quotas"][i]["source"]
     if e.api and e.api.model_limits:
         for mid, limits in e.api.model_limits.items():

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM7.io free tier (archived): what it offered, and why it left the list'
-description: OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but…
+description: OpenAI-compatible API with dashboard tokens; the free allowance is unconfirmed. The quickstart directs users to obtain a dashboard token. The previous limits page is unavailable, and the documentation index lists no replacement.
 permalink: /providers/llm7/
 last_modified_at: 2026-11-26
 crumb: LLM7.io
@@ -15,7 +15,7 @@ crumb: LLM7.io
 
 ## What it offered
 
-OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models
+OpenAI-compatible API with dashboard tokens; the free allowance is unconfirmed
 
 ## Free models it listed
 
@@ -23,9 +23,7 @@ The row named no free model.
 
 ## Limits, in the vendor's words
 
-100,000 tokens/24 hours; 1 request/second; 60 requests/minute; 250 requests/hour per key
-
-Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but turbo alone does not establish eligibility: usage_based_only denotes paid usage. The operator names no upstream model provider.
+The quickstart directs users to obtain a dashboard token. The previous limits page is unavailable, and the documentation index lists no replacement.
 
 ## Evidence
 
@@ -36,6 +34,7 @@ Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may
 - Source: <https://github.com/chigwell/llm7.io/blob/main/TERMS.md>
 - Source: <https://docs.llm7.io/guides/models-api.md>
 - Source: <https://api.llm7.io/v1/models>
+- Source: <https://docs.llm7.io/llms.txt>
 
 ## History
 

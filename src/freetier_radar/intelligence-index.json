@@ -1,13 +1,13 @@
 {
-  "read_on": "2026-11-23",
+  "read_on": "2026-11-26",
   "source": "https://artificialanalysis.ai/leaderboards/models",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "top": {
     "slug": "claude-fable-5-2",
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
-    "index": 64.6
+    "index": 64.8
   },
-  "median": 28.6,
+  "median": 28.9,
   "families": {
     "command-a-plus": {
       "slug": "command-a-plus",
@@ -21,7 +21,7 @@
     },
     "deepseek-v4.1-flash-1017": {
       "slug": "deepseek-v4-1-flash-1017",
-      "index": 32.6,
+      "index": 32.4,
       "estimated": false
     },
     "gemini-3.5-flash-lite": {
@@ -41,12 +41,12 @@
     },
     "glm-5.3": {
       "slug": "glm-5-3",
-      "index": 31.7,
+      "index": 31.6,
       "estimated": false
     },
     "glm-5.3-flash": {
       "slug": "glm-5-3-flash",
-      "index": 27.8,
+      "index": 27.7,
       "estimated": false
     },
     "gpt-6-luna": {
@@ -61,7 +61,7 @@
     },
     "mimo-v2.6-flash": {
       "slug": "mimo-v2-6-flash",
-      "index": 26.7,
+      "index": 26.8,
       "estimated": false
     },
     "mimo-v2.6-pro": {
@@ -71,7 +71,7 @@
     },
     "minimax-m3": {
       "slug": "minimax-m3",
-      "index": 18.9,
+      "index": 19.0,
       "estimated": false
     },
     "minimax-m3.1-flash": {
@@ -116,7 +116,7 @@
     },
     "qwen3.8-flash": {
       "slug": "qwen3-8-flash-next",
-      "index": 28.6,
+      "index": 28.5,
       "estimated": false
     },
     "step-5-preview-600b-a27b": {

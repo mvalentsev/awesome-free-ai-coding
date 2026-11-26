@@ -661,3 +661,16 @@ async def test_expired_catalog_quota_is_not_reported_as_a_current_missing_claim(
         missing,_=await check_entries([e],client)
     assert missing==[]
     assert e.quotas[0].model_ids==['ended-model']
+
+
+def test_page_quota_source_round_trip_keeps_independent_evidence(tmp_path):
+    from freetier_radar.models import load_registry, save_registry
+    from freetier_radar.yaml_data import load_yaml
+    same_page = {**QUOTA, 'source': BASE['probe']['endpoint']}
+    entry = Entry.model_validate({**BASE, 'quotas': [same_page, QUOTA]})
+    path = tmp_path / 'registry.yaml'
+    save_registry(path, [entry])
+    same, external = load_yaml(path.read_text())['entries'][0]['quotas']
+    assert 'source' not in same
+    assert external['source'] == QUOTA['source']
+    assert load_registry(path) == [entry]

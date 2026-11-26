@@ -32,6 +32,8 @@ from .render import PAGES_URL, REPO_URL
 PUSH_BASE_FLAG = '--push-base'
 WORKFLOW_POLL_SECONDS = 15
 WORKFLOW_WAIT_SECONDS = 900
+PAGES_WORKFLOW = 'pages build and deployment'
+RUN_FIELDS = 'databaseId,name,status,conclusion,headSha,url,attempt'
 PRODUCER_WORKFLOWS = {'verification': ('update.yml', 'verification'),
                       'expiry': ('expire.yml', 'expire model promotions')}
 
@@ -140,18 +142,19 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
     before, after = index_at(base, repo=repo), index_at(sha, repo=repo)
     if before is None or after is None:
         raise ValueError('both commits must contain a readable index.json')
-    paths = git.run(repo, 'diff', '--name-only', '-z', base, sha).stdout.strip('\0').split('\0')
-    paths = [p for p in paths if p]
+    paths = git.changed_paths(repo, base, sha)
     deleted_paths = [p for p in git.run(repo, 'diff', '--name-only', '--diff-filter=D', '-z',
                                        base, sha).stdout.strip('\0').split('\0') if p]
-    push_paths = [p for p in git.run(repo, 'diff', '--name-only', '-z', push_base, sha).stdout.strip('\0').split('\0') if p]
     result = git.run(repo, 'diff', '--binary', base, sha)
     if result.returncode:
         raise ValueError('cannot read the complete diff')
     bundle.write('diff.patch', result.stdout.encode())
-    result = git.run(repo, 'diff', '--binary', push_base, sha)
-    if result.returncode:
-        raise ValueError('cannot read the push diff')
+    push_paths = paths
+    if push_base != base:
+        push_paths = git.changed_paths(repo, push_base, sha)
+        result = git.run(repo, 'diff', '--binary', push_base, sha)
+        if result.returncode:
+            raise ValueError('cannot read the push diff')
     bundle.write('push.diff.patch', result.stdout.encode())
     for ref, label in ((base, 'before'), (sha, 'after')):
         for path in ('registry.yaml', 'index.json'):
@@ -174,7 +177,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
     families = sorted(set(changed(before.get('models', []), after.get('models', []), 'family')) |
                       changed_pages('models', 'models', 'family'))
     eligibility = facts['eligibility']
-    required = {'pages build and deployment'}
+    required = {PAGES_WORKFLOW}
     indexnow_dispatch = False
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)
@@ -194,7 +197,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
             required.add(workflow['name'])
     if verification_run is not None:
         run = json.loads(gh('run', 'view', str(verification_run), '--repo', REPO_URL.removeprefix('https://github.com/'),
-                            '--json', 'databaseId,name,status,conclusion,headSha,url,attempt'))
+                            '--json', RUN_FIELDS))
         log = gh('run', 'view', str(verification_run), '--repo', REPO_URL.removeprefix('https://github.com/'),
                  '--attempt', str(run['attempt']), '--log')
         for filename, subject in PRODUCER_WORKFLOWS.values():
@@ -424,8 +427,8 @@ def produced_run(repo: Path, sha: str, run: dict, log: str, name: str,
     candidates = re.findall(r'\[main ([0-9a-f]{7,40})\] chore: '+re.escape(subject)+r'(?:\s|$)', log)
     matched = any(revision(repo, candidate) == sha for candidate in candidates)
     ancestor = git.run(repo, 'merge-base', '--is-ancestor', run['headSha'], sha).returncode == 0
-    if run['name'] != name or run['status'] != 'completed' or run['conclusion'] != 'success' or not matched or not ancestor:
-        raise ValueError('verification run must succeed and its full log must identify the exact produced commit')
+    if run['name'] != name or run['status'] != 'completed' or run['conclusion'] not in {'success', 'failure'} or not matched or not ancestor:
+        raise ValueError('completed verification run and its full log must identify the exact produced commit')
     return {**run, 'producedSha': sha}
 
 
@@ -473,13 +476,13 @@ def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
     while True:
         runs = json.loads(gh('run', 'list', '--repo', REPO_URL.removeprefix('https://github.com/'),
                              '--commit', scope['sha'], '--limit', '100', '--json',
-                             'databaseId,name,status,conclusion,headSha,url,attempt'))
+                             RUN_FIELDS))
         if scope.get('verification_run'):
             origin = bundle.load('verification-run')
             current = json.loads(gh('run', 'view', str(scope['verification_run']), '--repo',
                                     REPO_URL.removeprefix('https://github.com/'), '--json',
-                                    'databaseId,name,status,conclusion,headSha,url,attempt'))
-            if current['attempt'] != origin['attempt'] or current['status'] != 'completed' or current['conclusion'] != 'success':
+                                    RUN_FIELDS))
+            if current['attempt'] != origin['attempt'] or current['status'] != 'completed' or current['conclusion'] != origin['conclusion']:
                 raise ValueError('verification run changed; prepare its new attempt in a fresh evidence directory')
             runs.append(origin)
         chosen = latest_runs(runs, scope['sha'])
@@ -490,7 +493,7 @@ def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
             print(json.dumps({'phase': 'workflows', 'state': state, 'runs': progress}), flush=True)
             previous = progress
         remaining = deadline - time.monotonic()
-        if state != 'waiting' or remaining <= 0:
+        if all(status == 'completed' for status, _ in progress.values()) or remaining <= 0:
             break
         time.sleep(min(every, remaining))
     selected = [chosen[n] for n in sorted(required) if n in chosen]
@@ -498,12 +501,14 @@ def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
         if run['status'] == 'completed':
             filename = f"workflows/{run['databaseId']}-{run['attempt']}.log"
             run['log'] = filename
-            if filename in bundle.files and not integrity(bundle):
+            cached = bundle.out / filename
+            if cached.is_file() and digest(cached.read_bytes()) == bundle.files.get(filename):
                 continue
             bundle.write(filename,
                          gh('run', 'view', str(run['databaseId']), '--repo',
                             REPO_URL.removeprefix('https://github.com/'), '--attempt', str(run['attempt']), '--log').encode())
-    if state == 'passed' and scope.get('indexnow_dispatch') and 'indexnow' in required:
+    if (scope.get('indexnow_dispatch') and 'indexnow' in required and
+            workflow_state(selected, scope['sha'], {'indexnow'}) == 'passed'):
         # Dispatch records main when requested. A queued worker checks out main
         # again and may supersede that commit, so its trigger SHA alone cannot
         # prove what it actually notified.
@@ -522,9 +527,12 @@ def wait_workflows(bundle: Bundle, every: float = WORKFLOW_POLL_SECONDS,
 async def publication(bundle: Bundle) -> dict:
     scope = scoped(bundle)
     workflows = bundle.load('workflows', {})
-    if workflows.get('passed') is not True or workflows.get('sha') != scope['sha'] or workflow_state(
-            workflows.get('runs', []), scope['sha'], set(scope['workflows'])) != 'passed':
-        raise ValueError('publication needs successful workflows for the exact commit')
+    runs = workflows.get('runs', [])
+    if (workflows.get('sha') != scope['sha'] or
+            workflow_state(runs, scope['sha'], {PAGES_WORKFLOW}) != 'passed'):
+        raise ValueError('publication needs a successful Pages deployment for the exact commit')
+    workflows_passed = (workflows.get('passed') is True and
+                        workflow_state(runs, scope['sha'], set(scope['workflows'])) == 'passed')
     public = [p for p in scope['paths'] if Path(p).name == 'README.md' or
               ((node := node_for(p)) and node.published)]
     static = ['index.html', 'index.json', 'llms.txt', 'registry.yaml', 'history.jsonl',
@@ -558,8 +566,10 @@ async def publication(bundle: Bundle) -> dict:
                 url, path = image
                 result = await fetch(client, url, bundle, expected=blob(bundle.repo, scope['sha'], path))
                 checks.append({**result, 'kind': 'github-image', 'path': path})
+    bytes_passed = all(r['passed'] for r in checks)
     return bundle.save('publication', {'sha': scope['sha'], 'checks': checks,
-                                      'passed': all(r['passed'] for r in checks), 'checked_at': now()})
+                                      'bytes_passed': bytes_passed, 'passed': workflows_passed and bytes_passed,
+                                      'checked_at': now()})
 
 
 def client_result(client: str, code: int, events: list[dict], marker: str) -> dict:
@@ -754,7 +764,7 @@ def main() -> None:
     prepare_parser = sub.add_parser('prepare'); prepare_parser.add_argument('--base', required=True)
     prepare_parser.add_argument('--head', default='HEAD')
     prepare_parser.add_argument(PUSH_BASE_FLAG, help='commit immediately before the final human push; defaults to --base')
-    prepare_parser.add_argument('--verification-run', type=int, help='successful verification or expiry run that produced this bot commit')
+    prepare_parser.add_argument('--verification-run', type=int, help='completed verification or expiry run that produced this bot commit')
     source_parser = sub.add_parser('sources'); source_parser.add_argument('--url', action='append', default=[])
     publish_parser = sub.add_parser('publication')
     publish_parser.add_argument('--every', type=float, default=WORKFLOW_POLL_SECONDS)
@@ -779,7 +789,7 @@ def main() -> None:
             result = asyncio.run(sources(bundle, args.url))
         elif args.phase == 'publication':
             result = wait_workflows(bundle, args.every, args.timeout)
-            if result['passed']:
+            if workflow_state(result['runs'], result['sha'], {PAGES_WORKFLOW}) == 'passed':
                 result = asyncio.run(publication(bundle))
             else:
                 result = bundle.save('publication', {'sha': result['sha'], 'passed': False,

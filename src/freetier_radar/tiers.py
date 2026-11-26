@@ -56,12 +56,11 @@ SCORES_PATH = Path(__file__).with_name("intelligence-index.json")
 TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 FRONTIER_WITHIN = 10.0
 STRONG_WITHIN = 25.0
-# AA's methodology and complete leaderboard, reviewed 2026-11-06:
+# AA's methodology and complete leaderboard, reviewed 2026-11-26:
 # https://artificialanalysis.ai/methodology/intelligence-benchmarking
-# v5.0.1 regrades CRITPT v2 after grading robustness changes; the nine
-# evaluations and weights are unchanged. Refresh the complete measured series.
+# Terminal-Bench uses updated verifiers and FrontierCode regrades existing attempts.
 # A new revision needs a review before it can replace the measured series.
-INDEX_VERSION = "5.0.1"
+INDEX_VERSION = "5.0.2"
 
 # Artificial Analysis /leaderboards/models, checked 2026-10-19: Next.js ships
 # string chunks; scored rows use initialModels, older pages used models.
@@ -437,8 +436,8 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         resp = await client.get(LEADERBOARD_URL)
         resp.raise_for_status()
-        board = await read_leaderboard(client, resp.text)
         version = index_version(resp.text)
+        board = await read_leaderboard(client, resp.text)
     today = utc_today()
     top, marks = review(entries, board)
     live = [e for e in entries if not is_archived(e, today)]

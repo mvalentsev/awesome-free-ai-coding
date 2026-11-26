@@ -329,14 +329,12 @@ def _model_candidates(pinned: str | None, published: list[str]) -> list[str]:
     return list(dict.fromkeys(m for m in ([pinned] if pinned else []) + list(published) if m))
 
 
-def published_model_ids(entries: list[Entry]) -> dict[str, list[str]]:
-    """Every API base url this registry publishes, mapped to the model ids it
-    lists under it. Retired and delisted rows are left out: their ids are
-    precisely the ones a vendor stopped serving, or that stopped being free."""
+def published_model_ids(entries: list[Entry], today: date | None = None) -> dict[str, list[str]]:
+    """Collect the published API IDs of offers that are live on the review day."""
+    today = today or utc_today()
     pools: dict[str, list[str]] = {}
     for entry in entries:
-        if (entry.retired_on is not None or entry.delisted is not None
-                or entry.api is None or not entry.api.base_url):
+        if is_archived(entry, today) or entry.api is None or not entry.api.base_url:
             continue
         pools.setdefault(entry.api.base_url.rstrip("/"), []).extend(entry.api.model_ids)
     return pools
@@ -436,6 +434,7 @@ class LLMClient:
         # (base url, model) pairs the endpoint has disowned during this run.
         self._dead_models: set[tuple[str, str]] = set()
         self._retry_after: dict[str, float] = {}
+        self._payment_refusals: dict[str, str] = {}
         self._ovh_model: str | None = None
         self.answered_by: str | None = None
         self.answered_model: str | None = None
@@ -477,6 +476,9 @@ class LLMClient:
                     + ", ".join(n for n, _ in self._backends()))
         errors = []
         for name, fn in backends:
+            if name in self._payment_refusals:
+                errors.append(f"{name}: {self._payment_refusals[name]}")
+                continue
             started = self._clock()
             try:
                 text = fn(prompt)
@@ -492,8 +494,13 @@ class LLMClient:
             # body, invalid JSON — all this loop can do is move to the next one.
             except Exception as exc:
                 self.answered_model = None
-                print(f"scout backend {name} failed: {type(exc).__name__}: {exc}")
-                errors.append(f"{name}: {type(exc).__name__}: {exc}")
+                reason = f"{type(exc).__name__}: {exc}"
+                if (isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code == 402
+                        and 'Retry-After' not in exc.response.headers):
+                    # Keep the refusal for this configured backend until the next run.
+                    self._payment_refusals[name] = reason
+                print(f"scout backend {name} failed: {reason}")
+                errors.append(f"{name}: {reason}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
 
     def describe(self) -> str:
@@ -1280,6 +1287,7 @@ def main() -> None:
     # meant to raise: the catch-all is for what the scout cannot control, and a
     # config error swallowed into it would make a broken repo look like a quiet
     # run.
+    today = utc_today()
     entries = load_registry(args.registry)
     blocklist = load_blocklist(args.blocklist)
     dismissed = load_dismissed(args.dismissed)
@@ -1298,12 +1306,11 @@ def main() -> None:
         fallback_base_url=os.environ.get("SCOUT_FALLBACK_BASE_URL"),
         fallback_model=os.environ.get("SCOUT_FALLBACK_MODEL"),
         fallback_key=os.environ.get("SCOUT_FALLBACK_API_KEY"),
-        models_by_base_url=published_model_ids(entries),
+        models_by_base_url=published_model_ids(entries, today),
         deadline=deadline,
         force=os.environ.get("SCOUT_FORCE_BACKEND"),
     )
 
-    today = utc_today()
     evidence = gather_evidence(DISCOVERY_QUERIES, known_domains(entries), os.environ,
                                time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining,
                                answered_domains=answered_domains(watchlist, blocklist, today))

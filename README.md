@@ -27,12 +27,12 @@
 - **[Kiro](https://kiro.dev/)** — `claude-sonnet-4` · `claude-sonnet-4.5` · `deepseek-v3.2` · `glm-5` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 - **[Google Antigravity](https://antigravity.google)** — `gpt-oss-120b` (until 2026-11-30) · `claude-opus-4.6` (until 2026-11-30) · `claude-sonnet-4.6` (until 2026-11-30) · `gemini-3.8-flash` (until 2026-11-30)
 
-**Free models, compared.** Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) v5.0.1 scores, read 2026-11-23, highest first. These scores compare general capabilities. Each linked provider offers the model free under the conditions beside its name; 💳 means a card is required.
+**Free models, compared.** Current [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) v5.0.2 scores, read 2026-11-26, highest first. These scores compare general capabilities. Each linked provider offers the model free under the conditions beside its name; 💳 means a card is required.
 
 <div align="center">
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
-  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.1 score read 2026-11-23: the strongest, deepseek-v4.1-flash-1017, scores 32.6 and is free on 2 offers; the top of the index, Claude Fable 5.2, 64.6" src="assets/readme/strong.svg" width="860">
+  <img alt="Bar chart of the 20 models live offers here serve free, by Artificial Analysis Intelligence Index v5.0.2 score read 2026-11-26: the strongest, deepseek-v4.1-flash-1017, scores 32.4 and is free on 2 offers; the top of the index, Claude Fable 5.2, 64.8" src="assets/readme/strong.svg" width="860">
 </picture></a>
 </div>
 

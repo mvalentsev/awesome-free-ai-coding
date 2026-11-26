@@ -1209,6 +1209,7 @@ def test_a_spent_wallet_fails_the_backend_and_not_one_model():
                         models_by_base_url={"https://wallet.example/v1": ["a", "b", "c"]},
                         http=http)
         assert llm.complete("hi") == "ovh"
+        assert llm.complete("next phase") == "ovh"
     assert route.call_count == 1
 
 
@@ -1250,14 +1251,15 @@ def test_published_model_ids_leaves_out_the_rows_a_vendor_has_retired():
     free."""
     entries = [
         make(id="live", api={"base_url": "https://a.example/v1", "model_ids": ["x", "y"]}),
-        make(id="also-live", api={"base_url": "https://a.example/v1/", "model_ids": ["z"]}),
+        make(id="also-live", retired_on=TODAY + timedelta(days=1),
+             api={"base_url": "https://a.example/v1/", "model_ids": ["z"]}),
         make(id="gone", retired_on=date(2026, 6, 1),
              api={"base_url": "https://a.example/v1", "model_ids": ["dead"]}),
         make(id="taken-off", url="https://b.example", delisted={"on": TODAY, "reason": "no free lane"},
              api={"base_url": "https://a.example/v1", "model_ids": ["metered"]}),
         make(id="no-api"),
     ]
-    assert published_model_ids(entries) == {"https://a.example/v1": ["x", "y", "z"]}
+    assert published_model_ids(entries, TODAY) == {"https://a.example/v1": ["x", "y", "z"]}
 
 
 @respx.mock

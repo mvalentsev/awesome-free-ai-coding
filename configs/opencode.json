@@ -103,7 +103,7 @@
           "name": "particle-ai/particle-1:free",
           "limit": {
             "context": 1048576,
-            "output": 131072
+            "output": 943718
           }
         },
         "inclusionai/ling-3.2-flash:free": {
@@ -189,7 +189,7 @@
           "name": "particle-ai/particle-1:free",
           "limit": {
             "context": 1048576,
-            "output": 131072
+            "output": 943718
           }
         },
         "inclusionai/ling-3.2-flash:free": {
