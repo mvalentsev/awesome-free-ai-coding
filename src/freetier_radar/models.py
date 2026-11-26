@@ -1722,6 +1722,23 @@ class Entry(BaseModel):
                 raise ValueError('archive_review needs a row archived by that review date')
         return self
 
+    @model_validator(mode="before")
+    @classmethod
+    def _catalog_quota_sources(cls, data):
+        if not isinstance(data, dict) or not isinstance(quotas := data.get("quotas"), list):
+            return data
+        inherited = [i for i, q in enumerate(quotas) if isinstance(q, dict)
+                     and q.get("read") == "catalog" and "source" not in q and not q.get("follow")]
+        if not inherited or "probe" not in data:
+            return data
+        probe = Probe.model_validate(data["probe"])
+        if not probe.model_catalog:
+            raise ValueError("a catalog quota without a source needs a probe catalog")
+        bound = quotas.copy()
+        for i in inherited:
+            bound[i] = {**quotas[i], "source": probe.model_catalog}
+        return {**data, "probe": probe, "quotas": bound}
+
     @model_validator(mode="after")
     def _quota_catalog_is_bound_to_the_lane(self) -> Entry:
         for quota in self.quotas:
@@ -2538,6 +2555,9 @@ _RegistryDumper.add_representer(
 
 def _row_payload(e: Entry) -> dict:
     row = e.model_dump(mode="json", exclude_none=True)
+    for i, quota in enumerate(e.quotas):
+        if quota.read == "catalog" and quota.follow is None and quota.source == e.probe.model_catalog:
+            del row["quotas"][i]["source"]
     if e.api and e.api.model_limits:
         for mid, limits in e.api.model_limits.items():
             if limits.read == "catalog":

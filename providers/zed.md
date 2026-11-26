@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Zed free tier: limits, free models, verified 2026-11-23'
-description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students. No card for the trial. GPT-6 Luna is the only hosted model during the trial, and the…'
+description: A cardless Pro trial for the Zed coding agent. Existing Student plans continue, and new student applications are paused. The Pro trial uses GPT-6 Luna and ends when its shared Zed and Delta balance or trial period runs out. It converts to Free with your own API keys or external agents. The…
 permalink: /providers/zed/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: Zed
 ---
 
@@ -15,7 +15,7 @@ crumb: Zed
 
 ## What you get
 
-Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students
+A cardless Pro trial for the Zed coding agent. Existing Student plans continue, and new student applications are paused.
 
 ## Free models
 
@@ -23,13 +23,11 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ## Limits, in the vendor's words
 
-Shared Zed and Delta trial: $5 once per account (Valid for 14 days)
+Shared Zed and Delta trial: $5 once; Unmetered edit predictions per account (Valid for 14 days)
 
-14-day trial: Unmetered edit predictions per account
+Verified student plan: $10/month; Unmetered edit predictions per account (Existing verified students for one year. New applications paused)
 
-Verified student plan: $10/month; Unmetered edit predictions per account (Free for one year to verified university students)
-
-No card for the trial. GPT-6 Luna is the only hosted model during the trial, and the shared Zed/Delta trial ends when the credit or time runs out, whichever comes first. It then converts to Free, which uses your own API keys or external agents. The docs say "Zed's hosted models and edit predictions require a Pro subscription." Verified university students receive a separate year of free Student access. Token credit is a spending wallet at hosted-model prices, not a list of individually zero-priced models.
+The Pro trial uses GPT-6 Luna and ends when its shared Zed and Delta balance or trial period runs out. It converts to Free with your own API keys or external agents. The hosted-model guide says "The Student plan includes GPT-6 Luna and GPT-5.6 Luna only."
 
 ## Where it is offered
 
@@ -45,11 +43,11 @@ What you send is not used to train models. In the vendor's words: “Zed does no
 
 ## Evidence
 
-- Probe: the page at <https://zed.dev/docs/account/plans-and-pricing>, anchored on `Trials include $5 of`, `Trials automatically convert to Zed Free`, `Zed's hosted models and edit predictions require a Pro subscription.`
+- Probe: the page at <https://zed.dev/docs/account/plans-and-pricing>, anchored on `Trials include $5 of GPT-6 Luna usage`, `Trials automatically convert to Zed Free`, `New applications are currently paused`
 - Source: <https://zed.dev/pricing>
 - Source: <https://zed.dev/docs/account/plans-and-pricing>
 - Source: <https://zed.dev/docs/account/zed-hosted-models>
-- Source: <https://github.com/zed-industries/zed/commit/bd692a8021>
+- Source: <https://zed.dev/education>
 
 ## History
 

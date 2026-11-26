@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2.6-flash free: 4 providers, limits and ids, provider probes 2026-11-23'
 description: mimo-v2.6-flash is served free by opencode, Freebuff, AIHubMix (free models) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/mimo-v2.6-flash/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: mimo-v2.6-flash
 ---
 
@@ -69,7 +69,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 - Limits, in the vendor's words: 100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`
 
-100/day coding routes: 5 requests/minute; 100 requests/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5.2-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`
+100/day coding routes: 5 requests/minute; 100 requests/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5.2-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.4-free`
 
 100/day coding routes: 5 requests/minute per account per model; for `coding-minimax-m2.5-free`
 

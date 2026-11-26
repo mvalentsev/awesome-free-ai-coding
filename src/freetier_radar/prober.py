@@ -19,6 +19,7 @@ import httpx
 from .models import QUALIFICATION_DAYS as PROVISIONAL_PROMOTE_DAYS
 from .page_reader import (browser_challenge, empty_app_page, empty_framer_page,
                           page_evidence, recover_page, recover_page_sync)
+from .source_urls import valid_source_url
 
 from .models import (
     utc_today,
@@ -106,6 +107,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         page=entry.probe.type is ProbeType.PAGE_KEYWORDS and entry.probe.follow is None)
     if stop is not None:
         return stop
+    indices = {entry.probe.endpoint: resp}
     if entry.probe.follow is not None:
         resp, stop = await _read_followed(client, entry, resp, attempts, backoff)
         if stop is not None:
@@ -244,7 +246,7 @@ async def _probe_entry(client: httpx.AsyncClient, entry: Entry,
         if entry.quotas:
             from .quotas import quota_moved
             moved.extend(await quota_moved(client, entry, page, attempts, backoff,
-                                          today))
+                                          today, indices=indices))
         if entry.remaining_free:
             from .quotes import remaining_free_finding
             response, _ = await _page_beside(client, entry.remaining_free.source,
@@ -374,12 +376,15 @@ def followed_url(index: object, follow: Follow) -> str | None:
         if not isinstance(value, dict) or part not in value:
             return None
         value = value[part]
-    if not isinstance(value, str) or not value.startswith("https://"):
+    if not isinstance(value, str):
         return None
-    return value.rstrip("/") + follow.suffix
+    url = value.rstrip("/") + follow.suffix
+    return url if valid_source_url(url) else None
 
 
-def _index_names(resp: httpx.Response, follow: Follow) -> str | None:
+def index_target(resp: httpx.Response | None, follow: Follow) -> str | None:
+    if resp is None or not page_response_ok(resp):
+        return None
     try:
         return followed_url(resp.json(), follow)
     except ValueError:
@@ -392,7 +397,7 @@ async def _read_followed(client: httpx.AsyncClient, entry: Entry, index: httpx.R
     """The page the index at the probe's endpoint names today — see Follow. An
     index that names none says where the docs are no more than a timeout does,
     so it is inconclusive; the page it names is read like any endpoint."""
-    url = _index_names(index, entry.probe.follow)
+    url = index_target(index, entry.probe.follow)
     if url is None:
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
                                  f"the index at {entry.probe.endpoint} names no page in "
@@ -432,32 +437,30 @@ def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Respo
     return (joined, "") if joined is not None else (None, f"free list {url} {failure}")
 
 
-async def probe_page_url(client: httpx.AsyncClient, probe: Probe) -> str:
-    """The url whose page a probe's keywords are read against: its endpoint, or
-    the page a followed index names today, and the endpoint again where the
-    index cannot be read — whatever reads it then says what it found."""
-    if probe.follow is None:
-        return probe.endpoint
-    try:
-        resp = await client.get(probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
-    except httpx.HTTPError:
-        return probe.endpoint
-    if not page_response_ok(resp):
-        return probe.endpoint
-    return _index_names(resp, probe.follow) or probe.endpoint
+async def read_indices(client: httpx.AsyncClient, urls: set[str], attempts: int = ATTEMPTS,
+                       backoff: float = BACKOFF_SECONDS,
+                       indices: dict[str, httpx.Response | None] | None = None
+                       ) -> dict[str, httpx.Response | None]:
+    """Read each version index once, retaining failures for this pass too."""
+    indices = {} if indices is None else indices
+    for url in sorted(urls - indices.keys()):
+        indices[url], _ = await _fetch_page(client, url, attempts, backoff, page=False)
+    return indices
+
+
+def probe_document(probe: Probe, indices: dict[str, httpx.Response | None]) -> str | None:
+    return index_target(indices[probe.endpoint], probe.follow) if probe.follow else probe.endpoint
 
 
 def probe_page_url_sync(client: httpx.Client, probe: Probe) -> str:
-    """probe_page_url for the scout's synchronous client."""
+    """The scout reads the original endpoint when the index cannot name a page."""
     if probe.follow is None:
         return probe.endpoint
     try:
         resp = client.get(probe.endpoint, follow_redirects=True)
     except httpx.HTTPError:
         return probe.endpoint
-    if not page_response_ok(resp):
-        return probe.endpoint
-    return _index_names(resp, probe.follow) or probe.endpoint
+    return index_target(resp, probe.follow) or probe.endpoint
 
 
 # Never completes: no key, one token, a model id no vendor has. The only
@@ -1285,7 +1288,8 @@ async def _page_beside(client: httpx.AsyncClient, url: str, entry: Entry,
     """The page a check beside the probe reads at `url`: the page the probe
     has just read where `url` is that page — one read, not two — else
     `_fetch_page`'s, or why it could not be read."""
-    if url == entry.probe.endpoint and entry.probe.follow is None:
+    if ((url == entry.probe.endpoint and entry.probe.follow is None)
+            or (entry.probe.follow and probed is not None and url == str(probed.url))):
         return probed, ""
     from .quotes import catalog_urls
     page = page and url not in catalog_urls(entry)

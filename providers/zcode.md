@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-11-19'
-description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5.3-flash, glm-5-turbo. Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel…'
+description: 'A desktop coding agent with a no-cost Start Plan that new users can claim after signing in. Free models: glm-5.3, glm-5.3-flash, glm-5-turbo. Use the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and…'
 permalink: /providers/zcode/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: ZCode (Z.ai)
 model_sort: true
 ---
@@ -16,7 +16,7 @@ model_sort: true
 
 ## What you get
 
-Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
+A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.
 
 ## Free models
 
@@ -24,15 +24,11 @@ Z.ai's desktop coding agent, free as an app, with five days of its GLM models fo
 
 ## Limits, in the vendor's words
 
-Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)
-
-Global trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)
-
-BigModel trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)
+BigModel trial: GLM-5.4: 3,000,000 tokens/day per account per model (First 5 days only)
 
 BigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)
 
-Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3 and GLM-5.3-Flash in separate buckets. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.
+Use the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and allowances after sign-in. Its former GLM-5.3 and GLM-5-Turbo trial allocations are unconfirmed. The app also supports separately funded coding plans and your own API keys.
 
 ## Where it is offered
 
@@ -45,13 +41,15 @@ What you send is not used to train models. In the vendor's words: “The Optimiz
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
+- In ZCode (Z.ai)'s own model list: `glm-5.4`
 
 ## Evidence
 
-- Probe: the page at <https://zcode.z.ai/en/docs/welcome>, anchored on `5-day free trial`, `3M tokens / day`
+- Probe: the page at <https://zcode.z.ai/en/docs/configuration>, anchored on `the trial lasts 5 days only`, `GLM-5.4 3 million tokens / day`, `GLM-5.3-Flash 5 million tokens / day`
 - Source: <https://zcode.z.ai/en/docs/welcome>
 - Source: <https://zcode.z.ai/en/docs/configuration>
 - Source: <https://zcode.z.ai/en/docs/qa>
+- Source: <https://zcode.z.ai/cn/docs/configuration>
 
 ## History
 

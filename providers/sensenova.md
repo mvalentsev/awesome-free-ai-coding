@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-11-23'
-description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage…'
+description: 'SenseTime''s SenseNova API, with a $0 Free plan during public beta; registration and identity verification required. Free models: sensenova-6.8-flash-lite. The public beta plan names SenseNova 6.8 Flash and SenseNova U1.6 Lite. The separate API guide documents the Flash Lite preview with a free…'
 permalink: /providers/sensenova/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: SenseNova (SenseTime 商汤)
 ---
 
@@ -25,7 +25,7 @@ SenseTime's SenseNova API, with a $0 Free plan during public beta; registration 
 
 Public beta: Usage allowance: amount not published (period not published) per account
 
-Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage allowances and reset times are unpublished. The API guide calls the documented model an "early preview release" and requires "registration plus identity verification". Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
+The public beta plan names SenseNova 6.8 Flash and SenseNova U1.6 Lite. The separate API guide documents the Flash Lite preview with a free token plan. Registration and identity verification are required. The plan does not publish a numerical allowance or reset time.
 
 ## Where it is offered
 
@@ -36,7 +36,7 @@ Offered only in mainland China ([source](https://platform.sensenova.cn/login), r
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
 - Callable ids: `sensenova-6.8-flash-lite`
-- Note: An API ID for SenseNova U1 Fast has not been confirmed.
+- Note: The API guide uses this exact Flash Lite preview ID. It does not give callable IDs for the two models named on the current plan card.
 
 Try it from your terminal with your key in `SENSENOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -49,9 +49,10 @@ curl -s https://token.sensenova.cn/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://www.sensenova.cn/token-plan>, anchored on `公测期完全免费开放，付费档位即将上线`, `SenseNova 6.8 Flash Lite`
+- Probe: the page at <https://raw.githubusercontent.com/OpenSenseNova/SenseNova6.8/main/API.md>, anchored on `free token plan available`, `sensenova-6.8-flash-lite`, `registration plus identity verification`
 - Source: <https://www.sensenova.cn/token-plan>
-- Source: <https://github.com/OpenSenseNova/SenseNova6.8/blob/main/API.md>
+- Source: <https://www.sensenova.cn/en/token-plan>
+- Source: <https://raw.githubusercontent.com/OpenSenseNova/SenseNova6.8/main/API.md>
 
 ## History
 

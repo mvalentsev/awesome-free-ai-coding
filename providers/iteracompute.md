@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'IteraCompute free tier: limits, free models, verified 2026-11-24'
-description: 'OpenAI-compatible API with retained monthly free model usage for eligible existing accounts. Free models: qwen3.8-27b. Positive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. "Users with positive net…'
+description: An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts. Eligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard…
 permalink: /providers/iteracompute/
-last_modified_at: 2026-11-24
+last_modified_at: 2026-11-26
 crumb: IteraCompute
 ---
 
@@ -15,23 +15,17 @@ crumb: IteraCompute
 
 ## What you get
 
-OpenAI-compatible API with retained monthly free model usage for eligible existing accounts
+An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts.
 
 ## Free models
 
-[`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+The free offer is a budget for model usage across the catalog. See Limits for its conditions and Connect for API details, where available.
 
 ## Limits, in the vendor's words
 
-Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`
+Retained Auto allowance: Monthly tokens allowance: see your account for values per account
 
-Retained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`
-
-Retained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`
-
-Shared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`
-
-Positive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. "Users with positive net recharge completed before this cutoff retain their existing free tier." Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. "Context includes input and requested output; output is capped at 8,192 tokens." Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. "Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over."
+Eligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard separates retained tokens, plan tokens and promotional rewards. Pay-as-you-go wallet billing is off by default.
 
 ## Where it is offered
 
@@ -45,8 +39,8 @@ What you send is not used to train models. In the vendor's words: “Without you
 
 - Base URL: `https://api.iteracompute.com/v1`
 - Key: `ITERACOMPUTE_API_KEY` — get one at <https://platform.iteracompute.com/api-keys>
-- Callable ids: `qwen/qwen3.8-27b`, `Auto`
-- Note: Use qwen/qwen3.8-27b for the named model or Auto for the changing pool. Both use the retained shared allowance for qualifying pre-cutoff recharge accounts. An active plan separately permits Auto; check its purchased and shared allowances in your account. Create an API key and use Chat Completions. Auto does not pin model weights or precision. Other catalog routes have independent prices and eligibility.
+- Callable ids: `Auto`
+- Note: Auto selects from the currently listed models using demand, cost and spare capacity. Create a key that permits Auto and check your available tokens in Billing. The named Qwen3.8-27B route has retired.
 
 Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -54,12 +48,12 @@ Try it from your terminal with your key in `ITERACOMPUTE_API_KEY` — it goes fr
 curl -s https://api.iteracompute.com/v1/chat/completions \
   -H "Authorization: Bearer $ITERACOMPUTE_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"qwen/qwen3.8-27b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"Auto","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the models catalog at <https://api.iteracompute.com/v1/models>, each listed family checked for a zero price
+- Probe: the page at <https://iteracompute.com/free-tier-terms/>, anchored on `monthly Auto allowance`, `Later top-ups cannot unlock or increase this allowance`; ids checked in <https://api.iteracompute.com/v1/models>
 - Source: <https://iteracompute.com/pricing/>
 - Source: <https://iteracompute.com/free-tier-terms/>
 - Source: <https://iteracompute.com/docs.html>
@@ -76,6 +70,7 @@ curl -s https://api.iteracompute.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-26` — Free models changed: dropped qwen3.8-27b
 - `2026-10-21` — Free models changed: added qwen3.8-27b
 - `2026-10-18` — Added: OpenAI-compatible API with a recurring free token allowance on a self-hosted open model, without a card or balance top-up
 

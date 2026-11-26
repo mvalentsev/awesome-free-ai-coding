@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m2.5 free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: minimax-m2.5 is served free by Kiro and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m2.5/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: minimax-m2.5
 ---
 
@@ -41,7 +41,7 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
-- Limits, in the vendor's words: 100/day coding routes: 5 requests/minute per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`
+- Limits, in the vendor's words: 100/day coding routes: 5 requests/minute per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.4-free`
 
 100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m2.5-free`
 

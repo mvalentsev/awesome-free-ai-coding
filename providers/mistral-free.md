@@ -1,21 +1,21 @@
 ---
 layout: default
-title: 'Mistral Studio free tier: limits, free models, verified 2026-11-23'
-description: Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI. The monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts…
+title: 'Mistral Vibe and Studio free tier: limits, free models, verified 2026-11-23'
+description: Free monthly usage for Vibe for Code in your terminal and for trying models in Mistral Studio. Mistral does not publish the Free budget. Its usage guide says "Creating API keys and using the API require billing activation and pay-as-you-go." Its API help article still describes Free-mode keys for…
 permalink: /providers/mistral-free/
-last_modified_at: 2026-11-23
-crumb: Mistral Studio
+last_modified_at: 2026-11-26
+crumb: Mistral Vibe and Studio
 ---
 
 {% raw %}
 
-# Mistral Studio free tier
+# Mistral Vibe and Studio free tier
 
-🔌 LLM APIs with free tier · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-23 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-23 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI
+Free monthly usage for Vibe for Code in your terminal and for trying models in Mistral Studio.
 
 ## Free models
 
@@ -23,11 +23,9 @@ The free offer is a budget for model usage across the catalog. See Limits for it
 
 ## Limits, in the vendor's words
 
-Shared Studio, API and Vibe allowance: Monthly usage allowance: amount not published per organization
+Vibe and Studio: Monthly usage allowance: amount not published per organization
 
-API rate limits: Per-second requests allowance: see your account for values; Per-minute tokens allowance: see your account for values per organization per model
-
-The monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.
+Mistral does not publish the Free budget. Its usage guide says "Creating API keys and using the API require billing activation and pay-as-you-go." Its API help article still describes Free-mode keys for testing. Check your organization’s billing settings before using an existing key.
 
 ## Where it is offered
 
@@ -35,31 +33,21 @@ Not offered in Iran, Syria, Cuba and North Korea ([source](https://legal.mistral
 
 ## What happens to what you send
 
-What you send may be used to train or improve models unless you turn that off. In the vendor's words: “As stated during subscription, we may use your data (input and output) to train our artificial intelligence models. … You have the right to opt out of this program at any time.” ([source](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)).
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “Input and output data are used by default to train our artificial intelligence models, unless you opt out of training at any time.” ([source](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)).
 
 ## Connect
 
-- Base URL: `https://api.mistral.ai/v1`
-- Key: `MISTRAL_API_KEY` — get one at <https://console.mistral.ai/api-keys>
-- Callable ids: `mistral-large-latest`, `mistral-medium-latest`
-- Note: Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid. The ids are the ones Mistral's own API quickstart and docs call
-
-Try it from your terminal with your key in `MISTRAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
-
-```sh
-curl -s https://api.mistral.ai/v1/chat/completions \
-  -H "Authorization: Bearer $MISTRAL_API_KEY" \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"mistral-large-latest","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
-```
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://docs.mistral.ai/admin/billing-usage/subscriptions>, anchored on `Free mode is the default state for new accounts`, `Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code`
+- Probe: the page at <https://docs.mistral.ai/admin/billing-usage/usage-limits>, anchored on `Free mode includes a monthly usage budget for trying Vibe and Studio`, `It doesn't include API access`
 - Source: <https://mistral.ai/pricing>
 - Source: <https://docs.mistral.ai/admin/billing-usage/subscriptions>
 - Source: <https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key>
 - Source: <https://docs.mistral.ai/admin/billing-usage/usage-limits>
+- Source: <https://docs.mistral.ai/vibe/>
+- Source: <https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them>
 
 ## History
 

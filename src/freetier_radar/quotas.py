@@ -12,6 +12,7 @@ from .source_urls import valid_source_url
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 if TYPE_CHECKING:
+    import httpx
     from .models import Entry
 
 UNKNOWN_RECHECK_DAYS = 7
@@ -513,38 +514,45 @@ def quota_review_changes(quota: UsageQuota, today: date) -> list[str]:
     return []
 
 
-async def resolved_quota_entry(client, entry: Entry, attempts: int = 3, backoff: float = 1) -> Entry:
-    """Resolve current quota sources without shifting canonical field positions."""
+def source_index_urls(entry: Entry) -> set[str]:
+    urls = {q.source for _, q in active_quotas(entry) if q.follow}
+    if entry.probe.follow:
+        urls.add(entry.probe.endpoint)
+    return urls
+
+
+def resolved_quota_entry(entry: Entry, indices: dict[str, httpx.Response | None]) -> Entry:
+    """Bind each active quota to its own document in the selected release."""
     from .models import Follow
-    from .prober import _fetch_page, followed_url
-    indices, quotas = {}, entry.quotas.copy()
+    from .prober import index_target
+    if not any(q.follow for _, q in active_quotas(entry)):
+        return entry
+    quotas = entry.quotas.copy()
     for i, q in active_quotas(entry):
         if q.follow:
-            if q.source not in indices:
-                response,_ = await _fetch_page(client,q.source,attempts,backoff,page=False)
-                try:indices[q.source] = response.json() if response is not None else None
-                except ValueError:indices[q.source] = None
-            url = followed_url(indices[q.source],Follow.model_validate(q.follow))
+            url = index_target(indices[q.source], Follow.model_validate(q.follow))
             if url:
-                try:UsageQuota._http_source(url)
-                except ValueError:pass
-                else:q = q.model_copy(update={'source':url,'follow':None})
-        quotas[i] = q
+                quotas[i] = q.model_copy(update={'source': url, 'follow': None})
     return entry.model_copy(update={'quotas':quotas})
 
 
-async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: float, today: date) -> list[str]:
-    from .prober import _page_beside
+async def quota_moved(client, entry: Entry, probed, attempts: int, backoff: float, today: date,
+                     *, indices=None) -> list[str]:
+    from .prober import _page_beside, read_indices
     pages, notes = {}, []
-    entry = await resolved_quota_entry(client,entry,attempts,backoff)
+    indices = await read_indices(client, source_index_urls(entry), attempts, backoff, indices)
+    entry = resolved_quota_entry(entry, indices)
     for i, q in active_quotas(entry):
-        if q.source not in pages:
-            pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff)
-        page, failure = pages[q.source]
-        if page is None:
-            notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')
+        if q.follow:
+            notes.extend(f'quotas[{i}]: {n}' for n in quota_changes('', q))
         else:
-            notes.extend(f'quotas[{i}]: {n}' for n in quota_changes(page.text, q))
+            if q.source not in pages:
+                pages[q.source] = await _page_beside(client, q.source, entry, probed, attempts, backoff)
+            page, failure = pages[q.source]
+            if page is None:
+                notes.append(f'quotas[{i}] could not be checked against {q.source}: {failure}')
+            else:
+                notes.extend(f'quotas[{i}]: {n}' for n in quota_changes(page.text, q))
         notes.extend(f'quotas[{i}]: {n}' for n in quota_review_changes(q, today))
     return notes
 

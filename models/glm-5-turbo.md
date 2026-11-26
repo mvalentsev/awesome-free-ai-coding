@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5-turbo free: 2 providers, limits and ids, provider probes 2026-11-19 or later'
 description: glm-5-turbo is served free by AIHubMix (free models) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5-turbo/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: glm-5-turbo
 ---
 
@@ -25,7 +25,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 - Limits, in the vendor's words: 100/day coding routes: 5 requests/minute; 100 requests/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`
 
-100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`
+100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.4-free`
 
 100/day coding routes: 5 requests/minute per account per model; for `coding-minimax-m2.5-free`
 
@@ -46,20 +46,16 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 🎁 Trials (no card when possible) · no card · last probe 2026-11-19 · listed since 2026-09-26
 
-Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
+A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)
-
-Global trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)
-
-BigModel trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)
+- Limits, in the vendor's words: BigModel trial: GLM-5.4: 3,000,000 tokens/day per account per model (First 5 days only)
 
 BigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)
 
-Global and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3 and GLM-5.3-Flash in separate buckets. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.
+Use the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and allowances after sign-in. Its former GLM-5.3 and GLM-5-Turbo trial allocations are unconfirmed. The app also supports separately funded coding plans and your own API keys.
 
 </details>
 

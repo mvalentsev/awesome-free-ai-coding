@@ -5,7 +5,7 @@ import pytest
 from freetier_radar.discovery import Evidence, fetch_page_texts, format_evidence
 from freetier_radar.models import Entry, utc_today
 from freetier_radar.prober import (
-    ProbeStatus, _fetch_page, probe_entry, probe_page_url, probe_page_url_sync,
+    ProbeStatus, _fetch_page, probe_entry, probe_document, probe_page_url_sync, read_indices,
 )
 from freetier_radar.quotes import check_entries
 from freetier_radar.scout import named_by_row, probe_check_sync
@@ -149,7 +149,8 @@ async def test_an_unread_index_cannot_choose_the_evidence_url(status):
     with httpx.Client(transport=transport) as client:
         assert probe_page_url_sync(client, e.probe) == (selected if status == 200 else URL)
     async with httpx.AsyncClient(transport=transport) as client:
-        assert await probe_page_url(client, e.probe) == (selected if status == 200 else URL)
+        indices = await read_indices(client, {URL}, 1, 0)
+        assert probe_document(e.probe, indices) == (selected if status == 200 else None)
 
 
 async def test_network_failure_keeps_diagnostics_without_inventing_page_evidence():

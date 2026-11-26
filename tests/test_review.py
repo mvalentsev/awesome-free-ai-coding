@@ -174,6 +174,7 @@ def quota_transport_repo(tmp_path_factory, source_history_repo):
                      'probe': {'type': 'page-keywords', 'endpoint': 'https://vendor.example/pricing',
                                'keywords': ['A recurring free allowance for coding']}, 'quotas': [quota]}
         if ident == 'followed':
+            row['probe'].update(endpoint=quota['source'], follow={'field': 'release', 'suffix': '/offer'})
             ended = 'https://vendor.example/ended-limits'
             row['api'] = {'base_url': 'https://vendor.example/v1', 'model_ids': ['coding'],
                           'ignored_ids': ['ended'], 'model_access': {
@@ -250,7 +251,11 @@ async def test_catalog_quota_sources_keep_original_transport(quota_transport_rep
                                    'tiers': [{'id': 'L0', 'rpm': 5}]}]}).encode())
     monkeypatch.setattr(curl_cffi, 'get', alternate)
     respx.get('https://vendor.example/pricing').respond(200, text='A recurring free allowance for coding')
-    respx.get('https://vendor.example/docs-index').respond(200, json={'release': 'https://vendor.example/current'})
+    index = respx.get('https://vendor.example/docs-index').mock(side_effect=[
+        httpx.Response(200, json={'release': 'https://vendor.example/current'}),
+        httpx.Response(200, json={'release': 'https://vendor.example/next'}),
+    ])
+    offer = respx.get('https://vendor.example/current/offer').respond(200, text='A recurring free allowance for coding')
     for url in ('https://vendor.example/quota-catalog', 'https://vendor.example/current/quota-catalog'):
         respx.get(url).respond(403, text='<html>Checking your browser</html>',
                                headers={'content-type': 'text/html'})
@@ -276,6 +281,7 @@ async def test_catalog_quota_sources_keep_original_transport(quota_transport_rep
             assert {q['row']: q['field'] for q in result['quotas']} == expected
             assert 'https://vendor.example/ended-limits' not in result['by_row']['followed']
     assert calls == []
+    assert index.call_count == offer.call_count == 1
 
 
 @pytest.fixture(scope='module')

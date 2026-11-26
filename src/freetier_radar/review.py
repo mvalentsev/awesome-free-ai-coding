@@ -25,8 +25,8 @@ from .yaml_data import load_yaml
 from .indexnow import index_at
 from .layout import node_for
 from .models import Entry
-from .prober import CONCURRENCY, TIMEOUT, UA, _ask, page_response_ok, probe_page_url
-from .quotes import catalog_urls, page_texts, quote_found, row_quote_source, row_quotes, row_urls
+from .prober import CONCURRENCY, TIMEOUT, UA, _ask, page_response_ok, probe_document
+from .quotes import catalog_urls, checked_quotes, page_texts, row_urls, unresolved_documents
 from .render import PAGES_URL, REPO_URL
 
 PUSH_BASE_FLAG = '--push-base'
@@ -281,34 +281,34 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     today = datetime.fromisoformat(now()).date()
     entries = [Entry.model_validate(e) for e in load_yaml(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
                if e['id'] in scope['rows']]
-    urls, by_row, followed, probe_urls = set(extra), {}, [], {}
+    from .quotas import resolved_quota_entry, source_index_urls
+    urls, by_row, probe_urls, documents = set(extra), {}, {}, {}
+    row_indices = {e.id: source_index_urls(e) for e in entries}
     catalogs_read = set().union(*(catalog_urls(e) for e in entries))
-    async def capture(response):
-        await response.aread()
-        file = bundle.write('http/follow-' + uuid.uuid4().hex + '.raw', response.content)
-        followed.append({'url': str(response.url), 'status': response.status_code, 'file': file,
-                         'at': now(), 'retry_after': response.headers.get('retry-after')})
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT) as client:
-        client.event_hooks['response'] = [capture]
-        from .quotas import resolved_quota_entry
-        entries = [await resolved_quota_entry(client,e) for e in entries]
-        catalogs_read.update(url for entry in entries for url in catalog_urls(entry))
-        for entry in entries:
-            page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
-            probe_urls[entry.id] = page or entry.probe.endpoint
-            selected = row_urls(entry, page)
-            if entry.probe.free_list:
-                selected.append(entry.probe.free_list)
-            by_row[entry.id] = list(dict.fromkeys(selected))
-            urls.update(selected)
-        client.event_hooks['response'] = []
-        if 'src/freetier_radar/intelligence-index.json' in scope['paths']:
-            urls.add(json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['source'])
         sem = asyncio.Semaphore(CONCURRENCY)
         async def one(url):
             async with sem:
                 return await fetch(client, url, bundle, page=url not in catalogs_read)
-        checks = await asyncio.gather(*(one(u) for u in sorted(urls)))
+        index_urls = set().union(*row_indices.values())
+        checks = list(await asyncio.gather(*(one(u) for u in sorted(index_urls))))
+        followed = [dict(a, url=a.get('final_url', r['url'])) for r in checks for a in r['attempts']]
+        indices = {r['url']: httpx.Response(200, content=(bundle.out / r['file']).read_bytes())
+                   if r['passed'] else None for r in checks}
+        entries = [resolved_quota_entry(e, indices) for e in entries]
+        catalogs_read.update(url for entry in entries for url in catalog_urls(entry))
+        for entry in entries:
+            page = probe_document(entry.probe, indices)
+            probe_urls[entry.id] = page
+            selected = row_urls(entry, page)
+            if entry.probe.free_list:
+                selected.append(entry.probe.free_list)
+            documents[entry.id] = list(dict.fromkeys(selected))
+            by_row[entry.id] = list(dict.fromkeys([*selected, *sorted(row_indices[entry.id])]))
+            urls.update(by_row[entry.id])
+        if 'src/freetier_radar/intelligence-index.json' in scope['paths']:
+            urls.add(json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['source'])
+        checks.extend(await asyncio.gather(*(one(u) for u in sorted(urls - index_urls))))
     raw_bodies = {r['url']: (bundle.out / r['file']).read_text(errors='replace')
                   for r in checks if r['passed']}
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
@@ -357,16 +357,16 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                 findings.append('border source unreadable; current region eligibility not established')
             elif changed := border_changes(body, entry.border):
                 findings.append(changed)
-        model_checks.append({'row': entry.id, 'source': probe_urls[entry.id], 'notes': findings,
+        model_checks.append({'row': entry.id, 'source': probe_urls[entry.id] or entry.probe.endpoint, 'notes': findings,
                              'passed': not findings,
                              'scope': 'Current offer, family and catalog-ID checks; page names still require scoped free-plan judgment.'})
-        pages = [p for u in by_row[entry.id] for p in bodies.get(u, [])]
-        unread = any(u not in bodies for u in by_row[entry.id])
-        for field, quote in row_quotes(entry):
-            source = row_quote_source(entry, field)
+        document_urls = documents[entry.id]
+        unresolved = unresolved_documents(entry, probe_urls[entry.id])
+        quote_pages = {u: bodies[u] for u in document_urls if u in bodies and u not in unresolved}
+        for field, quote, found, unavailable in checked_quotes(entry, quote_pages,
+                                                              len(quote_pages) != len(document_urls)):
             quotes.append({'row': entry.id, 'field': field, 'quote': quote,
-                           'found': quote_found(quote, bodies.get(source, []) if source else pages),
-                           'unverified': source not in bodies if source else unread})
+                           'found': found, 'unverified': unavailable})
         if entry.page_catalog:
             from .page_catalog import check_page_catalog
             body = raw_bodies.get(entry.page_catalog.source)

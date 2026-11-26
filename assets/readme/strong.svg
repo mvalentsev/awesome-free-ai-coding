@@ -61,7 +61,7 @@
 <text class="t label" x="396.5" y="508" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">qwen3.8-27b</text>
 <rect class="bar" x="416.5" y="493" width="243.0" height="18" rx="4"/>
 <text class="t score" x="1000" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">20.1</text>
-<text class="m offers" x="1120" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">9</text>
+<text class="m offers" x="1120" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="400">8</text>
 <text class="t label" x="396.5" y="540" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">minimax-m3</text>
 <rect class="bar" x="416.5" y="525" width="228.5" height="18" rx="4"/>
 <text class="t score" x="1000" y="540" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700">18.9</text>

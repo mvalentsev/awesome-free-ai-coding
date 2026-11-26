@@ -201,13 +201,17 @@ async def test_a_probe_that_follows_an_index_has_its_quotes_read_on_the_page_the
                      "keywords": ["200 credits a day"],
                      "follow": {"field": "Data.TargetPrefix", "suffix": "/limits.md"}}
     entry = Entry.model_validate(data)
-    respx.get("https://vendor.example/api/doc-index").mock(return_value=httpx.Response(
+    index = respx.get(entry.probe.endpoint).mock(return_value=httpx.Response(
         200, json={"Data": {"TargetPrefix": "https://docs.vendor.example/2026-9-10"}}))
     respx.get("https://docs.vendor.example/2026-9-10/limits.md").mock(return_value=httpx.Response(
         200, text="Sign in for two hundred credits a day."))
     async with httpx.AsyncClient() as client:
         missing, unread = await check_entries([entry], client)
-    assert missing == [] and unread == {}
+        assert missing == [] and unread == {}
+        index.respond(200, json={"old_quote": "Sign in for two hundred credits a day."})
+        missing, unread = await check_entries([entry], client)
+    assert len(missing) == 1 and missing[0].unverified
+    assert entry.id in unread and index.call_count == 2
 
 
 @respx.mock

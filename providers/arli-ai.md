@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Arli AI free tier: limits, free models, verified 2026-11-19'
-description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. Free is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes…
+description: OpenAI-compatible inference for testing open models. Availability of the former Free allowance is unconfirmed. The earlier offer applied separately to each model. The current text generation guide describes limits by account plan. The public pricing page lists paid subscriptions and gives no…
 permalink: /providers/arli-ai/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: Arli AI
 ---
 
@@ -13,9 +13,11 @@ crumb: Arli AI
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
+> ⚠️ **Does not work as published since [2026-11-26](https://www.arliai.com/pricing).** The pricing page now lists paid subscriptions only. The API guide no longer lists the Free testing allowance.
+
 ## What you get
 
-OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time
+OpenAI-compatible inference for testing open models. Availability of the former Free allowance is unconfirmed.
 
 ## Free models
 
@@ -23,11 +25,7 @@ No free model family is currently listed here; callable ids, where the row has t
 
 ## Limits, in the vendor's words
 
-5 requests/2 days per account per model
-
-1 request at once per account
-
-Free is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes many roleplay and writing fine-tunes alongside coding-capable base models. Continuing beyond the trial allowance requires a paid plan.
+The earlier offer applied separately to each model. The current text generation guide describes limits by account plan. The public pricing page lists paid subscriptions and gives no current Free allowance.
 
 ## Where it is offered
 

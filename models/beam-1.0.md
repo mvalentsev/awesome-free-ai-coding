@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'beam-1.0 free: 2 providers, limits and ids, provider probes 2026-11-23'
-description: beam-1.0 is served free by opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
+title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-23'
+description: beam-1.0 is served free by opencode, Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: beam-1.0
 ---
 
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**2 rows on the list serve `beam-1.0` free:** opencode and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
+**3 rows on the list serve `beam-1.0` free:** opencode, Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -35,6 +35,21 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - In opencode's own model list: `Beam Free`
 - What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/v2/docs/console/models/)).
+
+### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
+
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-23 · listed since 2026-11-26
+
+Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
+
+- Limits, in the vendor's words: 200 requests/hour per IP
+
+The free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.
+- Base URL: `https://api.kilo.ai/api/gateway`
+- Key: none — the lane is anonymous
+- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code -m reflection/beam-free`
+- Callable ids: `reflection/beam-free`
+- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
@@ -66,7 +81,6 @@ A team must add a valid payment method before using free credit; otherwise reque
 
 - [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — listed 2026-11-05 to 2026-11-21
 - [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) — listed 2026-11-02 to 2026-11-17
-- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-10-31 to 2026-11-10
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-10-17 to 2026-10-22
 
 ---

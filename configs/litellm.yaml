@@ -429,6 +429,12 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
+- model_name: aihubmix/coding-glm-5.4-free
+  litellm_params:
+    model: openai/coding-glm-5.4-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
 - model_name: aihubmix/coding-minimax-m2-free
   litellm_params:
     model: openai/coding-minimax-m2-free
@@ -944,12 +950,6 @@ model_list:
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
     max_tokens: 65536
-- model_name: iteracompute/qwen/qwen3.8-27b
-  litellm_params:
-    model: openai/qwen/qwen3.8-27b
-    api_base: https://api.iteracompute.com/v1
-    api_key: os.environ/ITERACOMPUTE_API_KEY
-    use_chat_completions_api: true
 - model_name: iteracompute/Auto
   litellm_params:
     model: openai/Auto
@@ -1027,18 +1027,6 @@ model_list:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     api_base: https://api.tokenrouter.com/v1
     api_key: os.environ/TOKENROUTER_API_KEY
-    use_chat_completions_api: true
-- model_name: mistral-free/mistral-large-latest
-  litellm_params:
-    model: openai/mistral-large-latest
-    api_base: https://api.mistral.ai/v1
-    api_key: os.environ/MISTRAL_API_KEY
-    use_chat_completions_api: true
-- model_name: mistral-free/mistral-medium-latest
-  litellm_params:
-    model: openai/mistral-medium-latest
-    api_base: https://api.mistral.ai/v1
-    api_key: os.environ/MISTRAL_API_KEY
     use_chat_completions_api: true
 - model_name: amd-token-factory/MiMo-V2.6-Flash
   litellm_params:

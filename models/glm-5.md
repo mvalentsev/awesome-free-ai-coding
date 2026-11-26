@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5 free: 2 providers, limits and ids, provider probes 2026-11-23'
 description: glm-5 is served free by Kiro and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: glm-5
 ---
 
@@ -43,7 +43,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 - Limits, in the vendor's words: 100/day coding routes: 5 requests/minute; 100 requests/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`
 
-100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`
+100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.4-free`
 
 100/day coding routes: 5 requests/minute per account per model; for `coding-minimax-m2.5-free`
 
@@ -58,7 +58,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 - Key: `AIHUBMIX_API_KEY` — get one at <https://console.aihubmix.com/workspaces/default/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix -m coding-glm-5-free`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex (CLI and desktop app)"
-- Callable ids: `coding-glm-5-free`
+- Callable ids: `coding-glm-5-free`, `coding-glm-5.4-free`
 
 ## Rows that listed it before
 

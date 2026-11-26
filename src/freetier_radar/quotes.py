@@ -27,8 +27,8 @@ import httpx
 
 from .page_reader import page_evidence, recover_page
 from .models import ProbeType, Entry, RemainingFree, is_archived, load_registry, utc_today
-from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
-from .quotas import active_quotas, resolved_quota_entry
+from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_document, read_indices
+from .quotas import active_quotas, resolved_quota_entry, source_index_urls
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 MIN_WORDS = 3
@@ -353,6 +353,21 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str],
     return pages, unread
 
 
+def unresolved_documents(entry: Entry, page: str | None) -> set[str]:
+    urls = {q.source for _, q in active_quotas(entry) if q.follow}
+    if page is None:
+        urls.add(entry.probe.endpoint)
+    return urls
+
+
+def checked_quotes(entry: Entry, by_url: dict[str, list[str]], incomplete: bool):
+    pages = [text for texts in by_url.values() for text in texts]
+    for field, quote in row_quotes(entry):
+        source = row_quote_source(entry, field)
+        found = quote_found(quote, by_url.get(source, []) if source else pages)
+        yield field, quote, found, source not in by_url if source else incomplete
+
+
 def live_rows(entries: list[Entry], today: date) -> list[Entry]:
     """The rows whose quotes are read: an archived row's pages are the ones that
     ended, and its quotes are history. A shutdown still to come archives
@@ -365,21 +380,25 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
                         ) -> tuple[list[Missing], dict[str, list[str]]]:
     missing: list[Missing] = []
     unread: dict[str, list[str]] = {}
+    indices = {}
     for entry in live_rows(entries, today or utc_today()):
-        entry = await resolved_quota_entry(client,entry)
-        quotes = row_quotes(entry)
-        if not quotes:
+        if not row_quotes(entry):
             continue
-        page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
-        by_url = {}
-        pages, failed = await fetch_pages(client, row_urls(entry, page), by_url, catalogs=catalog_urls(entry))
+        await read_indices(client, source_index_urls(entry), indices=indices)
+        entry = resolved_quota_entry(entry, indices)
+        page = probe_document(entry.probe, indices)
+        unresolved = unresolved_documents(entry, page)
+        urls = row_urls(entry, page)
+        by_url = {u: page_texts(indices[u].text) for u in urls if u in indices
+                  and indices[u] is not None and u not in unresolved}
+        _, failed = await fetch_pages(client, [u for u in urls if u not in indices],
+                                      by_url, catalogs=catalog_urls(entry))
+        failed.extend(f"{u}: current document unavailable" for u in sorted(
+            unresolved | {u for u in urls if u in indices and indices[u] is None}))
         if failed:
             unread[entry.id] = failed
-        for field, quote in quotes:
-            source = row_quote_source(entry, field)
-            selected = by_url.get(source, []) if source else pages
-            unavailable = source not in by_url if source else bool(failed)
-            if not quote_found(quote, selected):
+        for field, quote, found, unavailable in checked_quotes(entry, by_url, bool(failed)):
+            if not found:
                 missing.append(Missing(entry.id, field, quote, unverified=unavailable))
     return missing, unread
 

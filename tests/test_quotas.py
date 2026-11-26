@@ -19,29 +19,31 @@ def quota_text(quota):
     return quota_summary(Entry.model_validate({**BASE, 'quotas': [quota]}))
 
 
-@pytest.mark.parametrize('quote,unit,amount,old,new', [
-    ('Only one free-model request may run at a time per account.', 'requests', 1, 'one ', 'two '),
-    ('Free, Starter and Pro each allow one queued or running request per account.', 'requests', 1, 'one ', 'two '),
-    ('You can have up to 10 cloud agent sessions running at once', 'sessions', 10, '10 ', '9 '),
-])
-@pytest.mark.parametrize('changed', [False, True])
+@pytest.mark.parametrize('changed', [None, 0, 1, 2])
 @respx.mock
-async def test_concurrency_counts_follow_the_http_source(quote, unit, amount, old, new, changed):
+async def test_concurrency_counts_follow_the_http_source(changed):
     # https://simplellm.eu/docs/limits.md and https://iteracompute.com/free/,
-    # checked 2026-11-10: both publish the concurrency count in words.
-    # Cline's Cloud session cap: https://docs.cline.bot/usage/cloud-agents,
-    # checked 2026-11-24. It limits sessions, not model inference requests.
+    # checked 2026-11-10. Cline limits sessions in its Cloud agents guide
+    # https://docs.cline.bot/usage/cloud-agents, checked 2026-11-24.
     period = 'Monthly tokens and concurrency are shared across account keys.'
-    source = respx.get(QUOTA['source']).respond(
-        200, text=(quote.replace(old, new) if changed else quote) + ' ' + period)
+    cases = [
+        ('Only one free-model request may run at a time per account.', 'requests', 1, 'one', 'two'),
+        ('Free, Starter and Pro each allow one queued or running request per account.', 'requests', 1, 'one', 'two'),
+        ('You can have up to 10 cloud agent sessions running at once', 'sessions', 10, '10', '9'),
+    ]
+    quotas, published = [], [period]
+    for i, (quote, unit, amount, old, new) in enumerate(cases):
+        quotas.append({**QUOTA, 'amount': amount, 'unit': unit, 'period': 'concurrent', 'scope': 'account',
+                       'quote': quote, 'value_phrase': quote, 'period_quote': period if unit == 'requests' else ''})
+        published.append(quote.replace(old, new) if i == changed else quote)
+    entry = Entry.model_validate({**BASE, 'quotas': quotas})
+    respx.get(entry.probe.endpoint).respond(200, text=entry.probe.keywords[0])
+    source = respx.get(QUOTA['source']).respond(200, text=' '.join(published))
     async with httpx.AsyncClient() as client:
-        entry = Entry.model_validate({**BASE, 'quotas': [{
-            **QUOTA, 'amount': amount, 'unit': unit, 'period': 'concurrent', 'scope': 'account',
-            'quote': quote, 'value_phrase': quote, 'period_quote': period if unit == 'requests' else '',
-        }]})
-        respx.get(BASE['probe']['endpoint']).respond(200, text='Recurring free quota for chat')
         result = await probe_entry(client, entry, attempts=1, backoff=0)
-    assert result.status is (ProbeStatus.STALE_IDS if changed else ProbeStatus.PASS)
+    assert result.status is (ProbeStatus.PASS if changed is None else ProbeStatus.STALE_IDS)
+    for i in range(len(cases)):
+        assert (f'quotas[{i}]' in result.detail) == (i == changed)
     assert source.call_count == 1
 
 
@@ -545,7 +547,9 @@ async def test_catalog_rates_cannot_borrow_a_paid_tier_or_another_models_cap():
     assert 'coding-model' in result.detail and 'rpm' in result.detail
 
 
-def test_ended_model_quota_retains_evidence_without_advertising_current_allowance():
+def test_ended_model_quota_retains_evidence_without_advertising_current_allowance(tmp_path):
+    from freetier_radar.models import load_registry, save_registry
+    from freetier_radar.yaml_data import load_yaml
     from freetier_radar.quotas import structured_quotas
     e=Entry.model_validate({**BASE,'api':{'base_url':'https://api.vendor.example/v1',
         'model_ids':['continuing-model'],'ignored_ids':['ended-model'],
@@ -554,6 +558,10 @@ def test_ended_model_quota_retains_evidence_without_advertising_current_allowanc
         'quotas':[{**QUOTA,'read':'catalog','model_ids':['ended-model']}]})
     assert e.quotas[0].model_ids==['ended-model']
     assert structured_quotas(e)==[]
+    path = tmp_path / 'registry.yaml'
+    save_registry(path, [e])
+    assert 'source' not in load_yaml(path.read_text())['entries'][0]['quotas'][0]
+    assert load_registry(path) == [e]
 
 
 @pytest.mark.parametrize('unit, source_unit, amount, period', [

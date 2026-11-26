@@ -343,6 +343,9 @@
         "coding-glm-5.3-free": {
           "name": "coding-glm-5.3-free"
         },
+        "coding-glm-5.4-free": {
+          "name": "coding-glm-5.4-free"
+        },
         "coding-minimax-m2-free": {
           "name": "coding-minimax-m2-free"
         },
@@ -739,9 +742,6 @@
         "apiKey": "{env:ITERACOMPUTE_API_KEY}"
       },
       "models": {
-        "qwen/qwen3.8-27b": {
-          "name": "qwen/qwen3.8-27b"
-        },
         "Auto": {
           "name": "Auto"
         }
@@ -810,22 +810,6 @@
       "models": {
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
-        }
-      }
-    },
-    "mistral-free": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Mistral Studio",
-      "options": {
-        "baseURL": "https://api.mistral.ai/v1",
-        "apiKey": "{env:MISTRAL_API_KEY}"
-      },
-      "models": {
-        "mistral-large-latest": {
-          "name": "mistral-large-latest"
-        },
-        "mistral-medium-latest": {
-          "name": "mistral-medium-latest"
         }
       }
     },

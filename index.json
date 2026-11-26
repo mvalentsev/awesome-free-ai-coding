@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25",
+  "generated": "2026-11-26",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -33,7 +33,7 @@
       "OpenRouter (free models)",
       "Google AI Studio (Gemini API)",
       "Groq",
-      "Mistral Studio",
+      "Mistral Vibe and Studio",
       "GitHub Models",
       "Cloudflare Workers AI",
       "Ollama Cloud",
@@ -334,6 +334,10 @@
           "family": "dots-3-note"
         },
         {
+          "family": "ernie-5.5-flash-preview",
+          "aa_auto": false
+        },
+        {
           "family": "flint-v1.0"
         },
         {
@@ -452,7 +456,8 @@
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
-          "flint-v1.0"
+          "flint-v1.0",
+          "ernie-5.5-flash-preview"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -484,7 +489,8 @@
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "flint-v1.0": ""
+          "flint-v1.0": "",
+          "ernie-5.5-flash-preview": ""
         },
         "section": {
           "id": "aggregator"
@@ -523,7 +529,7 @@
           "state": "account-specific",
           "source": "https://ai.google.dev/gemini-api/docs/rate-limits",
           "quote": "View your active rate limits in AI Studio",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         }
@@ -561,6 +567,10 @@
         {
           "family": "gemini-3.8-flash",
           "aa_model": "gemini-3-8-flash"
+        },
+        {
+          "family": "gemini-4-hydrogen",
+          "aa_auto": false
         },
         {
           "family": "gemma-4"
@@ -601,13 +611,6 @@
             "quote": "gemini-2.5-flash-lite"
           }
         },
-        "free_since": [
-          {
-            "id": "gemini-4-hydrogen",
-            "on": "2026-11-12",
-            "source": "https://ai.google.dev/gemini-api/docs/changelog"
-          }
-        ],
         "note": "Pass the key as Bearer. The 2.5 IDs have the existing-user restriction described under Limits; new projects should choose the current Flash or Gemma IDs. Hydrogen supports implicit caching only; explicit caching is unavailable."
       },
       "data_use": {
@@ -884,7 +887,8 @@
           "gemma-4",
           "gemini-2.5-pro",
           "gemini-2.5-flash",
-          "gemini-2.5-flash-lite"
+          "gemini-2.5-flash-lite",
+          "gemini-4-hydrogen"
         ],
         "ids": [
           "gemini-3.8-flash",
@@ -912,7 +916,8 @@
           "gemma-4": "",
           "gemini-2.5-pro": "",
           "gemini-2.5-flash": "",
-          "gemini-2.5-flash-lite": ""
+          "gemini-2.5-flash-lite": "",
+          "gemini-4-hydrogen": ""
         },
         "section": {
           "id": "api-free-tier"
@@ -1179,68 +1184,37 @@
     },
     {
       "id": "mistral-free",
-      "name": "Mistral Studio",
-      "category": "api-free-tier",
+      "name": "Mistral Vibe and Studio",
+      "category": "agent-cli",
       "url": "https://mistral.ai",
       "source_urls": [
         "https://mistral.ai/pricing",
         "https://docs.mistral.ai/admin/billing-usage/subscriptions",
         "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
-        "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+        "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+        "https://docs.mistral.ai/vibe/",
+        "https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them"
       ],
       "card_required": false,
-      "offering": "Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI",
-      "limits": "Shared Studio, API and Vibe allowance: Monthly usage allowance: amount not published per organization\n\nAPI rate limits: Per-second requests allowance: see your account for values; Per-minute tokens allowance: see your account for values per organization per model\n\nThe monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.",
+      "offering": "Free monthly usage for Vibe for Code in your terminal and for trying models in Mistral Studio.",
+      "limits": "Vibe and Studio: Monthly usage allowance: amount not published per organization\n\nMistral does not publish the Free budget. Its usage guide says \"Creating API keys and using the API require billing activation and pay-as-you-go.\" Its API help article still describes Free-mode keys for testing. Check your organization’s billing settings before using an existing key.",
       "quotas": [
         {
           "unit": "usage",
           "period": "month",
           "scope": "organization",
-          "label": "Shared Studio, API and Vibe allowance",
-          "source": "https://docs.mistral.ai/admin/billing-usage/subscriptions",
-          "quote": "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code.",
-          "reviewed_on": "2026-11-17",
-          "amount": null
-        },
-        {
-          "unit": "requests",
-          "period": "second",
-          "scope": "organization-model",
-          "state": "account-specific",
-          "label": "API rate limits",
+          "label": "Vibe and Studio",
           "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
-          "quote": "Requests per second: The request throughput limit for the model.",
-          "reviewed_on": "2026-11-17",
-          "amount": null
-        },
-        {
-          "unit": "tokens",
-          "period": "minute",
-          "scope": "organization-model",
-          "state": "account-specific",
-          "label": "API rate limits",
-          "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
-          "quote": "Tokens per minute: The token throughput limit for the model.",
-          "reviewed_on": "2026-11-17",
+          "quote": "Free mode includes a monthly usage budget for trying Vibe and Studio.",
+          "reviewed_on": "2026-11-26",
           "amount": null
         }
       ],
       "free_part": "sum",
       "models": [],
-      "api": {
-        "base_url": "https://api.mistral.ai/v1",
-        "key_url": "https://console.mistral.ai/api-keys",
-        "auth": "api-key",
-        "openai_compatible": true,
-        "model_ids": [
-          "mistral-large-latest",
-          "mistral-medium-latest"
-        ],
-        "note": "Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid. The ids are the ones Mistral's own API quickstart and docs call"
-      },
       "data_use": {
         "trains": "opt-out",
-        "quote": "As stated during subscription, we may use your data (input and output) to train our artificial intelligence models. … You have the right to opt out of this program at any time.",
+        "quote": "Input and output data are used by default to train our artificial intelligence models, unless you opt out of training at any time.",
         "url": "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models"
       },
       "border": {
@@ -1273,10 +1247,10 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://docs.mistral.ai/admin/billing-usage/subscriptions",
+        "endpoint": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
         "keywords": [
-          "Free mode is the default state for new accounts",
-          "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code"
+          "Free mode includes a monthly usage budget for trying Vibe and Studio",
+          "It doesn't include API access"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -1290,19 +1264,16 @@
       "no_account": false,
       "archived": false,
       "search": {
-        "name": "Mistral Studio",
+        "name": "Mistral Vibe and Studio",
         "models": [],
-        "ids": [
-          "mistral-large-latest",
-          "mistral-medium-latest"
-        ],
-        "what": "Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI",
-        "limits": "Shared Studio, API and Vibe allowance: Monthly usage allowance: amount not published per organization\n\nAPI rate limits: Per-second requests allowance: see your account for values; Per-minute tokens allowance: see your account for values per organization per model\n\nThe monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.",
+        "ids": [],
+        "what": "Free monthly usage for Vibe for Code in your terminal and for trying models in Mistral Studio.",
+        "limits": "Vibe and Studio: Monthly usage allowance: amount not published per organization\n\nMistral does not publish the Free budget. Its usage guide says \"Creating API keys and using the API require billing activation and pay-as-you-go.\" Its API help article still describes Free-mode keys for testing. Check your organization’s billing settings before using an existing key.",
         "why": "",
         "access": "",
         "modelAccess": {},
         "section": {
-          "id": "api-free-tier"
+          "id": "agent-cli"
         },
         "flags": [
           "nocard"
@@ -1786,7 +1757,15 @@
           "aa_model": "north-mini-code"
         },
         {
+          "family": "beam-1.0",
+          "aa_auto": false
+        },
+        {
           "family": "dots-3-note"
+        },
+        {
+          "family": "ernie-5.5-flash-preview",
+          "aa_auto": false
         },
         {
           "family": "flint-v1.0",
@@ -1826,6 +1805,12 @@
             "family": "nemotron-3.5-super-vl-120b-a12b",
             "source": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
             "quote": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
+          },
+          "reflection/beam-free": {
+            "family": "beam-1.0",
+            "source": "https://api.kilo.ai/api/gateway/models",
+            "quote": "Beam 1.0 (Free)",
+            "read": "catalog"
           }
         },
         "free_routers": {
@@ -1929,7 +1914,9 @@
           "dots-3-note",
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
-          "flint-v1.0"
+          "flint-v1.0",
+          "ernie-5.5-flash-preview",
+          "beam-1.0"
         ],
         "ids": [
           "openrouter/free",
@@ -1958,7 +1945,9 @@
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "flint-v1.0": "via openrouter/free; the router chooses the model"
+          "flint-v1.0": "via openrouter/free; the router chooses the model",
+          "ernie-5.5-flash-preview": "",
+          "beam-1.0": ""
         },
         "section": {
           "id": "agent-cli"
@@ -1977,7 +1966,9 @@
           "dots-3-note": "",
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "flint-v1.0": "via openrouter/free; the router chooses the model"
+          "flint-v1.0": "via openrouter/free; the router chooses the model",
+          "ernie-5.5-flash-preview": "",
+          "beam-1.0": ""
         },
         "ids": {
           "openrouter/free": "",
@@ -6622,7 +6613,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
+      "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`, `coding-glm-5.4-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
       "quotas": [
         {
           "amount": 5.0,
@@ -6644,7 +6635,8 @@
             "coding-minimax-m2.7-free",
             "coding-glm-5-free",
             "coding-glm-5-turbo-free",
-            "coding-minimax-m2.5-free"
+            "coding-minimax-m2.5-free",
+            "coding-glm-5.4-free"
           ],
           "reviewed_on": "2026-10-06"
         },
@@ -6667,7 +6659,8 @@
             "coding-glm-5.1-free",
             "coding-minimax-m2.7-free",
             "coding-glm-5-free",
-            "coding-glm-5-turbo-free"
+            "coding-glm-5-turbo-free",
+            "coding-glm-5.4-free"
           ],
           "reviewed_on": "2026-10-06"
         },
@@ -6702,7 +6695,8 @@
             "coding-glm-5.3-flash-free",
             "coding-glm-5.3-free",
             "coding-glm-5-free",
-            "coding-glm-5-turbo-free"
+            "coding-glm-5-turbo-free",
+            "coding-glm-5.4-free"
           ],
           "reviewed_on": "2026-10-06"
         },
@@ -6872,7 +6866,7 @@
           "model_ids": [
             "agents-a1-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6885,7 +6879,7 @@
           "model_ids": [
             "intern-s2-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6898,7 +6892,7 @@
           "model_ids": [
             "dots-3-note-preview-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6911,7 +6905,7 @@
           "model_ids": [
             "lfm-2.5-2.6b-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6924,20 +6918,7 @@
           "model_ids": [
             "nemotron-3.5-lightning-free"
           ],
-          "reviewed_on": "2026-11-17",
-          "amount": null,
-          "period": null
-        },
-        {
-          "unit": "usage",
-          "scope": "unspecified",
-          "label": "Other free routes",
-          "source": "https://aihubmix.com/models/nemotron-3-super-120b-a12b-free",
-          "quote": "NVIDIA Nemotron 3 Super is a 120B-parameter open hybrid MoE model built on a hybrid Mamba-Transformer architecture. Activating just 12B parameters, it delivers maximum compute efficiency and accuracy for complex multi-agent applications. Additionally, it features an expansive context length of 262,144 tokens to handle large-scale inputs seamlessly.",
-          "model_ids": [
-            "nemotron-3-super-120b-a12b-free"
-          ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6950,7 +6931,7 @@
           "model_ids": [
             "nemotron-3-nano-omni-30b-a3b-reasoning-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6963,7 +6944,7 @@
           "model_ids": [
             "nemotron-3-ultra-550b-a55b-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6976,7 +6957,7 @@
           "model_ids": [
             "north-mini-code-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -6989,7 +6970,7 @@
           "model_ids": [
             "mimo-v2-flash-free"
           ],
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -7003,7 +6984,7 @@
           "model_ids": [
             "gemma-4-26b-a4b-it-free"
           ],
-          "reviewed_on": "2026-11-13",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -7017,7 +6998,7 @@
           "model_ids": [
             "gemma-4-31b-it-free"
           ],
-          "reviewed_on": "2026-11-13",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -7031,7 +7012,7 @@
           "model_ids": [
             "particle-1-free"
           ],
-          "reviewed_on": "2026-11-13",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -7046,7 +7027,7 @@
           "model_ids": [
             "lfm-3-1.7b-free"
           ],
-          "reviewed_on": "2026-11-13",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         },
@@ -7059,7 +7040,7 @@
           "model_ids": [
             "ling-3.2-flash-free"
           ],
-          "reviewed_on": "2026-11-14",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         }
@@ -7109,6 +7090,10 @@
         },
         {
           "family": "dots-3-note"
+        },
+        {
+          "family": "ernie-5.5-flash-preview",
+          "aa_auto": false
         },
         {
           "family": "flint-v1.0"
@@ -7202,6 +7187,7 @@
           "coding-glm-5-turbo-free",
           "coding-glm-5.3-flash-free",
           "coding-glm-5.3-free",
+          "coding-glm-5.4-free",
           "coding-minimax-m2-free",
           "coding-minimax-m2.1-free",
           "coding-minimax-m2.5-free",
@@ -7333,7 +7319,8 @@
           "gemma-4-26b-a4b",
           "gemma-4-31b",
           "flint-v1.0",
-          "nemotron-3.5-super-vl-120b-a12b"
+          "nemotron-3.5-super-vl-120b-a12b",
+          "ernie-5.5-flash-preview"
         ],
         "ids": [
           "coding-glm-5.2-free",
@@ -7349,6 +7336,7 @@
           "coding-glm-5-turbo-free",
           "coding-glm-5.3-flash-free",
           "coding-glm-5.3-free",
+          "coding-glm-5.4-free",
           "coding-minimax-m2-free",
           "coding-minimax-m2.1-free",
           "coding-minimax-m2.5-free",
@@ -7374,7 +7362,7 @@
           "ling-3.2-flash-free"
         ],
         "what": "OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients",
-        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
+        "limits": "100/day coding routes: 5 requests/minute; 100 requests/day; 1,000,000 tokens/day per account per model; for `xiaomi-mimo-v2.6-pro-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `xiaomi-mimo-v2.6-flash-free`, `coding-glm-5.2-free`, `coding-kimi-k3-free`, `coding-glm-5.1-free`, `coding-minimax-m2.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-minimax-m2.5-free`, `coding-glm-5.4-free`\n\n500/day coding routes: 5 requests/minute; 500 requests/day; 1,000,000 tokens/day per account per model; for `coding-minimax-m3-free`, `glm-4.7-flash-free`, `coding-glm-4.7-free`, `k2.6-code-preview-free`, `coding-minimax-m2.1-free`, `kimi-for-coding-free`, `coding-glm-4.6-free`, `coding-minimax-m2-free`\n\nOther free routes: Usage allowance: amount not published (period not published); scope not published; for `agents-a1-free`, `intern-s2-free`, `dots-3-note-preview-free`, `lfm-2.5-2.6b-free`, `nemotron-3.5-lightning-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-ultra-550b-a55b-free`, `north-mini-code-free`, `mimo-v2-flash-free`, `particle-1-free`\n\nGemma 4 free routes: Usage allowance: amount not published (period not published); scope not published; for `gemma-4-26b-a4b-it-free`, `gemma-4-31b-it-free`\n\nLFM3 free route: Usage allowance: amount not published (period not published); scope not published (Prompts and outputs may be retained and used); for `lfm-3-1.7b-free`\n\nLing 3.2 Flash free route: Usage allowance: amount not published (period not published); scope not published; for `ling-3.2-flash-free`\n\nFree IDs end in -free; paid twins are metered at list prices. The daily request and token caps are independent per account and model, rather than a pool to split across models. Published caps apply to their named model IDs; the remaining routes have no numerical budget published. Request limits and campaign durations apply to their named IDs. nemotron-3.5-content-safety-free is a classifier; LiquidAI advises against agentic coding with the listed LFM models.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -7407,7 +7395,8 @@
           "gemma-4-26b-a4b": "",
           "gemma-4-31b": "",
           "flint-v1.0": "",
-          "nemotron-3.5-super-vl-120b-a12b": ""
+          "nemotron-3.5-super-vl-120b-a12b": "",
+          "ernie-5.5-flash-preview": ""
         },
         "section": {
           "id": "aggregator"
@@ -7787,11 +7776,12 @@
       "url": "https://www.sensenova.cn",
       "source_urls": [
         "https://www.sensenova.cn/token-plan",
-        "https://github.com/OpenSenseNova/SenseNova6.8/blob/main/API.md"
+        "https://www.sensenova.cn/en/token-plan",
+        "https://raw.githubusercontent.com/OpenSenseNova/SenseNova6.8/main/API.md"
       ],
       "card_required": false,
       "offering": "SenseTime's SenseNova API, with a $0 Free plan during public beta; registration and identity verification required",
-      "limits": "Public beta: Usage allowance: amount not published (period not published) per account\n\nFree during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage allowances and reset times are unpublished. The API guide calls the documented model an \"early preview release\" and requires \"registration plus identity verification\". Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.",
+      "limits": "Public beta: Usage allowance: amount not published (period not published) per account\n\nThe public beta plan names SenseNova 6.8 Flash and SenseNova U1.6 Lite. The separate API guide documents the Flash Lite preview with a free token plan. Registration and identity verification are required. The plan does not publish a numerical allowance or reset time.",
       "quotas": [
         {
           "unit": "usage",
@@ -7799,7 +7789,7 @@
           "label": "Public beta",
           "source": "https://www.sensenova.cn/token-plan",
           "quote": "公测期完全免费开放，付费档位即将上线",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         }
@@ -7818,7 +7808,7 @@
         "model_ids": [
           "sensenova-6.8-flash-lite"
         ],
-        "note": "An API ID for SenseNova U1 Fast has not been confirmed."
+        "note": "The API guide uses this exact Flash Lite preview ID. It does not give callable IDs for the two models named on the current plan card."
       },
       "border": {
         "served": [
@@ -7832,10 +7822,11 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://www.sensenova.cn/token-plan",
+        "endpoint": "https://raw.githubusercontent.com/OpenSenseNova/SenseNova6.8/main/API.md",
         "keywords": [
-          "公测期完全免费开放，付费档位即将上线",
-          "SenseNova 6.8 Flash Lite"
+          "free token plan available",
+          "sensenova-6.8-flash-lite",
+          "registration plus identity verification"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -7857,7 +7848,7 @@
           "sensenova-6.8-flash-lite"
         ],
         "what": "SenseTime's SenseNova API, with a $0 Free plan during public beta; registration and identity verification required",
-        "limits": "Public beta: Usage allowance: amount not published (period not published) per account\n\nFree during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Current numeric usage allowances and reset times are unpublished. The API guide calls the documented model an \"early preview release\" and requires \"registration plus identity verification\". Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.",
+        "limits": "Public beta: Usage allowance: amount not published (period not published) per account\n\nThe public beta plan names SenseNova 6.8 Flash and SenseNova U1.6 Lite. The separate API guide documents the Flash Lite preview with a free token plan. Registration and identity verification are required. The plan does not publish a numerical allowance or reset time.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -11493,11 +11484,11 @@
         "https://zed.dev/pricing",
         "https://zed.dev/docs/account/plans-and-pricing",
         "https://zed.dev/docs/account/zed-hosted-models",
-        "https://github.com/zed-industries/zed/commit/bd692a8021"
+        "https://zed.dev/education"
       ],
       "card_required": false,
-      "offering": "Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students",
-      "limits": "Shared Zed and Delta trial: $5 once per account (Valid for 14 days)\n\n14-day trial: Unmetered edit predictions per account\n\nVerified student plan: $10/month; Unmetered edit predictions per account (Free for one year to verified university students)\n\nNo card for the trial. GPT-6 Luna is the only hosted model during the trial, and the shared Zed/Delta trial ends when the credit or time runs out, whichever comes first. It then converts to Free, which uses your own API keys or external agents. The docs say \"Zed's hosted models and edit predictions require a Pro subscription.\" Verified university students receive a separate year of free Student access. Token credit is a spending wallet at hosted-model prices, not a list of individually zero-priced models.",
+      "offering": "A cardless Pro trial for the Zed coding agent. Existing Student plans continue, and new student applications are paused.",
+      "limits": "Shared Zed and Delta trial: $5 once; Unmetered edit predictions per account (Valid for 14 days)\n\nVerified student plan: $10/month; Unmetered edit predictions per account (Existing verified students for one year. New applications paused)\n\nThe Pro trial uses GPT-6 Luna and ends when its shared Zed and Delta balance or trial period runs out. It converts to Free with your own API keys or external agents. The hosted-model guide says \"The Student plan includes GPT-6 Luna and GPT-5.6 Luna only.\"",
       "quotas": [
         {
           "amount": 5.0,
@@ -11510,17 +11501,19 @@
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "Trials include $5 of GPT-6 Luna usage",
           "value_phrase": "Trials include $5 of GPT-6 Luna usage",
-          "reviewed_on": "2026-11-10"
+          "reviewed_on": "2026-11-26"
         },
         {
           "unit": "edit predictions",
           "period": "one-time",
           "scope": "account",
           "state": "unmetered",
-          "label": "14-day trial",
+          "label": "Shared Zed and Delta trial",
+          "condition": "Valid for 14 days",
+          "condition_quote": "for 14 days from when you start the trial",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "unlimited Edit Predictions for 14 days from when you start the trial",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null
         },
         {
@@ -11529,23 +11522,23 @@
           "period": "month",
           "scope": "account",
           "label": "Verified student plan",
-          "condition": "Free for one year to verified university students",
-          "condition_quote": "The plan is available free for one year to verified university students.",
+          "condition": "Existing verified students for one year. New applications paused",
+          "condition_quote": "The plan is free for one year for verified university students. New applications are currently paused.",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
-          "quote": "$10/month in token credits",
-          "value_phrase": "$10/month in token credits",
-          "reviewed_on": "2026-11-10"
+          "quote": "$10/month in hosted AI credits for GPT Luna only",
+          "value_phrase": "$10/month in hosted AI credits",
+          "reviewed_on": "2026-11-26"
         },
         {
           "unit": "edit predictions",
           "scope": "account",
           "state": "unmetered",
           "label": "Verified student plan",
-          "condition": "Free for one year to verified university students",
-          "condition_quote": "The plan is available free for one year to verified university students.",
+          "condition": "Existing verified students for one year. New applications paused",
+          "condition_quote": "The plan is free for one year for verified university students. New applications are currently paused.",
           "source": "https://zed.dev/docs/account/plans-and-pricing",
           "quote": "The Zed Student Plan includes unlimited Edit Predictions",
-          "reviewed_on": "2026-11-17",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         }
@@ -11569,9 +11562,9 @@
         "type": "page-keywords",
         "endpoint": "https://zed.dev/docs/account/plans-and-pricing",
         "keywords": [
-          "Trials include $5 of",
+          "Trials include $5 of GPT-6 Luna usage",
           "Trials automatically convert to Zed Free",
-          "Zed's hosted models and edit predictions require a Pro subscription."
+          "New applications are currently paused"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -11588,8 +11581,8 @@
         "name": "Zed",
         "models": [],
         "ids": [],
-        "what": "Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, plus a separate year of free Student access for verified university students",
-        "limits": "Shared Zed and Delta trial: $5 once per account (Valid for 14 days)\n\n14-day trial: Unmetered edit predictions per account\n\nVerified student plan: $10/month; Unmetered edit predictions per account (Free for one year to verified university students)\n\nNo card for the trial. GPT-6 Luna is the only hosted model during the trial, and the shared Zed/Delta trial ends when the credit or time runs out, whichever comes first. It then converts to Free, which uses your own API keys or external agents. The docs say \"Zed's hosted models and edit predictions require a Pro subscription.\" Verified university students receive a separate year of free Student access. Token credit is a spending wallet at hosted-model prices, not a list of individually zero-priced models.",
+        "what": "A cardless Pro trial for the Zed coding agent. Existing Student plans continue, and new student applications are paused.",
+        "limits": "Shared Zed and Delta trial: $5 once; Unmetered edit predictions per account (Valid for 14 days)\n\nVerified student plan: $10/month; Unmetered edit predictions per account (Existing verified students for one year. New applications paused)\n\nThe Pro trial uses GPT-6 Luna and ends when its shared Zed and Delta balance or trial period runs out. It converts to Free with your own API keys or external agents. The hosted-model guide says \"The Student plan includes GPT-6 Luna and GPT-5.6 Luna only.\"",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -12684,31 +12677,8 @@
         "https://api.arliai.com/model/all"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time",
-      "limits": "5 requests/2 days per account per model\n\n1 request at once per account\n\nFree is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes many roleplay and writing fine-tunes alongside coding-capable base models. Continuing beyond the trial allowance requires a paid plan.",
-      "quotas": [
-        {
-          "amount": 5.0,
-          "unit": "requests",
-          "period": "day",
-          "window": 2,
-          "scope": "account-model",
-          "source": "https://www.arliai.com/docs/textgen",
-          "quote": "Free accounts are able to use each model for a maximum of 5 requests every 2 days for testing purposes",
-          "value_phrase": "Free accounts are able to use each model for a maximum of 5 requests every 2 days for testing purposes",
-          "reviewed_on": "2026-10-06"
-        },
-        {
-          "amount": 1.0,
-          "unit": "requests",
-          "period": "concurrent",
-          "scope": "account",
-          "source": "https://www.arliai.com/pricing",
-          "quote": "1 request at a time",
-          "value_phrase": "1 request at a time",
-          "reviewed_on": "2026-10-06"
-        }
-      ],
+      "offering": "OpenAI-compatible inference for testing open models. Availability of the former Free allowance is unconfirmed.",
+      "limits": "The earlier offer applied separately to each model. The current text generation guide describes limits by account plan. The public pricing page lists paid subscriptions and gives no current Free allowance.",
       "free_part": "models",
       "models": [],
       "api": {
@@ -12718,7 +12688,12 @@
         "openai_compatible": true,
         "model_ids": [],
         "no_ids": "its public catalog names models by display name, and /v1/models, which holds the ids a request carries, answers only a key",
-        "note": "Choose an exact ID from the model catalog. The coding quickstart covers Roo Code and Kilo Code; set the context window for the selected model. Chat completions require an API key."
+        "note": "Choose an exact ID from the model catalog. The coding quickstart covers Roo Code and Kilo Code; set the context window for the selected model. Chat completions require an API key.",
+        "notice": {
+          "since": "2026-11-26",
+          "text": "The pricing page now lists paid subscriptions only. The API guide no longer lists the Free testing allowance.",
+          "url": "https://www.arliai.com/pricing"
+        }
       },
       "data_use": {
         "trains": "no",
@@ -12754,8 +12729,8 @@
         "name": "Arli AI",
         "models": [],
         "ids": [],
-        "what": "OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time",
-        "limits": "5 requests/2 days per account per model\n\n1 request at once per account\n\nFree is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes many roleplay and writing fine-tunes alongside coding-capable base models. Continuing beyond the trial allowance requires a paid plan.",
+        "what": "OpenAI-compatible inference for testing open models. Availability of the former Free allowance is unconfirmed.",
+        "limits": "The earlier offer applied separately to each model. The current text generation guide describes limits by account plan. The public pricing page lists paid subscriptions and gives no current Free allowance.",
         "why": "",
         "access": "",
         "modelAccess": {},
@@ -14963,7 +14938,7 @@
             "field": "Data.TargetPrefix",
             "suffix": "/dist/magicube/intro/intro_CN.md"
           },
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-26"
         },
         {
           "amount": 50.0,
@@ -14981,7 +14956,7 @@
             "field": "Data.TargetPrefix",
             "suffix": "/dist/magicube/intro/intro_CN.md"
           },
-          "reviewed_on": "2026-10-06"
+          "reviewed_on": "2026-11-26"
         },
         {
           "unit": "credits",
@@ -14994,7 +14969,7 @@
             "field": "Data.TargetPrefix",
             "suffix": "/dist/magicube/intro/intro_CN.md"
           },
-          "reviewed_on": "2026-11-12",
+          "reviewed_on": "2026-11-26",
           "amount": null,
           "period": null
         }
@@ -15280,50 +15255,25 @@
       "source_urls": [
         "https://zcode.z.ai/en/docs/welcome",
         "https://zcode.z.ai/en/docs/configuration",
-        "https://zcode.z.ai/en/docs/qa"
+        "https://zcode.z.ai/en/docs/qa",
+        "https://zcode.z.ai/cn/docs/configuration"
       ],
       "card_required": false,
-      "offering": "Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card",
-      "limits": "Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3 and GLM-5.3-Flash in separate buckets. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.",
+      "offering": "A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.",
+      "limits": "BigModel trial: GLM-5.4: 3,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)\n\nUse the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and allowances after sign-in. Its former GLM-5.3 and GLM-5-Turbo trial allocations are unconfirmed. The app also supports separately funded coding plans and your own API keys.",
       "quotas": [
         {
           "amount": 3000000.0,
           "unit": "tokens",
           "period": "day",
           "scope": "account-model",
-          "label": "Global trial: GLM-5.3",
-          "condition": "First 5 days only",
-          "condition_quote": "the daily quotas below are granted only during these 5 days",
-          "source": "https://zcode.z.ai/en/docs/welcome",
-          "quote": "GLM-5.3 3M tokens / day",
-          "value_phrase": "GLM-5.3 3M tokens / day",
-          "reviewed_on": "2026-10-06"
-        },
-        {
-          "amount": 2000000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "account-model",
-          "label": "Global trial: GLM-5-turbo",
-          "condition": "First 5 days only",
-          "condition_quote": "the daily quotas below are granted only during these 5 days",
-          "source": "https://zcode.z.ai/en/docs/welcome",
-          "quote": "GLM-5-turbo 2M tokens / day",
-          "value_phrase": "GLM-5-turbo 2M tokens / day",
-          "reviewed_on": "2026-10-06"
-        },
-        {
-          "amount": 3000000.0,
-          "unit": "tokens",
-          "period": "day",
-          "scope": "account-model",
-          "label": "BigModel trial: GLM-5.3",
+          "label": "BigModel trial: GLM-5.4",
           "condition": "First 5 days only",
           "condition_quote": "the trial lasts 5 days only",
           "source": "https://zcode.z.ai/en/docs/configuration",
-          "quote": "GLM-5.3 3 million tokens / day",
-          "value_phrase": "GLM-5.3 3 million tokens / day",
-          "reviewed_on": "2026-10-12"
+          "quote": "GLM-5.4 3 million tokens / day",
+          "value_phrase": "GLM-5.4 3 million tokens / day",
+          "reviewed_on": "2026-11-26"
         },
         {
           "amount": 5000000.0,
@@ -15336,7 +15286,7 @@
           "source": "https://zcode.z.ai/en/docs/configuration",
           "quote": "GLM-5.3-Flash 5 million tokens / day",
           "value_phrase": "GLM-5.3-Flash 5 million tokens / day",
-          "reviewed_on": "2026-10-12"
+          "reviewed_on": "2026-11-26"
         }
       ],
       "free_part": "models",
@@ -15353,6 +15303,13 @@
         {
           "family": "glm-5-turbo",
           "aa_model": "glm-5-turbo"
+        }
+      ],
+      "newcomers": [
+        {
+          "family": "glm-5.4",
+          "on": "2026-11-26",
+          "source": "https://zcode.z.ai/en/docs/configuration"
         }
       ],
       "data_use": {
@@ -15377,10 +15334,11 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://zcode.z.ai/en/docs/welcome",
+        "endpoint": "https://zcode.z.ai/en/docs/configuration",
         "keywords": [
-          "5-day free trial",
-          "3M tokens / day"
+          "the trial lasts 5 days only",
+          "GLM-5.4 3 million tokens / day",
+          "GLM-5.3-Flash 5 million tokens / day"
         ],
         "free_marker": "",
         "require_zero_price": false,
@@ -15401,8 +15359,8 @@
           "glm-5.3-flash"
         ],
         "ids": [],
-        "what": "Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card",
-        "limits": "Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)\n\nGlobal and mainland BigModel accounts have different per-model daily trial grants. The global trial covers GLM-5.3 and GLM-5-Turbo; BigModel covers GLM-5.3 and GLM-5.3-Flash in separate buckets. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.",
+        "what": "A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.",
+        "limits": "BigModel trial: GLM-5.4: 3,000,000 tokens/day per account per model (First 5 days only)\n\nBigModel trial: GLM-5.3-Flash: 5,000,000 tokens/day per account per model (First 5 days only)\n\nUse the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and allowances after sign-in. Its former GLM-5.3 and GLM-5-Turbo trial allocations are unconfirmed. The app also supports separately funded coding plans and your own API keys.",
         "why": "",
         "access": "",
         "modelAccess": {
@@ -16592,113 +16550,35 @@
         "https://iteracompute.com/models/auto/"
       ],
       "card_required": false,
-      "remaining_free": {
-        "source": "https://iteracompute.com/free/",
-        "quote": "Users with positive net recharge completed before this cutoff retain their existing free tier. Afterward, shared free Auto is limited to these users and users with a currently effective plan.",
-        "free_part": "unnamed"
-      },
-      "offering": "OpenAI-compatible API with retained monthly free model usage for eligible existing accounts",
-      "limits": "Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nPositive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. \"Users with positive net recharge completed before this cutoff retain their existing free tier.\" Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. \"Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\"",
+      "offering": "An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts.",
+      "limits": "Retained Auto allowance: Monthly tokens allowance: see your account for values per account\n\nEligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard separates retained tokens, plan tokens and promotional rewards. Pay-as-you-go wallet billing is off by default.",
       "quotas": [
         {
-          "amount": 30000000.0,
           "unit": "tokens",
           "period": "month",
           "scope": "account",
-          "label": "Retained Free allowance below Starter",
-          "condition": "for eligible pre-cutoff recharge users below Starter",
-          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
-          "source": "https://iteracompute.com/models/qwen3-8-27b/",
-          "quote": "Free: 128K total context and 30M tokens/month",
-          "value_phrase": "30M tokens/month",
-          "model_ids": [
-            "qwen/qwen3.8-27b",
-            "Auto"
-          ],
-          "reviewed_on": "2026-11-24"
-        },
-        {
-          "amount": 100000000.0,
-          "unit": "tokens",
-          "period": "month",
-          "scope": "account",
-          "label": "Retained Starter allowance",
-          "condition": "for eligible pre-cutoff recharge users",
-          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
-          "source": "https://iteracompute.com/models/qwen3-8-27b/",
-          "quote": "Starter provides 100M tokens/month and 128K context",
-          "value_phrase": "100M tokens/month",
-          "period_quote": "Starter provides 100M tokens/month and 128K context",
-          "model_ids": [
-            "qwen/qwen3.8-27b",
-            "Auto"
-          ],
-          "reviewed_on": "2026-11-24"
-        },
-        {
-          "amount": 300000000.0,
-          "unit": "tokens",
-          "period": "month",
-          "scope": "account",
-          "label": "Retained Pro allowance",
-          "condition": "for eligible pre-cutoff recharge users",
-          "condition_quote": "Users with positive net recharge completed before this cutoff retain their existing free tier.",
-          "source": "https://iteracompute.com/models/qwen3-8-27b/",
-          "quote": "Pro provides 300M tokens/month and 256K context",
-          "value_phrase": "300M tokens/month",
-          "period_quote": "Pro provides 300M tokens/month and 256K context",
-          "model_ids": [
-            "qwen/qwen3.8-27b",
-            "Auto"
-          ],
-          "reviewed_on": "2026-11-24"
-        },
-        {
-          "amount": 1.0,
-          "unit": "requests",
-          "period": "concurrent",
-          "scope": "account",
-          "label": "Shared free-model slot",
-          "source": "https://iteracompute.com/free/",
-          "quote": "Free, Starter and Pro each allow one queued or running request per account and use shared capacity that may be slow, shared across all keys and Auto.",
-          "value_phrase": "one queued or running request per account",
-          "period_quote": "Monthly tokens and concurrency are shared across your account’s API keys and free routes; changing keys or model IDs does not create another allowance.",
-          "model_ids": [
-            "qwen/qwen3.8-27b",
-            "Auto"
-          ],
-          "reviewed_on": "2026-11-10"
+          "state": "account-specific",
+          "label": "Retained Auto allowance",
+          "source": "https://iteracompute.com/free-tier-terms/",
+          "quote": "You keep your tier's monthly Auto allowance if the total of your top-ups completed before the free promotion ended remains positive after refunds.",
+          "reviewed_on": "2026-11-26",
+          "amount": null
         }
       ],
-      "free_part": "models",
-      "models": [
-        {
-          "family": "qwen3.8-27b",
-          "aa_model": "qwen3-8-27b"
-        }
-      ],
+      "free_part": "sum",
+      "models": [],
       "api": {
         "base_url": "https://api.iteracompute.com/v1",
         "key_url": "https://platform.iteracompute.com/api-keys",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "qwen/qwen3.8-27b",
           "Auto"
-        ],
-        "ignored_ids": [
-          "opencode/mimo-v2.6-flash:free",
-          "opencode/deepseek-v4.1-flash:free",
-          "opencode/glm-5.3-flash:free",
-          "opencode/nemotron-3.5-lightning:free",
-          "opencode/nemotron-3.5-super-vl:free",
-          "opencode/big-pickle:free",
-          "opencode/beam:free"
         ],
         "no_family_ids": [
           "Auto"
         ],
-        "note": "Use qwen/qwen3.8-27b for the named model or Auto for the changing pool. Both use the retained shared allowance for qualifying pre-cutoff recharge accounts. An active plan separately permits Auto; check its purchased and shared allowances in your account. Create an API key and use Chat Completions. Auto does not pin model weights or precision. Other catalog routes have independent prices and eligibility."
+        "note": "Auto selects from the currently listed models using demand, cost and spare capacity. Create a key that permits Auto and check your available tokens in Billing. The named Qwen3.8-27B route has retired."
       },
       "data_use": {
         "trains": "no",
@@ -16716,11 +16596,15 @@
         ]
       },
       "probe": {
-        "type": "api-models",
-        "endpoint": "https://api.iteracompute.com/v1/models",
-        "keywords": [],
+        "type": "page-keywords",
+        "endpoint": "https://iteracompute.com/free-tier-terms/",
+        "keywords": [
+          "monthly Auto allowance",
+          "Later top-ups cannot unlock or increase this allowance"
+        ],
         "free_marker": "",
-        "require_zero_price": true,
+        "require_zero_price": false,
+        "catalog": "https://api.iteracompute.com/v1/models",
         "machinery_keywords": []
       },
       "first_seen": "2026-10-18",
@@ -16732,20 +16616,15 @@
       "archived": false,
       "search": {
         "name": "IteraCompute",
-        "models": [
-          "qwen3.8-27b"
-        ],
+        "models": [],
         "ids": [
-          "qwen/qwen3.8-27b",
           "Auto"
         ],
-        "what": "OpenAI-compatible API with retained monthly free model usage for eligible existing accounts",
-        "limits": "Retained Free allowance below Starter: 30,000,000 tokens/month per account (for eligible pre-cutoff recharge users below Starter); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Starter allowance: 100,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nRetained Pro allowance: 300,000,000 tokens/month per account (for eligible pre-cutoff recharge users); for `qwen/qwen3.8-27b`, `Auto`\n\nShared free-model slot: 1 request at once per account; for `qwen/qwen3.8-27b`, `Auto`\n\nPositive net recharge had to complete before 2026-11-24 08:00 UTC to retain shared free access; registration alone and later top-ups do not qualify. \"Users with positive net recharge completed before this cutoff retain their existing free tier.\" Active plans separately allow Auto; purchased plan tokens and shared free benefits have separate ledgers. Spending the balance preserves the retained tier; refunds may change it. Input and output, including reasoning, count across all account keys and free routes. \"Context includes input and requested output; output is capped at 8,192 tokens.\" Free and Starter context is 128K; Pro is 256K. No RPM, TPM or daily token cap. Requests reserve maximum usage and settle actual usage; exhausted quota returns 429 without automatic paid overage. Shared capacity may queue; honor Retry-After. No SLA. New external payments add an 8% fee. Zero data retention requires a separate signed agreement. \"Allowances reset on the first of each month at 00:00 UTC (08:00 Beijing time); unused tokens do not roll over.\"",
+        "what": "An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts.",
+        "limits": "Retained Auto allowance: Monthly tokens allowance: see your account for values per account\n\nEligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard separates retained tokens, plan tokens and promotional rewards. Pay-as-you-go wallet billing is off by default.",
         "why": "",
         "access": "",
-        "modelAccess": {
-          "qwen3.8-27b": ""
-        },
+        "modelAccess": {},
         "section": {
           "id": "api-free-tier"
         },
@@ -21782,7 +21661,6 @@
       "regolo",
       "token-harbor",
       "tokenrouter",
-      "mistral-free",
       "vlm-run-gateway",
       "amd-token-factory",
       "cohere",
@@ -21864,7 +21742,6 @@
       "regolo",
       "token-harbor",
       "tokenrouter",
-      "mistral-free",
       "amd-token-factory",
       "cohere",
       "opper",
@@ -21967,7 +21844,6 @@
       "regolo",
       "token-harbor",
       "tokenrouter",
-      "mistral-free",
       "amd-token-factory",
       "cohere",
       "opper",
@@ -22118,7 +21994,6 @@
         "llmtr",
         "hetzner-inference",
         "alibaba-model-studio",
-        "iteracompute",
         "regolo",
         "vlm-run-gateway",
         "ovh-ai-endpoints",
@@ -22287,6 +22162,7 @@
       "family": "beam-1.0",
       "rows": [
         "opencode",
+        "kilo-code",
         "vercel-ai-gateway"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/"
@@ -22434,6 +22310,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
     },
     {
+      "family": "ernie-5.5-flash-preview",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/"
+    },
+    {
       "family": "fantail",
       "rows": [
         "autohand-code"
@@ -22519,6 +22404,12 @@
         "antigravity"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
+    },
+    {
+      "family": "gemini-4-hydrogen",
+      "rows": [
+        "google-ai-studio"
+      ]
     },
     {
       "family": "gemma-4",
@@ -23096,11 +22987,6 @@
       "family": "claude-haiku-5.5",
       "rows": [],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/"
-    },
-    {
-      "family": "ernie-5.5-flash-preview",
-      "rows": [],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/"
     },
     {
       "family": "gemini-3.5-flash",
