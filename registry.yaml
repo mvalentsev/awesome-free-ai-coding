@@ -10149,6 +10149,9 @@ entries:
   - https://iteracompute.com/privacy.html
   - https://iteracompute.com/models/auto/
   card_required: false
+  access:
+    source: https://iteracompute.com/free-tier-terms/
+    prior_topup_required: true
   offering: An OpenAI-compatible Auto router with a retained monthly token allowance
     for eligible existing accounts.
   limits: Eligibility depends on the positive balance of top-ups completed before

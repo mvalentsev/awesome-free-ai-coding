@@ -11,7 +11,7 @@ crumb: IteraCompute
 
 # IteraCompute free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-24 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · requires a qualifying prior top-up · **live** — last verified by a probe on 2026-11-24 · [iteracompute.com](https://iteracompute.com/free/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

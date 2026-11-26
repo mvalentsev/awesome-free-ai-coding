@@ -956,6 +956,9 @@ model_list:
     api_base: https://api.iteracompute.com/v1
     api_key: os.environ/ITERACOMPUTE_API_KEY
     use_chat_completions_api: true
+  model_info:
+    access: requires a qualifying prior top-up
+    source: https://iteracompute.com/free-tier-terms/
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2

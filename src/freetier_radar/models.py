@@ -712,6 +712,7 @@ class FreeAccess(BaseModel):
     model_config = ConfigDict(extra="forbid")
     source: str
     initial_payment_usd: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    prior_topup_required: bool = Field(default=False, exclude_if=lambda v: not v)
     payment_kind: Literal["top-up", "card verification", "charge"] = Field(
         default="top-up", exclude_if=lambda v: v == "top-up")
     topup_fee_percent: float = Field(default=0, ge=0, allow_inf_nan=False,
@@ -749,10 +750,16 @@ class FreeAccess(BaseModel):
             return self.until
         return datetime.combine(self.until + timedelta(days=1), datetime.min.time(), timezone.utc)
 
+    @property
+    def payment_required(self) -> bool:
+        return self.initial_payment_usd is not None or self.prior_topup_required
+
     @model_validator(mode="after")
     def _conditions_are_complete(self) -> FreeAccess:
-        if self.initial_payment_usd is None and self.until is None:
+        if not self.payment_required and self.until is None:
             raise ValueError("access needs an initial payment or a free-until deadline")
+        if self.prior_topup_required and self.payment_kind != "top-up":
+            raise ValueError("previously funded access requires a top-up")
         if self.topup_fee_percent and (self.initial_payment_usd is None
                                       or self.payment_kind != "top-up"):
             raise ValueError("a top-up fee needs an initial top-up")
@@ -1765,8 +1772,8 @@ class Entry(BaseModel):
             raise ValueError("whole-offer expiry uses retired_on; access.until belongs to model_access")
         lane = self.api or self.client_lane or self.page_catalog
         scoped_access = lane.model_access if lane else self.model_access
-        if self.access and self.access.initial_payment_usd and any(
-                a.initial_payment_usd for a in scoped_access.values()):
+        if self.access and self.access.payment_required and any(
+                a.payment_required for a in scoped_access.values()):
             raise ValueError("record the whole-offer payment once in access; model_access may "
                              "add deadlines but cannot replace it with another payment")
         return self
@@ -2058,9 +2065,10 @@ def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
               else entry.model_access.get(model_id))
     if scoped is None:
         return entry.access
-    if entry.access and entry.access.initial_payment_usd and not scoped.initial_payment_usd:
+    if entry.access and entry.access.payment_required:
         return scoped.model_copy(update={
             "initial_payment_usd": entry.access.initial_payment_usd,
+            "prior_topup_required": entry.access.prior_topup_required,
             "payment_kind": entry.access.payment_kind,
             "topup_fee_percent": entry.access.topup_fee_percent})
     return scoped
@@ -2078,6 +2086,7 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
         ids = [family]
     conditions = [id_access(entry, i) for i in ids] or [entry.access]
     return min(conditions, key=lambda a: (
+        bool(a and a.prior_topup_required),
         (a.initial_payment_usd or 0) * (1 + a.topup_fee_percent / 100) if a else 0,
         -(a.ends_at.timestamp() if a and a.until else float("inf"))))
 
@@ -2086,9 +2095,13 @@ def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
     if access is None:
         return ""
     words = []
-    if access.initial_payment_usd:
-        once = "" if compact else "one-time "
-        words.append(f"requires ${access.initial_payment_usd:g} {once}{access.payment_kind}")
+    if access.payment_required:
+        amount = f"${access.initial_payment_usd:g} " if access.initial_payment_usd else ""
+        if access.prior_topup_required:
+            words.append(f"requires a qualifying prior {amount}top-up")
+        else:
+            once = "" if compact else "one-time "
+            words.append(f"requires {amount}{once}{access.payment_kind}")
         if access.topup_fee_percent:
             words[-1] += f" + {access.topup_fee_percent:g}% fee"
     if access.until:
@@ -2105,18 +2118,19 @@ def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
 def requires_payment(entry: Entry, family: str | None = None) -> bool:
     if family:
         access = family_access(entry, family)
-        return bool(access and access.initial_payment_usd)
+        return bool(access and access.payment_required)
     lane = lane_ids(entry)
     if lane and lane.model_ids:
-        return all((a := id_access(entry, i)) and a.initial_payment_usd for i in lane.model_ids)
-    return bool(entry.access and entry.access.initial_payment_usd)
+        return all((a := id_access(entry, i)) and a.payment_required for i in lane.model_ids)
+    return bool(entry.access and entry.access.payment_required)
 
 
 def preferred_ids(entry: Entry) -> list[str]:
     """Default to unfunded, undated access; retain the registry order on ties."""
     lane = lane_ids(entry)
     return sorted(lane.model_ids, key=lambda i: (
-        bool((a := id_access(entry, i)) and a.initial_payment_usd), bool(a and a.until))) if lane else []
+        bool((a := id_access(entry, i)) and a.payment_required), bool(a and a.prior_topup_required),
+        bool(a and a.until))) if lane else []
 
 
 def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:

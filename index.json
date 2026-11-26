@@ -16558,6 +16558,10 @@
         "https://iteracompute.com/models/auto/"
       ],
       "card_required": false,
+      "access": {
+        "source": "https://iteracompute.com/free-tier-terms/",
+        "prior_topup_required": true
+      },
       "offering": "An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts.",
       "limits": "Retained Auto allowance: Monthly tokens allowance: see your account for values per account\n\nEligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard separates retained tokens, plan tokens and promotional rewards. Pay-as-you-go wallet billing is off by default.",
       "quotas": [
@@ -16631,7 +16635,7 @@
         "what": "An OpenAI-compatible Auto router with a retained monthly token allowance for eligible existing accounts.",
         "limits": "Retained Auto allowance: Monthly tokens allowance: see your account for values per account\n\nEligibility depends on the positive balance of top-ups completed before the promotion ended, after refunds. Later top-ups cannot unlock or increase that allowance. The billing dashboard separates retained tokens, plan tokens and promotional rewards. Pay-as-you-go wallet billing is off by default.",
         "why": "",
-        "access": "",
+        "access": "requires a qualifying prior top-up",
         "modelAccess": {},
         "section": {
           "id": "api-free-tier"
@@ -16639,6 +16643,13 @@
         "flags": [
           "nocard"
         ]
+      },
+      "access_labels": {
+        "offer": "requires a qualifying prior top-up",
+        "models": {},
+        "ids": {
+          "Auto": "requires a qualifying prior top-up"
+        }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/iteracompute/"
     },

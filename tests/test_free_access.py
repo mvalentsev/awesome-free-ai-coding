@@ -161,11 +161,15 @@ def test_upfront_payment_rows_follow_unfunded_rows_at_equal_rank():
     assert [r["name"] for section in ctx["sections"] for r in section["rows"]] == ["Z Free", "A Paid"]
 
 
-def test_paid_unlock_does_not_enter_an_automatic_free_fallback_pool():
+@pytest.mark.parametrize("payment", [PAID, {"prior_topup_required": True, "source": PAID["source"]}])
+def test_paid_unlock_does_not_enter_an_automatic_free_fallback_pool(payment):
     row = entry(models=[{"family": "steady", "tier": "strong", "aa_model": "steady"},
-                        {"family": "preview", "tier": "strong", "aa_model": "preview"}])
+                        {"family": "preview", "tier": "strong", "aa_model": "preview"}],
+                api={"base_url": "https://vendor.example/v1", "model_ids": ["steady", "preview"],
+                     "model_access": {"preview": payment}})
     deployments = build_litellm_config([row], DAY)["model_list"]
-    assert any(d["model_name"] == "gateway/preview" for d in deployments)
+    named = next(d for d in deployments if d["model_name"] == "gateway/preview")
+    assert "top-up" in named["model_info"]["access"]
     pool = [d["litellm_params"]["model"] for d in deployments if d["model_name"] == "free/strong"]
     assert pool == ["openai/steady"]
 

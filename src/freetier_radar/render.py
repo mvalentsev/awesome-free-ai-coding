@@ -1122,6 +1122,11 @@ def _auth_cell(e: Entry) -> str:
     return cell + "<br><sub>" + "; ".join(subs) + "</sub>"
 
 
+def _connection_terms(e: Entry) -> str:
+    words = access_words(e.access)
+    return " ".join(filter(None, (words.capitalize() + "." if words else "", e.api.note)))
+
+
 def _connection_note(e: Entry) -> str:
     """The cell under a provider's name in the connection table: a notice first,
     since it is what a reader copying the base URL most needs to know, then the
@@ -1131,8 +1136,8 @@ def _connection_note(e: Entry) -> str:
         parts.append(f"⚠️ <sub>**Does not work as published since {_notice_since(e.api.notice)}.**</sub>"
                      "<br>" + _fold(e.api.notice.text, README_NOTE_TEASER, README_NOTE_COLLAPSE,
                                     small=True))
-    if e.api.note:
-        parts.append(_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True))
+    if terms := _connection_terms(e):
+        parts.append(_fold(terms, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True))
     return "<br>".join(parts)
 
 
@@ -1549,7 +1554,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
             "keyless": e.api.key_kind == "none", "env_var": env_var(e.id),
             "public_key": e.api.public_key or "",
             "key_url": e.api.key_url or "", "asks": asks,
-            "note": _site_fold(e.api.note) if e.api.note else None,
+            "note": _site_fold(terms) if (terms := _connection_terms(e)) else None,
             "notice": _notice_data(e.api.notice),
         })
     return rows
@@ -2007,7 +2012,7 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
             tier = _tier_of_id(e, model_id)
             names = ([MEASURED_POOLS[tier]] if tier in MEASURED_POOLS else []) + (
                 ["free/nokey"] if needs_no_account(e) else [])
-            if access and access.initial_payment_usd:
+            if access and access.payment_required:
                 names = []
             for name in names:
                 groups[name].append({
@@ -2432,7 +2437,7 @@ def _connect_lines(e: Entry, ids: list[str], *, include_waiting: bool = False,
         model = bindings.get(family) or ModelFamily(family="unclassified")
         access = id_access(e, mid)
         return (family is None, *_model_order(model, scores),
-                bool(access and access.initial_payment_usd), mid.casefold())
+                bool(access and access.payment_required), mid.casefold())
     ids = sorted(ids, key=key)
     api = e.api
     if not (api and api.base_url):

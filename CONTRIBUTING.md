@@ -42,6 +42,9 @@ same structure: `source` (an official HTTPS page), `initial_payment_usd`, option
 do not apply. These fields generate the disclosures; do not duplicate them in
 templates or add exceptions for a particular vendor.
 
+Set `prior_topup_required` when a retained allowance depends on funding an
+account before enrollment closed. Include the amount only if the source specifies it.
+
 `payment_kind` accepts `top-up`, `card verification`, or `charge`; `top-up` is
 the default. Use `charge` when the vendor requires a settled payment without
 describing it as a credit top-up or card verification. For example:
