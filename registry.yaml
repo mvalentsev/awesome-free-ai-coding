@@ -861,6 +861,7 @@ entries:
     - reflection/beam-free
     - particle-ai/particle-1:free
     - inclusionai/ling-3.2-flash:free
+    - recursive/flint-v1.0:free
     model_bindings:
       nvidia/nemotron-3.5-super-vl:free:
         family: nemotron-3.5-super-vl-120b-a12b
@@ -892,6 +893,9 @@ entries:
       inclusionai/ling-3.2-flash:free:
         context_tokens: 1048576
         output_tokens: 262144
+      recursive/flint-v1.0:free:
+        context_tokens: 262144
+        output_tokens: 235929
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     - inclusionai/ling-3.1-flash-1019-free

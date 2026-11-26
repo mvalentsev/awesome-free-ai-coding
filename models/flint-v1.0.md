@@ -3,7 +3,7 @@ layout: default
 title: 'flint-v1.0 free: 4 providers, limits and ids, provider probes 2026-11-23'
 description: flint-v1.0 is served free by opencode, OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/flint-v1.0/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: flint-v1.0
 ---
 
@@ -72,7 +72,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `openrouter/free`
+- Callable ids: `recursive/flint-v1.0:free`, `openrouter/free`
 - `openrouter/free`: the router chooses the model ([conditions](https://openrouter.ai/api/v1/models))
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 

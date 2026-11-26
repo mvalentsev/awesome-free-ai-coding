@@ -1798,7 +1798,8 @@
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
           "particle-ai/particle-1:free",
-          "inclusionai/ling-3.2-flash:free"
+          "inclusionai/ling-3.2-flash:free",
+          "recursive/flint-v1.0:free"
         ],
         "model_bindings": {
           "nvidia/nemotron-3.5-super-vl:free": {
@@ -1843,6 +1844,11 @@
           "inclusionai/ling-3.2-flash:free": {
             "context_tokens": 1048576,
             "output_tokens": 262144,
+            "source": "https://api.kilo.ai/api/gateway/models"
+          },
+          "recursive/flint-v1.0:free": {
+            "context_tokens": 262144,
+            "output_tokens": 235929,
             "source": "https://api.kilo.ai/api/gateway/models"
           }
         },
@@ -1932,7 +1938,8 @@
           "baidu/ernie-5.5-flash-preview:free",
           "reflection/beam-free",
           "particle-ai/particle-1:free",
-          "inclusionai/ling-3.2-flash:free"
+          "inclusionai/ling-3.2-flash:free",
+          "recursive/flint-v1.0:free"
         ],
         "what": "Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models",
         "limits": "200 requests/hour per IP\n\nThe free-model lineup rotates. Auto Free routes over the free models in the catalog's autoRouting list. Other models use pay-as-you-go credits or a Kilo Pass subscription.",
@@ -1984,7 +1991,8 @@
           "baidu/ernie-5.5-flash-preview:free": "",
           "reflection/beam-free": "",
           "particle-ai/particle-1:free": "",
-          "inclusionai/ling-3.2-flash:free": ""
+          "inclusionai/ling-3.2-flash:free": "",
+          "recursive/flint-v1.0:free": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
