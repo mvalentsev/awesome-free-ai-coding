@@ -834,8 +834,9 @@ deployment confirms the exact commit. `.github/workflows/indexnow.yml` uses the
 map-derived push filter and accepts explicit dispatches from verification and
 expiry. It serializes delivery
 and advances `refs/heads/indexnow-delivered` only after IndexNow accepts the URLs
-or the published commit has no changed URLs. The hourly expiry dispatch can
-repair a missing Pages build and retry from the same delivery ref.
+or the published commit has no changed URLs. The sender gives a push build
+60 seconds to start, then checks whether Pages needs a rebuild. The hourly expiry
+dispatch can retry from the same delivery ref.
 The ownership key is the root file named after it and only lets a caller ask
 an engine to crawl this site.
 

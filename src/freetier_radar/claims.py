@@ -240,9 +240,9 @@ def _bot_conformance_dispatch(root: Path) -> tuple[str, ...]:
     return ('verification', 'expiry')
 
 
-def _indexnow_delivery(root: Path) -> tuple[str, str]:
-    from .indexnow import DELIVERY_REF, PAGES_ENVIRONMENT
-    return (PAGES_ENVIRONMENT, DELIVERY_REF)
+def _indexnow_delivery(root: Path) -> tuple[str, str, str]:
+    from .indexnow import DELIVERY_REF, PAGES_ENVIRONMENT, PAGES_REPAIR_GRACE
+    return (PAGES_ENVIRONMENT, DELIVERY_REF, f"{PAGES_REPAIR_GRACE:g}")
 
 
 def _unpriced_catalog_tier(root: Path) -> tuple[str, ...]:
@@ -502,8 +502,10 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
     Claim(INDEXNOW_WORKFLOW, r"(?m)(^    paths:\n(?:      - [^\n]+\n)+)",
           _indexnow_push_filter, "published paths in layout.MAP", generated=True),
     Claim("CONTRIBUTING.md", r"(?s)after the `([\w-]+)`\s+deployment confirms the exact commit\..*?"
-          r"advances `(refs/heads/[\w-]+)` only after IndexNow accepts the URLs\s+or the published commit has no changed URLs",
-          _indexnow_delivery, "indexnow Pages deployment API and durable delivery ref; HTTP and Git regressions in tests/test_indexnow.py"),
+          r"advances `(refs/heads/[\w-]+)` only after IndexNow accepts the URLs\s+or the published commit has no changed URLs\. "
+          r"The sender gives a push build\s+(\d+) seconds to start, then checks whether Pages needs a rebuild\.",
+          _indexnow_delivery, "indexnow Pages deployment API, delivery ref and repair grace; HTTP and Git regressions in tests/test_indexnow.py",
+          generated=True),
     Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
           _browser_coverage_purposes,
           "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),

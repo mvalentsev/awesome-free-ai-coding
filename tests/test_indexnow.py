@@ -186,7 +186,7 @@ def test_the_ping_reads_the_index_as_the_push_found_it(tmp_path):
     assert index_at("0" * 40, "index.json", repo=tmp_path) is None
 
 
-def test_the_hourly_expiry_recovers_a_failed_notification_without_another_push(tmp_path):
+def test_publication_recovers_failed_delivery_and_a_stale_pages_build(tmp_path):
     """Execute the actual publisher steps with a real Git remote and stubbed HTTP."""
     import json
     import os
@@ -241,28 +241,43 @@ def test_the_hourly_expiry_recovers_a_failed_notification_without_another_push(t
 import json
 import os
 import signal
+from functools import partial
 from pathlib import Path
 
 import respx
 
-from freetier_radar.indexnow import ENDPOINT, PAGES_URL, main
+from freetier_radar import indexnow
 
 with respx.mock() as routes:
     api = 'https://api.github.com/repos/mvalentsev/awesome-free-ai-coding'
-    routes.get(api + '/deployments').respond(200, json=[{
+    routes.get(api + '/deployments').mock(side_effect=lambda request: respx.MockResponse(200, json=[{
         'id': 42, 'sha': os.environ['SERVED_SHA'], 'environment': 'github-pages',
-    }])
+    }]))
     routes.get(api + '/deployments/42/statuses').respond(200, json=[{
-        'state': 'success', 'environment_url': PAGES_URL + '/',
+        'state': 'success', 'environment_url': indexnow.PAGES_URL + '/',
     }])
+    if target := os.environ['REPAIR_TO']:
+        polls = int(indexnow.PAGES_REPAIR_GRACE // indexnow.PAGES_EVERY) + 2
+        indexnow.wait_for_pages = partial(indexnow.wait_for_pages, sleep=lambda _: None, attempts=polls)
+        routes.get(api + '/pages/builds/latest').respond(200, json={
+            'status': 'built', 'commit': os.environ['SERVED_SHA'],
+        })
+
+        def rebuild(request):
+            assert os.environ['SERVED_SHA'] != target
+            os.environ['SERVED_SHA'] = target
+            return respx.MockResponse(201, json={'status': 'queued'})
+
+        routes.post(api + '/pages/builds').mock(side_effect=rebuild)
+
     def submit(request):
         with Path('requests.jsonl').open('a') as log:
             log.write(json.dumps(json.loads(request.content)['urlList']) + '\\n')
         if os.environ['INDEXNOW_STATUS'] == 'cancelled':
             os.kill(os.getpid(), signal.SIGTERM)
         return respx.MockResponse(int(os.environ['INDEXNOW_STATUS']))
-    routes.post(ENDPOINT).mock(side_effect=submit)
-    main()
+    routes.post(indexnow.ENDPOINT).mock(side_effect=submit)
+    indexnow.main()
 """)
     (tmp_path / 'publisher.sh').write_text("""
 uv() {
@@ -282,10 +297,11 @@ gh() {
 export -f gh
 """)
 
-    def invoke(workflow, job, status, *, served=current):
+    def invoke(workflow, job, status, *, served=current, repair_to=''):
         return run('bash', '-eo', 'pipefail', '-c', 'source publisher.sh\n' + step(workflow, job)['run'],
                    env={**os.environ, 'TEST_PYTHON': sys.executable, 'REBUILD_PAGES': 'false',
-                        'EVENT': 'push', 'SERVED_SHA': served, 'INDEXNOW_STATUS': str(status),
+                        'EVENT': 'push', 'SERVED_SHA': served, 'REPAIR_TO': repair_to,
+                        'INDEXNOW_STATUS': str(status),
                         'GITHUB_REPOSITORY': 'mvalentsev/awesome-free-ai-coding'})
 
     def accepted():
@@ -338,6 +354,13 @@ export -f gh
     assert empty.returncode == 0 and 'nothing submitted' in empty.stdout, empty.stderr
     assert accepted() == unchanged
     assert len(recorded_posts()) == 4
+
+    next_head = commit([*newest_rows, make(id='after-stale-build')])
+    repair = invoke('indexnow', 'ping', 200, served=unchanged, repair_to=next_head)
+    assert repair.returncode == 0, repair.stdout + repair.stderr
+    assert accepted() == next_head
+    assert len(recorded_posts()) == 5
+    assert f'{PAGES_URL}/providers/after-stale-build/' in recorded_posts()[-1]
 
 
 def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path):

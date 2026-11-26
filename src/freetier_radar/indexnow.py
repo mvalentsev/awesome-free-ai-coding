@@ -13,7 +13,7 @@ import os
 import re
 import sys
 import time
-from functools import cache
+from functools import cache, partial
 from pathlib import Path
 from typing import Callable
 from urllib.parse import urlsplit
@@ -35,6 +35,8 @@ TIMEOUT = 30.0
 # How long a ping waits for Pages to build its commit: fifteen minutes.
 PAGES_ATTEMPTS = 60
 PAGES_EVERY = 15.0
+# Grace period for the automatic Pages build on a push.
+PAGES_REPAIR_GRACE = 60.0
 
 
 def site_urls(index: dict) -> list[str]:
@@ -234,16 +236,23 @@ def _pages_state(fetch: Callable[[], tuple[str, str]]) -> tuple[str, str]:
 def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages_deployment,
                    sleep: Callable[[float], None] = time.sleep,
                    attempts: int = PAGES_ATTEMPTS, every: float = PAGES_EVERY, *,
-                   superseded: Callable[[str], bool] | None = None) -> str:
+                   superseded: Callable[[str], bool] | None = None,
+                   repair: Callable[[], bool] | None = None) -> str:
     """Wait until Pages has built commit `sha`: "built", "errored" — the build
     of that commit failed — or "timeout". A newer build can supersede a queued
-    delivery. A build that cannot be read is waited out."""
+    delivery. With a repair callback, give the automatic build a grace period
+    before checking once whether a request is needed."""
     for attempt in range(attempts):
         status, commit = _pages_state(fetch)
         if commit == sha and status in ("built", "errored"):
             return status
         if superseded is not None and superseded(commit):
             return "superseded"
+        if (repair is not None and attempt * every >= PAGES_REPAIR_GRACE and commit != sha
+                and attempt < attempts - 1):
+            if repair():
+                print(f"indexnow: requested Pages repair for {sha}")
+            repair = None
         if attempt < attempts - 1:
             sleep(every)
     return "timeout"
@@ -291,9 +300,12 @@ def deliver(path: Path, *, repair: bool, rebuild: bool, repo: Path = Path(".")) 
             git.run(repo, "fetch", "--no-tags", "origin", "main").check_returncode()
         return git.run(repo, "merge-base", "--is-ancestor", sha, candidate).returncode == 0
 
-    if repair or rebuild:
-        ensure_pages_build(sha, force=rebuild, superseded=superseded)
-    waited = wait_for_pages(sha, superseded=superseded)
+    # A push build can check out main yet deploy under the previous SHA
+    # (GitHub Pages run 45869650818, checked 2026-11-26).
+    request_repair = partial(ensure_pages_build, sha, superseded=superseded)
+    requested = (repair or rebuild) and request_repair(force=rebuild)
+    waited = wait_for_pages(sha, superseded=superseded,
+                            repair=None if requested else request_repair)
     print(f"indexnow: Pages build of {sha}: {waited}")
     if waited == "superseded":
         return 0  # A queued push or hourly reconciliation reads current main.
