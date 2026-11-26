@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Aion Labs free tier: limits, free models, verified 2026-11-19'
+title: 'Aion Labs free tier: limits, free models, verified 2026-11-26'
 description: OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier. Free-tier API keys need payment-card verification. “The card is verified through Stripe and never charged.” The browser chat is available before API key activation (“Browser chat does not need it.”). The reset…
 permalink: /providers/aion-labs/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: Aion Labs
 ---
 
@@ -11,7 +11,7 @@ crumb: Aion Labs
 
 # Aion Labs free tier
 
-🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-11-26 · [aionlabs.ai](https://www.aionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

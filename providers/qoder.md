@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-11-23'
+title: 'Qoder free tier: limits, free models, verified 2026-11-26'
 description: A coding agent with a Free plan for basic models and an introductory Pro trial. The Free plan keeps access to basic models under daily and monthly limits. Promotional credits claimed before eligibility changed remain usable until their original expiry.
 permalink: /providers/qoder/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: Qoder
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder
 
 # Qoder free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-23 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-11-26 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

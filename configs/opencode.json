@@ -478,22 +478,6 @@
         }
       }
     },
-    "llm7": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LLM7.io",
-      "options": {
-        "baseURL": "https://api.llm7.io/v1",
-        "apiKey": "{env:LLM7_API_KEY}"
-      },
-      "models": {
-        "codestral-latest": {
-          "name": "codestral-latest"
-        },
-        "mistral-Nemo-Instruct-2407": {
-          "name": "mistral-Nemo-Instruct-2407"
-        }
-      }
-    },
     "llmtr": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LLMTR",

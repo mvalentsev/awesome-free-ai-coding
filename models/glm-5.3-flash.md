@@ -19,7 +19,7 @@ crumb: glm-5.3-flash
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-23 · listed since 2026-09-29
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · last probe 2026-11-26 · listed since 2026-09-29
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -39,7 +39,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -64,7 +64,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-19 · listed since 2026-10-12
+🎁 Trials (no card when possible) · no card · last probe 2026-11-26 · listed since 2026-10-12
 
 A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.
 
@@ -104,7 +104,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ### [OrcaRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/orcarouter/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-11-22
 
 Free model APIs for accounts with established GitHub linkage
 
@@ -125,7 +125,7 @@ The workspace owner must link a GitHub account registered for some time, unless 
 
 ### [BeatAPI (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/beatapi/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-22
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-11-22
 
 A no-top-up API for free text-model variants
 

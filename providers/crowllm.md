@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'CrowLLM (free models) free tier: limits, free models, verified 2026-11-23'
+title: 'CrowLLM (free models) free tier: limits, free models, verified 2026-11-26'
 description: Free OpenAI-compatible Chat Completions with an account API key. The Free plan has a low request ceiling and no burst headroom while requests are queued. The model card gives this route no trial timer.
 permalink: /providers/crowllm/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: CrowLLM (free models)
 ---
 
@@ -11,7 +11,7 @@ crumb: CrowLLM (free models)
 
 # CrowLLM (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-23, a regular row from the first probe it passes on or after 2026-12-07 · **live** — last verified by a probe on 2026-11-23 · [crowllm.com](https://crowllm.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-11-23, a regular row from the first probe it passes on or after 2026-12-07 · **live** — last verified by a probe on 2026-11-26 · [crowllm.com](https://crowllm.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

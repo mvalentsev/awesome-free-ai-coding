@@ -11,7 +11,7 @@ crumb: Arli AI
 
 # Arli AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-19; the 2 probes since have not found that evidence, and 3 misses in a row archive the row · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 > ⚠️ **Does not work as published since [2026-11-26](https://www.arliai.com/pricing).** The pricing page now lists paid subscriptions only. The API guide no longer lists the Free testing allowance.
 

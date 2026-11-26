@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'flint-v1.0 free: 4 providers, limits and ids, provider probes 2026-11-23'
+title: 'flint-v1.0 free: 4 providers, limits and ids, provider probes 2026-11-26'
 description: flint-v1.0 is served free by opencode, OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/flint-v1.0/
 last_modified_at: 2026-11-26
@@ -11,7 +11,7 @@ crumb: flint-v1.0
 
 # Where flint-v1.0 is free
 
-**4 rows on the list serve `flint-v1.0` free:** opencode, OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
+**4 rows on the list serve `flint-v1.0` free:** opencode, OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: flint-v1.0
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-23 · listed since 2026-11-10
+🤖 Coding agents & CLIs · no card · last probe 2026-11-26 · listed since 2026-11-10
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -38,7 +38,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-10
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-11-10
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -62,7 +62,7 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-23 · listed since 2026-11-10
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-26 · listed since 2026-11-10
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -78,7 +78,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-11-09
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-11-09
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

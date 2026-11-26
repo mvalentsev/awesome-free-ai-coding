@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'AMD Radeon Cloud Token Factory free tier: limits, free models, verified 2026-11-23'
+title: 'AMD Radeon Cloud Token Factory free tier: limits, free models, verified 2026-11-26'
 description: Free shared model API on AMD Radeon GPUs, with a recurring account-specific daily usage allowance. China-site AMD AI Developer Program account and API key required. Registration asks for name, email and phone, with email or phone verification; some accounts need approval before receiving a key…
 permalink: /providers/amd-token-factory/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: AMD Radeon Cloud Token Factory
 ---
 
@@ -11,7 +11,7 @@ crumb: AMD Radeon Cloud Token Factory
 
 # AMD Radeon Cloud Token Factory free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-18, a regular row from the first probe it passes on or after 2026-12-02 · **live** — last verified by a probe on 2026-11-23 · [developer.amd.com.cn](https://developer.amd.com.cn/login?source=bjOVsdlfc) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-11-18, a regular row from the first probe it passes on or after 2026-12-02 · **live** — last verified by a probe on 2026-11-26 · [developer.amd.com.cn](https://developer.amd.com.cn/login?source=bjOVsdlfc) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

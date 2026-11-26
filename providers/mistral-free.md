@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Mistral Vibe and Studio free tier: limits, free models, verified 2026-11-23'
+title: 'Mistral Vibe and Studio free tier: limits, free models, verified 2026-11-26'
 description: Free monthly usage for Vibe for Code in your terminal and for trying models in Mistral Studio. Mistral does not publish the Free budget. Its usage guide says "Creating API keys and using the API require billing activation and pay-as-you-go." Its API help article still describes Free-mode keys for…
 permalink: /providers/mistral-free/
 last_modified_at: 2026-11-26
@@ -11,7 +11,7 @@ crumb: Mistral Vibe and Studio
 
 # Mistral Vibe and Studio free tier
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-23 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-11-26 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

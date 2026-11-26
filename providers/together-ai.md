@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Together AI (free model) free tier: limits, free models, verified 2026-11-23'
+title: 'Together AI (free model) free tier: limits, free models, verified 2026-11-26'
 description: 'Zero-priced serverless chat after activation. Free models: ternary-bonsai-27b. Together documents prepaid activation for new organizations and suspends API access at zero balance. Funding can use a card or US bank account. The catalog prices other serverless models separately.'
 permalink: /providers/together-ai/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: Together AI (free model)
 ---
 
@@ -11,7 +11,7 @@ crumb: Together AI (free model)
 
 # Together AI (free model) free tier
 
-🔌 LLM APIs with free tier · no card · requires $15 one-time top-up · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-23 · [together.ai](https://www.together.ai/models/prism-ml-ternary-bonsai-27b) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · requires $15 one-time top-up · provisional — added on 2026-11-19, a regular row from the first probe it passes on or after 2026-12-03 · **live** — last verified by a probe on 2026-11-26 · [together.ai](https://www.together.ai/models/prism-ml-ternary-bonsai-27b) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

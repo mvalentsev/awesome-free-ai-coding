@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash-1017 free: 2 providers, limits and ids, provider probes 2026-11-23 or later'
+title: 'deepseek-v4.1-flash-1017 free: 2 providers, limits and ids, provider probes 2026-11-26'
 description: deepseek-v4.1-flash-1017 is served free by Freebuff and cheapllm.shop. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/deepseek-v4.1-flash-1017/
-last_modified_at: 2026-11-24
+last_modified_at: 2026-11-26
 crumb: deepseek-v4.1-flash-1017
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash-1017
 
 # Where deepseek-v4.1-flash-1017 is free
 
-**2 rows on the list serve `deepseek-v4.1-flash-1017` free:** Freebuff and cheapllm.shop. None asks for a card. The providers' last scheduled probes were on 2026-11-23 or later; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
+**2 rows on the list serve `deepseek-v4.1-flash-1017` free:** Freebuff and cheapllm.shop. None asks for a card. The providers' last scheduled probes were on 2026-11-26; their offers are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4.1-flash-1017
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-23 · listed since 2026-11-08
+🤖 Coding agents & CLIs · no card · last probe 2026-11-26 · listed since 2026-11-08
 
 Ad-funded coding agent for CLI, desktop, web, cloud and chat, with daily regional allowances and conditional free-session access
 
@@ -45,7 +45,7 @@ DeepSeek V4.1 Flash Fast is the default at full access. At limited access the de
 
 ### [cheapllm.shop](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cheapllm-shop/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-24 · listed since 2026-11-24
+🔌 LLM APIs with free tier · no card · last probe 2026-11-26 · listed since 2026-11-24
 
 OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier
 

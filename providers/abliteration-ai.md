@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'abliteration.ai free tier: limits, free models, verified 2026-11-23'
+title: 'abliteration.ai free tier: limits, free models, verified 2026-11-26'
 description: OpenAI- and Anthropic-compatible API for uncensored reasoning models, with possible promotional credit for eligible new accounts. A free account can explore the console without a card. The vendor gives no public eligibility criteria for promotional credit. API usage outside the credit requires a…
 permalink: /providers/abliteration-ai/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: abliteration.ai
 ---
 
@@ -11,7 +11,7 @@ crumb: abliteration.ai
 
 # abliteration.ai free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-23 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-26 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'cheapllm.shop free tier: limits, free models, verified 2026-11-24'
+title: 'cheapllm.shop free tier: limits, free models, verified 2026-11-26'
 description: 'OpenAI- and Anthropic-compatible model API with free beta access and a permanent hourly Free tier. Free models: deepseek-v4.1-flash-1017. Email registration and an API key are required; no card. "During the beta it is free and has no rate limit." The beta has no published end date. Requests may…'
 permalink: /providers/cheapllm-shop/
-last_modified_at: 2026-11-24
+last_modified_at: 2026-11-26
 crumb: cheapllm.shop
 ---
 
@@ -11,7 +11,7 @@ crumb: cheapllm.shop
 
 # cheapllm.shop free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-24 · [cheapllm.shop](https://cheapllm.shop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-11-26 · [cheapllm.shop](https://cheapllm.shop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

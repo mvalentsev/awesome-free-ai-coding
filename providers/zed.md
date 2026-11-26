@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Zed free tier: limits, free models, verified 2026-11-23'
+title: 'Zed free tier: limits, free models, verified 2026-11-26'
 description: A cardless Pro trial for the Zed coding agent. Existing Student plans continue, and new student applications are paused. The Pro trial uses GPT-6 Luna and ends when its shared Zed and Delta balance or trial period runs out. It converts to Free with your own API keys or external agents. The…
 permalink: /providers/zed/
 last_modified_at: 2026-11-26
@@ -11,7 +11,7 @@ crumb: Zed
 
 # Zed free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-23 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-26 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

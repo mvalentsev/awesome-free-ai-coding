@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'glm-5-turbo free: 2 providers, limits and ids, provider probes 2026-11-19 or later'
+title: 'glm-5-turbo free: 2 providers, limits and ids, provider probes 2026-11-26'
 description: glm-5-turbo is served free by AIHubMix (free models) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/glm-5-turbo/
 last_modified_at: 2026-11-26
@@ -11,7 +11,7 @@ crumb: glm-5-turbo
 
 # Where glm-5-turbo is free
 
-**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-11-19 or later; their offers are rechecked twice a week.
+**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. The providers' last scheduled probes were on 2026-11-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5-turbo
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-09-25
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 
@@ -44,7 +44,7 @@ OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format 
 
 ### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
 
-🎁 Trials (no card when possible) · no card · last probe 2026-11-19 · listed since 2026-09-26
+🎁 Trials (no card when possible) · no card · last probe 2026-11-26 · listed since 2026-09-26
 
 A desktop coding agent with a no-cost Start Plan that new users can claim after signing in.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-23'
+title: 'beam-1.0 free: 3 providers, limits and ids, provider probes 2026-11-26'
 description: beam-1.0 is served free by opencode, Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/beam-1.0/
 last_modified_at: 2026-11-26
@@ -11,7 +11,7 @@ crumb: beam-1.0
 
 # Where beam-1.0 is free
 
-**3 rows on the list serve `beam-1.0` free:** opencode, Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-23; their offers are rechecked twice a week.
+**3 rows on the list serve `beam-1.0` free:** opencode, Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The providers' last scheduled probes were on 2026-11-26; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: beam-1.0
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · last probe 2026-11-23 · listed since 2026-11-10
+🤖 Coding agents & CLIs · no card · last probe 2026-11-26 · listed since 2026-11-10
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -38,7 +38,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-23 · listed since 2026-11-26
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · last probe 2026-11-26 · listed since 2026-11-26
 
 Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models
 
@@ -53,7 +53,7 @@ The free-model lineup rotates. Auto Free routes over the free models in the cata
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-23 · listed since 2026-10-30
+🧭 Aggregators (one key, many providers) · card required · last probe 2026-11-26 · listed since 2026-10-30
 
 OpenAI-compatible model gateway with recurring free credit after adding a payment method, plus separate zero-priced model routes
 

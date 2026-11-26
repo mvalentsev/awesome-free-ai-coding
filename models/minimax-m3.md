@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m3 free: 2 providers, limits and ids, provider probes 2026-11-19 or later'
 description: minimax-m3 is served free by AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/minimax-m3/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: minimax-m3
 ---
 
@@ -19,7 +19,7 @@ crumb: minimax-m3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-23 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-11-26 · listed since 2026-09-24
 
 OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format endpoint for coding clients
 

@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.6 free: 3 providers, limits and ids, provider probes 2026-11-19 or later'
 description: qwen3.6 is served free by Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/qwen3.6/
-last_modified_at: 2026-11-23
+last_modified_at: 2026-11-26
 crumb: qwen3.6
 ---
 
@@ -19,7 +19,7 @@ crumb: qwen3.6
 
 ### [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-19 · listed since 2026-08-30
+🔌 LLM APIs with free tier · no card · last probe 2026-11-26 · listed since 2026-08-30
 
 OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs
 
@@ -59,7 +59,7 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ### [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/)
 
-🔌 LLM APIs with free tier · no card · last probe 2026-11-23 · listed since 2026-08-19
+🔌 LLM APIs with free tier · no card · last probe 2026-11-26 · listed since 2026-08-19
 
 EU-hosted serverless API for open models, with anonymous OpenAI-compatible access and no signup, key or card
 

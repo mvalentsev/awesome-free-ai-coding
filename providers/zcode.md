@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-11-19'
+title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-11-26'
 description: 'A desktop coding agent with a no-cost Start Plan that new users can claim after signing in. Free models: glm-5.3, glm-5.3-flash, glm-5-turbo. Use the Start Plan in the official app. BigModel publishes separate daily model quotas. Global Z.ai also offers a Start Plan and shows the exact models and…'
 permalink: /providers/zcode/
 last_modified_at: 2026-11-26
@@ -12,7 +12,7 @@ model_sort: true
 
 # ZCode (Z.ai) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-19; the probe since has not found that evidence, and 3 misses in a row archive the row · [zcode.z.ai](https://zcode.z.ai/en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-11-26 · [zcode.z.ai](https://zcode.z.ai/en) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
