@@ -70,6 +70,8 @@ _SCORES = "src/freetier_radar/intelligence-index.json"
 PROJECT_FILE = "pyproject.toml"
 CI_WORKFLOW = ".github/workflows/ci.yml"
 INDEXNOW_WORKFLOW = ".github/workflows/indexnow.yml"
+INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
+INDEXNOW_KEY_FILE = f"{INDEXNOW_KEY}.txt"
 _PYTHON_PROJECTION = (PROJECT_FILE, "src/freetier_radar/claims.py")
 
 MAP: tuple[Node, ...] = (
@@ -152,8 +154,8 @@ MAP: tuple[Node, ...] = (
     Node("assets/*.js", Kind.PAGE, "shared browser search, model matching, sorting and heading permalinks", published=True),
     Node("assets/anchorjs-LICENSE.txt", Kind.DOC, "MIT license for the heading permalink library", published=True),
     Node("assets/*.css", Kind.PAGE, "shared site styles and model sorting controls", published=True),
-    Node("eb68c254f1e03877b906ccc800002691.txt", Kind.PAGE,
-         "the IndexNow key, named after itself (indexnow.INDEXNOW_KEY)", published=True),
+    Node(INDEXNOW_KEY_FILE, Kind.PAGE,
+         "the IndexNow key, named after itself (layout.INDEXNOW_KEY)", published=True),
     # ---- docs
     Node("AGENTS.md", Kind.DOC, "standing review and evidence rules for repository work"),
     Node("CONTRIBUTING.md", Kind.DOC,

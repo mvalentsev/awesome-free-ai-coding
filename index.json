@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26",
+  "generated": "2026-11-27",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "site": "https://mvalentsev.github.io/awesome-free-ai-coding",
   "model_sort": {
@@ -347,6 +347,10 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "particle-1",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -457,7 +461,8 @@
           "nemotron-3-nano-omni",
           "nemotron-3.5-super-vl-120b-a12b",
           "flint-v1.0",
-          "ernie-5.5-flash-preview"
+          "ernie-5.5-flash-preview",
+          "particle-1"
         ],
         "ids": [
           "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -490,7 +495,8 @@
           "nemotron-3-nano-omni": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
           "flint-v1.0": "",
-          "ernie-5.5-flash-preview": ""
+          "ernie-5.5-flash-preview": "",
+          "particle-1": ""
         },
         "section": {
           "id": "aggregator"
@@ -1783,6 +1789,10 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "particle-1",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -1928,7 +1938,8 @@
           "nemotron-3.5-super-vl-120b-a12b",
           "flint-v1.0",
           "ernie-5.5-flash-preview",
-          "beam-1.0"
+          "beam-1.0",
+          "particle-1"
         ],
         "ids": [
           "openrouter/free",
@@ -1960,7 +1971,8 @@
           "nemotron-3.5-super-vl-120b-a12b": "",
           "flint-v1.0": "via openrouter/free; the router chooses the model",
           "ernie-5.5-flash-preview": "",
-          "beam-1.0": ""
+          "beam-1.0": "",
+          "particle-1": ""
         },
         "section": {
           "id": "agent-cli"
@@ -1981,7 +1993,8 @@
           "nemotron-3.5-super-vl-120b-a12b": "",
           "flint-v1.0": "via openrouter/free; the router chooses the model",
           "ernie-5.5-flash-preview": "",
-          "beam-1.0": ""
+          "beam-1.0": "",
+          "particle-1": ""
         },
         "ids": {
           "openrouter/free": "",
@@ -7179,6 +7192,10 @@
         },
         {
           "family": "nemotron-3.5-super-vl-120b-a12b"
+        },
+        {
+          "family": "particle-1",
+          "aa_auto": false
         }
       ],
       "api": {
@@ -7333,7 +7350,8 @@
           "gemma-4-31b",
           "flint-v1.0",
           "nemotron-3.5-super-vl-120b-a12b",
-          "ernie-5.5-flash-preview"
+          "ernie-5.5-flash-preview",
+          "particle-1"
         ],
         "ids": [
           "coding-glm-5.2-free",
@@ -7409,7 +7427,8 @@
           "gemma-4-31b": "",
           "flint-v1.0": "",
           "nemotron-3.5-super-vl-120b-a12b": "",
-          "ernie-5.5-flash-preview": ""
+          "ernie-5.5-flash-preview": "",
+          "particle-1": ""
         },
         "section": {
           "id": "aggregator"
@@ -22619,6 +22638,15 @@
       "rows": [
         "nvidia-nim"
       ]
+    },
+    {
+      "family": "particle-1",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/particle-1/"
     },
     {
       "family": "pluto-1.1-flash",

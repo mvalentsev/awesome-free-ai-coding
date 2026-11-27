@@ -61,4 +61,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REBUILD_PAGES: ${{ github.event_name == 'workflow_dispatch' }}
-        run: gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref main -f "rebuild_pages=$REBUILD_PAGES"
+        run: |
+          if [ "$REBUILD_PAGES" != true ] && uv run freetier-indexnow --check-delivery; then
+            exit 0
+          fi
+          gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref main -f "rebuild_pages=$REBUILD_PAGES"

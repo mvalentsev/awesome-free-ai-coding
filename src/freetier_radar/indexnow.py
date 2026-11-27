@@ -22,14 +22,13 @@ import httpx
 
 from . import git
 from .discovery import github_headers
-from .layout import node_for
+from .layout import INDEXNOW_KEY, INDEXNOW_KEY_FILE as KEY_FILE, node_for
 from .page_dates import content_hash, page_parts
 from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
-INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
-KEY_FILE = f"{INDEXNOW_KEY}.txt"
 DELIVERY_REF = "refs/heads/indexnow-delivered"
+MAIN_REF = "refs/heads/main"
 PAGES_ENVIRONMENT = "github-pages"
 TIMEOUT = 30.0
 # How long a ping waits for Pages to build its commit: fifteen minutes.
@@ -270,19 +269,35 @@ def send_changes(before: str | None, index: dict, path: Path, sha: str,
     return 0 if status in (200, 202) else 1
 
 
+def _remote_revisions(repo: Path, *refs: str) -> dict[str, str]:
+    listed = git.run(repo, "ls-remote", "--refs", "origin", *refs)
+    listed.check_returncode()
+    revisions = {}
+    for line in listed.stdout.splitlines():
+        sha, _, ref = line.partition("\t")
+        if ref not in refs or ref in revisions or not re.fullmatch(r"[0-9a-f]{40}", sha):
+            raise ValueError("invalid IndexNow remote ref listing")
+        revisions[ref] = sha
+    return revisions
+
+
+def delivery_current(repo: Path = Path(".")) -> bool:
+    """Compare both remote refs in one observation, even from a stale checkout."""
+    revisions = _remote_revisions(repo, MAIN_REF, DELIVERY_REF)
+    main = revisions.get(MAIN_REF)
+    if main is None or main != revisions.get(DELIVERY_REF):
+        return False
+    print(f"indexnow: {main} already reconciled")
+    return True
+
+
 def deliver(path: Path, *, repair: bool, rebuild: bool, repo: Path = Path(".")) -> int:
     """Reconcile the checked-out main commit in the serialized sender."""
     head = git.run(repo, "rev-parse", "HEAD")
     head.check_returncode()
     sha = head.stdout.strip()
-    receipt = git.run(repo, "ls-remote", "--exit-code", "origin", DELIVERY_REF)
-    if receipt.returncode == 2:  # Git found the remote, but the ref is absent.
-        before = None
-    else:
-        receipt.check_returncode()
-        before, _, ref = receipt.stdout.strip().partition("\t")
-        if ref != DELIVERY_REF or not re.fullmatch(r"[0-9a-f]{40}", before):
-            raise ValueError("invalid IndexNow delivery ref")
+    before = _remote_revisions(repo, DELIVERY_REF).get(DELIVERY_REF)
+    if before:
         ancestor = git.run(repo, "merge-base", "--is-ancestor", before, sha)
         if ancestor.returncode:
             raise ValueError(f"IndexNow delivery ref {before} must be an ancestor of {sha}")
@@ -343,9 +358,16 @@ def main() -> None:
                         help="repair a missing or failed Pages branch build")
     parser.add_argument("--before", metavar="SHA",
                         help="submit only the pages that changed since this commit")
-    parser.add_argument("--deliver", action="store_true",
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--deliver", action="store_true",
                         help="reconcile main and persist the delivery ref from the serialized workflow")
+    modes.add_argument("--check-delivery", action="store_true",
+                       help="exit successfully only if the remote main revision is already reconciled")
     args = parser.parse_args()
+    if args.check_delivery:
+        if args.before or args.after_pages_build or args.request_pages_build or args.ensure_pages_build:
+            parser.error("--check-delivery only checks the remote delivery ref")
+        sys.exit(0 if delivery_current() else 1)
     if args.deliver:
         if args.before or args.after_pages_build:
             parser.error("--deliver determines its own baseline and publication")

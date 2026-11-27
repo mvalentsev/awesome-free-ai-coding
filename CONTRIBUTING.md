@@ -510,7 +510,8 @@ excluded from current Limits.
 The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
 which publishes ended model promotions and scheduled whole-offer shutdowns. It
 writes nothing before a deadline and earns no verification fields.
-It dispatches the shared Pages and IndexNow reconciliation even when no
+It runs `freetier-indexnow --check-delivery` before dispatching the shared Pages
+and IndexNow reconciliation. An unreconciled revision is retried even when no
 promotion ended. A manual expiry run requests a Pages rebuild. Verification
 and expiry share a queued writer group, preserving pending verification runs.
 Publication follows the next successful run; GitHub scheduling can delay it.
@@ -905,7 +906,7 @@ cannot print two versions of it.
 | `assets/*.js` | **page** — shared browser search, model matching, sorting and heading permalinks | — | `hand` |
 | `assets/anchorjs-LICENSE.txt` | **doc** — MIT license for the heading permalink library | — | `hand` |
 | `assets/*.css` | **page** — shared site styles and model sorting controls | — | `hand` |
-| `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
+| `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (layout.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py`, `pyproject.toml`, `src/freetier_radar/claims.py`, `.github/workflows/ci.yml`, `.github/workflows/conformance.yml` | `hand`, `freetier-render` |
 | `LICENSE` | **doc** — MIT | — | `hand` |

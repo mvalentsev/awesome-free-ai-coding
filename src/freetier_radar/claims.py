@@ -38,7 +38,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, KEYLESS_REFUSED, PROVISIONAL_PROMOTE_DAYS, ProbeStatus, UA
 from .quotes import MIN_WORDS
 from .render import (BROWSE_COMPARE_LIMIT, CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE,
-                     MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT, PAGES_URL,
+                     MODEL_PAGE_ROWS, MODEL_ORDER_FIELDS, MODEL_SORT, PAGES_URL, REPO_URL,
                      QUICKSTART_USER_AGENT, README_BUDGET, README_MODELS, README_PICKS,
                      README_STARTERS, README_COMPARISON, _site_client_configs)
 from .tiers import FRONTIER_WITHIN, INDEX_VERSION, STRONG_WITHIN
@@ -498,7 +498,7 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           "pictures._style; actual generated SVG reduced-motion control in tests/test_pictures.py"),
     Claim(INDEXNOW_WORKFLOW, r"(freetier-render) generates this projection",
           lambda root: next(node.written_by for node in MAP if node.path == INDEXNOW_WORKFLOW),
-          "layout.MAP; independent new-file/job-preservation controls in tests/test_layout.py"),
+          "layout.MAP; independent new-file/job-preservation controls in tests/test_claims.py"),
     Claim(INDEXNOW_WORKFLOW, r"(?m)(^    paths:\n(?:      - [^\n]+\n)+)",
           _indexnow_push_filter, "published paths in layout.MAP", generated=True),
     Claim("CONTRIBUTING.md", r"(?s)after the `([\w-]+)`\s+deployment confirms the exact commit\..*?"
@@ -506,6 +506,10 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           r"The sender gives a push build\s+(\d+) seconds to start, then checks whether Pages needs a rebuild\.",
           _indexnow_delivery, "indexnow Pages deployment API, delivery ref and repair grace; HTTP and Git regressions in tests/test_indexnow.py",
           generated=True),
+    Claim("CONTRIBUTING.md", r"It runs `freetier-indexnow (--check-delivery)` before dispatching",
+          lambda root: tuple(re.findall(r'(?m)^\s*if \[ "\$REBUILD_PAGES" != true \] && uv run freetier-indexnow (\S+); then$',
+                                        (root / ".github/workflows/expire.yml").read_text(encoding="utf-8"))),
+          "expire.yml dispatch step; stale, already reconciled and forced rebuild Git controls in tests/test_indexnow.py"),
     Claim("CONTRIBUTING.md", r"each changed page's (content) once\. Shared (layout),",
           _browser_coverage_purposes,
           "review_browser.browser_plan; per-content and bounded-representative regression in tests/test_review.py"),
@@ -874,6 +878,12 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           generated=True),
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
           lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
+    Claim("browse.html", r'<link rel="alternate" type="application/atom\+xml"[^>]* href="([^"]+)/feed\.xml">',
+          lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
+    Claim("browse.html", r'<a class="github-link" href="([^"]+)" aria-label="Star on GitHub">',
+          lambda root: (REPO_URL,), "render.REPO_URL", generated=True),
+    Claim("browse.html", r'<footer>Generated from <a href="([^"]+)">the registry</a>',
+          lambda root: (REPO_URL,), "render.REPO_URL", generated=True),
     Claim("browse.html", r"var ORDER = \{([^}]*)\}",
           lambda root: tuple(f'{c.value}:{index}' for index, c in enumerate(CATEGORY_TITLES)),
           "render.CATEGORY_TITLES order; divergence controls in tests/test_claims.py",

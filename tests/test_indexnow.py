@@ -289,6 +289,9 @@ export -f uv
 gh() {
     if [[ "$1 $2 $3" == 'workflow run indexnow.yml' ]]; then
         [[ "$4 $5 $6 $7" == "--repo $GITHUB_REPOSITORY --ref main" ]] || return 24
+        echo dispatched >> dispatches.txt
+        export REBUILD_PAGES=${9#rebuild_pages=}
+        if [[ -z "$REBUILD_PAGES" ]]; then REBUILD_PAGES=false; fi
         EVENT=workflow_dispatch bash -eo pipefail worker.sh
     else
         return 23
@@ -297,9 +300,9 @@ gh() {
 export -f gh
 """)
 
-    def invoke(workflow, job, status, *, served=current, repair_to=''):
+    def invoke(workflow, job, status, *, served=current, repair_to='', rebuild=False):
         return run('bash', '-eo', 'pipefail', '-c', 'source publisher.sh\n' + step(workflow, job)['run'],
-                   env={**os.environ, 'TEST_PYTHON': sys.executable, 'REBUILD_PAGES': 'false',
+                   env={**os.environ, 'TEST_PYTHON': sys.executable, 'REBUILD_PAGES': str(rebuild).lower(),
                         'EVENT': 'push', 'SERVED_SHA': served, 'REPAIR_TO': repair_to,
                         'INDEXNOW_STATUS': str(status),
                         'GITHUB_REPOSITORY': 'mvalentsev/awesome-free-ai-coding'})
@@ -313,8 +316,16 @@ export -f gh
     retry = invoke('expire', 'expire', 202)
     assert retry.returncode == 0, retry.stderr
     assert accepted() == current, retry.stdout
+    dispatches = tmp_path / 'dispatches.txt'
+    assert dispatches.read_text().splitlines() == ['dispatched', 'dispatched']
     duplicate = invoke('expire', 'expire', 200)
     assert duplicate.returncode == 0, duplicate.stderr
+    assert dispatches.read_text().splitlines() == ['dispatched', 'dispatched']
+    manual = invoke('expire', 'expire', 200, served=start, repair_to=current, rebuild=True)
+    assert manual.returncode == 0, manual.stderr
+    assert f'Pages build of {current}: built' in manual.stdout
+    assert len(dispatches.read_text().splitlines()) == 3
+
     def recorded_posts():
         return [json.loads(line) for line in (tmp_path / 'requests.jsonl').read_text().splitlines()]
 
@@ -334,7 +345,7 @@ export -f gh
     newest_rows = [*rows, make(id='after-cancel')]
     latest = commit(newest_rows, repo=other_checkout)
     assert run('git', 'cat-file', '-e', latest).returncode != 0
-    stale = invoke('indexnow', 'ping', 200, served=latest)
+    stale = invoke('expire', 'expire', 200, served=latest)
     assert stale.returncode == 0 and 'superseded' in stale.stdout, stale.stderr
     assert accepted() == current
     assert len(recorded_posts()) == 3

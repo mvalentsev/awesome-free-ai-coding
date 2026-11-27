@@ -14,7 +14,7 @@ on:
   push:
     branches: [main]
     # Every file the site publishes: layout.MAP's lines marked `published`, and
-    # no other. freetier-render generates this projection; tests/test_layout.py
+    # no other. freetier-render generates this projection; tests/test_claims.py
     # independently checks the filter against the map.
     paths:
       - "registry.yaml"

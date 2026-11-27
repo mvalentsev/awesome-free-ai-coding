@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-11-26'
-description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, beam-1.0, dots-3-note and 3 more. The free-model lineup rotates. Auto…'
+description: 'Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible gateway, alongside BYOK and local models. Free models: nemotron-3.5-super-vl-120b-a12b, nemotron-3-ultra, nemotron-3.5-lightning, north-mini-code, beam-1.0, dots-3-note and 4 more. The free-model lineup rotates. Auto…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-11-26
+last_modified_at: 2026-11-27
 crumb: Kilo Code
 model_sort: true
 ---
@@ -20,7 +20,7 @@ Open-source coding agent with an Auto Free mode and a keyless OpenAI-compatible 
 
 ## Free models
 
-<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="dots-3-note">[`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/)</span>, <span data-model-family="ernie-5.5-flash-preview">[`ernie-5.5-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/)</span>, <span data-model-family="flint-v1.0">[`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/) (via openrouter/free; the router chooses the model)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span></span>
+<span data-model-sort-inline><span data-model-family="nemotron-3.5-super-vl-120b-a12b">[`nemotron-3.5-super-vl-120b-a12b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-super-vl-120b-a12b/)</span>, <span data-model-family="nemotron-3-ultra">[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/)</span>, <span data-model-family="nemotron-3.5-lightning">[`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/)</span>, <span data-model-family="north-mini-code">[`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/)</span>, <span data-model-family="beam-1.0">[`beam-1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/beam-1.0/)</span>, <span data-model-family="dots-3-note">[`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/)</span>, <span data-model-family="ernie-5.5-flash-preview">[`ernie-5.5-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ernie-5.5-flash-preview/)</span>, <span data-model-family="flint-v1.0">[`flint-v1.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/flint-v1.0/) (via openrouter/free; the router chooses the model)</span>, <span data-model-family="nemotron-3-nano-omni">[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)</span>, <span data-model-family="particle-1">[`particle-1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/particle-1/)</span></span>
 
 ## Limits, in the vendor's words
 
@@ -41,7 +41,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `reflection/beam-free`, `dots-studio/dots-3-note-preview:free`, `baidu/ernie-5.5-flash-preview:free`, `recursive/flint-v1.0:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `inclusionai/ling-3.2-flash:free`, `kilo-auto/free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `particle-ai/particle-1:free`, `stealth/glyph-cluster`
+- Callable ids: `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/north-mini-code:free`, `reflection/beam-free`, `dots-studio/dots-3-note-preview:free`, `baidu/ernie-5.5-flash-preview:free`, `recursive/flint-v1.0:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `particle-ai/particle-1:free`, `inclusionai/ling-3.2-flash:free`, `kilo-auto/free`, `liquid/lfm-3-1.7b:free`, `openrouter/free`, `stealth/glyph-cluster`
 - `openrouter/free`: the router chooses the model ([conditions](https://openrouter.ai/api/v1/models))
 - Note: Use free IDs without a key; metered IDs require sign-in. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with the listed LFM models.
 
@@ -67,6 +67,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-11-27` — Free models changed: added particle-1
 - `2026-11-26` — Free models changed: added beam-1.0, ernie-5.5-flash-preview
 - `2026-11-17` — Free models changed: dropped xing4.0-29b-a4b
 - `2026-11-10` — Free models changed: added flint-v1.0

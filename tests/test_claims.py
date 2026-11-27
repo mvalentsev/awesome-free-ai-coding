@@ -178,7 +178,10 @@ def test_render_projects_the_python_floor_and_publication_paths_to_workflows(ren
     original = indexnow.read_text()
     indexnow.write_text(original.replace('      - "index.json"', '      - "stray.json"'))
     new_page = Node('new-published.html', Kind.PAGE, 'a new page', published=True)
+    expected_paths = [node.path for node in (*claims.MAP, new_page) if node.published]
     monkeypatch.setattr(claims, 'MAP', (*claims.MAP, new_page))
+    path_claim, = (claim for claim in claims.CLAIMS if claim.source == 'published paths in layout.MAP')
+    assert claims.check_claims(root, (path_claim,), scheduled=())
     render_all(root / 'registry.yaml', ROOT / 'templates', root, today=TODAY)
 
     for name in ('ci', 'conformance', 'expire', 'indexnow', 'read-page', 'update'):
@@ -194,6 +197,8 @@ def test_render_projects_the_python_floor_and_publication_paths_to_workflows(ren
     before = yaml.safe_load(original)
     rendered = indexnow.read_text()
     after = yaml.safe_load(rendered)
+    assert after[True]['push']['paths'] == expected_paths
+    assert not claims.check_claims(root, (path_claim,), scheduled=())
     assert after[True]['push']['paths'].pop() == new_page.path
     setup = next(step for step in after['jobs']['ping']['steps'] if step.get('with', {}).get('python-version'))
     setup['with']['python-version'] = '3.12'
@@ -218,12 +223,16 @@ def test_browse_and_pages_settings_follow_their_shared_rules(tmp_path, monkeypat
 
     monkeypatch.setattr(claims, 'PROVISIONAL_PROMOTE_DAYS', 21)
     monkeypatch.setattr(claims, 'PAGES_URL', 'https://new.example/new-path')
+    monkeypatch.setattr(claims, 'REPO_URL', 'https://git.example/owner/project')
     monkeypatch.setattr(claims, 'BROWSE_COMPARE_LIMIT', 2)
     browse = (ROOT / 'browse.html').read_text()
     config = (ROOT / '_config.yml').read_text()
 
     actual = claims.render_claims(browse, 'browse.html', tmp_path)
     assert 'href="https://new.example/new-path/browse.html"' in actual
+    assert 'href="https://new.example/new-path/feed.xml"' in actual
+    assert actual.count('href="https://git.example/owner/project"') == 2
+    assert 'https://mvalentsev.github.io/awesome-free-ai-coding' not in actual
     assert 'listed for less than three weeks' in actual
     assert 'Select up to <span id="comparison-limit">2</span> offers' in actual
     actual = claims.render_claims(config, '_config.yml', tmp_path)

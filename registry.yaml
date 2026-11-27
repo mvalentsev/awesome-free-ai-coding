@@ -69,6 +69,8 @@ entries:
   - family: flint-v1.0
   - family: ernie-5.5-flash-preview
     aa_auto: false
+  - family: particle-1
+    aa_auto: false
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -837,6 +839,8 @@ entries:
   - family: ernie-5.5-flash-preview
     aa_auto: false
   - family: beam-1.0
+    aa_auto: false
+  - family: particle-1
     aa_auto: false
   api:
     base_url: https://api.kilo.ai/api/gateway
@@ -3847,6 +3851,8 @@ entries:
   - family: flint-v1.0
   - family: nemotron-3.5-super-vl-120b-a12b
   - family: ernie-5.5-flash-preview
+    aa_auto: false
+  - family: particle-1
     aa_auto: false
   api:
     base_url: https://aihubmix.com/v1
