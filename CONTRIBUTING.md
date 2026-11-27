@@ -832,8 +832,10 @@ is the hand-written filterable page; it reads `index.json` in the browser and
 shares its field names with the generated data. After publication,
 `freetier-indexnow` submits only changed published URLs after the `github-pages`
 deployment confirms the exact commit. `.github/workflows/indexnow.yml` uses the
-map-derived push filter and accepts explicit dispatches from verification and
-expiry. It serializes delivery
+map-derived push filter for published files and Pages build inputs. It accepts
+explicit dispatches from verification and expiry. The sender compares the
+standalone pages directly and includes the catalog's Markdown URLs when their
+shared Pages inputs change. It serializes delivery
 and advances `refs/heads/indexnow-delivered` only after IndexNow accepts the URLs
 or the published commit has no changed URLs. The sender gives a push build
 60 seconds to start, then checks whether Pages needs a rebuild. The hourly expiry
@@ -923,7 +925,7 @@ cannot print two versions of it.
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
-| `.github/workflows/indexnow.yml` | **config** — IndexNow after publication; its push filter is generated from the published map · not on the site | `src/freetier_radar/layout.py`, `pyproject.toml`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
+| `.github/workflows/indexnow.yml` | **config** — IndexNow after publication; its push filter follows the published files and Pages inputs · not on the site | `src/freetier_radar/layout.py`, `pyproject.toml`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `.github/workflows/update.yml` | **config** — scheduled verification, model measurements and scouting; the cron rule is generated from the shared schedule · not on the site | `src/freetier_radar/models.py`, `pyproject.toml`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `.github/workflows/ci.yml` | **config** — registry, generated output and package compatibility checks · not on the site | `pyproject.toml`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |
 | `.github/workflows/conformance.yml` | **config** — client compatibility on the generated configs · not on the site | `pyproject.toml`, `src/freetier_radar/claims.py` | `hand`, `freetier-render` |

@@ -13,9 +13,8 @@ on:
         default: false
   push:
     branches: [main]
-    # Every file the site publishes: layout.MAP's lines marked `published`, and
-    # no other. freetier-render generates this projection; tests/test_claims.py
-    # independently checks the filter against the map.
+    # Include the published files and inputs used to build the Markdown pages.
+    # freetier-render generates this projection from layout.MAP.
     paths:
       - "registry.yaml"
       - "watchlist.yaml"
@@ -48,6 +47,8 @@ on:
       - "eb68c254f1e03877b906ccc800002691.txt"
       - "CONTRIBUTING.md"
       - "LICENSE"
+      - "_config.yml"
+      - "_layouts/*.html"
 
 permissions:
   contents: write

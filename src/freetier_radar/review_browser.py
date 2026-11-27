@@ -8,7 +8,7 @@ from jinja2 import Environment
 
 from . import git
 from .indexnow import index_at
-from .layout import Kind, node_for
+from .layout import SITE_PAGE, Kind, node_for
 from .render import MODEL_SORT, PAGES_URL, REPO_URL
 from .review import Bundle, blob, scoped
 
@@ -48,17 +48,16 @@ def _model_features(model: dict) -> set[str]:
 
 def browser_scope(paths: list[str]) -> tuple[bool, bool]:
     """Browser output and shared-layout scope, using the repository map."""
-    shared_layout = any(path.startswith('_layouts/') or path == '_config.yml'
-                        or (path.startswith('assets/') and Path(path).suffix in ('.js', '.css'))
-                        for path in paths)
+    nodes = [node for path in paths if (node := node_for(path)) is not None]
+    shared_layout = any(node.pages_input or (node.path.startswith('assets/') and
+                        Path(node.path).suffix in ('.js', '.css')) for node in nodes)
     browser_changed = shared_layout or any(
-        node.kind in (Kind.PAGE, Kind.GENERATED)
-        for path in paths if (node := node_for(path)) is not None)
+        node.kind in (Kind.PAGE, Kind.GENERATED) for node in nodes)
     return browser_changed, shared_layout
 
 
 def _client_configs(bundle: Bundle, revision: str) -> dict:
-    html = git.show(bundle.repo, revision, 'index.html') or ''
+    html = git.show(bundle.repo, revision, SITE_PAGE) or ''
     block = re.search(r'<script type="application/json" id="client-configs">(.*?)</script>', html, re.S)
     return json.loads(block.group(1)) if block else {}
 

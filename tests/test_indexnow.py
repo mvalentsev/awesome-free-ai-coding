@@ -45,39 +45,28 @@ def test_the_key_is_published_at_the_site_root_under_its_own_name():
     assert (ROOT / KEY_FILE).read_text(encoding="utf-8").strip() == INDEXNOW_KEY
 
 
-def test_submit_posts_the_indexnow_payload_and_returns_the_status():
+def test_submit_posts_the_indexnow_payload_for_the_configured_site(monkeypatch):
+    from freetier_radar import indexnow
+
+    site = 'https://published.example/catalog'
+    monkeypatch.setattr(indexnow, 'PAGES_URL', site)
     calls = []
 
     class Response:
         status_code = 202
-        text = ""
 
     def post(url, json=None, timeout=None):
         calls.append((url, json))
         return Response()
 
-    urls = [PAGES_URL + "/", PAGES_URL + "/providers/x/"]
+    urls = [site + "/", site + "/providers/x/"]
     assert submit(urls, post=post) == 202
     assert calls == [(ENDPOINT, {
-        "host": "mvalentsev.github.io",
+        "host": "published.example",
         "key": INDEXNOW_KEY,
-        "keyLocation": f"{PAGES_URL}/{KEY_FILE}",
+        "keyLocation": f"{site}/{KEY_FILE}",
         "urlList": urls,
     })]
-
-
-def test_the_key_location_and_payload_host_follow_the_public_site(monkeypatch):
-    from freetier_radar import indexnow
-
-    site = 'https://published.example/catalog'
-    monkeypatch.setattr(indexnow, 'PAGES_URL', site)
-
-    def post(url, json, timeout):
-        assert json['host'] == 'published.example'
-        assert json['keyLocation'] == f'{site}/{KEY_FILE}'
-        return type('Response', (), {'status_code': 202})()
-
-    assert submit([site + '/'], post=post) == 202
 
 
 def test_the_ping_waits_for_pages_to_publish_the_commit():
@@ -374,11 +363,11 @@ export -f gh
     assert f'{PAGES_URL}/providers/after-stale-build/' in recorded_posts()[-1]
 
 
-def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path):
+def test_git_diff_selects_changed_standalone_and_detail_urls(tmp_path):
     import json
     from freetier_radar import git
     from freetier_radar.indexnow import changed_since
-    from freetier_radar.render import build_model_page, model_page_url
+    from freetier_radar.render import build_llms_txt, build_model_page, model_page_url
 
     def commit(message):
         git.run(tmp_path, "add", ".").check_returncode()
@@ -397,10 +386,45 @@ def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path
     index_path = tmp_path / "index.json"
     first = build_index(rows, TODAY)
     index_path.write_text(json.dumps(first))
+    (tmp_path / '_layouts').mkdir()
+    layout = tmp_path / '_layouts/default.html'
+    layout.write_text('<main>{{ content }}</main>')
+    browse = tmp_path / 'browse.html'
+    browse.write_text('<title>Browse</title>')
+    home = tmp_path / 'index.html'
+    home.write_text('<title>Catalog</title>')
+    feed = tmp_path / 'feed.xml'
+    feed.write_text('<feed><title>Catalog</title></feed>')
+    text_list = tmp_path / 'llms.txt'
+    text_list.write_text(build_llms_txt(rows, TODAY, pages=set()))
     for family in (primary, peer):
         page = build_model_page(family, rows, [], TODAY)
         (tmp_path / "models" / f"{family}.md").write_text(page)
     before = commit("initial pages")
+
+    browse.write_text('<title>Browse free APIs</title>')
+    home.write_text('<title>Free API catalog</title>')
+    text_list.write_text(build_llms_txt(rows, TODAY + timedelta(days=1), pages=set()))
+    standalone = commit('update static HTML and regenerate the date')
+    assert set(changed_since(before, first, repo=tmp_path, after=standalone)) == {
+        f'{PAGES_URL}/browse.html', f'{PAGES_URL}/',
+    }
+
+    text_list.write_text(text_list.read_text() + '\nNew reference link.\n')
+    feed.write_text('<feed><title>New catalog changes</title></feed>')
+    machine = commit('update the feed and text list')
+    assert set(changed_since(standalone, first, repo=tmp_path, after=machine)) == {
+        f'{PAGES_URL}/feed.xml', f'{PAGES_URL}/llms.txt',
+    }
+
+    layout.write_text('<main aria-label="Offer">{{ content }}</main>')
+    shared = commit('update the Markdown layout')
+    assert set(changed_since(machine, first, repo=tmp_path, after=shared)) == {
+        f'{PAGES_URL}/providers/', f'{PAGES_URL}/providers/checked/',
+        f'{PAGES_URL}/providers/alpha/', f'{PAGES_URL}/providers/beta/',
+        f'{PAGES_URL}/providers/peer/', f'{PAGES_URL}/providers/second-peer/',
+        f'{PAGES_URL}/models/', model_page_url(primary), model_page_url(peer),
+    }
 
     rows.append(make(id="gamma", models=[{"family": related}]))
     after = build_index(rows, TODAY)
@@ -421,7 +445,7 @@ def test_a_push_submits_pages_with_new_related_links_but_not_date_churn(tmp_path
     page = (tmp_path / "models" / f"{primary}.md").read_text()
     assert model_page_url(related) in page.split("## Related models")[1]
     assert model_page_url(peer) in site_urls(after)
-    urls = changed_since(before, after, repo=tmp_path, after=published)
+    urls = changed_since(shared, after, repo=tmp_path, after=published)
     assert model_page_url(related) in urls
     assert model_page_url(primary) in urls
     assert model_page_url(peer) not in urls

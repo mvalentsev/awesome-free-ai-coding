@@ -46,7 +46,7 @@ from .page_catalog import catalog_index, catalog_words, family_condition, limits
 # The log a commit will be made on, and the map of the repository, which
 # CONTRIBUTING.md prints.
 from .gate import committed_log
-from .layout import MAP, markdown_table
+from .layout import ATOM_FEED, BROWSE_PAGE, MAP, SITE_PAGE, TEXT_LIST, markdown_table
 from .page_dates import PageDates
 
 __all__ = ["FEED_ENTRIES", "FEED_URL",
@@ -80,7 +80,8 @@ PAGES_URL = "https://mvalentsev.github.io/awesome-free-ai-coding"
 # GitHub Pages rather than raw.githubusercontent.com, which serves the feed as
 # text/plain, for a file every subscriber polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
 # every subscription.
-FEED_URL = f"{PAGES_URL}/feed.xml"
+FEED_URL = f"{PAGES_URL}/{ATOM_FEED}"
+BROWSE_URL = f"{PAGES_URL}/{BROWSE_PAGE}"
 PROVIDERS_DIR = "providers"
 # And where a model gets one (`build_model_page`).
 MODELS_DIR = "models"
@@ -1388,7 +1389,6 @@ def build_index(entries: list[Entry], today: date,
 # (jekyll-readme-index only steps in where no index exists), and it is rendered
 # from the same registry on the same run, held to it by `freetier-render --check`.
 SITE_TEMPLATE = "index.html.j2"
-SITE_PAGE = "index.html"
 # What the page's nav bar calls each section. The bar is one line at every width
 # — the tables' sticky headers are positioned under it, and a bar that wrapped
 # would cover the first row of every table — so it carries the short name and
@@ -1855,7 +1855,7 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
         f"- [Provider pages]({providers_index_url()}): one page per row, live and archived",
         f"- [Model pages]({models_index_url()}): every free model on the list and the rows "
         f"that serve it, and a page of its own for each model once {_model_page_rule()}",
-        f"- [Filterable table]({PAGES_URL}/browse.html): the same rows filtered by category, "
+        f"- [Filterable table]({BROWSE_URL}): the same rows filtered by category, "
         "card, key and API format",
         f"- [configs/opencode.json]({REPO_URL}/blob/main/configs/opencode.json): opencode "
         "config with every OpenAI-compatible row wired up",
@@ -3304,7 +3304,7 @@ def _write_artifacts(registry_path: Path, root: Path, inputs: _RenderInputs) -> 
     pages, scores = inputs.pages, inputs.scores
     blocklist = _blocklist_beside(registry_path)
     dates = PageDates(registry_path.parent, today)
-    (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
+    (root / ATOM_FEED).write_text(build_feed(history, today, entries=entries), encoding="utf-8")
     # A page per row, the checked page and the index.
     _write_files(root / PROVIDERS_DIR, "*.md", {
         f"{CHECKED_PAGE}.md": build_checked_page(watchlist, today),
@@ -3324,7 +3324,7 @@ def _write_artifacts(registry_path: Path, root: Path, inputs: _RenderInputs) -> 
         json.dumps(build_index(entries, today, watchlist, pages, scores), indent=2,
                    ensure_ascii=False) + "\n",
         encoding="utf-8")
-    (root / "llms.txt").write_text(build_llms_txt(entries, today, pages, scores), encoding="utf-8")
+    (root / TEXT_LIST).write_text(build_llms_txt(entries, today, pages, scores), encoding="utf-8")
     configs = root / "configs"
     configs.mkdir(parents=True, exist_ok=True)
     (configs / "opencode.json").write_text(

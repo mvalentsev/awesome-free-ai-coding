@@ -28,7 +28,7 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .history import EventType
-from .layout import CI_WORKFLOW, INDEXNOW_WORKFLOW, MAP, PROJECT_FILE, Kind
+from .layout import ATOM_FEED, BROWSE_PAGE, CI_WORKFLOW, INDEXNOW_WORKFLOW, MAP, PROJECT_FILE, Kind
 from .models import ApiInfo, ArchiveReview, CatalogCondition, Category, ClientLane, FreeAccess, RemainingFree, ModelBinding, ModelFamily, ModelLimits, ModelTableExclusion, Newcomer, OPENCODE_OUTPUT_FIELD, OPENCODE_LEGACY_OUTPUT_FIELD, PageModel, Probe, SessionEligibility, utc_today
 from .page_dates import MODIFIED
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
@@ -176,7 +176,7 @@ def _ci_matrix(root: Path) -> tuple[str]:
 
 def _indexnow_push_filter(root: Path) -> tuple[str]:
     return ("    paths:\n" + "".join(f"      - {json.dumps(node.path)}\n"
-                                    for node in MAP if node.published),)
+                                    for node in MAP if node.published or node.pages_input),)
 
 
 def _cron_day(workflow: str) -> Callable[[Path], tuple[str, ...]]:
@@ -500,7 +500,7 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           lambda root: next(node.written_by for node in MAP if node.path == INDEXNOW_WORKFLOW),
           "layout.MAP; independent new-file/job-preservation controls in tests/test_claims.py"),
     Claim(INDEXNOW_WORKFLOW, r"(?m)(^    paths:\n(?:      - [^\n]+\n)+)",
-          _indexnow_push_filter, "published paths in layout.MAP", generated=True),
+          _indexnow_push_filter, "published files and Pages inputs in layout.MAP", generated=True),
     Claim("CONTRIBUTING.md", r"(?s)after the `([\w-]+)`\s+deployment confirms the exact commit\..*?"
           r"advances `(refs/heads/[\w-]+)` only after IndexNow accepts the URLs\s+or the published commit has no changed URLs\. "
           r"The sender gives a push build\s+(\d+) seconds to start, then checks whether Pages needs a rebuild\.",
@@ -876,10 +876,10 @@ CLAIMS: tuple[Claim[Path] | RegistryClaim, ...] = (
           lambda root: (str(BROWSE_COMPARE_LIMIT),),
           "render.BROWSE_COMPARE_LIMIT; Browse reads this value when restoring and editing comparisons",
           generated=True),
-    Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
-          lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
-    Claim("browse.html", r'<link rel="alternate" type="application/atom\+xml"[^>]* href="([^"]+)/feed\.xml">',
-          lambda root: (PAGES_URL,), "render.PAGES_URL", generated=True),
+    Claim(BROWSE_PAGE, r'<link rel="canonical" href="([^"]+)">',
+          lambda root: (f"{PAGES_URL}/{BROWSE_PAGE}",), "render.PAGES_URL and layout.BROWSE_PAGE", generated=True),
+    Claim(BROWSE_PAGE, r'<link rel="alternate" type="application/atom\+xml"[^>]* href="([^"]+)">',
+          lambda root: (f"{PAGES_URL}/{ATOM_FEED}",), "render.PAGES_URL and layout.ATOM_FEED", generated=True),
     Claim("browse.html", r'<a class="github-link" href="([^"]+)" aria-label="Star on GitHub">',
           lambda root: (REPO_URL,), "render.REPO_URL", generated=True),
     Claim("browse.html", r'<footer>Generated from <a href="([^"]+)">the registry</a>',

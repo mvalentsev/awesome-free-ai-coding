@@ -3419,7 +3419,6 @@ entries:
   - https://aihubmix.com/models/lfm-3-1.7b-free
   - https://huggingface.co/LiquidAI/LFM3-1.7B
   - https://aihubmix.com/models/crouton-alpha-free
-  - https://aihubmix.com/models/ling-3.2-flash-free
   card_required: false
   offering: OpenAI-compatible model gateway with zero-priced routes and an Anthropic-format
     endpoint for coding clients
@@ -3782,16 +3781,6 @@ entries:
     model_ids:
     - lfm-3-1.7b-free
     reviewed_on: '2026-11-26'
-  - unit: usage
-    scope: unspecified
-    label: Ling 3.2 Flash free route
-    source: https://aihubmix.com/models/ling-3.2-flash-free
-    quote: Ling 3.2 Flash is a hybrid reasoning model from inclusionAI that accepts
-      text and image input, with a 1M-token context window and up to 200 images per
-      request.
-    model_ids:
-    - ling-3.2-flash-free
-    reviewed_on: '2026-11-26'
   free_part: models
   models:
   - family: glm-5.3
@@ -3896,7 +3885,6 @@ entries:
     - ernie-5.5-flash-preview-free
     - particle-1-free
     - lfm-3-1.7b-free
-    - ling-3.2-flash-free
     model_bindings:
       intern-s2-free:
         family: intern-s2-preview-35b

@@ -22,9 +22,11 @@ import httpx
 
 from . import git
 from .discovery import github_headers
-from .layout import INDEXNOW_KEY, INDEXNOW_KEY_FILE as KEY_FILE, node_for
+from .layout import ATOM_FEED, BROWSE_PAGE, INDEXNOW_KEY, INDEXNOW_KEY_FILE as KEY_FILE
+from .layout import SITE_PAGE, TEXT_LIST, node_for
 from .page_dates import content_hash, page_parts
-from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
+from .render import (BROWSE_URL, FEED_URL, PAGES_URL, REPO_URL, checked_page_url,
+                     models_index_url, providers_index_url)
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
 DELIVERY_REF = "refs/heads/indexnow-delivered"
@@ -36,6 +38,16 @@ PAGES_ATTEMPTS = 60
 PAGES_EVERY = 15.0
 # Grace period for the automatic Pages build on a push.
 PAGES_REPAIR_GRACE = 60.0
+STANDALONE_PAGES = {SITE_PAGE: f"{PAGES_URL}/", ATOM_FEED: FEED_URL,
+                    TEXT_LIST: f"{PAGES_URL}/{TEXT_LIST}", BROWSE_PAGE: BROWSE_URL}
+# The text list's build stamp changes even when its offer text is identical.
+TEXT_LIST_BUILD_DATE = re.compile(r"(?m)^(> [^\n]*? Generated )\d{4}-\d{2}-\d{2}( from the registry;)")
+
+
+def _detail_urls(index: dict) -> list[str]:
+    return [providers_index_url(), checked_page_url(),
+            *(e["page"] for e in index.get("entries", [])), models_index_url(),
+            *(m["page"] for m in index.get("models", []) if m.get("page"))]
 
 
 def site_urls(index: dict) -> list[str]:
@@ -44,13 +56,9 @@ def site_urls(index: dict) -> list[str]:
     row (archived rows too: a page that now says "archived" is a change worth
     reading), the index of every model and a page per model that has one, the
     feed and the text and table views."""
-    urls = [f"{PAGES_URL}/", providers_index_url(), checked_page_url()]
-    urls += [e["page"] for e in index.get("entries", [])]
-    urls += [models_index_url()]
-    urls += [m["page"] for m in index.get("models", []) if m.get("page")]
-    urls += [f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt", f"{PAGES_URL}/browse.html"]
+    urls = [STANDALONE_PAGES[SITE_PAGE], *_detail_urls(index),
+            *(STANDALONE_PAGES[path] for path in (ATOM_FEED, TEXT_LIST, BROWSE_PAGE))]
     return list(dict.fromkeys(urls))
-
 
 
 def changed_urls(before: dict | None, after: dict) -> list[str]:
@@ -86,10 +94,9 @@ def changed_urls(before: dict | None, after: dict) -> list[str]:
     wanted |= {model_pages[f] for f in models_moved if f in model_pages}
     watch_moved = before.get("watchlist") != after.get("watchlist")
     if rows_moved or models_moved or watch_moved:
-        wanted.add(f"{PAGES_URL}/")
+        wanted.add(STANDALONE_PAGES[SITE_PAGE])
     if rows_moved:
-        wanted |= {providers_index_url(), f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt",
-                   f"{PAGES_URL}/browse.html"}
+        wanted.update((*STANDALONE_PAGES.values(), providers_index_url()))
     if models_moved:
         wanted.add(models_index_url())
     if watch_moved:
@@ -118,20 +125,48 @@ def changed_since(before: str, now: dict, repo: Path = Path("."),
     urls = changed_urls(old_index, now)
     if old_index is None:
         return urls
+    shared_pages_changed = False
     for changed in git.changed_paths(repo, before, after):
         node = node_for(changed)
-        if not (node and node.published and node.kept and changed.endswith(".md")):
+        if node is None:
             continue
-        old, new = (git.show(repo, ref, changed) for ref in (before, after))
-        if new is None or (old is not None and content_hash(old) == content_hash(new)):
+        if node.pages_input:
+            shared_pages_changed = True
             continue
-        # The writer's permalink is the served address, including index pages.
-        fields, _ = page_parts(new)
-        permalink = fields.get("permalink")
-        if not isinstance(permalink, str) or not permalink.startswith("/") or permalink.startswith("//"):
-            raise ValueError(f"{changed} has an invalid Pages permalink")
-        urls.append(f"{PAGES_URL}{permalink}")
+        static_url = STANDALONE_PAGES.get(changed)
+        if not node.published or not (static_url or node.kept):
+            continue
+        if static_url in urls:
+            continue
+        new = git.show(repo, after, changed)
+        if new is None:
+            continue
+        if static_url and changed != TEXT_LIST:
+            urls.append(static_url)
+            continue
+        old = git.show(repo, before, changed)
+        if url := _changed_page_url(changed, old, new):
+            urls.append(url)
+    if shared_pages_changed:
+        urls.extend(_detail_urls(now))
     return list(dict.fromkeys(urls))
+
+
+def _changed_page_url(path: str, old: str | None, new: str) -> str | None:
+    if path == TEXT_LIST:
+        if old is not None:
+            strip_date = partial(TEXT_LIST_BUILD_DATE.sub, r"\1\2", count=1)
+            if strip_date(old) == strip_date(new):
+                return None
+        return STANDALONE_PAGES[TEXT_LIST]
+    if old is not None and content_hash(old) == content_hash(new):
+        return None
+    # The writer's permalink is the served address, including index pages.
+    fields, _ = page_parts(new)
+    permalink = fields.get("permalink")
+    if not isinstance(permalink, str) or not permalink.startswith("/") or permalink.startswith("//"):
+        raise ValueError(f"{path} has an invalid Pages permalink")
+    return f"{PAGES_URL}{permalink}"
 
 
 def submit(urls: list[str], post=httpx.post) -> int:

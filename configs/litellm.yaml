@@ -567,12 +567,6 @@ model_list:
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
     use_chat_completions_api: true
-- model_name: aihubmix/ling-3.2-flash-free
-  litellm_params:
-    model: openai/ling-3.2-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-    use_chat_completions_api: true
 - model_name: zai-glm/glm-4.7-flash
   litellm_params:
     model: openai/glm-4.7-flash

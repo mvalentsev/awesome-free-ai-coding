@@ -51,6 +51,8 @@ class Node:
     # _config.yml does not name, apart from paths that start with a dot, an
     # underscore, # or ~, backups ending in ~, and node_modules or vendor.
     published: bool = False
+    # Jekyll uses this file to build the published Markdown pages.
+    pages_input: bool = False
     # A file that exists only once a command first writes it.
     optional: bool = False
     # A page the site published at an address of its own. Once committed it is
@@ -67,6 +69,10 @@ RUN_WRITERS = ("freetier-probe", "freetier-tiers", "freetier-render")
 
 _PAGES = ("registry.yaml", "watchlist.yaml", "history.jsonl")
 _SCORES = "src/freetier_radar/intelligence-index.json"
+SITE_PAGE = "index.html"
+BROWSE_PAGE = "browse.html"
+ATOM_FEED = "feed.xml"
+TEXT_LIST = "llms.txt"
 PROJECT_FILE = "pyproject.toml"
 CI_WORKFLOW = ".github/workflows/ci.yml"
 INDEXNOW_WORKFLOW = ".github/workflows/indexnow.yml"
@@ -96,7 +102,7 @@ MAP: tuple[Node, ...] = (
     # ---- generated
     Node("README.md", Kind.GENERATED, "the landing page GitHub shows under the file list",
          made_from=("templates/README.md.j2", *_PAGES, _SCORES), written_by=("freetier-render",)),
-    Node("index.html", Kind.GENERATED, "the Pages site's front page",
+    Node(SITE_PAGE, Kind.GENERATED, "the Pages site's front page",
          made_from=("templates/index.html.j2", "assets/model-name.js", "assets/search.js", *_PAGES), written_by=("freetier-render",),
          published=True),
     Node("configs/README.md", Kind.GENERATED, "the connection table, beside the configs",
@@ -117,10 +123,10 @@ MAP: tuple[Node, ...] = (
     Node("index.json", Kind.GENERATED, "every row and the watchlist, for machines",
          made_from=("registry.yaml", "watchlist.yaml"), written_by=("freetier-render",),
          published=True),
-    Node("feed.xml", Kind.GENERATED, "the Atom feed of the history",
+    Node(ATOM_FEED, Kind.GENERATED, "the Atom feed of the history",
          made_from=("history.jsonl", "registry.yaml"), written_by=("freetier-render",),
          published=True),
-    Node("llms.txt", Kind.GENERATED, "the whole list as one text file",
+    Node(TEXT_LIST, Kind.GENERATED, "the whole list as one text file",
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("assets/readme/*.svg", Kind.GENERATED,
          "the README's pictures: the radar at the top, a dot per live row, and measured free models "
@@ -136,7 +142,7 @@ MAP: tuple[Node, ...] = (
          made_from=("registry.yaml", "history.jsonl"), written_by=("freetier-render",),
          published=True, kept=True),
     # ---- hand-written pages
-    Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
+    Node(BROWSE_PAGE, Kind.PAGE, "the filterable table, reading index.json in the browser",
          made_from=("index.json", "assets/model-name.js", "assets/search.js",
                     "src/freetier_radar/models.py", "src/freetier_radar/render.py",
                     "src/freetier_radar/claims.py"),
@@ -182,10 +188,10 @@ MAP: tuple[Node, ...] = (
     Node("uv.lock", Kind.CONFIG, "the pinned dependencies"),
     Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out",
          made_from=("src/freetier_radar/models.py", "src/freetier_radar/claims.py"),
-         written_by=("freetier-render",)),
+         written_by=("freetier-render",), pages_input=True),
     Node("_layouts/*.html", Kind.CONFIG,
          "the page every generated Markdown page is served in: one heading, the way back to "
-         "the indexes, the breadcrumb"),
+         "the indexes, the breadcrumb", pages_input=True),
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
     Node(".imgbotconfig", Kind.CONFIG,
          "the images ImgBot leaves alone — all of them: the README's pictures are generated, the "
@@ -194,7 +200,7 @@ MAP: tuple[Node, ...] = (
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
     Node(INDEXNOW_WORKFLOW, Kind.CONFIG,
-         "IndexNow after publication; its push filter is generated from the published map",
+         "IndexNow after publication; its push filter follows the published files and Pages inputs",
          made_from=("src/freetier_radar/layout.py", *_PYTHON_PROJECTION),
          written_by=("freetier-render",)),
     Node(".github/workflows/update.yml", Kind.CONFIG,

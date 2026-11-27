@@ -176,11 +176,12 @@ def test_render_projects_the_python_floor_and_publication_paths_to_workflows(ren
     shutil.copyfile(ROOT / 'CONTRIBUTING.md', root / 'CONTRIBUTING.md')
     indexnow = root / '.github/workflows/indexnow.yml'
     original = indexnow.read_text()
-    indexnow.write_text(original.replace('      - "index.json"', '      - "stray.json"'))
+    indexnow.write_text(original.replace('      - "index.json"', '      - "stray.json"')
+                        .replace('      - "_layouts/*.html"\n', ''))
     new_page = Node('new-published.html', Kind.PAGE, 'a new page', published=True)
-    expected_paths = [node.path for node in (*claims.MAP, new_page) if node.published]
+    expected_paths = [node.path for node in (*claims.MAP, new_page) if node.published or node.pages_input]
     monkeypatch.setattr(claims, 'MAP', (*claims.MAP, new_page))
-    path_claim, = (claim for claim in claims.CLAIMS if claim.source == 'published paths in layout.MAP')
+    path_claim, = (claim for claim in claims.CLAIMS if claim.source == 'published files and Pages inputs in layout.MAP')
     assert claims.check_claims(root, (path_claim,), scheduled=())
     render_all(root / 'registry.yaml', ROOT / 'templates', root, today=TODAY)
 
@@ -198,6 +199,7 @@ def test_render_projects_the_python_floor_and_publication_paths_to_workflows(ren
     rendered = indexnow.read_text()
     after = yaml.safe_load(rendered)
     assert after[True]['push']['paths'] == expected_paths
+    assert {'_config.yml', '_layouts/*.html'} <= set(after[True]['push']['paths'])
     assert not claims.check_claims(root, (path_claim,), scheduled=())
     assert after[True]['push']['paths'].pop() == new_page.path
     setup = next(step for step in after['jobs']['ping']['steps'] if step.get('with', {}).get('python-version'))
