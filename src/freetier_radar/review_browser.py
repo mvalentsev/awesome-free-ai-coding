@@ -155,7 +155,8 @@ def browser_plan(bundle: Bundle) -> dict:
         if len(named) == 2:
             add(width, scheme, 'search-flow')
         if width != narrow:
-            add(width, scheme, 'readme')
+            if scheme == 'light':
+                add(width, scheme, 'readme')
             for i in range(len(readme_images)):
                 add(width, scheme, 'readme-image', str(i))
     cases = list(coverage)

@@ -1646,6 +1646,9 @@ def test_browser_readme_coverage_follows_the_actual_committed_render(tmp_path, m
     assert len(plan['readme_images']) == (2 if mode.startswith('measured') else 1)
     assert [m['family'] for m in plan['readme_models']] == (['alpha'] if mode.startswith('measured') else [])
     assert any(alt.startswith('awesome-free-ai-coding') for alt in plan['readme_images'])
+    assert [case for case in plan['cases'] if case.endswith('/readme')] == [
+        f'{width}/light/readme' for width in plan['widths'][:2]
+    ]
     assert sum('/readme-image/' in case for case in plan['cases']) == 4 * len(plan['readme_images'])
     script = browser_script(bundle)
     assert plan['readme_url'] == f"{plan['repository']}/tree/{plan['sha']}"
